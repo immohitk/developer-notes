@@ -18,3 +18,15 @@
 - Web browsers interpret HTML to render web pages.
 - HTML uses elements represented by tags.
 - HTML5 is the latest major version and introduces semantic elements and modern web features.
+
+
+---
+
+## ✅ Best Practices
+
+- Write clean and properly indented HTML code.
+- Use meaningful and semantic HTML elements whenever possible.
+- Always close tags that require closing.
+- Keep your code organized and easy to read.
+- Use lowercase tag and attribute names for consistency.
+- Add comments where necessary to improve readability.
