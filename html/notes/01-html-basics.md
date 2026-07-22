@@ -8,7 +8,9 @@
 - Key Takeaways
 - References
 
+
 ---
+
 
 ## 📝 Quick Revision
 
@@ -19,7 +21,9 @@
 - HTML uses elements represented by tags.
 - HTML5 is the latest major version and introduces semantic elements and modern web features.
 
+
 ---
+
 
 ## ✅ Best Practices
 
@@ -30,7 +34,9 @@
 - Use lowercase tag and attribute names for consistency.
 - Add comments where necessary to improve readability.
 
+
 ---
+
 
 ## ❌ Common Mistakes
 
@@ -41,7 +47,9 @@
 - Overusing non-semantic elements like `<div>` when semantic elements are more appropriate.
 - Ignoring HTML validation errors.
 
+
 ---
+
 
 ## 💼 Interview Questions
 
@@ -59,3 +67,36 @@
 
 ### 5. What is the purpose of HTML?
 **Answer:** To define the structure and content of web pages using elements and tags.
+
+
+---
+
+
+## 💻 Practice Exercises
+
+### Exercise 1
+Write the basic structure of an HTML document.
+
+---
+
+### Exercise 2
+Explain the difference between **HyperText** and **Markup Language** in your own words.
+
+---
+
+### Exercise 3
+List five important features of HTML.
+
+---
+
+### Exercise 4
+Research the major improvements introduced in HTML5.
+
+---
+
+### Exercise 5
+Create a simple HTML page containing:
+- A heading
+- A paragraph
+- A horizontal line
+- A line break
