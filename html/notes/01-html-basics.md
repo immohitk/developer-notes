@@ -19,7 +19,6 @@
 - HTML uses elements represented by tags.
 - HTML5 is the latest major version and introduces semantic elements and modern web features.
 
-
 ---
 
 ## ✅ Best Practices
@@ -41,3 +40,22 @@
 - Writing code without proper indentation.
 - Overusing non-semantic elements like `<div>` when semantic elements are more appropriate.
 - Ignoring HTML validation errors.
+
+---
+
+## 💼 Interview Questions
+
+### 1. What is HTML?
+**Answer:** HTML (HyperText Markup Language) is the standard markup language used to create the structure of web pages.
+
+### 2. Is HTML a programming language?
+**Answer:** No. HTML is a markup language used to structure content, not to perform programming logic.
+
+### 3. What does HTML stand for?
+**Answer:** HyperText Markup Language.
+
+### 4. What is the latest version of HTML?
+**Answer:** HTML5.
+
+### 5. What is the purpose of HTML?
+**Answer:** To define the structure and content of web pages using elements and tags.
