@@ -100,3 +100,19 @@ Create a simple HTML page containing:
 - A paragraph
 - A horizontal line
 - A line break
+
+
+---
+
+
+## 🔗 Related Topics
+
+Continue learning with the following topics:
+
+1. [HTML Page Structure](02-page-structure.md)
+2. [HTML Comments](03-comments.md)
+3. [HTML Tags](04-tags.md)
+4. [HTML Elements](05-elements.md)
+5. [HTML Attributes](06-attributes.md)
+6. [HTML ID and Classes](07-id-classes.md)
+7. [Inline vs Block Elements](08-inline-block-elements.md)
