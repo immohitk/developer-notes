@@ -30,3 +30,14 @@
 - Keep your code organized and easy to read.
 - Use lowercase tag and attribute names for consistency.
 - Add comments where necessary to improve readability.
+
+---
+
+## ❌ Common Mistakes
+
+- Confusing HTML with a programming language (HTML is a markup language).
+- Forgetting to close tags that require closing.
+- Using incorrect or mismatched nesting of elements.
+- Writing code without proper indentation.
+- Overusing non-semantic elements like `<div>` when semantic elements are more appropriate.
+- Ignoring HTML validation errors.
