@@ -96,3 +96,24 @@ Every HTML document follows a standard structure that helps web browsers underst
 - The `<title>` element defines the text shown in the browser tab.
 - The `<body>` section contains all visible content displayed on the web page.
 - A proper document structure improves readability, maintainability, and browser compatibility.
+
+
+
+---
+
+## 💼 Interview Questions
+
+### 1. Why is `<!DOCTYPE html>` important?
+**Answer:** It tells the browser that the document uses HTML5 and helps render the page in standards mode.
+
+### 2. What is the purpose of the `<head>` element?
+**Answer:** It contains metadata, links to stylesheets, scripts, the page title, and other resources that are not directly displayed.
+
+### 3. What is the difference between the `<head>` and `<body>` elements?
+**Answer:** The `<head>` contains document metadata, while the `<body>` contains the visible content shown to users.
+
+### 4. What is the purpose of the `<title>` tag?
+**Answer:** It defines the title displayed in the browser tab and is also used by search engines and bookmarks.
+
+### 5. Which element is the root element of an HTML document?
+**Answer:** The `<html>` element.
