@@ -42,3 +42,17 @@ Every HTML document follows a standard structure that helps web browsers underst
 ### 5. `<body>`
 
 - Contains all visible content such as headings, paragraphs, images, links, tables, forms, and more.
+
+
+## 📑 Table of Contents
+
+- Introduction
+- Basic HTML Structure
+- Components of an HTML Document
+  - `<!DOCTYPE html>`
+  - `<html>`
+  - `<head>`
+  - `<title>`
+  - `<body>`
+- Key Takeaways
+- References
