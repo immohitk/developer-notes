@@ -83,3 +83,16 @@ Every HTML document follows a standard structure that helps web browsers underst
 - Incorrectly nesting HTML elements.
 - Forgetting to close elements that require closing tags.
 - Writing poorly indented HTML, making the code difficult to read and maintain.
+
+
+
+---
+
+## 📝 Quick Revision
+
+- Every HTML document begins with `<!DOCTYPE html>`.
+- The `<html>` element is the root of the document.
+- The `<head>` section contains metadata and resources.
+- The `<title>` element defines the text shown in the browser tab.
+- The `<body>` section contains all visible content displayed on the web page.
+- A proper document structure improves readability, maintainability, and browser compatibility.
