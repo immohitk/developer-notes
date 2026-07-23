@@ -56,3 +56,15 @@ Every HTML document follows a standard structure that helps web browsers underst
   - `<body>`
 - Key Takeaways
 - References
+
+
+---
+
+## ✅ Best Practices
+
+- Always start an HTML document with `<!DOCTYPE html>`.
+- Keep the document structure in the correct order: `html` → `head` → `body`.
+- Include a meaningful `<title>` for every web page.
+- Store metadata, stylesheets, and scripts inside the `<head>` section.
+- Place only visible content inside the `<body>` section.
+- Use proper indentation to improve readability and maintenance.
