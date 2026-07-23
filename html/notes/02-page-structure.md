@@ -117,3 +117,40 @@ Every HTML document follows a standard structure that helps web browsers underst
 
 ### 5. Which element is the root element of an HTML document?
 **Answer:** The `<html>` element.
+
+
+
+---
+
+## 💻 Practice Exercises
+
+### Exercise 1
+Write the basic structure of an HTML5 document from memory.
+
+---
+
+### Exercise 2
+Explain the purpose of each of these elements:
+- `<!DOCTYPE html>`
+- `<html>`
+- `<head>`
+- `<title>`
+- `<body>`
+
+---
+
+### Exercise 3
+Create an HTML page with:
+- A meaningful page title
+- One heading
+- One paragraph
+
+---
+
+### Exercise 4
+Identify and correct the errors in an HTML document with misplaced elements.
+
+---
+
+### Exercise 5
+Why should visible content be placed inside the `<body>` element instead of the `<head>` element?
