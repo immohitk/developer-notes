@@ -18,6 +18,7 @@ Every HTML document follows a standard structure that helps web browsers underst
 </html>
 ```
 
+
 ## Components of an HTML Document
 
 ### 1. `<!DOCTYPE html>`
@@ -56,6 +57,7 @@ Every HTML document follows a standard structure that helps web browsers underst
   - `<body>`
 - Key Takeaways
 - References
+
 
 
 ---
