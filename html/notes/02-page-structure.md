@@ -68,3 +68,16 @@ Every HTML document follows a standard structure that helps web browsers underst
 - Store metadata, stylesheets, and scripts inside the `<head>` section.
 - Place only visible content inside the `<body>` section.
 - Use proper indentation to improve readability and maintenance.
+
+
+
+---
+
+## ❌ Common Mistakes
+
+- Forgetting to include `<!DOCTYPE html>`, which may cause browsers to use quirks mode.
+- Placing visible content inside the `<head>` section instead of the `<body>`.
+- Omitting the `<title>` tag, making the page less user-friendly and less SEO-friendly.
+- Incorrectly nesting HTML elements.
+- Forgetting to close elements that require closing tags.
+- Writing poorly indented HTML, making the code difficult to read and maintain.
