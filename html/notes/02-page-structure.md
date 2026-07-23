@@ -154,3 +154,22 @@ Identify and correct the errors in an HTML document with misplaced elements.
 
 ### Exercise 5
 Why should visible content be placed inside the `<body>` element instead of the `<head>` element?
+
+
+
+---
+
+## 🔗 Related Topics
+
+Build on your understanding of HTML with these topics:
+
+### Previous
+- [HTML Basics](01-html-basics.md)
+
+### Next
+- [HTML Comments](03-comments.md)
+- [HTML Tags](04-tags.md)
+- [HTML Elements](05-elements.md)
+- [HTML Attributes](06-attributes.md)
+- [HTML ID and Classes](07-id-classes.md)
+- [Inline vs Block Elements](08-inline-block-elements.md)
