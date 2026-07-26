@@ -108,3 +108,16 @@ Find and correct the errors in the following comment:
 Explain when comments are useful and when they should be avoided.
 
 
+---
+
+## 🔗 Related Topics
+
+Continue your HTML learning with these topics:
+
+- [HTML Basics](01-html-basics.md)
+- [HTML Page Structure](02-page-structure.md)
+- [HTML Tags](04-tags.md)
+- [HTML Elements](05-elements.md)
+- [HTML Attributes](06-attributes.md)
+- [HTML ID and Classes](07-id-classes.md)
+- [Inline vs Block Elements](08-inline-block-elements.md)
