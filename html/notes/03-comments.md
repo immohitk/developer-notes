@@ -37,3 +37,15 @@
 - Adding excessive comments for code that is already clear and self-explanatory.
 
 
+---
+
+## 📝 Quick Revision
+
+- HTML comments are written using `<!-- comment -->`.
+- Comments are ignored by web browsers and are not displayed on the page.
+- Comments help explain code and improve readability.
+- HTML does not support nested comments.
+- Avoid storing sensitive information in comments.
+- Remove unnecessary comments and commented-out code before deploying a website.
+
+
