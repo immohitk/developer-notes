@@ -49,3 +49,26 @@
 - Remove unnecessary comments and commented-out code before deploying a website.
 
 
+---
+
+## 💼 Interview Questions
+
+### 1. What is an HTML comment?
+**Answer:** An HTML comment is text enclosed within `<!--` and `-->` that is ignored by the browser and used to document or explain code.
+
+### 2. What is the syntax for an HTML comment?
+**Answer:**
+```html
+<!-- This is an HTML comment -->
+```
+
+### 3. Are HTML comments visible on a web page?
+**Answer:** No. Browsers do not display comments, although they can still be viewed in the page source.
+
+### 4. Can HTML comments be nested?
+**Answer:** No. HTML does not support nested comments.
+
+### 5. Why are HTML comments useful?
+**Answer:** They improve code readability, document sections of code, and help during debugging and maintenance.
+
+
