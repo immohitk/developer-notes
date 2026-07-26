@@ -25,3 +25,15 @@
 - Never include sensitive information (such as passwords or API keys) inside comments.
 
 
+---
+
+## ❌ Common Mistakes
+
+- Forgetting to close the comment with `-->`.
+- Nesting comments inside other comments (HTML does not support nested comments).
+- Using comments to hide sensitive information such as passwords or API keys.
+- Leaving large blocks of unused commented code in production.
+- Writing vague comments that do not explain the purpose of the code.
+- Adding excessive comments for code that is already clear and self-explanatory.
+
+
