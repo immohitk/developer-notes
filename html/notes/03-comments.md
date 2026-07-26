@@ -72,3 +72,39 @@
 **Answer:** They improve code readability, document sections of code, and help during debugging and maintenance.
 
 
+---
+
+## 💻 Practice Exercises
+
+### Exercise 1
+Write an HTML comment that describes the purpose of a webpage.
+
+---
+
+### Exercise 2
+Create an HTML page and add comments to separate these sections:
+- Header
+- Navigation
+- Main Content
+- Footer
+
+---
+
+### Exercise 3
+Comment out a paragraph in an HTML document and observe the output in the browser.
+
+---
+
+### Exercise 4
+Find and correct the errors in the following comment:
+
+```html
+<!-- This is an HTML comment
+```
+
+---
+
+### Exercise 5
+Explain when comments are useful and when they should be avoided.
+
+
