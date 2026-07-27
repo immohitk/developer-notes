@@ -100,3 +100,27 @@ Examples of content inside the `<body>` include:
 Everything that users see and interact with belongs inside the `<body>` element.
 
 
+---
+
+
+## Key Takeaways
+
+- Every HTML document follows a standard structure.
+- `<!DOCTYPE html>` tells the browser that the document uses HTML5.
+- The `<html>` element is the root element of the document.
+- The `<head>` section contains metadata and resources that are not displayed on the webpage.
+- The `<title>` element defines the title shown in the browser tab.
+- The `<body>` element contains all the visible content displayed to users.
+- A well-structured HTML document improves readability, maintainability, and browser compatibility.
+
+
+---
+
+
+## References
+
+To learn more about HTML document structure, refer to the following resources:
+
+- **MDN Web Docs** – HTML Document Structure
+- **WHATWG HTML Living Standard**
+- **W3Schools HTML Tutorial**
