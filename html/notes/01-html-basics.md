@@ -73,6 +73,46 @@ Modern HTML provides semantic elements such as `<header>`, `<main>`, `<section>`
 ---
 
 
+## Why HTML is Called a Markup Language
+
+The name **HTML (HyperText Markup Language)** is made up of three parts, each describing an important aspect of the language.
+
+### HyperText
+
+**HyperText** refers to text that contains links to other documents or web pages. These links, known as **hyperlinks**, allow users to navigate from one page to another with a single click.
+
+For example, clicking a link on a webpage to open another page is an example of HyperText.
+
+### Markup
+
+A **markup language** uses tags to describe the structure and meaning of content. These tags "mark up" different parts of a document so that web browsers know how to display them.
+
+For example:
+
+```html
+<h1>Welcome</h1>
+<p>This is my first web page.</p>
+```
+
+In this example:
+
+- `<h1>` marks the content as a heading.
+- `<p>` marks the content as a paragraph.
+
+### Language
+
+HTML provides a standard set of rules and tags for structuring web content. Developers use this standardized language so browsers can correctly interpret and display webpages.
+
+### Why is HTML called a Markup Language?
+
+HTML is called a **markup language** because it uses **tags** to describe the structure of a document instead of writing programming instructions.
+
+Unlike programming languages, HTML does not perform calculations, make decisions, or execute logic. Its primary purpose is to organize and structure content so that web browsers can render it correctly.
+
+
+---
+
+
 ## 📝 Quick Revision
 
 - HTML stands for **HyperText Markup Language**.
