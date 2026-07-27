@@ -141,3 +141,39 @@ To learn more about HTML document structure, refer to the following resources:
 - **MDN Web Docs** – HTML Document Structure
 - **WHATWG HTML Living Standard**
 - **W3Schools HTML Tutorial**
+
+
+---
+
+
+## Quick Revision
+
+| Element | Purpose |
+|---------|---------|
+| `<!DOCTYPE html>` | Declares that the document uses HTML5. |
+| `<html>` | The root element that contains the entire HTML document. |
+| `<head>` | Stores metadata, links to CSS, scripts, and the page title. |
+| `<title>` | Sets the title displayed in the browser tab. |
+| `<body>` | Contains all the visible content shown on the webpage. |
+
+### Basic HTML Template
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Web Page</title>
+</head>
+<body>
+    <h1>Welcome to HTML</h1>
+    <p>This is my first web page.</p>
+</body>
+</html>
+```
+
+### Remember
+
+- Every HTML page starts with `<!DOCTYPE html>`.
+- There should be only one `<html>`, `<head>`, and `<body>` element in a document.
+- Everything visible to users belongs inside the `<body>` element.
+- Keep the document structure clean and properly indented for better readability.
