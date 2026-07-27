@@ -1,12 +1,12 @@
 ## 📑 Table of Contents
 
-- What is HTML?
-- Features of HTML
-- Why HTML is Called a Markup Language
-- HTML Versions
-- History of HTML
-- Key Takeaways
-- References
+- [What is HTML?](#what-is-html)
+- [Features of HTML](#features-of-html)
+- [Why HTML is Called a Markup Language](#why-html-is-called-a-markup-language)
+- [HTML Versions](#html-versions)
+- [History of HTML](#history-of-html)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
 
 
 ---
@@ -128,7 +128,9 @@ HTML has evolved through several versions, with each version introducing new fea
 >
 > HTML5 is the latest major version of HTML and is the standard used for modern web development.
 
+
 ---
+
 
 ## History of HTML
 
@@ -137,6 +139,30 @@ HTML was created by **Tim Berners-Lee** in **1991** while working at CERN. His g
 As the World Wide Web grew, HTML continued to evolve to meet the increasing demands of web development. New versions introduced better structure, improved accessibility, multimedia support, and semantic elements.
 
 Today, HTML5 is maintained as a living standard and continues to evolve alongside modern web technologies.
+
+
+---
+
+
+## Key Takeaways
+
+- HTML stands for **HyperText Markup Language**.
+- HTML is the standard markup language used to structure web pages.
+- HTML defines the structure of content using elements represented by tags.
+- HTML works together with CSS for styling and JavaScript for interactivity.
+- HTML is a **markup language**, not a programming language.
+- HTML has evolved through multiple versions, with **HTML5** being the latest major version used in modern web development.
+- Understanding HTML is the first step toward becoming a web developer.
+
+---
+
+## References
+
+To learn more about HTML, you can explore the following resources:
+
+- **MDN Web Docs** – Comprehensive HTML documentation and examples.
+- **WHATWG HTML Living Standard** – Official HTML specification.
+- **W3Schools HTML Tutorial** – Beginner-friendly HTML tutorials and examples.
 
 
 ---
