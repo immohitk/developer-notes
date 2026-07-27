@@ -1,4 +1,4 @@
-## 📑 Table of Contents
+## Table of Contents
 
 - [What is HTML?](#what-is-html)
 - [Features of HTML](#features-of-html)
@@ -332,10 +332,12 @@ Create a table showing the evolution of HTML versions from HTML 1.0 to HTML5.
 
 Continue learning with the following topics:
 
-1. [HTML Page Structure](02-page-structure.md)
-2. [HTML Comments](03-comments.md)
-3. [HTML Tags](04-tags.md)
-4. [HTML Elements](05-elements.md)
-5. [HTML Attributes](06-attributes.md)
-6. [HTML ID and Classes](07-id-classes.md)
-7. [Inline vs Block Elements](08-inline-block-elements.md)
+### Next Topics
+
+- [HTML Page Structure](02-page-structure.md)
+- [HTML Comments](03-comments.md)
+- [HTML Tags](04-tags.md)
+- [HTML Elements](05-elements.md)
+- [HTML Attributes](06-attributes.md)
+- [HTML ID and Classes](07-id-classes.md)
+- [Inline vs Block Elements](08-inline-block-elements.md)

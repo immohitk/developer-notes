@@ -300,7 +300,12 @@ Build a personal profile webpage using the correct HTML document structure.
 
 Continue learning with the following topics:
 
+### Previous Topics
+
 - [HTML Basics](01-html-basics.md)
+
+### Next Topics
+
 - [HTML Comments](03-comments.md)
 - [HTML Tags](04-tags.md)
 - [HTML Elements](05-elements.md)
