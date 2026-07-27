@@ -12,6 +12,30 @@
 ---
 
 
+
+# HTML Basics
+
+## What is HTML?
+
+**HTML (HyperText Markup Language)** is the standard markup language used to create and structure web pages.
+
+It provides the basic structure of a webpage by organizing content such as headings, paragraphs, images, links, tables, forms, and other elements. Web browsers read HTML documents and render them into the web pages we see and interact with.
+
+HTML is often referred to as the **backbone** or **skeleton** of a website because it defines the structure of the content. However, HTML alone cannot make a webpage visually attractive or interactive. It works together with:
+
+- **CSS (Cascading Style Sheets)** for styling and layout.
+- **JavaScript** for adding interactivity and dynamic behavior.
+
+HTML documents are written using **elements** represented by **tags** and are usually saved with the **`.html`** or **`.htm`** file extension.
+
+> **Note**
+>
+> HTML is a **markup language**, not a programming language. It describes the structure of content but does not perform calculations, make decisions, or execute program logic.
+
+
+---
+
+
 ## 📝 Quick Revision
 
 - HTML stands for **HyperText Markup Language**.
