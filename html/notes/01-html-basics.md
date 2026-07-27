@@ -7,6 +7,12 @@
 - [History of HTML](#history-of-html)
 - [Key Takeaways](#key-takeaways)
 - [References](#references)
+- [Quick Revision](#-quick-revision)
+- [Best Practices](#-best-practices)
+- [Common Mistakes](#-common-mistakes)
+- [Interview Questions](#-interview-questions)
+- [Practice Exercises](#-practice-exercises)
+- [Related Topics](#-related-topics)
 
 
 ---
@@ -177,3 +183,159 @@ To learn more about HTML, you can explore the following resources:
 - HTML is a **markup language**, not a programming language.
 - HTML5 is the latest major version and introduces semantic elements, multimedia support, and modern web APIs.
 
+
+---
+
+
+## ✅ Best Practices
+
+- Write clean and properly indented HTML code to improve readability and maintenance.
+- Use semantic HTML elements such as `<header>`, `<main>`, `<section>`, and `<footer>` whenever appropriate.
+- Always close tags that require a closing tag.
+- Keep your HTML structure simple, organized, and easy to understand.
+- Use lowercase tag and attribute names for consistency.
+- Validate your HTML code regularly to identify and fix errors.
+
+
+---
+
+
+## ❌ Common Mistakes
+
+- Treating HTML as a programming language instead of a markup language.
+- Forgetting to close elements that require closing tags.
+- Incorrectly nesting HTML elements.
+- Writing poorly formatted or unindented HTML code.
+- Using non-semantic elements (`<div>`) when semantic elements are more appropriate.
+- Ignoring HTML validation errors, which can cause unexpected browser behavior.
+
+
+---
+
+
+## 💼 Interview Questions
+
+### 1. What is HTML?
+
+**Answer:**
+
+HTML (HyperText Markup Language) is the standard markup language used to structure web pages.
+
+---
+
+### 2. Is HTML a programming language?
+
+**Answer:**
+
+No. HTML is a markup language used to describe the structure of content. It does not perform calculations or implement programming logic.
+
+---
+
+### 3. What does HTML stand for?
+
+**Answer:**
+
+HyperText Markup Language.
+
+---
+
+### 4. What is the latest version of HTML?
+
+**Answer:**
+
+HTML5 is the latest major version and is widely used for modern web development.
+
+---
+
+### 5. Why is HTML called a markup language?
+
+**Answer:**
+
+Because it uses tags to describe and organize the structure of content rather than executing program logic.
+
+---
+
+### 6. What is the role of HTML in web development?
+
+**Answer:**
+
+HTML provides the structure of a webpage. CSS is responsible for styling, while JavaScript adds interactivity.
+
+---
+
+### 7. Who developed HTML?
+
+**Answer:**
+
+Tim Berners-Lee developed HTML in 1991 while working at CERN.
+
+
+---
+
+
+## 💻 Practice Exercises
+
+### Exercise 1
+
+Write a short explanation of HTML in your own words.
+
+---
+
+### Exercise 2
+
+List at least five important features of HTML.
+
+---
+
+### Exercise 3
+
+Explain the difference between **HyperText** and **Markup Language**.
+
+---
+
+### Exercise 4
+
+Research the major improvements introduced in HTML5.
+
+---
+
+### Exercise 5
+
+Create a simple HTML page that contains:
+
+- One heading
+- One paragraph
+- One image
+- One hyperlink
+
+---
+
+### Exercise 6
+
+Identify whether the following statement is correct:
+
+> HTML is a programming language.
+
+Explain your answer.
+
+---
+
+### Exercise 7
+
+Create a table showing the evolution of HTML versions from HTML 1.0 to HTML5.
+
+
+---
+
+
+## 🔗 Related Topics
+
+Continue learning with the following topics:
+
+1. [HTML Page Structure](02-page-structure.md)
+2. [HTML Comments](03-comments.md)
+3. [HTML Tags](04-tags.md)
+4. [HTML Elements](05-elements.md)
+5. [HTML Attributes](06-attributes.md)
+6. [HTML ID and Classes](07-id-classes.md)
+7. [Inline vs Block Elements](08-inline-block-elements.md)
