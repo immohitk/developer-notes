@@ -1,3 +1,20 @@
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Basic HTML Structure](#basic-html-structure)
+- [Components of an HTML Document](#components-of-an-html-document)
+  - [`<!DOCTYPE html>`](#doctype-html)
+  - [`<html>`](#html)
+  - [`<head>`](#head)
+  - [`<title>`](#title)
+  - [`<body>`](#body)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+
+
+---
+
+
 # HTML Page Structure
 
 ## Introduction
