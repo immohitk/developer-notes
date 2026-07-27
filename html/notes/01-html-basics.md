@@ -35,8 +35,6 @@ HTML documents are written using **elements** represented by **tags** and are us
 ---
 
 
----
-
 ## Features of HTML
 
 HTML has several features that make it the foundation of web development.
@@ -113,6 +111,37 @@ Unlike programming languages, HTML does not perform calculations, make decisions
 ---
 
 
+## HTML Versions
+
+HTML has evolved through several versions, with each version introducing new features and improvements.
+
+| Version | Released | Highlights |
+|---------|----------|------------|
+| HTML 1.0 | 1993 | The first version of HTML with basic elements for creating simple web pages. |
+| HTML 2.0 | 1995 | Introduced standard specifications for HTML and improved browser compatibility. |
+| HTML 3.2 | 1997 | Added support for tables, scripting, applets, and improved formatting features. |
+| HTML 4.01 | 1999 | Introduced support for stylesheets, scripting, frames, and better accessibility. |
+| XHTML | 2000 | A stricter version of HTML based on XML syntax and rules. |
+| HTML5 | 2014 | Introduced semantic elements, multimedia support, graphics, APIs, and many modern web development features. |
+
+> **Note**
+>
+> HTML5 is the latest major version of HTML and is the standard used for modern web development.
+
+---
+
+## History of HTML
+
+HTML was created by **Tim Berners-Lee** in **1991** while working at CERN. His goal was to develop a simple system for sharing and linking scientific documents over the internet.
+
+As the World Wide Web grew, HTML continued to evolve to meet the increasing demands of web development. New versions introduced better structure, improved accessibility, multimedia support, and semantic elements.
+
+Today, HTML5 is maintained as a living standard and continues to evolve alongside modern web technologies.
+
+
+---
+
+
 ## 📝 Quick Revision
 
 - HTML stands for **HyperText Markup Language**.
@@ -168,37 +197,6 @@ Unlike programming languages, HTML does not perform calculations, make decisions
 
 ### 5. What is the purpose of HTML?
 **Answer:** To define the structure and content of web pages using elements and tags.
-
-
----
-
-
-## HTML Versions
-
-HTML has evolved through several versions, with each version introducing new features and improvements.
-
-| Version | Released | Highlights |
-|---------|----------|------------|
-| HTML 1.0 | 1993 | The first version of HTML with basic elements for creating simple web pages. |
-| HTML 2.0 | 1995 | Introduced standard specifications for HTML and improved browser compatibility. |
-| HTML 3.2 | 1997 | Added support for tables, scripting, applets, and improved formatting features. |
-| HTML 4.01 | 1999 | Introduced support for stylesheets, scripting, frames, and better accessibility. |
-| XHTML | 2000 | A stricter version of HTML based on XML syntax and rules. |
-| HTML5 | 2014 | Introduced semantic elements, multimedia support, graphics, APIs, and many modern web development features. |
-
-> **Note**
->
-> HTML5 is the latest major version of HTML and is the standard used for modern web development.
-
----
-
-## History of HTML
-
-HTML was created by **Tim Berners-Lee** in **1991** while working at CERN. His goal was to develop a simple system for sharing and linking scientific documents over the internet.
-
-As the World Wide Web grew, HTML continued to evolve to meet the increasing demands of web development. New versions introduced better structure, improved accessibility, multimedia support, and semantic elements.
-
-Today, HTML5 is maintained as a living standard and continues to evolve alongside modern web technologies.
 
 
 ---
