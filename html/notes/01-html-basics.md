@@ -12,7 +12,6 @@
 ---
 
 
-
 # HTML Basics
 
 ## What is HTML?
@@ -31,6 +30,44 @@ HTML documents are written using **elements** represented by **tags** and are us
 > **Note**
 >
 > HTML is a **markup language**, not a programming language. It describes the structure of content but does not perform calculations, make decisions, or execute program logic.
+
+
+---
+
+
+---
+
+## Features of HTML
+
+HTML has several features that make it the foundation of web development.
+
+### 1. Simple and Easy to Learn
+
+HTML has a straightforward syntax based on tags and elements, making it one of the easiest technologies for beginners to learn.
+
+### 2. Platform Independent
+
+HTML documents can be created on one operating system and viewed on another without any modifications, as long as a web browser is available.
+
+### 3. Supports Hyperlinks
+
+HTML allows web pages to be connected using hyperlinks, making navigation between pages and websites possible.
+
+### 4. Multimedia Support
+
+HTML supports embedding various types of multimedia content, including images, audio, videos, and other external resources.
+
+### 5. Works with CSS and JavaScript
+
+HTML provides the structure of a webpage, while CSS is used for styling and JavaScript adds interactivity and dynamic behavior.
+
+### 6. Browser Support
+
+HTML is supported by all modern web browsers, making it the standard language for creating web pages.
+
+### 7. Semantic Elements
+
+Modern HTML provides semantic elements such as `<header>`, `<main>`, `<section>`, `<article>`, and `<footer>` that improve code readability, accessibility, and search engine optimization (SEO).
 
 
 ---
