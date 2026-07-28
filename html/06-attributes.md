@@ -515,3 +515,130 @@ The `autofocus` attribute automatically places the cursor inside an element when
 ```
 
 This example demonstrates several boolean attributes used together in a form.
+
+
+---
+
+
+## Best Practices for Using HTML Attributes
+
+Following best practices when using HTML attributes helps improve code quality and makes your HTML easier to read, maintain, and debug.
+
+### 1. Always Use Quotation Marks
+
+Although HTML5 allows some attribute values without quotation marks, it is recommended to always enclose attribute values in double quotation marks.
+
+✅ Correct
+
+```html
+<a href="https://example.com">Visit Website</a>
+```
+
+❌ Avoid
+
+```html
+<a href=https://example.com>Visit Website</a>
+```
+
+---
+
+### 2. Use Meaningful Attribute Values
+
+Choose descriptive and meaningful values for attributes such as `id`, `class`, and `title`.
+
+✅ Good
+
+```html
+<input id="email" class="form-input">
+```
+
+❌ Avoid
+
+```html
+<input id="a1" class="x">
+```
+
+Meaningful names make your code easier to understand and maintain.
+
+---
+
+### 3. Use the Required Attributes
+
+Some HTML elements require specific attributes to work correctly.
+
+Example:
+
+```html
+<img src="profile.jpg" alt="Profile Picture">
+```
+
+Always provide the `alt` attribute for images to improve accessibility.
+
+---
+
+### 4. Avoid Duplicate Attributes
+
+Do not use the same attribute more than once on the same element.
+
+❌ Incorrect
+
+```html
+<p class="text" class="highlight">
+    Welcome
+</p>
+```
+
+✅ Correct
+
+```html
+<p class="text highlight">
+    Welcome
+</p>
+```
+
+---
+
+### 5. Keep Attribute Values Consistent
+
+Use a consistent naming convention throughout your project.
+
+Example:
+
+```html
+class="main-header"
+class="navigation-menu"
+class="primary-button"
+```
+
+Consistency improves readability and makes projects easier to maintain.
+
+---
+
+### 6. Avoid Inline Styles When Possible
+
+Instead of using the `style` attribute repeatedly, prefer external CSS files for styling.
+
+❌ Avoid
+
+```html
+<p style="color: blue;">Welcome</p>
+```
+
+✅ Better
+
+```html
+<p class="welcome-text">Welcome</p>
+```
+
+Then define the styles in a CSS file.
+
+---
+
+### 7. Write Clean and Readable HTML
+
+- Use only the attributes that are needed.
+- Group related attributes together.
+- Indent long opening tags for better readability.
+- Remove unused or unnecessary attributes.
+
+Following these practices helps create clean, maintainable, and standards-compliant HTML.
