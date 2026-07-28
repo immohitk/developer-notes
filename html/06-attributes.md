@@ -929,3 +929,119 @@ Choose descriptive values that make your code easier to understand.
 4. Write an example using both `id` and `class` attributes.
 
 5. Create an element that uses at least four different HTML attributes.
+
+
+---
+
+
+## Practice Exercises
+
+Try the following exercises to strengthen your understanding of HTML attributes.
+
+### Exercise 1: Add Basic Attributes
+
+Create the following elements:
+
+- A hyperlink using the `href` attribute.
+- An image using the `src` and `alt` attributes.
+- A paragraph with the `title` attribute.
+
+---
+
+### Exercise 2: Use Multiple Attributes
+
+Create an image with the following attributes:
+
+- `src`
+- `alt`
+- `width`
+- `height`
+
+Example:
+
+```html
+<img
+    src="profile.jpg"
+    alt="Profile Picture"
+    width="200"
+    height="200"
+>
+```
+
+---
+
+### Exercise 3: Practice Global Attributes
+
+Create a `<div>` element using:
+
+- `id`
+- `class`
+- `title`
+- `style`
+
+---
+
+### Exercise 4: Practice Boolean Attributes
+
+Create:
+
+- A required input field.
+- A checked checkbox.
+- A disabled button.
+- A readonly input field.
+
+---
+
+### Exercise 5: Identify the Mistakes
+
+Find and correct the errors in the following code:
+
+```html
+<a href=https://example.com>Visit</a>
+
+<img src="photo.jpg">
+
+<p class="text" class="highlight">
+    Welcome
+</p>
+```
+
+---
+
+### Exercise 6: Build a Simple Profile Card
+
+Create a webpage that contains:
+
+- A heading
+- A profile image
+- A paragraph
+- A hyperlink
+- At least one `id`
+- At least one `class`
+- At least one `title`
+- One boolean attribute
+
+Ensure your HTML code is:
+
+- Properly indented
+- Easy to read
+- Using meaningful attribute values
+
+
+---
+
+
+## Related Topics
+
+### Previous Topics
+
+- [HTML Basics](01-html-basics.md)
+- [HTML Page Structure](02-page-structure.md)
+- [HTML Comments](03-comments.md)
+- [HTML Tags](04-tags.md)
+- [HTML Elements](05-elements.md)
+
+### Next Topics
+
+- [HTML ID and Classes](07-id-classes.md)
+- [Inline and Block Elements](08-inline-block-elements.md)
