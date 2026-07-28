@@ -669,3 +669,77 @@ Whenever appropriate, use semantic HTML elements such as:
 ```
 
 Semantic elements make your HTML more meaningful and easier to understand.
+
+
+---
+
+
+## Interview Questions
+
+### Beginner Level
+
+1. What is an HTML element?
+
+2. What are the parts of an HTML element?
+
+3. What is the difference between an HTML tag and an HTML element?
+
+4. What are container (normal) elements?
+
+5. What are empty (void) elements?
+
+6. Why don't empty elements have closing tags?
+
+7. What is meant by nested HTML elements?
+
+8. Why is proper nesting important in HTML?
+
+9. Name five commonly used empty HTML elements.
+
+10. Which part of an HTML element can contain attributes?
+
+---
+
+### Intermediate Level
+
+1. Explain the difference between container elements and empty elements with examples.
+
+2. What happens if HTML elements are not properly nested?
+
+3. Why is indentation important when writing HTML?
+
+4. How does the browser handle incorrectly nested HTML elements?
+
+5. Why is the `alt` attribute important for the `<img>` element?
+
+6. What is the purpose of semantic HTML elements?
+
+7. Can an HTML element exist without content? Explain with an example.
+
+8. Why are HTML elements considered the building blocks of a webpage?
+
+---
+
+### Practical Questions
+
+1. Write an HTML element that displays a heading.
+
+2. Create a paragraph element containing any text.
+
+3. Write an HTML example demonstrating nested elements.
+
+4. Add an image using the `<img>` element.
+
+5. Create a simple HTML snippet that contains both container and empty elements.
+
+6. Explain the difference between the following:
+
+```html
+<p>
+```
+
+and
+
+```html
+<p>Hello World!</p>
+```
