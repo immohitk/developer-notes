@@ -549,3 +549,123 @@ Keep your HTML structure as simple as possible.
 - Write consistent and well-formatted code.
 
 Following these practices makes HTML easier to understand, debug, and maintain.
+
+
+---
+
+
+## Common Mistakes
+
+Below are some common mistakes beginners make when working with HTML elements.
+
+### 1. Incorrect Nesting
+
+❌ Incorrect
+
+```html
+<p>This is <strong>important</p></strong>
+```
+
+✅ Correct
+
+```html
+<p>This is <strong>important</strong></p>
+```
+
+Always close the innermost element before closing its parent element.
+
+---
+
+### 2. Forgetting Closing Tags
+
+❌ Incorrect
+
+```html
+<h1>Welcome
+<p>This is a paragraph.
+```
+
+✅ Correct
+
+```html
+<h1>Welcome</h1>
+<p>This is a paragraph.</p>
+```
+
+Most HTML elements require both opening and closing tags.
+
+---
+
+### 3. Adding Closing Tags to Empty Elements
+
+❌ Incorrect
+
+```html
+<br></br>
+
+<img src="image.jpg"></img>
+```
+
+✅ Correct
+
+```html
+<br>
+
+<img src="image.jpg" alt="Sample Image">
+```
+
+Empty (void) elements do not have closing tags.
+
+---
+
+### 4. Confusing Tags with Elements
+
+❌ Incorrect Statement
+
+> "`<p>` is an HTML element."
+
+✅ Correct Statement
+
+> "`<p>` is an HTML tag, while `<p>Hello</p>` is an HTML element."
+
+Understanding this distinction helps you use HTML terminology correctly.
+
+---
+
+### 5. Poor Code Formatting
+
+❌ Difficult to Read
+
+```html
+<div><h2>About</h2><p>Welcome</p></div>
+```
+
+✅ Better
+
+```html
+<div>
+    <h2>About</h2>
+    <p>Welcome</p>
+</div>
+```
+
+Proper indentation improves readability and makes debugging easier.
+
+---
+
+### 6. Overusing Generic Elements
+
+❌ Avoid using `<div>` for everything.
+
+Whenever appropriate, use semantic HTML elements such as:
+
+```html
+<header>
+<nav>
+<main>
+<section>
+<article>
+<footer>
+```
+
+Semantic elements make your HTML more meaningful and easier to understand.
