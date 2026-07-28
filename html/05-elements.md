@@ -376,3 +376,70 @@ Here:
 - A tag is only a part of an HTML element.
 - Most HTML elements consist of an opening tag, content, and a closing tag.
 - Empty (void) elements contain only a single tag because they do not have any content.
+
+
+---
+
+
+## Key Takeaways
+
+- HTML elements are the building blocks of every HTML document.
+- An HTML element usually consists of an opening tag, content, and a closing tag.
+- HTML elements define the structure and content of a webpage.
+- HTML elements are classified into container (normal) elements and empty (void) elements.
+- Nested elements create a hierarchical structure that improves organization and readability.
+- Empty elements do not contain content and therefore do not require closing tags.
+- HTML tags and HTML elements are related but are not the same thing.
+- Proper nesting and indentation make HTML code easier to read and maintain.
+
+
+---
+
+
+## References
+
+To learn more about HTML elements, refer to the following resources:
+
+- **MDN Web Docs** – HTML Elements
+- **WHATWG HTML Living Standard**
+- **W3Schools HTML Elements Tutorial**
+
+
+---
+
+
+## Quick Revision
+
+### HTML Elements at a Glance
+
+- HTML elements are the building blocks of a webpage.
+- A typical HTML element consists of:
+  - Opening tag
+  - Content
+  - Closing tag
+- Some elements are **container (normal) elements**, while others are **empty (void) elements**.
+- Empty elements do not contain content and therefore do not have closing tags.
+- HTML elements can be nested inside one another to create a hierarchical document structure.
+- Proper nesting improves code readability and ensures correct rendering by browsers.
+- An **HTML tag** is part of an HTML element, whereas an **HTML element** is the complete structure.
+
+### Example
+
+```html
+<p>Hello, World!</p>
+```
+
+| Part | Description |
+|------|-------------|
+| `<p>` | Opening tag |
+| `Hello, World!` | Content |
+| `</p>` | Closing tag |
+| `<p>Hello, World!</p>` | HTML element |
+
+### Revision Checklist
+
+- ✅ Understand what an HTML element is.
+- ✅ Know the structure of an HTML element.
+- ✅ Differentiate between container and empty elements.
+- ✅ Understand nested HTML elements.
+- ✅ Distinguish HTML tags from HTML elements.
