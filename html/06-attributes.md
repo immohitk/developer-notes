@@ -380,3 +380,138 @@ The `draggable` attribute specifies whether an element can be dragged.
 ```
 
 This example demonstrates how multiple global attributes can be applied to a single HTML element.
+
+
+---
+
+
+## Boolean HTML Attributes
+
+Boolean attributes are HTML attributes whose presence indicates that the attribute is **true**. Unlike most HTML attributes, they do not require a value.
+
+If a boolean attribute is present, the browser treats it as enabled. If it is omitted, the browser treats it as disabled or false.
+
+### Syntax
+
+```html
+<element attribute>
+```
+
+or
+
+```html
+<element attribute="attribute">
+```
+
+Both forms are valid in HTML.
+
+---
+
+### Common Boolean Attributes
+
+| Attribute | Description |
+|-----------|-------------|
+| `required` | Makes a form field mandatory. |
+| `disabled` | Disables an element, preventing user interaction. |
+| `checked` | Pre-selects a checkbox or radio button. |
+| `readonly` | Makes an input field read-only. |
+| `selected` | Pre-selects an option in a dropdown list. |
+| `autofocus` | Automatically focuses an element when the page loads. |
+
+---
+
+### `required`
+
+The `required` attribute makes a form field mandatory.
+
+```html
+<input type="text" required>
+```
+
+The user must provide a value before submitting the form.
+
+---
+
+### `disabled`
+
+The `disabled` attribute prevents the user from interacting with an element.
+
+```html
+<button disabled>Submit</button>
+```
+
+The button cannot be clicked.
+
+---
+
+### `checked`
+
+The `checked` attribute pre-selects a checkbox or radio button.
+
+```html
+<input type="checkbox" checked>
+```
+
+The checkbox is selected when the page loads.
+
+---
+
+### `readonly`
+
+The `readonly` attribute allows users to view an input field but prevents them from modifying its value.
+
+```html
+<input type="text" value="John Doe" readonly>
+```
+
+---
+
+### `selected`
+
+The `selected` attribute pre-selects an option in a dropdown list.
+
+```html
+<select>
+    <option>HTML</option>
+    <option selected>CSS</option>
+    <option>JavaScript</option>
+</select>
+```
+
+The **CSS** option is selected by default.
+
+---
+
+### `autofocus`
+
+The `autofocus` attribute automatically places the cursor inside an element when the page loads.
+
+```html
+<input type="text" autofocus>
+```
+
+---
+
+### Example
+
+```html
+<form>
+    <input
+        type="text"
+        placeholder="Enter your name"
+        required
+        autofocus
+    >
+
+    <input
+        type="checkbox"
+        checked
+    >
+
+    <button disabled>
+        Submit
+    </button>
+</form>
+```
+
+This example demonstrates several boolean attributes used together in a form.
