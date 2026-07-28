@@ -223,3 +223,156 @@ Always close the innermost element before closing its parent element.
 ```
 
 Improper nesting can lead to unexpected rendering and makes the code difficult to understand and maintain.
+
+
+---
+
+
+## Empty HTML Elements
+
+Empty HTML elements, also known as **void elements**, are elements that do not contain any content. Since they have nothing to enclose, they do not require a closing tag.
+
+Unlike container elements, empty elements perform a specific function without wrapping any text or other HTML elements.
+
+### Syntax
+
+```html
+<tagname>
+```
+
+### Example
+
+```html
+<br>
+
+<hr>
+
+<img src="profile.jpg" alt="Profile Image">
+
+<input type="text">
+```
+
+---
+
+### Common Empty HTML Elements
+
+| Element | Purpose |
+|---------|---------|
+| `<br>` | Inserts a line break. |
+| `<hr>` | Inserts a horizontal rule. |
+| `<img>` | Displays an image. |
+| `<input>` | Creates an input field. |
+| `<meta>` | Provides metadata about the webpage. |
+| `<link>` | Links external resources such as CSS files. |
+
+---
+
+### Example
+
+```html
+<h1>Student Profile</h1>
+
+<img src="student.jpg" alt="Student Photo">
+
+<br>
+
+<input type="text" placeholder="Enter your name">
+
+<hr>
+
+<p>Thank you for visiting.</p>
+```
+
+---
+
+### Important Points
+
+- Empty elements do not have closing tags.
+- They cannot contain text or other HTML elements.
+- They are used to perform specific tasks such as inserting images, creating input fields, or adding line breaks.
+- Some code editors may automatically write empty elements as `<br />` or `<img />`. Both styles are commonly accepted in HTML5.
+
+
+---
+
+
+## HTML Tags vs HTML Elements
+
+Although the terms **HTML tags** and **HTML elements** are often used interchangeably, they have different meanings.
+
+### HTML Tag
+
+An HTML tag is the markup enclosed within angle brackets (`< >`). Tags tell the browser where an element begins or ends.
+
+Examples:
+
+```html
+<p>
+
+</p>
+
+<h1>
+
+</h1>
+```
+
+The examples above are **HTML tags**.
+
+---
+
+### HTML Element
+
+An HTML element is the complete structure formed by:
+
+- Opening tag
+- Content
+- Closing tag
+
+Example:
+
+```html
+<p>This is a paragraph.</p>
+```
+
+In this example:
+
+- `<p>` is the opening tag.
+- `This is a paragraph.` is the content.
+- `</p>` is the closing tag.
+
+Together, they form an **HTML element**.
+
+---
+
+### Comparison
+
+| HTML Tag | HTML Element |
+|----------|--------------|
+| A tag is enclosed within angle brackets (`< >`). | An element is the complete unit consisting of tags and content. |
+| Tags define the beginning or end of an element. | Elements define the structure and content of a webpage. |
+| Tags alone do not display content. | Elements can display content on a webpage. |
+| Example: `<h1>` or `</h1>` | Example: `<h1>Welcome</h1>` |
+
+---
+
+### Quick Example
+
+```html
+<h2>HTML Tutorial</h2>
+```
+
+Here:
+
+- `<h2>` → Opening tag
+- `HTML Tutorial` → Content
+- `</h2>` → Closing tag
+- `<h2>HTML Tutorial</h2>` → HTML element
+
+---
+
+### Remember
+
+- Every HTML element is created using HTML tags.
+- A tag is only a part of an HTML element.
+- Most HTML elements consist of an opening tag, content, and a closing tag.
+- Empty (void) elements contain only a single tag because they do not have any content.
