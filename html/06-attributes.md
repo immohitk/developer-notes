@@ -133,3 +133,130 @@ Here:
 - `required` is a boolean attribute that makes the field mandatory.
 
 > **Note:** While quotation marks are optional for some simple attribute values in HTML5, it is considered a best practice to always enclose attribute values in quotation marks for better readability and consistency.
+
+
+---
+
+
+## Common HTML Attributes
+
+HTML provides many attributes that add extra information and functionality to elements. Below are some of the most commonly used HTML attributes.
+
+### `href`
+
+The `href` attribute specifies the destination URL of a hyperlink.
+
+**Example**
+
+```html
+<a href="https://example.com">Visit Website</a>
+```
+
+---
+
+### `src`
+
+The `src` attribute specifies the path or URL of an external resource, such as an image.
+
+**Example**
+
+```html
+<img src="profile.jpg" alt="Profile Picture">
+```
+
+---
+
+### `alt`
+
+The `alt` attribute provides alternative text for an image if it cannot be displayed. It also improves accessibility for users who rely on screen readers.
+
+**Example**
+
+```html
+<img src="profile.jpg" alt="Profile Picture">
+```
+
+---
+
+### `id`
+
+The `id` attribute assigns a unique identifier to an HTML element.
+
+**Example**
+
+```html
+<h1 id="main-heading">Welcome</h1>
+```
+
+> The value of an `id` attribute must be unique within a webpage.
+
+---
+
+### `class`
+
+The `class` attribute assigns one or more class names to an element. It is commonly used for applying CSS styles and selecting elements with JavaScript.
+
+**Example**
+
+```html
+<p class="highlight">Learning HTML is fun!</p>
+```
+
+---
+
+### `title`
+
+The `title` attribute provides additional information about an element. This information is typically displayed as a tooltip when the user hovers over the element.
+
+**Example**
+
+```html
+<p title="This is additional information.">
+    Hover over this text.
+</p>
+```
+
+---
+
+### `style`
+
+The `style` attribute is used to apply inline CSS styles directly to an element.
+
+**Example**
+
+```html
+<p style="color: blue;">This text is blue.</p>
+```
+
+---
+
+### `width` and `height`
+
+The `width` and `height` attributes specify the dimensions of certain elements, such as images.
+
+**Example**
+
+```html
+<img
+    src="profile.jpg"
+    alt="Profile Picture"
+    width="200"
+    height="200"
+>
+```
+
+---
+
+### Summary
+
+| Attribute | Purpose | Commonly Used With |
+|-----------|---------|--------------------|
+| `href` | Specifies a hyperlink destination | `<a>` |
+| `src` | Specifies the source of a resource | `<img>`, `<script>` |
+| `alt` | Provides alternative text for images | `<img>` |
+| `id` | Assigns a unique identifier | Most HTML elements |
+| `class` | Assigns one or more class names | Most HTML elements |
+| `title` | Provides additional information | Most HTML elements |
+| `style` | Applies inline CSS | Most HTML elements |
+| `width` | Specifies the width of an element | `<img>`, `<iframe>` |
+| `height` | Specifies the height of an element | `<img>`, `<iframe>` |
