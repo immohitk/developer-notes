@@ -669,3 +669,107 @@ To learn more about HTML attributes, refer to the following resources:
 - **MDN Web Docs** – HTML Attributes
 - **WHATWG HTML Living Standard**
 - **W3Schools HTML Attributes Tutorial**
+
+
+---
+
+
+## Quick Revision
+
+### HTML Attributes at a Glance
+
+- HTML attributes provide additional information about HTML elements.
+- Attributes are written inside the opening tag.
+- Most attributes are written as **name-value pairs**.
+- An element can have multiple attributes.
+- Global attributes can be used with most HTML elements.
+- Boolean attributes do not require a value.
+- Some attributes are specific to certain HTML elements.
+
+### Example
+
+```html
+<img
+    src="profile.jpg"
+    alt="Profile Picture"
+    width="200"
+    height="200"
+>
+```
+
+| Attribute | Purpose |
+|-----------|---------|
+| `src` | Specifies the image source. |
+| `alt` | Provides alternative text. |
+| `width` | Specifies the image width. |
+| `height` | Specifies the image height. |
+
+### Revision Checklist
+
+- ✅ Understand what HTML attributes are.
+- ✅ Know the syntax of HTML attributes.
+- ✅ Identify common HTML attributes.
+- ✅ Understand global attributes.
+- ✅ Understand boolean attributes.
+- ✅ Follow best practices when using attributes.
+
+
+---
+
+
+## Best Practices
+
+Follow these best practices when working with HTML attributes:
+
+### 1. Always Use Double Quotation Marks
+
+```html
+<a href="https://example.com">Visit Website</a>
+```
+
+---
+
+### 2. Use Meaningful Attribute Values
+
+```html
+<input id="email" class="form-input">
+```
+
+Use descriptive names for attributes such as `id` and `class`.
+
+---
+
+### 3. Provide Required Attributes
+
+```html
+<img src="profile.jpg" alt="Profile Picture">
+```
+
+Always include required attributes and provide `alt` text for images.
+
+---
+
+### 4. Avoid Duplicate Attributes
+
+❌ Incorrect
+
+```html
+<p class="text" class="highlight">
+```
+
+✅ Correct
+
+```html
+<p class="text highlight">
+```
+
+---
+
+### 5. Keep HTML Clean and Readable
+
+- Use only the necessary attributes.
+- Group related attributes together.
+- Indent long opening tags for better readability.
+- Remove unused attributes.
+
+Following these practices makes HTML easier to read, maintain, and debug.
