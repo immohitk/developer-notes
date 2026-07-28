@@ -773,3 +773,159 @@ Always include required attributes and provide `alt` text for images.
 - Remove unused attributes.
 
 Following these practices makes HTML easier to read, maintain, and debug.
+
+
+---
+
+
+## Common Mistakes
+
+Below are some common mistakes beginners make when working with HTML attributes.
+
+### 1. Writing Attributes Outside the Opening Tag
+
+❌ Incorrect
+
+```html
+<p> class="intro" Welcome</p>
+```
+
+✅ Correct
+
+```html
+<p class="intro">Welcome</p>
+```
+
+Attributes must always be written inside the opening tag.
+
+---
+
+### 2. Forgetting Quotation Marks
+
+❌ Avoid
+
+```html
+<a href=https://example.com>Visit Website</a>
+```
+
+✅ Correct
+
+```html
+<a href="https://example.com">Visit Website</a>
+```
+
+Using quotation marks improves readability and consistency.
+
+---
+
+### 3. Omitting Required Attributes
+
+❌ Incorrect
+
+```html
+<img src="profile.jpg">
+```
+
+✅ Better
+
+```html
+<img src="profile.jpg" alt="Profile Picture">
+```
+
+Always provide required or recommended attributes where applicable.
+
+---
+
+### 4. Using Duplicate Attributes
+
+❌ Incorrect
+
+```html
+<p class="text" class="highlight">
+    Welcome
+</p>
+```
+
+✅ Correct
+
+```html
+<p class="text highlight">
+    Welcome
+</p>
+```
+
+An attribute should not appear more than once on the same element.
+
+---
+
+### 5. Using Meaningless Attribute Values
+
+❌ Avoid
+
+```html
+<div id="a1" class="x">
+```
+
+✅ Better
+
+```html
+<div id="header" class="navigation">
+```
+
+Choose descriptive values that make your code easier to understand.
+
+
+---
+
+
+## Interview Questions
+
+### Beginner Level
+
+1. What are HTML attributes?
+
+2. Where are HTML attributes written?
+
+3. What is the general syntax of an HTML attribute?
+
+4. What is the difference between an HTML element and an HTML attribute?
+
+5. What are global attributes?
+
+6. What are boolean attributes?
+
+7. Name five commonly used HTML attributes.
+
+8. Can an HTML element have multiple attributes?
+
+9. Why is the `alt` attribute important?
+
+10. What is the purpose of the `class` and `id` attributes?
+
+---
+
+### Intermediate Level
+
+1. Explain the difference between global attributes and element-specific attributes.
+
+2. Why should attribute values be enclosed in quotation marks?
+
+3. What happens if a required attribute is omitted?
+
+4. Explain the purpose of boolean attributes with examples.
+
+5. What are the advantages of using meaningful `id` and `class` names?
+
+---
+
+### Practical Questions
+
+1. Write an `<a>` element using the `href` attribute.
+
+2. Add an image using the `src` and `alt` attributes.
+
+3. Create an input field that is required and automatically focused.
+
+4. Write an example using both `id` and `class` attributes.
+
+5. Create an element that uses at least four different HTML attributes.
