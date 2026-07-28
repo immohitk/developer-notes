@@ -743,3 +743,104 @@ and
 ```html
 <p>Hello World!</p>
 ```
+
+
+---
+
+
+## Practice Exercises
+
+Try the following exercises to strengthen your understanding of HTML elements.
+
+### Exercise 1: Create Basic Elements
+
+Create an HTML page that contains:
+
+- A heading
+- A paragraph
+- A horizontal line
+- A line break
+
+**Expected elements:**
+
+- `<h1>`
+- `<p>`
+- `<hr>`
+- `<br>`
+
+---
+
+### Exercise 2: Practice Nested Elements
+
+Create the following structure:
+
+```html
+<div>
+    <h2>My Profile</h2>
+    <p>I am learning HTML.</p>
+</div>
+```
+
+Identify:
+
+- Parent element
+- Child elements
+
+---
+
+### Exercise 3: Container vs Empty Elements
+
+Classify the following as **Container** or **Empty** elements:
+
+- `<p>`
+- `<img>`
+- `<hr>`
+- `<div>`
+- `<input>`
+- `<section>`
+- `<br>`
+
+---
+
+### Exercise 4: Identify the Mistakes
+
+Find and correct the errors in the following code:
+
+```html
+<p>This is <strong>important</p></strong>
+
+<img src="photo.jpg"></img>
+```
+
+---
+
+### Exercise 5: Tag or Element?
+
+Identify whether each of the following is an **HTML Tag** or an **HTML Element**.
+
+| Example | Answer |
+|---------|--------|
+| `<p>` | ? |
+| `</h1>` | ? |
+| `<h2>Welcome</h2>` | ? |
+| `<img>` | ? |
+| `<div><p>Hello</p></div>` | ? |
+
+---
+
+### Exercise 6: Build a Simple Webpage
+
+Create a webpage that includes:
+
+- One heading
+- Two paragraphs
+- One image
+- One horizontal rule
+- One line break
+- A nested `<div>` containing a heading and a paragraph
+
+Ensure your HTML code is:
+
+- Properly nested
+- Well-indented
+- Easy to read
