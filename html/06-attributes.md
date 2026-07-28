@@ -1,3 +1,25 @@
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What are HTML Attributes?](#what-are-html-attributes)
+- [Syntax of HTML Attributes](#syntax-of-html-attributes)
+- [Common HTML Attributes](#common-html-attributes)
+- [Global HTML Attributes](#global-html-attributes)
+- [Boolean HTML Attributes](#boolean-html-attributes)
+- [Best Practices for Using HTML Attributes](#best-practices-for-using-html-attributes)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Quick Revision](#quick-revision)
+- [Best Practices](#best-practices)
+- [Common Mistakes](#common-mistakes)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Related Topics](#related-topics)
+
+
+---
+
+
 # HTML Attributes
 
 ## Introduction
