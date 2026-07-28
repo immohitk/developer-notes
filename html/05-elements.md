@@ -41,3 +41,51 @@ In the example above:
 Together, they form a complete **HTML element**.
 
 Some HTML elements do not contain content and therefore do not require a closing tag. These are called **empty (void) elements**, which will be discussed later in this document.
+
+
+---
+
+
+## Structure of an HTML Element
+
+A typical HTML element consists of three main parts:
+
+1. Opening Tag
+2. Content
+3. Closing Tag
+
+### Structure
+
+```html
+<tagname>Content</tagname>
+```
+
+### Example
+
+```html
+<h1>Welcome to HTML</h1>
+```
+
+Let's break it down:
+
+| Part | Description |
+|------|-------------|
+| `<h1>` | Opening tag that marks the beginning of the element. |
+| `Welcome to HTML` | The content displayed on the webpage. |
+| `</h1>` | Closing tag that marks the end of the element. |
+
+Together, these three parts form a complete HTML element.
+
+### Another Example
+
+```html
+<a href="https://example.com">Visit Website</a>
+```
+
+Here:
+
+- `<a href="https://example.com">` is the opening tag.
+- `Visit Website` is the content.
+- `</a>` is the closing tag.
+
+The opening tag can also contain **attributes**, which provide additional information about the element. Attributes will be covered in a later topic.
