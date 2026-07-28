@@ -642,3 +642,30 @@ Then define the styles in a CSS file.
 - Remove unused or unnecessary attributes.
 
 Following these practices helps create clean, maintainable, and standards-compliant HTML.
+
+
+---
+
+
+## Key Takeaways
+
+- HTML attributes provide additional information about HTML elements.
+- Attributes are written inside an element's opening tag.
+- Most attributes are written as **name-value pairs**.
+- An HTML element can have multiple attributes.
+- Global attributes can be used with most HTML elements.
+- Boolean attributes do not require a value; their presence means they are enabled.
+- Using meaningful attribute values improves code readability and maintainability.
+- Following best practices helps create clean, accessible, and standards-compliant HTML.
+
+
+---
+
+
+## References
+
+To learn more about HTML attributes, refer to the following resources:
+
+- **MDN Web Docs** – HTML Attributes
+- **WHATWG HTML Living Standard**
+- **W3Schools HTML Attributes Tutorial**
