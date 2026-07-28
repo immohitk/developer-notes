@@ -260,3 +260,123 @@ The `width` and `height` attributes specify the dimensions of certain elements, 
 | `style` | Applies inline CSS | Most HTML elements |
 | `width` | Specifies the width of an element | `<img>`, `<iframe>` |
 | `height` | Specifies the height of an element | `<img>`, `<iframe>` |
+
+
+---
+
+
+## Global HTML Attributes
+
+Global attributes are attributes that can be used with **most HTML elements**. They provide common functionality regardless of the element on which they are used.
+
+### Common Global Attributes
+
+| Attribute | Description |
+|-----------|-------------|
+| `id` | Assigns a unique identifier to an element. |
+| `class` | Assigns one or more class names to an element. |
+| `style` | Applies inline CSS styles to an element. |
+| `title` | Provides additional information about an element, usually displayed as a tooltip. |
+| `hidden` | Hides an element from the webpage. |
+| `tabindex` | Controls the order in which elements receive keyboard focus. |
+| `draggable` | Specifies whether an element can be dragged. |
+
+---
+
+### `id`
+
+The `id` attribute uniquely identifies an HTML element within a webpage.
+
+```html
+<h1 id="main-heading">Welcome</h1>
+```
+
+> Each `id` value should be unique within a webpage.
+
+---
+
+### `class`
+
+The `class` attribute assigns one or more class names to an element.
+
+```html
+<p class="highlight">Learning HTML is fun!</p>
+```
+
+Multiple elements can share the same class name.
+
+---
+
+### `style`
+
+The `style` attribute applies inline CSS directly to an element.
+
+```html
+<p style="color: blue;">This text is blue.</p>
+```
+
+---
+
+### `title`
+
+The `title` attribute provides additional information about an element.
+
+```html
+<button title="Click to submit the form">
+    Submit
+</button>
+```
+
+The information is usually displayed as a tooltip when the user hovers over the element.
+
+---
+
+### `hidden`
+
+The `hidden` attribute hides an element from the webpage.
+
+```html
+<p hidden>This paragraph is hidden.</p>
+```
+
+---
+
+### `tabindex`
+
+The `tabindex` attribute specifies the keyboard navigation order.
+
+```html
+<input type="text" tabindex="1">
+<button tabindex="2">Submit</button>
+```
+
+---
+
+### `draggable`
+
+The `draggable` attribute specifies whether an element can be dragged.
+
+```html
+<img
+    src="logo.png"
+    alt="Company Logo"
+    draggable="true"
+>
+```
+
+---
+
+### Example
+
+```html
+<p
+    id="intro"
+    class="highlight"
+    title="Introduction"
+    style="color: green;"
+>
+    Welcome to HTML!
+</p>
+```
+
+This example demonstrates how multiple global attributes can be applied to a single HTML element.
