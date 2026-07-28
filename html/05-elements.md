@@ -1,3 +1,25 @@
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What is an HTML Element?](#what-is-an-html-element)
+- [Structure of an HTML Element](#structure-of-an-html-element)
+- [Types of HTML Elements](#types-of-html-elements)
+- [Nested HTML Elements](#nested-html-elements)
+- [Empty HTML Elements](#empty-html-elements)
+- [HTML Tags vs HTML Elements](#html-tags-vs-html-elements)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Quick Revision](#quick-revision)
+- [Best Practices](#best-practices)
+- [Common Mistakes](#common-mistakes)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Related Topics](#related-topics)
+
+
+---
+
+
 # HTML Elements
 
 ## Introduction
