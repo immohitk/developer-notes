@@ -873,54 +873,15 @@ Ensure your HTML code is:
 
 ## Related Topics
 
-If you've understood HTML elements, the following topics are the natural next steps in your HTML learning journey:
+### Previous Topics
 
-### Previously Covered
+- [HTML Basics](01-html-basics.md)
+- [HTML Page Structure](02-page-structure.md)
+- [HTML Comments](03-comments.md)
+- [HTML Tags](04-tags.md)
 
-- HTML Basics
-- HTML Page Structure
-- HTML Comments
-- HTML Tags
+### Next Topics
 
-### Continue Learning
-
-- HTML Attributes
-- HTML ID and Class Attributes
-- Inline vs Block Elements
-- Lists (`<ul>`, `<ol>`, `<li>`)
-- Links (`<a>`)
-- Images (`<img>`)
-- Tables
-- Forms
-- Semantic HTML
-- HTML Entities
-
----
-
-### Learning Path
-
-```text
-HTML Basics
-        ↓
-HTML Page Structure
-        ↓
-HTML Comments
-        ↓
-HTML Tags
-        ↓
-HTML Elements
-        ↓
-HTML Attributes
-        ↓
-ID & Class
-        ↓
-Inline vs Block Elements
-        ↓
-Lists, Links & Images
-        ↓
-Tables & Forms
-        ↓
-Semantic HTML
-```
-
-> **Tip:** A strong understanding of HTML elements makes learning attributes, forms, tables, and semantic HTML much easier because almost every HTML feature is built around elements.
+- [HTML Attributes](06-attributes.md)
+- [HTML ID and Classes](07-id-classes.md)
+- [Inline and Block Elements](08-inline-block-elements.md)
