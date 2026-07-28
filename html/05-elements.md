@@ -89,3 +89,137 @@ Here:
 - `</a>` is the closing tag.
 
 The opening tag can also contain **attributes**, which provide additional information about the element. Attributes will be covered in a later topic.
+
+
+---
+
+
+## Types of HTML Elements
+
+HTML elements can be broadly classified into two types:
+
+1. Container (Normal) Elements
+2. Empty (Void) Elements
+
+### 1. Container (Normal) Elements
+
+Container elements have:
+
+- An opening tag
+- Content
+- A closing tag
+
+These elements are used to wrap and display content on a webpage.
+
+#### Syntax
+
+```html
+<tagname>Content</tagname>
+```
+
+#### Example
+
+```html
+<h1>Welcome</h1>
+
+<p>This is a paragraph.</p>
+```
+
+In these examples:
+
+- `<h1>` and `</h1>` form a heading element.
+- `<p>` and `</p>` form a paragraph element.
+
+---
+
+### 2. Empty (Void) Elements
+
+Empty elements do not contain any content and therefore do not require a closing tag.
+
+These elements perform a specific task without enclosing any text or other elements.
+
+#### Examples
+
+```html
+<br>
+<hr>
+<img src="image.jpg" alt="Sample Image">
+<input type="text">
+```
+
+Common empty elements include:
+
+- `<br>` – Inserts a line break.
+- `<hr>` – Creates a horizontal line.
+- `<img>` – Displays an image.
+- `<input>` – Creates an input field.
+
+> **Note:** Although empty elements do not have closing tags, some editors may display them as `<br />` or `<img />`. Both forms are commonly accepted in HTML5.
+
+
+---
+
+
+## Nested HTML Elements
+
+HTML allows one element to be placed inside another element. This is called **nesting**.
+
+Nested elements help organize webpage content into a hierarchical structure, making the HTML document easier to read, maintain, and understand.
+
+### Example
+
+```html
+<div>
+    <h1>Welcome</h1>
+    <p>This is a paragraph inside a div element.</p>
+</div>
+```
+
+In this example:
+
+- `<div>` is the parent element.
+- `<h1>` and `<p>` are child elements nested inside the `<div>` element.
+
+---
+
+### Multiple Levels of Nesting
+
+HTML elements can be nested through multiple levels.
+
+```html
+<html>
+    <body>
+        <div>
+            <p>Hello World!</p>
+        </div>
+    </body>
+</html>
+```
+
+Here:
+
+- `<html>` contains `<body>`.
+- `<body>` contains `<div>`.
+- `<div>` contains `<p>`.
+
+This creates a parent-child relationship between elements.
+
+---
+
+### Rules for Proper Nesting
+
+Always close the innermost element before closing its parent element.
+
+✅ Correct
+
+```html
+<p>This is <strong>important</strong> text.</p>
+```
+
+❌ Incorrect
+
+```html
+<p>This is <strong>important</p></strong>
+```
+
+Improper nesting can lead to unexpected rendering and makes the code difficult to understand and maintain.
