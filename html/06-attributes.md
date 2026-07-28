@@ -61,3 +61,75 @@ HTML attributes are used to:
 - Supply values required by certain HTML elements.
 
 Without attributes, many HTML elements would not function as intended.
+
+
+---
+
+
+## Syntax of HTML Attributes
+
+HTML attributes are written inside the **opening tag** of an HTML element. They are usually written as **name-value pairs**, where the attribute name is followed by an equals sign (`=`) and the value is enclosed in quotation marks.
+
+### General Syntax
+
+```html
+<tagname attribute="value">Content</tagname>
+```
+
+### Example
+
+```html
+<a href="https://example.com">Visit Website</a>
+```
+
+In this example:
+
+- `<a>` is the opening tag.
+- `href` is the attribute name.
+- `"https://example.com"` is the attribute value.
+- `Visit Website` is the content of the element.
+
+---
+
+### Multiple Attributes
+
+An HTML element can have more than one attribute.
+
+```html
+<img src="profile.jpg" alt="Profile Picture" width="200" height="200">
+```
+
+In this example:
+
+- `src` specifies the image location.
+- `alt` provides alternative text.
+- `width` specifies the image width.
+- `height` specifies the image height.
+
+Attributes are separated by spaces.
+
+---
+
+### Rules for Writing Attributes
+
+- Attributes are always written in the opening tag.
+- Most attributes are written as **name-value pairs**.
+- Attribute values should be enclosed in double quotation marks (`"`).
+- An element can have multiple attributes.
+- Each attribute should appear only once unless explicitly allowed by HTML.
+
+---
+
+### Example
+
+```html
+<input type="text" placeholder="Enter your name" required>
+```
+
+Here:
+
+- `type="text"` defines the type of input.
+- `placeholder="Enter your name"` displays a hint inside the input field.
+- `required` is a boolean attribute that makes the field mandatory.
+
+> **Note:** While quotation marks are optional for some simple attribute values in HTML5, it is considered a best practice to always enclose attribute values in quotation marks for better readability and consistency.
