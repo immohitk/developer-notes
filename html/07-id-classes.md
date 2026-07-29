@@ -98,3 +98,114 @@ document.getElementById("message");
 ```
 
 The `getElementById()` method selects an element using its `id` value.
+
+
+---
+
+
+## What is the `class` Attribute?
+
+The `class` attribute is a **global HTML attribute** used to assign one or more class names to an HTML element.
+
+Unlike the `id` attribute, multiple HTML elements can share the same class name. This makes the `class` attribute useful for grouping elements that have similar styles or behavior.
+
+The `class` attribute is commonly used for:
+
+- Applying the same CSS styles to multiple elements.
+- Selecting multiple elements using JavaScript.
+- Organizing HTML elements into logical groups.
+
+### Syntax
+
+```html
+<element class="class-name">
+    Content
+</element>
+```
+
+### Example
+
+```html
+<p class="highlight">
+    Learning HTML is fun!
+</p>
+```
+
+In this example:
+
+- `class` is the attribute name.
+- `highlight` is the class name.
+- The paragraph can now be styled or selected using its class name.
+
+---
+
+### Multiple Elements with the Same Class
+
+Multiple HTML elements can use the same class name.
+
+```html
+<h2 class="title">Introduction</h2>
+
+<p class="title">
+    Welcome to the HTML tutorial.
+</p>
+```
+
+Both elements belong to the same class and can share the same CSS styles.
+
+---
+
+### Multiple Classes
+
+An HTML element can have more than one class.
+
+```html
+<p class="highlight important">
+    This is an important note.
+</p>
+```
+
+Here, the paragraph belongs to both the `highlight` and `important` classes.
+
+Multiple class names are separated by spaces.
+
+---
+
+### Example with CSS
+
+```html
+<p class="message">
+    Welcome!
+</p>
+```
+
+```css
+.message {
+    color: green;
+}
+```
+
+The `.` (dot) symbol is used in CSS to select elements by their class name.
+
+---
+
+### Example with JavaScript
+
+```html
+<p class="message">Hello!</p>
+```
+
+```javascript
+document.getElementsByClassName("message");
+```
+
+The `getElementsByClassName()` method selects all elements that have the specified class name.
+
+---
+
+### Characteristics of the `class` Attribute
+
+- Multiple elements can share the same class name.
+- An element can have one or more class names.
+- Class names are separated by spaces.
+- The `class` attribute can be used with most HTML elements because it is a global attribute.
