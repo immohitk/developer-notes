@@ -1,3 +1,23 @@
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What is the `id` Attribute?](#what-is-the-id-attribute)
+- [What is the `class` Attribute?](#what-is-the-class-attribute)
+- [Difference Between `id` and `class`](#difference-between-id-and-class)
+- [Best Practices for Using `id` and `class`](#best-practices-for-using-id-and-class)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Quick Revision](#quick-revision)
+- [Best Practices](#best-practices)
+- [Common Mistakes](#common-mistakes)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Related Topics](#related-topics)
+
+
+---
+
+
 # HTML ID and Classes
 
 ## Introduction
