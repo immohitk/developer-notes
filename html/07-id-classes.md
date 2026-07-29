@@ -456,3 +456,107 @@ To learn more about the `id` and `class` attributes, refer to the following reso
 - **WHATWG HTML Living Standard**
 - **W3Schools HTML id Attribute**
 - **W3Schools HTML class Attribute**
+
+
+---
+
+
+## Quick Revision
+
+### HTML `id` and `class` at a Glance
+
+- The `id` and `class` attributes are global HTML attributes.
+- An `id` uniquely identifies a single HTML element.
+- A `class` groups one or more HTML elements.
+- An element can have only one `id`.
+- An element can have multiple class names.
+- Multiple elements can share the same class name.
+- Use `#` to select an `id` in CSS.
+- Use `.` (dot) to select a `class` in CSS.
+
+### Example
+
+```html
+<h1 id="main-heading" class="title">
+    Welcome
+</h1>
+```
+
+| Attribute | Purpose |
+|-----------|---------|
+| `id="main-heading"` | Uniquely identifies the element. |
+| `class="title"` | Groups the element with others sharing the same class. |
+
+### Revision Checklist
+
+- ✅ Understand the purpose of the `id` attribute.
+- ✅ Understand the purpose of the `class` attribute.
+- ✅ Know the differences between `id` and `class`.
+- ✅ Know when to use each attribute.
+- ✅ Follow best practices for naming and organizing `id` and `class` values.
+
+---
+
+## Best Practices
+
+Follow these best practices when using the `id` and `class` attributes.
+
+### 1. Keep `id` Values Unique
+
+```html
+<header id="main-header">
+```
+
+Never assign the same `id` value to multiple elements.
+
+---
+
+### 2. Use `class` for Reusable Styles
+
+```html
+<p class="highlight">HTML</p>
+
+<p class="highlight">CSS</p>
+```
+
+Use a class whenever multiple elements need the same styling or behavior.
+
+---
+
+### 3. Choose Meaningful Names
+
+✅ Good
+
+```html
+id="navigation"
+class="primary-button"
+```
+
+❌ Avoid
+
+```html
+id="x1"
+class="abc"
+```
+
+---
+
+### 4. Follow a Consistent Naming Convention
+
+Use lowercase letters and hyphens for better readability.
+
+```html
+id="main-content"
+class="user-profile"
+```
+
+---
+
+### 5. Keep HTML Clean
+
+- Remove unused `id` and `class` values.
+- Use descriptive names.
+- Avoid unnecessary identifiers.
+- Write properly indented HTML.
+
+Following these practices makes your HTML more readable, maintainable, and scalable.
