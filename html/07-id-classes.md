@@ -560,3 +560,147 @@ class="user-profile"
 - Write properly indented HTML.
 
 Following these practices makes your HTML more readable, maintainable, and scalable.
+
+
+---
+
+
+## Common Mistakes
+
+Below are some common mistakes beginners make when working with the `id` and `class` attributes.
+
+### 1. Using the Same `id` for Multiple Elements
+
+❌ Incorrect
+
+```html
+<p id="message">First Message</p>
+<p id="message">Second Message</p>
+```
+
+✅ Correct
+
+```html
+<p id="first-message">First Message</p>
+<p id="second-message">Second Message</p>
+```
+
+Each `id` value must be unique within a webpage.
+
+---
+
+### 2. Using `id` Instead of `class` for Reusable Styles
+
+❌ Avoid
+
+```html
+<p id="highlight">HTML</p>
+<p id="highlight">CSS</p>
+```
+
+✅ Better
+
+```html
+<p class="highlight">HTML</p>
+<p class="highlight">CSS</p>
+```
+
+Use `class` when multiple elements share the same style or behavior.
+
+---
+
+### 3. Using Meaningless Names
+
+❌ Avoid
+
+```html
+<div id="a1" class="x">
+```
+
+✅ Better
+
+```html
+<div id="header" class="navigation">
+```
+
+Choose descriptive names that clearly indicate the purpose of the element.
+
+---
+
+### 4. Forgetting That an Element Can Have Multiple Classes
+
+❌ Incorrect
+
+```html
+<p class="title,class-one">
+```
+
+✅ Correct
+
+```html
+<p class="title class-one">
+```
+
+Multiple class names are separated by spaces, not commas.
+
+---
+
+### 5. Using Too Many Unnecessary `id` and `class` Attributes
+
+Avoid adding identifiers or class names that are never used in CSS or JavaScript.
+
+Keeping HTML clean improves readability and maintainability.
+
+---
+
+## Interview Questions
+
+### Beginner Level
+
+1. What is the purpose of the `id` attribute?
+
+2. What is the purpose of the `class` attribute?
+
+3. What is the difference between `id` and `class`?
+
+4. Can multiple elements have the same `id`?
+
+5. Can multiple elements have the same `class`?
+
+6. Can an element have both an `id` and a `class`?
+
+7. Can an element have multiple class names?
+
+8. How do you select an `id` in CSS?
+
+9. How do you select a `class` in CSS?
+
+10. Why should `id` values be unique?
+
+---
+
+### Intermediate Level
+
+1. When should you use `id` instead of `class`?
+
+2. Why is the `class` attribute preferred for reusable CSS?
+
+3. Explain how JavaScript selects elements using `id` and `class`.
+
+4. What problems can occur if duplicate `id` values are used?
+
+5. Why are meaningful naming conventions important?
+
+---
+
+### Practical Questions
+
+1. Create an element with a unique `id`.
+
+2. Create three elements that share the same class.
+
+3. Write an element that contains both an `id` and a `class`.
+
+4. Assign two class names to a single element.
+
+5. Explain which attribute you would choose to style multiple buttons with the same design.
