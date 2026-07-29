@@ -704,3 +704,108 @@ Keeping HTML clean improves readability and maintainability.
 4. Assign two class names to a single element.
 
 5. Explain which attribute you would choose to style multiple buttons with the same design.
+
+
+---
+
+
+## Practice Exercises
+
+Try the following exercises to strengthen your understanding of the `id` and `class` attributes.
+
+### Exercise 1: Create a Unique `id`
+
+Create a heading with a unique `id`.
+
+**Example**
+
+```html
+<h1 id="main-heading">
+    Welcome
+</h1>
+```
+
+---
+
+### Exercise 2: Use the Same `class`
+
+Create three paragraphs that share the same class name.
+
+```html
+<p class="note">HTML</p>
+<p class="note">CSS</p>
+<p class="note">JavaScript</p>
+```
+
+---
+
+### Exercise 3: Multiple Classes
+
+Create a paragraph with two class names.
+
+```html
+<p class="note important">
+    Learning HTML is fun!
+</p>
+```
+
+---
+
+### Exercise 4: Combine `id` and `class`
+
+Create an element that contains both an `id` and a `class`.
+
+```html
+<h2 id="about" class="section-title">
+    About Me
+</h2>
+```
+
+---
+
+### Exercise 5: Identify the Mistakes
+
+Find and correct the errors in the following code.
+
+```html
+<p id="text">HTML</p>
+<p id="text">CSS</p>
+
+<div class="box,container">
+    Content
+</div>
+```
+
+---
+
+### Exercise 6: Build a Simple Webpage
+
+Create a webpage that contains:
+
+- A unique `id` for the main heading.
+- A shared class for multiple paragraphs.
+- An element with multiple class names.
+- A button with its own unique `id`.
+
+Ensure your HTML is:
+
+- Properly indented.
+- Using meaningful names.
+- Following best practices.
+
+---
+
+## Related Topics
+
+### Previous Topics
+
+- [HTML Basics](01-html-basics.md)
+- [HTML Page Structure](02-page-structure.md)
+- [HTML Comments](03-comments.md)
+- [HTML Tags](04-tags.md)
+- [HTML Elements](05-elements.md)
+- [HTML Attributes](06-attributes.md)
+
+### Next Topics
+
+- [Inline and Block Elements](08-inline-block-elements.md)
