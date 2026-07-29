@@ -430,3 +430,29 @@ Purpose-oriented names remain meaningful even if the design changes.
 - Keep naming simple and descriptive.
 
 Following these practices makes HTML easier to read, debug, and maintain.
+
+
+---
+
+
+## Key Takeaways
+
+- The `id` and `class` attributes are global HTML attributes.
+- The `id` attribute uniquely identifies a single HTML element within a webpage.
+- The `class` attribute groups one or more HTML elements that share similar styles or behavior.
+- An element can have only one `id` but can have multiple class names.
+- Multiple elements can share the same class name.
+- Use `id` for unique elements and `class` for reusable styles and grouping.
+- CSS selects `id` using the `#` selector and `class` using the `.` (dot) selector.
+- Choosing meaningful and consistent names improves code readability and maintainability.
+
+---
+
+## References
+
+To learn more about the `id` and `class` attributes, refer to the following resources:
+
+- **MDN Web Docs** – HTML Global Attributes
+- **WHATWG HTML Living Standard**
+- **W3Schools HTML id Attribute**
+- **W3Schools HTML class Attribute**
