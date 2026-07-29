@@ -209,3 +209,106 @@ The `getElementsByClassName()` method selects all elements that have the specifi
 - An element can have one or more class names.
 - Class names are separated by spaces.
 - The `class` attribute can be used with most HTML elements because it is a global attribute.
+
+
+---
+
+
+## Difference Between `id` and `class`
+
+The `id` and `class` attributes are both used to identify HTML elements, but they serve different purposes.
+
+- The `id` attribute uniquely identifies a single HTML element.
+- The `class` attribute groups one or more HTML elements that share similar styles or behavior.
+
+### Comparison
+
+| `id` Attribute | `class` Attribute |
+|---------------|-------------------|
+| Identifies a single unique element. | Identifies one or more elements. |
+| The value must be unique within a webpage. | The same class name can be used by multiple elements. |
+| An element can have only one `id`. | An element can have one or more class names. |
+| Selected in CSS using `#`. | Selected in CSS using `.` (dot). |
+| Accessed in JavaScript using `getElementById()`. | Accessed in JavaScript using `getElementsByClassName()`. |
+
+---
+
+### Example Using `id`
+
+```html
+<h1 id="main-heading">
+    Welcome
+</h1>
+```
+
+```css
+#main-heading {
+    color: blue;
+}
+```
+
+The style is applied only to the element with the `id` value `main-heading`.
+
+---
+
+### Example Using `class`
+
+```html
+<h2 class="title">Introduction</h2>
+
+<p class="title">
+    Learning HTML is fun!
+</p>
+```
+
+```css
+.title {
+    color: green;
+}
+```
+
+The style is applied to all elements with the `title` class.
+
+---
+
+### When to Use `id`
+
+Use the `id` attribute when:
+
+- An element must have a unique identifier.
+- Creating internal page links.
+- Selecting a single element with JavaScript.
+- Applying styles to one specific element.
+
+---
+
+### When to Use `class`
+
+Use the `class` attribute when:
+
+- Multiple elements share the same styles.
+- Grouping related elements.
+- Selecting multiple elements with JavaScript.
+- Reusing CSS styles throughout a webpage.
+
+---
+
+### Summary
+
+- Use **`id`** for unique elements.
+- Use **`class`** for reusable groups of elements.
+- Avoid assigning the same `id` value to multiple elements.
+- An element can have both an `id` and one or more `class` attributes.
+
+#### Example
+
+```html
+<h1 id="main-heading" class="title">
+    Welcome
+</h1>
+```
+
+In this example:
+
+- `id="main-heading"` uniquely identifies the heading.
+- `class="title"` allows the heading to share styles with other elements in the same class.
