@@ -644,3 +644,116 @@ Always select the element that best represents the content.
 4. Convert a generic `<div>` layout into semantic HTML elements.
 
 5. Explain which element type you would use to create a navigation bar and format individual navigation links.
+
+
+---
+
+
+## Practice Exercises
+
+Complete the following exercises to reinforce your understanding of block and inline elements.
+
+### Exercise 1: Identify the Element Type
+
+Determine whether each of the following elements is a **block element** or an **inline element**.
+
+- `<div>`
+- `<span>`
+- `<h1>`
+- `<strong>`
+- `<section>`
+- `<a>`
+- `<p>`
+- `<em>`
+
+---
+
+### Exercise 2: Create a Simple Layout
+
+Create a webpage that includes:
+
+- A `<header>`
+- A `<main>`
+- A `<section>`
+- A `<footer>`
+
+Use appropriate block elements to organize the page structure.
+
+---
+
+### Exercise 3: Format Text Using Inline Elements
+
+Create a paragraph that includes:
+
+- Bold text using `<strong>`
+- Italicized text using `<em>`
+- A hyperlink using `<a>`
+- Highlighted text using `<mark>`
+
+Example:
+
+```html
+<p>
+    Learn <strong>HTML</strong>,
+    <em>CSS</em>, and
+    <a href="#">JavaScript</a>.
+</p>
+```
+
+---
+
+### Exercise 4: Identify the Mistakes
+
+Find and correct the errors in the following code.
+
+```html
+<span>
+    <div>Content</div>
+</span>
+
+<div>
+    <strong>Important</strong>
+</div>
+```
+
+---
+
+### Exercise 5: Convert to Semantic HTML
+
+Replace generic `<div>` elements with appropriate semantic elements such as:
+
+- `<header>`
+- `<main>`
+- `<section>`
+- `<article>`
+- `<footer>`
+
+---
+
+### Exercise 6: Build a Mini Webpage
+
+Create a simple webpage that contains:
+
+- A page title using a heading.
+- A navigation section.
+- Two content sections.
+- A paragraph with formatted text.
+- A footer.
+
+Use block elements for the page structure and inline elements for formatting the text.
+
+
+---
+
+
+## Related Topics
+
+### Previous Topics
+
+- [HTML Basics](01-html-basics.md)
+- [HTML Page Structure](02-page-structure.md)
+- [HTML Comments](03-comments.md)
+- [HTML Tags](04-tags.md)
+- [HTML Elements](05-elements.md)
+- [HTML Attributes](06-attributes.md)
+- [HTML ID and Classes](07-id-classes.md)
