@@ -362,3 +362,30 @@ The following are some commonly used inline elements.
 ```
 
 These elements are commonly used to format text, create links, display images, and enhance content without breaking the normal flow of text.
+
+
+---
+
+
+## Key Takeaways
+
+- HTML elements are generally categorized as **block elements** or **inline elements**.
+- Block elements start on a new line and occupy the full available width by default.
+- Inline elements do not start on a new line and occupy only the width required by their content.
+- Block elements are commonly used to define the structure and layout of a webpage.
+- Inline elements are commonly used to format, emphasize, or enhance content within a line of text.
+- Understanding the difference between block and inline elements helps you create well-structured and maintainable web pages.
+- Choosing the appropriate element improves readability, accessibility, and code organization.
+
+
+---
+
+
+## References
+
+To learn more about block and inline elements, refer to the following resources:
+
+- **MDN Web Docs** – Block-level Content
+- **MDN Web Docs** – Inline-level Content
+- **WHATWG HTML Living Standard**
+- **W3Schools HTML Block and Inline Elements**
