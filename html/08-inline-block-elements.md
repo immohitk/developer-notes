@@ -1,3 +1,24 @@
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What are Block Elements?](#what-are-block-elements)
+- [What are Inline Elements?](#what-are-inline-elements)
+- [Difference Between Block and Inline Elements](#difference-between-block-and-inline-elements)
+- [Common Block Elements](#common-block-elements)
+- [Common Inline Elements](#common-inline-elements)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Quick Revision](#quick-revision)
+- [Best Practices](#best-practices)
+- [Common Mistakes](#common-mistakes)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Related Topics](#related-topics)
+
+
+---
+
+
 # HTML Inline and Block Elements
 
 ## Introduction
