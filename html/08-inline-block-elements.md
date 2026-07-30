@@ -274,3 +274,91 @@ Use inline elements when you want to:
 - Block elements create the structural layout of a webpage.
 - Inline elements format or enhance content within that layout.
 - Understanding the difference helps you write cleaner, more organized, and maintainable HTML.
+
+
+---
+
+
+## Common Block Elements
+
+The following are some of the most commonly used block elements in HTML.
+
+| Element | Purpose |
+|---------|---------|
+| `<div>` | Creates a generic container for grouping content. |
+| `<p>` | Defines a paragraph. |
+| `<h1>` to `<h6>` | Defines headings of different levels. |
+| `<section>` | Represents a section of related content. |
+| `<article>` | Represents independent, self-contained content. |
+| `<header>` | Defines introductory content for a page or section. |
+| `<footer>` | Defines footer content for a page or section. |
+| `<main>` | Represents the primary content of a document. |
+| `<nav>` | Defines a navigation section. |
+| `<aside>` | Contains content related to the main content. |
+| `<form>` | Creates an HTML form for user input. |
+| `<ul>` | Creates an unordered list. |
+| `<ol>` | Creates an ordered list. |
+| `<li>` | Represents a list item. |
+| `<table>` | Creates a table. |
+| `<hr>` | Inserts a thematic break between content. |
+
+### Example
+
+```html
+<header>
+    <h1>My Website</h1>
+</header>
+
+<main>
+    <section>
+        <p>Welcome to the homepage.</p>
+    </section>
+</main>
+
+<footer>
+    Copyright © 2026
+</footer>
+```
+
+---
+
+## Common Inline Elements
+
+The following are some commonly used inline elements.
+
+| Element | Purpose |
+|---------|---------|
+| `<span>` | Generic inline container for styling or scripting. |
+| `<a>` | Creates a hyperlink. |
+| `<strong>` | Indicates important text. |
+| `<em>` | Emphasizes text. |
+| `<b>` | Displays bold text without additional importance. |
+| `<i>` | Displays text in an alternate voice or style, such as italic text. |
+| `<u>` | Underlines text. |
+| `<small>` | Displays smaller text. |
+| `<mark>` | Highlights text. |
+| `<code>` | Represents a fragment of computer code. |
+| `<sup>` | Displays superscript text. |
+| `<sub>` | Displays subscript text. |
+| `<img>` | Embeds an image within the page. |
+| `<br>` | Inserts a line break. |
+
+### Example
+
+```html
+<p>
+    Learn <strong>HTML</strong>,
+    <em>CSS</em>, and
+    <a href="#">JavaScript</a>.
+</p>
+
+<p>
+    Water is written as H<sub>2</sub>O.
+</p>
+
+<p>
+    E = mc<sup>2</sup>
+</p>
+```
+
+These elements are commonly used to format text, create links, display images, and enhance content without breaking the normal flow of text.
