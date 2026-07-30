@@ -389,3 +389,113 @@ To learn more about block and inline elements, refer to the following resources:
 - **MDN Web Docs** – Inline-level Content
 - **WHATWG HTML Living Standard**
 - **W3Schools HTML Block and Inline Elements**
+
+
+---
+
+
+## Quick Revision
+
+### HTML Inline and Block Elements at a Glance
+
+- HTML elements are generally categorized as **block elements** or **inline elements**.
+- Block elements start on a new line.
+- Block elements occupy the full available width by default.
+- Inline elements do not start on a new line.
+- Inline elements occupy only the width required by their content.
+- Block elements are used for page structure and layout.
+- Inline elements are used to format or enhance content within a line.
+
+### Example
+
+```html
+<h1>Welcome</h1>
+
+<p>
+    Learn <strong>HTML</strong> with
+    <a href="#">examples</a>.
+</p>
+```
+
+| Element | Type |
+|---------|------|
+| `<h1>` | Block |
+| `<p>` | Block |
+| `<strong>` | Inline |
+| `<a>` | Inline |
+
+### Revision Checklist
+
+- ✅ Understand the behavior of block elements.
+- ✅ Understand the behavior of inline elements.
+- ✅ Know the differences between block and inline elements.
+- ✅ Identify common examples of each type.
+- ✅ Choose the appropriate element based on its purpose.
+
+
+---
+
+
+## Best Practices
+
+Follow these best practices when using block and inline elements.
+
+### 1. Use Block Elements for Page Structure
+
+Use block elements to organize content into logical sections.
+
+```html
+<header>
+    <h1>My Website</h1>
+</header>
+
+<main>
+    <section>
+        <p>Welcome!</p>
+    </section>
+</main>
+```
+
+---
+
+### 2. Use Inline Elements for Text Formatting
+
+Use inline elements to format or emphasize specific parts of text.
+
+```html
+<p>
+    Learn <strong>HTML</strong> with
+    <em>practical examples</em>.
+</p>
+```
+
+---
+
+### 3. Choose Semantic Elements Whenever Possible
+
+Prefer semantic elements such as `<header>`, `<main>`, `<section>`, and `<article>` instead of using generic `<div>` elements everywhere.
+
+---
+
+### 4. Avoid Using Block Elements Inside Inline Elements
+
+Inline elements generally should not contain block elements.
+
+❌ Avoid
+
+```html
+<span>
+    <div>Content</div>
+</span>
+```
+
+---
+
+### 5. Keep HTML Organized and Readable
+
+- Use meaningful HTML elements.
+- Indent nested elements properly.
+- Avoid unnecessary containers.
+- Write clean, semantic markup.
+
+Following these practices improves readability, maintainability, and accessibility.
