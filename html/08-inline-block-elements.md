@@ -106,3 +106,75 @@ Some commonly used block elements include:
 ```
 
 Each block element begins on a new line, creating a clear vertical structure for the webpage.
+
+
+---
+
+
+## What are Inline Elements?
+
+An **inline element** is an HTML element that does not start on a new line and only occupies the width required by its content.
+
+Unlike block elements, multiple inline elements can appear on the same line if there is enough horizontal space.
+
+### Characteristics of Inline Elements
+
+- Do not start on a new line.
+- Occupy only the width required by their content.
+- Appear side by side when space is available.
+- Commonly used to format or emphasize text within block elements.
+- Generally cannot contain block elements.
+
+### Basic Syntax
+
+```html
+<tag>Content</tag>
+```
+
+### Example
+
+```html
+<p>
+    This is <strong>important</strong> and
+    <em>emphasized</em> text.
+</p>
+```
+
+**Output Behavior:**
+
+- The paragraph (`<p>`) is a block element.
+- The `<strong>` element appears within the same line as the surrounding text.
+- The `<em>` element also remains on the same line.
+- None of the inline elements force a new line.
+
+### Common Inline Elements
+
+Some commonly used inline elements include:
+
+- `<span>`
+- `<a>`
+- `<strong>`
+- `<em>`
+- `<b>`
+- `<i>`
+- `<u>`
+- `<small>`
+- `<mark>`
+- `<code>`
+- `<sup>`
+- `<sub>`
+- `<br>`
+- `<img>`
+
+### Example with Multiple Inline Elements
+
+```html
+<p>
+    Learn <strong>HTML</strong>,
+    <em>CSS</em>, and
+    <a href="#">JavaScript</a>
+    to become a web developer.
+</p>
+```
+
+In this example, the `<strong>`, `<em>`, and `<a>` elements all appear within the same line of text because they are inline elements.
