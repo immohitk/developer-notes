@@ -178,3 +178,99 @@ Some commonly used inline elements include:
 ```
 
 In this example, the `<strong>`, `<em>`, and `<a>` elements all appear within the same line of text because they are inline elements.
+
+
+---
+
+
+## Difference Between Block and Inline Elements
+
+Although both block and inline elements are used to create HTML documents, they behave differently when displayed in a web browser.
+
+### Comparison Table
+
+| Feature | Block Elements | Inline Elements |
+|---------|----------------|-----------------|
+| Starts on a new line | Yes | No |
+| Width | Occupies the full available width by default | Occupies only the width required by its content |
+| Layout | Stacks vertically | Appears side by side when space is available |
+| Can contain other elements | Can contain inline elements and, in many cases, other block elements | Generally contains text or other inline elements |
+| Common Use | Structure and layout | Formatting and styling content within a line |
+
+---
+
+### Example
+
+```html
+<h1>Welcome</h1>
+
+<p>
+    Learn <strong>HTML</strong> and
+    <a href="#">CSS</a>.
+</p>
+
+<div>This is a block element.</div>
+```
+
+In this example:
+
+- `<h1>`, `<p>`, and `<div>` are **block elements**, so each starts on a new line.
+- `<strong>` and `<a>` are **inline elements**, so they appear within the same line as the surrounding text.
+
+---
+
+### Visual Representation
+
+```text
+Block Elements
+
++------------------------------+
+| Heading                      |
++------------------------------+
+
++------------------------------+
+| Paragraph                    |
++------------------------------+
+
++------------------------------+
+| Division                     |
++------------------------------+
+
+
+Inline Elements
+
+This is <strong>important</strong> and <a>click here</a>.
+```
+
+Block elements create the overall structure of a webpage, while inline elements are used to format or enhance content within that structure.
+
+---
+
+### When to Use Block Elements
+
+Use block elements when you want to:
+
+- Create sections of a webpage.
+- Organize content into distinct areas.
+- Build the overall layout of a document.
+- Separate content vertically.
+
+---
+
+### When to Use Inline Elements
+
+Use inline elements when you want to:
+
+- Format text.
+- Add links.
+- Highlight or emphasize content.
+- Display images within text.
+- Modify a small portion of existing content.
+
+---
+
+### Summary
+
+- Block elements create the structural layout of a webpage.
+- Inline elements format or enhance content within that layout.
+- Understanding the difference helps you write cleaner, more organized, and maintainable HTML.
