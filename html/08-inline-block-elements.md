@@ -499,3 +499,148 @@ Inline elements generally should not contain block elements.
 - Write clean, semantic markup.
 
 Following these practices improves readability, maintainability, and accessibility.
+
+
+---
+
+
+## Common Mistakes
+
+Below are some common mistakes beginners make when working with block and inline elements.
+
+### 1. Confusing Block and Inline Elements
+
+❌ Incorrect Assumption
+
+Assuming all HTML elements behave the same way.
+
+For example:
+
+```html
+<strong>HTML</strong>
+<strong>CSS</strong>
+```
+
+Both elements appear on the same line because they are inline elements.
+
+---
+
+### 2. Using Block Elements for Inline Text Formatting
+
+❌ Avoid
+
+```html
+<div>Important</div>
+```
+
+when you only need to emphasize a word inside a sentence.
+
+✅ Better
+
+```html
+<strong>Important</strong>
+```
+
+Use inline elements for formatting text within a line.
+
+---
+
+### 3. Placing Block Elements Inside Inline Elements
+
+❌ Incorrect
+
+```html
+<span>
+    <div>Content</div>
+</span>
+```
+
+✅ Better
+
+```html
+<div>
+    <span>Content</span>
+</div>
+```
+
+Inline elements generally should not contain block elements.
+
+---
+
+### 4. Overusing Generic `<div>` Elements
+
+❌ Avoid using `<div>` for every section of a webpage.
+
+✅ Prefer semantic elements such as:
+
+- `<header>`
+- `<main>`
+- `<section>`
+- `<article>`
+- `<footer>`
+
+These elements make your HTML more meaningful and accessible.
+
+---
+
+### 5. Ignoring Semantic HTML
+
+Choosing elements only for their appearance instead of their meaning can make code harder to understand and maintain.
+
+Always select the element that best represents the content.
+
+
+---
+
+
+## Interview Questions
+
+### Beginner Level
+
+1. What is a block element?
+
+2. What is an inline element?
+
+3. What is the main difference between block and inline elements?
+
+4. Name five common block elements.
+
+5. Name five common inline elements.
+
+6. Do block elements start on a new line?
+
+7. Do inline elements occupy the full available width?
+
+8. Which type of element is commonly used for page layout?
+
+9. Which type of element is commonly used for formatting text?
+
+10. Can inline elements appear side by side?
+
+---
+
+### Intermediate Level
+
+1. Why are block elements commonly used for webpage structure?
+
+2. Why are inline elements suitable for formatting text?
+
+3. What problems can occur when block elements are placed inside inline elements?
+
+4. Why is semantic HTML preferred over excessive use of `<div>` elements?
+
+5. How do block and inline elements affect webpage layout?
+
+---
+
+### Practical Questions
+
+1. Create a webpage using only block elements.
+
+2. Highlight specific words in a paragraph using inline elements.
+
+3. Identify the block and inline elements in a given HTML snippet.
+
+4. Convert a generic `<div>` layout into semantic HTML elements.
+
+5. Explain which element type you would use to create a navigation bar and format individual navigation links.
