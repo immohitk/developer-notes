@@ -235,3 +235,49 @@ p {
     line-height: 1.6;
 }
 ```
+
+
+---
+
+## CSS Comments
+
+Comments are used to explain CSS code or leave notes for yourself and other developers. Browsers ignore comments, so they do not affect how a webpage is displayed.
+
+Comments improve code readability and make large stylesheets easier to understand and maintain.
+
+### Syntax
+
+CSS comments start with `/*` and end with `*/`.
+
+```css
+/* This is a CSS comment */
+```
+
+### Example
+
+```css
+/* Style the main heading */
+h1 {
+    color: blue;
+}
+
+/* Style all paragraphs */
+p {
+    font-size: 18px;
+    color: #333;
+}
+```
+
+### Why Use Comments?
+
+- Explain the purpose of a block of CSS.
+- Organize large stylesheets into sections.
+- Make code easier to understand during future revisions.
+- Improve collaboration when working with other developers.
+
+### Best Practices for Comments
+
+- Write clear and meaningful comments.
+- Use comments to separate major sections of your stylesheet.
+- Avoid commenting obvious or self-explanatory code.
+- Remove outdated comments that no longer match the code.
