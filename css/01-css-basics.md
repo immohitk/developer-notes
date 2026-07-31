@@ -97,3 +97,47 @@ Well-designed websites are easier to read, navigate, and interact with. CSS help
 ### Industry Standard
 
 CSS is one of the three core technologies of web development, alongside HTML and JavaScript. Every modern website relies on CSS for styling and layout.
+
+
+---
+
+
+## How CSS Works
+
+CSS works together with HTML to create visually appealing web pages.
+
+- **HTML** provides the structure and content of a webpage.
+- **CSS** controls how that content is displayed.
+
+When a web browser loads a webpage, it first reads the HTML document to understand its structure. It then reads the CSS rules and applies the matching styles to the corresponding HTML elements.
+
+This allows developers to change the appearance of a webpage without modifying its content.
+
+### Example
+
+**HTML**
+
+```html
+<h1>Developer Notes</h1>
+<p>Welcome to CSS Basics.</p>
+```
+
+**CSS**
+
+```css
+h1 {
+    color: blue;
+}
+
+p {
+    color: gray;
+    font-size: 18px;
+}
+```
+
+### Result
+
+- The heading is displayed in **blue**.
+- The paragraph is displayed in **gray** with a font size of **18 pixels**.
+
+This demonstrates how HTML creates the content while CSS controls its presentation.
