@@ -1,3 +1,25 @@
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What is CSS?](#what-is-css)
+- [Why CSS?](#why-css)
+- [How CSS Works](#how-css-works)
+- [Basic CSS Syntax](#basic-css-syntax)
+- [CSS Rule Components](#css-rule-components)
+- [CSS Comments](#css-comments)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Quick Revision](#quick-revision)
+- [Best Practices](#best-practices)
+- [Common Mistakes](#common-mistakes)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Related Topics](#related-topics)
+
+
+---
+
+
 # CSS Basics
 
 ## Introduction
