@@ -367,3 +367,44 @@ Beginners often make small mistakes that can prevent CSS from working correctly.
 - Writing duplicate or conflicting CSS rules.
 - Using overly complex selectors when simpler ones would work.
 - Forgetting to save the CSS file before refreshing the browser.
+
+
+---
+
+
+## Interview Questions
+
+Here are some common interview questions related to CSS Basics:
+
+1. What does CSS stand for?
+2. What is the purpose of CSS in web development?
+3. Explain the difference between HTML and CSS.
+4. What are the three main components of a CSS rule?
+5. What is a CSS selector?
+6. What is the difference between a property and a value?
+7. How do you write comments in CSS?
+8. Why is it recommended to separate HTML and CSS?
+9. What are the advantages of using external CSS?
+10. What happens if a CSS declaration is missing a semicolon?
+
+
+---
+
+
+## Practice Exercises
+
+Try these exercises to strengthen your understanding of CSS Basics.
+
+### Beginner
+
+1. Create a CSS rule that changes the text color of an `<h1>` element.
+2. Set the font size of all `<p>` elements to `18px`.
+3. Add comments to organize different sections of your stylesheet.
+4. Write a CSS rule with at least three declarations.
+
+### Intermediate
+
+1. Create a simple webpage and style the heading, paragraphs, and buttons using CSS.
+2. Organize your stylesheet using meaningful comments and proper formatting.
+3. Create separate HTML and CSS files and link them together.
+4. Experiment with different properties such as `color`, `background-color`, `font-size`, and `margin` to observe how they affect the page.
