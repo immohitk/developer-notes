@@ -333,3 +333,37 @@ selector {
 ```css
 /* This is a comment */
 ```
+
+
+---
+
+
+## Best Practices
+
+Following good CSS practices makes your code easier to read, maintain, and scale as your projects grow.
+
+- Keep your CSS code properly indented and consistently formatted.
+- Use meaningful and descriptive class names.
+- Separate HTML structure from CSS styling by using external stylesheets whenever possible.
+- Group related CSS rules together to improve readability.
+- Add comments to organize large stylesheets into sections.
+- Avoid writing duplicate CSS rules; reuse existing classes whenever possible.
+- Use consistent naming conventions throughout your project.
+- Write simple and readable CSS before trying advanced techniques.
+
+
+---
+
+
+## Common Mistakes
+
+Beginners often make small mistakes that can prevent CSS from working correctly.
+
+- Forgetting the semicolon (`;`) after a CSS declaration.
+- Misspelling property names such as `colour` instead of `color`.
+- Forgetting opening `{` or closing `}` curly braces.
+- Using incorrect property values.
+- Mixing HTML structure with inline styles unnecessarily.
+- Writing duplicate or conflicting CSS rules.
+- Using overly complex selectors when simpler ones would work.
+- Forgetting to save the CSS file before refreshing the browser.
