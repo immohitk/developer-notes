@@ -239,6 +239,7 @@ p {
 
 ---
 
+
 ## CSS Comments
 
 Comments are used to explain CSS code or leave notes for yourself and other developers. Browsers ignore comments, so they do not affect how a webpage is displayed.
@@ -281,3 +282,17 @@ p {
 - Use comments to separate major sections of your stylesheet.
 - Avoid commenting obvious or self-explanatory code.
 - Remove outdated comments that no longer match the code.
+
+
+---
+
+
+## Key Takeaways
+
+- CSS stands for **Cascading Style Sheets**.
+- CSS is used to control the appearance and presentation of HTML documents.
+- HTML provides the structure, while CSS is responsible for the design.
+- CSS rules are made up of **selectors**, **properties**, and **values**.
+- A single CSS rule can contain multiple declarations.
+- CSS comments improve readability and help organize stylesheets.
+- Separating content (HTML) from presentation (CSS) makes websites easier to maintain.
