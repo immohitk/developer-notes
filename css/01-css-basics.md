@@ -296,3 +296,40 @@ p {
 - A single CSS rule can contain multiple declarations.
 - CSS comments improve readability and help organize stylesheets.
 - Separating content (HTML) from presentation (CSS) makes websites easier to maintain.
+
+
+---
+
+
+## References
+
+The following resources provide detailed documentation and additional examples for learning CSS:
+
+- **MDN Web Docs** – Comprehensive documentation and guides for CSS.
+- **W3Schools** – Beginner-friendly CSS tutorials and examples.
+- **W3C CSS Specifications** – Official CSS standards and specifications.
+
+---
+
+## Quick Revision
+
+- **CSS** stands for **Cascading Style Sheets**.
+- CSS is used to style HTML elements.
+- HTML defines the **structure**, while CSS defines the **presentation**.
+- Basic CSS syntax:
+
+```css
+selector {
+    property: value;
+}
+```
+
+- A CSS rule contains:
+  - **Selector** – Selects the HTML element(s).
+  - **Property** – Specifies what to style.
+  - **Value** – Specifies how the property should be styled.
+- CSS comments are written using:
+
+```css
+/* This is a comment */
+```
