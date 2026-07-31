@@ -141,3 +141,97 @@ p {
 - The paragraph is displayed in **gray** with a font size of **18 pixels**.
 
 This demonstrates how HTML creates the content while CSS controls its presentation.
+
+
+---
+
+
+## Basic CSS Syntax
+
+A CSS stylesheet is made up of one or more **CSS rules**. Each rule tells the browser which HTML element to style and how it should look.
+
+### Syntax
+
+```css
+selector {
+    property: value;
+}
+```
+
+Example:
+
+```css
+h1 {
+    color: blue;
+    font-size: 32px;
+}
+```
+
+In this example:
+
+- The selector is `h1`.
+- The `color` property changes the text color to blue.
+- The `font-size` property changes the text size to 32 pixels.
+
+Every declaration ends with a semicolon (`;`), and all declarations are enclosed within curly braces (`{ }`).
+
+---
+
+## CSS Rule Components
+
+Every CSS rule consists of three main parts.
+
+### Selector
+
+A **selector** specifies which HTML element(s) the style should be applied to.
+
+Example:
+
+```css
+h1
+```
+
+This selector targets all `<h1>` elements.
+
+### Property
+
+A **property** defines what aspect of the selected element should be changed.
+
+Examples of common properties:
+
+- `color`
+- `background-color`
+- `font-size`
+- `margin`
+- `padding`
+
+### Value
+
+A **value** specifies how the property should be applied.
+
+Example:
+
+```css
+color: blue;
+```
+
+Here:
+
+- **Property:** `color`
+- **Value:** `blue`
+
+A property and its value together form a **CSS declaration**.
+
+```css
+color: blue;
+```
+
+A CSS rule can contain multiple declarations.
+
+```css
+p {
+    color: black;
+    font-size: 18px;
+    line-height: 1.6;
+}
+```
