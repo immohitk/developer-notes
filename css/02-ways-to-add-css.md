@@ -346,7 +346,9 @@ Choosing the right way to add CSS depends on the size and requirements of your p
 - External CSS is the preferred approach for modern web development because it improves reusability, maintainability, and consistency.
 - Choosing the appropriate styling method depends on the project's size and requirements.
 
+
 ---
+
 
 ## References
 
@@ -356,3 +358,31 @@ To learn more about the different ways of adding CSS, refer to the following res
 - **MDN Web Docs** – Using CSS
 - **W3Schools** – CSS How To
 - **W3C CSS Specifications**
+
+
+---
+
+
+## Quick Revision
+
+### Three Ways to Add CSS
+
+| Method | Location | Best For |
+|---------|----------|----------|
+| **Inline CSS** | `style` attribute | Styling a single HTML element |
+| **Internal CSS** | `<style>` element inside `<head>` | Single-page websites and small projects |
+| **External CSS** | Separate `.css` file | Multi-page websites and large projects |
+
+### Recommended Approach
+
+- ✅ **External CSS** – Best choice for most projects.
+- ⚠️ **Internal CSS** – Suitable for small or single-page websites.
+- ❌ **Inline CSS** – Use only for quick testing or unique styling requirements.
+
+### Quick Checklist
+
+- ✅ Know the three ways to add CSS.
+- ✅ Understand where each method is written.
+- ✅ Know the advantages and disadvantages of each method.
+- ✅ Be able to choose the appropriate method for different projects.
+- ✅ Remember that **External CSS** is the preferred approach for modern web development.
