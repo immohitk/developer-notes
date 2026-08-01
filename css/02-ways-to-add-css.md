@@ -94,3 +94,56 @@ Inline CSS is suitable for:
 - Email templates where inline styles are often required.
 
 For most websites, **External CSS** is the recommended approach because it keeps HTML and CSS separate, making projects easier to maintain and scale.
+
+
+---
+
+
+## Internal CSS
+
+**Internal CSS** is a method of adding CSS directly inside an HTML document using the `<style>` element.
+
+The `<style>` element is placed inside the `<head>` section of the HTML document. All the styles written within it apply only to that specific webpage.
+
+### Syntax
+
+```html
+<head>
+    <style>
+        selector {
+            property: value;
+        }
+    </style>
+</head>
+```
+
+### Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 {
+            color: blue;
+        }
+
+        p {
+            font-size: 18px;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to CSS</h1>
+    <p>This paragraph uses internal CSS.</p>
+</body>
+</html>
+```
+
+In this example:
+
+- The `<style>` element contains all the CSS rules.
+- The styles apply only to this HTML page.
+- Multiple HTML elements can share the same styles.
