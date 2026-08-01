@@ -176,3 +176,74 @@ Internal CSS is suitable for:
 - Testing styles before moving them to an external stylesheet.
 
 For websites with multiple pages, **External CSS** is the preferred approach because it allows styles to be shared across the entire project.
+
+
+---
+
+
+## External CSS
+
+**External CSS** is a method of storing CSS rules in a separate file with the `.css` extension and linking it to an HTML document.
+
+The HTML file references the stylesheet using the `<link>` element inside the `<head>` section. This allows the same stylesheet to be shared across multiple web pages.
+
+### Syntax
+
+**HTML**
+
+```html
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+```
+
+**CSS (styles.css)**
+
+```css
+h1 {
+    color: blue;
+}
+
+p {
+    font-size: 18px;
+    color: gray;
+}
+```
+
+### Example
+
+**index.html**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Welcome to CSS</h1>
+    <p>This paragraph uses external CSS.</p>
+</body>
+</html>
+```
+
+**styles.css**
+
+```css
+h1 {
+    color: blue;
+}
+
+p {
+    font-size: 18px;
+    color: gray;
+}
+```
+
+In this example:
+
+- The HTML file contains only the page structure.
+- The CSS file contains all the styling rules.
+- The browser loads the stylesheet and applies the styles to the HTML document.
+- The same stylesheet can be linked to multiple HTML pages.
