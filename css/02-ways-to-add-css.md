@@ -267,3 +267,27 @@ External CSS is suitable for:
 - Production-ready websites.
 
 For most real-world projects, **External CSS is the recommended approach** because it provides better organization, reusability, scalability, and maintainability.
+
+
+---
+
+
+## Comparison of CSS Methods
+
+The following table compares the three ways of adding CSS to an HTML document.
+
+| Feature | Inline CSS | Internal CSS | External CSS |
+|---------|------------|--------------|--------------|
+| Location | Inside the `style` attribute | Inside the `<style>` element | Separate `.css` file |
+| Scope | Single HTML element | Single HTML page | Multiple HTML pages |
+| Reusability | ❌ No | ⚠️ Limited to one page | ✅ Yes |
+| Maintainability | ❌ Poor | ⚠️ Moderate | ✅ Excellent |
+| Best For | Quick styling changes | Small websites or single pages | Medium and large websites |
+| Performance | Not reusable | Suitable for single-page projects | Better for larger projects due to browser caching |
+| Recommended | ❌ Rarely | ⚠️ Sometimes | ✅ Yes |
+
+### Summary
+
+- **Inline CSS** is useful for applying styles to individual elements but is not suitable for larger projects.
+- **Internal CSS** works well for single-page websites or small projects where styles are only needed on one page.
+- **External CSS** is the preferred approach for modern web development because it promotes reusability, maintainability, and consistency across multiple pages.
