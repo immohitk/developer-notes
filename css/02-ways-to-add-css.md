@@ -555,3 +555,44 @@ For most projects, **External CSS** provides the best balance of organization, r
 4. Compare all three CSS methods and explain when each should be used.
 
 5. Convert a webpage that uses Inline CSS into one that uses External CSS.
+
+
+---
+
+
+## Practice Exercises
+
+Complete the following exercises to strengthen your understanding of the different ways to add CSS.
+
+### Beginner
+
+1. Create a webpage and style a heading using **Inline CSS**.
+2. Create a webpage that uses **Internal CSS** to style headings and paragraphs.
+3. Create a separate `styles.css` file and link it to an HTML page using **External CSS**.
+
+---
+
+### Intermediate
+
+1. Create the same webpage using all three CSS methods and compare the code.
+2. Convert a webpage that uses Inline CSS into Internal CSS.
+3. Convert a webpage that uses Internal CSS into External CSS.
+
+---
+
+### Challenge
+
+Create a simple webpage containing:
+
+- A heading
+- A navigation menu
+- Three paragraphs
+- A button
+
+Style the page using **External CSS** only.
+
+After completing the project, answer the following questions:
+
+1. Why is External CSS the best choice for this project?
+2. Which styling method required the least repeated code?
+3. Which method would be easiest to maintain if the project grew to multiple pages?
