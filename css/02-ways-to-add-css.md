@@ -67,10 +67,6 @@ In the example above:
 - The paragraph has a **font size of 18 pixels**.
 - The styles apply only to those individual elements.
 
-
----
-
-
 ### Advantages
 
 - Easy to use for small changes.
@@ -147,10 +143,6 @@ In this example:
 - The `<style>` element contains all the CSS rules.
 - The styles apply only to this HTML page.
 - Multiple HTML elements can share the same styles.
-
-
----
-
 
 ### Advantages
 
@@ -247,3 +239,31 @@ In this example:
 - The CSS file contains all the styling rules.
 - The browser loads the stylesheet and applies the styles to the HTML document.
 - The same stylesheet can be linked to multiple HTML pages.
+
+### Advantages
+
+- Separates HTML structure from CSS styling, resulting in cleaner and more organized code.
+- A single stylesheet can be shared across multiple HTML pages.
+- Changes made to one CSS file automatically apply to every linked page.
+- Reduces code duplication and simplifies maintenance.
+- Improves consistency by using the same styles throughout a website.
+- Browsers can cache external CSS files, which may improve page loading performance on subsequent visits.
+- The recommended approach for medium and large web development projects.
+
+### Disadvantages
+
+- Requires an additional HTTP request to load the stylesheet.
+- If the CSS file is missing or linked incorrectly, the webpage will display without custom styles.
+- Small styling changes require editing a separate file.
+
+### When to Use External CSS
+
+External CSS is suitable for:
+
+- Multi-page websites.
+- Medium and large web applications.
+- Projects where styles need to be reused.
+- Websites maintained by multiple developers.
+- Production-ready websites.
+
+For most real-world projects, **External CSS is the recommended approach** because it provides better organization, reusability, scalability, and maintainability.
