@@ -147,3 +147,32 @@ In this example:
 - The `<style>` element contains all the CSS rules.
 - The styles apply only to this HTML page.
 - Multiple HTML elements can share the same styles.
+
+
+---
+
+
+### Advantages
+
+- Styles are written in one place within the HTML document.
+- Multiple elements on the same page can share the same styles.
+- Keeps styling separate from the HTML content better than Inline CSS.
+- Useful for styling a single webpage without creating a separate CSS file.
+
+### Disadvantages
+
+- Styles cannot be reused across multiple HTML pages.
+- As the stylesheet grows, the HTML file becomes larger and harder to maintain.
+- Updating styles across multiple pages requires editing each file individually.
+- Not suitable for large websites with many pages.
+
+### When to Use Internal CSS
+
+Internal CSS is suitable for:
+
+- Single-page websites.
+- Small projects.
+- Prototypes and demonstrations.
+- Testing styles before moving them to an external stylesheet.
+
+For websites with multiple pages, **External CSS** is the preferred approach because it allows styles to be shared across the entire project.
