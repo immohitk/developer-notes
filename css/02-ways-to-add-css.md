@@ -499,3 +499,59 @@ Choose one primary styling method based on the project requirements.
 Choosing Inline CSS for a large project leads to duplicated code and makes future updates time-consuming.
 
 For most projects, **External CSS** provides the best balance of organization, reusability, and maintainability.
+
+
+---
+
+
+## Interview Questions
+
+### Beginner Level
+
+1. What are the three ways to add CSS to an HTML document?
+
+2. What is Inline CSS?
+
+3. What is Internal CSS?
+
+4. What is External CSS?
+
+5. Which HTML element is used to write Internal CSS?
+
+6. Which HTML element is used to link an External CSS file?
+
+7. Which CSS method applies styles to only one HTML element?
+
+8. Which CSS method can be reused across multiple HTML pages?
+
+9. Where should the `<link>` element be placed in an HTML document?
+
+10. Which CSS method is recommended for modern web development?
+
+---
+
+### Intermediate Level
+
+1. What are the advantages and disadvantages of Inline CSS?
+
+2. Why is External CSS preferred over Internal CSS for large websites?
+
+3. Explain the difference between Internal CSS and External CSS.
+
+4. What happens if the path in the `href` attribute is incorrect?
+
+5. Why is separating HTML and CSS considered a good practice?
+
+---
+
+### Practical Questions
+
+1. Create an HTML page using Inline CSS.
+
+2. Create an HTML page using Internal CSS.
+
+3. Link an External CSS file to an HTML document.
+
+4. Compare all three CSS methods and explain when each should be used.
+
+5. Convert a webpage that uses Inline CSS into one that uses External CSS.
