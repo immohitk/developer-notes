@@ -66,3 +66,31 @@ In the example above:
 - The `<h1>` element is displayed in **blue**.
 - The paragraph has a **font size of 18 pixels**.
 - The styles apply only to those individual elements.
+
+
+---
+
+
+### Advantages
+
+- Easy to use for small changes.
+- Applies styles directly to a specific HTML element.
+- Useful for testing or making quick style changes.
+- Does not require a separate CSS file.
+
+### Disadvantages
+
+- Styles cannot be reused across multiple elements.
+- Mixing HTML and CSS makes the code harder to read and maintain.
+- Increases code duplication when the same styles are used repeatedly.
+- Not recommended for large websites or production projects.
+
+### When to Use Inline CSS
+
+Inline CSS is suitable for:
+
+- Testing small styling changes.
+- Applying a unique style to a single element.
+- Email templates where inline styles are often required.
+
+For most websites, **External CSS** is the recommended approach because it keeps HTML and CSS separate, making projects easier to maintain and scale.
