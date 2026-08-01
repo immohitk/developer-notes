@@ -430,3 +430,72 @@ This improves readability, organization, and maintainability.
 - Maintain consistent indentation and formatting.
 
 Well-organized stylesheets are easier to understand and update.
+
+
+---
+
+
+## Common Mistakes
+
+Below are some common mistakes beginners make when working with the different ways of adding CSS.
+
+### 1. Overusing Inline CSS
+
+❌ Avoid writing styles for every element using the `style` attribute.
+
+```html
+<h1 style="color: blue;">Heading</h1>
+<p style="color: gray;">Paragraph</p>
+```
+
+✅ Better
+
+Move reusable styles to an external stylesheet whenever possible.
+
+---
+
+### 2. Using Internal CSS for Multi-Page Websites
+
+Internal CSS works well for a single page, but copying the same `<style>` element into multiple HTML files makes maintenance difficult.
+
+✅ Better
+
+Use an external stylesheet that can be shared across all pages.
+
+---
+
+### 3. Incorrectly Linking an External Stylesheet
+
+A common mistake is using the wrong file name or path.
+
+❌ Incorrect
+
+```html
+<link rel="stylesheet" href="style.css">
+```
+
+If the file is actually named `styles.css`, the stylesheet will not load.
+
+✅ Correct
+
+```html
+<link rel="stylesheet" href="styles.css">
+```
+
+Always verify the file name and path.
+
+---
+
+### 4. Mixing Multiple Styling Methods Unnecessarily
+
+Using Inline, Internal, and External CSS together without a clear purpose can make your code difficult to understand and maintain.
+
+Choose one primary styling method based on the project requirements.
+
+---
+
+### 5. Ignoring Maintainability
+
+Choosing Inline CSS for a large project leads to duplicated code and makes future updates time-consuming.
+
+For most projects, **External CSS** provides the best balance of organization, reusability, and maintainability.
