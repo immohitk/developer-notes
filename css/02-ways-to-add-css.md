@@ -386,3 +386,47 @@ To learn more about the different ways of adding CSS, refer to the following res
 - ✅ Know the advantages and disadvantages of each method.
 - ✅ Be able to choose the appropriate method for different projects.
 - ✅ Remember that **External CSS** is the preferred approach for modern web development.
+
+
+---
+
+
+## Best Practices
+
+Follow these best practices when adding CSS to your HTML documents.
+
+### 1. Prefer External CSS
+
+Use **External CSS** for most projects because it separates structure from presentation, making your code easier to maintain and reuse.
+
+---
+
+### 2. Avoid Excessive Inline CSS
+
+Use Inline CSS only for quick testing, unique element styling, or situations where it is specifically required (such as some email templates).
+
+Avoid using Inline CSS throughout an entire website.
+
+---
+
+### 3. Use Internal CSS for Small Projects
+
+Internal CSS is suitable for single-page websites, prototypes, and small demonstrations where creating a separate stylesheet is unnecessary.
+
+---
+
+### 4. Keep HTML and CSS Separate
+
+Store styling rules in CSS files whenever possible.
+
+This improves readability, organization, and maintainability.
+
+---
+
+### 5. Organize Your Styles
+
+- Group related CSS rules together.
+- Use meaningful comments in large stylesheets.
+- Maintain consistent indentation and formatting.
+
+Well-organized stylesheets are easier to understand and update.
