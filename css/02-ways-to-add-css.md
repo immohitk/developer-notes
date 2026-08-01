@@ -291,3 +291,41 @@ The following table compares the three ways of adding CSS to an HTML document.
 - **Inline CSS** is useful for applying styles to individual elements but is not suitable for larger projects.
 - **Internal CSS** works well for single-page websites or small projects where styles are only needed on one page.
 - **External CSS** is the preferred approach for modern web development because it promotes reusability, maintainability, and consistency across multiple pages.
+
+
+---
+
+
+## When to Use Each Method
+
+Choosing the right way to add CSS depends on the size and requirements of your project.
+
+### Use Inline CSS When
+
+- Applying a style to a single HTML element.
+- Testing or experimenting with small styling changes.
+- Working with email templates where inline styles are commonly required.
+
+> Avoid using Inline CSS for large websites because it mixes content with presentation and makes maintenance difficult.
+
+---
+
+### Use Internal CSS When
+
+- Building a single-page website.
+- Creating small projects or prototypes.
+- The styles are needed only for one HTML document.
+
+> If multiple pages require the same styles, consider using External CSS instead.
+
+---
+
+### Use External CSS When
+
+- Building websites with multiple pages.
+- Reusing the same styles across different HTML files.
+- Working on medium or large projects.
+- Collaborating with other developers.
+- Developing production-ready websites.
+
+> **External CSS is the recommended approach for modern web development** because it keeps HTML and CSS separate, improves maintainability, and promotes code reuse.
