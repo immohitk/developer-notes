@@ -692,3 +692,86 @@ The following resources provide detailed documentation and additional examples f
 - ✅ Know the difference between **Descendant** and **Child** selectors.
 - ✅ Know the difference between **Adjacent Sibling** and **General Sibling** selectors.
 - ✅ Choose the most appropriate selector to keep your CSS clean, reusable, and maintainable.
+
+
+---
+
+## Best Practices
+
+Follow these best practices to write clean, maintainable, and efficient CSS selectors.
+
+### 1. Prefer Class Selectors
+
+Use **class selectors** for most styling because they are reusable and make your CSS easier to maintain.
+
+```css
+.button {
+    background-color: blue;
+}
+```
+
+---
+
+### 2. Avoid Overusing ID Selectors
+
+Reserve **ID selectors** for unique elements or JavaScript interactions. Avoid relying on them for general styling.
+
+```css
+/* Good */
+.card {
+    border: 1px solid #ccc;
+}
+
+/* Use IDs only when uniqueness is required */
+#main-header {
+    background-color: navy;
+}
+```
+
+---
+
+### 3. Keep Selectors Simple
+
+Write selectors that are easy to understand and maintain.
+
+```css
+/* Good */
+.card p {
+    color: gray;
+}
+
+/* Avoid unnecessary nesting */
+body main section article .card p {
+    color: gray;
+}
+```
+
+---
+
+### 4. Group Similar Styles
+
+If multiple elements share the same styles, use the **Grouping Selector** instead of repeating the same CSS.
+
+```css
+h1,
+h2,
+h3 {
+    font-family: Arial, sans-serif;
+}
+```
+
+---
+
+### 5. Choose the Most Specific Selector Needed
+
+Use the simplest selector that correctly targets the desired elements.
+
+Avoid making selectors more complex than necessary.
+
+---
+
+### 6. Use Relationship Selectors Carefully
+
+Selectors such as **Descendant**, **Child**, and **Sibling** selectors are powerful, but use them only when the HTML structure requires them.
+
+Overly complex selectors can make stylesheets harder to understand and maintain.
