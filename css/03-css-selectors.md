@@ -655,3 +655,40 @@ The following resources provide detailed documentation and additional examples f
 - **MDN Web Docs** – CSS Selectors Reference
 - **W3Schools** – CSS Selectors
 - **W3C CSS Specifications** – Selectors
+
+
+---
+
+
+## Quick Revision
+
+### Basic Selectors
+
+| Selector | Symbol | Example | Selects |
+|----------|--------|---------|---------|
+| Universal | `*` | `* {}` | All elements |
+| Element | Tag name | `p {}` | All matching HTML elements |
+| Class | `.` | `.btn {}` | Elements with the specified class |
+| ID | `#` | `#header {}` | The element with the specified ID |
+
+---
+
+### Relationship Selectors
+
+| Selector | Symbol | Example | Selects |
+|----------|--------|---------|---------|
+| Grouping | `,` | `h1, p {}` | Multiple selectors sharing the same styles |
+| Descendant | Space (` `) | `div p {}` | All matching descendants |
+| Child | `>` | `div > p {}` | Direct children only |
+| Adjacent Sibling | `+` | `h1 + p {}` | The immediately following sibling |
+| General Sibling | `~` | `h1 ~ p {}` | All following siblings |
+
+---
+
+### Quick Checklist
+
+- ✅ Know the purpose of each selector.
+- ✅ Understand the difference between **class** and **ID** selectors.
+- ✅ Know the difference between **Descendant** and **Child** selectors.
+- ✅ Know the difference between **Adjacent Sibling** and **General Sibling** selectors.
+- ✅ Choose the most appropriate selector to keep your CSS clean, reusable, and maintainable.
