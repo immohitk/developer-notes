@@ -880,3 +880,43 @@ h2 {
     color: navy;
 }
 ```
+
+
+---
+
+
+## Interview Questions
+
+### Beginner Level
+
+1. What is a CSS selector?
+2. Why are CSS selectors important?
+3. What is the difference between the Universal Selector and the Element Selector?
+4. What is the difference between a Class Selector and an ID Selector?
+5. Which selector is represented by the `*` symbol?
+6. Which selector is represented by the `.` symbol?
+7. Which selector is represented by the `#` symbol?
+8. What is the purpose of the Grouping Selector?
+9. What is the difference between the Descendant Selector and the Child Selector?
+10. What is the difference between the Adjacent Sibling Selector and the General Sibling Selector?
+
+---
+
+### Intermediate Level
+
+1. Why are class selectors preferred over ID selectors for styling?
+2. When should you use a Child Selector instead of a Descendant Selector?
+3. Explain the difference between `+` and `~` selectors with examples.
+4. How does the browser determine which elements a selector matches?
+5. What problems can overly complex selectors cause?
+
+---
+
+### Practical Questions
+
+1. Write a CSS rule that styles all `<p>` elements.
+2. Create a reusable class for styling buttons.
+3. Write a selector that styles only the direct `<li>` children of a `<ul>`.
+4. Write a selector that styles all paragraphs inside a `<div>`.
+5. Write a selector that styles only the first paragraph immediately after an `<h2>`.
+6. Write a selector that styles all paragraphs following an `<h2>` that share the same parent.
