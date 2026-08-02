@@ -440,3 +440,69 @@ div p {
 ### Note
 
 The Descendant Selector matches **all nested descendants**, not just direct children. If you want to select **only direct children**, use the **Child Selector (`>`)** instead.
+
+
+---
+
+
+## Child Selector
+
+The **Child Selector** selects only the **direct children** of a specified parent element.
+
+It is represented by the greater-than symbol (`>`).
+
+Unlike the **Descendant Selector**, the Child Selector **does not** select nested grandchildren or deeper descendants.
+
+### Syntax
+
+```css
+parent > child {
+    property: value;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<div>
+    <p>Direct child paragraph.</p>
+
+    <section>
+        <p>Nested paragraph.</p>
+    </section>
+</div>
+```
+
+**CSS**
+
+```css
+div > p {
+    color: blue;
+}
+```
+
+### Result
+
+- ✅ The first `<p>` is styled because it is a **direct child** of `<div>`.
+- ❌ The second `<p>` is **not styled** because it is inside a `<section>`, making it a descendant but **not** a direct child of `<div>`.
+
+### Descendant Selector vs Child Selector
+
+| Descendant Selector (` `) | Child Selector (`>`) |
+|----------------------------|----------------------|
+| Selects all nested descendants | Selects only direct children |
+| Uses a space between selectors | Uses the `>` symbol |
+| Matches children, grandchildren, and deeper elements | Matches only immediate child elements |
+
+### Common Use Cases
+
+- Styling direct navigation items.
+- Applying styles only to immediate children of a container.
+- Preventing styles from affecting deeply nested elements.
+- Creating more precise and predictable CSS rules.
+
+### Note
+
+Use the **Child Selector** when you want to style **only immediate child elements**. If you need to target all nested elements regardless of depth, use the **Descendant Selector** instead.
