@@ -121,9 +121,8 @@ In this example, the `margin` and `padding` of every HTML element are set to `0`
 - Apply a common style to every element.
 - Create a consistent starting point before adding custom styles.
 
-### Note
-
-Although the Universal Selector is useful, avoid applying unnecessary styles to every element. Overusing it may affect performance and make your stylesheet harder to understand.
+> ### Note
+> Although the Universal Selector is useful, avoid applying unnecessary styles to every element. Overusing it may affect performance and make your stylesheet harder to understand.
 
 
 ---
@@ -174,9 +173,8 @@ In this example:
 - Styling all paragraphs consistently.
 - Setting default styles for lists, tables, buttons, and other HTML elements.
 
-### Note
-
-Since the Element Selector affects **every matching element**, avoid using it when only specific elements need different styles. In such cases, use **class** or **ID** selectors instead.
+> ### Note
+> Since the Element Selector affects **every matching element**, avoid using it when only specific elements need different styles. In such cases, use **class** or **ID** selectors instead.
 
 
 ---
@@ -250,9 +248,8 @@ Each class can provide different styles, allowing you to combine reusable CSS ru
 - Applying the same styles to multiple elements.
 - Organizing styles into reusable utility classes.
 
-### Note
-
-Use **classes** when the same style needs to be shared by multiple elements. This is the preferred approach for styling reusable components in modern web development.
+> ### Note
+> Use **classes** when the same style needs to be shared by multiple elements. This is the preferred approach for styling reusable components in modern web development.
 
 
 ---
@@ -320,9 +317,8 @@ In this example:
 - Targeting a specific element with JavaScript.
 - Styling unique headers, footers, or banners.
 
-### Note
-
-Although IDs can be styled with CSS, modern web development generally prefers **class selectors** for styling because they are reusable and easier to maintain. IDs are commonly reserved for unique elements, page navigation, and JavaScript interactions.
+> ### Note
+> Although IDs can be styled with CSS, modern web development generally prefers **class selectors** for styling because they are reusable and easier to maintain. IDs are commonly reserved for unique elements, page navigation, and JavaScript interactions.
 
 
 ---
@@ -376,9 +372,8 @@ The same font family and text color are applied to the `<h1>`, `<h2>`, and `<p>`
 - Reducing duplicate CSS rules.
 - Keeping stylesheets cleaner and easier to maintain.
 
-### Note
-
-Use the Grouping Selector only when all selected elements require the **same styles**. If different styles are needed later, separate the selectors into individual CSS rules.
+> ### Note
+> Use the Grouping Selector only when all selected elements require the **same styles**. If different styles are needed later, separate the selectors into individual CSS rules.
 
 
 ---
@@ -437,9 +432,8 @@ div p {
 - Applying styles to nested content without affecting the entire page.
 - Creating reusable layouts using container elements.
 
-### Note
-
-The Descendant Selector matches **all nested descendants**, not just direct children. If you want to select **only direct children**, use the **Child Selector (`>`)** instead.
+> ### Note
+> The Descendant Selector matches **all nested descendants**, not just direct children. If you want to select **only direct children**, use the **Child Selector (`>`)** instead.
 
 
 ---
@@ -648,3 +642,16 @@ h1 ~ p {
 - The **Adjacent Sibling Selector (`+`)** selects the immediately following sibling.
 - The **General Sibling Selector (`~`)** selects all following sibling elements with the same parent.
 - Choosing the correct selector improves code readability, reusability, and maintainability.
+
+
+---
+
+
+## References
+
+The following resources provide detailed documentation and additional examples for CSS selectors:
+
+- **MDN Web Docs** – CSS Selectors
+- **MDN Web Docs** – CSS Selectors Reference
+- **W3Schools** – CSS Selectors
+- **W3C CSS Specifications** – Selectors
