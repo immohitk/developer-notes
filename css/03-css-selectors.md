@@ -506,3 +506,61 @@ div > p {
 ### Note
 
 Use the **Child Selector** when you want to style **only immediate child elements**. If you need to target all nested elements regardless of depth, use the **Descendant Selector** instead.
+
+
+---
+
+
+## Adjacent Sibling Selector
+
+The **Adjacent Sibling Selector** selects an element that **immediately follows** another element and shares the same parent.
+
+It is represented by the **plus (`+`)** symbol.
+
+The selector only matches the **first sibling** that comes directly after the specified element.
+
+### Syntax
+
+```css
+element1 + element2 {
+    property: value;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1>Main Heading</h1>
+
+<p>This paragraph is immediately after the heading.</p>
+
+<p>This paragraph comes next.</p>
+```
+
+**CSS**
+
+```css
+h1 + p {
+    color: blue;
+}
+```
+
+### Result
+
+- ✅ The **first paragraph** immediately after the `<h1>` becomes **blue**.
+- ❌ The **second paragraph** is **not affected** because it is not directly adjacent to the `<h1>`.
+
+### Common Use Cases
+
+- Styling the first paragraph after a heading.
+- Adding spacing between consecutive elements.
+- Creating cleaner typography layouts.
+- Applying styles based on the immediate position of elements.
+
+### Note
+
+The Adjacent Sibling Selector only selects the **next immediate sibling**.
+
+If you want to select **all following sibling elements**, use the **General Sibling Selector (`~`)** instead.
