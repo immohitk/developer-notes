@@ -920,3 +920,53 @@ h2 {
 4. Write a selector that styles all paragraphs inside a `<div>`.
 5. Write a selector that styles only the first paragraph immediately after an `<h2>`.
 6. Write a selector that styles all paragraphs following an `<h2>` that share the same parent.
+
+
+---
+
+
+## Practice Exercises
+
+Complete the following exercises to strengthen your understanding of CSS selectors.
+
+### Beginner
+
+1. Style all `<h1>` elements using an **Element Selector**.
+2. Create a reusable class named `highlight` and apply it to multiple paragraphs.
+3. Assign an ID to a heading and style it using an **ID Selector**.
+4. Apply the same text color to `<h1>`, `<h2>`, and `<h3>` using the **Grouping Selector**.
+
+---
+
+### Intermediate
+
+1. Create a webpage with nested elements and use a **Descendant Selector** to style all paragraphs inside a `<div>`.
+2. Modify the previous example to use a **Child Selector** and observe the difference in the output.
+3. Create two paragraphs after a heading and use the **Adjacent Sibling Selector** to style only the first paragraph.
+4. Use the **General Sibling Selector** to style every paragraph that appears after a heading.
+
+---
+
+### Challenge
+
+Create a simple webpage containing:
+
+- A header
+- A navigation menu
+- A main content section
+- Three paragraphs
+- A footer
+
+Use the following selectors in your stylesheet:
+
+- Universal Selector
+- Element Selector
+- Class Selector
+- ID Selector
+- Grouping Selector
+- Descendant Selector
+- Child Selector
+- Adjacent Sibling Selector
+- General Sibling Selector
+
+After completing the project, identify which selector was most appropriate for each styling task and explain your reasoning.
