@@ -379,3 +379,64 @@ The same font family and text color are applied to the `<h1>`, `<h2>`, and `<p>`
 ### Note
 
 Use the Grouping Selector only when all selected elements require the **same styles**. If different styles are needed later, separate the selectors into individual CSS rules.
+
+
+---
+
+
+## Descendant Selector
+
+The **Descendant Selector** selects all elements that are descendants (children, grandchildren, or deeper nested elements) of another specified element.
+
+The selectors are separated by a **space**.
+
+### Syntax
+
+```css
+ancestor descendant {
+    property: value;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<div>
+    <h1>Developer Notes</h1>
+
+    <p>This paragraph is inside the div.</p>
+
+    <section>
+        <p>This paragraph is also inside the div.</p>
+    </section>
+</div>
+
+<p>This paragraph is outside the div.</p>
+```
+
+**CSS**
+
+```css
+div p {
+    color: blue;
+}
+```
+
+### Result
+
+- ✅ The first paragraph inside the `<div>` becomes **blue**.
+- ✅ The paragraph inside the `<section>` also becomes **blue** because it is still a descendant of the `<div>`.
+- ❌ The paragraph outside the `<div>` is **not affected**.
+
+### Common Use Cases
+
+- Styling paragraphs inside articles or containers.
+- Targeting elements within navigation menus.
+- Applying styles to nested content without affecting the entire page.
+- Creating reusable layouts using container elements.
+
+### Note
+
+The Descendant Selector matches **all nested descendants**, not just direct children. If you want to select **only direct children**, use the **Child Selector (`>`)** instead.
