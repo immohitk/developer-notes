@@ -323,3 +323,59 @@ In this example:
 ### Note
 
 Although IDs can be styled with CSS, modern web development generally prefers **class selectors** for styling because they are reusable and easier to maintain. IDs are commonly reserved for unique elements, page navigation, and JavaScript interactions.
+
+
+---
+
+
+## Grouping Selector
+
+The **Grouping Selector** allows you to apply the same CSS declarations to multiple HTML elements by separating selectors with a comma (`,`).
+
+Instead of writing the same CSS rules multiple times, you can group selectors together, making your code shorter, cleaner, and easier to maintain.
+
+### Syntax
+
+```css
+selector1,
+selector2,
+selector3 {
+    property: value;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1>Main Heading</h1>
+<h2>Sub Heading</h2>
+<p>This is a paragraph.</p>
+```
+
+**CSS**
+
+```css
+h1,
+h2,
+p {
+    font-family: Arial, sans-serif;
+    color: navy;
+}
+```
+
+### Result
+
+The same font family and text color are applied to the `<h1>`, `<h2>`, and `<p>` elements.
+
+### Common Use Cases
+
+- Applying the same font to multiple elements.
+- Giving headings a consistent appearance.
+- Reducing duplicate CSS rules.
+- Keeping stylesheets cleaner and easier to maintain.
+
+### Note
+
+Use the Grouping Selector only when all selected elements require the **same styles**. If different styles are needed later, separate the selectors into individual CSS rules.
