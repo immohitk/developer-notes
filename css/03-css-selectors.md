@@ -177,3 +177,79 @@ In this example:
 ### Note
 
 Since the Element Selector affects **every matching element**, avoid using it when only specific elements need different styles. In such cases, use **class** or **ID** selectors instead.
+
+
+---
+
+
+## Class Selector
+
+The **Class Selector** selects HTML elements based on the value of their `class` attribute.
+
+It is represented by a **dot (`.`)** followed by the class name.
+
+Unlike the Element Selector, a class can be applied to **multiple HTML elements**, making it one of the most reusable and widely used selectors in CSS.
+
+### Syntax
+
+```css
+.class-name {
+    property: value;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1 class="title">Developer Notes</h1>
+
+<p class="text">
+    Welcome to CSS Selectors.
+</p>
+
+<p class="text">
+    This paragraph uses the same class.
+</p>
+```
+
+**CSS**
+
+```css
+.title {
+    color: blue;
+}
+
+.text {
+    font-size: 18px;
+    color: gray;
+}
+```
+
+In this example:
+
+- The `title` class styles the heading.
+- The `text` class styles both paragraphs.
+- The same class can be reused on multiple elements.
+
+### Multiple Classes
+
+An HTML element can have more than one class.
+
+```html
+<button class="btn primary">Submit</button>
+```
+
+Each class can provide different styles, allowing you to combine reusable CSS rules.
+
+### Common Use Cases
+
+- Styling reusable components.
+- Creating buttons, cards, navigation menus, and forms.
+- Applying the same styles to multiple elements.
+- Organizing styles into reusable utility classes.
+
+### Note
+
+Use **classes** when the same style needs to be shared by multiple elements. This is the preferred approach for styling reusable components in modern web development.
