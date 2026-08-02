@@ -504,7 +504,6 @@ div > p {
 - Creating more precise and predictable CSS rules.
 
 > ### Note
-
 > Use the **Child Selector** when you want to style **only immediate child elements**. If you need to target all nested elements regardless of depth, use the **Descendant Selector** instead.
 
 
@@ -560,9 +559,7 @@ h1 + p {
 - Applying styles based on the immediate position of elements.
 
 > ### Note
-
 > The Adjacent Sibling Selector only selects the **next immediate sibling**.
-
 > If you want to select **all following sibling elements**, use the **General Sibling Selector (`~`)** instead.
 
 
@@ -631,6 +628,23 @@ h1 ~ p {
 - Creating layouts where multiple sibling elements share common styling.
 - Reducing duplicate CSS rules for consecutive elements.
 
-### Note
+> ### Note
+> The General Sibling Selector only matches **following siblings** that share the **same parent**. It does **not** select parent elements, child elements, or siblings that appear **before** the specified element.
 
-The General Sibling Selector only matches **following siblings** that share the **same parent**. It does **not** select parent elements, child elements, or siblings that appear **before** the specified element.
+
+---
+
+
+## Key Takeaways
+
+- A **CSS Selector** is used to target HTML elements for styling.
+- The **Universal Selector (`*`)** selects all elements on a webpage.
+- The **Element Selector** selects elements based on their HTML tag name.
+- The **Class Selector (`.`)** is reusable and can be applied to multiple HTML elements.
+- The **ID Selector (`#`)** targets a unique element using its `id` attribute.
+- The **Grouping Selector (`,`)** applies the same styles to multiple selectors.
+- The **Descendant Selector (` `)** selects all matching nested elements inside another element.
+- The **Child Selector (`>`)** selects only the direct children of a parent element.
+- The **Adjacent Sibling Selector (`+`)** selects the immediately following sibling.
+- The **General Sibling Selector (`~`)** selects all following sibling elements with the same parent.
+- Choosing the correct selector improves code readability, reusability, and maintainability.
