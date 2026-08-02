@@ -33,3 +33,49 @@ CSS selectors are one of the most fundamental concepts in CSS. Before applying a
 Selectors allow you to target specific elements based on their name, class, ID, relationship with other elements, or other criteria. Choosing the correct selector helps you write cleaner, more efficient, and easier-to-maintain stylesheets.
 
 In this chapter, you'll learn the different types of CSS selectors, understand how they work, and discover when to use each one in real-world projects.
+
+
+---
+
+
+## What is a CSS Selector?
+
+A **CSS selector** is a pattern used to select one or more HTML elements that you want to style.
+
+Before CSS can apply a style, it must know **which element or group of elements** the style should affect. Selectors make this possible by identifying the target elements.
+
+### Basic Syntax
+
+```css
+selector {
+    property: value;
+}
+```
+
+Example:
+
+```css
+h1 {
+    color: blue;
+}
+```
+
+In this example:
+
+- `h1` is the **selector**.
+- `color` is the **property**.
+- `blue` is the **value**.
+
+The browser first finds all `<h1>` elements and then applies the specified styles.
+
+### Why Are Selectors Important?
+
+Selectors help you:
+
+- Apply styles to specific HTML elements.
+- Reuse the same styles across multiple elements.
+- Write cleaner and more organized CSS.
+- Reduce duplicate styling code.
+- Build scalable and maintainable websites.
+
+Without selectors, CSS would not know which HTML elements should receive a particular style.
