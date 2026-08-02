@@ -775,3 +775,108 @@ Avoid making selectors more complex than necessary.
 Selectors such as **Descendant**, **Child**, and **Sibling** selectors are powerful, but use them only when the HTML structure requires them.
 
 Overly complex selectors can make stylesheets harder to understand and maintain.
+
+
+---
+
+## Common Mistakes
+
+Avoid the following mistakes when working with CSS selectors.
+
+### 1. Confusing Class and ID Selectors
+
+A common mistake is using an **ID** when a **class** would be more appropriate.
+
+❌ Incorrect
+
+```html
+<p id="text">Paragraph 1</p>
+<p id="text">Paragraph 2</p>
+```
+
+IDs should be unique within a page.
+
+✅ Better
+
+```html
+<p class="text">Paragraph 1</p>
+<p class="text">Paragraph 2</p>
+```
+
+---
+
+### 2. Writing Overly Complex Selectors
+
+Selectors with unnecessary nesting make stylesheets difficult to read and maintain.
+
+❌ Avoid
+
+```css
+body main section article div p {
+    color: blue;
+}
+```
+
+✅ Better
+
+```css
+.article-text {
+    color: blue;
+}
+```
+
+---
+
+### 3. Overusing the Universal Selector
+
+Applying styles to every element can make debugging more difficult and may introduce unexpected results.
+
+❌ Avoid using the Universal Selector for everything.
+
+```css
+* {
+    color: blue;
+}
+```
+
+Use it only when a global style is actually needed, such as a CSS reset.
+
+---
+
+### 4. Using Relationship Selectors Without Understanding the HTML Structure
+
+Relationship selectors depend on the structure of the HTML document.
+
+For example:
+
+- `div p` selects **all descendant** paragraphs.
+- `div > p` selects **only direct child** paragraphs.
+
+Using the wrong selector may style unintended elements.
+
+---
+
+### 5. Repeating Similar Selectors
+
+Instead of writing duplicate CSS rules, use the **Grouping Selector**.
+
+❌ Avoid
+
+```css
+h1 {
+    color: navy;
+}
+
+h2 {
+    color: navy;
+}
+```
+
+✅ Better
+
+```css
+h1,
+h2 {
+    color: navy;
+}
+```
