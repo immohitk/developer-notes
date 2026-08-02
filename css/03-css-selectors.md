@@ -124,3 +124,56 @@ In this example, the `margin` and `padding` of every HTML element are set to `0`
 ### Note
 
 Although the Universal Selector is useful, avoid applying unnecessary styles to every element. Overusing it may affect performance and make your stylesheet harder to understand.
+
+
+---
+
+
+## Element Selector
+
+The **Element Selector** (also called the **Type Selector**) selects HTML elements based on their **tag name**.
+
+It applies the specified styles to **every occurrence** of that HTML element on the page.
+
+### Syntax
+
+```css
+element {
+    property: value;
+}
+```
+
+### Example
+
+```css
+h1 {
+    color: blue;
+}
+
+p {
+    font-size: 18px;
+    color: gray;
+}
+```
+
+```html
+<h1>Developer Notes</h1>
+
+<p>Learning CSS Selectors.</p>
+<p>This paragraph also receives the same styles.</p>
+```
+
+In this example:
+
+- The `h1` selector styles **all** `<h1>` elements.
+- The `p` selector styles **all** `<p>` elements.
+
+### Common Use Cases
+
+- Applying common styles to headings (`h1`–`h6`).
+- Styling all paragraphs consistently.
+- Setting default styles for lists, tables, buttons, and other HTML elements.
+
+### Note
+
+Since the Element Selector affects **every matching element**, avoid using it when only specific elements need different styles. In such cases, use **class** or **ID** selectors instead.
