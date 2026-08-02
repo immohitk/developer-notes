@@ -503,9 +503,9 @@ div > p {
 - Preventing styles from affecting deeply nested elements.
 - Creating more precise and predictable CSS rules.
 
-### Note
+> ### Note
 
-Use the **Child Selector** when you want to style **only immediate child elements**. If you need to target all nested elements regardless of depth, use the **Descendant Selector** instead.
+> Use the **Child Selector** when you want to style **only immediate child elements**. If you need to target all nested elements regardless of depth, use the **Descendant Selector** instead.
 
 
 ---
@@ -559,8 +559,78 @@ h1 + p {
 - Creating cleaner typography layouts.
 - Applying styles based on the immediate position of elements.
 
+> ### Note
+
+> The Adjacent Sibling Selector only selects the **next immediate sibling**.
+
+> If you want to select **all following sibling elements**, use the **General Sibling Selector (`~`)** instead.
+
+
+---
+
+
+## General Sibling Selector
+
+The **General Sibling Selector** selects **all sibling elements** that come **after** a specified element and share the same parent.
+
+It is represented by the **tilde (`~`)** symbol.
+
+Unlike the **Adjacent Sibling Selector (`+`)**, which selects only the **immediately following sibling**, the General Sibling Selector matches **every following sibling** that satisfies the selector.
+
+### Syntax
+
+```css
+element1 ~ element2 {
+    property: value;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1>Main Heading</h1>
+
+<p>First paragraph.</p>
+
+<div>Some content.</div>
+
+<p>Second paragraph.</p>
+
+<p>Third paragraph.</p>
+```
+
+**CSS**
+
+```css
+h1 ~ p {
+    color: blue;
+}
+```
+
+### Result
+
+- ✅ The **first paragraph** becomes **blue**.
+- ✅ The **second paragraph** also becomes **blue**.
+- ✅ The **third paragraph** also becomes **blue**.
+- ❌ The `<div>` is not affected because it does not match the `p` selector.
+
+### Adjacent vs General Sibling Selector
+
+| Adjacent Sibling (`+`) | General Sibling (`~`) |
+|-------------------------|-----------------------|
+| Selects only the next sibling | Selects all following siblings |
+| Matches one element at most | Can match multiple elements |
+| Immediate sibling only | Any following sibling with the same parent |
+
+### Common Use Cases
+
+- Styling all paragraphs after a heading.
+- Applying styles to related content sections.
+- Creating layouts where multiple sibling elements share common styling.
+- Reducing duplicate CSS rules for consecutive elements.
+
 ### Note
 
-The Adjacent Sibling Selector only selects the **next immediate sibling**.
-
-If you want to select **all following sibling elements**, use the **General Sibling Selector (`~`)** instead.
+The General Sibling Selector only matches **following siblings** that share the **same parent**. It does **not** select parent elements, child elements, or siblings that appear **before** the specified element.
