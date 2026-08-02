@@ -253,3 +253,73 @@ Each class can provide different styles, allowing you to combine reusable CSS ru
 ### Note
 
 Use **classes** when the same style needs to be shared by multiple elements. This is the preferred approach for styling reusable components in modern web development.
+
+
+---
+
+
+## ID Selector
+
+The **ID Selector** selects an HTML element based on the value of its `id` attribute.
+
+It is represented by a **hash (`#`)** followed by the ID name.
+
+Unlike classes, an **ID should be unique** within an HTML document. This means the same ID should not be assigned to multiple elements.
+
+### Syntax
+
+```css
+#id-name {
+    property: value;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1 id="main-title">Developer Notes</h1>
+
+<p id="description">
+    Learning CSS Selectors.
+</p>
+```
+
+**CSS**
+
+```css
+#main-title {
+    color: blue;
+}
+
+#description {
+    font-size: 18px;
+    color: gray;
+}
+```
+
+In this example:
+
+- The `#main-title` selector styles only the `<h1>` element with `id="main-title"`.
+- The `#description` selector styles only the paragraph with `id="description"`.
+
+### Class vs ID
+
+| Class Selector (`.`) | ID Selector (`#`) |
+|-----------------------|-------------------|
+| Can be reused on multiple elements | Should be unique within a page |
+| Uses the `class` attribute | Uses the `id` attribute |
+| Ideal for reusable styles | Ideal for unique elements |
+| Written with `.` | Written with `#` |
+
+### Common Use Cases
+
+- Styling unique sections of a webpage.
+- Creating page anchors for navigation.
+- Targeting a specific element with JavaScript.
+- Styling unique headers, footers, or banners.
+
+### Note
+
+Although IDs can be styled with CSS, modern web development generally prefers **class selectors** for styling because they are reusable and easier to maintain. IDs are commonly reserved for unique elements, page navigation, and JavaScript interactions.
