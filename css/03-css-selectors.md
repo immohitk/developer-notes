@@ -79,3 +79,48 @@ Selectors help you:
 - Build scalable and maintainable websites.
 
 Without selectors, CSS would not know which HTML elements should receive a particular style.
+
+
+---
+
+
+## Universal Selector
+
+The **Universal Selector** is represented by an asterisk (`*`). It selects **every HTML element** on the page.
+
+It is commonly used to apply common styles to all elements or to reset the browser's default spacing.
+
+### Syntax
+
+```css
+* {
+    property: value;
+}
+```
+
+### Example
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+}
+```
+
+```html
+<h1>Developer Notes</h1>
+<p>Learning CSS Selectors</p>
+<div>This is a container.</div>
+```
+
+In this example, the `margin` and `padding` of every HTML element are set to `0`.
+
+### Common Use Cases
+
+- Reset default browser spacing.
+- Apply a common style to every element.
+- Create a consistent starting point before adding custom styles.
+
+### Note
+
+Although the Universal Selector is useful, avoid applying unnecessary styles to every element. Overusing it may affect performance and make your stylesheet harder to understand.
