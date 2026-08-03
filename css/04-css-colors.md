@@ -106,3 +106,89 @@ You'll use CSS colors in almost every web project, including:
 - Cards and dashboards
 - Alerts, badges, and notifications
 - Themes (Light Mode and Dark Mode)
+
+
+---
+
+
+## Named Colors
+
+**Named Colors** are predefined color names recognized by CSS. Instead of writing numeric color values, you can use descriptive names such as `red`, `blue`, or `green`.
+
+CSS currently supports **more than 140 standard color names**, making this the simplest way to specify colors.
+
+### Syntax
+
+```css
+selector {
+    color: color-name;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1>Developer Notes</h1>
+
+<p>Learning CSS Colors.</p>
+
+<button>Get Started</button>
+```
+
+**CSS**
+
+```css
+h1 {
+    color: navy;
+}
+
+p {
+    color: dimgray;
+}
+
+button {
+    background-color: royalblue;
+    color: white;
+}
+```
+
+### Common Named Colors
+
+| Color | Preview |
+|--------|---------|
+| `black` | ⚫ |
+| `white` | ⚪ |
+| `red` | 🔴 |
+| `green` | 🟢 |
+| `blue` | 🔵 |
+| `yellow` | 🟡 |
+| `orange` | 🟠 |
+| `purple` | 🟣 |
+| `gray` | ◻️ |
+| `pink` | 🌸 |
+
+### Advantages
+
+- Easy to read and remember.
+- Quick to use for simple projects.
+- No need to remember numeric color values.
+- Supported by all modern browsers.
+
+### Limitations
+
+- Limited to predefined color names.
+- Not suitable when an exact brand or design color is required.
+- Offers less flexibility compared to formats like Hex, RGB, or HSL.
+
+> 💡 **Pro Tip:** Named colors are great for learning CSS and building quick prototypes. For production websites, designers and developers usually prefer **Hex**, **RGB**, or **HSL** because they provide much greater precision.
+
+### Real-World Usage
+
+Named colors are commonly used for:
+
+- Learning and practicing CSS.
+- Small personal projects.
+- Quick prototypes and demonstrations.
+- Temporary styling during development.
