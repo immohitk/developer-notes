@@ -1399,3 +1399,58 @@ Choosing the appropriate format makes your CSS cleaner and easier to maintain.
 ### ⚠️ Important
 
 Good color choices are not just about appearance—they also improve readability, accessibility, and the overall user experience.
+
+
+---
+
+
+## Interview Questions
+
+### Beginner Level
+
+1. What are CSS colors?
+2. Name the different ways to define colors in CSS.
+3. What is the difference between Named Colors and Hexadecimal Colors?
+4. What does RGB stand for?
+5. What is the purpose of the Alpha value in RGBA?
+6. What does HSL stand for?
+7. What is the difference between HSL and HSLA?
+8. What does the `transparent` keyword do?
+9. What is the purpose of the `currentColor` keyword?
+10. Which color formats support transparency?
+
+---
+
+### Intermediate Level
+
+1. Explain the difference between RGB and HSL color models.
+2. When would you choose Hex over RGB?
+3. Why is HSL often preferred when building themes?
+4. What is the difference between `opacity` and `rgba()`?
+5. How does `currentColor` improve code maintainability?
+6. What are the advantages of using CSS variables for colors?
+7. Why is color contrast important in web development?
+8. Which color format would you use for a semi-transparent overlay, and why?
+
+---
+
+### Practical Questions
+
+1. Style a webpage using only Hexadecimal colors.
+2. Create a card with a semi-transparent background using RGBA.
+3. Build a simple color palette using HSL by changing only the Lightness value.
+4. Create a button that uses `currentColor` for its border.
+5. Replace repeated color values in a stylesheet with CSS variables.
+6. Improve the readability of a webpage by choosing better text and background color combinations.
+
+---
+
+### Scenario-Based Questions
+
+1. Your designer provides all colors in Hex format. Would you keep them as Hex or convert them to another format? Why?
+
+2. You need to build a dark mode for an application. Which color format would make adjusting colors easier, and why?
+
+3. A button should have a transparent background without making its text transparent. Which approach would you choose?
+
+4. You are creating a reusable UI component where the icon, border, and text should always have the same color. Which CSS feature would simplify this implementation?
