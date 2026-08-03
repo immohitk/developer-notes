@@ -837,3 +837,111 @@ Although they look the same, using `transparent` is often cleaner and easier to 
 The `transparent` keyword makes **only the color transparent**.
 
 It does **not** hide the HTML element or remove it from the page. The element still occupies space and can still receive user interactions unless other CSS properties change its behavior.
+
+
+---
+
+
+## currentColor Keyword
+
+The **`currentColor`** keyword represents the **current value of an element's `color` property**.
+
+Instead of specifying the same color multiple times, you can use `currentColor` to automatically reuse the element's text color for other properties such as borders, outlines, shadows, and SVG graphics.
+
+This makes your CSS cleaner, more consistent, and easier to maintain.
+
+### Syntax
+
+```css
+selector {
+    color: blue;
+    border: 2px solid currentColor;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<button class="btn">
+    Get Started
+</button>
+```
+
+**CSS**
+
+```css
+.btn {
+    color: royalblue;
+    border: 2px solid currentColor;
+    background-color: transparent;
+    padding: 10px 20px;
+}
+```
+
+In this example:
+
+- The button text is **royal blue**.
+- The border automatically becomes **royal blue** because it uses `currentColor`.
+- If the text color changes, the border color changes automatically.
+
+### Another Example
+
+```css
+.card {
+    color: darkgreen;
+    box-shadow: 0 0 10px currentColor;
+}
+```
+
+The shadow automatically uses the same color as the text.
+
+### Advantages
+
+- Reduces duplicate color values.
+- Keeps components visually consistent.
+- Makes CSS easier to maintain.
+- Simplifies theme creation.
+- Supported by all modern browsers.
+
+### Limitations
+
+- Depends on the value of the `color` property.
+- May be confusing if you're unfamiliar with CSS inheritance.
+- Not suitable when different properties require different colors.
+
+> 💡 **Pro Tip:** `currentColor` is especially useful when building reusable UI components. Change the text color once, and related properties like borders or icons update automatically.
+
+### 🌍 Real-World Usage
+
+The `currentColor` keyword is commonly used for:
+
+- Buttons
+- Icons (especially SVG icons)
+- Borders
+- Outlines
+- Box shadows
+- Themeable UI components
+
+### 📌 Did You Know?
+
+Many modern UI libraries use `currentColor` for icons.
+
+This allows an icon to automatically match the surrounding text color without writing additional CSS.
+
+For example:
+
+```css
+.icon {
+    fill: currentColor;
+}
+```
+
+Changing the text color automatically updates the icon color as well.
+
+### ⚠️ Important
+
+`currentColor` always refers to the **computed value of the `color` property**.
+
+If the `color` property changes because of inheritance, a class, or a pseudo-class such as `:hover`, every property using `currentColor` updates automatically.
