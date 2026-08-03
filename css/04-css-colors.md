@@ -301,3 +301,101 @@ Hex colors are commonly used for:
 - Buttons and navigation bars
 - Backgrounds
 - Design systems
+
+
+---
+
+
+## RGB Colors
+
+**RGB** stands for **Red, Green, and Blue**. It represents colors by combining different intensities of these three primary colors.
+
+Each color component accepts a value from **0** to **255**:
+
+- **0** → No intensity
+- **255** → Maximum intensity
+
+The browser mixes these values to produce the final color.
+
+### Syntax
+
+```css
+selector {
+    color: rgb(red, green, blue);
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1>Developer Notes</h1>
+
+<p>Learning CSS Colors.</p>
+
+<button>Start Learning</button>
+```
+
+**CSS**
+
+```css
+h1 {
+    color: rgb(30, 58, 138);
+}
+
+p {
+    color: rgb(75, 85, 99);
+}
+
+button {
+    background-color: rgb(37, 99, 235);
+    color: rgb(255, 255, 255);
+}
+```
+
+### Understanding RGB Values
+
+| Color | RGB Value |
+|--------|-----------|
+| Black | `rgb(0, 0, 0)` |
+| White | `rgb(255, 255, 255)` |
+| Red | `rgb(255, 0, 0)` |
+| Green | `rgb(0, 128, 0)` |
+| Blue | `rgb(0, 0, 255)` |
+| Yellow | `rgb(255, 255, 0)` |
+
+### Advantages
+
+- Easy to understand once you know the RGB color model.
+- Provides precise control over color values.
+- Widely used in CSS and JavaScript.
+- Supported by all modern browsers.
+
+### Limitations
+
+- The numeric values are less intuitive than named colors.
+- Transparency is not supported directly (use **RGBA** instead).
+
+> 💡 **Pro Tip:** If you're changing colors dynamically with JavaScript, you'll often work with RGB values because many browser APIs return colors in this format.
+
+### 🌍 Real-World Usage
+
+RGB colors are commonly used for:
+
+- Dynamic color changes with JavaScript.
+- Interactive UI components.
+- Charts and data visualizations.
+- Applications where colors are generated programmatically.
+
+### 📌 Did You Know?
+
+Modern CSS also supports **space-separated RGB syntax**, making it easier to combine with alpha values.
+
+Example:
+
+```css
+color: rgb(30 58 138);
+```
+
+Both comma-separated and space-separated syntaxes are valid in modern browsers, but the comma-separated format is still the most commonly seen in existing codebases.
