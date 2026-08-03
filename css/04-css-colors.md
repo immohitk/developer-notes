@@ -1454,3 +1454,73 @@ Good color choices are not just about appearance—they also improve readability
 3. A button should have a transparent background without making its text transparent. Which approach would you choose?
 
 4. You are creating a reusable UI component where the icon, border, and text should always have the same color. Which CSS feature would simplify this implementation?
+
+
+---
+
+
+## Practice Exercises
+
+Complete the following exercises to strengthen your understanding of CSS colors.
+
+### Beginner
+
+1. Change the text color of a heading using a **Named Color**.
+2. Style a paragraph using a **Hexadecimal** color.
+3. Apply an **RGB** color to the background of a `<div>`.
+4. Use **RGBA** to create a semi-transparent background for a card.
+5. Style a button using an **HSL** color.
+
+---
+
+### Intermediate
+
+1. Create the same webpage using **Hex**, **RGB**, and **HSL** colors. Compare which format is easiest to read and maintain.
+2. Design a navigation bar using a consistent color palette.
+3. Build a simple card component with:
+   - A semi-transparent background
+   - A solid border
+   - Readable text with good contrast
+4. Use `currentColor` to ensure an icon and border always match the text color.
+5. Replace repeated color values with **CSS Variables**.
+
+---
+
+### Challenge Project
+
+Create a simple landing page that includes:
+
+- A header
+- A navigation bar
+- A hero section
+- Two buttons
+- Three feature cards
+- A footer
+
+Requirements:
+
+- Use **Hexadecimal** colors for branding.
+- Use **RGBA** or **HSLA** for transparent effects.
+- Use **HSL** or **HSLA** to create lighter or darker color variations.
+- Use `currentColor` wherever it improves consistency.
+- Ensure good contrast between text and backgrounds.
+
+After completing the project, answer the following questions:
+
+1. Which color format did you use most often, and why?
+2. Where did transparency improve the design?
+3. Could any repeated colors be replaced with CSS variables?
+4. Would another color format make the stylesheet easier to maintain?
+
+---
+
+### Self-Assessment Checklist
+
+Before moving to the next topic, make sure you can:
+
+- ✅ Explain every CSS color format.
+- ✅ Choose the right color format for different situations.
+- ✅ Create transparent colors using RGBA or HSLA.
+- ✅ Use `transparent` and `currentColor` correctly.
+- ✅ Build a consistent color palette.
+- ✅ Write readable and maintainable color-related CSS.
