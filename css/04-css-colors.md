@@ -1100,3 +1100,27 @@ Using the right format for the right task results in cleaner, more maintainable 
 | Consistent component colors | `currentColor` |
 
 > 💡 **Remember:** There is no single "best" color format. The best choice depends on your project's requirements and the level of flexibility you need.
+
+
+---
+
+
+## References
+
+The following resources provide comprehensive documentation and examples for CSS colors:
+
+- **MDN Web Docs** – CSS Colors
+- **MDN Web Docs** – `<color>` Data Type
+- **MDN Web Docs** – CSS Color Values
+- **W3Schools** – CSS Colors
+- **W3C CSS Color Module Level 4**
+
+### Recommended Reading
+
+If you'd like to explore CSS colors further, consider learning about:
+
+- CSS Gradients
+- CSS Color Functions
+- CSS Custom Properties (Variables)
+- Accessibility and Color Contrast
+- Dark Mode and Theming
