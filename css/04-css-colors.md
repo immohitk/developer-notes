@@ -399,3 +399,119 @@ color: rgb(30 58 138);
 ```
 
 Both comma-separated and space-separated syntaxes are valid in modern browsers, but the comma-separated format is still the most commonly seen in existing codebases.
+
+
+---
+
+
+## RGBA Colors
+
+**RGBA** stands for **Red, Green, Blue, and Alpha**. It extends the RGB color model by adding an **Alpha** channel, which controls the transparency (opacity) of a color.
+
+The RGB values range from **0** to **255**, while the Alpha value ranges from:
+
+- **0** → Completely transparent
+- **1** → Completely opaque
+
+Values between `0` and `1` create different transparency levels.
+
+### Syntax
+
+```css
+selector {
+    color: rgba(red, green, blue, alpha);
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<div class="card">
+    Welcome to Developer Notes
+</div>
+```
+
+**CSS**
+
+```css
+.card {
+    background-color: rgba(37, 99, 235, 0.2);
+    border: 2px solid rgb(37, 99, 235);
+    padding: 20px;
+}
+```
+
+In this example:
+
+- The border is fully visible.
+- The background uses the same blue color with **20% opacity**, allowing the content behind it to remain partially visible.
+
+### Understanding the Alpha Value
+
+| Alpha Value | Result |
+|-------------|--------|
+| `0` | Completely transparent |
+| `0.25` | 25% opaque |
+| `0.5` | 50% opaque |
+| `0.75` | 75% opaque |
+| `1` | Completely opaque |
+
+### Advantages
+
+- Supports transparency without affecting the entire element.
+- Creates modern UI effects such as overlays and glass-like backgrounds.
+- Useful for layering colors while keeping content visible.
+- Fully supported by modern browsers.
+
+### Limitations
+
+- Slightly longer to write than RGB.
+- If transparency is not needed, RGB or Hex may be simpler choices.
+
+> 💡 **Pro Tip:** Prefer using **RGBA** when only the background should be transparent. Using the `opacity` property affects the entire element, including its text, images, and child elements.
+
+### 🌍 Real-World Usage
+
+RGBA is commonly used for:
+
+- Modal overlays
+- Transparent navigation bars
+- Cards with semi-transparent backgrounds
+- Hover effects
+- Shadows and visual effects
+
+### 📌 Did You Know?
+
+The modern CSS Color specification also allows **space-separated RGB with alpha**.
+
+Example:
+
+```css
+background-color: rgb(37 99 235 / 20%);
+```
+
+This is equivalent to:
+
+```css
+background-color: rgba(37, 99, 235, 0.2);
+```
+
+Both syntaxes are valid in modern browsers, although the traditional `rgba()` syntax is still widely used and easy for beginners to understand.
+
+### ⚠️ Important
+
+Do **not** confuse `opacity` with `rgba()`.
+
+```css
+/* Only the background is transparent */
+background-color: rgba(0, 0, 0, 0.5);
+```
+
+```css
+/* The entire element, including text and images, becomes transparent */
+opacity: 0.5;
+```
+
+This distinction is important because it affects how the entire element is rendered.
