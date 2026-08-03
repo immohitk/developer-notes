@@ -192,3 +192,112 @@ Named colors are commonly used for:
 - Small personal projects.
 - Quick prototypes and demonstrations.
 - Temporary styling during development.
+
+
+---
+
+
+## Hexadecimal Colors
+
+**Hexadecimal Colors** (or **Hex Colors**) represent colors using a combination of numbers and letters.
+
+A hexadecimal color value starts with a **hash (`#`)** followed by **six hexadecimal characters**.
+
+```text
+#RRGGBB
+```
+
+Where:
+
+- **RR** → Red
+- **GG** → Green
+- **BB** → Blue
+
+Each pair ranges from **`00`** (no intensity) to **`FF`** (maximum intensity).
+
+### Syntax
+
+```css
+selector {
+    color: #RRGGBB;
+}
+```
+
+### Example
+
+**HTML**
+
+```html
+<h1>Developer Notes</h1>
+
+<p>Learning CSS Colors.</p>
+
+<button>Start Learning</button>
+```
+
+**CSS**
+
+```css
+h1 {
+    color: #1E3A8A;
+}
+
+p {
+    color: #4B5563;
+}
+
+button {
+    background-color: #2563EB;
+    color: #FFFFFF;
+}
+```
+
+### Common Hex Colors
+
+| Color | Hex Value |
+|--------|-----------|
+| Black | `#000000` |
+| White | `#FFFFFF` |
+| Red | `#FF0000` |
+| Green | `#008000` |
+| Blue | `#0000FF` |
+| Yellow | `#FFFF00` |
+| Gray | `#808080` |
+
+### Short Hex Notation
+
+When each color pair contains identical digits, you can use the shorter **3-digit** notation.
+
+| Full Hex | Short Hex |
+|----------|-----------|
+| `#FFFFFF` | `#FFF` |
+| `#000000` | `#000` |
+| `#FF0000` | `#F00` |
+| `#00FF00` | `#0F0` |
+| `#0000FF` | `#00F` |
+
+Both forms represent the same color.
+
+### Advantages
+
+- Widely used in web development.
+- Compact and easy to copy from design tools.
+- Provides precise color values.
+- Supported by all modern browsers.
+
+### Limitations
+
+- Not as intuitive as HSL for adjusting colors.
+- Does not include transparency (use **RGBA** or **8-digit Hex** if transparency is needed).
+
+> 💡 **Pro Tip:** Most design tools such as Figma, Adobe XD, and Photoshop provide colors in Hex format, making it a common choice when converting designs into code.
+
+### Real-World Usage
+
+Hex colors are commonly used for:
+
+- Website themes
+- Brand colors
+- Buttons and navigation bars
+- Backgrounds
+- Design systems
