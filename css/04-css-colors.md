@@ -1269,3 +1269,133 @@ Always test your color choices with different backgrounds, screen brightness lev
 ### 🌍 Real-World Usage
 
 Professional teams often define their colors as reusable design tokens or CSS variables. This allows an entire website or application to change its theme by updating a few color values instead of editing hundreds of CSS rules.
+
+
+---
+
+
+## Common Mistakes
+
+Avoid these common mistakes when working with CSS colors.
+
+### 1. Using Too Many Colors
+
+Using too many unrelated colors can make a website look inconsistent and unprofessional.
+
+❌ Avoid
+
+```css
+h1 {
+    color: red;
+}
+
+p {
+    color: green;
+}
+
+button {
+    background-color: purple;
+}
+```
+
+✅ Better
+
+Choose a consistent color palette and reuse those colors throughout your project.
+
+---
+
+### 2. Poor Text Contrast
+
+Low contrast between text and its background makes content difficult to read.
+
+❌ Avoid
+
+```css
+color: #BBBBBB;
+background-color: #FFFFFF;
+```
+
+✅ Better
+
+```css
+color: #222222;
+background-color: #FFFFFF;
+```
+
+Always ensure your content remains readable for all users.
+
+---
+
+### 3. Using `opacity` Instead of RGBA or HSLA
+
+Many beginners use the `opacity` property when they only want a transparent background.
+
+❌ Avoid
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+This makes **everything** inside the card transparent, including text and images.
+
+✅ Better
+
+```css
+.card {
+    background-color: rgba(37, 99, 235, 0.5);
+}
+```
+
+Only the background becomes transparent.
+
+---
+
+### 4. Hardcoding the Same Color Repeatedly
+
+Repeating the same color value throughout your stylesheet makes future updates more difficult.
+
+❌ Avoid
+
+```css
+color: #2563EB;
+border-color: #2563EB;
+background-color: #2563EB;
+```
+
+✅ Better
+
+Use a CSS variable.
+
+```css
+:root {
+    --primary-color: #2563EB;
+}
+
+button {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+```
+
+---
+
+### 5. Choosing the Wrong Color Format
+
+Not every color format is suitable for every situation.
+
+Examples:
+
+- Use **Hex** for brand colors.
+- Use **RGBA** or **HSLA** when transparency is required.
+- Use **HSL** when creating multiple shades of a color.
+- Use **currentColor** to keep component colors synchronized.
+
+Choosing the appropriate format makes your CSS cleaner and easier to maintain.
+
+---
+
+### ⚠️ Important
+
+Good color choices are not just about appearance—they also improve readability, accessibility, and the overall user experience.
