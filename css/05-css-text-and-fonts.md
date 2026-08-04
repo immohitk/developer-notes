@@ -2897,3 +2897,182 @@ Before publishing a webpage, verify that:
 | `text-overflow` | Displays clipped text (`...`) |
 
 > 💡 **Quick Tip:** If you can explain **what each typography property controls** and **when you would use it**, you're well prepared for both frontend interviews and day-to-day CSS development.
+
+
+---
+
+
+## Best Practices
+
+Following typography best practices helps create websites that are easier to read, visually consistent, and accessible to all users.
+
+### 1. Limit the Number of Font Families
+
+Using too many fonts creates visual inconsistency.
+
+A good rule is:
+
+- Use **one** font family for simple websites.
+- Use **two** font families for most professional projects.
+- Avoid using more than **three** font families.
+
+```css
+body {
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Poppins", Arial, sans-serif;
+}
+```
+
+---
+
+### 2. Always Use Font Stacks
+
+Never rely on a single font.
+
+```css
+body {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+```
+
+Fallback fonts ensure readable text even if the preferred font cannot be loaded.
+
+---
+
+### 3. Prefer Relative Units
+
+Instead of fixed pixel values, prefer relative units like `rem`.
+
+❌ Less Flexible
+
+```css
+font-size: 16px;
+```
+
+✅ Better
+
+```css
+font-size: 1rem;
+```
+
+Relative units adapt more easily to user preferences and responsive layouts.
+
+---
+
+### 4. Maintain Comfortable Line Height
+
+Use enough spacing between lines to improve readability.
+
+```css
+p {
+    line-height: 1.6;
+}
+```
+
+For body text, values between **1.5** and **1.8** are commonly used.
+
+---
+
+### 5. Build a Clear Typography Hierarchy
+
+Use different sizes and weights to distinguish headings from body text.
+
+Example:
+
+| Element | Size | Weight |
+|---------|------|--------|
+| H1 | `2.5rem` | `700` |
+| H2 | `2rem` | `600` |
+| Paragraph | `1rem` | `400` |
+
+A consistent hierarchy makes content easier to scan.
+
+---
+
+### 6. Avoid Long Paragraphs in Uppercase
+
+❌ Avoid
+
+```css
+text-transform: uppercase;
+```
+
+for long paragraphs.
+
+Uppercase text is harder to read and should be reserved for short headings, buttons, or labels.
+
+---
+
+### 7. Keep Decorative Effects Subtle
+
+Use properties like:
+
+- `text-shadow`
+- `letter-spacing`
+- `word-spacing`
+
+with moderation.
+
+Small adjustments improve appearance, while excessive effects reduce readability.
+
+---
+
+### 8. Optimize Font Loading
+
+If using Google Fonts:
+
+- Import only the font families you need.
+- Load only the required font weights.
+- Include fallback fonts.
+
+This improves page loading performance.
+
+---
+
+### 9. Test Typography on Multiple Devices
+
+Typography should remain readable on:
+
+- Desktop computers
+- Tablets
+- Mobile phones
+- High-resolution displays
+
+Responsive typography improves the user experience across all screen sizes.
+
+---
+
+### 10. Prioritize Accessibility
+
+Ensure that:
+
+- Text has sufficient contrast.
+- Font sizes are comfortable.
+- Lines are not too long.
+- Typography remains readable without zooming.
+
+Accessible typography benefits every user.
+
+---
+
+> 💡 **Pro Tip:** Good typography isn't about using the most beautiful font—it's about making content easy and enjoyable to read.
+
+### 🌍 Real-World Usage
+
+Professional design systems define typography rules before development begins.
+
+These rules typically include:
+
+- Font families
+- Font sizes
+- Font weights
+- Line heights
+- Letter spacing
+- Responsive typography scales
+
+Following these standards ensures a consistent experience throughout an application.
