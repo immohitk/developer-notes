@@ -1116,3 +1116,131 @@ Small adjustments often have a bigger impact than large ones.
 Use `letter-spacing` carefully.
 
 Large positive values can make text difficult to read, while negative values may cause characters to overlap. Always preview the result on different screen sizes and devices.
+
+
+---
+
+
+## Word Spacing
+
+The **`word-spacing`** property controls the amount of horizontal space between words in a block of text.
+
+Unlike `letter-spacing`, which affects individual characters, `word-spacing` changes the space **only between words**.
+
+### Syntax
+
+```css
+selector {
+    word-spacing: value;
+}
+```
+
+### Example
+
+```css
+h1 {
+    word-spacing: 10px;
+}
+
+p {
+    word-spacing: 4px;
+}
+```
+
+### Before vs After
+
+**Without `word-spacing`**
+
+```text
+Welcome to Developer Notes
+```
+
+**With `word-spacing: 12px`**
+
+```text
+Welcome     to     Developer     Notes
+```
+
+Notice that only the spaces **between words** become wider.
+
+### Common Values
+
+| Value | Description | Example |
+|--------|-------------|---------|
+| `normal` | Default spacing | `normal` |
+| Positive value | Increases spacing between words | `8px` |
+| Negative value | Decreases spacing between words | `-2px` |
+
+### Example Using Different Values
+
+```css
+.normal {
+    word-spacing: normal;
+}
+
+.wide {
+    word-spacing: 10px;
+}
+
+.tight {
+    word-spacing: -1px;
+}
+```
+
+### Letter Spacing vs Word Spacing
+
+| Property | Controls |
+|----------|----------|
+| `letter-spacing` | Space between individual characters |
+| `word-spacing` | Space between words |
+| `line-height` | Space between lines of text |
+
+Understanding the difference helps you choose the correct property for the desired typography effect.
+
+### Recommended Values
+
+| Content | Recommended Value |
+|----------|-------------------|
+| Headings | `2px`–`8px` |
+| Body Text | `normal`–`4px` |
+| Buttons | `2px`–`4px` |
+
+These are general recommendations and may vary depending on the font and layout.
+
+### Advantages
+
+- Improves readability.
+- Makes headings more visually appealing.
+- Provides better control over typography.
+- Useful for improving the appearance of large headings and banners.
+
+### Limitations
+
+- Excessive spacing makes text harder to read.
+- Negative values can make words appear crowded.
+- The effect is less noticeable than `letter-spacing` for many fonts.
+
+> 💡 **Pro Tip:** Use `word-spacing` sparingly. For most body text, the browser's default spacing is already well-balanced. Adjust it mainly for headings, banners, or special design elements.
+
+### 🌍 Real-World Usage
+
+The `word-spacing` property is commonly used for:
+
+- Hero section headings
+- Marketing banners
+- Posters
+- Landing pages
+- Logos
+- Promotional content
+
+### 📌 Did You Know?
+
+Most websites **never change** `word-spacing` for normal paragraphs because browsers already provide comfortable default spacing.
+
+Developers usually adjust it only for specific design effects or large headings.
+
+### ⚠️ Important
+
+Avoid combining **large `letter-spacing`** and **large `word-spacing`** on the same text.
+
+Doing so can make content look unnatural and significantly reduce readability, especially on smaller screens.
