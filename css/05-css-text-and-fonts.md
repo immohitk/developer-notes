@@ -465,3 +465,121 @@ If Roboto fails to load, the browser automatically falls back to Arial or anothe
 Avoid importing too many fonts.
 
 Using multiple font families and numerous font weights increases download size, which can slow down page loading and negatively affect user experience.
+
+
+---
+
+
+## Font Size
+
+The **`font-size`** property specifies the size of text displayed on a webpage.
+
+Choosing an appropriate font size is important for readability, accessibility, and creating a clear visual hierarchy.
+
+### Syntax
+
+```css
+selector {
+    font-size: value;
+}
+```
+
+### Example
+
+```css
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+p {
+    font-size: 16px;
+}
+```
+
+### Before vs After
+
+**Without `font-size`**
+
+```text
+Heading
+Subheading
+Paragraph text
+```
+
+**With `font-size`**
+
+```text
+LARGE HEADING
+
+Medium Subheading
+
+Regular paragraph text.
+```
+
+Different font sizes help users quickly understand the importance of each piece of content.
+
+### Common Units
+
+| Unit | Description | Example |
+|------|-------------|---------|
+| `px` | Fixed pixel size | `16px` |
+| `em` | Relative to the parent element | `1.2em` |
+| `rem` | Relative to the root (`html`) font size | `1rem` |
+| `%` | Percentage of the parent font size | `120%` |
+
+### Advantages
+
+- Creates a clear visual hierarchy.
+- Improves readability.
+- Helps build responsive designs.
+- Gives precise control over typography.
+
+### Limitations
+
+- Fixed units like `px` are less flexible for responsive designs.
+- Inconsistent sizing can make a webpage look unbalanced.
+
+> 💡 **Pro Tip:** Prefer using **`rem`** for most projects because it scales consistently across the website and respects the user's browser font size settings.
+
+### 🌍 Real-World Usage
+
+Developers commonly use different font sizes for different types of content.
+
+| Element | Typical Size |
+|---------|--------------|
+| Main Heading (`h1`) | `2rem`–`3rem` |
+| Section Heading (`h2`) | `1.5rem`–`2rem` |
+| Paragraph | `1rem` |
+| Small Text | `0.875rem` |
+
+These values vary depending on the design, but they provide a common starting point.
+
+### 📌 Did You Know?
+
+The default font size in most browsers is **16px**.
+
+Because of this, the following values are typically equivalent:
+
+```css
+16px
+```
+
+```css
+1rem
+```
+
+```css
+100%
+```
+
+Understanding this relationship makes it easier to work with relative units.
+
+### ⚠️ Important
+
+Avoid making text too small.
+
+Very small text can reduce readability and create accessibility issues, especially on mobile devices or high-resolution screens.
