@@ -873,3 +873,128 @@ Browsers display `<em>` in italic by default, but the emphasis comes from the HT
 Don't use `font-style: italic` just to make text look different.
 
 If the content is **semantically important**, use the appropriate HTML element (such as `<em>`) and then style it with CSS if needed. This improves accessibility and gives the content meaningful structure.
+
+
+---
+
+
+## Line Height
+
+The **`line-height`** property controls the amount of vertical space between lines of text.
+
+A well-chosen line height improves readability by preventing lines from appearing too close together or too far apart.
+
+### Syntax
+
+```css
+selector {
+    line-height: value;
+}
+```
+
+### Example
+
+```css
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+```
+
+### Before vs After
+
+**Without `line-height`**
+
+```text
+This is the first line of text.
+This is the second line of text.
+This is the third line of text.
+```
+
+**With `line-height: 1.8`**
+
+```text
+This is the first line of text.
+
+This is the second line of text.
+
+This is the third line of text.
+```
+
+Notice how increasing the line height makes paragraphs easier to read.
+
+### Common Values
+
+| Value | Description | Example |
+|--------|-------------|---------|
+| Number | Multiplies the current font size | `1.5` |
+| Length | Fixed spacing | `24px` |
+| Percentage | Relative to the font size | `150%` |
+| `normal` | Browser default spacing | `normal` |
+
+### Recommended Values
+
+| Content | Recommended Line Height |
+|----------|-------------------------|
+| Headings | `1.2`–`1.4` |
+| Paragraphs | `1.5`–`1.8` |
+| Long articles | `1.6`–`2` |
+
+These values are common guidelines and may vary depending on the font and design.
+
+### Advantages
+
+- Improves readability.
+- Makes long paragraphs easier to scan.
+- Creates a cleaner and more professional layout.
+- Enhances accessibility.
+
+### Limitations
+
+- Very small values make text crowded.
+- Very large values can make paragraphs feel disconnected.
+- The ideal value depends on the font, font size, and layout.
+
+> 💡 **Pro Tip:** For body text, a `line-height` between **1.5** and **1.8** is a great starting point. It usually provides a comfortable reading experience on both desktop and mobile devices.
+
+### 🌍 Real-World Usage
+
+Developers commonly adjust `line-height` for:
+
+- Blog posts
+- Documentation websites
+- News articles
+- Product descriptions
+- Long-form content
+- E-books and online guides
+
+### 📌 Did You Know?
+
+When you use a **unitless number**, such as:
+
+```css
+line-height: 1.5;
+```
+
+the value is multiplied by the current `font-size`.
+
+For example:
+
+```css
+font-size: 20px;
+line-height: 1.5;
+```
+
+Results in a computed line height of:
+
+```text
+30px
+```
+
+Using a unitless value is generally recommended because it scales automatically if the font size changes.
+
+### ⚠️ Important
+
+Prefer **unitless values** (such as `1.5`) over fixed values (such as `24px`) whenever possible.
+
+Unitless values are more flexible, easier to maintain, and work better in responsive layouts because they automatically adapt to different font sizes.
