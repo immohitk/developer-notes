@@ -133,3 +133,123 @@ Text and font properties are used on every website, including:
 - Portfolio websites
 
 Whether you're building a personal portfolio or a large application, typography is one of the most important parts of the user interface.
+
+
+---
+
+
+## Font Family
+
+The **`font-family`** property specifies the typeface used to display text on a webpage.
+
+Different fonts create different visual styles and can influence the readability, personality, and overall user experience of a website.
+
+### Syntax
+
+```css
+selector {
+    font-family: font-name;
+}
+```
+
+### Example
+
+```css
+h1 {
+    font-family: Arial, sans-serif;
+}
+
+p {
+    font-family: Georgia, serif;
+}
+```
+
+### Common Font Categories
+
+CSS groups fonts into several generic families.
+
+| Font Family | Description | Common Examples |
+|-------------|-------------|-----------------|
+| `serif` | Letters have small decorative strokes (serifs). | Times New Roman, Georgia |
+| `sans-serif` | Clean fonts without decorative strokes. | Arial, Helvetica, Verdana |
+| `monospace` | Every character has the same width. | Courier New, Consolas |
+| `cursive` | Handwriting-style fonts. | Brush Script MT |
+| `fantasy` | Decorative or artistic fonts. | Papyrus *(varies by system)* |
+
+### Looks Like
+
+```text
+Serif
+The quick brown fox jumps over the lazy dog.
+
+Sans-serif
+The quick brown fox jumps over the lazy dog.
+
+Monospace
+The quick brown fox jumps over the lazy dog.
+```
+
+Although the text looks the same here, these font families have very different appearances when rendered by the browser.
+
+### Font Fallback
+
+It is good practice to specify more than one font.
+
+```css
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+```
+
+The browser checks the fonts from left to right.
+
+- If **Arial** is available, it is used.
+- Otherwise, it tries **Helvetica**.
+- If neither is available, it uses the generic **sans-serif** font.
+
+This is known as a **font fallback**.
+
+### Advantages
+
+- Gives your website a unique visual identity.
+- Improves readability.
+- Helps maintain a consistent design across pages.
+- Allows fallback fonts if the preferred font is unavailable.
+
+### Limitations
+
+- Not every computer has the same fonts installed.
+- Decorative fonts can reduce readability when overused.
+- Some custom fonts require additional downloads.
+
+> 💡 **Pro Tip:** Use **sans-serif** fonts for most websites because they are generally easier to read on digital screens. Reserve decorative fonts for logos, headings, or special design elements.
+
+### 🌍 Real-World Usage
+
+Different font families are commonly used for different purposes.
+
+| Font Family | Common Usage |
+|-------------|--------------|
+| Serif | Books, newspapers, editorial websites |
+| Sans-serif | Modern websites, dashboards, applications |
+| Monospace | Code editors, technical documentation, terminals |
+| Cursive | Invitations, signatures, decorative headings |
+| Fantasy | Posters, games, creative designs |
+
+### 📌 Did You Know?
+
+Almost every modern website uses a **font stack** instead of a single font.
+
+This ensures that if a preferred font isn't available, the browser automatically chooses the next best option, keeping the design readable and consistent.
+
+### ⚠️ Important
+
+Never rely on a single font.
+
+Always provide one or more fallback fonts, ending with a **generic font family** such as:
+
+- `serif`
+- `sans-serif`
+- `monospace`
+
+This improves compatibility across different operating systems and browsers.
