@@ -253,3 +253,98 @@ Always provide one or more fallback fonts, ending with a **generic font family**
 - `monospace`
 
 This improves compatibility across different operating systems and browsers.
+
+
+---
+
+## Web Safe Fonts
+
+**Web Safe Fonts** are fonts that are commonly pre-installed on most operating systems and devices.
+
+Because these fonts are already available on the user's computer, the browser can display them immediately without downloading additional font files.
+
+This makes them reliable and compatible across different browsers and platforms.
+
+### Why Use Web Safe Fonts?
+
+Web Safe Fonts offer several advantages:
+
+- Fast loading because no font download is required.
+- Good compatibility across operating systems.
+- Simple to use.
+- Reliable fallback option when custom fonts are unavailable.
+
+### Common Web Safe Fonts
+
+| Font | Category | Common Usage |
+|------|----------|--------------|
+| Arial | Sans-serif | Websites, applications |
+| Helvetica | Sans-serif | Modern interfaces (mainly macOS) |
+| Verdana | Sans-serif | Websites with improved readability |
+| Tahoma | Sans-serif | User interfaces |
+| Trebuchet MS | Sans-serif | Headings and websites |
+| Times New Roman | Serif | Articles, documents |
+| Georgia | Serif | Blogs and editorial content |
+| Courier New | Monospace | Code examples |
+| Consolas | Monospace | Programming editors (Windows) |
+
+### Example
+
+```css
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+```
+
+In this example:
+
+- The browser first looks for **Arial**.
+- If Arial is unavailable, it tries **Helvetica**.
+- If neither is available, it uses the default **sans-serif** font.
+
+### Web Safe Font Stack
+
+A **font stack** is a list of fonts arranged in order of preference.
+
+```css
+font-family: Arial, Helvetica, sans-serif;
+```
+
+This ensures your website remains readable even if the preferred font is unavailable.
+
+### Advantages
+
+- No additional downloads.
+- Faster page loading.
+- Excellent browser compatibility.
+- Easy to implement.
+
+### Limitations
+
+- Limited design choices.
+- Different operating systems may display fonts slightly differently.
+- Less unique compared to custom web fonts.
+
+> 💡 **Pro Tip:** Even if you're using Google Fonts or other custom fonts, always include Web Safe Fonts as fallbacks. This ensures your content remains readable if the custom font fails to load.
+
+### 🌍 Real-World Usage
+
+Web Safe Fonts are commonly used for:
+
+- Fallback fonts
+- Internal business applications
+- Documentation websites
+- Performance-focused websites
+- Email templates, where custom fonts may not be supported
+
+### 📌 Did You Know?
+
+Not every operating system includes the same fonts.
+
+For example, **Helvetica** is common on macOS but isn't installed by default on many Windows systems. That's why developers use **font stacks** instead of relying on a single font.
+
+### ⚠️ Important
+
+Web Safe Fonts improve compatibility, but they don't guarantee identical rendering on every device.
+
+Font smoothing, operating system rendering, and browser differences can still cause slight variations in appearance.
