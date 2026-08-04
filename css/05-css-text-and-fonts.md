@@ -583,3 +583,168 @@ Understanding this relationship makes it easier to work with relative units.
 Avoid making text too small.
 
 Very small text can reduce readability and create accessibility issues, especially on mobile devices or high-resolution screens.
+
+
+---
+
+
+## Font Weight
+
+The **`font-weight`** property controls the **thickness (boldness)** of text.
+
+It is commonly used to emphasize important content, create visual hierarchy, and improve readability.
+
+### Syntax
+
+```css
+selector {
+    font-weight: value;
+}
+```
+
+### Example
+
+```css
+h1 {
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+p {
+    font-weight: normal;
+}
+```
+
+### Before vs After
+
+**Without `font-weight`**
+
+```text
+Developer Notes
+CSS Typography
+This is a paragraph.
+```
+
+**With `font-weight`**
+
+```text
+Developer Notes      ← Bold
+
+CSS Typography       ← Semi-bold
+
+This is a paragraph. ← Normal
+```
+
+Different font weights help users quickly identify headings, subheadings, and body text.
+
+### Common Values
+
+| Value | Meaning |
+|--------|---------|
+| `normal` | Normal text (equivalent to `400`) |
+| `bold` | Bold text (equivalent to `700`) |
+| `100` | Thin |
+| `200` | Extra Light |
+| `300` | Light |
+| `400` | Normal |
+| `500` | Medium |
+| `600` | Semi Bold |
+| `700` | Bold |
+| `800` | Extra Bold |
+| `900` | Black / Heavy |
+
+> Not every font supports all weight values. Available weights depend on the font family being used.
+
+### Example Using Numeric Values
+
+```css
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+p {
+    font-weight: 400;
+}
+```
+
+### Recommended Values
+
+| Content | Common Weight |
+|---------|---------------|
+| Main Heading | `700` |
+| Section Heading | `600` |
+| Body Text | `400` |
+| Small Labels | `500` |
+
+These are common conventions, not strict rules.
+
+### Advantages
+
+- Creates a clear visual hierarchy.
+- Highlights important content.
+- Improves readability.
+- Gives a more professional appearance.
+
+### Limitations
+
+- Very heavy text can become difficult to read.
+- Not all fonts provide every weight.
+- Loading many font weights from Google Fonts can increase page size.
+
+> 💡 **Pro Tip:** Load only the font weights you actually use. If your website only needs `400` and `700`, avoid importing every available weight.
+
+### 🌍 Real-World Usage
+
+Developers commonly use different font weights for:
+
+- Headings
+- Buttons
+- Navigation menus
+- Labels
+- Cards
+- Tables
+
+Using different weights helps users quickly distinguish between different types of content.
+
+### 📌 Did You Know?
+
+The keywords:
+
+```css
+font-weight: normal;
+```
+
+and
+
+```css
+font-weight: 400;
+```
+
+produce the same result.
+
+Similarly,
+
+```css
+font-weight: bold;
+```
+
+is equivalent to:
+
+```css
+font-weight: 700;
+```
+
+Many developers prefer numeric values because they provide finer control over typography.
+
+### ⚠️ Important
+
+Avoid making every heading and paragraph bold.
+
+Using too many bold elements reduces emphasis because nothing stands out anymore. Reserve heavier weights for content that genuinely needs attention.
