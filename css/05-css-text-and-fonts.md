@@ -348,3 +348,120 @@ For example, **Helvetica** is common on macOS but isn't installed by default on 
 Web Safe Fonts improve compatibility, but they don't guarantee identical rendering on every device.
 
 Font smoothing, operating system rendering, and browser differences can still cause slight variations in appearance.
+
+
+---
+
+
+## Google Fonts
+
+**Google Fonts** is a free library of web fonts that allows developers to use high-quality typography without requiring users to install fonts on their devices.
+
+Unlike Web Safe Fonts, Google Fonts are downloaded by the browser when the webpage loads, allowing websites to use a much wider variety of typefaces.
+
+### Why Use Google Fonts?
+
+Google Fonts provide:
+
+- Hundreds of free fonts.
+- Consistent appearance across devices.
+- Easy integration with websites.
+- Professional typography without purchasing licenses.
+
+### Method 1: Using the `<link>` Element (Recommended)
+
+Visit **Google Fonts**, choose a font, and copy the generated `<link>` element into the `<head>` section of your HTML.
+
+**HTML**
+
+```html
+<head>
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+```
+
+**CSS**
+
+```css
+body {
+    font-family: "Roboto", sans-serif;
+}
+```
+
+---
+
+### Method 2: Using `@import`
+
+Google Fonts can also be imported directly into a CSS file.
+
+```css
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+```
+
+Although this method works, the `<link>` method is generally preferred because it allows browsers to start downloading fonts earlier.
+
+### Advantages
+
+- Large collection of free fonts.
+- Easy to integrate.
+- Consistent appearance across devices.
+- Regularly updated and maintained.
+- Excellent browser support.
+
+### Limitations
+
+- Requires an internet connection unless fonts are self-hosted.
+- Additional font files increase page size.
+- Loading many font families or weights can affect performance.
+
+> 🚀 **Performance Tip:** Load only the font weights you actually use (for example, `400` and `700`) instead of importing every available weight. This reduces download size and improves page load performance.
+
+### 🌍 Real-World Usage
+
+Google Fonts are commonly used for:
+
+- Business websites
+- Portfolio websites
+- Blogs
+- Landing pages
+- E-commerce websites
+- Dashboards
+- Documentation sites
+
+### 📌 Did You Know?
+
+Many modern websites combine **Google Fonts** with **Web Safe Fonts**.
+
+Example:
+
+```css
+body {
+    font-family: "Roboto", Arial, sans-serif;
+}
+```
+
+If Roboto fails to load, the browser automatically falls back to Arial or another sans-serif font.
+
+### ⚠️ Important
+
+Avoid importing too many fonts.
+
+Using multiple font families and numerous font weights increases download size, which can slow down page loading and negatively affect user experience.
