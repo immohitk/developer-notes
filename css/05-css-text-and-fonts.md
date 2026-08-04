@@ -2697,3 +2697,65 @@ Many modern websites use a **type scale**, where each heading size is proportion
 Consistency is more important than using trendy fonts.
 
 A simple, readable typography system used consistently across a website almost always provides a better user experience than a collection of decorative fonts and inconsistent styles.
+
+
+---
+
+
+## Key Takeaways
+
+- CSS typography controls how text looks and behaves on a webpage.
+- The `font-family` property specifies which font is used.
+- Always use **font stacks** with fallback fonts for better compatibility.
+- **Web Safe Fonts** are pre-installed on most operating systems.
+- **Google Fonts** provide a large collection of free web fonts.
+- The `font-size` property controls the size of text.
+- The `font-weight` property controls text thickness.
+- The `font-style` property applies styles such as *italic* and *oblique*.
+- The `line-height` property improves readability by adjusting spacing between lines.
+- The `letter-spacing` property changes the spacing between individual characters.
+- The `word-spacing` property changes the spacing between words.
+- The `text-align` property controls horizontal text alignment.
+- The `text-decoration` property adds or removes decorative lines.
+- The `text-transform` property changes text capitalization without modifying the HTML.
+- The `text-shadow` property adds shadow effects to text.
+- The `white-space` property controls how spaces and line breaks are handled.
+- The `text-overflow` property controls how hidden overflowing text is displayed.
+- The `overflow-wrap` property breaks long words only when necessary.
+- The `word-break` property controls how words themselves are broken.
+- Good typography improves readability, accessibility, and user experience.
+
+---
+
+### Typography Decision Guide
+
+| If you need... | Recommended Property |
+|----------------|----------------------|
+| Change the font | `font-family` |
+| Change text size | `font-size` |
+| Make text bolder | `font-weight` |
+| Italic text | `font-style` |
+| Improve paragraph readability | `line-height` |
+| Increase spacing between letters | `letter-spacing` |
+| Increase spacing between words | `word-spacing` |
+| Align text | `text-align` |
+| Underline or strike text | `text-decoration` |
+| Change capitalization | `text-transform` |
+| Add text shadows | `text-shadow` |
+| Preserve spaces or prevent wrapping | `white-space` |
+| Show `...` for long text | `text-overflow` |
+| Wrap long words | `overflow-wrap` |
+| Control how words break | `word-break` |
+
+---
+
+### Quick Reminders
+
+- ✅ Prefer readable fonts over decorative ones.
+- ✅ Use a maximum of two font families on most websites.
+- ✅ Keep body text comfortable to read.
+- ✅ Use fallback fonts in every font stack.
+- ✅ Test typography on different screen sizes.
+- ✅ Prioritize accessibility and readability over visual effects.
+
+> 💡 **Remember:** Great typography is almost invisible. When users can read your content comfortably without noticing the styling, you've likely made the right design decisions.
