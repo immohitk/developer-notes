@@ -3313,3 +3313,114 @@ Following accessibility guidelines improves usability for all users.
 ### 🌍 Real-World Usage
 
 Professional teams often review typography during design and code reviews to ensure consistency, readability, responsiveness, and accessibility before releasing a product.
+
+
+---
+
+
+## Interview Questions
+
+### Beginner Level
+
+1. What is the purpose of the `font-family` property?
+2. What is a font stack, and why is it important?
+3. What are Web Safe Fonts?
+4. What are Google Fonts?
+5. What is the difference between `font-style` and `font-weight`?
+6. What does the `line-height` property control?
+7. What is the difference between `letter-spacing` and `word-spacing`?
+8. What does the `text-align` property do?
+9. What is the purpose of `text-decoration`?
+10. What does `text-transform` do?
+
+---
+
+### Intermediate Level
+
+1. Why should you always include fallback fonts?
+2. What is the difference between Serif and Sans-serif fonts?
+3. Why is `rem` generally preferred over `px` for font sizes?
+4. Explain the difference between `overflow-wrap` and `word-break`.
+5. Why isn't `text-overflow: ellipsis` working in some cases?
+6. What is the difference between `text-shadow` and `box-shadow`?
+7. When should you use `white-space: nowrap`?
+8. Why should body text usually have a larger `line-height` than headings?
+
+---
+
+### Advanced Level
+
+1. What happens if a browser cannot load a custom font?
+2. Why should websites limit the number of font families?
+3. How would you optimize Google Fonts for better performance?
+4. Why are relative font units better for responsive design?
+5. How do typography choices affect accessibility?
+
+---
+
+### Practical Questions
+
+1. Create a font stack for a business website.
+2. Center a heading using CSS.
+3. Create a button with uppercase text and increased letter spacing.
+4. Build a paragraph with comfortable line spacing.
+5. Truncate a long product title using an ellipsis.
+6. Prevent a long URL from breaking your layout.
+7. Create responsive typography using `rem`.
+
+---
+
+### Scenario-Based Questions
+
+#### Scenario 1
+
+Your product cards contain very long product names that break the layout.
+
+**Question:**
+
+Which CSS properties would you use to keep the layout clean while indicating that the text has been truncated?
+
+---
+
+#### Scenario 2
+
+A designer wants every heading to use **Poppins**, while body text uses **Roboto**.
+
+**Question:**
+
+How would you implement this while ensuring fallback fonts are available?
+
+---
+
+#### Scenario 3
+
+A paragraph looks crowded and difficult to read.
+
+**Question:**
+
+Which typography properties would you adjust first, and why?
+
+---
+
+#### Scenario 4
+
+Your website loads five font families with nine different font weights.
+
+**Question:**
+
+What problems could this cause, and how would you optimize the typography?
+
+---
+
+### Rapid-Fire Questions
+
+- Which property changes text size?
+- Which property controls font thickness?
+- Which property changes capitalization?
+- Which property adds shadows?
+- Which property controls spacing between letters?
+- Which property controls spacing between words?
+- Which property aligns text?
+- Which property prevents text wrapping?
+- Which property displays `...` for overflowing text?
+- Which property breaks long words only when necessary?
