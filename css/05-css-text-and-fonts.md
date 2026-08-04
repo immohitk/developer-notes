@@ -3424,3 +3424,98 @@ What problems could this cause, and how would you optimize the typography?
 - Which property prevents text wrapping?
 - Which property displays `...` for overflowing text?
 - Which property breaks long words only when necessary?
+
+
+---
+
+
+## Practice Exercises
+
+Practice is the best way to master CSS typography. Complete the following exercises to strengthen your understanding of text and font properties.
+
+### Beginner Exercises
+
+1. Change the font family of a webpage to **Arial**.
+2. Create a heading with a font size of `2rem`.
+3. Make a paragraph bold using `font-weight`.
+4. Italicize a quote using `font-style`.
+5. Center-align a heading using `text-align`.
+6. Underline a hyperlink using `text-decoration`.
+7. Convert button text to uppercase using `text-transform`.
+8. Add a subtle shadow to a heading using `text-shadow`.
+
+---
+
+### Intermediate Exercises
+
+1. Create a font stack with at least three fallback fonts.
+2. Design a blog paragraph with:
+   - `font-size: 1rem`
+   - `line-height: 1.6`
+   - Comfortable letter spacing
+3. Create a navigation menu that prevents text wrapping.
+4. Display a long product title with an ellipsis (`...`) when it overflows.
+5. Prevent long URLs from breaking your page layout.
+6. Compare the behavior of `overflow-wrap` and `word-break` using the same text.
+
+---
+
+### Challenge Project
+
+Create a responsive article page that includes:
+
+- A page title
+- A subtitle
+- Multiple paragraphs
+- A highlighted quote
+- A navigation menu
+- A call-to-action button
+
+Requirements:
+
+- Use a Google Font with appropriate fallback fonts.
+- Create a clear typography hierarchy.
+- Use readable line spacing.
+- Apply subtle text shadows only where appropriate.
+- Ensure long text wraps correctly.
+- Use responsive font sizes with `rem`.
+
+---
+
+### Self-Assessment Checklist
+
+Before moving to the next topic, make sure you can:
+
+- ✅ Choose appropriate fonts for different projects.
+- ✅ Build reliable font stacks.
+- ✅ Use relative font units.
+- ✅ Create a clear typography hierarchy.
+- ✅ Improve readability using spacing properties.
+- ✅ Handle long text without breaking layouts.
+- ✅ Apply typography best practices.
+- ✅ Build accessible and responsive typography.
+
+---
+
+### Mini Project
+
+Build a simple **Documentation Landing Page**.
+
+Include:
+
+- A large hero heading
+- A descriptive paragraph
+- Three feature cards
+- A navigation bar
+- A footer
+
+Typography Requirements:
+
+- Use one font for headings.
+- Use another font for body text.
+- Include fallback fonts.
+- Create a consistent heading hierarchy.
+- Ensure body text is easy to read.
+- Optimize the layout for both desktop and mobile screens.
+
+> 💡 **Challenge:** Try recreating the typography of your favorite documentation website (such as MDN, GitHub Docs, or another learning platform). Pay attention to font sizes, spacing, hierarchy, and alignment.
