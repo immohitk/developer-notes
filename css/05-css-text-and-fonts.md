@@ -1677,3 +1677,119 @@ developer notes
 Avoid writing long paragraphs in **ALL UPPERCASE**.
 
 Although uppercase text can draw attention, it is generally slower to read and can reduce accessibility. Reserve it for short labels, buttons, or headings where emphasis is needed.
+
+
+---
+
+## Text Shadow
+
+The **`text-shadow`** property adds one or more shadow effects to text.
+
+It is commonly used to improve text visibility, create depth, and add subtle visual effects to headings, banners, and hero sections.
+
+### Syntax
+
+```css
+selector {
+    text-shadow: horizontal-offset vertical-offset blur-radius color;
+}
+```
+
+### Understanding the Values
+
+```css
+text-shadow: 2px 2px 4px gray;
+```
+
+| Value | Description |
+|--------|-------------|
+| `2px` | Horizontal offset (moves the shadow left or right) |
+| `2px` | Vertical offset (moves the shadow up or down) |
+| `4px` | Blur radius (controls shadow softness) |
+| `gray` | Shadow color |
+
+### Example
+
+```css
+h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+```
+
+### Before vs After
+
+**Without `text-shadow`**
+
+```text
+Developer Notes
+```
+
+**With `text-shadow`**
+
+```text
+Developer Notes
+      ░░ Shadow Effect ░░
+```
+
+> *The actual shadow effect depends on the browser, font, and shadow values. The illustration above is only a conceptual representation.*
+
+### Multiple Shadows
+
+CSS allows multiple shadows by separating them with commas.
+
+```css
+h1 {
+    text-shadow:
+        1px 1px 2px gray,
+        2px 2px 6px lightgray;
+}
+```
+
+Each shadow is rendered in the order it appears.
+
+### Advantages
+
+- Makes headings stand out.
+- Improves readability on images and colored backgrounds.
+- Adds depth to typography.
+- Supports multiple layered shadow effects.
+
+### Limitations
+
+- Large or blurry shadows reduce readability.
+- Excessive effects make designs appear cluttered.
+- Should be used sparingly for body text.
+
+> 💡 **Pro Tip:** Use **small, subtle shadows** instead of large, dramatic ones. A light shadow often improves readability without distracting the user.
+
+### 🌍 Real-World Usage
+
+The `text-shadow` property is commonly used for:
+
+- Hero section headings
+- Banner text
+- Landing pages
+- Logos
+- Promotional content
+- Text displayed on background images
+
+### 📌 Did You Know?
+
+The `text-shadow` property accepts **multiple shadows**.
+
+This allows developers to create glow effects, outlines, and layered typography without using images.
+
+### ⚠️ Important
+
+Avoid applying strong shadows to long paragraphs.
+
+Text shadows are most effective for short, prominent text such as headings and banners. Overusing them on body text can make content harder to read.
+
+### 🎯 Interview Insight
+
+Unlike **`box-shadow`**, which applies a shadow around an element's box, **`text-shadow`** applies the shadow directly to the text characters themselves.
+
+| Property | Applies To |
+|----------|------------|
+| `text-shadow` | Text |
+| `box-shadow` | Entire HTML element |
