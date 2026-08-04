@@ -2385,3 +2385,163 @@ These properties are often confused because they all affect how text behaves ins
 | `text-overflow` | How hidden overflow is displayed | Product titles, cards, tables |
 | `overflow-wrap` | Breaking long words only when needed | Articles, comments, URLs |
 | `word-break` | Rules for breaking words | Narrow layouts, multilingual content |
+
+
+---
+
+## Font Stacks
+
+A **Font Stack** is a list of fonts specified in the `font-family` property.
+
+The browser tries each font **from left to right** until it finds one that is available on the user's device.
+
+If none of the specified fonts are installed, the browser uses the **generic font family** at the end of the list.
+
+### Why Use Font Stacks?
+
+Different operating systems have different fonts installed.
+
+For example:
+
+- Windows commonly includes **Arial**.
+- macOS commonly includes **Helvetica**.
+- Linux distributions may use different default fonts.
+
+A font stack ensures that your website remains readable even when the preferred font is unavailable.
+
+### Syntax
+
+```css
+selector {
+    font-family: "Preferred Font", "Fallback Font", generic-family;
+}
+```
+
+### Example
+
+```css
+body {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+```
+
+The browser follows this order:
+
+1. Roboto
+2. Arial
+3. Helvetica
+4. Default sans-serif font
+
+### How Font Stacks Work
+
+```text
+Roboto
+   ↓
+Arial
+   ↓
+Helvetica
+   ↓
+sans-serif
+```
+
+The browser stops searching as soon as it finds an available font.
+
+### Common Font Stacks
+
+#### Sans-serif
+
+```css
+font-family: Arial, Helvetica, sans-serif;
+```
+
+#### Serif
+
+```css
+font-family: Georgia, "Times New Roman", serif;
+```
+
+#### Monospace
+
+```css
+font-family: Consolas, "Courier New", monospace;
+```
+
+#### Google Font with Fallback
+
+```css
+font-family: "Roboto", Arial, Helvetica, sans-serif;
+```
+
+### Advantages
+
+- Improves browser compatibility.
+- Provides reliable fallback fonts.
+- Maintains readability across platforms.
+- Reduces the impact of missing fonts.
+
+### Limitations
+
+- Different fonts have slightly different appearances.
+- Text layout may vary between fallback fonts.
+- A missing custom font can slightly change the design.
+
+> 💡 **Pro Tip:** Always end your font stack with a **generic font family** such as `serif`, `sans-serif`, or `monospace`. This guarantees that the browser always has a suitable fallback.
+
+### 🌍 Real-World Usage
+
+Font stacks are used on virtually every modern website, including:
+
+- Business websites
+- Blogs
+- Dashboards
+- Documentation sites
+- E-commerce platforms
+- Portfolio websites
+
+Even when using Google Fonts, developers still include fallback fonts.
+
+### 📌 Did You Know?
+
+Quotation marks are required only for font names that contain spaces.
+
+For example:
+
+```css
+font-family: "Times New Roman", serif;
+```
+
+But:
+
+```css
+font-family: Arial, sans-serif;
+```
+
+does not require quotation marks.
+
+### ⚠️ Important
+
+Never specify only a custom font.
+
+❌ Avoid
+
+```css
+font-family: "Roboto";
+```
+
+✅ Better
+
+```css
+font-family: "Roboto", Arial, Helvetica, sans-serif;
+```
+
+This ensures your website remains readable even if the custom font cannot be loaded.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Why should a font stack always end with a generic font family?**
+
+A good answer is:
+
+> Generic font families guarantee that the browser can always display readable text, even when none of the preferred fonts are available.
