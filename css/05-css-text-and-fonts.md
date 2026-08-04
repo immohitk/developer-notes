@@ -2112,3 +2112,128 @@ text-overflow: ellipsis;
 ```
 
 All three properties work together to produce the desired effect.
+
+
+---
+
+
+## Overflow Wrap
+
+The **`overflow-wrap`** property controls whether the browser should break long words that would otherwise overflow their container.
+
+It is especially useful for handling long URLs, email addresses, filenames, and other text without natural spaces.
+
+### Syntax
+
+```css
+selector {
+    overflow-wrap: value;
+}
+```
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `normal` | Long words are not broken unless normal word wrapping allows it. *(Default)* |
+| `break-word` | Breaks long words only when necessary to prevent overflow. |
+| `anywhere` | Allows breaks at any point if needed to avoid overflow. |
+
+### Example
+
+```css
+.article {
+    overflow-wrap: break-word;
+}
+```
+
+### Before vs After
+
+**Without `overflow-wrap`**
+
+```text
+https://www.example.com/averyveryveryveryverylongurlthatdoesnotfit
+```
+
+The long URL may extend outside its container.
+
+---
+
+**With `overflow-wrap: break-word`**
+
+```text
+https://www.example.com/
+averyveryveryveryverylong
+urlthatdoesnotfit
+```
+
+The browser wraps the long text to keep it inside the container.
+
+### Example Using Different Values
+
+```css
+.normal {
+    overflow-wrap: normal;
+}
+
+.break-word {
+    overflow-wrap: break-word;
+}
+
+.anywhere {
+    overflow-wrap: anywhere;
+}
+```
+
+### Advantages
+
+- Prevents layout overflow.
+- Improves readability on small screens.
+- Handles long URLs and filenames gracefully.
+- Helps create responsive layouts.
+
+### Limitations
+
+- Breaking words may reduce readability.
+- The `anywhere` value can split words more aggressively than expected.
+- Should only be used when long unbroken text is likely.
+
+> 💡 **Pro Tip:** Use `overflow-wrap: break-word` for articles, comments, chat messages, and user-generated content where long words or URLs might appear.
+
+### 🌍 Real-World Usage
+
+The `overflow-wrap` property is commonly used for:
+
+- Blog comments
+- Forums
+- Chat applications
+- Documentation websites
+- Product descriptions
+- Long URLs and email addresses
+
+### 📌 Did You Know?
+
+Modern browsers support:
+
+```css
+overflow-wrap: anywhere;
+```
+
+This allows text to wrap wherever necessary, making it particularly useful for highly responsive layouts and narrow containers.
+
+### ⚠️ Important
+
+`overflow-wrap` only breaks words **when necessary** to prevent overflow.
+
+If the text already fits within its container, it has no visible effect.
+
+### 🎯 Interview Insight
+
+Developers often confuse **`overflow-wrap`** with **`word-break`**.
+
+A simple way to remember the difference is:
+
+- **`overflow-wrap`** → Break words **only when needed** to prevent overflow.
+- **`word-break`** → Controls **how words themselves may be broken**, even if overflow isn't the primary issue.
+
+We'll explore `word-break` in the next section.
