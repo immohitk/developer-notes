@@ -748,3 +748,128 @@ Many developers prefer numeric values because they provide finer control over ty
 Avoid making every heading and paragraph bold.
 
 Using too many bold elements reduces emphasis because nothing stands out anymore. Reserve heavier weights for content that genuinely needs attention.
+
+
+---
+
+
+## Font Style
+
+The **`font-style`** property specifies the style of a font.
+
+It is commonly used to make text **italic** or **oblique**, helping emphasize words or phrases without changing the font family or weight.
+
+### Syntax
+
+```css
+selector {
+    font-style: value;
+}
+```
+
+### Example
+
+```css
+h1 {
+    font-style: normal;
+}
+
+em {
+    font-style: italic;
+}
+
+.quote {
+    font-style: oblique;
+}
+```
+
+### Before vs After
+
+**Without `font-style`**
+
+```text
+This is an important note.
+```
+
+**With `font-style: italic`**
+
+```text
+*This is an important note.*
+```
+
+**With `font-style: oblique`**
+
+```text
+/This is an important note./
+```
+
+> *Markdown cannot accurately display the visual difference between **italic** and **oblique**. In browsers, `oblique` is a slanted version of the font, while `italic` usually uses a specially designed italic typeface.*
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `normal` | Displays the default font style. |
+| `italic` | Displays the italic version of the font, if available. |
+| `oblique` | Displays a slanted version of the font. |
+
+### Example Using Different Styles
+
+```css
+.normal {
+    font-style: normal;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.oblique {
+    font-style: oblique;
+}
+```
+
+### Italic vs Oblique
+
+| Italic | Oblique |
+|---------|----------|
+| Uses a specially designed italic font (if available). | Slants the regular font. |
+| More common in web development. | Less commonly used. |
+| Better typography for supported fonts. | Used when no true italic version exists. |
+
+### Advantages
+
+- Highlights important content.
+- Improves readability when used appropriately.
+- Creates visual distinction without changing font size or weight.
+- Supported by all modern browsers.
+
+### Limitations
+
+- Overusing italic text reduces its emphasis.
+- Some fonts do not include a true italic version.
+- The difference between `italic` and `oblique` may be difficult to notice with certain fonts.
+
+> 💡 **Pro Tip:** Use **italic** for emphasis, quotes, book titles, or foreign words. Avoid styling large paragraphs in italic because they can become harder to read.
+
+### 🌍 Real-World Usage
+
+The `font-style` property is commonly used for:
+
+- Quotes
+- Captions
+- Book and movie titles
+- Foreign words and phrases
+- `<em>` elements for emphasized text
+
+### 📌 Did You Know?
+
+The HTML `<em>` element is **emphasized text**, not "italic text."
+
+Browsers display `<em>` in italic by default, but the emphasis comes from the HTML semantics. CSS simply controls how that emphasis is visually presented.
+
+### ⚠️ Important
+
+Don't use `font-style: italic` just to make text look different.
+
+If the content is **semantically important**, use the appropriate HTML element (such as `<em>`) and then style it with CSS if needed. This improves accessibility and gives the content meaningful structure.
