@@ -2806,3 +2806,94 @@ After completing this chapter, consider learning about:
 - Responsive Typography
 - CSS Grid and Flexbox for Layout
 - Web Accessibility (WCAG)
+
+
+---
+
+
+## Quick Revision
+
+### Typography Properties
+
+| Property | Purpose | Example |
+|----------|---------|---------|
+| `font-family` | Specifies the font | `font-family: Arial, sans-serif;` |
+| `font-size` | Sets text size | `font-size: 16px;` |
+| `font-weight` | Controls text thickness | `font-weight: 700;` |
+| `font-style` | Applies italic or oblique styles | `font-style: italic;` |
+| `line-height` | Controls spacing between lines | `line-height: 1.6;` |
+| `letter-spacing` | Controls spacing between letters | `letter-spacing: 1px;` |
+| `word-spacing` | Controls spacing between words | `word-spacing: 4px;` |
+| `text-align` | Aligns text horizontally | `text-align: center;` |
+| `text-decoration` | Adds or removes decorations | `text-decoration: underline;` |
+| `text-transform` | Changes capitalization | `text-transform: uppercase;` |
+| `text-shadow` | Adds shadow effects | `text-shadow: 2px 2px 4px gray;` |
+| `white-space` | Controls spaces and wrapping | `white-space: nowrap;` |
+| `text-overflow` | Displays clipped text | `text-overflow: ellipsis;` |
+| `overflow-wrap` | Wraps long words | `overflow-wrap: break-word;` |
+| `word-break` | Controls word breaking | `word-break: break-all;` |
+
+---
+
+### Font Categories
+
+| Category | Common Examples | Best Used For |
+|----------|-----------------|---------------|
+| Serif | Georgia, Times New Roman | Books, articles, editorial content |
+| Sans-serif | Arial, Roboto, Helvetica | Websites, dashboards, applications |
+| Monospace | Consolas, Courier New | Code, terminals, technical documentation |
+| Cursive | Brush Script MT | Decorative text |
+| Fantasy | Papyrus | Creative or artistic designs |
+
+---
+
+### Typography Checklist
+
+Before publishing a webpage, verify that:
+
+- ✅ The font is readable.
+- ✅ A fallback font is included.
+- ✅ Headings are larger than body text.
+- ✅ Line height is comfortable.
+- ✅ Letter and word spacing are balanced.
+- ✅ Long text wraps correctly.
+- ✅ Text remains readable on mobile devices.
+- ✅ Color contrast is sufficient.
+- ✅ Decorative effects are used sparingly.
+
+---
+
+### Property Comparison
+
+| If you want to... | Use |
+|-------------------|-----|
+| Change the font | `font-family` |
+| Resize text | `font-size` |
+| Make text bold | `font-weight` |
+| Italicize text | `font-style` |
+| Increase line spacing | `line-height` |
+| Increase letter spacing | `letter-spacing` |
+| Increase word spacing | `word-spacing` |
+| Align text | `text-align` |
+| Underline text | `text-decoration` |
+| Change capitalization | `text-transform` |
+| Add a shadow | `text-shadow` |
+| Prevent wrapping | `white-space: nowrap` |
+| Show `...` for clipped text | `text-overflow: ellipsis` |
+| Wrap long words | `overflow-wrap` |
+| Control word splitting | `word-break` |
+
+---
+
+### Commonly Confused Properties
+
+| Property | Controls |
+|----------|----------|
+| `letter-spacing` | Space between characters |
+| `word-spacing` | Space between words |
+| `line-height` | Space between lines |
+| `overflow-wrap` | Breaks long words only when needed |
+| `word-break` | Defines how words may be broken |
+| `text-overflow` | Displays clipped text (`...`) |
+
+> 💡 **Quick Tip:** If you can explain **what each typography property controls** and **when you would use it**, you're well prepared for both frontend interviews and day-to-day CSS development.
