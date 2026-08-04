@@ -2759,3 +2759,50 @@ A simple, readable typography system used consistently across a website almost a
 - ✅ Prioritize accessibility and readability over visual effects.
 
 > 💡 **Remember:** Great typography is almost invisible. When users can read your content comfortably without noticing the styling, you've likely made the right design decisions.
+
+
+---
+
+
+## References
+
+The following resources provide comprehensive documentation and examples for CSS typography and font-related properties.
+
+### Official Documentation
+
+- **MDN Web Docs** – CSS Fonts
+- **MDN Web Docs** – CSS Text
+- **MDN Web Docs** – `font-family`
+- **MDN Web Docs** – `font-size`
+- **MDN Web Docs** – `font-weight`
+- **MDN Web Docs** – `line-height`
+- **MDN Web Docs** – `text-align`
+- **MDN Web Docs** – `text-decoration`
+- **MDN Web Docs** – `text-transform`
+- **MDN Web Docs** – `text-shadow`
+- **MDN Web Docs** – `white-space`
+- **MDN Web Docs** – `text-overflow`
+- **MDN Web Docs** – `overflow-wrap`
+- **MDN Web Docs** – `word-break`
+
+### Specifications
+
+- **W3C CSS Fonts Module Level 4**
+- **W3C CSS Text Module Level 3**
+- **W3C CSS Text Module Level 4**
+
+### Typography Resources
+
+- **Google Fonts**
+- **Google Fonts Knowledge**
+- **Material Design Typography Guidelines**
+
+### Recommended Reading
+
+After completing this chapter, consider learning about:
+
+- CSS Variables
+- CSS Functions
+- Responsive Typography
+- CSS Grid and Flexbox for Layout
+- Web Accessibility (WCAG)
