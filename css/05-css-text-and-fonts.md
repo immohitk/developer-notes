@@ -1244,3 +1244,148 @@ Developers usually adjust it only for specific design effects or large headings.
 Avoid combining **large `letter-spacing`** and **large `word-spacing`** on the same text.
 
 Doing so can make content look unnatural and significantly reduce readability, especially on smaller screens.
+
+
+---
+
+
+## Text Align
+
+The **`text-align`** property specifies how inline content, such as text, is aligned horizontally within its containing element.
+
+It is commonly used to align headings, paragraphs, buttons, and other text-based content.
+
+### Syntax
+
+```css
+selector {
+    text-align: value;
+}
+```
+
+### Example
+
+```css
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+}
+```
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `left` | Aligns text to the left (default in left-to-right languages). |
+| `right` | Aligns text to the right. |
+| `center` | Centers the text horizontally. |
+| `justify` | Stretches text so both left and right edges align. |
+| `start` | Aligns text to the start of the writing direction. |
+| `end` | Aligns text to the end of the writing direction. |
+
+### Before vs After
+
+**Default (`left`)**
+
+```text
+Developer Notes
+Learn CSS step by step with practical examples.
+```
+
+**Center**
+
+```text
+        Developer Notes
+Learn CSS step by step with practical examples.
+```
+
+**Right**
+
+```text
+                    Developer Notes
+     Learn CSS step by step with practical examples.
+```
+
+**Justify**
+
+```text
+Developer   Notes   helps   beginners   learn   CSS
+through practical examples and clear explanations.
+```
+
+> *The exact appearance of `justify` depends on the browser, screen size, and the amount of available text.*
+
+### Example Using Different Alignments
+
+```css
+.left {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.justify {
+    text-align: justify;
+}
+```
+
+### When to Use Each Value
+
+| Value | Common Usage |
+|--------|--------------|
+| `left` | Paragraphs, articles, documentation |
+| `center` | Headings, banners, hero sections |
+| `right` | RTL layouts, prices, dates |
+| `justify` | Newspapers, books, long-form articles |
+
+### Advantages
+
+- Improves readability.
+- Creates a clear visual structure.
+- Makes content look more organized.
+- Supports different writing directions.
+
+### Limitations
+
+- Overusing centered text reduces readability.
+- Justified text can create uneven spacing between words.
+- Right-aligned text is difficult to read in long paragraphs for left-to-right languages.
+
+> 💡 **Pro Tip:** Keep long paragraphs **left-aligned** (or **start-aligned**) because they are generally the easiest to read. Reserve centered text for headings, short quotes, or call-to-action sections.
+
+### 🌍 Real-World Usage
+
+The `text-align` property is commonly used for:
+
+- Website headings
+- Hero sections
+- Blog articles
+- Product descriptions
+- Pricing tables
+- Contact pages
+
+### 📌 Did You Know?
+
+The values **`start`** and **`end`** automatically adapt to the page's writing direction.
+
+For example:
+
+- In English (left-to-right), `start` behaves like `left`.
+- In Arabic (right-to-left), `start` behaves like `right`.
+
+This makes them useful when building multilingual websites.
+
+### ⚠️ Important
+
+Avoid centering large blocks of text.
+
+Centered paragraphs are harder for users to scan because each line begins at a different horizontal position. For long-form content, left-aligned (or `start`-aligned) text usually provides the best reading experience.
