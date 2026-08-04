@@ -1969,3 +1969,146 @@ Overflow behavior is handled separately using properties such as:
 - `word-break`
 
 These properties often work together to create responsive and readable text layouts.
+
+
+---
+
+
+## Text Overflow
+
+The **`text-overflow`** property specifies how hidden text should be displayed when it overflows its container.
+
+It does **not** prevent overflow by itself. Instead, it works together with other CSS properties to control how overflowing text is presented.
+
+### Syntax
+
+```css
+selector {
+    text-overflow: value;
+}
+```
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `clip` | Cuts off overflowing text without any indicator. *(Default)* |
+| `ellipsis` | Displays an ellipsis (`...`) to indicate hidden text. |
+
+### Example
+
+```css
+.card-title {
+    width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### Before vs After
+
+**Without `text-overflow`**
+
+```text
+Introduction to Advanced CSS Typography and Responsive Design
+```
+
+The text extends beyond its container.
+
+---
+
+**With `text-overflow: ellipsis`**
+
+```text
+Introduction to Advanced CSS Typ...
+```
+
+The ellipsis tells users that additional text exists but is hidden.
+
+### Required Properties
+
+For `text-overflow: ellipsis` to work correctly, you usually need:
+
+```css
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+```
+
+These properties work together:
+
+| Property | Purpose |
+|----------|---------|
+| `overflow: hidden` | Hides overflowing text. |
+| `white-space: nowrap` | Prevents text from wrapping. |
+| `text-overflow: ellipsis` | Displays `...` when text is clipped. |
+
+### Advantages
+
+- Keeps layouts clean.
+- Prevents long text from breaking designs.
+- Provides a visual indication that content has been truncated.
+- Easy to implement.
+
+### Limitations
+
+- Only affects the visual display.
+- Hidden text remains in the HTML.
+- Commonly works only for single-line text unless additional CSS techniques are used.
+
+> 💡 **Pro Tip:** Use `text-overflow: ellipsis` for product names, article titles, navigation items, and cards where space is limited.
+
+### 🌍 Real-World Usage
+
+The `text-overflow` property is commonly used for:
+
+- Product cards
+- Blog titles
+- Navigation menus
+- Tables
+- Dashboard widgets
+- Mobile interfaces
+
+### 📌 Did You Know?
+
+The ellipsis (`...`) is **not actually added to your HTML**.
+
+The browser generates it automatically when the text exceeds the available space and all required CSS conditions are met.
+
+### ⚠️ Important
+
+Setting only:
+
+```css
+text-overflow: ellipsis;
+```
+
+is **not enough**.
+
+Without:
+
+```css
+overflow: hidden;
+white-space: nowrap;
+```
+
+the ellipsis usually won't appear.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Why isn't `text-overflow: ellipsis` working?**
+
+The answer is usually that one or more required properties are missing.
+
+The most common solution is:
+
+```css
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+```
+
+All three properties work together to produce the desired effect.
