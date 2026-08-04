@@ -1528,3 +1528,152 @@ This shorthand combines the line, style, color, and thickness into a single decl
 Don't remove link underlines unless users can still easily recognize clickable text.
 
 Accessibility guidelines recommend that links remain visually distinguishable from normal text, especially within paragraphs.
+
+
+---
+
+
+## Text Transform
+
+The **`text-transform`** property controls the capitalization of text.
+
+It changes **how text is displayed** without changing the original content in the HTML document.
+
+This property is commonly used for headings, buttons, navigation menus, and labels to maintain a consistent visual style.
+
+### Syntax
+
+```css
+selector {
+    text-transform: value;
+}
+```
+
+### Example
+
+```css
+h1 {
+    text-transform: uppercase;
+}
+
+h2 {
+    text-transform: capitalize;
+}
+
+p {
+    text-transform: lowercase;
+}
+```
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `none` | Displays the text exactly as written. |
+| `uppercase` | Converts all letters to uppercase. |
+| `lowercase` | Converts all letters to lowercase. |
+| `capitalize` | Capitalizes the first letter of each word. |
+
+### Before vs After
+
+**Original Text**
+
+```text
+welcome to developer notes
+```
+
+**`text-transform: uppercase`**
+
+```text
+WELCOME TO DEVELOPER NOTES
+```
+
+**`text-transform: lowercase`**
+
+```text
+welcome to developer notes
+```
+
+**`text-transform: capitalize`**
+
+```text
+Welcome To Developer Notes
+```
+
+Notice that the HTML content remains unchanged—the browser only changes how the text is displayed.
+
+### Example Using Different Values
+
+```css
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+```
+
+### Advantages
+
+- Maintains consistent typography.
+- Avoids manually changing text in HTML.
+- Makes buttons and headings easier to style.
+- Easy to update across an entire website.
+
+### Limitations
+
+- Does not modify the actual HTML content.
+- Automatic capitalization may not follow every language's grammar rules.
+- Overusing uppercase can reduce readability.
+
+> 💡 **Pro Tip:** Store text in its natural form (for example, sentence case) and use `text-transform` for presentation. This keeps your HTML cleaner and makes future content updates easier.
+
+### 🌍 Real-World Usage
+
+The `text-transform` property is commonly used for:
+
+- Navigation menus
+- Buttons
+- Headings
+- Form labels
+- Product categories
+- Badges and tags
+
+### 📌 Did You Know?
+
+Using:
+
+```css
+text-transform: uppercase;
+```
+
+does **not** change the actual text in your HTML.
+
+For example:
+
+```html
+<p>developer notes</p>
+```
+
+The browser displays:
+
+```text
+DEVELOPER NOTES
+```
+
+But if you inspect the HTML or copy the source, it still contains:
+
+```text
+developer notes
+```
+
+### ⚠️ Important
+
+Avoid writing long paragraphs in **ALL UPPERCASE**.
+
+Although uppercase text can draw attention, it is generally slower to read and can reduce accessibility. Reserve it for short labels, buttons, or headings where emphasis is needed.
