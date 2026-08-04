@@ -3076,3 +3076,240 @@ These rules typically include:
 - Responsive typography scales
 
 Following these standards ensures a consistent experience throughout an application.
+
+
+---
+
+
+## Common Mistakes
+
+Avoid these common mistakes when working with CSS typography.
+
+### 1. Using Too Many Font Families
+
+Using several different fonts on the same page creates an inconsistent and unprofessional appearance.
+
+❌ Avoid
+
+```css
+h1 {
+    font-family: Arial;
+}
+
+h2 {
+    font-family: Georgia;
+}
+
+p {
+    font-family: Verdana;
+}
+
+button {
+    font-family: Courier New;
+}
+```
+
+✅ Better
+
+Choose one or two complementary font families and use them consistently.
+
+```css
+body {
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Poppins", Arial, sans-serif;
+}
+```
+
+---
+
+### 2. Forgetting Fallback Fonts
+
+Relying on a single custom font can cause unexpected results if that font fails to load.
+
+❌ Avoid
+
+```css
+font-family: "Roboto";
+```
+
+✅ Better
+
+```css
+font-family: "Roboto", Arial, Helvetica, sans-serif;
+```
+
+Always include fallback fonts ending with a generic font family.
+
+---
+
+### 3. Using Fixed Font Sizes Everywhere
+
+Using only `px` values makes typography less adaptable.
+
+❌ Avoid
+
+```css
+font-size: 16px;
+```
+
+✅ Better
+
+```css
+font-size: 1rem;
+```
+
+Relative units generally work better for responsive and accessible designs.
+
+---
+
+### 4. Poor Line Height
+
+Text with insufficient line spacing becomes difficult to read.
+
+❌ Avoid
+
+```css
+p {
+    line-height: 1;
+}
+```
+
+✅ Better
+
+```css
+p {
+    line-height: 1.6;
+}
+```
+
+Comfortable spacing improves readability, especially for long paragraphs.
+
+---
+
+### 5. Overusing Uppercase Text
+
+Writing large blocks of text in uppercase reduces readability.
+
+❌ Avoid
+
+```css
+text-transform: uppercase;
+```
+
+for long paragraphs.
+
+✅ Better
+
+Use uppercase only for:
+
+- Buttons
+- Navigation links
+- Labels
+- Short headings
+
+---
+
+### 6. Excessive Typography Effects
+
+Too much decoration makes content difficult to read.
+
+❌ Avoid
+
+```css
+text-shadow: 6px 6px 12px red;
+letter-spacing: 8px;
+```
+
+✅ Better
+
+Use subtle shadows and spacing to improve appearance without distracting readers.
+
+---
+
+### 7. Removing Link Underlines Without Alternatives
+
+❌ Avoid
+
+```css
+a {
+    text-decoration: none;
+}
+```
+
+Users may no longer recognize links.
+
+✅ Better
+
+If removing underlines, provide another visual indicator.
+
+```css
+a {
+    color: royalblue;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+```
+
+---
+
+### 8. Ignoring Mobile Devices
+
+Typography that looks good on a desktop may become difficult to read on smaller screens.
+
+Always test:
+
+- Font sizes
+- Line heights
+- Wrapping
+- Alignment
+
+on different devices.
+
+---
+
+### 9. Loading Too Many Font Files
+
+Importing every available font weight increases page load time.
+
+❌ Avoid
+
+Loading all available weights.
+
+✅ Better
+
+Import only the weights you actually use, such as:
+
+- `400`
+- `500`
+- `700`
+
+---
+
+### 10. Ignoring Accessibility
+
+Typography should be readable for everyone.
+
+Avoid:
+
+- Low color contrast.
+- Tiny font sizes.
+- Long centered paragraphs.
+- Decorative fonts for body text.
+
+Following accessibility guidelines improves usability for all users.
+
+---
+
+> 💡 **Pro Tip:** The best typography often goes unnoticed. If users can comfortably read your content without thinking about the typography, you've likely made the right choices.
+
+### 🌍 Real-World Usage
+
+Professional teams often review typography during design and code reviews to ensure consistency, readability, responsiveness, and accessibility before releasing a product.
