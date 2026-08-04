@@ -1793,3 +1793,179 @@ Unlike **`box-shadow`**, which applies a shadow around an element's box, **`text
 |----------|------------|
 | `text-shadow` | Text |
 | `box-shadow` | Entire HTML element |
+
+
+---
+
+
+## White Space
+
+The **`white-space`** property controls how browsers handle spaces, tabs, and line breaks inside an element.
+
+By default, browsers collapse multiple spaces into a single space and wrap text automatically. The `white-space` property allows you to change this behavior.
+
+### Syntax
+
+```css
+selector {
+    white-space: value;
+}
+```
+
+### Default Behavior
+
+Consider the following HTML:
+
+```html
+<p>
+    Welcome      to
+
+    Developer Notes
+</p>
+```
+
+The browser displays it as:
+
+```text
+Welcome to Developer Notes
+```
+
+Extra spaces and line breaks are automatically collapsed.
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `normal` | Collapses spaces and wraps text automatically. *(Default)* |
+| `nowrap` | Collapses spaces but prevents text from wrapping. |
+| `pre` | Preserves spaces and line breaks exactly as written. |
+| `pre-wrap` | Preserves spaces and line breaks while still allowing text to wrap. |
+| `pre-line` | Collapses spaces but preserves line breaks. |
+
+### Example
+
+```css
+.normal {
+    white-space: normal;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.pre {
+    white-space: pre;
+}
+```
+
+### Before vs After
+
+**HTML**
+
+```html
+<p>
+Hello      Developer
+
+Welcome to CSS.
+</p>
+```
+
+**`white-space: normal`**
+
+```text
+Hello Developer Welcome to CSS.
+```
+
+**`white-space: pre`**
+
+```text
+Hello      Developer
+
+Welcome to CSS.
+```
+
+**`white-space: nowrap`**
+
+```text
+Hello Developer Welcome to CSS. → (keeps going on one line)
+```
+
+### When to Use Each Value
+
+| Value | Common Usage |
+|--------|--------------|
+| `normal` | General website content |
+| `nowrap` | Navigation menus, buttons, badges |
+| `pre` | Code snippets, ASCII art |
+| `pre-wrap` | User-generated content, chat messages |
+| `pre-line` | Text copied from forms or documents |
+
+### Advantages
+
+- Gives precise control over text formatting.
+- Useful for displaying code and preformatted text.
+- Prevents unwanted line wrapping.
+- Helps preserve formatting when needed.
+
+### Limitations
+
+- `nowrap` can cause horizontal scrolling if the text is too long.
+- `pre` may overflow small containers.
+- Choosing the wrong value can reduce readability.
+
+> 💡 **Pro Tip:** Use `white-space: nowrap` for short labels such as buttons and navigation links, but avoid it for long paragraphs because it may cause layout issues on smaller screens.
+
+### 🌍 Real-World Usage
+
+The `white-space` property is commonly used for:
+
+- Navigation menus
+- Buttons
+- Code blocks
+- Chat applications
+- Terminal output
+- Product labels
+
+### 📌 Did You Know?
+
+The HTML `<pre>` element preserves whitespace by default.
+
+Internally, browsers achieve this behavior using CSS similar to:
+
+```css
+pre {
+    white-space: pre;
+}
+```
+
+### ⚠️ Important
+
+If you use:
+
+```css
+white-space: nowrap;
+```
+
+for long text, make sure the container can handle overflow appropriately.
+
+You will often see it combined with:
+
+```css
+overflow: hidden;
+text-overflow: ellipsis;
+```
+
+This combination prevents layout issues and displays an ellipsis (`...`) when the text is too long.
+
+### 🎯 Interview Insight
+
+The `white-space` property controls **how text is formatted**, not **whether it overflows**.
+
+Overflow behavior is handled separately using properties such as:
+
+- `overflow`
+- `text-overflow`
+- `overflow-wrap`
+- `word-break`
+
+These properties often work together to create responsive and readable text layouts.
