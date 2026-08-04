@@ -2237,3 +2237,151 @@ A simple way to remember the difference is:
 - **`word-break`** → Controls **how words themselves may be broken**, even if overflow isn't the primary issue.
 
 We'll explore `word-break` in the next section.
+
+
+---
+
+
+## Word Break
+
+The **`word-break`** property controls how words are broken when they reach the edge of their container.
+
+Unlike `overflow-wrap`, which breaks words **only when necessary**, `word-break` defines the browser's word-breaking behavior.
+
+It is particularly useful for handling long words, URLs, and languages with different writing systems.
+
+### Syntax
+
+```css
+selector {
+    word-break: value;
+}
+```
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `normal` | Uses the browser's default word-breaking behavior. *(Default)* |
+| `break-all` | Breaks words at any character if necessary to prevent overflow. |
+| `keep-all` | Prevents word breaks in languages such as Chinese, Japanese, and Korean where possible. |
+
+### Example
+
+```css
+.article {
+    word-break: break-all;
+}
+```
+
+### Before vs After
+
+**Without `word-break`**
+
+```text
+supercalifragilisticexpialidocious
+```
+
+The word may overflow its container.
+
+---
+
+**With `word-break: break-all`**
+
+```text
+supercalifrag
+ilisticexpial
+idocious
+```
+
+The browser breaks the word wherever necessary to keep it inside the container.
+
+### Example Using Different Values
+
+```css
+.normal {
+    word-break: normal;
+}
+
+.break-all {
+    word-break: break-all;
+}
+
+.keep-all {
+    word-break: keep-all;
+}
+```
+
+### Overflow Wrap vs Word Break
+
+| `overflow-wrap` | `word-break` |
+|-----------------|--------------|
+| Breaks words only when needed to prevent overflow. | Controls how words may be broken. |
+| Preserves readability whenever possible. | Can break words more aggressively. |
+| Preferred for most websites. | Used only for specific layout requirements. |
+
+### Advantages
+
+- Prevents layout overflow.
+- Handles extremely long words.
+- Supports multilingual websites.
+- Useful for narrow layouts.
+
+### Limitations
+
+- `break-all` may split words unnaturally.
+- Can reduce readability.
+- Usually unnecessary for normal paragraphs.
+
+> 💡 **Pro Tip:** Prefer `overflow-wrap: break-word` for most websites. Use `word-break` only when you specifically need to control how words are broken.
+
+### 🌍 Real-World Usage
+
+The `word-break` property is commonly used for:
+
+- Data tables
+- Chat applications
+- Code viewers
+- Mobile layouts
+- Multilingual websites
+- Very narrow containers
+
+### 📌 Did You Know?
+
+The `keep-all` value is especially useful for East Asian languages, where word-breaking rules differ from languages such as English.
+
+### ⚠️ Important
+
+Avoid using:
+
+```css
+word-break: break-all;
+```
+
+for long paragraphs.
+
+Although it prevents overflow, it can significantly reduce readability because words may be split in unexpected places.
+
+### 🎯 Interview Insight
+
+The following question appears frequently in frontend interviews:
+
+> **When should you use `overflow-wrap` instead of `word-break`?**
+
+A good answer is:
+
+- Use **`overflow-wrap`** for normal websites because it preserves readability and only breaks words when necessary.
+- Use **`word-break`** when you need stricter control over word breaking or when working with specific layouts or languages.
+
+---
+
+## Comparison of Text Wrapping Properties
+
+These properties are often confused because they all affect how text behaves inside its container.
+
+| Property | Controls | Common Use Case |
+|----------|----------|-----------------|
+| `white-space` | Spaces, tabs, line breaks, and wrapping | Code blocks, buttons, navigation |
+| `text-overflow` | How hidden overflow is displayed | Product titles, cards, tables |
+| `overflow-wrap` | Breaking long words only when needed | Articles, comments, URLs |
+| `word-break` | Rules for breaking words | Narrow layouts, multilingual content |
