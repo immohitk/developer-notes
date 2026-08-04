@@ -1389,3 +1389,142 @@ This makes them useful when building multilingual websites.
 Avoid centering large blocks of text.
 
 Centered paragraphs are harder for users to scan because each line begins at a different horizontal position. For long-form content, left-aligned (or `start`-aligned) text usually provides the best reading experience.
+
+
+---
+
+
+## Text Decoration
+
+The **`text-decoration`** property is used to add, remove, or customize decorative lines on text.
+
+It is commonly used for hyperlinks, deleted content, highlighted text, and other visual effects.
+
+### Syntax
+
+```css
+selector {
+    text-decoration: value;
+}
+```
+
+### Example
+
+```css
+a {
+    text-decoration: none;
+}
+
+h1 {
+    text-decoration: underline;
+}
+
+del {
+    text-decoration: line-through;
+}
+```
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `none` | Removes any text decoration. |
+| `underline` | Adds a line below the text. |
+| `overline` | Adds a line above the text. |
+| `line-through` | Draws a line through the middle of the text. |
+
+### Before vs After
+
+**Without Decoration**
+
+```text
+Developer Notes
+```
+
+**Underline**
+
+```text
+Developer Notes
+───────────────
+```
+
+**Overline**
+
+```text
+───────────────
+Developer Notes
+```
+
+**Line Through**
+
+```text
+D̶e̶v̶e̶l̶o̶p̶e̶r̶ ̶N̶o̶t̶e̶s̶
+```
+
+> *The exact appearance depends on the browser, font, and operating system.*
+
+### Modern Text Decoration Properties
+
+CSS provides additional properties for customizing decorations.
+
+| Property | Purpose |
+|----------|---------|
+| `text-decoration-line` | Specifies the decoration type. |
+| `text-decoration-color` | Changes the decoration color. |
+| `text-decoration-style` | Changes the decoration style (solid, dashed, dotted, etc.). |
+| `text-decoration-thickness` | Controls the thickness of the decoration line. |
+
+### Example
+
+```css
+a {
+    text-decoration-line: underline;
+    text-decoration-color: royalblue;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 2px;
+}
+```
+
+### Advantages
+
+- Highlights important content.
+- Improves the visibility of hyperlinks.
+- Supports multiple decoration styles.
+- Easy to customize in modern browsers.
+
+### Limitations
+
+- Too many decorations create visual clutter.
+- Decorative styles such as `wavy` should be used sparingly.
+- Removing underlines from links without another visual cue can reduce usability.
+
+> 💡 **Pro Tip:** If you remove the underline from links (`text-decoration: none`), provide another clear indication that they are clickable, such as a different color, bold text, or a hover effect.
+
+### 🌍 Real-World Usage
+
+The `text-decoration` property is commonly used for:
+
+- Hyperlinks
+- Navigation menus
+- Completed tasks
+- Discounted prices
+- Spell-check or grammar indicators
+- Text emphasis
+
+### 📌 Did You Know?
+
+Modern browsers allow multiple decoration properties to work together.
+
+For example:
+
+```css
+text-decoration: underline dashed crimson 2px;
+```
+
+This shorthand combines the line, style, color, and thickness into a single declaration.
+
+### ⚠️ Important
+
+Don't remove link underlines unless users can still easily recognize clickable text.
+
+Accessibility guidelines recommend that links remain visually distinguishable from normal text, especially within paragraphs.
