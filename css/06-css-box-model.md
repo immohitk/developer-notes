@@ -1234,3 +1234,192 @@ We'll solve this in the next section using:
 ```css
 box-sizing: border-box;
 ```
+
+
+---
+
+
+## Box Sizing
+
+The **`box-sizing`** property controls **how the browser calculates the width and height of an element**.
+
+It determines whether the specified `width` and `height` apply only to the **content area** or to the **entire element**, including padding and border.
+
+Understanding `box-sizing` is one of the most important concepts in CSS because it directly affects layout calculations.
+
+### Syntax
+
+```css
+selector {
+    box-sizing: value;
+}
+```
+
+### Common Values
+
+| Value | Description |
+|--------|-------------|
+| `content-box` | Width and height apply only to the content area. *(Default)* |
+| `border-box` | Width and height include the content, padding, and border. |
+
+---
+
+### Default Behavior
+
+Browsers use:
+
+```css
+box-sizing: content-box;
+```
+
+unless another value is specified.
+
+For example:
+
+```css
+.card {
+    width: 300px;
+    padding: 20px;
+    border: 4px solid;
+}
+```
+
+The browser calculates:
+
+```text
+Content Width : 300px
+Padding       : 40px
+Border        : 8px
+------------------------
+Rendered Width: 348px
+```
+
+Notice that the final rendered width is **larger** than the declared width.
+
+---
+
+### Using `border-box`
+
+Now consider:
+
+```css
+.card {
+    width: 300px;
+    padding: 20px;
+    border: 4px solid;
+    box-sizing: border-box;
+}
+```
+
+The browser now fits everything inside the declared width.
+
+```text
+Total Width   : 300px
+
+Content
++ Padding
++ Border
+
+= 300px
+```
+
+The padding and border no longer increase the rendered width.
+
+---
+
+### Visual Comparison
+
+**content-box**
+
+```text
+Specified Width
+
++-----------+
+| Content   |
++-----------+
+
+↓
+
+Padding added
+
+↓
+
+Border added
+
+↓
+
+Final size becomes larger
+```
+
+---
+
+**border-box**
+
+```text
+Specified Width
+
++----------------------+
+| Border               |
+|  Padding             |
+|   Content            |
++----------------------+
+
+Everything fits inside
+the declared width.
+```
+
+---
+
+### Advantages of `content-box`
+
+- Simple to understand conceptually.
+- Default browser behavior.
+- Useful when the content size should remain fixed.
+
+### Advantages of `border-box`
+
+- Predictable sizing.
+- Easier layout calculations.
+- Better for responsive designs.
+- Widely used in modern frontend development.
+
+### Limitations
+
+- Beginners often forget which sizing model is active.
+- Switching between sizing models without understanding them can produce unexpected layouts.
+
+> 💡 **Pro Tip:** Most modern CSS projects use `border-box` because it makes layouts easier to build and maintain.
+
+### 🌍 Real-World Usage
+
+Modern frameworks and design systems—including Bootstrap, Tailwind CSS, and many custom CSS resets—use `border-box` as the default sizing model because it simplifies layout calculations.
+
+### 📌 Did You Know?
+
+You can apply `border-box` to every element on your website using:
+
+```css
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+```
+
+This has become a common best practice in modern CSS development.
+
+### ⚠️ Important
+
+The `box-sizing` property **does not change the appearance** of an element.
+
+It changes **how the browser calculates its dimensions**.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Why do many developers set `box-sizing: border-box` globally?**
+
+A strong answer is:
+
+> Because it makes width and height calculations predictable by including padding and borders inside the declared dimensions, reducing unexpected layout issues.
