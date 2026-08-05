@@ -3614,3 +3614,207 @@ Changing a single property makes it much easier to identify the cause of layout 
 ### 🌍 Real-World Usage
 
 Professional frontend developers rarely guess when debugging layouts. Instead, they inspect the Box Model, verify the active `box-sizing` value, and check padding, borders, and margins individually. This systematic approach makes layout debugging faster and more reliable.
+
+
+---
+
+
+## Interview Questions
+
+### 🟢 Beginner Level
+
+1. What is the CSS Box Model?
+2. What are the four parts of the Box Model?
+3. What is the purpose of the `padding` property?
+4. What is the purpose of the `margin` property?
+5. What is the difference between `padding` and `margin`?
+6. What is the purpose of the `border` property?
+7. What does the `width` property control by default?
+8. What is the default value of `box-sizing`?
+9. What does the `box-sizing` property do?
+10. What is margin collapse?
+
+---
+
+### 🟡 Intermediate Level
+
+1. Explain the difference between `content-box` and `border-box`.
+2. Why do modern CSS projects prefer `border-box`?
+3. Which margins can collapse?
+4. How can you prevent margin collapse?
+5. Why doesn't padding collapse?
+6. How does `margin: auto` horizontally center an element?
+7. What is the difference between an element's **rendered size** and **occupied size**?
+8. Why does adding padding sometimes make an element wider?
+
+---
+
+### 🔵 Advanced Level
+
+1. Explain how the browser calculates an element's final width.
+2. How does `box-sizing` affect responsive layouts?
+3. Why do Flexbox and Grid prevent margin collapse between their items?
+4. What layout issues can occur when mixing `content-box` and `border-box` in the same project?
+5. Why do many CSS resets apply `box-sizing: border-box` globally?
+
+---
+
+### 🧮 Calculation Questions
+
+#### Question 1
+
+```css
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid;
+}
+```
+
+Using the default `content-box` model:
+
+- What is the rendered width?
+
+---
+
+#### Question 2
+
+```css
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid;
+    margin: 30px;
+}
+```
+
+What is the total occupied width?
+
+---
+
+#### Question 3
+
+```css
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid;
+    box-sizing: border-box;
+}
+```
+
+What is the rendered width?
+
+What happens to the content area?
+
+---
+
+### 💼 Practical Questions
+
+1. Create a centered container using `margin: auto`.
+2. Build a card component using padding, border, and margin.
+3. Create a button with comfortable internal spacing.
+4. Design a responsive content container using `max-width`.
+5. Write a global CSS rule that applies `border-box` to every element.
+
+---
+
+### 🎯 Scenario-Based Questions
+
+#### Scenario 1
+
+A `300px`-wide card suddenly becomes `340px` wide after adding padding.
+
+**Question:**
+
+Why did this happen, and how would you fix it?
+
+---
+
+#### Scenario 2
+
+Two paragraphs have:
+
+```css
+margin-bottom: 40px;
+margin-top: 30px;
+```
+
+The space between them is only `40px`.
+
+**Question:**
+
+Explain why.
+
+---
+
+#### Scenario 3
+
+A developer uses:
+
+```css
+margin: 20px;
+```
+
+to move text away from the edge of a button.
+
+**Question:**
+
+Why is this incorrect, and which property should be used instead?
+
+---
+
+#### Scenario 4
+
+A responsive layout keeps overflowing on smaller screens.
+
+The container uses:
+
+```css
+width: 100%;
+padding: 20px;
+box-sizing: content-box;
+```
+
+**Question:**
+
+Explain the problem and recommend a better solution.
+
+---
+
+### ⚡ Rapid-Fire Questions
+
+- Which property creates internal spacing?
+- Which property creates external spacing?
+- Which `box-sizing` value is the browser default?
+- Which `box-sizing` value is recommended for modern projects?
+- Which margins can collapse?
+- Do horizontal margins collapse?
+- Which property draws a boundary around an element?
+- What is the outermost layer of the Box Model?
+- Which browser tool helps inspect the Box Model?
+- Which sizing model keeps padding inside the declared width?
+
+---
+
+### ⭐ Interview Tip
+
+For calculation-based questions, always solve them in this order:
+
+```text
+Content
+   ↓
+Padding
+   ↓
+Border
+   ↓
+Margin
+```
+
+Then determine:
+
+1. **Specified Size**
+2. **Rendered Size**
+3. **Occupied Size**
+
+Following this sequence helps avoid mistakes and demonstrates a solid understanding of the CSS Box Model during technical interviews.
