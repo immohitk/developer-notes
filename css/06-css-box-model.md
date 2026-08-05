@@ -2937,3 +2937,183 @@ After completing this chapter, continue with:
 - CSS Flexbox
 - CSS Grid
 - Responsive Web Design
+
+
+---
+
+
+## Quick Revision
+
+### Box Model Structure
+
+Every HTML element is rendered as a rectangular box with four layers.
+
+```text
+Margin
+   ↓
+Border
+   ↓
+Padding
+   ↓
+Content
+```
+
+From the inside outward:
+
+1. **Content** – Displays the actual content.
+2. **Padding** – Internal spacing around the content.
+3. **Border** – Surrounds the content and padding.
+4. **Margin** – External spacing between elements.
+
+---
+
+### Box Model Diagram
+
+```text
++--------------------------------------+
+|               Margin                 |
+|  +-------------------------------+   |
+|  |            Border             |   |
+|  |  +-------------------------+  |   |
+|  |  |        Padding          |  |   |
+|  |  |  +-------------------+  |  |   |
+|  |  |  |     Content       |  |  |   |
+|  |  |  +-------------------+  |  |   |
+|  |  +-------------------------+  |   |
+|  +-------------------------------+   |
++--------------------------------------+
+```
+
+---
+
+### Property Summary
+
+| Property | Purpose |
+|----------|---------|
+| `width` | Sets the content width (default behavior). |
+| `height` | Sets the content height (default behavior). |
+| `padding` | Creates space inside the border. |
+| `border` | Draws the element boundary. |
+| `margin` | Creates space outside the element. |
+| `box-sizing` | Controls how dimensions are calculated. |
+
+---
+
+### `content-box` vs `border-box`
+
+| Feature | `content-box` | `border-box` |
+|---------|---------------|--------------|
+| Browser default | ✅ Yes | ❌ No |
+| Width applies to | Content only | Entire element |
+| Padding affects rendered size | ✅ Yes | ❌ No |
+| Border affects rendered size | ✅ Yes | ❌ No |
+| Recommended for modern projects | ❌ Rarely | ✅ Yes |
+
+---
+
+### Size Calculations
+
+#### `content-box`
+
+```text
+Rendered Size
+
+= Content
++ Padding
++ Border
+```
+
+```text
+Occupied Size
+
+= Rendered Size
++ Margin
+```
+
+#### `border-box`
+
+```text
+Declared Size
+
+= Content
++ Padding
++ Border
+```
+
+The browser automatically adjusts the content area to fit within the declared dimensions.
+
+---
+
+### Margin Collapse
+
+Remember:
+
+- ✅ Only **vertical margins** collapse.
+- ❌ Horizontal margins never collapse.
+- ❌ Margins do not collapse inside Flexbox or Grid layouts.
+- ✅ The larger vertical margin wins.
+
+---
+
+### Common Rules
+
+- Use **padding** for internal spacing.
+- Use **margin** for spacing between elements.
+- Prefer `box-sizing: border-box` in new projects.
+- Use browser Developer Tools to inspect the Box Model.
+- Be aware of margin collapse in block layouts.
+
+---
+
+### Commonly Confused Concepts
+
+| Concept | Meaning |
+|---------|---------|
+| Content | Actual element content |
+| Padding | Internal spacing |
+| Border | Element boundary |
+| Margin | External spacing |
+| Rendered Size | Content + Padding + Border |
+| Occupied Size | Rendered Size + Margin |
+
+---
+
+### Interview Cheat Sheet
+
+**Q:** What are the four parts of the CSS Box Model?
+
+**A:** Content, Padding, Border, Margin.
+
+---
+
+**Q:** Which `box-sizing` value is the browser default?
+
+**A:** `content-box`
+
+---
+
+**Q:** Which `box-sizing` value is recommended for modern websites?
+
+**A:** `border-box`
+
+---
+
+**Q:** Do horizontal margins collapse?
+
+**A:** No.
+
+---
+
+**Q:** Which property creates space inside an element?
+
+**A:** `padding`
+
+---
+
+**Q:** Which property creates space outside an element?
+
+**A:** `margin`
+
+---
+
+> 💡 **Quick Tip:** If an element's size looks wrong, inspect it in your browser's Developer Tools and check each Box Model layer individually. Most sizing issues become obvious when you examine **Content → Padding → Border → Margin** in order.
