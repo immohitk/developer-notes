@@ -3818,3 +3818,235 @@ Then determine:
 3. **Occupied Size**
 
 Following this sequence helps avoid mistakes and demonstrates a solid understanding of the CSS Box Model during technical interviews.
+
+
+---
+
+
+## Practice Exercises
+
+Practice is the best way to master the CSS Box Model. Complete the following exercises before moving to the next chapter.
+
+---
+
+## 🟢 Beginner Exercises
+
+### Exercise 1
+
+Create a `<div>` that has:
+
+- Width: `300px`
+- Height: `150px`
+
+---
+
+### Exercise 2
+
+Add:
+
+- `padding: 20px`
+
+Observe how the element changes.
+
+---
+
+### Exercise 3
+
+Add:
+
+```css
+border: 2px solid royalblue;
+```
+
+Notice how the border surrounds both the content and padding.
+
+---
+
+### Exercise 4
+
+Add:
+
+```css
+margin: 30px;
+```
+
+Observe the spacing between this element and nearby elements.
+
+---
+
+### Exercise 5
+
+Experiment with different shorthand values.
+
+Try:
+
+```css
+padding: 10px;
+padding: 10px 20px;
+padding: 10px 20px 30px;
+padding: 10px 20px 30px 40px;
+```
+
+Repeat the same exercise using `margin`.
+
+---
+
+## 🟡 Intermediate Exercises
+
+### Exercise 6
+
+Create three cards with equal spacing.
+
+Requirements:
+
+- Width: `250px`
+- Padding: `20px`
+- Border: `1px solid #ddd`
+- Margin: `20px`
+
+---
+
+### Exercise 7
+
+Build a centered container.
+
+Requirements:
+
+```css
+max-width: 960px;
+margin: 0 auto;
+padding: 24px;
+```
+
+---
+
+### Exercise 8
+
+Create a responsive button.
+
+Requirements:
+
+- Comfortable padding
+- Thin border
+- Consistent spacing
+
+---
+
+### Exercise 9
+
+Compare:
+
+```css
+box-sizing: content-box;
+```
+
+and
+
+```css
+box-sizing: border-box;
+```
+
+Use identical styles for both elements and compare:
+
+- Rendered width
+- Occupied width
+- Overall appearance
+
+---
+
+### Exercise 10
+
+Inspect each example using your browser's Developer Tools and identify:
+
+- Content
+- Padding
+- Border
+- Margin
+
+---
+
+## 🔵 Challenge Project
+
+Build a **Product Card**.
+
+Include:
+
+- Product image
+- Product name
+- Description
+- Price
+- "Add to Cart" button
+
+Requirements:
+
+- Use padding for internal spacing.
+- Use margins to separate components.
+- Add subtle borders.
+- Use `box-sizing: border-box`.
+- Keep the card responsive.
+
+---
+
+## 💼 Mini Project
+
+Create a **Pricing Section** with three pricing cards.
+
+Each card should include:
+
+- Plan name
+- Price
+- Feature list
+- Button
+
+Use:
+
+- Consistent padding
+- Equal margins
+- Matching borders
+- Responsive sizing
+- A global `border-box` rule
+
+---
+
+## ✅ Self-Assessment Checklist
+
+Before moving on, make sure you can:
+
+- Explain all four Box Model layers.
+- Distinguish between padding and margin.
+- Calculate rendered and occupied sizes.
+- Explain `content-box` and `border-box`.
+- Describe margin collapse.
+- Build responsive components using the Box Model.
+- Debug layout issues using Developer Tools.
+
+If you answered **Yes** to every item, you're ready for the next chapter.
+
+---
+
+## 🚀 Bonus Challenge
+
+Recreate the layout of a simple documentation page.
+
+Include:
+
+- Header
+- Navigation
+- Main content area
+- Sidebar
+- Footer
+
+Focus on using the Box Model effectively rather than advanced layout techniques.
+
+Use only:
+
+- Width
+- Height
+- Padding
+- Border
+- Margin
+- `box-sizing`
+
+Avoid using Flexbox or Grid for this challenge. The goal is to strengthen your understanding of the Box Model alone.
+
+> 💡 **Challenge:** After completing the project, inspect every major element in your browser's Developer Tools. Verify that you can identify the **Content**, **Padding**, **Border**, and **Margin** layers for each component.
