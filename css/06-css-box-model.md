@@ -1423,3 +1423,238 @@ A common interview question is:
 A strong answer is:
 
 > Because it makes width and height calculations predictable by including padding and borders inside the declared dimensions, reducing unexpected layout issues.
+
+
+---
+
+
+## Content Box vs Border Box
+
+The `box-sizing` property supports two sizing models:
+
+- `content-box` *(default)*
+- `border-box`
+
+The difference lies in **how the browser interprets the specified `width` and `height`**.
+
+---
+
+## Content Box
+
+The default sizing model is:
+
+```css
+box-sizing: content-box;
+```
+
+In this model:
+
+- `width` and `height` apply **only to the content area**.
+- Padding and borders are **added outside** the declared dimensions.
+
+### Example
+
+```css
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid royalblue;
+    box-sizing: content-box;
+}
+```
+
+### Browser Calculation
+
+```text
+Specified Width      : 300px
++ Left Padding       : 20px
++ Right Padding      : 20px
++ Left Border        : 5px
++ Right Border       : 5px
+--------------------------------
+Rendered Width       : 350px
+```
+
+Formula:
+
+```text
+300 + 20 + 20 + 5 + 5 = 350px
+```
+
+---
+
+## Border Box
+
+Now consider:
+
+```css
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid royalblue;
+    box-sizing: border-box;
+}
+```
+
+Here:
+
+- The **total rendered width remains 300px**.
+- Padding and borders are included within that width.
+- The browser automatically reduces the content area to make everything fit.
+
+### Browser Calculation
+
+```text
+Total Width          : 300px
+
+Inside that width:
+
+Left Padding         : 20px
+Right Padding        : 20px
+Left Border          : 5px
+Right Border         : 5px
+
+Remaining Space
+
+Content Width        : 250px
+```
+
+Formula:
+
+```text
+300 - 20 - 20 - 5 - 5 = 250px
+```
+
+---
+
+## Side-by-Side Comparison
+
+| Feature | `content-box` | `border-box` |
+|---------|---------------|--------------|
+| Default browser behavior | ✅ Yes | ❌ No |
+| Width applies to | Content only | Entire element |
+| Padding increases rendered size | ✅ Yes | ❌ No |
+| Border increases rendered size | ✅ Yes | ❌ No |
+| Easier for responsive layouts | ❌ No | ✅ Yes |
+| Preferred for modern projects | ❌ Rarely | ✅ Yes |
+
+---
+
+## Visual Comparison
+
+### `content-box`
+
+```text
+Specified Width
+
++-----------+
+| Content   |
++-----------+
+
+↓
+
+Padding Added
+
+↓
+
+Border Added
+
+↓
+
+Final element becomes larger
+```
+
+---
+
+### `border-box`
+
+```text
+Specified Width
+
++-----------------------+
+| Border                |
+|  Padding              |
+|   Content             |
++-----------------------+
+
+Everything fits inside
+the declared width.
+```
+
+---
+
+## When Should You Use Each?
+
+### Use `content-box` when:
+
+- Learning the Box Model.
+- Working with legacy code.
+- You specifically want the content area to remain fixed.
+
+### Use `border-box` when:
+
+- Building responsive websites.
+- Creating layouts with cards and grids.
+- Designing forms.
+- Developing dashboards.
+- Starting any new CSS project.
+
+Most modern frontend development uses `border-box`.
+
+---
+
+### Advantages of `border-box`
+
+- Predictable sizing.
+- Simpler calculations.
+- Fewer layout bugs.
+- Easier responsive design.
+- Consistent component dimensions.
+
+---
+
+### 🌍 Real-World Usage
+
+Most CSS frameworks and design systems—including Bootstrap, Tailwind CSS, Bulma, and many custom CSS resets—apply:
+
+```css
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+```
+
+This ensures consistent sizing across every element.
+
+---
+
+### 📌 Did You Know?
+
+Many developers spend hours debugging layouts before realizing the issue is caused by the default:
+
+```css
+box-sizing: content-box;
+```
+
+Switching to `border-box` often makes layouts much more predictable.
+
+---
+
+### ⚠️ Important
+
+Changing the `box-sizing` value changes **how dimensions are calculated**, not the visual styling itself.
+
+The same CSS properties can produce different rendered sizes depending on the active sizing model.
+
+---
+
+### 🎯 Interview Insight
+
+One of the most frequently asked CSS interview questions is:
+
+> **Which is better: `content-box` or `border-box`?**
+
+A strong answer is:
+
+> `content-box` is the browser default and useful for understanding the Box Model, but `border-box` is preferred in modern development because it includes padding and borders within the declared dimensions, making layouts easier to build and maintain.
