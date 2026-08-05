@@ -982,3 +982,255 @@ A concise answer is:
 - **Margin** creates space **outside** an element.
 - **Padding** is included inside the border.
 - **Margin** separates elements from each other.
+
+
+---
+
+
+## Width and Height
+
+The **`width`** and **`height`** properties specify the dimensions of an HTML element.
+
+By default, these properties define the size of the **content area only** because browsers use:
+
+```css
+box-sizing: content-box;
+```
+
+unless you specify otherwise.
+
+### Syntax
+
+```css
+selector {
+    width: value;
+    height: value;
+}
+```
+
+### Example
+
+```css
+.card {
+    width: 300px;
+    height: 150px;
+}
+```
+
+This creates a content area that is:
+
+- **300px wide**
+- **150px high**
+
+No padding, border, or margin is included in these values.
+
+---
+
+### Common Units
+
+| Unit | Description | Example |
+|------|-------------|---------|
+| `px` | Fixed pixels | `300px` |
+| `%` | Percentage of the parent element | `50%` |
+| `vw` | Percentage of the viewport width | `80vw` |
+| `vh` | Percentage of the viewport height | `60vh` |
+| `rem` | Relative to the root font size | `20rem` |
+| `auto` | Browser calculates the size | `width: auto;` |
+
+---
+
+### Example with the Box Model
+
+```css
+.card {
+    width: 300px;
+    padding: 20px;
+    border: 4px solid royalblue;
+    margin: 30px;
+}
+```
+
+The declared width is:
+
+```text
+300px
+```
+
+However, the element occupies more space because of the padding, border, and margin.
+
+---
+
+## Specified Size vs Rendered Size vs Occupied Size
+
+Understanding these three measurements is essential.
+
+### 1. Specified Size
+
+The value written in your CSS.
+
+```css
+width: 300px;
+```
+
+Specified Width:
+
+```text
+300px
+```
+
+---
+
+### 2. Rendered Size
+
+The actual size of the element itself.
+
+Calculation:
+
+```text
+Specified Width      : 300px
++ Left Padding       : 20px
++ Right Padding      : 20px
++ Left Border        : 4px
++ Right Border       : 4px
+--------------------------------
+Rendered Width       : 348px
+```
+
+Formula:
+
+```text
+Content
++ Padding
++ Border
+```
+
+---
+
+### 3. Occupied Size
+
+The total horizontal space used within the layout.
+
+Calculation:
+
+```text
+Rendered Width       : 348px
++ Left Margin        : 30px
++ Right Margin       : 30px
+--------------------------------
+Occupied Width       : 408px
+```
+
+Formula:
+
+```text
+Content
++ Padding
++ Border
++ Margin
+```
+
+---
+
+### Visual Representation
+
+```text
+Specified Width
+
++-----------------------------+
+|         Content             |
++-----------------------------+
+
+↓
+
+Rendered Width
+
++===================================+
+| Border                            |
+|  +-----------------------------+  |
+|  | Padding                     |  |
+|  |  +-----------------------+  |  |
+|  |  |      Content          |  |  |
+|  |  +-----------------------+  |  |
+|  +-----------------------------+  |
++===================================+
+
+↓
+
+Occupied Width
+
+<------ Margin ------>
+
++===================================+
+| Border                            |
+|  +-----------------------------+  |
+|  | Padding                     |  |
+|  |  +-----------------------+  |  |
+|  |  |      Content          |  |  |
+|  |  +-----------------------+  |  |
+|  +-----------------------------+  |
++===================================+
+
+<------ Margin ------>
+```
+
+---
+
+### Advantages
+
+- Gives precise control over element dimensions.
+- Supports responsive layouts through flexible units.
+- Works consistently with the Box Model.
+
+### Limitations
+
+- Fixed sizes may not adapt well to different screen sizes.
+- Default `content-box` sizing often surprises beginners.
+- Large fixed widths can cause horizontal scrolling.
+
+> 💡 **Pro Tip:** Prefer responsive units such as `%`, `rem`, `vw`, and `vh` whenever appropriate. Reserve fixed pixel values for elements that truly require fixed dimensions.
+
+### 🌍 Real-World Usage
+
+The `width` and `height` properties are commonly used for:
+
+- Cards
+- Images
+- Buttons
+- Forms
+- Containers
+- Sidebars
+- Hero sections
+
+Nearly every webpage uses these properties to control layout.
+
+### 📌 Did You Know?
+
+If you don't specify a width, many block-level elements automatically expand to fill the available horizontal space.
+
+For example:
+
+```css
+div {
+    width: auto;
+}
+```
+
+This is the default behavior for most block elements.
+
+### ⚠️ Important
+
+When using the default:
+
+```css
+box-sizing: content-box;
+```
+
+the specified `width` does **not** represent the element's final rendered width.
+
+Padding and borders are added outside the declared width.
+
+We'll solve this in the next section using:
+
+```css
+box-sizing: border-box;
+```
