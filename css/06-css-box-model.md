@@ -4050,3 +4050,40 @@ Use only:
 Avoid using Flexbox or Grid for this challenge. The goal is to strengthen your understanding of the Box Model alone.
 
 > 💡 **Challenge:** After completing the project, inspect every major element in your browser's Developer Tools. Verify that you can identify the **Content**, **Padding**, **Border**, and **Margin** layers for each component.
+
+
+---
+
+## Related Topics
+
+### Previous Topics
+
+- [CSS Basics](01-css-basics.md)
+- [Ways to Add CSS](02-ways-to-add-css.md)
+- [CSS Selectors](03-css-selectors.md)
+- [CSS Colors](04-css-colors.md)
+- [CSS Text and Fonts](05-css-text-and-fonts.md)
+
+### Next Topics
+
+- [CSS Display](07-css-display.md)
+- [CSS Units](08-css-units.md)
+- [CSS Position](09-css-position.md)
+- [CSS Z-Index](10-css-z-index.md)
+- [CSS Backgrounds](11-css-backgrounds.md)
+- [CSS Flexbox](12-css-flexbox.md)
+- [CSS Media Queries](13-css-media-queries.md)
+- [CSS Transforms](14-css-transforms.md)
+- [CSS Transitions](15-css-transitions.md)
+- [CSS Animations](16-css-animations.md)
+- [CSS Pseudo-Classes](17-css-pseudo-classes.md)
+- [CSS Pseudo-Elements](18-css-pseudo-elements.md)
+- [CSS Variables](19-css-variables.md)
+- [CSS Grid](20-css-grid.md)
+- [CSS Overflow](21-css-overflow.md)
+- [CSS Opacity](22-css-opacity.md)
+- [CSS Object Fit](23-css-object-fit.md)
+- [CSS Cursor](24-css-cursor.md)
+- [CSS Functions](25-css-functions.md)
+- [CSS Specificity](26-css-specificity.md)
+- [CSS Best Practices](27-css-best-practices.md)
