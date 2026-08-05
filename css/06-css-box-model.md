@@ -2889,3 +2889,51 @@ The browser automatically adjusts the content size to keep the overall dimension
 - ✅ Think in terms of **Specified Size → Rendered Size → Occupied Size**.
 
 > 💡 **Remember:** Understanding the Box Model is the foundation of CSS layouts. Once you master it, learning Flexbox, Grid, and responsive design becomes significantly easier.
+
+
+---
+
+
+## References
+
+The following resources provide reliable documentation and specifications for the CSS Box Model and related properties.
+
+### Official Documentation
+
+- **MDN Web Docs** – Introduction to the CSS Box Model
+- **MDN Web Docs** – `box-sizing`
+- **MDN Web Docs** – `width`
+- **MDN Web Docs** – `height`
+- **MDN Web Docs** – `padding`
+- **MDN Web Docs** – `border`
+- **MDN Web Docs** – `margin`
+
+### Specifications
+
+- **CSS Basic User Interface Module Level 4** (`box-sizing`)
+- **CSS Box Model Module Level 3**
+- **CSS Display Module Level 3**
+- **CSS Sizing Module Level 3**
+
+### Browser Developer Tools
+
+To better understand the Box Model in practice, explore the Box Model panel in your browser's Developer Tools.
+
+Supported browsers include:
+
+- Google Chrome DevTools
+- Microsoft Edge DevTools
+- Mozilla Firefox Developer Tools
+- Safari Web Inspector
+
+### Recommended Reading
+
+After completing this chapter, continue with:
+
+- CSS Display
+- CSS Units
+- CSS Position
+- CSS Overflow
+- CSS Flexbox
+- CSS Grid
+- Responsive Web Design
