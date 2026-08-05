@@ -524,3 +524,211 @@ A good answer is:
 - **Margin** adds space **outside** an element, separating it from neighboring elements.
 
 This is one of the most frequently asked CSS fundamentals.
+
+
+---
+
+
+## Border
+
+The **`border`** property creates a line around an element's **content and padding**.
+
+Borders are commonly used to visually separate elements, highlight important content, and define the boundaries of UI components.
+
+### Position in the Box Model
+
+```text
++---------------------------+
+|          Margin           |
+|  +=====================+  |
+|  ||      Border       ||  |
+|  || +---------------+ ||  |
+|  || |    Padding    | ||  |
+|  || | +-----------+ | ||  |
+|  || | |  Content  | | ||  |
+|  || | +-----------+ | ||  |
+|  || +---------------+ ||  |
+|  +=====================+  |
++---------------------------+
+```
+
+The border surrounds both the **content** and the **padding**, but it is still inside the margin.
+
+### Syntax
+
+#### Shorthand
+
+```css
+border: 2px solid royalblue;
+```
+
+This combines:
+
+- Border Width
+- Border Style
+- Border Color
+
+#### Individual Properties
+
+```css
+border-width: 2px;
+border-style: solid;
+border-color: royalblue;
+```
+
+### Common Border Styles
+
+| Value | Description |
+|--------|-------------|
+| `solid` | A single continuous line |
+| `dashed` | A dashed line |
+| `dotted` | A dotted line |
+| `double` | Two parallel lines |
+| `groove` | A carved 3D effect |
+| `ridge` | A raised 3D effect |
+| `inset` | Makes the element appear pressed inward |
+| `outset` | Makes the element appear raised |
+| `none` | No border |
+
+### Individual Border Sides
+
+```css
+border-top: 2px solid red;
+border-right: 2px solid blue;
+border-bottom: 2px solid green;
+border-left: 2px solid orange;
+```
+
+Each side can have its own width, style, and color.
+
+### Example
+
+**HTML**
+
+```html
+<div class="card">
+    CSS Border Example
+</div>
+```
+
+**CSS**
+
+```css
+.card {
+    width: 220px;
+    padding: 20px;
+    border: 4px solid royalblue;
+}
+```
+
+The border appears around the content and padding.
+
+### Browser Calculation
+
+```css
+.card {
+    width: 220px;
+    padding: 20px;
+    border: 4px solid;
+}
+```
+
+The browser calculates:
+
+```text
+Specified Width      : 220px
++ Left Padding       : 20px
++ Right Padding      : 20px
++ Left Border        : 4px
++ Right Border       : 4px
+--------------------------------
+Rendered Width       : 268px
+```
+
+Calculation:
+
+```text
+220 + 20 + 20 + 4 + 4 = 268px
+```
+
+### Before vs After
+
+**Without Border**
+
+```text
+Hello CSS!
+```
+
+**With `border: 2px solid`**
+
+```text
++----------------+
+|   Hello CSS!   |
++----------------+
+```
+
+Borders clearly define the boundaries of an element.
+
+### Advantages
+
+- Visually separates elements.
+- Highlights important content.
+- Improves UI structure.
+- Supports different colors and styles.
+
+### Limitations
+
+- Increases the rendered size when using `content-box`.
+- Thick borders may reduce available content space visually.
+- Decorative border styles should be used sparingly.
+
+> 💡 **Pro Tip:** Most modern websites use subtle borders (typically `1px solid`) with light gray colors to separate cards, forms, and sections without overwhelming the design.
+
+### 🌍 Real-World Usage
+
+Borders are commonly used for:
+
+- Buttons
+- Cards
+- Input fields
+- Tables
+- Navigation menus
+- Alerts
+- Profile sections
+
+Almost every modern UI framework uses borders to organize content.
+
+### 📌 Did You Know?
+
+If no `border-style` is specified, the border will **not be visible**, even if you set a width and color.
+
+For example:
+
+```css
+border-width: 2px;
+border-color: red;
+```
+
+This will not display a border because the default style is `none`.
+
+### ⚠️ Important
+
+The border becomes part of the element's total size.
+
+When using:
+
+```css
+box-sizing: content-box;
+```
+
+the border is **added outside** the specified width and height.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Why isn't my border showing?**
+
+A good answer is:
+
+The border usually isn't visible because `border-style` hasn't been specified. A visible border requires a width, a style (such as `solid`), and optionally a color.
