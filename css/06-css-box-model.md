@@ -2571,3 +2571,200 @@ Answering these four questions first leads to cleaner and more consistent layout
 Nearly every interface you use—including dashboards, e-commerce websites, blogs, documentation sites, and mobile applications—is built by combining these same Box Model principles.
 
 Whether you're creating a card, a modal dialog, a navigation bar, or a pricing table, the Box Model determines how each component occupies space.
+
+
+---
+
+
+## Which `box-sizing` Should You Use?
+
+Now that you understand both sizing models, the next question is:
+
+> **Which one should you use in your projects?**
+
+The answer depends on your goals, but for **most modern websites and web applications**, the recommended choice is:
+
+```css
+box-sizing: border-box;
+```
+
+---
+
+## Why Most Developers Prefer `border-box`
+
+With `border-box`, the declared width and height already include:
+
+- Content
+- Padding
+- Border
+
+This makes sizing much more predictable.
+
+Example:
+
+```css
+.card {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid #333;
+    box-sizing: border-box;
+}
+```
+
+No matter how much padding or border you add, the rendered width remains:
+
+```text
+300px
+```
+
+This makes layouts easier to design and maintain.
+
+---
+
+## When Should You Use `content-box`?
+
+Use `content-box` when:
+
+- Learning how the Box Model works.
+- Maintaining older projects that already use it.
+- You specifically want the content area to remain a fixed size regardless of padding or borders.
+
+Example:
+
+```css
+.image-container {
+    width: 300px;
+    box-sizing: content-box;
+}
+```
+
+Remember that padding and borders will increase the rendered size.
+
+---
+
+## When Should You Use `border-box`?
+
+Use `border-box` when building:
+
+- Responsive websites
+- Dashboards
+- Blogs
+- Landing pages
+- E-commerce websites
+- Forms
+- Navigation bars
+- Card layouts
+- Component libraries
+
+In practice, this means **almost every new project**.
+
+---
+
+## Global Best Practice
+
+Many developers set `border-box` globally.
+
+```css
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+```
+
+Benefits:
+
+- Predictable element sizing.
+- Easier layout calculations.
+- Fewer unexpected overflow issues.
+- More consistent spacing across components.
+
+---
+
+## Comparison
+
+| Situation | Recommended Value |
+|-----------|-------------------|
+| Learning the Box Model | `content-box` |
+| Legacy projects | `content-box` (if already used) |
+| New websites | `border-box` |
+| Responsive layouts | `border-box` |
+| Component libraries | `border-box` |
+| Modern frontend applications | `border-box` |
+
+---
+
+## Why Frameworks Prefer `border-box`
+
+Popular CSS frameworks and design systems typically use `border-box` because it:
+
+- Reduces layout bugs.
+- Makes component sizes predictable.
+- Simplifies responsive design.
+- Produces more maintainable code.
+
+---
+
+## Decision Flow
+
+```text
+Starting a new project?
+        │
+        ▼
+      Yes
+        │
+        ▼
+Use box-sizing: border-box;
+
+        │
+        ▼
+Need compatibility with an older codebase?
+
+        │
+      Yes
+        │
+        ▼
+Consider keeping content-box
+unless you're ready to refactor.
+```
+
+---
+
+## Advantages of Using `border-box`
+
+- Predictable dimensions.
+- Easier maintenance.
+- Better responsive layouts.
+- Simpler Box Model calculations.
+- Widely adopted by the frontend community.
+
+---
+
+## Limitations
+
+- Older tutorials may assume the default `content-box` behavior.
+- When working on legacy code, changing the sizing model globally may affect existing layouts and should be tested carefully.
+
+> 💡 **Pro Tip:** If you're starting a brand-new project, begin with a global `border-box` rule. It reduces layout surprises and is considered a standard practice in modern CSS development.
+
+### 🌍 Real-World Usage
+
+Professional teams often include a global `border-box` rule in their CSS reset or base stylesheet before writing any other styles. This establishes consistent sizing behavior across the entire application.
+
+### 📌 Did You Know?
+
+Many layout issues that beginners try to solve by adjusting widths are actually caused by forgetting that `padding` and `border` affect the rendered size when using `content-box`.
+
+### ⚠️ Important
+
+Choosing `border-box` doesn't eliminate the Box Model—it simply changes **how the browser calculates dimensions**. Understanding the Box Model is still essential, regardless of which sizing model you use.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Why is `box-sizing: border-box` considered a best practice?**
+
+A strong answer is:
+
+> It makes width and height calculations more predictable by including padding and borders within the declared dimensions. This simplifies layout development and reduces unexpected sizing issues, especially in responsive designs.
