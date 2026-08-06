@@ -2969,3 +2969,322 @@ Professional frontend teams often follow a simple pattern:
 - **Inline** for text-level content.
 
 Choosing the right display value early makes layouts easier to maintain, extend, and debug as projects grow.
+
+
+---
+
+
+# Common Mistakes
+
+The `display` property is simple to use, but choosing the wrong value can lead to confusing layouts.
+
+The following are some of the most common mistakes and how to avoid them.
+
+---
+
+## 1. Applying Width and Height to Inline Elements
+
+❌ **Avoid**
+
+```css
+span {
+    display: inline;
+    width: 200px;
+    height: 100px;
+}
+```
+
+Expecting the element to become larger.
+
+---
+
+✅ **Better**
+
+```css
+span {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+}
+```
+
+💡 **Why**
+
+Normal inline elements generally ignore explicit `width` and `height`.
+
+---
+
+## 2. Using `inline-block` for Complex Layouts
+
+❌ **Avoid**
+
+Building entire page layouts with:
+
+```css
+display: inline-block;
+```
+
+---
+
+✅ **Better**
+
+Use:
+
+```css
+display: flex;
+```
+
+or
+
+```css
+display: grid;
+```
+
+💡 **Why**
+
+Flexbox and Grid are designed specifically for modern layouts and provide much better alignment and spacing controls.
+
+---
+
+## 3. Confusing `display: none` with `display: contents`
+
+❌ **Avoid**
+
+Assuming both values behave the same.
+
+---
+
+✅ **Better**
+
+Remember:
+
+```text
+display: none
+```
+
+removes the element **and its layout box**.
+
+```text
+display: contents
+```
+
+removes only the element's own box while keeping its children visible.
+
+💡 **Why**
+
+These values solve different problems and should not be used interchangeably.
+
+---
+
+## 4. Using Grid for Simple One-Dimensional Layouts
+
+❌ **Avoid**
+
+```css
+.container {
+    display: grid;
+}
+```
+
+for a simple horizontal navigation bar.
+
+---
+
+✅ **Better**
+
+```css
+.container {
+    display: flex;
+}
+```
+
+💡 **Why**
+
+Flexbox is simpler and better suited for one-dimensional layouts.
+
+---
+
+## 5. Using Flexbox for Complex Two-Dimensional Layouts
+
+❌ **Avoid**
+
+Trying to create an entire dashboard with nested Flexbox containers alone.
+
+---
+
+✅ **Better**
+
+Use:
+
+```css
+display: grid;
+```
+
+for the overall page structure and Flexbox where component-level alignment is needed.
+
+💡 **Why**
+
+Grid was designed for layouts involving both rows and columns.
+
+---
+
+## 6. Forgetting Default Display Values
+
+❌ **Avoid**
+
+Assuming every HTML element behaves like a block element.
+
+---
+
+✅ **Better**
+
+Learn common defaults such as:
+
+- `<div>` → `block`
+- `<span>` → `inline`
+- `<a>` → `inline`
+
+💡 **Why**
+
+Knowing the defaults makes layout behavior easier to predict.
+
+---
+
+## 7. Overusing Extra Wrapper Elements
+
+❌ **Avoid**
+
+```html
+<div>
+    <div>
+        <div>
+            Content
+        </div>
+    </div>
+</div>
+```
+
+without a layout or semantic reason.
+
+---
+
+✅ **Better**
+
+Keep the HTML structure as simple as possible.
+
+💡 **Why**
+
+Simpler markup is easier to style, debug, and maintain.
+
+---
+
+## 8. Changing Display Without Considering Layout Impact
+
+❌ **Avoid**
+
+Changing:
+
+```css
+display: block;
+```
+
+to:
+
+```css
+display: inline;
+```
+
+without considering how nearby elements will behave.
+
+---
+
+✅ **Better**
+
+Think about:
+
+- Line breaks
+- Width behavior
+- Layout flow
+- Spacing
+
+before changing the display value.
+
+💡 **Why**
+
+Changing `display` often affects multiple aspects of the layout.
+
+---
+
+## 9. Hiding Elements Unnecessarily
+
+❌ **Avoid**
+
+Using:
+
+```css
+display: none;
+```
+
+for content that users should still be able to access.
+
+---
+
+✅ **Better**
+
+Hide elements only when they should not participate in the current layout.
+
+💡 **Why**
+
+Removing content from the layout changes how surrounding elements are positioned.
+
+---
+
+## 10. Guessing Instead of Inspecting
+
+❌ **Avoid**
+
+Changing multiple CSS properties without understanding the actual issue.
+
+---
+
+✅ **Better**
+
+Use your browser's Developer Tools to inspect:
+
+- Computed `display`
+- Box Model
+- Flexbox overlay
+- Grid overlay
+
+💡 **Why**
+
+Developer Tools provide accurate information about how the browser is rendering your layout.
+
+---
+
+## Common Mistake Summary
+
+| Mistake | Better Approach |
+|----------|-----------------|
+| Applying width to inline elements | Use `inline-block` when dimensions are needed |
+| Using `inline-block` for layouts | Prefer Flexbox or Grid |
+| Confusing `none` and `contents` | Understand their different behaviors |
+| Using Grid for one-dimensional layouts | Use Flexbox |
+| Forgetting default display values | Learn common HTML defaults |
+| Guessing layout issues | Inspect Developer Tools |
+
+---
+
+> 💡 **Pro Tip:** Before changing multiple CSS properties, verify that the element is using the correct `display` value. Many layout issues are caused by an inappropriate display type rather than problems with margins, padding, or positioning.
+
+### 🌍 Real-World Usage
+
+Professional frontend developers typically troubleshoot layout issues in this order:
+
+1. Check the computed `display` value.
+2. Verify the element's layout role.
+3. Inspect the Box Model.
+4. Examine Flexbox or Grid overlays (if applicable).
+5. Adjust spacing or sizing only after confirming the layout behavior.
+
+Following this systematic approach makes debugging faster and more reliable.
