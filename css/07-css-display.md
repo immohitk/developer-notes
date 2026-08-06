@@ -1306,3 +1306,174 @@ A common interview question is:
 A strong answer is:
 
 > `display: none` removes both the element and its children from rendering. `display: contents` removes only the element's own box while leaving its child elements visible and participating in the layout.
+
+
+---
+
+
+## `display: flex`
+
+The value:
+
+```css
+display: flex;
+```
+
+turns an element into a **Flexbox container**.
+
+Its direct child elements become **flex items**, allowing them to be arranged and aligned more easily than with traditional layout methods.
+
+Flexbox is designed primarily for **one-dimensional layouts**, meaning it arranges items in a single row or a single column.
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: flex;
+}
+```
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div class="container">
+    <div>HTML</div>
+    <div>CSS</div>
+    <div>JavaScript</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Result:
+
+```text
++--------+  +--------+  +--------------+
+| HTML   |  | CSS    |  | JavaScript   |
++--------+  +--------+  +--------------+
+```
+
+Instead of stacking vertically like block elements, the child elements are arranged in a row by default.
+
+---
+
+## Default Behavior
+
+When an element becomes a Flexbox container:
+
+- Child elements are placed in a row by default.
+- Items can grow or shrink based on available space.
+- Alignment becomes much easier.
+- The container controls the layout of its direct children.
+
+---
+
+## Why Use Flexbox?
+
+Flexbox makes common layout tasks much simpler.
+
+It is especially useful for:
+
+- Horizontal navigation bars
+- Button groups
+- Toolbars
+- Card layouts
+- Centering content
+- Responsive user interfaces
+
+---
+
+## Flex Container vs Flex Items
+
+```text
+Flex Container
+│
+├── Flex Item
+├── Flex Item
+└── Flex Item
+```
+
+Only the **direct children** of the Flexbox container become flex items.
+
+---
+
+## Advantages
+
+- Easy horizontal and vertical alignment.
+- Responsive by design.
+- Reduces the need for floats and complex positioning.
+- Simplifies spacing between items.
+
+---
+
+## Limitations
+
+- Primarily designed for one-dimensional layouts.
+- Requires understanding additional Flexbox properties such as `justify-content`, `align-items`, and `flex-direction`.
+- Only affects direct child elements.
+
+> 💡 **Pro Tip:** Use Flexbox when you want to arrange items in a single row or column. For two-dimensional layouts with rows and columns, Grid is usually a better choice.
+
+### 🌍 Real-World Usage
+
+Flexbox is commonly used for:
+
+- Navigation menus
+- Headers
+- Footers
+- Card rows
+- Search bars
+- Button groups
+- Responsive forms
+- Dashboard toolbars
+
+It is one of the most widely used CSS layout techniques today.
+
+### 📌 Did You Know?
+
+Changing just one property:
+
+```css
+display: flex;
+```
+
+can replace older layout techniques based on floats or `inline-block` in many situations.
+
+### ⚠️ Important
+
+This section is only an introduction to Flexbox.
+
+Later in the dedicated **CSS Flexbox** chapter, you'll learn:
+
+- `flex-direction`
+- `justify-content`
+- `align-items`
+- `align-content`
+- `flex-wrap`
+- `gap`
+- `flex-grow`
+- `flex-shrink`
+- `flex-basis`
+- and many more advanced concepts.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **When should you use Flexbox?**
+
+A strong answer is:
+
+> Flexbox is ideal for one-dimensional layouts where you need to arrange and align items in a single row or column. It simplifies alignment, spacing, and responsive layouts compared to older CSS techniques.
