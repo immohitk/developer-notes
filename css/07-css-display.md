@@ -2567,3 +2567,202 @@ To strengthen your understanding of the `display` property:
 ---
 
 > 💡 **Learning Tip:** Official documentation is the best source for understanding browser behavior and specification details. Use MDN as your primary reference during your CSS learning journey, and refer to the CSS specifications when you want to understand how features are formally defined.
+
+
+---
+
+
+# Quick Revision
+
+## What Does `display` Do?
+
+The `display` property determines **how an HTML element behaves in the document layout**.
+
+It controls:
+
+- Whether an element starts on a new line.
+- Whether it occupies the full available width.
+- Whether width and height are respected.
+- How child elements are arranged.
+- Whether the element participates in the page layout.
+
+---
+
+## Most Common Display Values
+
+| Display | Primary Purpose |
+|----------|-----------------|
+| `block` | Structural page layout |
+| `inline` | Text flow |
+| `inline-block` | Inline elements with dimensions |
+| `none` | Hide elements |
+| `contents` | Remove wrapper box |
+| `flex` | One-dimensional layout |
+| `grid` | Two-dimensional layout |
+
+---
+
+## Behavior Comparison
+
+| Feature | Block | Inline | Inline-Block |
+|----------|-------|--------|--------------|
+| Starts on new line | ✅ | ❌ | ❌ |
+| Supports width | ✅ | ❌ (generally) | ✅ |
+| Supports height | ✅ | ❌ (generally) | ✅ |
+| Occupies full width | ✅ | ❌ | ❌ |
+| Flows with text | ❌ | ✅ | ✅ |
+
+---
+
+## Flex vs Grid
+
+| Flexbox | Grid |
+|----------|------|
+| One-dimensional | Two-dimensional |
+| Row or column | Rows and columns |
+| Component layouts | Page layouts |
+| Navigation bars | Dashboards |
+| Toolbars | Galleries |
+| Button groups | Product grids |
+
+---
+
+## Which Display Should You Choose?
+
+```text
+Need page structure?
+
+↓
+
+block
+
+──────────────
+
+Need inline text?
+
+↓
+
+inline
+
+──────────────
+
+Need width and height while remaining inline?
+
+↓
+
+inline-block
+
+──────────────
+
+Need one row or one column?
+
+↓
+
+flex
+
+──────────────
+
+Need rows and columns?
+
+↓
+
+grid
+
+──────────────
+
+Need to hide an element?
+
+↓
+
+none
+```
+
+---
+
+## Common HTML Defaults
+
+| HTML Element | Default Display |
+|--------------|-----------------|
+| `<div>` | `block` |
+| `<p>` | `block` |
+| `<section>` | `block` |
+| `<article>` | `block` |
+| `<span>` | `inline` |
+| `<a>` | `inline` |
+| `<strong>` | `inline` |
+| `<img>` | `inline` |
+| `<button>` | Usually `inline-block` |
+
+---
+
+## Key Rules
+
+- Block elements start on new lines.
+- Inline elements flow with surrounding text.
+- Inline-block combines inline flow with block sizing.
+- Flexbox arranges items in one dimension.
+- Grid arranges items in two dimensions.
+- `display: none` removes an element from the layout.
+- `display: contents` removes only the element's own box while preserving its children.
+
+---
+
+## Commonly Confused Concepts
+
+| Concept | Meaning |
+|----------|---------|
+| `block` | Structural layout element |
+| `inline` | Text-level layout |
+| `inline-block` | Inline flow with dimensions |
+| `none` | Completely removed from layout |
+| `contents` | Container disappears, children remain |
+| `flex` | Flexible one-dimensional container |
+| `grid` | Two-dimensional container |
+
+---
+
+## Interview Cheat Sheet
+
+**Q:** Which display value starts on a new line?
+
+**A:** `block`
+
+---
+
+**Q:** Which display value is used for text?
+
+**A:** `inline`
+
+---
+
+**Q:** Which display value supports width while remaining inline?
+
+**A:** `inline-block`
+
+---
+
+**Q:** Which display value removes an element from layout?
+
+**A:** `display: none`
+
+---
+
+**Q:** Which display value creates a Flexbox container?
+
+**A:** `display: flex`
+
+---
+
+**Q:** Which display value creates a Grid container?
+
+**A:** `display: grid`
+
+---
+
+**Q:** Which display value removes only the wrapper box?
+
+**A:** `display: contents`
+
+---
+
+> 💡 **Quick Tip:** When a layout isn't behaving as expected, inspect the element's computed `display` value first. Many CSS issues are caused by an element using the wrong display type rather than incorrect spacing or sizing.
