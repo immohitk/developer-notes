@@ -257,3 +257,230 @@ display: inline;
 ```
 
 Only its layout behavior changes.
+
+
+---
+
+
+## Block Elements
+
+A **block element** starts on a **new line** and, by default, expands to occupy the **full available width** of its parent container.
+
+Block elements are primarily used to structure the layout of a webpage.
+
+### Default Behavior
+
+When multiple block elements appear one after another, each starts on its own line.
+
+```text
++-----------------------------+
+|         Header              |
++-----------------------------+
+
++-----------------------------+
+|        Paragraph            |
++-----------------------------+
+
++-----------------------------+
+|         Footer              |
++-----------------------------+
+```
+
+Each element occupies its own row.
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: block;
+}
+```
+
+---
+
+## Common Block Elements
+
+The following HTML elements are block-level by default:
+
+| Element | Purpose |
+|----------|---------|
+| `<div>` | Generic container |
+| `<p>` | Paragraph |
+| `<h1>`–`<h6>` | Headings |
+| `<section>` | Content section |
+| `<article>` | Independent content |
+| `<header>` | Header section |
+| `<footer>` | Footer section |
+| `<main>` | Main page content |
+| `<nav>` | Navigation |
+| `<aside>` | Sidebar |
+
+---
+
+## Characteristics
+
+Block elements:
+
+- Start on a new line.
+- Expand to the available width by default.
+- Respect `width` and `height`.
+- Support `margin` and `padding` on all sides.
+- Can contain both block and inline elements (subject to HTML content rules).
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div>First Box</div>
+<div>Second Box</div>
+<div>Third Box</div>
+```
+
+### CSS
+
+```css
+div {
+    border: 2px solid royalblue;
+    padding: 10px;
+}
+```
+
+Result:
+
+```text
++---------------------+
+| First Box           |
++---------------------+
+
++---------------------+
+| Second Box          |
++---------------------+
+
++---------------------+
+| Third Box           |
++---------------------+
+```
+
+Each `<div>` automatically begins on a new line.
+
+---
+
+## Changing an Inline Element to Block
+
+Even inline elements can become block elements.
+
+```html
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+```
+
+```css
+span {
+    display: block;
+}
+```
+
+Result:
+
+```text
+HTML
+
+CSS
+
+JavaScript
+```
+
+Each `<span>` now occupies its own line.
+
+---
+
+## Width Behavior
+
+Without specifying a width:
+
+```css
+div {
+    display: block;
+}
+```
+
+The element stretches across the available horizontal space.
+
+To limit its width:
+
+```css
+div {
+    width: 300px;
+}
+```
+
+---
+
+## Advantages
+
+- Easy to build page layouts.
+- Supports explicit width and height.
+- Ideal for sections, containers, and structural elements.
+- Works naturally with the Box Model.
+
+---
+
+## Limitations
+
+- Always starts on a new line.
+- Cannot sit beside another block element without additional layout techniques (such as Flexbox, Grid, or other positioning methods).
+- May occupy more horizontal space than necessary if no width is specified.
+
+> 💡 **Pro Tip:** Use block elements for the main structure of your webpage—headers, sections, articles, sidebars, and containers are all natural candidates.
+
+### 🌍 Real-World Usage
+
+Block elements are commonly used for:
+
+- Page headers
+- Navigation sections
+- Hero banners
+- Content containers
+- Blog posts
+- Cards
+- Footers
+
+Almost every webpage begins with a hierarchy of block elements.
+
+### 📌 Did You Know?
+
+Even though block elements usually occupy the full available width, you can control their size using properties such as:
+
+```css
+width
+max-width
+min-width
+```
+
+This makes them highly flexible for responsive layouts.
+
+### ⚠️ Important
+
+A block element's default width is typically **`auto`**, which means it expands to fill the available horizontal space in its containing block.
+
+It does **not** automatically become `100%`; instead, the browser calculates the width based on the available space.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What are the characteristics of a block element?**
+
+A strong answer is:
+
+- Starts on a new line.
+- Occupies the available width by default.
+- Supports width and height.
+- Supports margins and padding.
+- Commonly used for page structure and layout.
