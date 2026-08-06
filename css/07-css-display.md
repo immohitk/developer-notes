@@ -484,3 +484,205 @@ A strong answer is:
 - Supports width and height.
 - Supports margins and padding.
 - Commonly used for page structure and layout.
+
+
+---
+
+
+## Inline Elements
+
+An **inline element** flows **within a line of text** and occupies **only the space required by its content**.
+
+Unlike block elements, inline elements do **not** start on a new line.
+
+They are commonly used to style or mark up small portions of text within a larger block of content.
+
+---
+
+## Default Behavior
+
+Multiple inline elements appear on the same line if there is enough horizontal space.
+
+```text
+HTML   CSS   JavaScript
+```
+
+Instead of:
+
+```text
+HTML
+
+CSS
+
+JavaScript
+```
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: inline;
+}
+```
+
+---
+
+## Common Inline Elements
+
+The following HTML elements are inline by default:
+
+| Element | Purpose |
+|----------|---------|
+| `<span>` | Generic inline container |
+| `<a>` | Hyperlink |
+| `<strong>` | Strong importance |
+| `<em>` | Emphasized text |
+| `<b>` | Bold text |
+| `<i>` | Italic text |
+| `<code>` | Inline code |
+| `<small>` | Smaller text |
+| `<mark>` | Highlighted text |
+| `<label>` | Form label |
+
+---
+
+## Characteristics
+
+Inline elements:
+
+- Stay on the same line whenever possible.
+- Occupy only the space required by their content.
+- Do **not** start on a new line.
+- Ignore `width` and `height` in normal layout.
+- Support horizontal padding and margins.
+- Can have vertical padding and borders, but they generally do not affect line placement the way block elements do.
+
+---
+
+## Example
+
+### HTML
+
+```html
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+```
+
+### CSS
+
+```css
+span {
+    border: 1px solid royalblue;
+    padding: 5px;
+}
+```
+
+Result:
+
+```text
++----+  +---+  +-----------+
+|HTML|  |CSS|  |JavaScript |
++----+  +---+  +-----------+
+```
+
+All three elements remain on the same line.
+
+---
+
+## Width and Height
+
+Consider:
+
+```css
+span {
+    width: 300px;
+    height: 100px;
+}
+```
+
+These properties generally have **no effect** on a normal inline element's layout.
+
+This is one of the biggest differences between **block** and **inline** elements.
+
+---
+
+## Converting a Block Element to Inline
+
+Even block elements can become inline.
+
+```html
+<div>HTML</div>
+<div>CSS</div>
+<div>JavaScript</div>
+```
+
+```css
+div {
+    display: inline;
+}
+```
+
+Result:
+
+```text
+HTML CSS JavaScript
+```
+
+The `<div>` elements now flow on the same line.
+
+---
+
+## Advantages
+
+- Ideal for styling text within paragraphs.
+- Occupies only the required space.
+- Flows naturally with surrounding content.
+- Useful for links, labels, and inline formatting.
+
+---
+
+## Limitations
+
+- Does not start on a new line.
+- `width` and `height` generally do not affect normal inline layout.
+- Not suitable for building larger page structures.
+
+> 💡 **Pro Tip:** Use inline elements for **content inside a sentence**, not for creating page sections or containers.
+
+### 🌍 Real-World Usage
+
+Inline elements are commonly used for:
+
+- Hyperlinks
+- Highlighted words
+- Bold and italic text
+- Inline code snippets
+- Form labels
+- Icons placed within text
+
+They enhance or annotate content without interrupting the flow of the document.
+
+### 📌 Did You Know?
+
+Many interactive elements, such as links (`<a>`), are inline by default. Developers often change them to `inline-block` or `block` when they need additional layout control, such as setting dimensions or creating larger clickable areas.
+
+### ⚠️ Important
+
+Although inline elements can have padding and borders, using large vertical values may affect the appearance of surrounding text because they remain part of the same line formatting context.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What are the characteristics of an inline element?**
+
+A strong answer is:
+
+- Does not start on a new line.
+- Occupies only the space required by its content.
+- Flows with surrounding text.
+- Generally ignores `width` and `height`.
+- Commonly used for styling or marking up text within larger content.
