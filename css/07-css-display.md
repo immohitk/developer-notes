@@ -1640,3 +1640,218 @@ A common interview question is:
 A strong answer is:
 
 > Use Grid for two-dimensional layouts where you need to control both rows and columns. Use Flexbox for one-dimensional layouts where items are arranged in a single row or a single column.
+
+
+---
+
+
+## Other Common Display Values
+
+In addition to the commonly used display values, CSS provides several specialized values for specific layout behaviors.
+
+Although these values are used less frequently, it's helpful to recognize them when reading existing code or official documentation.
+
+---
+
+## `display: list-item`
+
+Displays an element as a list item.
+
+It behaves similarly to an `<li>` element by allowing a list marker (such as a bullet or number) to appear.
+
+### Example
+
+```css
+.item {
+    display: list-item;
+}
+```
+
+Result:
+
+```text
+• HTML
+• CSS
+• JavaScript
+```
+
+### Common Use Cases
+
+- Custom lists
+- Generated list items
+- Dynamic content
+
+---
+
+## `display: table`
+
+Makes an element behave like an HTML `<table>`.
+
+Example:
+
+```css
+.container {
+    display: table;
+}
+```
+
+This creates a table formatting context using CSS instead of HTML table elements.
+
+---
+
+## `display: table-row`
+
+Represents a table row.
+
+Example:
+
+```css
+.row {
+    display: table-row;
+}
+```
+
+Usually paired with:
+
+- `display: table`
+- `display: table-cell`
+
+---
+
+## `display: table-cell`
+
+Represents a table cell.
+
+Example:
+
+```css
+.cell {
+    display: table-cell;
+}
+```
+
+Historically, developers used this technique for layouts before Flexbox and Grid became widely available.
+
+---
+
+## `display: inherit`
+
+The element inherits the `display` value from its parent.
+
+Example:
+
+```css
+.child {
+    display: inherit;
+}
+```
+
+If the parent is:
+
+```css
+display: flex;
+```
+
+the child inherits:
+
+```css
+display: flex;
+```
+
+---
+
+## `display: initial`
+
+Resets the property to its initial CSS value.
+
+Example:
+
+```css
+.box {
+    display: initial;
+}
+```
+
+For the `display` property, the exact result depends on the CSS specification and the element's default behavior, so it should be used with care.
+
+---
+
+## `display: unset`
+
+The value:
+
+```css
+display: unset;
+```
+
+causes the property to behave as either:
+
+- `inherit`, if the property naturally inherits.
+- `initial`, otherwise.
+
+This value is useful when resetting styles in reusable components.
+
+---
+
+## Summary Table
+
+| Value | Purpose |
+|--------|---------|
+| `list-item` | Behaves like a list item |
+| `table` | Behaves like a table |
+| `table-row` | Behaves like a table row |
+| `table-cell` | Behaves like a table cell |
+| `inherit` | Inherits the parent's display value |
+| `initial` | Resets to the property's initial value |
+| `unset` | Uses inherited or initial behavior as appropriate |
+
+---
+
+## Which Values Are Used Most Often?
+
+In modern frontend development, you'll most commonly encounter:
+
+- `block`
+- `inline`
+- `inline-block`
+- `none`
+- `flex`
+- `grid`
+
+The remaining values are more specialized and are used less frequently.
+
+---
+
+> 💡 **Pro Tip:** Focus on mastering **block**, **inline**, **inline-block**, **flex**, and **grid** first. These values account for the vast majority of layout work in modern CSS, while the others are primarily encountered in specialized scenarios or legacy code.
+
+### 🌍 Real-World Usage
+
+You may encounter these values when:
+
+- Maintaining older websites.
+- Reading CSS framework source code.
+- Building custom UI components.
+- Studying browser default styles.
+- Working with generated or dynamic content.
+
+Understanding them helps you interpret unfamiliar CSS more confidently.
+
+### 📌 Did You Know?
+
+Before Flexbox and Grid, developers often relied on:
+
+```css
+display: table;
+display: table-row;
+display: table-cell;
+```
+
+to create equal-height columns and other complex layouts.
+
+Today, Flexbox and Grid provide more flexible and maintainable solutions for most layout needs.
+
+### ⚠️ Important
+
+Although these display values are valid CSS, they are **not interchangeable**.
+
+Each value has a specific purpose, and choosing the appropriate one depends on the desired layout behavior.
