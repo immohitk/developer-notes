@@ -2492,3 +2492,78 @@ No single display value is sufficient for every layout.
 ---
 
 > 💡 **Remember:** Choosing the correct `display` value is often the first step in solving a layout problem. Once the behavior is correct, properties like spacing, alignment, and sizing become much easier to manage.
+
+
+---
+
+
+# References
+
+The following resources provide reliable documentation and specifications for the CSS `display` property and related layout concepts.
+
+## Official Documentation
+
+- **MDN Web Docs** – `display`
+- **MDN Web Docs** – Block and Inline Layout
+- **MDN Web Docs** – Flexbox
+- **MDN Web Docs** – Grid Layout
+- **MDN Web Docs** – `visibility`
+
+---
+
+## Specifications
+
+- **CSS Display Module Level 3**
+- **CSS Display Module Level 4**
+- **CSS Flexible Box Layout Module Level 1**
+- **CSS Grid Layout Module Level 2**
+
+---
+
+## Browser Developer Tools
+
+Modern browser Developer Tools allow you to inspect:
+
+- Computed `display` value
+- Box Model
+- Flexbox overlays
+- Grid overlays
+- Computed styles
+
+Supported browsers include:
+
+- Google Chrome DevTools
+- Microsoft Edge DevTools
+- Mozilla Firefox Developer Tools
+- Safari Web Inspector
+
+---
+
+## Recommended Reading
+
+After completing this chapter, continue with:
+
+- CSS Units
+- CSS Position
+- CSS Z-Index
+- CSS Flexbox
+- CSS Grid
+- CSS Overflow
+- CSS Responsive Design
+
+Understanding the `display` property first makes learning these advanced layout topics much easier.
+
+---
+
+## Suggested Practice
+
+To strengthen your understanding of the `display` property:
+
+- Inspect the layout of your favorite websites using Developer Tools.
+- Change the `display` value of common HTML elements and observe the differences.
+- Rebuild simple layouts using different display values to compare their behavior.
+- Experiment with Flexbox and Grid using small practice projects before tackling larger interfaces.
+
+---
+
+> 💡 **Learning Tip:** Official documentation is the best source for understanding browser behavior and specification details. Use MDN as your primary reference during your CSS learning journey, and refer to the CSS specifications when you want to understand how features are formally defined.
