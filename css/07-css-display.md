@@ -2060,3 +2060,262 @@ Professional developers choose the appropriate value based on the layout require
 ### ⚠️ Important
 
 Changing an element's `display` value changes **how it participates in layout**, but it does **not** change the underlying HTML element or its semantic meaning.
+
+
+---
+
+
+## Real-World Examples
+
+The `display` property is one of the most frequently used CSS properties because every webpage depends on it for layout.
+
+The following examples demonstrate where each display value is commonly used.
+
+---
+
+## Example 1: Page Layout (`display: block`)
+
+### HTML
+
+```html
+<header>Header</header>
+
+<main>Main Content</main>
+
+<footer>Footer</footer>
+```
+
+### CSS
+
+```css
+header,
+main,
+footer {
+    display: block;
+}
+```
+
+Result:
+
+```text
++------------------------+
+| Header                 |
++------------------------+
+
++------------------------+
+| Main Content           |
++------------------------+
+
++------------------------+
+| Footer                 |
++------------------------+
+```
+
+Block elements naturally stack vertically, making them ideal for page structure.
+
+---
+
+## Example 2: Inline Text (`display: inline`)
+
+```html
+<p>
+    Learn <span>HTML</span>,
+    <span>CSS</span>, and
+    <span>JavaScript</span>.
+</p>
+```
+
+```css
+span {
+    display: inline;
+    color: royalblue;
+}
+```
+
+Result:
+
+```text
+Learn HTML, CSS, and JavaScript.
+```
+
+Inline elements integrate seamlessly into text without creating new lines.
+
+---
+
+## Example 3: Button Group (`display: inline-block`)
+
+```html
+<button>Save</button>
+<button>Edit</button>
+<button>Delete</button>
+```
+
+```css
+button {
+    display: inline-block;
+    padding: 10px 20px;
+}
+```
+
+Result:
+
+```text
++------+  +------+  +--------+
+| Save |  | Edit |  | Delete |
++------+  +------+  +--------+
+```
+
+Buttons remain on the same line while supporting custom dimensions.
+
+---
+
+## Example 4: Navigation Bar (`display: flex`)
+
+```html
+<nav>
+    <a>Home</a>
+    <a>About</a>
+    <a>Contact</a>
+</nav>
+```
+
+```css
+nav {
+    display: flex;
+    gap: 20px;
+}
+```
+
+Result:
+
+```text
+Home      About      Contact
+```
+
+Flexbox makes horizontal navigation simple and responsive.
+
+---
+
+## Example 5: Product Gallery (`display: grid`)
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+Result:
+
+```text
++--------+--------+--------+
+| Item 1 | Item 2 | Item 3 |
++--------+--------+--------+
+| Item 4 | Item 5 | Item 6 |
++--------+--------+--------+
+```
+
+Grid is ideal for layouts with rows and columns.
+
+---
+
+## Example 6: Hidden Modal (`display: none`)
+
+```css
+.modal {
+    display: none;
+}
+```
+
+JavaScript can later change it to:
+
+```css
+.modal {
+    display: block;
+}
+```
+
+This is commonly used for:
+
+- Login dialogs
+- Confirmation windows
+- Popups
+- Mobile menus
+
+---
+
+## Example 7: Removing an Extra Wrapper (`display: contents`)
+
+```html
+<div class="wrapper">
+    <article>Article 1</article>
+    <article>Article 2</article>
+</div>
+```
+
+```css
+.wrapper {
+    display: contents;
+}
+```
+
+The wrapper's own box disappears while its child elements continue to participate in the layout.
+
+---
+
+## Which Display Value Fits Which UI?
+
+| UI Component | Recommended Display |
+|--------------|---------------------|
+| Page sections | `block` |
+| Inline text | `inline` |
+| Buttons | `inline-block` |
+| Navigation bar | `flex` |
+| Toolbar | `flex` |
+| Product gallery | `grid` |
+| Dashboard layout | `grid` |
+| Hidden modal | `none` |
+| Extra wrapper | `contents` |
+
+---
+
+## Typical Modern Website
+
+A simplified webpage might use several display values together:
+
+```text
+Header
+   │
+   ├── Navigation (Flex)
+
+Main
+   │
+   ├── Hero Section (Block)
+   ├── Product Grid (Grid)
+   ├── Buttons (Inline-Block)
+   └── Links (Inline)
+
+Hidden Modal
+   │
+   └── display: none
+```
+
+Each display value plays a specific role in the layout.
+
+---
+
+> 💡 **Pro Tip:** Modern websites rarely rely on a single display value. Instead, they combine **block** for structure, **flex** for component alignment, **grid** for page layouts, **inline** for text, and **none** for conditional content.
+
+### 🌍 Real-World Usage
+
+If you inspect a modern website using your browser's Developer Tools, you'll likely find:
+
+- **Block** elements forming the page structure.
+- **Flexbox** used for navigation bars, headers, and toolbars.
+- **Grid** powering galleries and dashboard layouts.
+- **Inline** elements within text.
+- **Inline-block** used occasionally for small interactive components.
+- **Display: none** used for menus, dialogs, and responsive features.
+
+Understanding how these values work together is a key skill in modern frontend development.
