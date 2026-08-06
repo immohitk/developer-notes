@@ -2766,3 +2766,206 @@ none
 ---
 
 > 💡 **Quick Tip:** When a layout isn't behaving as expected, inspect the element's computed `display` value first. Many CSS issues are caused by an element using the wrong display type rather than incorrect spacing or sizing.
+
+
+---
+
+
+# Best Practices
+
+Choosing the correct `display` value is one of the most important decisions when building a layout.
+
+Following these best practices will help you create cleaner, more maintainable, and responsive interfaces.
+
+---
+
+## 1. Choose the Right Display Value
+
+Each display value has a specific purpose.
+
+| Goal | Recommended Display |
+|------|----------------------|
+| Page structure | `block` |
+| Text formatting | `inline` |
+| Small UI components | `inline-block` |
+| One-dimensional layouts | `flex` |
+| Two-dimensional layouts | `grid` |
+| Hide elements | `none` |
+
+Avoid using one display value for every situation.
+
+---
+
+## 2. Prefer Flexbox for One-Dimensional Layouts
+
+Instead of relying on older layout techniques like multiple `inline-block` elements for alignment, use Flexbox.
+
+✅ Recommended
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Flexbox provides better control over:
+
+- Alignment
+- Spacing
+- Responsiveness
+- Item ordering
+
+---
+
+## 3. Use Grid for Two-Dimensional Layouts
+
+When designing layouts with both rows and columns, use Grid.
+
+Example:
+
+```css
+.gallery {
+    display: grid;
+}
+```
+
+Grid produces cleaner code than older layout techniques.
+
+---
+
+## 4. Don't Use `inline-block` for Complex Layouts
+
+`inline-block` is useful for simple components, but it becomes difficult to manage for larger layouts.
+
+Instead, prefer:
+
+- Flexbox
+- Grid
+
+for modern interfaces.
+
+---
+
+## 5. Keep HTML Semantic
+
+Don't choose HTML elements based on how they look.
+
+Instead:
+
+- Choose the correct semantic element.
+- Change its appearance using CSS.
+
+Example:
+
+```html
+<nav></nav>
+```
+
+instead of:
+
+```html
+<div></div>
+```
+
+when the content represents site navigation.
+
+---
+
+## 6. Hide Elements Intentionally
+
+Use:
+
+```css
+display: none;
+```
+
+only when the element should be completely removed from the layout.
+
+Avoid hiding content unnecessarily, especially when users may still need access to it.
+
+---
+
+## 7. Inspect Layouts Using Developer Tools
+
+When debugging:
+
+- Check the computed `display` value.
+- Inspect Flexbox overlays.
+- Inspect Grid overlays.
+- Verify the Box Model.
+
+Developer Tools often reveal layout problems immediately.
+
+---
+
+## 8. Keep Layouts Simple
+
+Avoid deeply nested containers with unnecessary display changes.
+
+Example:
+
+❌
+
+```text
+div
+ └── div
+      └── div
+           └── div
+```
+
+✅
+
+Use a simpler, meaningful structure whenever possible.
+
+Cleaner HTML is easier to maintain and style.
+
+---
+
+## 9. Learn Default Display Values
+
+Knowing that:
+
+- `<div>` is block
+- `<span>` is inline
+- `<a>` is inline
+
+helps you predict layout behavior before writing CSS.
+
+---
+
+## 10. Build Mobile-Friendly Layouts
+
+Modern responsive websites commonly combine:
+
+- Block elements for structure.
+- Flexbox for component alignment.
+- Grid for larger page layouts.
+
+Using each where it fits best results in cleaner, more adaptable designs.
+
+---
+
+## Best Practice Summary
+
+| Situation | Recommendation |
+|-----------|----------------|
+| New layouts | Prefer Flexbox and Grid |
+| Text formatting | Use inline elements |
+| Structural sections | Use block elements |
+| Responsive design | Combine Block, Flexbox, and Grid |
+| Layout debugging | Inspect computed display values |
+
+---
+
+> 💡 **Pro Tip:** Start by deciding **how an element should behave**, then choose the appropriate `display` value. This approach is more effective than trying to force a layout with margins, positioning, or other properties alone.
+
+### 🌍 Real-World Usage
+
+Professional frontend teams often follow a simple pattern:
+
+- **Block** for document structure.
+- **Flexbox** for arranging components.
+- **Grid** for larger page layouts.
+- **Inline** for text-level content.
+
+Choosing the right display value early makes layouts easier to maintain, extend, and debug as projects grow.
