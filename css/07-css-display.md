@@ -686,3 +686,176 @@ A strong answer is:
 - Flows with surrounding text.
 - Generally ignores `width` and `height`.
 - Commonly used for styling or marking up text within larger content.
+
+
+---
+
+
+## Inline-Block Elements
+
+An **inline-block element** combines the characteristics of both **inline** and **block** elements.
+
+Like an inline element, it **does not start on a new line**.
+
+Like a block element, it **supports explicit width and height**.
+
+This makes `inline-block` useful when you want multiple elements to appear on the same line while still controlling their dimensions.
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: inline-block;
+}
+```
+
+---
+
+## Behavior
+
+An inline-block element:
+
+- Stays on the same line when there is enough space.
+- Occupies only the required horizontal space by default.
+- Supports `width` and `height`.
+- Supports margins and padding on all sides.
+- Behaves like a block element internally while participating in inline layout.
+
+---
+
+## Visual Representation
+
+```text
++---------+  +---------+  +---------+
+| Card 1  |  | Card 2  |  | Card 3  |
++---------+  +---------+  +---------+
+```
+
+Unlike block elements, these boxes remain on the same line.
+
+Unlike inline elements, each box can have its own width and height.
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div class="box">HTML</div>
+<div class="box">CSS</div>
+<div class="box">JavaScript</div>
+```
+
+### CSS
+
+```css
+.box {
+    display: inline-block;
+    width: 120px;
+    height: 80px;
+    border: 2px solid royalblue;
+    padding: 10px;
+    margin: 10px;
+}
+```
+
+Result:
+
+```text
++-----------+  +-----------+  +-----------+
+|   HTML    |  |    CSS    |  | JavaScript|
++-----------+  +-----------+  +-----------+
+```
+
+All three boxes appear on the same line while maintaining their own dimensions.
+
+---
+
+## Width and Height
+
+Unlike normal inline elements:
+
+```css
+.box {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+}
+```
+
+Both properties are fully respected.
+
+This is one of the biggest advantages of `inline-block`.
+
+---
+
+## Comparison
+
+| Feature | Inline | Inline-Block |
+|---------|--------|--------------|
+| Starts on a new line | ❌ No | ❌ No |
+| Supports width | ❌ Generally No | ✅ Yes |
+| Supports height | ❌ Generally No | ✅ Yes |
+| Flows with surrounding elements | ✅ Yes | ✅ Yes |
+
+---
+
+## Advantages
+
+- Allows elements to appear on the same line.
+- Supports explicit width and height.
+- Supports margins and padding.
+- Useful for small reusable UI components.
+
+---
+
+## Limitations
+
+- Whitespace between inline-block elements in HTML can create small gaps.
+- Aligning multiple inline-block elements can become cumbersome compared to Flexbox.
+- Modern layouts typically favor Flexbox or Grid for complex alignment.
+
+> 💡 **Pro Tip:** Although `inline-block` is still useful, many modern layouts that previously relied on it are now implemented using **Flexbox**, which provides more powerful alignment and spacing controls.
+
+### 🌍 Real-World Usage
+
+`inline-block` has traditionally been used for:
+
+- Navigation menus
+- Buttons
+- Badges
+- Small cards
+- Icon groups
+- Tags and labels
+
+While still valid, many of these use cases are now handled more conveniently with Flexbox.
+
+### 📌 Did You Know?
+
+Before Flexbox became widely supported, `inline-block` was one of the primary techniques for placing multiple elements side by side while retaining control over their dimensions.
+
+### ⚠️ Important
+
+If you place multiple `inline-block` elements on separate lines in your HTML, the whitespace between them may create visible gaps.
+
+Example:
+
+```html
+<div class="box"></div>
+<div class="box"></div>
+```
+
+The space or line break between the elements can affect the rendered layout. Flexbox and Grid do not have this specific whitespace behavior.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **When would you use `inline-block` instead of `inline`?**
+
+A strong answer is:
+
+> Use `inline-block` when you want elements to remain on the same line while still being able to set their width and height. Unlike `inline`, `inline-block` fully supports sizing and behaves more like a block element internally.
