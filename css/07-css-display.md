@@ -1855,3 +1855,208 @@ Today, Flexbox and Grid provide more flexible and maintainable solutions for mos
 Although these display values are valid CSS, they are **not interchangeable**.
 
 Each value has a specific purpose, and choosing the appropriate one depends on the desired layout behavior.
+
+
+---
+
+
+## Display Comparison Table
+
+Choosing the correct `display` value becomes much easier when you understand how each one behaves.
+
+The following table summarizes the most commonly used display values.
+
+| Display Value | Starts on New Line | Supports Width & Height | Occupies Full Width by Default | Removes Element from Layout | Primary Use |
+|---------------|--------------------|-------------------------|-------------------------------|-----------------------------|-------------|
+| `block` | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No | Page sections and containers |
+| `inline` | ❌ No | ❌ Generally No | ❌ No | ❌ No | Text formatting |
+| `inline-block` | ❌ No | ✅ Yes | ❌ No | ❌ No | Buttons, badges, small UI components |
+| `none` | N/A | N/A | N/A | ✅ Yes | Hide elements |
+| `contents` | N/A | N/A | N/A | ❌ No (children remain) | Remove wrapper box |
+| `flex` | Depends on element | ✅ Yes | Depends on element | ❌ No | One-dimensional layouts |
+| `grid` | Depends on element | ✅ Yes | Depends on element | ❌ No | Two-dimensional layouts |
+
+---
+
+## Visual Comparison
+
+### `display: block`
+
+```text
++-------------------------+
+| First Element           |
++-------------------------+
+
++-------------------------+
+| Second Element          |
++-------------------------+
+```
+
+Each element starts on a new line.
+
+---
+
+### `display: inline`
+
+```text
+HTML CSS JavaScript
+```
+
+Elements flow within the same line.
+
+---
+
+### `display: inline-block`
+
+```text
++------+  +------+  +------+
+| HTML |  | CSS  |  | JS   |
++------+  +------+  +------+
+```
+
+Elements remain inline while supporting width and height.
+
+---
+
+### `display: none`
+
+```text
+Before
+
+Header
+
+Hidden Element
+
+Footer
+```
+
+↓
+
+```text
+After
+
+Header
+
+Footer
+```
+
+The hidden element is completely removed from the layout.
+
+---
+
+### `display: flex`
+
+```text
++--------+  +--------+  +--------+
+| Item 1 |  | Item 2 |  | Item 3 |
++--------+  +--------+  +--------+
+```
+
+A one-dimensional layout (row by default).
+
+---
+
+### `display: grid`
+
+```text
++--------+--------+
+| Item 1 | Item 2 |
++--------+--------+
+| Item 3 | Item 4 |
++--------+--------+
+```
+
+A two-dimensional layout using rows and columns.
+
+---
+
+## Which Display Value Should You Use?
+
+| Goal | Recommended Display |
+|------|----------------------|
+| Create page sections | `block` |
+| Style text within a paragraph | `inline` |
+| Create buttons or badges | `inline-block` |
+| Hide an element | `none` |
+| Remove an unnecessary wrapper box | `contents` |
+| Arrange items in one row or column | `flex` |
+| Build page layouts with rows and columns | `grid` |
+
+---
+
+## Decision Guide
+
+```text
+Need to hide an element?
+
+        │
+        ▼
+display: none
+
+──────────────
+
+Need rows and columns?
+
+        │
+        ▼
+display: grid
+
+──────────────
+
+Need one row or one column?
+
+        │
+        ▼
+display: flex
+
+──────────────
+
+Need a full-width structural element?
+
+        │
+        ▼
+display: block
+
+──────────────
+
+Need text to flow naturally?
+
+        │
+        ▼
+display: inline
+
+──────────────
+
+Need inline elements with custom dimensions?
+
+        │
+        ▼
+display: inline-block
+```
+
+---
+
+> 💡 **Pro Tip:** Most modern layouts are built using a combination of **block**, **flex**, and **grid**. The remaining display values are still important, but they are typically used for more specific purposes.
+
+### 🌍 Real-World Usage
+
+A typical modern webpage often combines multiple display values:
+
+- `block` → Main page sections
+- `flex` → Navigation bars, toolbars, button groups
+- `grid` → Overall page layout or galleries
+- `inline` → Links and text formatting
+- `inline-block` → Small UI components
+- `none` → Hidden menus, dialogs, and conditional content
+
+Understanding when to use each value is a key frontend development skill.
+
+### 📌 Did You Know?
+
+No single `display` value is "best."
+
+Professional developers choose the appropriate value based on the layout requirements rather than using the same display type everywhere.
+
+### ⚠️ Important
+
+Changing an element's `display` value changes **how it participates in layout**, but it does **not** change the underlying HTML element or its semantic meaning.
