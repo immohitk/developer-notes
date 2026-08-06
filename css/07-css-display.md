@@ -1099,3 +1099,210 @@ A common interview question is:
 A strong answer is:
 
 > `display: none` removes an element from the document layout. The element is not rendered, occupies no space, and surrounding elements behave as though it does not exist.
+
+
+---
+
+
+## `display: contents`
+
+The value:
+
+```css
+display: contents;
+```
+
+removes an element's **own box** from the layout while **keeping its child elements** in the document flow.
+
+Unlike:
+
+```css
+display: none;
+```
+
+the children are still rendered and displayed normally.
+
+Think of it as making the **container disappear**, but leaving everything inside it visible.
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: contents;
+}
+```
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div class="wrapper">
+    <p>HTML</p>
+    <p>CSS</p>
+    <p>JavaScript</p>
+</div>
+```
+
+### Default Layout
+
+```text
+Wrapper
+
++----------------------+
+| HTML                 |
+| CSS                  |
+| JavaScript           |
++----------------------+
+```
+
+---
+
+### CSS
+
+```css
+.wrapper {
+    display: contents;
+}
+```
+
+Result:
+
+```text
+HTML
+
+CSS
+
+JavaScript
+```
+
+The wrapper no longer creates its own box.
+
+The child paragraphs remain visible.
+
+---
+
+## How It Works
+
+Normally:
+
+```text
+Wrapper
+   │
+   ├── HTML
+   ├── CSS
+   └── JavaScript
+```
+
+With:
+
+```css
+display: contents;
+```
+
+the browser behaves as though the wrapper's box doesn't exist.
+
+```text
+HTML
+
+CSS
+
+JavaScript
+```
+
+The children participate directly in the surrounding layout.
+
+---
+
+## Common Use Cases
+
+`display: contents` can be useful when:
+
+- Removing unnecessary wrapper elements.
+- Simplifying layouts.
+- Working with Grid and Flexbox while preserving child placement.
+- Reducing extra layout boxes created by container elements.
+
+---
+
+## Advantages
+
+- Removes unnecessary layout boxes.
+- Keeps child elements visible.
+- Allows children to participate directly in the parent layout.
+- Can simplify certain Flexbox and Grid structures.
+
+---
+
+## Limitations
+
+- The element itself no longer generates a box, so properties such as background, border, padding, and margin on that element have no visible effect.
+- Browser behavior and accessibility support have historically varied, so testing is recommended before relying on it in production.
+
+> 💡 **Pro Tip:** Use `display: contents` only when the wrapper element has no visual styling of its own and exists primarily for document structure.
+
+### 🌍 Real-World Usage
+
+`display: contents` is occasionally used in:
+
+- Advanced Grid layouts
+- Advanced Flexbox layouts
+- Component-based UI libraries
+- Layout refactoring where extra wrapper boxes interfere with positioning
+
+It is much less common than `block`, `inline`, `flex`, or `grid`.
+
+### 📌 Did You Know?
+
+If an element uses:
+
+```css
+display: contents;
+```
+
+properties such as:
+
+```css
+background
+border
+padding
+margin
+```
+
+applied to that element will generally have no visible effect because the element no longer generates a box.
+
+Its child elements continue to render normally.
+
+### ⚠️ Important
+
+Do **not** confuse:
+
+```css
+display: none;
+```
+
+with:
+
+```css
+display: contents;
+```
+
+| `display: none` | `display: contents` |
+|-----------------|---------------------|
+| Removes the element | Removes only the element's box |
+| Removes child elements from rendering | Child elements remain visible |
+| Occupies no layout space | Children still participate in layout |
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What is the difference between `display: none` and `display: contents`?**
+
+A strong answer is:
+
+> `display: none` removes both the element and its children from rendering. `display: contents` removes only the element's own box while leaving its child elements visible and participating in the layout.
