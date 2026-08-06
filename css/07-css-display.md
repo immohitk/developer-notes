@@ -48,3 +48,212 @@ Because of its versatility, the `display` property is one of the most frequently
 In this chapter, you'll learn the most common display values, when to use them, how they affect layout, and how they serve as the foundation for advanced layout systems.
 
 > 💡 **Pro Tip:** Before reaching for Flexbox or Grid, first ask yourself: *"How should this element behave?"* The answer often begins with choosing the correct `display` value.
+
+
+---
+
+
+## What is the `display` Property?
+
+The **`display`** property determines **how an HTML element is displayed and participates in the page layout**.
+
+Every HTML element has a default display type assigned by the browser.
+
+For example:
+
+- `<div>` is a **block** element.
+- `<span>` is an **inline** element.
+- `<img>` is an **inline** element (often treated as a replaced inline element).
+- `<button>` commonly behaves as an **inline-block** element in browsers.
+
+By changing the `display` property, you can completely change how an element behaves without modifying the HTML structure.
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: value;
+}
+```
+
+---
+
+## Common Values
+
+| Value | Purpose |
+|--------|---------|
+| `block` | Displays the element as a block-level element. |
+| `inline` | Displays the element inline with surrounding content. |
+| `inline-block` | Combines features of inline and block elements. |
+| `none` | Removes the element from the layout. |
+| `flex` | Creates a Flexbox container. |
+| `grid` | Creates a Grid container. |
+| `contents` | Removes the element's own box while keeping its children. |
+
+---
+
+## Why is `display` Important?
+
+The `display` property controls:
+
+- Whether an element starts on a new line.
+- Whether width and height can be applied.
+- How much horizontal space an element occupies.
+- How child elements are laid out.
+- Whether an element participates in the document layout.
+
+Changing `display` often changes the entire behavior of an element.
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div class="box">
+    Hello CSS
+</div>
+```
+
+### CSS
+
+```css
+.box {
+    display: inline;
+}
+```
+
+Although `<div>` is normally a block element, it now behaves like an inline element.
+
+---
+
+## Default Behavior
+
+Different HTML elements have different default display values.
+
+Examples:
+
+| Element | Default Display |
+|----------|-----------------|
+| `<div>` | `block` |
+| `<p>` | `block` |
+| `<h1>`–`<h6>` | `block` |
+| `<span>` | `inline` |
+| `<a>` | `inline` |
+| `<strong>` | `inline` |
+| `<img>` | `inline` |
+| `<button>` | Usually `inline-block` |
+
+These defaults can be changed using CSS.
+
+---
+
+## Layout Behavior
+
+Think of `display` as answering one question:
+
+> **How should this element behave inside the layout?**
+
+Possible answers include:
+
+```text
+Take the whole row?
+
+↓
+
+display: block
+```
+
+```text
+Stay within surrounding text?
+
+↓
+
+display: inline
+```
+
+```text
+Stay inline but allow width and height?
+
+↓
+
+display: inline-block
+```
+
+```text
+Become a flexible layout container?
+
+↓
+
+display: flex
+```
+
+```text
+Become a two-dimensional layout?
+
+↓
+
+display: grid
+```
+
+---
+
+## Advantages
+
+- Controls element layout behavior.
+- Makes layouts flexible without changing HTML.
+- Enables modern layout systems.
+- Works with every HTML element.
+
+---
+
+## Limitations
+
+- Some display values affect which CSS properties have an effect (for example, `width` and `height` on inline elements).
+- Choosing the wrong display type can produce unexpected layouts.
+- Advanced values such as `contents` have specific use cases and should be used carefully.
+
+> 💡 **Pro Tip:** Before changing margins, widths, or positioning, first verify that the element has the correct `display` value. Many layout issues are caused by using the wrong display type.
+
+### 🌍 Real-World Usage
+
+The `display` property is used on virtually every website to:
+
+- Build navigation menus
+- Create cards
+- Align buttons
+- Hide and show content
+- Build dashboards
+- Create responsive layouts
+- Enable Flexbox and Grid
+
+### 📌 Did You Know?
+
+Modern CSS layout begins with one property:
+
+```css
+display
+```
+
+Both **Flexbox** and **Grid** are enabled simply by changing the `display` value.
+
+### ⚠️ Important
+
+The `display` property changes **how an element behaves**, not what the element is.
+
+For example:
+
+```html
+<div></div>
+```
+
+will always remain a `<div>` element, even if you apply:
+
+```css
+display: inline;
+```
+
+Only its layout behavior changes.
