@@ -859,3 +859,243 @@ A common interview question is:
 A strong answer is:
 
 > Use `inline-block` when you want elements to remain on the same line while still being able to set their width and height. Unlike `inline`, `inline-block` fully supports sizing and behaves more like a block element internally.
+
+
+---
+
+
+## `display: none`
+
+The value:
+
+```css
+display: none;
+```
+
+completely removes an element from the webpage layout.
+
+The browser behaves as if the element **does not exist**.
+
+Unlike other display values, the element:
+
+- Is not rendered.
+- Does not occupy any space.
+- Does not affect the layout of surrounding elements.
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: none;
+}
+```
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div>First</div>
+
+<div class="hidden">
+    Hidden Element
+</div>
+
+<div>Third</div>
+```
+
+### CSS
+
+```css
+.hidden {
+    display: none;
+}
+```
+
+Result:
+
+```text
+First
+
+Third
+```
+
+The hidden element disappears completely.
+
+---
+
+## Layout Behavior
+
+Without `display: none`:
+
+```text
++---------+
+| First   |
++---------+
+
++---------+
+| Hidden  |
++---------+
+
++---------+
+| Third   |
++---------+
+```
+
+With `display: none`:
+
+```text
++---------+
+| First   |
++---------+
+
++---------+
+| Third   |
++---------+
+```
+
+The surrounding elements move together because the hidden element no longer occupies space.
+
+---
+
+## Common Use Cases
+
+`display: none` is commonly used for:
+
+- Hiding menus
+- Mobile navigation
+- Pop-up dialogs before opening
+- Tabs
+- Accordions
+- Loading screens
+- Conditional UI components
+
+JavaScript often changes:
+
+```css
+display: none;
+```
+
+to:
+
+```css
+display: block;
+```
+
+or
+
+```css
+display: flex;
+```
+
+to show an element dynamically.
+
+---
+
+## Example with JavaScript
+
+```html
+<button onclick="showBox()">
+    Show
+</button>
+
+<div id="box">
+    Hello!
+</div>
+```
+
+```css
+#box {
+    display: none;
+}
+```
+
+```javascript
+function showBox() {
+    document.getElementById("box").style.display = "block";
+}
+```
+
+Initially:
+
+```text
+Button
+```
+
+After clicking:
+
+```text
+Button
+
+Hello!
+```
+
+---
+
+## Advantages
+
+- Completely removes elements from the layout.
+- Prevents hidden elements from occupying space.
+- Ideal for interactive interfaces.
+- Simple to toggle with JavaScript.
+
+---
+
+## Limitations
+
+- Hidden elements cannot be interacted with while `display: none` is applied.
+- Showing and hiding elements may affect the surrounding layout because other elements shift to fill the available space.
+
+> 💡 **Pro Tip:** Use `display: none` when an element should not participate in the layout at all. If you only want to make an element invisible while keeping its space reserved, a different property such as `visibility` is more appropriate (covered in a later chapter).
+
+### 🌍 Real-World Usage
+
+`display: none` is frequently used in:
+
+- Dropdown menus
+- Mobile navigation drawers
+- Search panels
+- Modal dialogs
+- Expandable FAQ sections
+- Shopping cart sidebars
+- Responsive layouts
+
+Many interactive web applications rely on this property to show and hide interface elements.
+
+### 📌 Did You Know?
+
+Many CSS frameworks include utility classes similar to:
+
+```css
+.hidden {
+    display: none;
+}
+```
+
+These classes make it easy to hide or reveal elements without writing additional CSS.
+
+### ⚠️ Important
+
+Applying:
+
+```css
+display: none;
+```
+
+removes the element from the normal document flow.
+
+When the element becomes visible again, the browser recalculates the layout to accommodate it.
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What does `display: none` do?**
+
+A strong answer is:
+
+> `display: none` removes an element from the document layout. The element is not rendered, occupies no space, and surrounding elements behave as though it does not exist.
