@@ -3288,3 +3288,198 @@ Professional frontend developers typically troubleshoot layout issues in this or
 5. Adjust spacing or sizing only after confirming the layout behavior.
 
 Following this systematic approach makes debugging faster and more reliable.
+
+
+---
+
+
+# Interview Questions
+
+## 🟢 Beginner Level
+
+1. What is the purpose of the `display` property?
+2. What is the difference between block and inline elements?
+3. What is an inline-block element?
+4. What does `display: none` do?
+5. What does `display: flex` do?
+6. What does `display: grid` do?
+7. Which display value is used for one-dimensional layouts?
+8. Which display value is used for two-dimensional layouts?
+9. What is the default display value of a `<div>`?
+10. What is the default display value of a `<span>`?
+
+---
+
+## 🟡 Intermediate Level
+
+1. Explain the difference between `block`, `inline`, and `inline-block`.
+2. Why doesn't `width` normally affect an inline element?
+3. When would you choose `inline-block` over `inline`?
+4. What is the difference between `display: none` and `display: contents`?
+5. Why is Flexbox preferred over `inline-block` for modern layouts?
+6. Why is Grid better suited than Flexbox for many page layouts?
+7. Which HTML elements are block-level by default?
+8. Which HTML elements are inline by default?
+
+---
+
+## 🔵 Advanced Level
+
+1. Explain how changing the `display` value affects document flow.
+2. When should you choose Grid instead of Flexbox?
+3. How would you convert a block element into an inline element?
+4. What problems can occur when using the wrong display value?
+5. Why do modern CSS frameworks rely heavily on Flexbox and Grid?
+
+---
+
+## 💼 Practical Coding Questions
+
+### Question 1
+
+Convert the following inline elements into block elements.
+
+```html
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+```
+
+---
+
+### Question 2
+
+Create a horizontal navigation bar using:
+
+```css
+display: flex;
+```
+
+---
+
+### Question 3
+
+Build a product gallery using:
+
+```css
+display: grid;
+```
+
+---
+
+### Question 4
+
+Hide a modal dialog using:
+
+```css
+display: none;
+```
+
+Then describe how JavaScript could make it visible.
+
+---
+
+### Question 5
+
+Create three buttons that remain on the same line while supporting custom width and height.
+
+Which `display` value would you choose?
+
+---
+
+## 🎯 Scenario-Based Questions
+
+### Scenario 1
+
+A developer applies:
+
+```css
+width: 250px;
+```
+
+to a normal `<span>` element, but nothing changes.
+
+**Question:**
+
+Why doesn't the width apply, and how would you fix it?
+
+---
+
+### Scenario 2
+
+A horizontal navigation menu is built using dozens of `inline-block` elements.
+
+**Question:**
+
+What modern CSS layout technique would simplify this design, and why?
+
+---
+
+### Scenario 3
+
+A dashboard contains cards arranged in multiple rows and columns.
+
+**Question:**
+
+Would Flexbox or Grid be a better choice? Explain your reasoning.
+
+---
+
+### Scenario 4
+
+A hidden sidebar should disappear completely so the main content expands to fill the available space.
+
+**Question:**
+
+Which display value should be used?
+
+---
+
+### Scenario 5
+
+An extra wrapper element is interfering with a Grid layout.
+
+**Question:**
+
+Which `display` value might help remove the wrapper's layout box while keeping its children visible?
+
+---
+
+## ⚡ Rapid-Fire Questions
+
+- Which display value starts on a new line?
+- Which display value flows with text?
+- Which display value combines inline flow with explicit dimensions?
+- Which display value removes an element from the layout?
+- Which display value removes only an element's own box?
+- Which display value enables Flexbox?
+- Which display value enables Grid?
+- Which display value is best for page structure?
+- Which display value is commonly used for navigation bars?
+- Which display value is commonly used for photo galleries?
+
+---
+
+## ⭐ Interview Tip
+
+When answering `display` questions, explain **why** you would choose a particular layout model instead of simply naming it.
+
+A useful approach is:
+
+```text
+Requirement
+
+↓
+
+Choose the appropriate display value
+
+↓
+
+Explain how it affects layout
+
+↓
+
+Explain why it is better than the alternatives
+```
+
+Interviewers often value your reasoning process as much as the final answer.
