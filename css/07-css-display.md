@@ -3483,3 +3483,254 @@ Explain why it is better than the alternatives
 ```
 
 Interviewers often value your reasoning process as much as the final answer.
+
+
+---
+
+
+# Practice Exercises
+
+The best way to understand the `display` property is by experimenting with different display values and observing how they affect layout.
+
+---
+
+## 🟢 Beginner Exercises
+
+### Exercise 1
+
+Create the following HTML:
+
+```html
+<div>Block Element</div>
+<span>Inline Element</span>
+```
+
+Inspect both elements in your browser.
+
+Observe:
+
+- Which starts on a new line?
+- Which occupies the full available width?
+
+---
+
+### Exercise 2
+
+Convert a block element into an inline element.
+
+```css
+div {
+    display: inline;
+}
+```
+
+Observe how the layout changes.
+
+---
+
+### Exercise 3
+
+Convert an inline element into a block element.
+
+```css
+span {
+    display: block;
+}
+```
+
+Observe:
+
+- Line breaks
+- Width behavior
+- Overall layout
+
+---
+
+### Exercise 4
+
+Create three buttons using:
+
+```css
+display: inline-block;
+```
+
+Add:
+
+- Width
+- Height
+- Padding
+
+Verify that all buttons remain on the same line.
+
+---
+
+### Exercise 5
+
+Hide an element using:
+
+```css
+display: none;
+```
+
+Refresh the page after removing the property to compare the difference.
+
+---
+
+## 🟡 Intermediate Exercises
+
+### Exercise 6
+
+Create a horizontal navigation bar using:
+
+```css
+display: flex;
+```
+
+Include:
+
+- Home
+- About
+- Services
+- Contact
+
+---
+
+### Exercise 7
+
+Create a simple image gallery using:
+
+```css
+display: grid;
+```
+
+Requirements:
+
+- Three columns
+- Equal spacing
+- Six placeholder items
+
+---
+
+### Exercise 8
+
+Experiment with:
+
+```css
+display: contents;
+```
+
+Apply it to a wrapper element and inspect how its children participate in the layout.
+
+---
+
+### Exercise 9
+
+Take a small webpage and identify the default display type of each element.
+
+Examples:
+
+- `<div>`
+- `<p>`
+- `<span>`
+- `<a>`
+- `<button>`
+
+---
+
+### Exercise 10
+
+Open Developer Tools.
+
+Inspect several elements and identify:
+
+- Computed `display` value
+- Box Model
+- Whether Flexbox or Grid is active
+
+---
+
+## 🔵 Challenge Project
+
+Build a **Landing Page Hero Section**.
+
+Include:
+
+- Header
+- Navigation
+- Hero text
+- Call-to-action button
+- Image
+
+Requirements:
+
+- Use `block` for page structure.
+- Use `flex` for the navigation bar.
+- Use appropriate inline elements for text.
+- Use `inline-block` where custom button dimensions are needed.
+
+---
+
+## 💼 Mini Project
+
+Create a simple **Admin Dashboard**.
+
+Include:
+
+- Header
+- Sidebar
+- Main content area
+- Card grid
+- Footer
+
+Requirements:
+
+- Use **Grid** for the main page layout.
+- Use **Flexbox** inside cards and navigation.
+- Hide a notification panel using:
+
+```css
+display: none;
+```
+
+Then make it visible by changing the display value.
+
+---
+
+## ✅ Self-Assessment Checklist
+
+Before moving to the next chapter, make sure you can:
+
+- Explain the purpose of the `display` property.
+- Distinguish between `block`, `inline`, and `inline-block`.
+- Explain when to use Flexbox.
+- Explain when to use Grid.
+- Describe what `display: none` does.
+- Explain the purpose of `display: contents`.
+- Identify default display values of common HTML elements.
+- Choose the correct display value for different layout scenarios.
+
+If you answered **Yes** to every item, you're ready to continue.
+
+---
+
+## 🚀 Bonus Challenge
+
+Recreate the layout of a simple blog homepage.
+
+Requirements:
+
+- Header
+- Navigation
+- Featured article
+- Sidebar
+- Article cards
+- Footer
+
+Rules:
+
+- Use the most appropriate `display` value for each section.
+- Keep the HTML semantic.
+- Avoid unnecessary wrapper elements.
+- Use Developer Tools to inspect the computed `display` values after finishing.
+
+> 💡 **Challenge:** After completing the project, explain *why* you chose each `display` value. Understanding the reasoning behind your choices is just as important as writing the CSS itself.
