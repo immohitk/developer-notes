@@ -1477,3 +1477,166 @@ A common interview question is:
 A strong answer is:
 
 > Flexbox is ideal for one-dimensional layouts where you need to arrange and align items in a single row or column. It simplifies alignment, spacing, and responsive layouts compared to older CSS techniques.
+
+
+---
+
+
+## `display: grid`
+
+The value:
+
+```css
+display: grid;
+```
+
+turns an element into a **Grid container**.
+
+Its direct child elements become **grid items**, allowing them to be arranged into **rows and columns**.
+
+Unlike Flexbox, which is primarily designed for one-dimensional layouts, Grid is designed for **two-dimensional layouts**.
+
+---
+
+## Syntax
+
+```css
+selector {
+    display: grid;
+}
+```
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div class="container">
+    <div>HTML</div>
+    <div>CSS</div>
+    <div>JavaScript</div>
+    <div>React</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+```
+
+Result:
+
+```text
++-----------+-----------+
+| HTML      | CSS       |
++-----------+-----------+
+| JavaScript| React     |
++-----------+-----------+
+```
+
+The child elements are automatically arranged into rows and columns.
+
+---
+
+## Default Behavior
+
+When an element becomes a Grid container:
+
+- Direct child elements become grid items.
+- Rows and columns can be defined independently.
+- Items can span multiple rows or columns.
+- Spacing between items can be controlled using `gap`.
+
+---
+
+## Why Use Grid?
+
+Grid is ideal when you need to control both:
+
+- Horizontal placement
+- Vertical placement
+
+This makes it perfect for page layouts and complex interfaces.
+
+---
+
+## Grid Container vs Grid Items
+
+```text
+Grid Container
+│
+├── Grid Item
+├── Grid Item
+├── Grid Item
+└── Grid Item
+```
+
+Only the **direct children** become grid items.
+
+---
+
+## Advantages
+
+- Supports two-dimensional layouts.
+- Simplifies complex page structures.
+- Easy control over rows and columns.
+- Built for responsive layouts.
+
+---
+
+## Limitations
+
+- Requires learning additional Grid properties.
+- May be unnecessary for simple one-dimensional layouts.
+- Only affects direct child elements.
+
+> 💡 **Pro Tip:** Use Grid when your layout requires both rows and columns. If you're only arranging items in a single row or column, Flexbox is often the simpler choice.
+
+### 🌍 Real-World Usage
+
+Grid is commonly used for:
+
+- Entire webpage layouts
+- Dashboard interfaces
+- Photo galleries
+- Product grids
+- Magazine-style layouts
+- Admin panels
+
+Many modern websites combine **Grid** for the overall page layout and **Flexbox** for arranging components within individual sections.
+
+### 📌 Did You Know?
+
+Grid allows individual items to span multiple rows or columns, making it much easier to build layouts that would require complex positioning with older CSS techniques.
+
+### ⚠️ Important
+
+This section is only an introduction to Grid.
+
+The dedicated **CSS Grid** chapter will cover topics such as:
+
+- `grid-template-columns`
+- `grid-template-rows`
+- `grid-area`
+- `grid-column`
+- `grid-row`
+- `gap`
+- Auto-placement
+- Responsive Grid layouts
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **When should you use Grid instead of Flexbox?**
+
+A strong answer is:
+
+> Use Grid for two-dimensional layouts where you need to control both rows and columns. Use Flexbox for one-dimensional layouts where items are arranged in a single row or a single column.
