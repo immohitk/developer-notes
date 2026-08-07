@@ -726,3 +726,203 @@ In the following sections, we'll examine each absolute unit individually:
 - Picas (`pc`)
 
 We'll explain how each unit works, when to use it, and whether it's recommended for modern web development.
+
+
+---
+
+
+## Pixels (`px`)
+
+The **pixel (`px`)** is the most commonly used **absolute unit** in CSS.
+
+It represents a **CSS pixel**, which is a reference unit used by browsers for consistent rendering across different devices.
+
+Although the name suggests a physical screen pixel, a **CSS pixel is not always equal to one hardware pixel**. Modern browsers use device scaling so that layouts appear at a consistent visual size on screens with different pixel densities.
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 300px;
+}
+```
+
+Example:
+
+```css
+.card {
+    width: 350px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+```
+
+---
+
+## What Is a CSS Pixel?
+
+A CSS pixel is a logical unit of measurement.
+
+For example:
+
+```css
+font-size: 16px;
+```
+
+The browser renders the text at a consistent visual size, even though the number of physical pixels used may vary between devices.
+
+This abstraction allows websites to look similar on standard and high-density displays.
+
+---
+
+## Common Use Cases
+
+The `px` unit is commonly used for:
+
+- Borders
+- Icons
+- Small spacing values
+- Fixed-width components
+- Shadows
+- Fine visual adjustments
+
+Example:
+
+```css
+.button {
+    border: 2px solid #333;
+    padding: 12px 20px;
+}
+```
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div class="box">
+    CSS Pixels
+</div>
+```
+
+### CSS
+
+```css
+.box {
+    width: 300px;
+    height: 150px;
+    border: 2px solid royalblue;
+}
+```
+
+Result:
+
+```text
++---------------------------+
+|                           |
+|       CSS Pixels          |
+|                           |
++---------------------------+
+```
+
+The box maintains a fixed size regardless of its parent element.
+
+---
+
+## Advantages
+
+- Easy to understand.
+- Predictable sizing.
+- Ideal for borders and fine details.
+- Consistent appearance across modern browsers.
+
+---
+
+## Limitations
+
+- Fixed measurements are less flexible for responsive layouts.
+- Large fixed widths may not fit smaller screens.
+- Excessive use of fixed values can reduce layout adaptability.
+
+---
+
+## When Should You Use `px`?
+
+Use `px` when you need precise measurements.
+
+Common examples include:
+
+- Border widths
+- Box shadows
+- Icons
+- Small spacing adjustments
+- Maximum widths
+- Fine positioning
+
+---
+
+## When Should You Avoid `px`?
+
+Avoid relying solely on `px` for:
+
+- Responsive page widths
+- Scalable typography
+- Flexible layouts
+
+Relative units such as `%`, `rem`, and `vw` are often better choices in these situations.
+
+---
+
+> 💡 **Pro Tip:** Use `px` for precision, not for everything. Modern websites often combine `px` with relative units like `rem` and `%` to balance consistency with responsiveness.
+
+### 🌍 Real-World Usage
+
+A typical component may use `px` for fine details while relying on relative units for scalable layout.
+
+Example:
+
+```css
+.card {
+    width: 90%;
+    max-width: 400px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+```
+
+Here:
+
+- `%` creates a flexible width.
+- `rem` provides scalable spacing.
+- `px` ensures a consistent border and corner radius.
+
+---
+
+### 📌 Did You Know?
+
+Most design systems still use **1px borders** because they provide a clean and consistent visual separation across modern displays.
+
+---
+
+### ⚠️ Important
+
+A CSS pixel is **not necessarily one physical screen pixel**.
+
+Browsers map CSS pixels to hardware pixels in a way that keeps elements at a consistent perceived size across devices with different screen resolutions and pixel densities.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Is one CSS pixel always equal to one physical screen pixel?**
+
+A strong answer is:
+
+> No. A CSS pixel is a logical unit used by the browser. On high-density displays, multiple physical pixels may be used to represent a single CSS pixel so that layouts maintain a consistent visual size across devices.
