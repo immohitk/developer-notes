@@ -926,3 +926,141 @@ A common interview question is:
 A strong answer is:
 
 > No. A CSS pixel is a logical unit used by the browser. On high-density displays, multiple physical pixels may be used to represent a single CSS pixel so that layouts maintain a consistent visual size across devices.
+
+
+---
+
+
+## Centimeters (`cm`)
+
+The **centimeter (`cm`)** is an **absolute CSS unit** that represents a physical measurement.
+
+It is primarily intended for **print media**, where physical dimensions are important.
+
+For normal web pages viewed on screens, the browser approximates physical units based on the device and its display characteristics.
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 10cm;
+}
+```
+
+Example:
+
+```css
+.paper {
+    width: 21cm;
+}
+```
+
+---
+
+## Common Use Cases
+
+The `cm` unit is mainly used for:
+
+- Print stylesheets
+- PDF generation
+- Printable documents
+- Certificates
+- Forms
+- Labels
+
+It is rarely used for responsive web interfaces.
+
+---
+
+## Example
+
+```css
+@media print {
+    .page {
+        width: 21cm;
+        height: 29.7cm;
+    }
+}
+```
+
+This example uses the dimensions of an **A4** page when printing.
+
+---
+
+## Advantages
+
+- Represents a familiar physical measurement.
+- Useful for printed documents.
+- Helpful when exact paper dimensions are required.
+
+---
+
+## Limitations
+
+- Not recommended for responsive web layouts.
+- Physical measurements on screens may vary depending on the browser, operating system, and display characteristics.
+- Rarely used in everyday frontend development.
+
+---
+
+## Recommendation
+
+Use `cm` only when working with **print-specific layouts** or documents where physical dimensions matter.
+
+For standard web development, units such as:
+
+- `px`
+- `%`
+- `rem`
+- `vw`
+- `vh`
+
+are usually more appropriate.
+
+---
+
+> 💡 **Pro Tip:** If your CSS is intended for screens, avoid using `cm`. Reserve it for print stylesheets and documents that are designed to have real-world physical dimensions.
+
+### 🌍 Real-World Usage
+
+You may encounter `cm` in:
+
+- Printable invoices
+- Certificates
+- Shipping labels
+- Reports
+- Official forms
+
+It is uncommon in websites intended primarily for on-screen viewing.
+
+---
+
+### 📌 Did You Know?
+
+CSS supports physical units such as `cm`, but browsers cannot always guarantee that they will match a real-world centimeter exactly on every display. These units are most reliable in print contexts.
+
+---
+
+### ⚠️ Important
+
+Avoid building responsive web layouts with:
+
+```css
+width: 20cm;
+```
+
+Instead, use flexible units that adapt to different screen sizes and resolutions.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **When should you use the `cm` unit in CSS?**
+
+A strong answer is:
+
+> The `cm` unit is mainly intended for print stylesheets and documents where physical dimensions are important. It is rarely used for regular web layouts because screen rendering does not guarantee exact physical measurements.
