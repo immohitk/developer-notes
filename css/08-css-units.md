@@ -542,3 +542,187 @@ The best choice depends on:
 - How the layout should respond to different devices and user settings.
 
 Understanding these trade-offs is more valuable than memorizing individual units.
+
+
+---
+
+
+# Absolute Units
+
+**Absolute units** represent **fixed measurements**.
+
+Once an absolute value is specified, it does **not scale relative to its parent element, font size, or viewport**.
+
+For example:
+
+```css
+.box {
+    width: 300px;
+}
+```
+
+The browser always interprets this as a fixed measurement.
+
+Unlike relative units, absolute units do not automatically adapt to surrounding elements.
+
+---
+
+## Common Absolute Units
+
+CSS provides the following absolute units:
+
+| Unit | Meaning |
+|------|---------|
+| `px` | Pixels |
+| `cm` | Centimeters |
+| `mm` | Millimeters |
+| `in` | Inches |
+| `pt` | Points |
+| `pc` | Picas |
+
+Among these, **`px`** is by far the most commonly used in web development.
+
+---
+
+## Characteristics
+
+Absolute units:
+
+- Represent fixed measurements.
+- Do not depend on parent elements.
+- Do not depend on font size.
+- Do not scale relative to the viewport.
+- Produce predictable sizing.
+
+---
+
+## Visual Overview
+
+```text
+Absolute Units
+
+├── px
+├── cm
+├── mm
+├── in
+├── pt
+└── pc
+```
+
+All of these represent fixed measurements.
+
+---
+
+## When Should You Use Absolute Units?
+
+Absolute units are useful when precise sizing is required.
+
+Common examples include:
+
+- Border widths
+- Icons
+- Small spacing values
+- Fixed-size components
+- Print layouts
+
+Example:
+
+```css
+.card {
+    border: 1px solid #ddd;
+}
+```
+
+A one-pixel border remains visually consistent regardless of surrounding font sizes.
+
+---
+
+## When Should You Avoid Absolute Units?
+
+Avoid relying exclusively on absolute units for layouts that need to adapt to different devices.
+
+For example:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+This fixed width may not fit comfortably on smaller screens.
+
+Responsive layouts often benefit from relative units such as `%`, `rem`, or `vw`.
+
+---
+
+## Advantages
+
+- Predictable measurements.
+- Easy to understand.
+- Suitable for precise sizing.
+- Commonly used for borders and fine details.
+
+---
+
+## Limitations
+
+- Less flexible for responsive layouts.
+- May require additional media queries on different screen sizes.
+- Some absolute units (`cm`, `mm`, `in`, `pt`, `pc`) are rarely used for everyday web layouts.
+
+---
+
+## Absolute Units vs Relative Units
+
+| Absolute Units | Relative Units |
+|---------------|----------------|
+| Fixed measurements | Calculated relative to another value |
+| Predictable sizing | Flexible sizing |
+| Better for precision | Better for responsiveness |
+| Less adaptive | More adaptive |
+
+---
+
+> 💡 **Pro Tip:** In modern web development, use absolute units when you need **precision**, and relative units when you need **flexibility**. A good CSS codebase often combines both approaches.
+
+### 🌍 Real-World Usage
+
+Professional developers commonly use:
+
+- `px` for borders and shadows.
+- `px` for small icons and fine spacing.
+- Relative units (`rem`, `%`, `vw`, `vh`) for typography and layouts.
+
+This combination provides both precision and responsiveness.
+
+### 📌 Did You Know?
+
+Although CSS supports six absolute units, most web developers use **`px`** for nearly all absolute measurements.
+
+Units such as `cm`, `mm`, `in`, `pt`, and `pc` are primarily encountered in print stylesheets or specialized applications.
+
+### ⚠️ Important
+
+Not every fixed measurement should use `px`.
+
+Ask yourself:
+
+- Does this size need to remain constant?
+- Or should it adapt to different screens and user settings?
+
+The answer determines whether an absolute or relative unit is the better choice.
+
+---
+
+## Next Step
+
+In the following sections, we'll examine each absolute unit individually:
+
+- Pixels (`px`)
+- Centimeters (`cm`)
+- Millimeters (`mm`)
+- Inches (`in`)
+- Points (`pt`)
+- Picas (`pc`)
+
+We'll explain how each unit works, when to use it, and whether it's recommended for modern web development.
