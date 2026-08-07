@@ -1544,3 +1544,177 @@ A common interview question is:
 A strong answer is:
 
 > `rem` scales relative to the root font size, making it more responsive and accessible. The `pt` unit is primarily intended for print media and does not adapt as naturally to browser settings or responsive layouts.
+
+
+---
+
+
+## Picas (`pc`)
+
+The **pica (`pc`)** is an **absolute CSS unit** traditionally used in **printing** and **publishing**.
+
+According to the CSS specification:
+
+```text
+1pc = 12pt
+```
+
+Since:
+
+```text
+1pt = 1/72in
+```
+
+and
+
+```text
+1in = 96px
+```
+
+it follows that:
+
+```text
+1pc = 16px
+```
+
+This conversion is based on the CSS reference unit system.
+
+---
+
+## Syntax
+
+```css
+selector {
+    margin-top: 2pc;
+}
+```
+
+Example:
+
+```css
+.heading {
+    margin-bottom: 1pc;
+}
+```
+
+---
+
+## Common Use Cases
+
+The `pc` unit is mainly used for:
+
+- Print layouts
+- Publishing software
+- Books
+- Newspapers
+- Magazine layouts
+- Print-oriented typography
+
+It is rarely used for websites or web applications.
+
+---
+
+## Example
+
+```css
+@media print {
+    h1 {
+        margin-bottom: 2pc;
+    }
+}
+```
+
+This creates spacing using a unit commonly found in traditional publishing.
+
+---
+
+## Advantages
+
+- Useful for print and publishing workflows.
+- Represents a standard typographic measurement.
+- Helpful when working with print-specific layouts.
+
+---
+
+## Limitations
+
+- Rarely used in web development.
+- Not suitable for responsive layouts.
+- Less familiar than `px`, `rem`, or `%`.
+
+---
+
+## Recommendation
+
+Use `pc` only when working with:
+
+- Print stylesheets
+- Publishing projects
+- Professional print layouts
+
+For modern websites, use:
+
+- `px`
+- `rem`
+- `%`
+- `vw`
+- `vh`
+
+These units are more practical for screen-based interfaces.
+
+---
+
+> 💡 **Pro Tip:** Unless you're working with print or publishing, you will rarely need the `pc` unit. Most frontend developers never use it in everyday projects.
+
+### 🌍 Real-World Usage
+
+You may encounter `pc` in:
+
+- Desktop publishing software
+- Print templates
+- Newspaper layouts
+- Book formatting
+- Professional print production
+
+It is extremely uncommon in modern web applications.
+
+---
+
+### 📌 Did You Know?
+
+The word **pica** originated in traditional typography long before digital publishing. Although CSS still supports it, modern web development relies far more on units such as `px`, `rem`, and `%`.
+
+---
+
+### ⚠️ Important
+
+Although `pc` is a valid CSS unit, it should **not** be used simply because it exists.
+
+Choose it only when working with print-specific designs where typographic measurements are required.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Should you use the `pc` unit in modern web development?**
+
+A strong answer is:
+
+> Generally, no. The `pc` unit is intended for print and publishing workflows. For modern websites, units such as `px`, `rem`, `%`, `vw`, and `vh` are more practical and better suited for responsive layouts.
+
+---
+
+## Summary of Absolute Units
+
+| Unit | Primary Use | Recommended for Web? |
+|------|-------------|----------------------|
+| `px` | General UI sizing | ✅ Yes |
+| `cm` | Print layouts | ❌ Rarely |
+| `mm` | Print layouts | ❌ Rarely |
+| `in` | Physical print dimensions | ❌ Rarely |
+| `pt` | Print typography | ❌ Rarely |
+| `pc` | Publishing and print | ❌ Rarely |
+
+The next section introduces **Relative Units**, which are the foundation of responsive web design and are used extensively in modern frontend development.
