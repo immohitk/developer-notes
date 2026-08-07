@@ -1718,3 +1718,190 @@ A strong answer is:
 | `pc` | Publishing and print | ❌ Rarely |
 
 The next section introduces **Relative Units**, which are the foundation of responsive web design and are used extensively in modern frontend development.
+
+
+---
+
+
+# Relative Units
+
+**Relative units** are CSS units whose values are calculated **relative to another value**.
+
+Instead of representing a fixed measurement, a relative unit changes depending on its reference, such as:
+
+- The parent element
+- The root font size
+- The viewport size
+- The current font size
+
+Because of this flexibility, relative units are widely used in **responsive web design**.
+
+---
+
+## Common Relative Units
+
+CSS provides several relative units.
+
+| Unit | Relative To |
+|------|-------------|
+| `%` | Parent element |
+| `em` | Current element's font size |
+| `rem` | Root element's font size |
+| `vw` | Viewport width |
+| `vh` | Viewport height |
+| `vmin` | Smaller viewport dimension |
+| `vmax` | Larger viewport dimension |
+| `ch` | Width of the `0` (zero) character |
+| `ex` | Height of the lowercase `x` |
+
+Each unit solves a different sizing problem.
+
+---
+
+## Characteristics
+
+Relative units:
+
+- Adapt to different layouts.
+- Help build responsive websites.
+- Scale automatically in many situations.
+- Can improve accessibility.
+- Reduce the need for multiple fixed values.
+
+---
+
+## Visual Overview
+
+```text
+Relative Units
+
+├── %
+├── em
+├── rem
+├── vw
+├── vh
+├── vmin
+├── vmax
+├── ch
+└── ex
+```
+
+Unlike absolute units, these values depend on another measurement.
+
+---
+
+## When Should You Use Relative Units?
+
+Relative units are ideal for:
+
+- Responsive layouts
+- Typography
+- Flexible spacing
+- Adaptive components
+- Mobile-friendly interfaces
+
+Example:
+
+```css
+.container {
+    width: 80%;
+}
+
+h1 {
+    font-size: 2rem;
+}
+```
+
+The layout adapts more naturally than using fixed measurements.
+
+---
+
+## Advantages
+
+- Better responsiveness.
+- Improved accessibility.
+- Flexible layouts.
+- Easier scaling across devices.
+- Well suited for modern web development.
+
+---
+
+## Limitations
+
+- Different units have different reference points.
+- Some units may produce unexpected results if their reference is misunderstood.
+- Choosing the wrong relative unit can make layouts harder to predict.
+
+---
+
+## Relative Units vs Absolute Units
+
+| Relative Units | Absolute Units |
+|---------------|----------------|
+| Flexible | Fixed |
+| Adapt to context | Stay constant |
+| Better for responsive design | Better for precise measurements |
+| Common in modern layouts | Common for borders and fine details |
+
+---
+
+> 💡 **Pro Tip:** Modern websites usually combine both types of units—relative units for layouts and typography, and absolute units like `px` for borders, shadows, and other precise visual details.
+
+### 🌍 Real-World Usage
+
+A typical responsive component might use several relative units together.
+
+Example:
+
+```css
+.card {
+    width: 90%;
+    padding: 2rem;
+    font-size: 1rem;
+}
+```
+
+Here:
+
+- `%` creates a flexible width.
+- `rem` provides scalable spacing.
+- `rem` ensures accessible typography.
+
+---
+
+### 📌 Did You Know?
+
+Most modern CSS frameworks recommend using **`rem`** for typography because it scales consistently throughout the application and respects the user's browser settings.
+
+---
+
+### ⚠️ Important
+
+Not all relative units are relative to the same thing.
+
+For example:
+
+- `%` depends on the parent element.
+- `em` depends on the current font size.
+- `rem` depends on the root font size.
+- `vw` depends on the viewport width.
+
+Understanding the reference point of each unit is essential for using it correctly.
+
+---
+
+## Next Step
+
+In the following sections, we'll explore each relative unit individually:
+
+- Percentage (`%`)
+- `em`
+- `rem`
+- `vw`
+- `vh`
+- `vmin`
+- `vmax`
+- `ch`
+- `ex`
+
+You'll learn how each unit works, what it is relative to, and when it should be used in modern web development.
