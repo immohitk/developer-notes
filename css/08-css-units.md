@@ -1905,3 +1905,247 @@ In the following sections, we'll explore each relative unit individually:
 - `ex`
 
 You'll learn how each unit works, what it is relative to, and when it should be used in modern web development.
+
+
+---
+
+
+## Percentage (`%`)
+
+The **percentage (`%`)** is a **relative CSS unit**.
+
+Unlike absolute units, a percentage value is calculated **relative to another value**.
+
+Most commonly, percentages are calculated relative to the **parent element**, but the exact reference depends on the CSS property being used.
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 50%;
+}
+```
+
+Example:
+
+```css
+.container {
+    width: 80%;
+}
+```
+
+If the parent element is **1000px** wide:
+
+```text
+80% of 1000px = 800px
+```
+
+---
+
+## How Percentages Work
+
+A percentage always needs a **reference value**.
+
+For example:
+
+```html
+<div class="parent">
+    <div class="child"></div>
+</div>
+```
+
+```css
+.parent {
+    width: 600px;
+}
+
+.child {
+    width: 50%;
+}
+```
+
+Result:
+
+```text
+Parent Width
+
+600px
+
+↓
+
+Child Width
+
+300px
+```
+
+The child's width is calculated from the parent's width.
+
+---
+
+## Common Use Cases
+
+Percentages are commonly used for:
+
+- Flexible widths
+- Responsive layouts
+- Images
+- Containers
+- Margins and padding (in certain contexts)
+- Positioning
+
+Example:
+
+```css
+img {
+    width: 100%;
+}
+```
+
+This allows the image to scale with its parent container.
+
+---
+
+## Example
+
+```css
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+```
+
+If the browser window changes size, the container automatically adjusts its width.
+
+This is one of the main reasons percentages are popular in responsive design.
+
+---
+
+## Advantages
+
+- Creates flexible layouts.
+- Adapts to different screen sizes.
+- Easy to understand.
+- Widely supported across browsers.
+- Useful for responsive web design.
+
+---
+
+## Limitations
+
+- Always depends on another value.
+- The reference value varies depending on the CSS property.
+- Deeply nested percentage-based layouts can become difficult to reason about.
+
+---
+
+## Common Properties That Use Percentages
+
+| Property | Percentage Usually Relates To |
+|----------|-------------------------------|
+| `width` | Parent element's width |
+| `height` | Parent element's height (when defined) |
+| `max-width` | Parent element |
+| `left`, `right` | Containing block |
+| `top`, `bottom` | Containing block |
+| `transform: translate()` | The element's own size |
+
+Different CSS properties may interpret percentages differently, so always consult the property's documentation when in doubt.
+
+---
+
+## When Should You Use `%`?
+
+Use percentages when you want an element to **scale relative to its container**.
+
+Examples:
+
+- Responsive containers
+- Fluid images
+- Flexible columns
+- Layout widths
+
+---
+
+## When Should You Avoid `%`?
+
+Avoid percentages when a **fixed measurement** is required.
+
+For example:
+
+```css
+border: 2%;
+```
+
+A border width is typically better expressed using:
+
+```css
+border: 2px;
+```
+
+---
+
+> 💡 **Pro Tip:** Percentages are excellent for flexible layouts, but remember that they are only meaningful when the browser has a reference value to calculate from.
+
+### 🌍 Real-World Usage
+
+Modern websites frequently use percentages for:
+
+- Main content containers
+- Images
+- Responsive cards
+- Fluid layouts
+- Flexible sidebars
+
+Example:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+```
+
+This creates a layout that expands on small screens while remaining comfortably sized on larger displays.
+
+---
+
+### 📌 Did You Know?
+
+Many responsive websites combine:
+
+```css
+width: 100%;
+max-width: 1200px;
+```
+
+This allows the layout to fill smaller screens while preventing it from becoming excessively wide on large monitors.
+
+---
+
+### ⚠️ Important
+
+A percentage does **not** always refer to the parent element.
+
+Its meaning depends on the CSS property being used.
+
+For example:
+
+- `width: 50%` → Relative to the parent's width.
+- `transform: translateX(50%)` → Relative to the element's own width.
+
+Always understand **what the percentage is relative to** before using it.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What is a percentage value relative to in CSS?**
+
+A strong answer is:
+
+> It depends on the CSS property. For example, `width: 50%` is generally calculated relative to the width of the containing block, while other properties, such as `transform: translate()`, use different reference values. Understanding the property's reference is essential when using percentages.
