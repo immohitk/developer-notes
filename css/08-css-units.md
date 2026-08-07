@@ -1064,3 +1064,146 @@ A common interview question is:
 A strong answer is:
 
 > The `cm` unit is mainly intended for print stylesheets and documents where physical dimensions are important. It is rarely used for regular web layouts because screen rendering does not guarantee exact physical measurements.
+
+
+---
+
+
+## Millimeters (`mm`)
+
+The **millimeter (`mm`)** is an **absolute CSS unit** representing a physical measurement.
+
+Like `cm`, it is mainly intended for **print media** rather than screen-based web layouts.
+
+On screens, browsers approximate physical measurements, so a CSS millimeter may not exactly match a real-world millimeter.
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 50mm;
+}
+```
+
+Example:
+
+```css
+.label {
+    width: 80mm;
+}
+```
+
+---
+
+## Common Use Cases
+
+The `mm` unit is commonly used for:
+
+- Print stylesheets
+- Product labels
+- Name badges
+- Shipping labels
+- Technical drawings
+- Printable forms
+
+It is rarely used for responsive websites.
+
+---
+
+## Example
+
+```css
+@media print {
+    .label {
+        width: 80mm;
+        height: 40mm;
+    }
+}
+```
+
+This example defines a printable label with fixed physical dimensions.
+
+---
+
+## Advantages
+
+- Represents a familiar physical measurement.
+- Useful for printed materials.
+- Suitable when small, precise dimensions are required.
+
+---
+
+## Limitations
+
+- Not recommended for screen layouts.
+- Physical measurements may vary depending on the browser and display.
+- Rarely used in everyday frontend development.
+
+---
+
+## Recommendation
+
+Use `mm` only when designing **print-specific documents** or layouts that require real-world dimensions.
+
+For websites and web applications, prefer:
+
+- `px`
+- `%`
+- `rem`
+- `vw`
+- `vh`
+
+These units are better suited for responsive design.
+
+---
+
+> 💡 **Pro Tip:** If your design will primarily be viewed on a screen, avoid using `mm`. Save physical units for print stylesheets where real-world measurements matter.
+
+### 🌍 Real-World Usage
+
+The `mm` unit may appear in:
+
+- Barcode labels
+- Shipping labels
+- Product packaging
+- Medical forms
+- Engineering documents
+- Printable templates
+
+It is uncommon in standard web interfaces.
+
+---
+
+### 📌 Did You Know?
+
+Both `cm` and `mm` are CSS absolute units, but browsers cannot always reproduce them as exact physical measurements on screens. They are intended primarily for printed output.
+
+---
+
+### ⚠️ Important
+
+Avoid layouts such as:
+
+```css
+.container {
+    width: 150mm;
+}
+```
+
+for websites.
+
+Instead, use flexible units that adapt to different screen sizes.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Is the `mm` unit suitable for responsive web design?**
+
+A strong answer is:
+
+> No. The `mm` unit is intended primarily for print media and physical measurements. Responsive web layouts should generally use flexible units such as `%`, `rem`, `vw`, or `vh`.
