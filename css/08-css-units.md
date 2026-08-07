@@ -2630,3 +2630,221 @@ A common interview question is:
 A strong answer is:
 
 > Use `rem` when you want consistent sizing across the entire website because it is always relative to the root font size. Use `em` when a value should scale relative to the current component's font size.
+
+
+---
+
+
+## `vw` (Viewport Width)
+
+The **`vw`** (**viewport width**) is a **relative CSS unit** based on the **width of the browser's viewport**.
+
+The viewport is the visible area of a webpage inside the browser window.
+
+According to the CSS specification:
+
+```text
+1vw = 1% of the viewport width
+```
+
+This means:
+
+- `100vw` = 100% of the viewport width
+- `50vw` = 50% of the viewport width
+- `25vw` = 25% of the viewport width
+
+As the browser window changes size, values using `vw` automatically adjust.
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 50vw;
+}
+```
+
+Example:
+
+```css
+.hero {
+    width: 100vw;
+}
+```
+
+---
+
+## How `vw` Works
+
+Suppose the browser viewport is **1200px** wide.
+
+```text
+Viewport Width
+
+1200px
+```
+
+Then:
+
+| CSS Value | Actual Width |
+|-----------|-------------:|
+| `100vw` | 1200px |
+| `75vw` | 900px |
+| `50vw` | 600px |
+| `25vw` | 300px |
+| `10vw` | 120px |
+
+If the viewport becomes smaller, these values are recalculated automatically.
+
+---
+
+## Example
+
+```css
+.banner {
+    width: 100vw;
+    height: 200px;
+}
+```
+
+Result:
+
+```text
++---------------------------------------------+
+|                                             |
+|                Banner                       |
+|                                             |
++---------------------------------------------+
+```
+
+The banner always spans the full width of the viewport.
+
+---
+
+## Common Use Cases
+
+The `vw` unit is commonly used for:
+
+- Full-width sections
+- Hero banners
+- Responsive typography
+- Image galleries
+- Landing pages
+- Full-screen layouts
+
+Example:
+
+```css
+.hero-title {
+    font-size: 6vw;
+}
+```
+
+The text automatically scales with the browser width.
+
+---
+
+## Advantages
+
+- Automatically adapts to different screen sizes.
+- Excellent for responsive layouts.
+- Reduces the need for media queries in some situations.
+- Useful for full-width elements.
+
+---
+
+## Limitations
+
+- Large screens may produce excessively large values.
+- Small screens may produce text that is too small.
+- Often works best when combined with `min()`, `max()`, or `clamp()`.
+
+---
+
+## When Should You Use `vw`?
+
+Use `vw` when sizing should depend on the viewport width.
+
+Examples include:
+
+- Hero sections
+- Responsive headings
+- Full-width images
+- Landing pages
+
+---
+
+## When Should You Avoid `vw`?
+
+Avoid using `vw` alone for body text.
+
+Example:
+
+```css
+body {
+    font-size: 2vw;
+}
+```
+
+This can make text too small on phones and too large on wide desktop monitors.
+
+For general typography, `rem` is usually a better choice.
+
+---
+
+> 💡 **Pro Tip:** `vw` is excellent for responsive layouts, but for typography it is often combined with `clamp()` to keep text within reasonable minimum and maximum sizes.
+
+### 🌍 Real-World Usage
+
+A responsive hero section:
+
+```css
+.hero {
+    width: 100vw;
+    padding: 5rem 2rem;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 6vw, 5rem);
+}
+```
+
+Here:
+
+- `100vw` makes the hero span the viewport.
+- `clamp()` prevents the heading from becoming too small or too large.
+
+---
+
+### 📌 Did You Know?
+
+Many modern websites use `100vw` for hero banners, promotional sections, and immersive landing pages because it ensures the content stretches across the full browser width.
+
+---
+
+### ⚠️ Important
+
+Remember:
+
+```text
+vw
+
+↓
+
+Viewport Width
+```
+
+Changing the browser width immediately changes every value measured with `vw`.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What does `1vw` represent?**
+
+A strong answer is:
+
+> `1vw` represents **1% of the viewport's width**. As the browser window changes size, values using `vw` are recalculated automatically, making the unit useful for responsive layouts.
