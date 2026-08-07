@@ -1207,3 +1207,161 @@ A common interview question is:
 A strong answer is:
 
 > No. The `mm` unit is intended primarily for print media and physical measurements. Responsive web layouts should generally use flexible units such as `%`, `rem`, `vw`, or `vh`.
+
+
+---
+
+
+## Inches (`in`)
+
+The **inch (`in`)** is an **absolute CSS unit** that represents a physical measurement.
+
+It is primarily intended for **print media** and documents where physical dimensions are important.
+
+According to the CSS specification:
+
+```text
+1in = 96px
+```
+
+This relationship is based on the **CSS reference pixel**, not necessarily on the actual physical pixels of a screen.
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 2in;
+}
+```
+
+Example:
+
+```css
+.photo {
+    width: 4in;
+    height: 6in;
+}
+```
+
+---
+
+## Common Use Cases
+
+The `in` unit is mainly used for:
+
+- Print stylesheets
+- Printable photographs
+- Certificates
+- Official documents
+- PDF generation
+- Paper-based templates
+
+It is rarely used for responsive websites.
+
+---
+
+## Example
+
+```css
+@media print {
+    .photo {
+        width: 4in;
+        height: 6in;
+    }
+}
+```
+
+This creates a printable photo with dimensions commonly used for printed photographs.
+
+---
+
+## Advantages
+
+- Represents a familiar physical measurement.
+- Useful for print layouts.
+- Suitable when document dimensions must match real-world sizes.
+
+---
+
+## Limitations
+
+- Not recommended for responsive web design.
+- Screen rendering may not exactly match a physical inch.
+- Rarely used in everyday frontend development.
+
+---
+
+## Recommendation
+
+Use `in` only for:
+
+- Print stylesheets
+- Printable documents
+- PDF layouts
+
+For normal websites, prefer:
+
+- `px`
+- `%`
+- `rem`
+- `vw`
+- `vh`
+
+These units are more suitable for screen-based interfaces.
+
+---
+
+> 💡 **Pro Tip:** Think of `in` as a print-oriented unit. If your design is intended to be viewed in a browser, responsive units are almost always a better choice.
+
+### 🌍 Real-World Usage
+
+You may encounter `in` in:
+
+- Printable certificates
+- Passport photo templates
+- Business cards
+- Printable reports
+- PDF documents
+- Print-ready designs
+
+It is uncommon in standard web applications.
+
+---
+
+### 📌 Did You Know?
+
+In CSS:
+
+```text
+1in = 96px
+```
+
+This is a specification-defined relationship that allows browsers to convert between CSS inches and CSS pixels consistently.
+
+---
+
+### ⚠️ Important
+
+Although CSS defines:
+
+```text
+1in = 96px
+```
+
+this does **not** guarantee that one CSS inch will measure exactly one physical inch on every screen.
+
+The actual physical size depends on the device, browser, operating system, display scaling, and output medium.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **How many CSS pixels are equal to one CSS inch?**
+
+A strong answer is:
+
+> According to the CSS specification, **1 inch equals 96 CSS pixels**. This is a reference measurement used for consistent rendering and does not necessarily represent the exact physical size on every screen.
