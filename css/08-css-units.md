@@ -2381,3 +2381,252 @@ A common interview question is:
 A strong answer is:
 
 > `em` is relative to the current element's font size, while `rem` is relative to the root (`<html>`) element's font size. Because `em` is calculated from the current context, nested elements can compound their sizes, whereas `rem` remains consistent throughout the document.
+
+
+---
+
+
+## `rem`
+
+The **`rem`** (**root em**) is a **relative CSS unit** whose value is calculated from the **font size of the root (`<html>`) element**.
+
+Unlike `em`, which depends on the current element's font size, `rem` always refers to the root font size.
+
+This makes `rem` predictable and consistent throughout an entire website.
+
+---
+
+## Syntax
+
+```css
+selector {
+    font-size: 2rem;
+}
+```
+
+Example:
+
+```css
+html {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+```
+
+Calculation:
+
+```text
+2 × 16px = 32px
+```
+
+The heading's font size becomes **32px**.
+
+---
+
+## How `rem` Works
+
+The value of `1rem` always equals the root font size.
+
+Example:
+
+```css
+html {
+    font-size: 16px;
+}
+
+p {
+    font-size: 1.25rem;
+}
+```
+
+Calculation:
+
+```text
+1.25 × 16px = 20px
+```
+
+Regardless of where the paragraph appears in the document, its font size remains **20px** unless the root font size changes.
+
+---
+
+## Why `rem` Is Different from `em`
+
+Unlike `em`, `rem` **does not compound**.
+
+Example:
+
+```css
+html {
+    font-size: 16px;
+}
+
+.parent {
+    font-size: 2rem;
+}
+
+.child {
+    font-size: 2rem;
+}
+```
+
+Result:
+
+```text
+Parent
+
+2 × 16px = 32px
+
+↓
+
+Child
+
+2 × 16px = 32px
+```
+
+The child remains **32px**, not **64px**.
+
+---
+
+## `em` vs `rem`
+
+| `em` | `rem` |
+|------|--------|
+| Relative to current element | Relative to root element |
+| Can compound when nested | Does not compound |
+| Useful for component scaling | Useful for global consistency |
+| Depends on local context | Depends only on `<html>` |
+
+---
+
+## Common Use Cases
+
+`rem` is commonly used for:
+
+- Typography
+- Margins
+- Padding
+- Spacing systems
+- Responsive layouts
+- Design systems
+
+Example:
+
+```css
+body {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+section {
+    padding: 2rem;
+}
+```
+
+---
+
+## Advantages
+
+- Consistent throughout the website.
+- Easy to maintain.
+- Supports scalable typography.
+- Respects changes to the root font size.
+- Recommended for modern CSS development.
+
+---
+
+## Limitations
+
+- Depends on the root font size.
+- Less suitable than `em` when values should scale relative to an individual component.
+
+---
+
+## When Should You Use `rem`?
+
+Use `rem` for:
+
+- Font sizes
+- Global spacing
+- Layout spacing
+- Consistent sizing across pages
+- Design systems
+
+---
+
+## When Should You Use `em` Instead?
+
+Use `em` when a value should scale with its own component.
+
+Examples:
+
+- Button padding
+- Icon sizing
+- Labels
+- Component-specific spacing
+
+---
+
+> 💡 **Pro Tip:** A common modern approach is to use **`rem` for typography and overall spacing**, while using **`em` for component-specific sizing** that should scale with the component's text.
+
+### 🌍 Real-World Usage
+
+Many design systems define a spacing scale using `rem`.
+
+Example:
+
+```css
+:root {
+    font-size: 16px;
+}
+
+.card {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+```
+
+Changing the root font size automatically scales the entire design.
+
+---
+
+### 📌 Did You Know?
+
+Many popular CSS frameworks and design systems recommend **`rem`** as the default unit for typography because it provides predictable scaling and works well with user accessibility settings.
+
+---
+
+### ⚠️ Important
+
+Remember:
+
+```text
+rem
+
+↓
+
+Root (<html>) font size
+```
+
+Unlike `em`, nested elements do **not** change the meaning of `rem`.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **When should you use `rem` instead of `em`?**
+
+A strong answer is:
+
+> Use `rem` when you want consistent sizing across the entire website because it is always relative to the root font size. Use `em` when a value should scale relative to the current component's font size.
