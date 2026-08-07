@@ -4753,3 +4753,216 @@ As you continue learning CSS:
 ---
 
 > 💡 **Learning Tip:** Don't try to memorize every CSS unit. Instead, understand the purpose of each one and practice choosing the most appropriate unit for different situations. With experience, selecting the right unit becomes second nature.
+
+
+---
+
+
+# Quick Revision
+
+This section summarizes the entire chapter into a concise reference that you can review in just a few minutes.
+
+---
+
+## CSS Units at a Glance
+
+```text
+CSS Units
+│
+├── Absolute Units
+│   ├── px
+│   ├── cm
+│   ├── mm
+│   ├── in
+│   ├── pt
+│   └── pc
+│
+└── Relative Units
+    ├── %
+    ├── em
+    ├── rem
+    ├── vw
+    ├── vh
+    ├── vmin
+    ├── vmax
+    ├── ch
+    └── ex
+```
+
+---
+
+## Absolute vs Relative Units
+
+| Absolute Units | Relative Units |
+|---------------|----------------|
+| Fixed size | Flexible size |
+| Do not depend on another value | Depend on another value |
+| Best for precision | Best for responsiveness |
+| Examples: `px`, `cm` | Examples: `%`, `rem`, `vw` |
+
+---
+
+## Most Frequently Used Units
+
+| Unit | Primary Use |
+|------|-------------|
+| `px` | Borders, icons, precise sizing |
+| `%` | Responsive layouts |
+| `rem` | Typography and global spacing |
+| `em` | Component spacing |
+| `vw` | Width based on viewport |
+| `vh` | Height based on viewport |
+| `ch` | Readable text width |
+
+These are the units you'll use most often in professional frontend development.
+
+---
+
+## Remember What Each Unit Is Relative To
+
+| Unit | Relative To |
+|------|-------------|
+| `%` | Parent element (depends on property) |
+| `em` | Current element's font size |
+| `rem` | Root (`<html>`) font size |
+| `vw` | Viewport width |
+| `vh` | Viewport height |
+| `vmin` | Smaller viewport dimension |
+| `vmax` | Larger viewport dimension |
+| `ch` | Width of `0` character |
+| `ex` | Height of lowercase `x` |
+
+---
+
+## Quick Decision Guide
+
+```text
+Need a fixed size?
+        │
+       Yes
+        │
+       px
+        │
+       No
+        │
+Need a responsive layout?
+        │
+       Yes
+        │
+        %
+        │
+Need typography?
+        │
+      rem
+        │
+Need component scaling?
+        │
+       em
+        │
+Need viewport sizing?
+        │
+vw / vh / vmin / vmax
+        │
+Need readable text width?
+        │
+       ch
+```
+
+---
+
+## Modern CSS Recommendations
+
+| Task | Recommended Unit |
+|------|------------------|
+| Typography | `rem` |
+| Button padding | `em` |
+| Layout width | `%` |
+| Hero section | `vh` |
+| Hero heading | `clamp()` + `vw` |
+| Borders | `px` |
+| Article width | `ch` |
+
+---
+
+## Common CSS Combinations
+
+Responsive container:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+}
+```
+
+Responsive typography:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+Scalable button:
+
+```css
+.button {
+    font-size: 1rem;
+    padding: 0.75em 1.5em;
+}
+```
+
+---
+
+## Rapid-Fire Facts
+
+- `px` is an absolute unit.
+- `rem` is based on the root font size.
+- `em` is based on the current element's font size.
+- `%` usually depends on the parent element.
+- `1vw` equals 1% of the viewport width.
+- `1vh` equals 1% of the viewport height.
+- `vmin` uses the smaller viewport dimension.
+- `vmax` uses the larger viewport dimension.
+- `1ch` equals the width of the `0` character.
+- `1ex` equals the height of the lowercase `x`.
+
+---
+
+## Interview Formula
+
+```text
+Typography
+    ↓
+   rem
+
+Component Scaling
+    ↓
+    em
+
+Responsive Layout
+    ↓
+    %
+
+Viewport Layout
+    ↓
+vw / vh
+
+Borders
+    ↓
+    px
+
+Readable Text
+    ↓
+    ch
+```
+
+---
+
+## One-Sentence Summary
+
+**Use fixed units when precision is required, and relative units when flexibility, responsiveness, or accessibility is important.**
+
+---
+
+> 💡 **Revision Tip:** If you remember only five units—**`px`**, **`%`**, **`rem`**, **`em`**, and **`vw`/`vh`**—you'll be able to build the vast majority of modern responsive websites.
