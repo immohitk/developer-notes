@@ -5214,3 +5214,287 @@ Professional frontend developers:
 ---
 
 > 💡 **Pro Tip:** Don't ask *"Which CSS unit is the best?"* Ask *"Which unit best fits this specific problem?"* Choosing the appropriate unit for each situation leads to cleaner, more maintainable, and more responsive CSS.
+
+
+---
+
+
+# Common Mistakes
+
+Even experienced frontend developers occasionally choose the wrong CSS unit.
+
+Understanding these common mistakes will help you build layouts that are more responsive, accessible, and easier to maintain.
+
+---
+
+## 1. Using `px` Everywhere
+
+One of the biggest beginner mistakes is relying on `px` for every measurement.
+
+❌ Poor
+
+```css
+body {
+    font-size: 16px;
+}
+
+.container {
+    width: 1200px;
+}
+```
+
+✅ Better
+
+```css
+body {
+    font-size: 1rem;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+}
+```
+
+### Why?
+
+Using only fixed values makes layouts less flexible on different screen sizes.
+
+---
+
+## 2. Confusing `em` and `rem`
+
+Many beginners assume these units behave the same.
+
+❌ Incorrect assumption
+
+```text
+em = rem
+```
+
+✅ Reality
+
+```text
+em  → Current element's font size
+
+rem → Root (<html>) font size
+```
+
+Always choose the unit based on the desired scaling behavior.
+
+---
+
+## 3. Forgetting That `%` Depends on Context
+
+Percentages are not always calculated from the parent element.
+
+Example:
+
+```css
+width: 50%;
+```
+
+is generally based on the containing block's width, while:
+
+```css
+transform: translateX(50%);
+```
+
+is calculated relative to the element's own width.
+
+Always understand what the property uses as its reference.
+
+---
+
+## 4. Using `100vh` Without Testing on Mobile
+
+Example:
+
+```css
+.hero {
+    height: 100vh;
+}
+```
+
+On some mobile browsers, the visible viewport changes as browser interface elements appear or disappear.
+
+A safer option is often:
+
+```css
+.hero {
+    min-height: 100vh;
+}
+```
+
+or, where appropriate:
+
+```css
+.hero {
+    min-height: 100dvh;
+}
+```
+
+---
+
+## 5. Using Viewport Units for Body Text
+
+Example:
+
+```css
+body {
+    font-size: 2vw;
+}
+```
+
+This can make text:
+
+- Too small on phones.
+- Too large on wide monitors.
+
+Better:
+
+```css
+body {
+    font-size: 1rem;
+}
+```
+
+or
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+## 6. Using Fixed Layout Widths
+
+Avoid:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+Prefer:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+}
+```
+
+This creates layouts that adapt to different screen sizes.
+
+---
+
+## 7. Ignoring Readability
+
+Very long lines reduce reading comfort.
+
+Poor:
+
+```css
+article {
+    width: 100%;
+}
+```
+
+Better:
+
+```css
+article {
+    max-width: 65ch;
+}
+```
+
+Limiting line length improves readability.
+
+---
+
+## 8. Mixing Units Without a Strategy
+
+Example:
+
+```css
+padding: 22px;
+margin: 1.4em;
+font-size: 17px;
+width: 83%;
+```
+
+Although valid, random unit choices can make a stylesheet harder to understand.
+
+Instead, establish a consistent sizing strategy.
+
+Example:
+
+- Typography → `rem`
+- Components → `em`
+- Layouts → `%`
+- Borders → `px`
+
+---
+
+## 9. Choosing Units Without Considering Accessibility
+
+Using only fixed font sizes can make it harder for users who increase their browser's default font size.
+
+Better:
+
+```css
+body {
+    font-size: 1rem;
+}
+```
+
+This respects user preferences more effectively.
+
+---
+
+## 10. Not Testing Across Devices
+
+A layout that looks good on a desktop monitor may not work well on:
+
+- Phones
+- Tablets
+- High-resolution displays
+
+Always test responsive layouts across multiple screen sizes.
+
+---
+
+## Common Mistakes Summary
+
+| Mistake | Better Approach |
+|---------|-----------------|
+| Using `px` everywhere | Use `rem`, `%`, and viewport units where appropriate |
+| Confusing `em` and `rem` | Understand their different reference points |
+| Assuming `%` always uses the parent | Learn each property's reference behavior |
+| Using `100vh` without testing | Test on mobile and consider `min-height` or newer viewport units |
+| Using `vw` for body text | Use `rem` for general typography |
+| Fixed-width layouts | Combine `%` with `max-width` |
+| Ignoring readability | Limit text width with `ch` |
+| Mixing units randomly | Follow a consistent sizing strategy |
+
+---
+
+## How to Avoid These Mistakes
+
+Before writing CSS, ask yourself:
+
+- Should this value stay fixed?
+- Should it scale with text?
+- Should it scale with the viewport?
+- Should it respond to the parent element?
+- Will it remain usable on different screen sizes?
+
+Answering these questions usually leads to the correct unit choice.
+
+---
+
+> 💡 **Pro Tip:** Most CSS sizing problems aren't caused by the CSS property—they're caused by choosing the wrong unit. Taking a moment to select the appropriate unit often prevents layout and responsiveness issues later.
