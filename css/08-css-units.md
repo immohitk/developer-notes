@@ -5498,3 +5498,308 @@ Answering these questions usually leads to the correct unit choice.
 ---
 
 > 💡 **Pro Tip:** Most CSS sizing problems aren't caused by the CSS property—they're caused by choosing the wrong unit. Taking a moment to select the appropriate unit often prevents layout and responsiveness issues later.
+
+
+---
+
+# Interview Questions
+
+The following questions cover the most important concepts related to CSS units. They are organized by difficulty level and include concise model answers.
+
+---
+
+# Beginner Questions
+
+## 1. What are CSS units?
+
+**Answer:**
+
+CSS units define how browsers measure lengths and sizes in CSS properties.
+
+Examples:
+
+- `px`
+- `%`
+- `rem`
+- `em`
+- `vw`
+- `vh`
+
+---
+
+## 2. What are the two categories of CSS units?
+
+**Answer:**
+
+- Absolute units
+- Relative units
+
+Absolute units represent fixed measurements, while relative units depend on another reference value.
+
+---
+
+## 3. What is the most commonly used absolute unit?
+
+**Answer:**
+
+`px`
+
+---
+
+## 4. What is the difference between `px` and `%`?
+
+**Answer:**
+
+- `px` is a fixed measurement.
+- `%` is calculated relative to another value (typically the containing block, depending on the property).
+
+---
+
+## 5. What is `1vw`?
+
+**Answer:**
+
+`1vw` equals **1% of the viewport width**.
+
+---
+
+## 6. What is `1vh`?
+
+**Answer:**
+
+`1vh` equals **1% of the viewport height**.
+
+---
+
+## Intermediate Questions
+
+## 7. What is the difference between `em` and `rem`?
+
+**Answer:**
+
+- `em` is relative to the current element's font size.
+- `rem` is relative to the root (`<html>`) font size.
+
+---
+
+## 8. Why is `rem` commonly used for typography?
+
+**Answer:**
+
+Because it provides consistent sizing throughout the website and scales with the root font size, making layouts easier to maintain.
+
+---
+
+## 9. What does `1ch` represent?
+
+**Answer:**
+
+The width of the `0` (zero) character in the current font.
+
+---
+
+## 10. What does `1ex` represent?
+
+**Answer:**
+
+The x-height of the current font, approximately the height of the lowercase `x`.
+
+---
+
+## 11. What is the difference between `vmin` and `vmax`?
+
+**Answer:**
+
+- `vmin` uses the smaller viewport dimension.
+- `vmax` uses the larger viewport dimension.
+
+---
+
+## Advanced Questions
+
+## 12. Why shouldn't you use `px` for everything?
+
+**Answer:**
+
+Because fixed values reduce flexibility. Responsive layouts usually benefit from relative units such as `%`, `rem`, and viewport units.
+
+---
+
+## 13. Why can nested `em` values become confusing?
+
+**Answer:**
+
+Because `em` is based on the current element's font size, nested elements can compound the calculated value.
+
+---
+
+## 14. Why can `100vh` sometimes cause problems on mobile devices?
+
+**Answer:**
+
+Some mobile browsers change the visible viewport as browser interface elements appear or disappear. This can affect layouts that rely on `100vh`.
+
+---
+
+## 15. Why is `clamp()` often used with viewport units?
+
+**Answer:**
+
+Because it sets minimum and maximum limits, preventing values from becoming too small or too large on different screen sizes.
+
+---
+
+# Scenario-Based Questions
+
+## 16. Which unit would you choose for website typography?
+
+**Answer:**
+
+`rem`
+
+It provides consistent typography across the entire website.
+
+---
+
+## 17. Which unit would you choose for button padding?
+
+**Answer:**
+
+`em`
+
+The padding scales naturally with the button's text.
+
+---
+
+## 18. Which unit would you choose for a responsive container?
+
+**Answer:**
+
+`%`
+
+Often combined with `max-width`.
+
+Example:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+}
+```
+
+---
+
+## 19. Which unit would you choose for a full-screen hero section?
+
+**Answer:**
+
+`vh`
+
+Example:
+
+```css
+.hero {
+    min-height: 100vh;
+}
+```
+
+---
+
+## 20. Which unit would you choose for a border?
+
+**Answer:**
+
+`px`
+
+Borders typically require precise, fixed measurements.
+
+---
+
+# Practical Coding Questions
+
+## 21. Which unit would you use for readable article width?
+
+**Answer:**
+
+`ch`
+
+Example:
+
+```css
+article {
+    max-width: 65ch;
+}
+```
+
+---
+
+## 22. Which unit would you use for responsive headings?
+
+**Answer:**
+
+`vw` combined with `clamp()`.
+
+Example:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+## 23. Which unit would you use for global spacing?
+
+**Answer:**
+
+`rem`
+
+---
+
+## 24. Which unit would you use for component spacing?
+
+**Answer:**
+
+`em`
+
+---
+
+## 25. Which unit would you use for responsive graphics that should always fit within the viewport?
+
+**Answer:**
+
+`vmin`
+
+---
+
+# Rapid-Fire Questions
+
+| Question | Answer |
+|----------|--------|
+| Absolute unit? | `px` |
+| Typography? | `rem` |
+| Component spacing? | `em` |
+| Responsive layout? | `%` |
+| Hero section? | `vh` |
+| Hero text? | `vw` + `clamp()` |
+| Borders? | `px` |
+| Readable text? | `ch` |
+| Smaller viewport? | `vmin` |
+| Larger viewport? | `vmax` |
+
+---
+
+## Interview Tips
+
+During interviews:
+
+- Explain **why** you chose a particular unit.
+- Mention responsiveness and accessibility where relevant.
+- Use practical examples rather than memorized definitions.
+- Demonstrate that different units solve different problems.
+
+---
+
+> 💡 **Interview Tip:** A strong frontend developer doesn't just know what each CSS unit does—they know **when** and **why** to use it. Explaining your reasoning is often more valuable than simply naming the correct unit.
