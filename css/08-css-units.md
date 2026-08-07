@@ -2848,3 +2848,227 @@ A common interview question is:
 A strong answer is:
 
 > `1vw` represents **1% of the viewport's width**. As the browser window changes size, values using `vw` are recalculated automatically, making the unit useful for responsive layouts.
+
+
+---
+
+
+## `vh` (Viewport Height)
+
+The **`vh`** (**viewport height**) is a **relative CSS unit** based on the **height of the browser's viewport**.
+
+The viewport is the visible area of a webpage inside the browser window.
+
+According to the CSS specification:
+
+```text
+1vh = 1% of the viewport height
+```
+
+This means:
+
+- `100vh` = 100% of the viewport height
+- `50vh` = 50% of the viewport height
+- `25vh` = 25% of the viewport height
+
+Whenever the viewport height changes, values using `vh` are recalculated automatically.
+
+---
+
+## Syntax
+
+```css
+selector {
+    height: 100vh;
+}
+```
+
+Example:
+
+```css
+.hero {
+    height: 100vh;
+}
+```
+
+---
+
+## How `vh` Works
+
+Suppose the browser viewport is **900px** tall.
+
+```text
+Viewport Height
+
+900px
+```
+
+Then:
+
+| CSS Value | Actual Height |
+|-----------|--------------:|
+| `100vh` | 900px |
+| `75vh` | 675px |
+| `50vh` | 450px |
+| `25vh` | 225px |
+| `10vh` | 90px |
+
+If the browser window becomes taller or shorter, these values automatically adjust.
+
+---
+
+## Example
+
+```css
+.hero {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+Result:
+
+```text
++---------------------------+
+|                           |
+|        Hero Section       |
+|                           |
+|                           |
+|                           |
++---------------------------+
+```
+
+The hero section fills the entire viewport height.
+
+---
+
+## Common Use Cases
+
+The `vh` unit is commonly used for:
+
+- Hero sections
+- Landing pages
+- Splash screens
+- Full-screen banners
+- Loading screens
+- Welcome pages
+
+Example:
+
+```css
+section {
+    min-height: 100vh;
+}
+```
+
+This allows each section to occupy at least the full height of the viewport.
+
+---
+
+## Advantages
+
+- Creates full-screen layouts easily.
+- Automatically adapts to different screen heights.
+- Useful for responsive designs.
+- Reduces the need for JavaScript-based sizing.
+
+---
+
+## Limitations
+
+- Mobile browsers may change the visible viewport as browser UI (address bar, toolbars) appears or disappears.
+- Using `100vh` alone can sometimes create unexpected scrolling on mobile devices.
+- Modern viewport units may provide more accurate behavior on mobile.
+
+---
+
+## Modern Viewport Height Units
+
+To address mobile browser behavior, CSS introduced additional viewport height units.
+
+| Unit | Description |
+|------|-------------|
+| `svh` | Small viewport height |
+| `lvh` | Large viewport height |
+| `dvh` | Dynamic viewport height |
+
+These units better represent the available viewport on devices where browser interface elements change size.
+
+For most desktop layouts, `vh` remains perfectly suitable.
+
+---
+
+## When Should You Use `vh`?
+
+Use `vh` for:
+
+- Hero sections
+- Welcome screens
+- Full-page banners
+- Sections that should fill the screen vertically
+
+---
+
+## When Should You Avoid `vh`?
+
+Avoid relying on `100vh` alone for mobile layouts without testing across devices.
+
+In some cases, `min-height` or newer viewport units such as `dvh` may provide a better experience.
+
+---
+
+> 💡 **Pro Tip:** For full-screen sections, consider using `min-height: 100vh` instead of `height: 100vh` when content may grow taller than the viewport.
+
+### 🌍 Real-World Usage
+
+A typical landing page:
+
+```css
+.hero {
+    min-height: 100vh;
+
+    display: grid;
+    place-items: center;
+}
+```
+
+This ensures the hero section fills the viewport while still allowing additional content if needed.
+
+---
+
+### 📌 Did You Know?
+
+Many modern landing pages use `100vh` or `100dvh` to create immersive first-screen experiences that occupy the full browser window.
+
+---
+
+### ⚠️ Important
+
+Remember:
+
+```text
+vh
+
+↓
+
+Viewport Height
+```
+
+Changing the browser height changes every value measured with `vh`.
+
+On some mobile browsers, the visible viewport may change as browser interface elements appear or disappear.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What does `1vh` represent?**
+
+A strong answer is:
+
+> `1vh` represents **1% of the viewport's height**. It is commonly used to create full-screen layouts such as hero sections. On mobile devices, newer units like `dvh` may provide more accurate sizing when the browser interface changes.
