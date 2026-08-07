@@ -4149,3 +4149,141 @@ This approach creates scalable, maintainable, and accessible interfaces.
 ---
 
 > 💡 **Pro Tip:** If you're unsure which font-relative unit to choose, start with **`rem`**. It provides consistent sizing across the application and is the preferred choice for most typography and spacing in modern web development.
+
+
+---
+
+
+# Unit Comparison Table
+
+Choosing the correct CSS unit is essential for creating responsive, accessible, and maintainable websites.
+
+The following tables summarize the characteristics of every unit covered in this chapter.
+
+---
+
+## Complete CSS Unit Comparison
+
+| Unit | Type | Relative To | Responsive | Common Use Cases |
+|------|------|-------------|:----------:|------------------|
+| `px` | Absolute | Fixed value | ❌ | Borders, icons, small spacing |
+| `cm` | Absolute | Physical length | ❌ | Print layouts |
+| `mm` | Absolute | Physical length | ❌ | Labels, print documents |
+| `in` | Absolute | Physical length | ❌ | Printable documents |
+| `pt` | Absolute | Physical length | ❌ | Print typography |
+| `pc` | Absolute | Physical length | ❌ | Publishing |
+| `%` | Relative | Parent element (depends on property) | ✅ | Flexible layouts |
+| `em` | Relative | Current element's font size | ✅ | Component spacing |
+| `rem` | Relative | Root font size | ✅ | Typography, spacing |
+| `vw` | Relative | Viewport width | ✅ | Responsive widths |
+| `vh` | Relative | Viewport height | ✅ | Hero sections |
+| `vmin` | Relative | Smaller viewport dimension | ✅ | Responsive shapes |
+| `vmax` | Relative | Larger viewport dimension | ✅ | Hero text, graphics |
+| `ch` | Relative | Width of `0` character | ✅ | Text width, inputs |
+| `ex` | Relative | Height of lowercase `x` | ✅ | Specialized typography |
+
+---
+
+## Which Unit Should You Choose?
+
+| Requirement | Recommended Unit |
+|-------------|------------------|
+| Fixed border | `px` |
+| Responsive width | `%` |
+| Typography | `rem` |
+| Component padding | `em` |
+| Full-width section | `vw` |
+| Full-height section | `vh` |
+| Responsive icon or shape | `vmin` |
+| Large responsive heading | `vmax` |
+| Readable paragraph width | `ch` |
+| Print document | `cm`, `mm`, `in`, `pt`, or `pc` |
+
+---
+
+## Absolute vs Relative Units
+
+| Feature | Absolute Units | Relative Units |
+|---------|----------------|----------------|
+| Size | Fixed | Flexible |
+| Responsive | ❌ | ✅ |
+| Depends on another value | ❌ | ✅ |
+| Best for layouts | ❌ | ✅ |
+| Best for precision | ✅ | Sometimes |
+| Common in modern layouts | Limited | Yes |
+
+---
+
+## Font-Relative Units
+
+| Unit | Relative To | Best Use |
+|------|-------------|----------|
+| `em` | Current font size | Component scaling |
+| `rem` | Root font size | Global typography |
+| `ch` | Width of `0` | Text containers |
+| `ex` | Height of `x` | Specialized typography |
+
+---
+
+## Viewport Units
+
+| Unit | Relative To | Best Use |
+|------|-------------|----------|
+| `vw` | Viewport width | Responsive widths |
+| `vh` | Viewport height | Full-screen sections |
+| `vmin` | Smaller viewport dimension | Shapes and icons |
+| `vmax` | Larger viewport dimension | Hero text |
+
+---
+
+## Modern Recommendation
+
+Most modern websites commonly use:
+
+| Purpose | Recommended Unit |
+|---------|------------------|
+| Typography | `rem` |
+| Component spacing | `em` or `rem` |
+| Layout width | `%` |
+| Hero sections | `vh` |
+| Responsive graphics | `vw`, `vmin`, or `vmax` |
+| Borders | `px` |
+| Print layouts | Physical units (`cm`, `mm`, `in`, `pt`, `pc`) |
+
+---
+
+## Quick Decision Guide
+
+```text
+Need a fixed value?
+        │
+       Yes
+        │
+       px
+        │
+       No
+        │
+Is it based on the viewport?
+        │
+ ┌──────┴──────┐
+ │             │
+Yes           No
+ │             │
+vw/vh      Typography?
+ │             │
+ │        ┌────┴────┐
+ │        │         │
+ │       Yes       No
+ │        │         │
+ │      rem      Parent?
+ │                  │
+ │             ┌────┴────┐
+ │             │         │
+ │            Yes       Text Width?
+ │             │         │
+ │             %        ch
+```
+
+---
+
+> 💡 **Pro Tip:** There isn't a single "best" CSS unit. The best choice depends on what you're sizing. Modern web development typically combines **`px`**, **`%`**, **`rem`**, **`em`**, and viewport units to build flexible, responsive, and maintainable interfaces.
