@@ -5502,6 +5502,7 @@ Answering these questions usually leads to the correct unit choice.
 
 ---
 
+
 # Interview Questions
 
 The following questions cover the most important concepts related to CSS units. They are organized by difficulty level and include concise model answers.
@@ -5803,3 +5804,295 @@ During interviews:
 ---
 
 > 💡 **Interview Tip:** A strong frontend developer doesn't just know what each CSS unit does—they know **when** and **why** to use it. Explaining your reasoning is often more valuable than simply naming the correct unit.
+
+
+---
+
+
+# Practice Exercises
+
+The best way to understand CSS units is by using them.
+
+These exercises progress from beginner to advanced and are designed to reinforce the concepts covered in this chapter.
+
+---
+
+# Beginner Exercises
+
+## Exercise 1 — Identify the Unit Type
+
+Classify each unit as **Absolute** or **Relative**.
+
+| Unit | Your Answer |
+|------|-------------|
+| `px` | _____ |
+| `%` | _____ |
+| `rem` | _____ |
+| `vw` | _____ |
+| `vh` | _____ |
+| `cm` | _____ |
+| `pt` | _____ |
+| `ch` | _____ |
+
+---
+
+## Exercise 2 — Choose the Best Unit
+
+Select the most appropriate unit.
+
+| Requirement | Your Answer |
+|-------------|-------------|
+| Border | _____ |
+| Typography | _____ |
+| Responsive width | _____ |
+| Button padding | _____ |
+| Hero section | _____ |
+| Readable article width | _____ |
+
+---
+
+## Exercise 3 — Fill in the Blank
+
+Complete the CSS.
+
+```css
+.container {
+    width: ____;
+}
+```
+
+Create a responsive container.
+
+---
+
+```css
+body {
+    font-size: ____;
+}
+```
+
+Create scalable typography.
+
+---
+
+```css
+.hero {
+    min-height: ____;
+}
+```
+
+Create a full-screen hero section.
+
+---
+
+# Intermediate Exercises
+
+## Exercise 4 — Build a Responsive Card
+
+Create a card that:
+
+- Uses a flexible width.
+- Has a maximum width of **400px**.
+- Uses scalable padding.
+- Uses a **1px** border.
+
+Expected concepts:
+
+- `%`
+- `px`
+- `rem`
+
+---
+
+## Exercise 5 — Build a Button
+
+Requirements:
+
+- Typography scales consistently.
+- Padding scales with the text.
+
+Suggested units:
+
+- `rem`
+- `em`
+
+---
+
+## Exercise 6 — Build a Readable Article
+
+Requirements:
+
+- Comfortable reading width.
+- Centered on the page.
+- Responsive.
+
+Suggested concepts:
+
+- `ch`
+- `margin: auto`
+
+---
+
+## Exercise 7 — Responsive Hero
+
+Create a hero section that:
+
+- Fills the viewport.
+- Centers its content.
+- Uses responsive typography.
+
+Suggested concepts:
+
+- `vh`
+- `vw`
+- `clamp()`
+
+---
+
+# Advanced Exercises
+
+## Exercise 8 — Convert Fixed Layout
+
+Original:
+
+```css
+.container {
+    width: 1200px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.button {
+    padding: 12px 24px;
+}
+```
+
+Rewrite it using modern CSS units.
+
+Suggested units:
+
+- `%`
+- `rem`
+- `em`
+
+---
+
+## Exercise 9 — Unit Selection Challenge
+
+Choose the most appropriate unit for each scenario.
+
+| Scenario | Unit |
+|----------|------|
+| Sidebar width | _____ |
+| Card padding | _____ |
+| Navigation font | _____ |
+| Hero heading | _____ |
+| Profile avatar | _____ |
+| Search input | _____ |
+
+Explain **why** you chose each unit.
+
+---
+
+## Exercise 10 — Build a Responsive Landing Page
+
+Create a landing page containing:
+
+- Header
+- Hero section
+- Cards
+- Buttons
+- Footer
+
+Requirements:
+
+- Responsive layout
+- Readable typography
+- Flexible spacing
+- Appropriate unit selection
+
+Try to use at least:
+
+- `%`
+- `rem`
+- `em`
+- `vh`
+- `vw`
+- `px`
+
+---
+
+# Mini Project
+
+Create a responsive personal portfolio homepage.
+
+Include:
+
+- Navigation bar
+- Hero section
+- About section
+- Skills cards
+- Contact button
+
+Before writing any CSS, decide **which unit** you'll use for:
+
+- Typography
+- Layout
+- Buttons
+- Images
+- Borders
+- Spacing
+
+Then explain your choices.
+
+---
+
+# Self-Assessment Checklist
+
+After completing the exercises, ask yourself:
+
+- Can I explain the difference between absolute and relative units?
+- Do I know when to use `px`?
+- Can I explain `em` vs `rem`?
+- Do I know when `%` is appropriate?
+- Can I build a responsive layout using viewport units?
+- Can I choose units based on accessibility and responsiveness?
+
+If you answered **yes** to all of these, you've built a strong foundation in CSS units.
+
+---
+
+# Bonus Challenge
+
+Build the **same webpage twice**.
+
+### Version 1
+
+Use mostly:
+
+- `px`
+
+### Version 2
+
+Use:
+
+- `%`
+- `rem`
+- `em`
+- `vw`
+- `vh`
+
+Compare:
+
+- Responsiveness
+- Readability
+- Maintainability
+- Accessibility
+
+Write down which version provides a better user experience and explain why.
+
+---
+
+> 💡 **Practice Tip:** Don't just complete these exercises once. Rebuild them without looking at the answers after a few days. Repetition and hands-on practice are the fastest ways to master CSS units.
