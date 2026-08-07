@@ -4966,3 +4966,251 @@ Readable Text
 ---
 
 > 💡 **Revision Tip:** If you remember only five units—**`px`**, **`%`**, **`rem`**, **`em`**, and **`vw`/`vh`**—you'll be able to build the vast majority of modern responsive websites.
+
+
+---
+
+
+# Best Practices
+
+Choosing the correct CSS unit is just as important as choosing the correct CSS property.
+
+Modern websites rarely rely on a single unit. Instead, developers combine different units based on the problem they are solving.
+
+---
+
+## 1. Use `rem` for Typography
+
+Typography should remain consistent across the entire website.
+
+✅ Good
+
+```css
+body {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+```
+
+❌ Avoid
+
+```css
+body {
+    font-size: 16px;
+}
+```
+
+Using `rem` allows users who change their browser's default font size to receive a better reading experience.
+
+---
+
+## 2. Use `em` for Component-Level Scaling
+
+When spacing should scale with a component's text, use `em`.
+
+Example:
+
+```css
+.button {
+    font-size: 1rem;
+    padding: 0.75em 1.5em;
+}
+```
+
+If the button text becomes larger, the padding scales automatically.
+
+---
+
+## 3. Use `%` for Flexible Layouts
+
+Percentages are excellent for creating responsive layouts.
+
+Example:
+
+```css
+.container {
+    width: 90%;
+}
+```
+
+The container automatically adjusts to different screen sizes.
+
+---
+
+## 4. Use `px` for Precision
+
+Some UI elements require exact measurements.
+
+Good examples include:
+
+- Borders
+- Shadows
+- Thin separators
+- Small icons
+
+Example:
+
+```css
+.card {
+    border: 1px solid #ddd;
+}
+```
+
+---
+
+## 5. Use Viewport Units Carefully
+
+Viewport units are useful for immersive layouts.
+
+Example:
+
+```css
+.hero {
+    min-height: 100vh;
+}
+```
+
+For responsive typography, combine them with `clamp()`.
+
+```css
+.hero h1 {
+    font-size: clamp(2rem, 6vw, 5rem);
+}
+```
+
+This prevents text from becoming too small or too large.
+
+---
+
+## 6. Limit Line Length with `ch`
+
+Long lines reduce readability.
+
+Example:
+
+```css
+article {
+    max-width: 65ch;
+}
+```
+
+This keeps paragraphs comfortable to read.
+
+---
+
+## 7. Combine Units
+
+Modern CSS rarely uses one unit exclusively.
+
+Example:
+
+```css
+.card {
+    width: 90%;
+    max-width: 420px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+}
+```
+
+Each unit serves a different purpose.
+
+---
+
+## 8. Avoid Fixed Layout Widths
+
+Avoid layouts such as:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+Prefer:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+}
+```
+
+This keeps layouts responsive.
+
+---
+
+## 9. Keep Your Unit Choices Consistent
+
+Choose a sizing strategy and follow it throughout the project.
+
+Example:
+
+- Typography → `rem`
+- Layout → `%`
+- Components → `em`
+- Borders → `px`
+
+Consistency makes CSS easier to maintain.
+
+---
+
+## 10. Test on Different Screen Sizes
+
+Always test layouts on:
+
+- Mobile phones
+- Tablets
+- Laptops
+- Desktop monitors
+
+A layout that looks good on one screen may not work well on another.
+
+---
+
+## Recommended Unit Strategy
+
+| UI Element | Recommended Unit |
+|------------|------------------|
+| Typography | `rem` |
+| Component spacing | `em` |
+| Layout width | `%` |
+| Hero section | `vh` |
+| Hero heading | `clamp()` + `vw` |
+| Borders | `px` |
+| Text width | `ch` |
+
+---
+
+## Professional CSS Checklist
+
+Before finishing your CSS, ask yourself:
+
+- Is the layout responsive?
+- Does typography scale properly?
+- Are fixed values used only where appropriate?
+- Have viewport units been tested on multiple devices?
+- Are units used consistently throughout the project?
+- Is the page readable on both small and large screens?
+
+If the answer is **yes** to all of these, your sizing strategy is likely well designed.
+
+---
+
+## Summary
+
+Professional frontend developers:
+
+- Use `rem` for typography.
+- Use `em` for scalable components.
+- Use `%` for layouts.
+- Use `px` for precision.
+- Use viewport units for immersive sections.
+- Combine multiple units instead of relying on only one.
+
+---
+
+> 💡 **Pro Tip:** Don't ask *"Which CSS unit is the best?"* Ask *"Which unit best fits this specific problem?"* Choosing the appropriate unit for each situation leads to cleaner, more maintainable, and more responsive CSS.
