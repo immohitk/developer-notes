@@ -1365,3 +1365,182 @@ A common interview question is:
 A strong answer is:
 
 > According to the CSS specification, **1 inch equals 96 CSS pixels**. This is a reference measurement used for consistent rendering and does not necessarily represent the exact physical size on every screen.
+
+
+---
+
+
+## Points (`pt`)
+
+The **point (`pt`)** is an **absolute CSS unit** commonly used in **typography** and **print media**.
+
+According to the CSS specification:
+
+```text
+1pt = 1/72in
+```
+
+Since:
+
+```text
+1in = 96px
+```
+
+it follows that:
+
+```text
+1pt = 1.333px (approximately)
+```
+
+This conversion is based on CSS reference units and is primarily intended for consistent rendering, especially in printed documents.
+
+---
+
+## Syntax
+
+```css
+selector {
+    font-size: 12pt;
+}
+```
+
+Example:
+
+```css
+h1 {
+    font-size: 18pt;
+}
+```
+
+---
+
+## Common Use Cases
+
+The `pt` unit is mainly used for:
+
+- Print stylesheets
+- PDF documents
+- Printed reports
+- Books
+- Resumes
+- Official documents
+
+It is rarely used for modern web typography.
+
+---
+
+## Example
+
+```css
+@media print {
+    body {
+        font-size: 12pt;
+    }
+}
+```
+
+This ensures text is sized appropriately for printed output.
+
+---
+
+## Advantages
+
+- Standard measurement in print typography.
+- Easy to use for printed documents.
+- Widely recognized in publishing and document editing software.
+
+---
+
+## Limitations
+
+- Not ideal for responsive web design.
+- Does not adapt naturally to user font preferences.
+- Rarely used in modern frontend development.
+
+---
+
+## Recommendation
+
+Use `pt` when designing:
+
+- Printed documents
+- PDF files
+- Print-specific stylesheets
+
+For websites, prefer:
+
+- `rem`
+- `em`
+
+These units provide better scalability and accessibility.
+
+---
+
+> 💡 **Pro Tip:** For web typography, use `rem` instead of `pt`. It scales better with browser settings and improves accessibility.
+
+### 🌍 Real-World Usage
+
+You may encounter `pt` in:
+
+- Printed resumes
+- Books
+- Academic papers
+- Certificates
+- Reports
+- Printable forms
+
+It is uncommon in responsive websites.
+
+---
+
+### 📌 Did You Know?
+
+Most word processors, including Microsoft Word and Google Docs, use **points (`pt`)** as the default unit for font sizes.
+
+For example:
+
+```text
+12pt
+14pt
+18pt
+```
+
+These familiar font sizes come from traditional print typography.
+
+---
+
+### ⚠️ Important
+
+Avoid using:
+
+```css
+font-size: 12pt;
+```
+
+for standard web pages.
+
+Modern websites generally use:
+
+```css
+font-size: 1rem;
+```
+
+or
+
+```css
+font-size: 0.875rem;
+```
+
+because these units adapt more effectively to different devices and user preferences.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **Why is `rem` generally preferred over `pt` for web typography?**
+
+A strong answer is:
+
+> `rem` scales relative to the root font size, making it more responsive and accessible. The `pt` unit is primarily intended for print media and does not adapt as naturally to browser settings or responsive layouts.
