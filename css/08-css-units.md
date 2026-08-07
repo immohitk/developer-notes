@@ -3854,3 +3854,150 @@ A common interview question is:
 A strong answer is:
 
 > `1ex` represents the x-height of the current font, which is approximately the height of the lowercase `x`. Because this value varies between fonts, `ex` is rarely used in modern web development compared with `rem`, `em`, or `ch`.
+
+
+---
+
+
+# Viewport Units
+
+Viewport units are **relative CSS units** whose values are calculated from the size of the browser's viewport.
+
+Unlike font-relative units (`em`, `rem`, `ch`, `ex`) or parent-relative units (`%`), viewport units depend on the **visible browser window**.
+
+As the viewport changes size, these units automatically update, making them ideal for responsive layouts.
+
+---
+
+## Available Viewport Units
+
+| Unit | Relative To | Best Used For |
+|------|-------------|---------------|
+| `vw` | Viewport width | Responsive widths, typography |
+| `vh` | Viewport height | Hero sections, full-screen layouts |
+| `vmin` | Smaller viewport dimension | Responsive shapes, icons |
+| `vmax` | Larger viewport dimension | Large graphics, hero text |
+
+---
+
+## Visual Overview
+
+```text
+Viewport
++---------------------------------------+
+|                                       |
+|           Browser Window              |
+|                                       |
++---------------------------------------+
+
+Width  → vw
+Height → vh
+
+Smaller Dimension → vmin
+Larger Dimension  → vmax
+```
+
+---
+
+## Choosing the Right Viewport Unit
+
+### Use `vw`
+
+When sizing should depend on the viewport's width.
+
+Examples:
+
+- Hero headings
+- Full-width sections
+- Responsive images
+
+---
+
+### Use `vh`
+
+When sizing should depend on the viewport's height.
+
+Examples:
+
+- Landing pages
+- Welcome screens
+- Full-screen banners
+
+---
+
+### Use `vmin`
+
+When an element should always fit inside the viewport.
+
+Examples:
+
+- Logos
+- Icons
+- Circles
+- Squares
+
+---
+
+### Use `vmax`
+
+When an element should scale with the larger viewport dimension.
+
+Examples:
+
+- Decorative backgrounds
+- Large hero text
+- Responsive artwork
+
+---
+
+## Comparison
+
+| Feature | `vw` | `vh` | `vmin` | `vmax` |
+|---------|------|------|---------|---------|
+| Based on width | ✅ | ❌ | Sometimes | Sometimes |
+| Based on height | ❌ | ✅ | Sometimes | Sometimes |
+| Uses smaller dimension | ❌ | ❌ | ✅ | ❌ |
+| Uses larger dimension | ❌ | ❌ | ❌ | ✅ |
+
+---
+
+## Advantages
+
+Viewport units:
+
+- Automatically adapt to screen size.
+- Help build responsive layouts.
+- Reduce the need for media queries in some situations.
+- Work well for immersive designs.
+
+---
+
+## Limitations
+
+Viewport units:
+
+- May produce values that are too large or too small.
+- Require testing across different screen sizes.
+- Often work best when combined with functions like `clamp()`.
+
+Example:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+## Best Practices
+
+- Use `vw` for responsive widths.
+- Use `vh` for full-height sections.
+- Use `vmin` for elements that must always fit inside the viewport.
+- Use `vmax` for decorative or large-scale elements.
+- Combine viewport units with `min()`, `max()`, or `clamp()` when appropriate.
+
+---
+
+> 💡 **Pro Tip:** Viewport units are powerful for responsive layouts, but they are rarely used alone. Combining them with `rem`, `%`, and CSS functions such as `clamp()` creates layouts that remain flexible without becoming too small or too large.
