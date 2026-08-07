@@ -3274,3 +3274,217 @@ A common interview question is:
 A strong answer is:
 
 > `1vmin` represents **1% of the smaller viewport dimension**. The browser compares the viewport's width and height and uses whichever value is smaller, making `vmin` useful for responsive elements that should always fit within the screen.
+
+
+---
+
+
+## `vmax`
+
+The **`vmax`** unit is a **relative CSS unit** based on the **larger dimension of the viewport**.
+
+It compares:
+
+- Viewport width (`vw`)
+- Viewport height (`vh`)
+
+and automatically uses whichever value is **larger**.
+
+According to the CSS specification:
+
+```text
+1vmax = 1% of the larger viewport dimension
+```
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 40vmax;
+}
+```
+
+Example:
+
+```css
+.banner {
+    width: 60vmax;
+}
+```
+
+---
+
+## How `vmax` Works
+
+Suppose the browser viewport is:
+
+```text
+Width  = 1200px
+Height = 800px
+```
+
+The larger dimension is:
+
+```text
+1200px
+```
+
+Therefore:
+
+| CSS Value | Actual Size |
+|-----------|------------:|
+| `100vmax` | 1200px |
+| `50vmax` | 600px |
+| `25vmax` | 300px |
+| `10vmax` | 120px |
+
+If the viewport changes to:
+
+```text
+Width  = 700px
+Height = 1000px
+```
+
+The larger dimension becomes:
+
+```text
+1000px
+```
+
+All `vmax` values are recalculated using **1000px**.
+
+---
+
+## Example
+
+```css
+.hero-title {
+    font-size: 8vmax;
+}
+```
+
+The text scales according to the larger viewport dimension, making it appear larger on wide or tall displays.
+
+---
+
+## Common Use Cases
+
+The `vmax` unit is commonly used for:
+
+- Large headings
+- Hero sections
+- Background graphics
+- Decorative elements
+- Full-screen visual effects
+
+---
+
+## Advantages
+
+- Scales with the largest available viewport dimension.
+- Creates bold, responsive designs.
+- Useful for immersive layouts.
+- Automatically adapts to screen orientation.
+
+---
+
+## Limitations
+
+- Can produce very large values on large screens.
+- Not suitable for normal body text.
+- May require `min()`, `max()`, or `clamp()` to limit excessive scaling.
+
+---
+
+## When Should You Use `vmax`?
+
+Use `vmax` when an element should scale with the **largest** screen dimension.
+
+Examples:
+
+- Hero headings
+- Decorative backgrounds
+- Large icons
+- Responsive artwork
+
+---
+
+## When Should You Avoid `vmax`?
+
+Avoid using `vmax` for:
+
+- Paragraph text
+- Form controls
+- Buttons
+- Fixed-size interface elements
+
+For these cases, `rem` or `px` generally provides more predictable sizing.
+
+---
+
+> 💡 **Pro Tip:** `vmax` is excellent for creating dramatic visual effects, but combine it with `clamp()` when you need to prevent elements from becoming excessively large.
+
+### 🌍 Real-World Usage
+
+A responsive landing page heading:
+
+```css
+.hero h1 {
+    font-size: clamp(2rem, 8vmax, 6rem);
+}
+```
+
+This combines:
+
+- A minimum size (`2rem`)
+- A responsive size (`8vmax`)
+- A maximum size (`6rem`)
+
+to create balanced typography across devices.
+
+---
+
+### 📌 Did You Know?
+
+The `vmax` unit is much less common than `vw` and `vh`, but it can be very useful for responsive artwork and large visual elements that should scale with the biggest available screen dimension.
+
+---
+
+### ⚠️ Important
+
+Remember:
+
+```text
+vmax
+
+↓
+
+1% of the larger viewport dimension
+```
+
+The browser automatically chooses whether the viewport's width or height is larger and uses that value for all `vmax` calculations.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What is the difference between `vmin` and `vmax`?**
+
+A strong answer is:
+
+> `vmin` is calculated from the smaller viewport dimension, while `vmax` is calculated from the larger viewport dimension. `vmin` helps elements stay within the viewport, whereas `vmax` is useful when elements should scale with the largest available screen dimension.
+
+---
+
+## `vmin` vs `vmax`
+
+| `vmin` | `vmax` |
+|--------|---------|
+| Uses the smaller viewport dimension | Uses the larger viewport dimension |
+| Better for elements that must always fit | Better for large visual elements |
+| Prevents excessive growth | Allows more dramatic scaling |
+| Common for icons and shapes | Common for hero headings and graphics |
