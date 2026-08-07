@@ -3488,3 +3488,186 @@ A strong answer is:
 | Better for elements that must always fit | Better for large visual elements |
 | Prevents excessive growth | Allows more dramatic scaling |
 | Common for icons and shapes | Common for hero headings and graphics |
+
+
+---
+
+
+## `ch` (Character Unit)
+
+The **`ch`** unit is a **font-relative CSS unit** based on the **width of the `0` (zero) character** in the current font.
+
+Unlike `em` and `rem`, which are based on **font size**, `ch` is based on **character width**.
+
+According to the CSS specification:
+
+```text
+1ch = Width of the "0" (zero) glyph
+```
+
+Since different fonts have different character widths, the actual size of `1ch` varies depending on the active font.
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 40ch;
+}
+```
+
+Example:
+
+```css
+input {
+    width: 30ch;
+}
+```
+
+---
+
+## How `ch` Works
+
+Suppose the current font renders the `0` character with a width of **8px**.
+
+Then:
+
+| CSS Value | Approximate Width |
+|-----------|------------------:|
+| `10ch` | 80px |
+| `20ch` | 160px |
+| `40ch` | 320px |
+| `60ch` | 480px |
+
+Changing the font changes the actual width of `ch`.
+
+---
+
+## Example
+
+```css
+article {
+    max-width: 65ch;
+}
+```
+
+This limits each line of text to approximately **65 characters**, improving readability.
+
+---
+
+## Common Use Cases
+
+The `ch` unit is commonly used for:
+
+- Paragraph widths
+- Form inputs
+- Code blocks
+- Search boxes
+- Readable text layouts
+
+Example:
+
+```css
+input[type="text"] {
+    width: 25ch;
+}
+```
+
+This creates an input field approximately wide enough for **25 characters**.
+
+---
+
+## Advantages
+
+- Improves text readability.
+- Useful for typography.
+- Ideal for controlling line length.
+- Works well for text-based UI components.
+
+---
+
+## Limitations
+
+- Depends on the current font.
+- Width varies between fonts.
+- Not suitable for general page layouts.
+
+---
+
+## When Should You Use `ch`?
+
+Use `ch` when sizing should relate to **text length** rather than screen size.
+
+Examples include:
+
+- Reading layouts
+- Input fields
+- Text editors
+- Code examples
+- Documentation websites
+
+---
+
+## When Should You Avoid `ch`?
+
+Avoid using `ch` for:
+
+- Images
+- Containers
+- Responsive page layouts
+- Full-width sections
+
+Viewport units, percentages, or `rem` are usually better choices for those cases.
+
+---
+
+> 💡 **Pro Tip:** A maximum line length of **60–75 characters** is widely recommended for comfortable reading. Using `max-width: 65ch;` is a simple way to achieve this.
+
+### 🌍 Real-World Usage
+
+A readable article layout:
+
+```css
+article {
+    max-width: 65ch;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+```
+
+This keeps lines from becoming too long on large screens, making the content easier to read.
+
+---
+
+### 📌 Did You Know?
+
+Many documentation websites and blogs limit paragraph width using `ch` because readability generally decreases when text lines become excessively long.
+
+---
+
+### ⚠️ Important
+
+Remember:
+
+```text
+ch
+
+↓
+
+Width of the "0" character
+```
+
+Changing the font changes the value of `1ch`.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What does `1ch` represent in CSS?**
+
+A strong answer is:
+
+> `1ch` represents the width of the `0` (zero) character in the current font. It is commonly used to control text width and improve readability in text-heavy layouts.
