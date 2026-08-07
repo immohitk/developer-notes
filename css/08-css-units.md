@@ -3072,3 +3072,205 @@ A common interview question is:
 A strong answer is:
 
 > `1vh` represents **1% of the viewport's height**. It is commonly used to create full-screen layouts such as hero sections. On mobile devices, newer units like `dvh` may provide more accurate sizing when the browser interface changes.
+
+
+---
+
+
+## `vmin`
+
+The **`vmin`** unit is a **relative CSS unit** based on the **smaller dimension of the viewport**.
+
+It automatically compares:
+
+- Viewport width (`vw`)
+- Viewport height (`vh`)
+
+and uses whichever value is **smaller**.
+
+According to the CSS specification:
+
+```text
+1vmin = 1% of the smaller viewport dimension
+```
+
+---
+
+## Syntax
+
+```css
+selector {
+    width: 50vmin;
+}
+```
+
+Example:
+
+```css
+.square {
+    width: 40vmin;
+    height: 40vmin;
+}
+```
+
+---
+
+## How `vmin` Works
+
+Suppose the browser viewport is:
+
+```text
+Width  = 1200px
+Height = 800px
+```
+
+The smaller dimension is:
+
+```text
+800px
+```
+
+Therefore:
+
+| CSS Value | Actual Size |
+|-----------|------------:|
+| `100vmin` | 800px |
+| `50vmin` | 400px |
+| `25vmin` | 200px |
+| `10vmin` | 80px |
+
+If the viewport changes to:
+
+```text
+Width  = 700px
+Height = 1000px
+```
+
+The smaller dimension becomes:
+
+```text
+700px
+```
+
+All `vmin` values are then calculated from **700px**.
+
+---
+
+## Example
+
+```css
+.circle {
+    width: 30vmin;
+    height: 30vmin;
+    border-radius: 50%;
+}
+```
+
+The circle scales proportionally regardless of whether the device is in portrait or landscape mode.
+
+---
+
+## Common Use Cases
+
+The `vmin` unit is commonly used for:
+
+- Squares
+- Circles
+- Logos
+- Icons
+- Responsive illustrations
+- Elements that should always fit within the viewport
+
+---
+
+## Advantages
+
+- Automatically adapts to screen orientation.
+- Maintains proportional sizing.
+- Prevents elements from becoming too large.
+- Useful for responsive graphics.
+
+---
+
+## Limitations
+
+- May become smaller than expected on narrow screens.
+- Not ideal for body text.
+- Less commonly used than `vw` or `vh`.
+
+---
+
+## When Should You Use `vmin`?
+
+Use `vmin` when an element should always fit inside the viewport, regardless of orientation.
+
+Examples:
+
+- Responsive logos
+- Profile avatars
+- Loading animations
+- Decorative graphics
+
+---
+
+## When Should You Avoid `vmin`?
+
+Avoid using `vmin` for:
+
+- Paragraph text
+- Fixed-size UI controls
+- Elements that require consistent sizing
+
+In these cases, `rem` or `px` is often a better choice.
+
+---
+
+> 💡 **Pro Tip:** Use `vmin` for elements that should scale proportionally without exceeding the smaller dimension of the screen.
+
+### 🌍 Real-World Usage
+
+A responsive profile image:
+
+```css
+.avatar {
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 50%;
+}
+```
+
+The avatar remains proportional on phones, tablets, and desktop screens.
+
+---
+
+### 📌 Did You Know?
+
+The `vmin` unit is especially useful for creating shapes that should remain fully visible regardless of whether the device is held in portrait or landscape orientation.
+
+---
+
+### ⚠️ Important
+
+Remember:
+
+```text
+vmin
+
+↓
+
+1% of the smaller viewport dimension
+```
+
+The browser automatically decides whether to use the viewport's width or height based on whichever is smaller.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What does `1vmin` represent?**
+
+A strong answer is:
+
+> `1vmin` represents **1% of the smaller viewport dimension**. The browser compares the viewport's width and height and uses whichever value is smaller, making `vmin` useful for responsive elements that should always fit within the screen.
