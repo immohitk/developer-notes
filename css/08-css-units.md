@@ -4001,3 +4001,151 @@ h1 {
 ---
 
 > 💡 **Pro Tip:** Viewport units are powerful for responsive layouts, but they are rarely used alone. Combining them with `rem`, `%`, and CSS functions such as `clamp()` creates layouts that remain flexible without becoming too small or too large.
+
+
+---
+
+
+# Font-Relative Units
+
+Font-relative units are CSS units whose values are calculated based on the **current font** or the **root font**.
+
+Unlike viewport units, which respond to screen size, font-relative units respond to typography, making them ideal for scalable and accessible interfaces.
+
+---
+
+## Available Font-Relative Units
+
+| Unit | Relative To | Best Used For |
+|------|-------------|---------------|
+| `em` | Current element's font size | Component spacing, padding, icons |
+| `rem` | Root (`<html>`) font size | Typography, global spacing |
+| `ch` | Width of the `0` character | Text width, form inputs |
+| `ex` | Height of the lowercase `x` | Specialized typography |
+
+---
+
+## Visual Overview
+
+```text
+Font-Relative Units
+
+Root Font Size
+      │
+      └── rem
+
+Current Font Size
+      │
+      └── em
+
+Character Width
+      │
+      └── ch
+
+Character Height
+      │
+      └── ex
+```
+
+Each unit uses a different reference point.
+
+---
+
+## Choosing the Right Font-Relative Unit
+
+### Use `em`
+
+When values should scale with the current component.
+
+Examples:
+
+- Button padding
+- Icons
+- Labels
+- Component spacing
+
+---
+
+### Use `rem`
+
+When values should remain consistent across the entire website.
+
+Examples:
+
+- Typography
+- Margins
+- Padding
+- Design systems
+
+---
+
+### Use `ch`
+
+When sizing should depend on text length.
+
+Examples:
+
+- Article width
+- Input fields
+- Search boxes
+- Code blocks
+
+---
+
+### Use `ex`
+
+When spacing should relate to the x-height of the font.
+
+This is mainly useful in specialized typography and print layouts.
+
+---
+
+## Comparison
+
+| Feature | `em` | `rem` | `ch` | `ex` |
+|---------|------|--------|------|------|
+| Relative to font size | ✅ | ✅ | ❌ | ❌ |
+| Relative to root font | ❌ | ✅ | ❌ | ❌ |
+| Relative to character width | ❌ | ❌ | ✅ | ❌ |
+| Relative to x-height | ❌ | ❌ | ❌ | ✅ |
+| Commonly used | ✅ | ✅ | ✅ | ❌ |
+
+---
+
+## Best Practices
+
+- Use `rem` for typography and global spacing.
+- Use `em` for component-level sizing.
+- Use `ch` to improve text readability.
+- Use `ex` only for specialized typography needs.
+- Keep your sizing strategy consistent across the project.
+
+---
+
+## Modern Recommendation
+
+Most modern projects follow a simple pattern:
+
+```text
+Typography
+        ↓
+      rem
+
+Component Spacing
+        ↓
+       em
+
+Readable Text Width
+        ↓
+       ch
+
+Special Typography
+        ↓
+       ex
+```
+
+This approach creates scalable, maintainable, and accessible interfaces.
+
+---
+
+> 💡 **Pro Tip:** If you're unsure which font-relative unit to choose, start with **`rem`**. It provides consistent sizing across the application and is the preferred choice for most typography and spacing in modern web development.
