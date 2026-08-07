@@ -3671,3 +3671,186 @@ A common interview question is:
 A strong answer is:
 
 > `1ch` represents the width of the `0` (zero) character in the current font. It is commonly used to control text width and improve readability in text-heavy layouts.
+
+
+---
+
+
+## `ex` (X-Height Unit)
+
+The **`ex`** unit is a **font-relative CSS unit** based on the **x-height** of the current font.
+
+The **x-height** is approximately the height of the lowercase **`x`** character.
+
+Unlike:
+
+- `em` → based on font size
+- `ch` → based on character width
+
+`ex` is based on the **height of lowercase letters**.
+
+Because fonts have different designs, the value of `1ex` varies from one font to another.
+
+---
+
+## Syntax
+
+```css
+selector {
+    height: 4ex;
+}
+```
+
+Example:
+
+```css
+.label {
+    margin-bottom: 1ex;
+}
+```
+
+---
+
+## How `ex` Works
+
+Suppose the current font has:
+
+```text
+Font Size = 16px
+
+x-height = 8px
+```
+
+Then:
+
+| CSS Value | Approximate Height |
+|-----------|-------------------:|
+| `1ex` | 8px |
+| `2ex` | 16px |
+| `4ex` | 32px |
+
+Changing the font changes the value of `1ex`.
+
+---
+
+## Example
+
+```css
+.label {
+    padding-bottom: 0.5ex;
+}
+```
+
+The spacing adjusts according to the x-height of the current font.
+
+---
+
+## Common Use Cases
+
+The `ex` unit may be used for:
+
+- Typography experiments
+- Print layouts
+- Academic documents
+- Fine text adjustments
+
+However, it is **rarely used** in modern web applications.
+
+---
+
+## Advantages
+
+- Scales with the font.
+- Can provide typography-based spacing.
+- Useful in specialized text layouts.
+
+---
+
+## Limitations
+
+- Varies significantly between fonts.
+- Less predictable than `em` or `rem`.
+- Rarely supported as a primary sizing unit in design systems.
+- Uncommon in everyday frontend development.
+
+---
+
+## When Should You Use `ex`?
+
+Use `ex` only when spacing should relate specifically to the font's x-height.
+
+Typical use cases include:
+
+- Typography research
+- Print-focused layouts
+- Specialized publishing
+
+---
+
+## When Should You Avoid `ex`?
+
+Avoid using `ex` for:
+
+- General layouts
+- Responsive design
+- Typography systems
+- Component sizing
+
+Most modern projects prefer:
+
+- `rem`
+- `em`
+- `ch`
+
+because they provide more predictable results.
+
+---
+
+> 💡 **Pro Tip:** If you're unsure whether to use `ex`, you probably don't need it. In most cases, `rem`, `em`, or `ch` is the better choice.
+
+### 🌍 Real-World Usage
+
+The `ex` unit is uncommon in production websites.
+
+It is occasionally found in:
+
+- Typography demonstrations
+- Academic publications
+- Experimental layouts
+- Print-oriented designs
+
+Most modern UI frameworks do not rely on `ex`.
+
+---
+
+### 📌 Did You Know?
+
+Although CSS has supported `ex` for many years, it is one of the least-used CSS units because its value varies between fonts and is difficult to predict.
+
+---
+
+### ⚠️ Important
+
+Remember:
+
+```text
+ex
+
+↓
+
+Height of the lowercase "x"
+```
+
+Since every font has a different x-height, the value of `1ex` is not consistent across typefaces.
+
+---
+
+### 🎯 Interview Insight
+
+A common interview question is:
+
+> **What does `1ex` represent in CSS?**
+
+A strong answer is:
+
+> `1ex` represents the x-height of the current font, which is approximately the height of the lowercase `x`. Because this value varies between fonts, `ex` is rarely used in modern web development compared with `rem`, `em`, or `ch`.
