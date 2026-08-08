@@ -141,3 +141,193 @@ The following sections explain each value in detail.
 ---
 
 > 💡 **Chapter Goal:** By the end of this chapter, you should be able to understand how each CSS positioning mode works, choose the appropriate positioning method, and build common UI components using `position`.
+
+
+---
+
+
+# `static`
+
+`static` is the **default value** of the CSS `position` property.
+
+When an element has:
+
+```css
+position: static;
+```
+
+it remains in the **normal document flow**.
+
+This means the browser positions the element according to the normal layout rules of the document.
+
+---
+
+## Basic Example
+
+```css
+.box {
+    position: static;
+}
+```
+
+This is equivalent to not specifying the `position` property at all:
+
+```css
+.box {
+    /* position: static; */
+}
+```
+
+Because `static` is the default value.
+
+---
+
+## Normal Document Flow
+
+Consider:
+
+```html
+<div class="box">Box 1</div>
+<div class="box">Box 2</div>
+<div class="box">Box 3</div>
+```
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    margin: 10px;
+}
+```
+
+The elements are laid out according to their normal display behavior.
+
+For block-level elements, they normally appear one after another vertically:
+
+```text
+┌──────────────┐
+│    Box 1     │
+└──────────────┘
+
+┌──────────────┐
+│    Box 2     │
+└──────────────┘
+
+┌──────────────┐
+│    Box 3     │
+└──────────────┘
+```
+
+No special positioning is applied.
+
+---
+
+## `top`, `right`, `bottom`, and `left`
+
+Offset properties do **not** reposition a statically positioned element.
+
+Example:
+
+```css
+.box {
+    position: static;
+    top: 50px;
+    left: 50px;
+}
+```
+
+The `top` and `left` values have no positioning effect because the element is `static`.
+
+To use these offset properties for positioning, you generally need a non-static positioning mode such as:
+
+```css
+position: relative;
+```
+
+```css
+position: absolute;
+```
+
+```css
+position: fixed;
+```
+
+or
+
+```css
+position: sticky;
+```
+
+---
+
+## Example
+
+```css
+.box {
+    position: static;
+    top: 100px;
+}
+```
+
+The browser ignores the `top` offset for positioning.
+
+Changing it to:
+
+```css
+.box {
+    position: relative;
+    top: 100px;
+}
+```
+
+allows the element to move relative to its normal position.
+
+---
+
+## `static` and Document Flow
+
+A statically positioned element:
+
+- Remains in normal document flow.
+- Occupies space in the layout.
+- Does not create an overlay by itself.
+- Does not respond to `top`, `right`, `bottom`, or `left` offsets.
+- Is not treated as a positioned ancestor for absolutely positioned descendants.
+
+---
+
+## When Should You Use `static`?
+
+In most cases, you don't need to explicitly write:
+
+```css
+position: static;
+```
+
+because it is already the default.
+
+It can still be useful when you want to **reset an element's positioning**:
+
+```css
+.component {
+    position: static;
+}
+```
+
+For example, this can remove positioning behavior that was previously applied by another CSS rule.
+
+---
+
+## `static` vs `relative`
+
+| Feature | `static` | `relative` |
+|---------|----------|------------|
+| Default value | ✅ | ❌ |
+| Normal document flow | ✅ | ✅ |
+| Occupies layout space | ✅ | ✅ |
+| `top` / `right` / `bottom` / `left` work | ❌ | ✅ |
+| Can establish a containing block for absolute descendants | ❌ | ✅ |
+
+---
+
+> 💡 **Remember:** `static` means **normal positioning**. The element stays where the normal document flow places it, and positioning offsets such as `top` and `left` do not move it.
