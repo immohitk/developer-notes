@@ -3360,3 +3360,453 @@ sticky
 ```
 
 > 💡 **Interview Tip:** When explaining CSS positioning, don't only memorize the five values. Be ready to explain **document flow**, **containing blocks**, **scrolling behavior**, and the common `relative` + `absolute` pattern.
+
+
+---
+
+
+# Practice Exercises
+
+Try solving these exercises yourself before checking the hints.
+
+---
+
+## Exercise 1: Relative Positioning
+
+Create a box that:
+
+- Uses `position: relative`.
+- Moves `30px` downward.
+- Moves `20px` to the right.
+- Still occupies its original space.
+
+### Expected CSS
+
+```css
+.box {
+    position: relative;
+    top: 30px;
+    left: 20px;
+}
+```
+
+---
+
+## Exercise 2: Card Badge
+
+Create a card containing a `New` badge.
+
+Requirements:
+
+- The card should establish the positioning context.
+- The badge should appear in the top-right corner.
+- The badge should not affect the card's normal content layout.
+
+### Hint
+
+Use:
+
+```css
+.card {
+    position: relative;
+}
+```
+
+and:
+
+```css
+.badge {
+    position: absolute;
+}
+```
+
+---
+
+## Exercise 3: Fixed Button
+
+Create a circular button that stays in the bottom-right corner of the viewport while scrolling.
+
+Requirements:
+
+- `20px` from the right.
+- `20px` from the bottom.
+- Must remain visible while scrolling.
+
+### Hint
+
+Use:
+
+```css
+position: fixed;
+```
+
+---
+
+## Exercise 4: Sticky Header
+
+Create a header that:
+
+- Starts in normal document flow.
+- Sticks to the top when scrolling.
+- Uses a `0` top offset.
+
+### Expected CSS
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+}
+```
+
+---
+
+## Exercise 5: Image Overlay
+
+Create an image container with text positioned over the bottom-left corner of the image.
+
+Requirements:
+
+- Container establishes the positioning context.
+- Text is positioned over the image.
+- Text is `10px` from the bottom.
+- Text is `10px` from the left.
+
+### Hint
+
+```css
+.container {
+    position: relative;
+}
+
+.text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+```
+
+---
+
+## Exercise 6: Center an Element
+
+Create an absolutely positioned box and place it at the center of its containing block.
+
+### Hint
+
+Use:
+
+```css
+top: 50%;
+left: 50%;
+```
+
+together with:
+
+```css
+transform: translate(-50%, -50%);
+```
+
+---
+
+## Exercise 7: Choose the Correct Position
+
+Choose the most appropriate `position` value.
+
+### A. Normal document layout
+
+```text
+Answer: __________
+```
+
+### B. Badge inside a card
+
+```text
+Answer: __________
+```
+
+### C. Floating help button attached to the screen
+
+```text
+Answer: __________
+```
+
+### D. Sidebar that sticks while scrolling
+
+```text
+Answer: __________
+```
+
+### E. Move an element visually while preserving its original space
+
+```text
+Answer: __________
+```
+
+### Answers
+
+```text
+A. static
+B. absolute
+C. fixed
+D. sticky
+E. relative
+```
+
+---
+
+## Exercise 8: Debug the Positioning
+
+Given:
+
+```css
+.card {
+    width: 300px;
+    height: 200px;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+The badge is not positioned relative to the card as intended.
+
+### Question
+
+What change would you make to `.card`?
+
+### Answer
+
+```css
+.card {
+    position: relative;
+}
+```
+
+This establishes the intended positioning context for the absolutely positioned badge.
+
+---
+
+## Exercise 9: Identify the Problem
+
+Given:
+
+```css
+header {
+    position: fixed;
+    top: 0;
+}
+
+main {
+    /* page content */
+}
+```
+
+The page content appears underneath the header.
+
+### Question
+
+Why does this happen?
+
+### Answer
+
+The fixed header is removed from normal document flow.
+
+One possible solution is to provide appropriate space for the header:
+
+```css
+main {
+    padding-top: 70px;
+}
+```
+
+---
+
+## Exercise 10: Build a Profile Status Indicator
+
+Create:
+
+```html
+<div class="profile">
+    <img src="profile.jpg" alt="Profile">
+    <span class="status"></span>
+</div>
+```
+
+Requirements:
+
+- The profile container establishes the positioning context.
+- The status indicator appears near the bottom-right of the image.
+- The indicator should not affect normal document flow.
+
+### Hint
+
+Use:
+
+```css
+.profile {
+    position: relative;
+}
+
+.status {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+```
+
+---
+
+## Exercise 11: Full Overlay
+
+Create an overlay that covers the entire positioned container.
+
+### Hint
+
+Use:
+
+```css
+.container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+}
+```
+
+Remember:
+
+```css
+inset: 0;
+```
+
+is equivalent to setting all four offsets to `0`.
+
+---
+
+## Exercise 12: Explain the Difference
+
+Explain the difference between:
+
+```css
+position: relative;
+```
+
+and:
+
+```css
+position: absolute;
+```
+
+Your answer should mention:
+
+- Normal document flow.
+- Original layout space.
+- Positioning context.
+- Common use cases.
+
+---
+
+## Exercise 13: Explain the Difference
+
+Explain the difference between:
+
+```css
+position: fixed;
+```
+
+and:
+
+```css
+position: sticky;
+```
+
+Your answer should mention:
+
+- Document flow.
+- Scrolling.
+- Viewport.
+- Containing/scrolling area.
+
+---
+
+## Exercise 14: Build a Mini UI
+
+Create a product card containing:
+
+- Product image.
+- `Sale` badge.
+- Product title.
+- Price.
+- Close button.
+
+Use positioning where appropriate.
+
+### Suggested structure
+
+```html
+<div class="product-card">
+    <span class="sale-badge">Sale</span>
+
+    <button class="close-button">×</button>
+
+    <img src="product.jpg" alt="Product">
+
+    <h2>Product Name</h2>
+    <p>$49.99</p>
+</div>
+```
+
+### Requirements
+
+Use:
+
+```css
+.product-card {
+    position: relative;
+}
+```
+
+Then position the badge and close button using `absolute`.
+
+---
+
+## Challenge Exercise
+
+Build a simple page containing:
+
+1. A sticky header.
+2. A long article.
+3. A sticky sidebar.
+4. A product card with an absolute badge.
+5. A fixed help button.
+
+Try to build the layout using:
+
+- Normal document flow.
+- Flexbox or Grid for the main layout.
+- Positioning only where it is actually needed.
+
+---
+
+## Self-Check
+
+Before moving to the next chapter, make sure you can answer:
+
+- [ ] What is the default `position` value?
+- [ ] Does `relative` remain in normal flow?
+- [ ] Does `absolute` remain in normal flow?
+- [ ] What is an absolute element positioned relative to?
+- [ ] Why is `relative` commonly used on a parent?
+- [ ] What makes `fixed` different from `absolute`?
+- [ ] How does `sticky` behave during scrolling?
+- [ ] Why does a fixed header potentially cover content?
+- [ ] When should Flexbox or Grid be preferred over positioning?
+- [ ] How do `top`, `right`, `bottom`, and `left` affect positioned elements?
+
+> 💡 **Practice Tip:** Don't just copy the examples. Change the offsets, container sizes, and screen dimensions and observe how each positioning mode behaves. That is the fastest way to build an accurate mental model of CSS positioning.
