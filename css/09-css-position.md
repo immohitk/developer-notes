@@ -331,3 +331,260 @@ For example, this can remove positioning behavior that was previously applied by
 ---
 
 > 💡 **Remember:** `static` means **normal positioning**. The element stays where the normal document flow places it, and positioning offsets such as `top` and `left` do not move it.
+
+
+---
+
+
+# `relative`
+
+`relative` positioning keeps an element in the **normal document flow** while allowing it to be visually shifted from its original position.
+
+```css
+.box {
+    position: relative;
+}
+```
+
+Unlike `static`, a relatively positioned element can respond to:
+
+```css
+top
+right
+bottom
+left
+```
+
+---
+
+## Basic Example
+
+```css
+.box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+}
+```
+
+The element moves:
+
+- `20px` downward from its normal position.
+- `30px` to the right from its normal position.
+
+Its original space in the document flow is still preserved.
+
+---
+
+## Visual Example
+
+Suppose the normal position is:
+
+```text
+┌──────────────┐
+│     Box      │
+└──────────────┘
+```
+
+After:
+
+```css
+.box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+}
+```
+
+the box is visually shifted:
+
+```text
+        ┌──────────────┐
+        │     Box      │
+        └──────────────┘
+```
+
+However, the browser still reserves the element's original space.
+
+---
+
+## `relative` and Document Flow
+
+A relatively positioned element:
+
+- Remains in normal document flow.
+- Continues to occupy its original space.
+- Can be moved using positioning offsets.
+- Can overlap other elements after being moved.
+- Can establish a positioning context for absolutely positioned descendants.
+
+Example:
+
+```css
+.box {
+    position: relative;
+    top: 30px;
+}
+```
+
+The element moves visually, but the surrounding layout behaves as though the element were still in its original position.
+
+---
+
+## Using `top` and `left`
+
+```css
+.box {
+    position: relative;
+    top: 20px;
+    left: 40px;
+}
+```
+
+This moves the element:
+
+```text
+top: 20px
+   ↓
+
+        ┌──────────────┐
+        │     Box      │
+        └──────────────┘
+              →
+           left: 40px
+```
+
+Positive values generally move the element:
+
+- `top` → downward
+- `right` → left
+- `bottom` → upward
+- `left` → right
+
+---
+
+## Negative Offsets
+
+Negative values can move an element in the opposite direction.
+
+```css
+.box {
+    position: relative;
+    top: -20px;
+    left: -30px;
+}
+```
+
+This moves the element:
+
+- `20px` upward.
+- `30px` to the left.
+
+---
+
+## `relative` as a Positioning Context
+
+One of the most important uses of `relative` is creating a containing block for an absolutely positioned child.
+
+Example:
+
+```html
+<div class="card">
+    <span class="badge">New</span>
+</div>
+```
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+Here, `.badge` is positioned relative to `.card`.
+
+This pattern is extremely common in modern UI development.
+
+---
+
+## Why Use `relative` on the Parent?
+
+Without:
+
+```css
+.card {
+    position: relative;
+}
+```
+
+the absolutely positioned child may use a different containing block, depending on the ancestor structure.
+
+Adding `relative` gives the child a clear positioning reference.
+
+```text
+.card
+ └── position: relative
+       │
+       └── badge
+             └── position: absolute
+```
+
+---
+
+## Common Use Cases
+
+`position: relative` is commonly used for:
+
+- Creating a positioning context.
+- Moving an element slightly from its normal position.
+- Positioning badges.
+- Positioning icons inside components.
+- Creating overlays.
+- Building tooltips.
+- Preparing a parent for an absolutely positioned child.
+
+---
+
+## Example: Notification Badge
+
+```html
+<div class="notification">
+    🔔
+    <span class="badge">3</span>
+</div>
+```
+
+```css
+.notification {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+}
+```
+
+The parent establishes the positioning context, while the badge is positioned inside it.
+
+---
+
+## `relative` vs `static`
+
+| Feature | `static` | `relative` |
+|---------|----------|------------|
+| Normal document flow | ✅ | ✅ |
+| Occupies original space | ✅ | ✅ |
+| Responds to `top` / `right` / `bottom` / `left` | ❌ | ✅ |
+| Can establish containing block | ❌ | ✅ |
+| Can visually overlap other elements | Limited | ✅ |
+
+---
+
+> 💡 **Remember:** `relative` means **"stay in the normal layout, but allow yourself to be visually positioned."** Its most important practical use is often not moving the element itself, but creating a positioning context for an absolutely positioned child.
