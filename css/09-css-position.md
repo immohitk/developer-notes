@@ -1126,3 +1126,290 @@ as positioning an element relative to the viewport.
 ---
 
 > 💡 **Remember:** `fixed` means the element is **removed from normal flow and stays attached to its viewport position while the page scrolls**.
+
+
+---
+
+
+# `sticky`
+
+`sticky` positioning is a combination of **normal document flow** and **fixed-like positioning**.
+
+An element with:
+
+```css
+position: sticky;
+```
+
+remains in the normal document flow until a specified offset is reached while scrolling.
+
+After reaching that threshold, the element sticks within its containing scroll area.
+
+---
+
+## Basic Example
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+}
+```
+
+The element behaves normally until the page is scrolled far enough for its top edge to reach `0`.
+
+It then remains stuck at the top while its containing area allows it to do so.
+
+---
+
+## How `sticky` Works
+
+Consider:
+
+```css
+.sidebar {
+    position: sticky;
+    top: 20px;
+}
+```
+
+The sidebar initially behaves like a normally positioned element.
+
+As the page scrolls:
+
+```text
+Before reaching threshold:
+
+┌─────────────────────────────┐
+│                             │
+│        Sidebar              │
+│                             │
+│        Content              │
+│                             │
+└─────────────────────────────┘
+```
+
+After reaching the threshold:
+
+```text
+┌─────────────────────────────┐
+│        Sidebar              │ ← stays 20px from top
+├─────────────────────────────┤
+│                             │
+│        Content              │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Offset Is Required
+
+A sticky element normally needs an inset value to determine when it should stick.
+
+For example:
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+}
+```
+
+Other offsets can also be used:
+
+```css
+.sidebar {
+    position: sticky;
+    top: 20px;
+}
+```
+
+You can also use:
+
+```css
+position: sticky;
+bottom: 0;
+```
+
+when the desired behavior is based on the bottom edge.
+
+---
+
+## Sticky and Normal Document Flow
+
+Unlike `absolute` and `fixed`, a sticky element generally remains in the normal document flow.
+
+This means:
+
+- It occupies space in the layout.
+- Other elements account for its position.
+- It can become stuck during scrolling.
+- Its sticky behavior is constrained by its containing scroll area.
+
+---
+
+## Example: Sticky Header
+
+```html
+<header class="header">
+    My Website
+</header>
+
+<main>
+    <p>Long page content...</p>
+</main>
+```
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+}
+```
+
+As the user scrolls down, the header sticks to the top.
+
+This is useful for navigation that should remain accessible while reading content.
+
+---
+
+## Example: Sticky Sidebar
+
+```css
+.sidebar {
+    position: sticky;
+    top: 20px;
+}
+```
+
+A sidebar can remain visible as the user scrolls through a long article.
+
+A common layout might look like:
+
+```text
+┌──────────────────────────────────────┐
+│ Header                               │
+├──────────────┬───────────────────────┤
+│              │                       │
+│   Sidebar    │       Article         │
+│   sticky     │       Content         │
+│              │                       │
+│              │                       │
+└──────────────┴───────────────────────┘
+```
+
+---
+
+## Sticky vs Fixed
+
+Although both can remain visible during scrolling, they behave differently.
+
+### Sticky
+
+```css
+.element {
+    position: sticky;
+    top: 0;
+}
+```
+
+The element:
+
+- Starts in normal document flow.
+- Becomes stuck after reaching the specified threshold.
+- Is constrained by its containing scroll area.
+
+### Fixed
+
+```css
+.element {
+    position: fixed;
+    top: 0;
+}
+```
+
+The element:
+
+- Is removed from normal document flow.
+- Is generally positioned relative to the viewport.
+- Remains fixed while scrolling.
+
+---
+
+## Sticky vs Relative
+
+`sticky` initially behaves similarly to `relative` because it remains in normal document flow.
+
+The difference is that sticky positioning responds to scrolling.
+
+| Feature | `relative` | `sticky` |
+|---------|------------|----------|
+| Normal document flow | ✅ | ✅ |
+| Occupies layout space | ✅ | ✅ |
+| Responds to offsets | ✅ | ✅ |
+| Responds to scrolling | ❌ | ✅ |
+| Can stick to an edge | ❌ | ✅ |
+
+---
+
+## Common Use Cases
+
+`position: sticky` is commonly used for:
+
+- Sticky navigation
+- Section headings
+- Article sidebars
+- Table headers
+- Filters
+- Long-page controls
+- Reading interfaces
+
+---
+
+## Common Sticky Example
+
+```css
+.table-header {
+    position: sticky;
+    top: 0;
+}
+```
+
+This can keep a table header visible while the user scrolls through a long table.
+
+---
+
+## Why Sticky Sometimes Doesn't Work
+
+Sticky positioning can be affected by the surrounding layout.
+
+Common things to check include:
+
+- The sticky element has a required inset such as `top`.
+- The element has enough space to move before reaching its containing boundary.
+- Ancestor overflow and scrolling behavior are appropriate.
+- The parent/container dimensions allow sticky behavior.
+
+For example:
+
+```css
+.sidebar {
+    position: sticky;
+    top: 20px;
+}
+```
+
+is more useful than:
+
+```css
+.sidebar {
+    position: sticky;
+}
+```
+
+because the browser needs an offset threshold for the intended sticking behavior.
+
+---
+
+> 💡 **Remember:** `sticky` starts in the **normal document flow** and becomes **stuck relative to its scroll container** when the specified offset threshold is reached.
