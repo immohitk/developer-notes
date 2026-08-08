@@ -2015,3 +2015,18 @@ Normal flow + sticks during scrolling
 ```
 
 > 💡 **Remember:** The key to CSS positioning is understanding **where an element is positioned relative to** and **whether it remains part of normal document flow**.
+
+
+---
+
+
+# References
+
+- [MDN — CSS position](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
+- [MDN — CSS Positioned Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout)
+- [MDN — top](https://developer.mozilla.org/en-US/docs/Web/CSS/top)
+- [MDN — right](https://developer.mozilla.org/en-US/docs/Web/CSS/right)
+- [MDN — bottom](https://developer.mozilla.org/en-US/docs/Web/CSS/bottom)
+- [MDN — left](https://developer.mozilla.org/en-US/docs/Web/CSS/left)
+- [MDN — inset](https://developer.mozilla.org/en-US/docs/Web/CSS/inset)
+- [CSS Specifications — CSS Positioned Layout](https://drafts.csswg.org/css-position/)
