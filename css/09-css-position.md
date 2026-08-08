@@ -909,3 +909,220 @@ This makes the pattern particularly useful for UI components.
 ---
 
 > 💡 **Remember:** `absolute` means the element is **removed from normal document flow and positioned relative to its containing block**. When you want an absolutely positioned element to stay inside a specific component, `position: relative` on that component is usually the key.
+
+
+---
+
+
+# `fixed`
+
+`fixed` positioning removes an element from the normal document flow and positions it relative to the **viewport**.
+
+```css
+.box {
+    position: fixed;
+}
+```
+
+The element remains in the same position relative to the viewport even when the page is scrolled.
+
+---
+
+## Basic Example
+
+```css
+.button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+```
+
+The element stays:
+
+- `20px` from the right edge.
+- `20px` from the bottom edge.
+
+Even when the page is scrolled, the element remains visible in that location.
+
+---
+
+## Fixed Position and Scrolling
+
+Consider:
+
+```css
+.help-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+```
+
+The button stays attached to the viewport:
+
+```text
+┌─────────────────────────────┐
+│                             │
+│        Page Content         │
+│                             │
+│                             │
+│                             │
+│                      ┌────┐ │
+│                      │ ?  │ │
+│                      └────┘ │
+└─────────────────────────────┘
+```
+
+When the page scrolls, the button remains in the same viewport position.
+
+---
+
+## Removed from Normal Flow
+
+A fixed element is removed from normal document flow.
+
+Example:
+
+```css
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+```
+
+The header no longer occupies its normal position in the document flow.
+
+Because of this, page content may appear underneath the header.
+
+A common solution is to provide appropriate spacing:
+
+```css
+main {
+    padding-top: 80px;
+}
+```
+
+---
+
+## Positioning with Offsets
+
+Fixed elements can be positioned using:
+
+```css
+top
+right
+bottom
+left
+```
+
+Example:
+
+```css
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+```
+
+This places the notification near the top-right corner of the viewport.
+
+---
+
+## Common Use Cases
+
+`position: fixed` is commonly used for:
+
+- Fixed navigation bars
+- Floating action buttons
+- Cookie notices
+- Persistent help buttons
+- Chat buttons
+- Back-to-top buttons
+- Floating notifications
+- Persistent controls
+
+---
+
+## Example: Fixed Header
+
+```html
+<header class="header">
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+```
+
+```css
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+```
+
+The header stays attached to the top of the viewport while the page scrolls.
+
+---
+
+## Example: Floating Action Button
+
+```css
+.floating-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+}
+```
+
+This is useful for actions that should remain easily accessible.
+
+For example:
+
+```text
+┌─────────────────────────────┐
+│                             │
+│        Page Content         │
+│                             │
+│                             │
+│                             │
+│                         ●   │
+└─────────────────────────────┘
+```
+
+---
+
+## `fixed` vs `absolute`
+
+| Feature | `absolute` | `fixed` |
+|---------|------------|---------|
+| Normal document flow | ❌ | ❌ |
+| Occupies original space | ❌ | ❌ |
+| Common reference | Containing block | Viewport |
+| Moves with page scrolling | Usually yes | No |
+| Common use | Overlays, badges | Fixed UI elements |
+
+---
+
+## Important Note
+
+Although `fixed` positioning is generally associated with the viewport, certain ancestor properties can affect the containing block behavior of a fixed-position element.
+
+For everyday usage, think of:
+
+```css
+position: fixed;
+```
+
+as positioning an element relative to the viewport.
+
+---
+
+> 💡 **Remember:** `fixed` means the element is **removed from normal flow and stays attached to its viewport position while the page scrolls**.
