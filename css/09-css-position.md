@@ -2965,3 +2965,398 @@ Before finalizing positioned elements, check:
 ---
 
 > 💡 **Debugging Tip:** When positioning behaves unexpectedly, don't immediately change `top`, `left`, or `z-index`. First determine **which positioning mode is being used, whether the element is in normal flow, and what its reference/containing block is**.
+
+
+---
+
+
+# Interview Questions
+
+## Basic Questions
+
+### 1. What is the CSS `position` property?
+
+The `position` property specifies how an element is positioned in a document.
+
+Common values are:
+
+```css
+static
+relative
+absolute
+fixed
+sticky
+```
+
+---
+
+### 2. What is the default value of `position`?
+
+The default value is:
+
+```css
+position: static;
+```
+
+A statically positioned element remains in normal document flow.
+
+---
+
+### 3. What is the difference between `static` and `relative`?
+
+`static`:
+
+- Is the default positioning mode.
+- Does not respond to `top`, `right`, `bottom`, or `left`.
+
+`relative`:
+
+- Remains in normal document flow.
+- Can be visually shifted using positioning offsets.
+- Can establish a positioning context for an absolutely positioned descendant.
+
+---
+
+### 4. Does `relative` remove an element from normal document flow?
+
+No.
+
+A relatively positioned element remains in normal document flow and continues to occupy its original space.
+
+---
+
+### 5. Does `absolute` remove an element from normal document flow?
+
+Yes.
+
+An absolutely positioned element is removed from normal document flow.
+
+---
+
+### 6. What is the difference between `relative` and `absolute`?
+
+```text
+relative
+    ↓
+Remains in normal flow
+
+absolute
+    ↓
+Removed from normal flow
+```
+
+`relative` preserves the element's original layout space, while `absolute` does not.
+
+---
+
+## Intermediate Questions
+
+### 7. What is the most common use of `position: relative`?
+
+A common use is creating a positioning context for an absolutely positioned child.
+
+Example:
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+---
+
+### 8. What is an absolutely positioned element positioned relative to?
+
+An absolutely positioned element is positioned relative to its containing block.
+
+A common pattern is to make the intended parent positioned:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+}
+```
+
+---
+
+### 9. What happens when an absolutely positioned element has no suitable positioned ancestor?
+
+Its containing block may come from a higher-level ancestor or the initial containing block, depending on the layout and CSS properties involved.
+
+Therefore, when positioning an element inside a component, explicitly establishing the intended positioning context is usually clearer.
+
+---
+
+### 10. What is `position: fixed`?
+
+`fixed` positioning removes an element from normal document flow and generally positions it relative to the viewport.
+
+Example:
+
+```css
+.button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+```
+
+The element remains in the same viewport position while scrolling.
+
+---
+
+### 11. What is `position: sticky`?
+
+`sticky` positioning keeps an element in normal document flow and allows it to become stuck when a specified scroll threshold is reached.
+
+Example:
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+}
+```
+
+---
+
+### 12. What is the difference between `fixed` and `sticky`?
+
+`fixed`:
+
+- Is removed from normal document flow.
+- Is generally attached to the viewport.
+- Remains fixed while scrolling.
+
+`sticky`:
+
+- Remains in normal document flow.
+- Becomes stuck after reaching its threshold.
+- Is constrained by its containing scroll area.
+
+---
+
+### 13. Why does `position: sticky` sometimes not work?
+
+Common things to check include:
+
+- An appropriate inset such as `top` is specified.
+- The surrounding container has enough space.
+- Ancestor overflow and scrolling behavior are appropriate.
+- The sticky element is not being constrained unexpectedly by its container.
+
+---
+
+### 14. Do `top`, `right`, `bottom`, and `left` work with `static`?
+
+No.
+
+For example:
+
+```css
+.box {
+    position: static;
+    top: 50px;
+}
+```
+
+The `top` value does not reposition the element.
+
+---
+
+## Practical Questions
+
+### 15. How would you position a badge in the top-right corner of a card?
+
+Use a relatively positioned parent and an absolutely positioned child:
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+---
+
+### 16. How would you create a floating button in the bottom-right corner of the screen?
+
+Use `fixed` positioning:
+
+```css
+.button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+```
+
+---
+
+### 17. How would you create a sticky header?
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+}
+```
+
+---
+
+### 18. How would you center an absolutely positioned element?
+
+A common approach is:
+
+```css
+.element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+```
+
+---
+
+### 19. Why might content appear underneath a fixed header?
+
+Because a fixed element is removed from normal document flow.
+
+For example:
+
+```css
+header {
+    position: fixed;
+    top: 0;
+}
+```
+
+The content no longer receives space for the header automatically.
+
+Additional spacing may be needed:
+
+```css
+main {
+    padding-top: 70px;
+}
+```
+
+---
+
+### 20. Should `absolute` positioning be used for the entire page layout?
+
+Generally, no.
+
+Flexbox, Grid, and normal document flow are usually better for major page layouts.
+
+Absolute positioning is more appropriate for specific positioning relationships such as:
+
+- Badges
+- Overlays
+- Tooltips
+- Icons
+- Component decorations
+
+---
+
+## Scenario-Based Questions
+
+### 21. You need a notification badge over an icon. Which positioning pattern would you use?
+
+```css
+.icon {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+```
+
+---
+
+### 22. You need a help button that stays visible while scrolling. Which position value would you use?
+
+```css
+position: fixed;
+```
+
+---
+
+### 23. You need a sidebar that stays visible while scrolling through an article. Which position value would you consider?
+
+```css
+position: sticky;
+```
+
+---
+
+### 24. You need to move an element 20px down without removing it from document flow. Which position value could you use?
+
+```css
+.element {
+    position: relative;
+    top: 20px;
+}
+```
+
+---
+
+### 25. What should you determine before using `top`, `left`, or similar offsets?
+
+Determine:
+
+1. Which positioning mode is being used.
+2. Whether the element remains in normal flow.
+3. What the element is positioned relative to.
+4. Whether the chosen reference point is actually the intended one.
+
+---
+
+## Quick Interview Revision
+
+```text
+static
+→ Default
+→ Normal flow
+→ Offsets don't reposition it
+
+relative
+→ Normal flow
+→ Can be offset
+→ Common positioning context
+
+absolute
+→ Removed from flow
+→ Positioned relative to containing block
+
+fixed
+→ Removed from flow
+→ Generally viewport-based
+→ Stays during scrolling
+
+sticky
+→ Normal flow
+→ Becomes stuck at a threshold
+→ Scroll-container constrained
+```
+
+> 💡 **Interview Tip:** When explaining CSS positioning, don't only memorize the five values. Be ready to explain **document flow**, **containing blocks**, **scrolling behavior**, and the common `relative` + `absolute` pattern.
