@@ -2030,3 +2030,239 @@ Normal flow + sticks during scrolling
 - [MDN — left](https://developer.mozilla.org/en-US/docs/Web/CSS/left)
 - [MDN — inset](https://developer.mozilla.org/en-US/docs/Web/CSS/inset)
 - [CSS Specifications — CSS Positioned Layout](https://drafts.csswg.org/css-position/)
+
+
+---
+
+
+# Quick Revision
+
+## Position Values
+
+| Value | Main Idea |
+|-------|-----------|
+| `static` | Normal document flow |
+| `relative` | Normal flow + visual offset |
+| `absolute` | Removed from flow + positioned relative to containing block |
+| `fixed` | Removed from flow + generally attached to viewport |
+| `sticky` | Normal flow + sticks during scrolling |
+
+---
+
+## `static`
+
+```css
+.element {
+    position: static;
+}
+```
+
+- Default value.
+- Remains in normal document flow.
+- `top`, `right`, `bottom`, and `left` do not reposition it.
+
+---
+
+## `relative`
+
+```css
+.element {
+    position: relative;
+    top: 10px;
+}
+```
+
+- Remains in normal document flow.
+- Original space is preserved.
+- Can be visually shifted.
+- Commonly used to establish a positioning context.
+
+---
+
+## `absolute`
+
+```css
+.element {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+```
+
+- Removed from normal document flow.
+- Positioned relative to its containing block.
+- Commonly used for badges, overlays, tooltips, and component-level positioning.
+
+### Common Pattern
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+}
+```
+
+---
+
+## `fixed`
+
+```css
+.element {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+```
+
+- Removed from normal document flow.
+- Generally positioned relative to the viewport.
+- Remains visible in the same viewport position while scrolling.
+- Commonly used for floating buttons and fixed navigation.
+
+---
+
+## `sticky`
+
+```css
+.element {
+    position: sticky;
+    top: 0;
+}
+```
+
+- Remains in normal document flow.
+- Requires an appropriate inset such as `top`.
+- Becomes stuck when the scroll threshold is reached.
+- Its sticky behavior is constrained by its containing scroll area.
+
+---
+
+## Offset Properties
+
+Positioned elements commonly use:
+
+```css
+top
+right
+bottom
+left
+```
+
+Example:
+
+```css
+.box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+}
+```
+
+---
+
+## `inset`
+
+`inset` is a shorthand for:
+
+```css
+top
+right
+bottom
+left
+```
+
+Example:
+
+```css
+.overlay {
+    position: absolute;
+    inset: 0;
+}
+```
+
+Equivalent to:
+
+```css
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+```
+
+---
+
+## Normal Flow vs Removed from Flow
+
+### Remains in normal flow
+
+```text
+static
+relative
+sticky
+```
+
+### Removed from normal flow
+
+```text
+absolute
+fixed
+```
+
+---
+
+## Quick Decision Guide
+
+```text
+Need normal positioning?
+        ↓
+      static
+
+Need a small offset or positioning context?
+        ↓
+     relative
+
+Need to position something inside a component?
+        ↓
+     absolute
+
+Need something attached to the viewport?
+        ↓
+      fixed
+
+Need something to stick while scrolling?
+        ↓
+     sticky
+```
+
+---
+
+## Most Important Pattern
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+```
+
+Remember this pattern—it is extremely common in real-world CSS.
+
+---
+
+> 💡 **Quick Memory Trick:**  
+> **Static = normal**  
+> **Relative = move/context**  
+> **Absolute = overlay**  
+> **Fixed = viewport**  
+> **Sticky = scroll**
