@@ -1413,3 +1413,165 @@ because the browser needs an offset threshold for the intended sticking behavior
 ---
 
 > 💡 **Remember:** `sticky` starts in the **normal document flow** and becomes **stuck relative to its scroll container** when the specified offset threshold is reached.
+
+
+---
+
+
+# Comparison Table
+
+The five CSS `position` values have different behaviors.
+
+| Feature | `static` | `relative` | `absolute` | `fixed` | `sticky` |
+|---------|----------|------------|------------|---------|----------|
+| Default value | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Normal document flow | ✅ | ✅ | ❌ | ❌ | ✅ |
+| Occupies original space | ✅ | ✅ | ❌ | ❌ | ✅ |
+| `top` / `right` / `bottom` / `left` | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Positioned relative to normal position | ✅ | ✅ | ❌ | ❌ | Initially |
+| Positioned relative to containing block | ❌ | Can establish one | ✅ | Usually viewport | Scroll container / containing block |
+| Responds to scrolling | Normal flow | Normal flow | Normal flow | ❌ | ✅ |
+| Can overlap other elements | Limited | ✅ | ✅ | ✅ | ✅ |
+| Common use | Normal layout | Positioning context | Overlays | Persistent UI | Sticky UI |
+
+---
+
+## Quick Comparison
+
+### `static`
+
+```text
+Normal document flow
+        ↓
+Element stays in normal position
+```
+
+Use it for normal layout behavior.
+
+---
+
+### `relative`
+
+```text
+Normal document flow
+        ↓
+Element can be visually offset
+        ↓
+Can create positioning context
+```
+
+Commonly used on parent elements.
+
+---
+
+### `absolute`
+
+```text
+Removed from normal flow
+        ↓
+Positioned relative to containing block
+```
+
+Commonly used for overlays and elements inside components.
+
+---
+
+### `fixed`
+
+```text
+Removed from normal flow
+        ↓
+Attached to viewport
+        ↓
+Remains visible while scrolling
+```
+
+Commonly used for persistent interface elements.
+
+---
+
+### `sticky`
+
+```text
+Normal document flow
+        ↓
+Scroll reaches threshold
+        ↓
+Element becomes stuck
+        ↓
+Constrained by its containing scroll area
+```
+
+Commonly used for sticky headers, sidebars, and table headings.
+
+---
+
+## Which Position Should You Use?
+
+| Requirement | Recommended Position |
+|-------------|----------------------|
+| Normal element placement | `static` |
+| Move an element from its normal position | `relative` |
+| Position an element inside a component | `absolute` |
+| Keep an element attached to the viewport | `fixed` |
+| Keep an element visible during scrolling within its container | `sticky` |
+
+---
+
+## Simple Decision Guide
+
+Ask yourself:
+
+### Do I need normal document flow?
+
+Use:
+
+```css
+position: static;
+```
+
+or:
+
+```css
+position: relative;
+```
+
+---
+
+### Do I need to position a child inside a component?
+
+Use:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+}
+```
+
+---
+
+### Do I need an element to remain attached to the viewport?
+
+Use:
+
+```css
+position: fixed;
+```
+
+---
+
+### Do I need an element to become fixed-like while scrolling?
+
+Use:
+
+```css
+position: sticky;
+```
+
+---
+
+> 💡 **Quick Rule:** `static` = normal, `relative` = offset/context, `absolute` = positioned overlay, `fixed` = viewport-attached, and `sticky` = scroll-aware positioning.
