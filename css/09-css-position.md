@@ -588,3 +588,324 @@ The parent establishes the positioning context, while the badge is positioned in
 ---
 
 > 💡 **Remember:** `relative` means **"stay in the normal layout, but allow yourself to be visually positioned."** Its most important practical use is often not moving the element itself, but creating a positioning context for an absolutely positioned child.
+
+
+---
+
+
+# `absolute`
+
+`absolute` positioning removes an element from the **normal document flow** and positions it relative to its **containing block**.
+
+```css
+.box {
+    position: absolute;
+}
+```
+
+The element can then be positioned using:
+
+```css
+top
+right
+bottom
+left
+```
+
+---
+
+## Basic Example
+
+```css
+.box {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+```
+
+The element is positioned according to its containing block rather than its normal position in the document.
+
+---
+
+## Removed from Normal Flow
+
+Unlike `relative`, an absolutely positioned element does **not** occupy its original space in the normal document flow.
+
+Example:
+
+```html
+<div class="box box-1">Box 1</div>
+<div class="box box-2">Box 2</div>
+```
+
+```css
+.box-1 {
+    position: absolute;
+}
+
+.box-2 {
+    background: lightgray;
+}
+```
+
+`Box 1` is removed from normal flow, so `Box 2` can occupy the space that `Box 1` would normally have used.
+
+---
+
+## Containing Block
+
+The most important concept with `absolute` positioning is the **containing block**.
+
+An absolutely positioned element is positioned relative to its nearest ancestor that establishes a containing block for absolute positioning.
+
+A common pattern is:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+Here:
+
+```text
+.parent
+   │
+   └── child
+```
+
+The `.child` is positioned relative to `.parent`.
+
+---
+
+## `relative` + `absolute`
+
+This combination is one of the most common positioning patterns in CSS.
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+The parent creates the positioning context.
+
+The child is then positioned inside that parent.
+
+---
+
+## Visual Example
+
+```text
+┌─────────────────────────────┐
+│                       Badge │
+│                             │
+│          Card               │
+│                             │
+│                             │
+└─────────────────────────────┘
+```
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+The badge stays positioned relative to the card.
+
+---
+
+## Using `top`, `right`, `bottom`, and `left`
+
+Example:
+
+```css
+.child {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+```
+
+This positions the element:
+
+- `20px` from the top.
+- `30px` from the right.
+
+You can also use:
+
+```css
+.child {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+}
+```
+
+This positions the element:
+
+- `20px` from the bottom.
+- `30px` from the left.
+
+---
+
+## Centering an Absolutely Positioned Element
+
+A common technique is:
+
+```css
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+```
+
+The `top` and `left` values move the element's starting point to the center.
+
+The `transform` then moves the element back by half of its own width and height.
+
+Result:
+
+```text
+┌─────────────────────────────┐
+│                             │
+│                             │
+│           ┌─────┐           │
+│           │ Box │           │
+│           └─────┘           │
+│                             │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Common Use Cases
+
+`position: absolute` is commonly used for:
+
+- Badges
+- Dropdown menus
+- Tooltips
+- Icons
+- Overlays
+- Notification indicators
+- Decorative elements
+- Close buttons
+- Images or text positioned inside components
+
+---
+
+## Example: Card Badge
+
+```html
+<div class="card">
+    <span class="badge">New</span>
+    <h2>Product</h2>
+    <p>Product description.</p>
+</div>
+```
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+The badge is positioned inside the card without affecting the layout of the heading or paragraph.
+
+---
+
+## Example: Image Overlay
+
+```css
+.image-container {
+    position: relative;
+}
+
+.image-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+```
+
+This allows text to appear over an image.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│           IMAGE              │
+│                              │
+│  ┌───────────────┐           │
+│  │ Image Label   │           │
+│  └───────────────┘           │
+└──────────────────────────────┘
+```
+
+---
+
+## `absolute` vs `relative`
+
+| Feature | `relative` | `absolute` |
+|---------|------------|------------|
+| Normal document flow | ✅ | ❌ |
+| Occupies original space | ✅ | ❌ |
+| Offset properties work | ✅ | ✅ |
+| Can establish containing block | ✅ | Can establish one for descendants |
+| Commonly used for parent | ✅ | Sometimes |
+| Commonly used for overlays | Sometimes | ✅ |
+
+---
+
+## Important Difference
+
+Consider:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+}
+```
+
+The parent remains part of the normal layout.
+
+The child is removed from normal flow and positioned inside the parent's positioning context.
+
+This makes the pattern particularly useful for UI components.
+
+---
+
+> 💡 **Remember:** `absolute` means the element is **removed from normal document flow and positioned relative to its containing block**. When you want an absolutely positioned element to stay inside a specific component, `position: relative` on that component is usually the key.
