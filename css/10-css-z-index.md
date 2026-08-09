@@ -6454,3 +6454,67 @@ The key concept is:
 ---
 
 > 💡 **Remember:** `z-index` is not about finding the biggest number. It is about understanding **which elements overlap, which stacking context they belong to, and how those stacking contexts are ordered**.
+
+
+---
+
+
+# References
+
+The following references can be used to learn more about CSS `z-index`, stacking order, and stacking contexts.
+
+---
+
+## MDN Web Docs
+
+**`z-index` — MDN Web Docs**
+
+Provides detailed documentation about the `z-index` CSS property, including stacking order, stacking contexts, and examples.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/z-index
+
+---
+
+## MDN — Stacking Context
+
+**Stacking context — MDN Web Docs**
+
+Explains how stacking contexts are created and how elements are organized into independent stacking environments.
+
+https://developer.mozilla.org/en-US/docs/Glossary/Stacking_context
+
+---
+
+## MDN — CSS `position`
+
+**`position` — MDN Web Docs**
+
+Useful for understanding how positioned elements interact with `z-index`.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/position
+
+---
+
+## MDN — CSS `isolation`
+
+**`isolation` — MDN Web Docs**
+
+Explains how the `isolation` property can be used to create a new stacking context.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/isolation
+
+---
+
+## CSS Specifications
+
+The official CSS specifications provide the formal definitions and rules used by browsers when determining stacking and painting order.
+
+https://www.w3.org/TR/CSS2/visuren.html
+
+---
+
+> 💡 **Pro Tip:** Use MDN when you need practical explanations and examples, and refer to the official W3C specifications when you need the formal CSS rules and definitions.
+
+---
+
+> 💡 **Remember:** References are not only for learning. They are also useful when you need to verify browser behavior or understand a CSS rule in greater technical detail.
