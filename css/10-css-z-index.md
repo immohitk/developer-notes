@@ -77,7 +77,7 @@ For example:
     position: relative;
     z-index: 2;
 }
-
+```
 
 ---
 
@@ -374,3 +374,220 @@ A good understanding of `z-index` also makes it easier to debug complex layouts.
 ---
 
 > 💡 **Remember:** `z-index` is important because it gives developers control over the **visual layering of overlapping elements**. However, the final result depends on the element's **stacking context** and stacking order.
+
+
+---
+
+
+# `z-index` Property
+
+The CSS `z-index` property controls the **stacking order of overlapping elements**.
+
+It determines which element appears in front of or behind another element when they overlap.
+
+```css
+.box {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The `z-index` property accepts:
+
+- `auto`
+- Positive integer values
+- `0`
+- Negative integer values
+
+---
+
+## Syntax
+
+```css
+selector {
+    z-index: value;
+}
+```
+
+Example:
+
+```css
+.box {
+    position: relative;
+    z-index: 10;
+}
+```
+
+A higher `z-index` value generally places an element above an element with a lower `z-index` value when the elements belong to the same stacking context.
+
+---
+
+## `auto`
+
+`auto` is the default value of the `z-index` property.
+
+```css
+.box {
+    z-index: auto;
+}
+```
+
+When `z-index` is `auto`, the element follows the default stacking order of its stacking context.
+
+---
+
+## Positive Values
+
+Positive values can place an element higher in the stacking order.
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+When the elements overlap within the same stacking context, `.box-two` appears above `.box-one`.
+
+```text
+Front
+  │
+  ├── Box Two   z-index: 2
+  └── Box One   z-index: 1
+  │
+Back
+```
+
+---
+
+## Zero
+
+A `z-index` value of `0` places an element at the zero stacking level within its stacking context.
+
+```css
+.box {
+    position: relative;
+    z-index: 0;
+}
+```
+
+It can be useful when explicitly defining the stacking level of an element without giving it a positive or negative priority.
+
+---
+
+## Negative Values
+
+Negative values can place an element behind elements with higher stacking levels.
+
+```css
+.background {
+    position: absolute;
+    z-index: -1;
+}
+```
+
+Negative values are commonly useful for decorative elements that need to appear behind other content.
+
+However, the final result also depends on the element's stacking context.
+
+---
+
+## Comparing `z-index` Values
+
+Consider:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 5;
+}
+
+.box-three {
+    position: relative;
+    z-index: 10;
+}
+```
+
+The stacking order can be visualized as:
+
+```text
+Front
+  │
+  ├── Box Three   z-index: 10
+  ├── Box Two     z-index: 5
+  └── Box One     z-index: 1
+  │
+Back
+```
+
+A higher value places an element higher in the stacking order when the elements are being compared within the same stacking context.
+
+---
+
+## Common Values
+
+| Value | Description |
+|-------|-------------|
+| `auto` | Default stacking behavior |
+| `-1` | Lower stacking level |
+| `0` | Zero stacking level |
+| `1` | Higher stacking level |
+| `10` | Higher stacking level |
+| `9999` | Very high value, but still affected by stacking contexts |
+
+---
+
+## Large `z-index` Values
+
+A common mistake is assuming that a very large `z-index` value will always place an element above everything else.
+
+```css
+.modal {
+    position: fixed;
+    z-index: 9999;
+}
+```
+
+A large value does not automatically overcome a different stacking context.
+
+The browser considers the relevant **stacking contexts** before comparing the stacking levels of elements.
+
+> 💡 **Pro Tip:** If `z-index: 9999` does not work, do not keep increasing the number. Check the element's **stacking context** and its parent elements first.
+
+---
+
+## Important Point
+
+The numerical value of `z-index` is only meaningful when the elements are being compared within the appropriate stacking context.
+
+For example:
+
+```css
+.box-one {
+    z-index: 10;
+}
+
+.box-two {
+    z-index: 5;
+}
+```
+
+This does not mean `.box-one` will always appear above every `.box-two` on the page.
+
+Their parent stacking contexts can affect the final result.
+
+> ⚠️ **Important:** A higher `z-index` does not automatically place an element above every element on the page. **Stacking contexts determine how different layers are compared.**
+
+---
+
+> 💡 **Remember:** `z-index` controls the **stacking order of overlapping elements**. A higher value generally appears in front of a lower value when the elements belong to the same stacking context.
