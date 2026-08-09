@@ -6518,3 +6518,454 @@ https://www.w3.org/TR/CSS2/visuren.html
 ---
 
 > 💡 **Remember:** References are not only for learning. They are also useful when you need to verify browser behavior or understand a CSS rule in greater technical detail.
+
+
+---
+
+# Quick Revision
+
+## What is `z-index`?
+
+`z-index` controls the **stacking order** of overlapping elements.
+
+```css
+.box {
+    z-index: 10;
+}
+```
+
+A higher stacking level generally places an element above a lower stacking level within the same stacking context.
+
+---
+
+## Basic Stacking
+
+```text
+Higher z-index
+      ↓
+   Front
+      ↓
+Lower z-index
+      ↓
+   Back
+```
+
+Example:
+
+```css
+.box-one {
+    z-index: 1;
+}
+
+.box-two {
+    z-index: 2;
+}
+```
+
+`Box Two` appears above `Box One` when they are compared within the same stacking context.
+
+---
+
+## Positive `z-index`
+
+Positive values place an element at a higher stacking level.
+
+```css
+.element {
+    z-index: 5;
+}
+```
+
+Example:
+
+```text
+z-index: 10
+    ↓
+Front
+
+z-index: 5
+    ↓
+Middle
+
+z-index: 1
+    ↓
+Back
+```
+
+---
+
+## Negative `z-index`
+
+Negative values can place an element behind elements with higher stacking levels.
+
+```css
+.background {
+    z-index: -1;
+}
+
+.content {
+    z-index: 1;
+}
+```
+
+```text
+Front
+  │
+  └── Content       1
+  │
+  └── Background   -1
+  │
+Back
+```
+
+---
+
+## `z-index: auto`
+
+```css
+.element {
+    z-index: auto;
+}
+```
+
+`auto` is not simply the same as:
+
+```css
+z-index: 0;
+```
+
+It allows the element to participate according to the normal stacking rules of its context.
+
+---
+
+## Positioned Elements
+
+A common pattern is:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    z-index: 2;
+}
+```
+
+The parent provides the positioning context.
+
+The child can then be positioned and layered inside it.
+
+---
+
+## Stacking Context
+
+A **stacking context** is an independent stacking environment.
+
+```text
+Root
+│
+├── Stacking Context A
+│   ├── Element A1
+│   └── Element A2
+│
+└── Stacking Context B
+    ├── Element B1
+    └── Element B2
+```
+
+Elements inside one stacking context are compared within that context.
+
+The entire stacking context is then compared with other elements or contexts in its parent context.
+
+---
+
+## The Most Important Stacking Context Rule
+
+A child cannot escape its parent's stacking context simply by using a larger `z-index`.
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+
+.other {
+    position: relative;
+    z-index: 2;
+}
+```
+
+Simplified hierarchy:
+
+```text
+Parent
+z-index: 1
+│
+└── Child
+    z-index: 9999
+
+Other
+z-index: 2
+```
+
+The child's `9999` does not automatically place it above `Other`.
+
+> 💡 **Remember:** Always check the parent stacking context before increasing a child's `z-index`.
+
+---
+
+## Common Stacking Context Triggers
+
+Common examples include:
+
+```css
+position: relative;
+z-index: 1;
+```
+
+```css
+position: fixed;
+```
+
+```css
+position: sticky;
+```
+
+```css
+opacity: 0.9;
+```
+
+```css
+transform: translateX(0);
+```
+
+```css
+filter: blur(2px);
+```
+
+```css
+isolation: isolate;
+```
+
+These properties can affect how elements participate in stacking.
+
+---
+
+## Flexbox and `z-index`
+
+Flex items can use `z-index` without requiring `position`.
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+This is useful when Flexbox items overlap.
+
+---
+
+## Grid and `z-index`
+
+Grid items can also use `z-index` without requiring `position`.
+
+```css
+.container {
+    display: grid;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+Grid is especially useful for layered layouts where multiple elements occupy the same grid area.
+
+---
+
+## Common Use Cases
+
+`z-index` is commonly used for:
+
+```text
+Dropdowns
+    ↓
+Tooltips
+    ↓
+Notifications
+    ↓
+Sticky Headers
+    ↓
+Badges
+    ↓
+Image Overlays
+    ↓
+Floating Buttons
+    ↓
+Loading Overlays
+    ↓
+Modals
+```
+
+---
+
+## Common Layering System
+
+A simple project-level layering system could be:
+
+```css
+.content {
+    z-index: 1;
+}
+
+.header {
+    z-index: 10;
+}
+
+.dropdown {
+    z-index: 20;
+}
+
+.tooltip {
+    z-index: 30;
+}
+
+.notification {
+    z-index: 50;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+The exact numbers are not important.
+
+The relationship between the layers is what matters.
+
+---
+
+## Common Mistake
+
+Do not keep increasing `z-index`:
+
+```css
+z-index: 999;
+```
+
+```css
+z-index: 9999;
+```
+
+```css
+z-index: 99999;
+```
+
+If the problem is caused by a stacking context, larger numbers may not solve it.
+
+Instead:
+
+```text
+Check overlap
+      ↓
+Check z-index
+      ↓
+Check parent
+      ↓
+Check stacking context
+      ↓
+Fix the hierarchy
+```
+
+---
+
+## Debugging Checklist
+
+When `z-index` does not behave as expected:
+
+```text
+☐ Are the elements overlapping?
+
+☐ What are their z-index values?
+
+☐ Are they in the same stacking context?
+
+☐ Does a parent create a stacking context?
+
+☐ Is there a transform?
+
+☐ Is opacity less than 1?
+
+☐ Is a filter being used?
+
+☐ Is isolation being used?
+
+☐ Is the element fixed or sticky?
+
+☐ Are the parent stacking contexts ordered correctly?
+```
+
+---
+
+## Most Important Concepts
+
+```text
+1. z-index controls stacking order.
+
+2. It matters when elements overlap.
+
+3. Higher z-index does not always mean globally higher.
+
+4. Stacking contexts create independent stacking environments.
+
+5. A child cannot escape its parent's stacking context.
+
+6. Flex items can use z-index without position.
+
+7. Grid items can use z-index without position.
+
+8. Negative z-index values can create lower layers.
+
+9. auto and 0 are not interchangeable.
+
+10. Avoid arbitrary huge z-index values.
+
+11. Debug stacking contexts before changing numbers.
+
+12. Use a predictable layering system.
+```
+
+---
+
+## One-Line Mental Model
+
+```text
+Overlap
+   ↓
+Stacking Context
+   ↓
+Stacking Order
+   ↓
+z-index
+   ↓
+Final Visual Layer
+```
+
+---
+
+> 💡 **Pro Tip:** When `z-index` seems broken, don't ask **"How can I make this number bigger?"** Ask **"Which stacking context is controlling this element?"**
+
+---
+
+> 💡 **Remember:** `z-index` is about **stacking relationships**, not just numbers. Understanding stacking contexts is the key to predicting and debugging CSS layering behavior.
