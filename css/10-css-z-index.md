@@ -7575,3 +7575,704 @@ This creates a clear hierarchy:
 ---
 
 > 💡 **Remember:** Good `z-index` usage means **simple values, predictable layers, clear stacking contexts, and intentional component boundaries**. If you understand the stacking context hierarchy, you rarely need extremely large `z-index` values.
+
+
+---
+
+
+# Common Mistakes
+
+Understanding common `z-index` mistakes helps prevent confusing stacking problems and unnecessary CSS complexity.
+
+---
+
+## 1. Using Extremely Large `z-index` Values
+
+A common mistake is using values such as:
+
+```css
+z-index: 999999;
+```
+
+or:
+
+```css
+z-index: 99999999;
+```
+
+Large numbers do not automatically solve stacking problems.
+
+If the element is inside a lower stacking context, increasing its `z-index` may have no effect.
+
+Instead, identify the stacking context causing the problem.
+
+> 💡 **Remember:** A bigger number is not always the solution.
+
+---
+
+## 2. Assuming `z-index` Is Global
+
+It is incorrect to think of `z-index` as one global number system.
+
+For example:
+
+```css
+.parent-one {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+
+.parent-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The child belongs to the stacking context created by `.parent-one`.
+
+```text
+Parent One
+z-index: 1
+│
+└── Child
+    z-index: 9999
+
+Parent Two
+z-index: 2
+```
+
+The child's `9999` does not automatically place it above `.parent-two`.
+
+---
+
+## 3. Ignoring Parent Stacking Contexts
+
+When an element appears behind another element, developers often inspect only the element itself.
+
+For example:
+
+```css
+.child {
+    z-index: 9999;
+}
+```
+
+But the real problem may be:
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+```
+
+Always inspect:
+
+```text
+Element
+   ↓
+Parent
+   ↓
+Grandparent
+   ↓
+Stacking Context
+```
+
+---
+
+## 4. Using `z-index` to Fix Positioning Problems
+
+`z-index` controls **stacking**, not normal positioning.
+
+For example:
+
+```css
+.element {
+    z-index: 10;
+}
+```
+
+does not move an element to a different location.
+
+If an element is positioned incorrectly, use appropriate layout properties such as:
+
+```css
+top
+right
+bottom
+left
+margin
+padding
+display
+grid
+flex
+```
+
+Use `z-index` when the problem is specifically about which element appears in front.
+
+---
+
+## 5. Adding `position` Without Understanding Why
+
+A common pattern is:
+
+```css
+.element {
+    position: relative;
+    z-index: 10;
+}
+```
+
+This can be valid, but adding `position: relative` everywhere just to make `z-index` work is unnecessary for Flexbox and Grid items.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+The Flex item can use `z-index` without `position`.
+
+The same applies to Grid items.
+
+---
+
+## 6. Forgetting That Flex Items Support `z-index`
+
+Developers sometimes write:
+
+```css
+.item {
+    position: relative;
+    z-index: 2;
+}
+```
+
+when the element is already a Flex item.
+
+Often this is unnecessary.
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+This is sufficient for the Flex item's stacking level.
+
+---
+
+## 7. Forgetting That Grid Items Support `z-index`
+
+The same mistake occurs with Grid.
+
+Instead of:
+
+```css
+.item {
+    position: relative;
+    z-index: 2;
+}
+```
+
+a Grid item can often simply use:
+
+```css
+.container {
+    display: grid;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+This is particularly useful when Grid items overlap in the same area.
+
+---
+
+## 8. Misusing Negative `z-index`
+
+Negative values can be useful:
+
+```css
+.background {
+    z-index: -1;
+}
+```
+
+But they can also cause unexpected results depending on the surrounding stacking context and backgrounds.
+
+An element may appear to disappear behind its parent or other layers.
+
+Use negative values intentionally and test them in the actual component.
+
+---
+
+## 9. Confusing `auto` with `0`
+
+These are not simply interchangeable:
+
+```css
+z-index: auto;
+```
+
+and:
+
+```css
+z-index: 0;
+```
+
+`auto` participates according to the normal stacking rules of the element's context.
+
+An explicit value such as `0` establishes an explicit stacking level.
+
+Do not assume:
+
+```text
+auto = 0
+```
+
+---
+
+## 10. Forgetting About `transform`
+
+A seemingly unrelated property can affect stacking.
+
+For example:
+
+```css
+.element {
+    transform: translateX(0);
+}
+```
+
+`transform` can create a stacking context.
+
+This can change how descendants participate in stacking.
+
+If a `z-index` suddenly appears to stop working after adding a transform, inspect the resulting stacking context.
+
+---
+
+## 11. Forgetting About `opacity`
+
+Opacity can also affect stacking behavior.
+
+For example:
+
+```css
+.element {
+    opacity: 0.9;
+}
+```
+
+An opacity value below `1` can create a stacking context.
+
+This can change how the element and its descendants interact with surrounding layers.
+
+---
+
+## 12. Forgetting About `filter`
+
+Properties such as:
+
+```css
+filter: blur(2px);
+```
+
+can also create stacking contexts.
+
+When debugging unexpected layering, inspect visual properties that may establish a new stacking context.
+
+---
+
+## 13. Creating Accidental Stacking Contexts
+
+Sometimes a stacking context is created without the developer realizing it.
+
+For example:
+
+```css
+.card {
+    transform: translateZ(0);
+}
+```
+
+The developer may have added the transform for another reason, but it can affect stacking behavior.
+
+This can lead to:
+
+```text
+Unexpected stacking
+        ↓
+Element appears behind
+        ↓
+z-index seems broken
+```
+
+The actual problem may be the newly created stacking context.
+
+---
+
+## 14. Changing `z-index` Without Checking the Parent
+
+Consider:
+
+```css
+.dropdown {
+    z-index: 9999;
+}
+```
+
+If it still appears behind another element, repeatedly increasing the number is not a reliable solution.
+
+Instead inspect:
+
+```text
+Dropdown
+   ↓
+Parent
+   ↓
+Parent's z-index
+   ↓
+Parent's stacking context
+   ↓
+Sibling stacking context
+```
+
+Fix the hierarchy rather than endlessly increasing the number.
+
+---
+
+## 15. Using Too Many Independent `z-index` Values
+
+A project can become difficult to maintain when every component uses unrelated values:
+
+```css
+.card {
+    z-index: 17;
+}
+
+.header {
+    z-index: 234;
+}
+
+.dropdown {
+    z-index: 681;
+}
+
+.tooltip {
+    z-index: 742;
+}
+
+.modal {
+    z-index: 9281;
+}
+```
+
+This makes the intended hierarchy unclear.
+
+A predictable scale is easier:
+
+```css
+.content {
+    z-index: 1;
+}
+
+.header {
+    z-index: 10;
+}
+
+.dropdown {
+    z-index: 20;
+}
+
+.tooltip {
+    z-index: 30;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+---
+
+## 16. Assuming Later DOM Elements Always Win
+
+Document order can affect painting when stacking levels are otherwise equivalent, but it is not a substitute for understanding stacking contexts.
+
+Instead of relying on:
+
+```html
+<div>First</div>
+<div>Second</div>
+```
+
+to determine the intended visual hierarchy, use explicit stacking rules when necessary:
+
+```css
+.first {
+    z-index: 1;
+}
+
+.second {
+    z-index: 2;
+}
+```
+
+This makes the intended relationship clearer.
+
+---
+
+## 17. Ignoring Stacking Contexts Created by `position`
+
+Positioned elements combined with a non-`auto` `z-index` can establish stacking contexts.
+
+For example:
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+```
+
+This changes how the parent's descendants participate in stacking.
+
+When debugging, check both:
+
+```css
+position
+```
+
+and:
+
+```css
+z-index
+```
+
+on ancestor elements.
+
+---
+
+## 18. Assuming `z-index` Can Escape an Ancestor
+
+A child cannot simply escape its ancestor's stacking context.
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    z-index: 99999;
+}
+```
+
+The child remains inside the parent's stacking environment.
+
+Think of it as:
+
+```text
+Parent Layer
+    │
+    └── Child Layer
+```
+
+The child cannot independently move the entire parent layer above another stacking context.
+
+---
+
+## 19. Using Negative `z-index` for Everything Behind Content
+
+Negative values should not become the default solution for background elements.
+
+Instead, consider whether the layout can be structured more clearly.
+
+For example, CSS Grid can create intentional layers:
+
+```css
+.container {
+    display: grid;
+}
+
+.background,
+.content {
+    grid-area: 1 / 1;
+}
+
+.background {
+    z-index: 1;
+}
+
+.content {
+    z-index: 2;
+}
+```
+
+This avoids unnecessarily relying on negative stacking levels.
+
+---
+
+## 20. Forgetting to Check `overflow`
+
+Sometimes an element appears to be missing and the problem is not `z-index`.
+
+For example:
+
+```css
+.parent {
+    overflow: hidden;
+}
+```
+
+If a positioned child extends outside the parent's bounds, it may be clipped.
+
+Increasing:
+
+```css
+z-index: 9999;
+```
+
+will not necessarily make the clipped portion visible.
+
+> 💡 **Pro Tip:** When an element appears "behind" something, also check whether it is actually being **clipped**.
+
+---
+
+## 21. Using `z-index` Instead of Proper Component Structure
+
+If a component requires many complicated stacking rules:
+
+```text
+z-index: 1
+z-index: 2
+z-index: 999
+z-index: 9999
+z-index: 99999
+```
+
+the problem may be the component structure itself.
+
+A clearer DOM and stacking-context structure can often simplify the CSS.
+
+---
+
+## 22. Debugging Only the Child
+
+When a child appears behind another element, do not inspect only:
+
+```css
+.child {
+    z-index: 10;
+}
+```
+
+Inspect the complete hierarchy:
+
+```text
+Child
+  ↓
+Parent
+  ↓
+Grandparent
+  ↓
+Other ancestor
+  ↓
+Sibling stacking context
+```
+
+This is often where the real issue is found.
+
+---
+
+## 23. Not Using Browser Developer Tools
+
+Browser developer tools are extremely useful for debugging stacking problems.
+
+Inspect:
+
+```text
+Element
+Parents
+z-index
+position
+transform
+opacity
+filter
+overflow
+```
+
+This helps identify which CSS rule is controlling the visual result.
+
+---
+
+## Common Mistakes Summary
+
+| Mistake | Better Approach |
+|---------|-----------------|
+| Using huge `z-index` values | Use a simple layering scale |
+| Ignoring parent stacking contexts | Inspect ancestors |
+| Treating `z-index` as global | Think in stacking contexts |
+| Using `z-index` for positioning | Use layout/positioning properties |
+| Adding `position` unnecessarily | Remember Flex/Grid items support `z-index` |
+| Misusing negative values | Use them carefully |
+| Confusing `auto` with `0` | Understand their different behavior |
+| Ignoring `transform` | Check for stacking contexts |
+| Ignoring `opacity` | Check ancestor properties |
+| Ignoring `overflow` | Check for clipping |
+| Relying only on DOM order | Use explicit stacking levels when needed |
+| Increasing numbers repeatedly | Fix the stacking hierarchy |
+
+---
+
+## Debugging Mental Model
+
+When `z-index` appears broken:
+
+```text
+Is the element overlapping?
+        │
+        ↓
+What is its z-index?
+        │
+        ↓
+What is its parent?
+        │
+        ↓
+Does the parent create a stacking context?
+        │
+        ↓
+Do any ancestors create stacking contexts?
+        │
+        ↓
+Is the element being clipped?
+        │
+        ↓
+Compare the relevant stacking contexts
+        │
+        ↓
+Fix the hierarchy
+```
+
+---
+
+> 💡 **Remember:** Most `z-index` problems are not caused by the number being too small. They are usually caused by **stacking contexts, ancestor relationships, clipping, or an incorrect layout structure**.
