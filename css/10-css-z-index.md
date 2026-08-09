@@ -3017,3 +3017,513 @@ This approach is much more reliable than continuously increasing the `z-index` v
 ---
 
 > 💡 **Remember:** A stacking context is an **independent layering environment**. Elements inside it are stacked according to their own rules, while the entire stacking context is then positioned relative to other elements in its parent stacking context.
+
+
+---
+
+
+# Creating a Stacking Context
+
+A **stacking context** can be created by several CSS properties and conditions.
+
+Understanding how stacking contexts are created is important because they determine how `z-index` values are compared.
+
+Once an element creates a stacking context, its descendants are stacked inside that context.
+
+---
+
+## Positioned Element with `z-index`
+
+One common way to create a stacking context is using a positioned element with a non-`auto` `z-index`.
+
+For example:
+
+```css
+.container {
+    position: relative;
+    z-index: 1;
+}
+```
+
+The element can establish a new stacking context.
+
+Its descendants are then stacked within that context.
+
+```text
+Root
+│
+├── Container
+│   z-index: 1
+│   │
+│   ├── Child One
+│   └── Child Two
+│
+└── Other Content
+```
+
+---
+
+## `position: fixed`
+
+An element with:
+
+```css
+position: fixed;
+```
+
+creates a stacking context.
+
+For example:
+
+```css
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+```
+
+Fixed positioning is commonly used for:
+
+- Modals
+- Notifications
+- Floating buttons
+- Cookie banners
+- Fixed navigation
+
+Because these elements often need to appear above normal page content, `z-index` is frequently used with them.
+
+---
+
+## `position: sticky`
+
+A sticky positioned element can also create a stacking context.
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+```
+
+This is commonly used for:
+
+- Sticky headers
+- Sticky navigation
+- Persistent controls
+- Table headers
+
+The `z-index` controls how the sticky element layers with surrounding content.
+
+---
+
+## `opacity`
+
+An element with an `opacity` value less than `1` creates a stacking context.
+
+For example:
+
+```css
+.box {
+    opacity: 0.8;
+}
+```
+
+The value:
+
+```css
+opacity: 1;
+```
+
+does not create the same stacking context condition.
+
+But:
+
+```css
+opacity: 0.9;
+```
+
+can create a stacking context.
+
+This matters because adding opacity can unexpectedly change how descendant elements participate in stacking.
+
+> ⚠️ **Important:** A seemingly simple visual property such as `opacity` can affect stacking behavior.
+
+---
+
+## `transform`
+
+A transform other than:
+
+```css
+transform: none;
+```
+
+can create a stacking context.
+
+For example:
+
+```css
+.card {
+    transform: translateX(10px);
+}
+```
+
+Even a small transform can therefore affect the stacking environment.
+
+This is important when working with:
+
+- Animations
+- Transitions
+- 3D effects
+- Hover effects
+- Component positioning
+
+For example:
+
+```css
+.card:hover {
+    transform: scale(1.05);
+}
+```
+
+The transformed element participates in a stacking context.
+
+---
+
+## `filter`
+
+A non-`none` `filter` can also create a stacking context.
+
+Example:
+
+```css
+.image {
+    filter: blur(2px);
+}
+```
+
+Other filter effects include:
+
+```css
+filter: brightness(80%);
+```
+
+```css
+filter: grayscale(100%);
+```
+
+```css
+filter: contrast(120%);
+```
+
+Although `filter` is primarily used for visual effects, it can also affect stacking behavior.
+
+---
+
+## `isolation: isolate`
+
+The `isolation` property can explicitly create a new stacking context.
+
+```css
+.container {
+    isolation: isolate;
+}
+```
+
+This is useful when you want a component's stacking behavior to remain isolated from surrounding elements.
+
+For example:
+
+```css
+.card {
+    isolation: isolate;
+}
+
+.badge {
+    position: absolute;
+    z-index: 10;
+}
+```
+
+The card establishes an isolated stacking environment for its contents.
+
+---
+
+## Why `isolation` Is Useful
+
+Consider a complex component:
+
+```text
+Page
+│
+├── Header
+├── Main
+│   │
+│   └── Card
+│       │
+│       ├── Background
+│       ├── Content
+│       └── Badge
+│
+└── Footer
+```
+
+Adding:
+
+```css
+.card {
+    isolation: isolate;
+}
+```
+
+can help keep the card's stacking behavior isolated from surrounding content.
+
+This is especially useful for reusable UI components.
+
+> 💡 **Pro Tip:** `isolation: isolate` can be a clean way to establish a component-level stacking context without relying on a large `z-index` value.
+
+---
+
+## Other Ways to Create Stacking Contexts
+
+Several other CSS features can also establish stacking contexts.
+
+Common examples include:
+
+- Positioned elements with a non-`auto` `z-index`
+- `position: fixed`
+- `position: sticky`
+- `opacity` less than `1`
+- `transform` other than `none`
+- `filter` other than `none`
+- `isolation: isolate`
+- Certain `mix-blend-mode` values
+- Certain containment properties
+
+The exact conditions are defined by CSS specifications and can be more detailed than this list.
+
+---
+
+## Example of Multiple Stacking Contexts
+
+Consider:
+
+```css
+.header {
+    position: relative;
+    z-index: 10;
+}
+
+.card {
+    position: relative;
+    z-index: 5;
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+}
+```
+
+The page can contain several stacking contexts:
+
+```text
+Root
+│
+├── Header
+│   z-index: 10
+│
+├── Card
+│   z-index: 5
+│
+└── Modal
+    z-index: 100
+```
+
+The browser compares these stacking contexts according to their position in the stacking hierarchy.
+
+---
+
+## Accidental Stacking Contexts
+
+A stacking context is not always created intentionally.
+
+For example:
+
+```css
+.card {
+    transform: translateY(0);
+}
+```
+
+Even though the transform does not visually move the element, the presence of a transform can affect stacking behavior.
+
+Similarly:
+
+```css
+.card {
+    opacity: 0.99;
+}
+```
+
+can create a stacking context.
+
+This can sometimes explain why a previously working `z-index` stops behaving as expected after a CSS change.
+
+> ⚠️ **Important:** When debugging a layering issue, check for CSS properties that may have unintentionally created a stacking context.
+
+---
+
+## Example: Unexpected `z-index` Behavior
+
+Suppose:
+
+```css
+.parent {
+    transform: translateZ(0);
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+```
+
+The transform on `.parent` can create a stacking context.
+
+The child is therefore constrained by the parent's stacking environment.
+
+```text
+Root
+│
+└── Parent
+    │
+    └── Child
+        z-index: 9999
+```
+
+The child's large value does not make it globally higher than elements outside the parent's stacking context.
+
+---
+
+## Stacking Context Checklist
+
+When an element appears in an unexpected layer, check:
+
+```text
+Does the element have z-index?
+        ↓
+Does a parent have z-index?
+        ↓
+Is the parent positioned?
+        ↓
+Is there a transform?
+        ↓
+Is opacity less than 1?
+        ↓
+Is there a filter?
+        ↓
+Is isolation being used?
+        ↓
+Is the element fixed or sticky?
+        ↓
+Which stacking context contains the element?
+```
+
+This helps identify the actual source of the layering problem.
+
+---
+
+## Common Mistake
+
+A common mistake is to keep increasing `z-index`:
+
+```css
+z-index: 100;
+```
+
+then:
+
+```css
+z-index: 1000;
+```
+
+then:
+
+```css
+z-index: 9999;
+```
+
+and finally:
+
+```css
+z-index: 999999;
+```
+
+If the element is trapped inside a lower stacking context, increasing the number will not solve the underlying problem.
+
+The correct approach is to inspect the stacking context hierarchy.
+
+---
+
+## Practical Example
+
+```html
+<div class="page">
+    <div class="card">
+        <div class="badge">New</div>
+        <h2>Product</h2>
+    </div>
+</div>
+```
+
+```css
+.page {
+    position: relative;
+}
+
+.card {
+    isolation: isolate;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+```
+
+The structure becomes:
+
+```text
+Page
+│
+└── Card
+    │
+    └── Badge
+        z-index: 10
+```
+
+The card provides an isolated stacking context, while the badge is layered inside it.
+
+---
+
+## Common Stacking Context Triggers
+
+| CSS Feature | Can Create Stacking Context |
+|--------------|-----------------------------|
+| Positioned + non-`auto` `z-index` | ✅ |
+| `position: fixed` | ✅ |
+| `position: sticky` | ✅ |
+| `opacity < 1` | ✅ |
+| `transform` other than `none` | ✅ |
+| `filter` other than `none` | ✅ |
+| `isolation: isolate` | ✅ |
+
+---
+
+> 💡 **Remember:** Stacking contexts can be created intentionally with properties such as `z-index` and `isolation`, but they can also be created indirectly by properties such as `opacity`, `transform`, and `filter`. When `z-index` behaves unexpectedly, always inspect the **stacking context hierarchy**.
