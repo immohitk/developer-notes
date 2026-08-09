@@ -48,3 +48,32 @@ The `z-index` property is commonly useful when working with:
 Understanding `z-index` is closely related to **CSS positioning**, **stacking order**, and **stacking contexts**.
 
 > 💡 **Remember:** `z-index` controls the **stacking order of overlapping elements**.
+
+
+---
+
+
+## What is CSS Z-Index?
+
+The CSS `z-index` property specifies the **stack order of an element**.
+
+When elements overlap, the element with a higher stacking order is displayed in front of an element with a lower stacking order.
+
+The `z-index` property accepts integer values, including:
+
+- Positive values
+- Zero
+- Negative values
+
+For example:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 2;
+}
