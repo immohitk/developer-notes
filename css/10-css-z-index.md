@@ -8276,3 +8276,574 @@ Fix the hierarchy
 ---
 
 > 💡 **Remember:** Most `z-index` problems are not caused by the number being too small. They are usually caused by **stacking contexts, ancestor relationships, clipping, or an incorrect layout structure**.
+
+
+---
+
+
+# Interview Questions
+
+## 1. What is `z-index` in CSS?
+
+`z-index` controls the **stacking order** of overlapping elements.
+
+```css
+.box {
+    z-index: 10;
+}
+```
+
+A higher stacking level generally places an element above a lower stacking level within the same stacking context.
+
+---
+
+## 2. When does `z-index` matter?
+
+`z-index` matters when elements overlap and their stacking order needs to be controlled.
+
+If elements do not overlap, changing `z-index` usually has no visible effect.
+
+---
+
+## 3. Does a higher `z-index` always place an element above another element?
+
+**No.**
+
+`z-index` is evaluated within **stacking contexts**.
+
+For example:
+
+```text
+Parent A
+z-index: 1
+│
+└── Child
+    z-index: 9999
+
+Parent B
+z-index: 2
+```
+
+The child cannot simply escape Parent A's stacking context because it has a larger `z-index`.
+
+---
+
+## 4. What is a stacking context?
+
+A stacking context is an independent stacking environment in which elements are layered according to CSS stacking rules.
+
+A simplified structure is:
+
+```text
+Root
+│
+├── Stacking Context A
+│   ├── Element A
+│   └── Element B
+│
+└── Stacking Context B
+    ├── Element C
+    └── Element D
+```
+
+The stacking contexts themselves participate in their parent stacking context.
+
+---
+
+## 5. Can a child escape its parent's stacking context?
+
+**No.**
+
+A child remains inside the stacking context established by its ancestor.
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    z-index: 9999;
+}
+```
+
+The child's large `z-index` does not allow it to escape the parent's stacking context.
+
+---
+
+## 6. Does `z-index` require `position: relative`?
+
+**Not always.**
+
+Flexbox and Grid items can use `z-index` without requiring `position`.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+Similarly:
+
+```css
+.container {
+    display: grid;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+---
+
+## 7. Can Flexbox items use `z-index`?
+
+**Yes.**
+
+Flex items can use `z-index` directly.
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+This is useful when Flex items overlap.
+
+---
+
+## 8. Can Grid items use `z-index`?
+
+**Yes.**
+
+Grid items can use `z-index` directly.
+
+```css
+.container {
+    display: grid;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+This is particularly useful when Grid items occupy the same grid area.
+
+---
+
+## 9. What is the difference between positive and negative `z-index`?
+
+Positive values can place elements at higher stacking levels:
+
+```css
+.element {
+    z-index: 2;
+}
+```
+
+Negative values can place elements at lower stacking levels:
+
+```css
+.element {
+    z-index: -1;
+}
+```
+
+Example:
+
+```text
+Front
+  │
+  └── Content       1
+  │
+  └── Background   -1
+  │
+Back
+```
+
+---
+
+## 10. What is `z-index: auto`?
+
+```css
+.element {
+    z-index: auto;
+}
+```
+
+`auto` means the element participates according to the normal stacking rules of its stacking context.
+
+It should not simply be treated as identical to:
+
+```css
+z-index: 0;
+```
+
+---
+
+## 11. Is `z-index: 9999` better than `z-index: 10`?
+
+**No.**
+
+The actual number is less important than the stacking context and the relationship between layers.
+
+A simple system such as:
+
+```text
+1   → Content
+10  → Header
+20  → Dropdown
+30  → Tooltip
+100 → Modal
+```
+
+is usually easier to maintain.
+
+---
+
+## 12. Why does `z-index` sometimes appear not to work?
+
+Possible causes include:
+
+- Different stacking contexts.
+- A parent with a lower stacking level.
+- An ancestor creating a stacking context.
+- The element being clipped by `overflow`.
+- Unexpected `transform`.
+- Unexpected `opacity`.
+- Unexpected `filter`.
+- An incorrect layout structure.
+
+The first step should be to inspect the stacking context hierarchy.
+
+---
+
+## 13. Can `transform` affect `z-index` behavior?
+
+**Yes.**
+
+A `transform` can create a stacking context.
+
+For example:
+
+```css
+.element {
+    transform: translateX(0);
+}
+```
+
+If a `z-index` problem appears after adding a transform, inspect the resulting stacking context.
+
+---
+
+## 14. Can `opacity` affect stacking?
+
+**Yes.**
+
+An opacity value below `1` can create a stacking context.
+
+```css
+.element {
+    opacity: 0.9;
+}
+```
+
+This can affect how the element and its descendants participate in stacking.
+
+---
+
+## 15. Can `filter` affect stacking?
+
+**Yes.**
+
+Properties such as:
+
+```css
+filter: blur(2px);
+```
+
+can create a stacking context.
+
+This can change how the element participates in the stacking hierarchy.
+
+---
+
+## 16. What is a common pattern for `position: relative` and `position: absolute`?
+
+A common pattern is:
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+```
+
+The parent establishes the positioning context and the child is positioned inside it.
+
+---
+
+## 17. What are common real-world uses of `z-index`?
+
+Common uses include:
+
+- Dropdown menus
+- Modals
+- Tooltips
+- Notifications
+- Sticky headers
+- Navigation menus
+- Badges
+- Image overlays
+- Floating buttons
+- Loading overlays
+- Cookie banners
+
+---
+
+## 18. Why should developers avoid extremely large `z-index` values?
+
+Values such as:
+
+```css
+z-index: 999999;
+```
+
+can make the layering system difficult to understand.
+
+They also do not solve problems caused by stacking contexts.
+
+A smaller and predictable scale is usually better.
+
+---
+
+## 19. How should you debug a `z-index` problem?
+
+Use this process:
+
+```text
+1. Check whether the elements overlap.
+        ↓
+2. Check their z-index values.
+        ↓
+3. Check their positioning.
+        ↓
+4. Check their parents.
+        ↓
+5. Check ancestor stacking contexts.
+        ↓
+6. Check transform, opacity, and filter.
+        ↓
+7. Check overflow and clipping.
+        ↓
+8. Compare the relevant stacking contexts.
+        ↓
+9. Fix the hierarchy.
+```
+
+---
+
+## 20. Can `z-index` fix an element's incorrect position?
+
+**No.**
+
+`z-index` controls stacking order.
+
+It does not control the element's normal layout position.
+
+Use properties such as:
+
+```css
+top
+right
+bottom
+left
+margin
+padding
+display
+flex
+grid
+```
+
+for layout and positioning.
+
+---
+
+## 21. What is the difference between stacking order and stacking context?
+
+**Stacking order** determines which elements appear in front of or behind others.
+
+**Stacking context** is the independent environment in which that stacking order is calculated.
+
+```text
+Stacking Context
+      ↓
+Stacking Order
+      ↓
+Visual Layer
+```
+
+---
+
+## 22. Why is `z-index` not a global number system?
+
+Because elements can belong to different stacking contexts.
+
+For example:
+
+```text
+Context A
+z-index: 1
+│
+└── Child
+    z-index: 9999
+
+Context B
+z-index: 2
+```
+
+The child's `9999` is evaluated inside Context A.
+
+It is not directly compared with Context B's `2`.
+
+---
+
+## 23. Can `isolation: isolate` create a stacking context?
+
+**Yes.**
+
+```css
+.component {
+    isolation: isolate;
+}
+```
+
+This explicitly creates an isolated stacking context.
+
+It can be useful for keeping a component's internal layers independent from surrounding content.
+
+---
+
+## 24. What is a good `z-index` scale for a project?
+
+There is no single required scale.
+
+A simple example is:
+
+```css
+:root {
+    --z-content: 1;
+    --z-header: 10;
+    --z-dropdown: 20;
+    --z-tooltip: 30;
+    --z-notification: 50;
+    --z-overlay: 80;
+    --z-modal: 100;
+}
+```
+
+The important part is consistency.
+
+---
+
+## 25. What is the most important thing to remember about `z-index`?
+
+The most important rule is:
+
+> **`z-index` works within stacking contexts.**
+
+Do not focus only on the number.
+
+Think about:
+
+```text
+Overlap
+   ↓
+Stacking Context
+   ↓
+Stacking Order
+   ↓
+z-index
+   ↓
+Final Layer
+```
+
+---
+
+## Quick Interview Revision
+
+```text
+Q: What does z-index do?
+A: Controls stacking order.
+
+Q: When does it matter?
+A: When elements overlap.
+
+Q: Is z-index global?
+A: No.
+
+Q: What controls the larger hierarchy?
+A: Stacking contexts.
+
+Q: Can a child escape its parent's stacking context?
+A: No.
+
+Q: Can Flex items use z-index?
+A: Yes.
+
+Q: Can Grid items use z-index?
+A: Yes.
+
+Q: Does z-index always require position?
+A: No.
+
+Q: What can negative z-index do?
+A: Place an element at a lower stacking level.
+
+Q: Is auto the same as 0?
+A: No.
+
+Q: Does a huge z-index always solve layering problems?
+A: No.
+
+Q: What should you inspect when z-index fails?
+A: Stacking contexts and ancestor elements.
+
+Q: Can transform affect stacking?
+A: Yes.
+
+Q: Can opacity affect stacking?
+A: Yes.
+
+Q: Can filter affect stacking?
+A: Yes.
+
+Q: Can z-index fix layout positioning?
+A: No.
+```
+
+---
+
+> 💡 **Interview Tip:** If asked why `z-index: 9999` is not working, do not simply say "increase the value." Explain **stacking contexts** and check the element's ancestors.
+
+---
+
+> 💡 **Remember:** A strong understanding of `z-index` means understanding **stacking contexts, stacking order, positioned elements, Flexbox, Grid, and ancestor relationships**, not just memorizing that larger numbers appear on top.
