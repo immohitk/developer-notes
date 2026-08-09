@@ -23,3 +23,26 @@
 - [Interview Questions](#interview-questions)
 - [Practice Exercises](#practice-exercises)
 - [Related Topics](#related-topics)
+
+
+---
+
+
+# CSS Z-Index
+
+## Introduction
+
+CSS `z-index` controls the **stacking order of overlapping elements**.
+
+When multiple elements overlap, the stacking order determines which element appears in front and which appears behind.
+
+For example:
+
+```css
+.box-one {
+    z-index: 1;
+}
+
+.box-two {
+    z-index: 2;
+}
