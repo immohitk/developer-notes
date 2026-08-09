@@ -979,3 +979,362 @@ The problem may be caused by:
 ---
 
 > 💡 **Remember:** `z-index` controls the stacking order of overlapping elements, but the final result is determined by the **stacking context and stacking order** in which those elements participate.
+
+
+---
+
+
+# Stacking Order
+
+The **stacking order** determines how overlapping elements are layered along the z-axis.
+
+When multiple elements overlap, the browser uses their stacking order to determine which element is painted in front of another.
+
+```text
+Front
+  │
+  ├── Element C
+  ├── Element B
+  └── Element A
+  │
+Back
+```
+
+An element that is higher in the stacking order appears visually in front of an element that is lower in the stacking order.
+
+---
+
+## Basic Example
+
+Consider three overlapping elements:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 2;
+}
+
+.box-three {
+    position: relative;
+    z-index: 3;
+}
+```
+
+Their stacking order is:
+
+```text
+Front
+  │
+  ├── Box Three   z-index: 3
+  ├── Box Two     z-index: 2
+  └── Box One     z-index: 1
+  │
+Back
+```
+
+If the elements overlap, `Box Three` appears above `Box Two`, and `Box Two` appears above `Box One`.
+
+---
+
+## Stacking Order Without `z-index`
+
+Elements can still have a stacking order even when `z-index` is not explicitly specified.
+
+For example:
+
+```html
+<div class="box box-one">Box One</div>
+<div class="box box-two">Box Two</div>
+```
+
+```css
+.box {
+    position: absolute;
+}
+
+.box-one {
+    background: lightblue;
+}
+
+.box-two {
+    background: lightgray;
+}
+```
+
+When positioned elements overlap, their stacking order can depend on the order in which they appear in the document and other stacking rules.
+
+In simple cases, an element that appears later in the document can be painted above an earlier element when their other stacking properties are equivalent.
+
+---
+
+## Stacking Order with `z-index`
+
+`z-index` allows the stacking order to be explicitly controlled.
+
+```css
+.box-one {
+    position: relative;
+    z-index: 5;
+}
+
+.box-two {
+    position: relative;
+    z-index: 10;
+}
+```
+
+Here:
+
+```text
+Front
+  │
+  └── Box Two   z-index: 10
+  │
+  └── Box One   z-index: 5
+  │
+Back
+```
+
+`Box Two` appears above `Box One` when both are being compared within the same stacking context.
+
+---
+
+## Positive and Negative Stacking Levels
+
+The stacking order can contain both positive and negative values.
+
+```css
+.background {
+    position: relative;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 0;
+}
+
+.overlay {
+    position: relative;
+    z-index: 1;
+}
+```
+
+The intended order is:
+
+```text
+Front
+  │
+  ├── Overlay       1
+  ├── Content       0
+  └── Background   -1
+  │
+Back
+```
+
+This allows different elements to be placed at different visual layers.
+
+---
+
+## Stacking Contexts and Stacking Order
+
+A stacking context creates a separate environment for stacking its child elements.
+
+For example:
+
+```css
+.parent {
+    position: relative;
+    z-index: 2;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+```
+
+The large `z-index` of `.child` does not make it globally higher than every element outside its parent's stacking context.
+
+```text
+Root Stacking Context
+│
+├── Parent A
+│   z-index: 1
+│   │
+│   └── Child
+│       z-index: 9999
+│
+└── Parent B
+    z-index: 2
+```
+
+Here, the stacking level of the parent contexts is important when comparing the two groups.
+
+> 💡 **Pro Tip:** Think of stacking contexts as **layers containing smaller layers**. A child can have a very high `z-index`, but it still participates within its parent's stacking context.
+
+---
+
+## Painting Order
+
+The browser follows stacking rules to determine the order in which elements are painted.
+
+A simplified model is:
+
+```text
+Background
+    ↓
+Lower stacking levels
+    ↓
+Normal content
+    ↓
+Higher stacking levels
+    ↓
+Foreground
+```
+
+The exact painting order is more detailed and depends on the element type, stacking context, and CSS properties involved.
+
+---
+
+## Example: Header and Modal
+
+Consider a page with a header and modal:
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+}
+```
+
+The intended stacking order is:
+
+```text
+Front
+  │
+  ├── Modal      100
+  └── Header      10
+  │
+Back
+```
+
+The modal can therefore appear above the header when the relevant stacking contexts allow it.
+
+---
+
+## Example: Dropdown and Header
+
+```css
+.header {
+    position: relative;
+    z-index: 10;
+}
+
+.dropdown {
+    position: absolute;
+    z-index: 20;
+}
+```
+
+The dropdown has a higher stacking level:
+
+```text
+Front
+  │
+  └── Dropdown   20
+  │
+  └── Header     10
+  │
+Back
+```
+
+This is a common pattern for navigation interfaces.
+
+---
+
+## Stacking Order Is Not the Same as DOM Order
+
+The order of elements in the HTML document does not always determine which element appears in front.
+
+For example:
+
+```html
+<div class="box box-one"></div>
+<div class="box box-two"></div>
+```
+
+Even though `.box-one` appears first in the HTML, CSS can change the visual stacking order:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 10;
+}
+
+.box-two {
+    position: relative;
+    z-index: 1;
+}
+```
+
+Now `.box-one` can appear above `.box-two`.
+
+> ⚠️ **Important:** DOM order is one part of the browser's stacking rules. `z-index`, positioning, stacking contexts, and other CSS properties can affect the final visual order.
+
+---
+
+## Practical Layering System
+
+A project can use a consistent range of values to make its layering easier to understand.
+
+For example:
+
+```css
+.page-content {
+    z-index: 1;
+}
+
+.header {
+    z-index: 10;
+}
+
+.dropdown {
+    z-index: 20;
+}
+
+.notification {
+    z-index: 30;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+The intended hierarchy becomes:
+
+```text
+100 → Modal
+ 30 → Notification
+ 20 → Dropdown
+ 10 → Header
+  1 → Page Content
+```
+
+The exact numbers are not important. The relationship between the layers is what matters.
+
+---
+
+> 💡 **Remember:** Stacking order determines **which overlapping element is painted in front**. `z-index` can influence that order, but the final result is also affected by **stacking contexts and other stacking rules**.
