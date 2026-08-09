@@ -591,3 +591,391 @@ Their parent stacking contexts can affect the final result.
 ---
 
 > 💡 **Remember:** `z-index` controls the **stacking order of overlapping elements**. A higher value generally appears in front of a lower value when the elements belong to the same stacking context.
+
+
+---
+
+
+# How Z-Index Works
+
+The `z-index` property controls how overlapping elements are **stacked along the z-axis**.
+
+While the `x-axis` controls horizontal position and the `y-axis` controls vertical position, the `z-axis` represents the depth or layering of elements.
+
+```text
+              Z-axis
+                ↑
+                │
+        ┌─────────────┐
+        │   Element   │  ← Front
+        └─────────────┘
+                │
+        ┌─────────────┐
+        │   Element   │
+        └─────────────┘
+                │
+        ┌─────────────┐
+        │   Element   │  ← Back
+        └─────────────┘
+```
+
+When elements overlap, the browser uses their stacking order to determine which element should be displayed in front.
+
+---
+
+## Basic Example
+
+Consider two overlapping elements:
+
+```html
+<div class="box box-one">Box One</div>
+<div class="box box-two">Box Two</div>
+```
+
+```css
+.box {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+}
+
+.box-one {
+    z-index: 1;
+}
+
+.box-two {
+    z-index: 2;
+}
+```
+
+When the boxes overlap, `.box-two` appears above `.box-one` because it has the higher `z-index`.
+
+```text
+Front
+  │
+  └── Box Two   z-index: 2
+       │
+       └── Box One   z-index: 1
+  │
+Back
+```
+
+---
+
+## Stacking Levels
+
+Each element can participate in a stacking order.
+
+For example:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 5;
+}
+
+.box-three {
+    position: relative;
+    z-index: 10;
+}
+```
+
+The stacking order is:
+
+```text
+Highest
+   │
+   ├── Box Three   10
+   ├── Box Two      5
+   └── Box One      1
+   │
+Lowest
+```
+
+When these elements overlap within the same stacking context, the element with the higher stacking level appears in front.
+
+---
+
+## `z-index` Only Matters When Elements Overlap
+
+If two elements do not overlap, their `z-index` values usually have no visible effect.
+
+For example:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+If the elements are placed far apart:
+
+```text
+┌───────────┐                 ┌───────────┐
+│  Box One  │                 │  Box Two  │
+└───────────┘                 └───────────┘
+```
+
+There is no visible layering because the elements do not overlap.
+
+> 💡 **Remember:** `z-index` becomes visually important when elements **overlap**.
+
+---
+
+## Position and Stacking Are Different
+
+`z-index` controls the **layering** of an element, not its physical position.
+
+For example:
+
+```css
+.box {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    z-index: 5;
+}
+```
+
+Here:
+
+- `position` determines how the element is positioned.
+- `top` determines its vertical offset.
+- `left` determines its horizontal offset.
+- `z-index` determines its stacking level.
+
+```text
+Position
+   ↓
+Where the element is located
+
+z-index
+   ↓
+Which overlapping layer appears in front
+```
+
+---
+
+## Higher `z-index` Does Not Always Win
+
+A common misunderstanding is:
+
+```text
+Higher z-index = Always in front
+```
+
+This is not always true.
+
+The elements may belong to different **stacking contexts**.
+
+For example:
+
+```css
+.parent-one {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+
+.parent-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+Even though `.child` has `z-index: 9999`, its stacking context is still controlled by its parent.
+
+```text
+Parent One
+z-index: 1
+    │
+    └── Child
+        z-index: 9999
+
+Parent Two
+z-index: 2
+```
+
+The child cannot simply escape its parent's stacking context because it has a larger number.
+
+> 💡 **Pro Tip:** Think of `z-index` as a **layering system inside stacking contexts**, not as a global ranking system for the entire page.
+
+---
+
+## Stacking Context
+
+A **stacking context** is a group of elements that are stacked together as a single unit within their parent stacking context.
+
+This means that the `z-index` of a child is compared within its own stacking context before that entire context is compared with other stacking contexts.
+
+```text
+Root Stacking Context
+│
+├── Parent A
+│   └── Child
+│
+└── Parent B
+    └── Child
+```
+
+Understanding stacking contexts is essential when `z-index` does not produce the expected result.
+
+---
+
+## Negative and Positive Layers
+
+`z-index` can create layers above and below other elements.
+
+```css
+.background {
+    position: absolute;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+}
+```
+
+The intended order is:
+
+```text
+Front
+  │
+  ├── Modal       100
+  ├── Content       1
+  └── Background   -1
+  │
+Back
+```
+
+This makes `z-index` useful for creating layered user interfaces.
+
+---
+
+## Real-World Example
+
+A typical interface might use different stacking levels:
+
+```css
+.page-content {
+    z-index: 1;
+}
+
+.header {
+    z-index: 10;
+}
+
+.dropdown {
+    z-index: 20;
+}
+
+.notification {
+    z-index: 30;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+The intended visual hierarchy is:
+
+```text
+Highest
+   │
+   ├── Modal
+   ├── Notification
+   ├── Dropdown
+   ├── Header
+   └── Page Content
+   │
+Lowest
+```
+
+The actual result can still depend on stacking contexts.
+
+---
+
+## How the Browser Determines the Result
+
+When elements overlap, the browser considers their **stacking contexts and stacking order** to determine which element is painted in front.
+
+A simplified process is:
+
+```text
+Elements overlap
+       ↓
+Check stacking contexts
+       ↓
+Determine stacking order
+       ↓
+Compare stacking levels
+       ↓
+Paint elements in order
+       ↓
+Element on top becomes visible
+```
+
+This is why understanding only the numerical value of `z-index` is not always enough.
+
+---
+
+## Common Mistake
+
+Consider:
+
+```css
+.modal {
+    position: fixed;
+    z-index: 9999;
+}
+```
+
+Developers sometimes keep increasing the value when the modal still appears behind another element.
+
+For example:
+
+```css
+z-index: 99999;
+z-index: 999999;
+z-index: 9999999;
+```
+
+This is usually not a good solution.
+
+The problem may be caused by:
+
+- A parent stacking context
+- Another stacking context
+- `transform`
+- `opacity`
+- `isolation`
+- Other properties that create stacking contexts
+
+> ⚠️ **Important:** When `z-index` appears not to work, inspect the **stacking context hierarchy** before increasing the value.
+
+---
+
+> 💡 **Remember:** `z-index` controls the stacking order of overlapping elements, but the final result is determined by the **stacking context and stacking order** in which those elements participate.
