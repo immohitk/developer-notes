@@ -1338,3 +1338,402 @@ The exact numbers are not important. The relationship between the layers is what
 ---
 
 > 💡 **Remember:** Stacking order determines **which overlapping element is painted in front**. `z-index` can influence that order, but the final result is also affected by **stacking contexts and other stacking rules**.
+
+
+---
+
+
+# Positive Z-Index
+
+A **positive `z-index` value** places an element at a higher stacking level within its stacking context.
+
+Positive values are commonly used when an element needs to appear **in front of other overlapping elements**.
+
+```css
+.box {
+    position: relative;
+    z-index: 10;
+}
+```
+
+The larger the value, the higher the stacking level is when the elements are being compared within the same stacking context.
+
+---
+
+## Basic Example
+
+Consider two overlapping elements:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The stacking order is:
+
+```text
+Front
+  │
+  └── Box Two   z-index: 2
+  │
+  └── Box One   z-index: 1
+  │
+Back
+```
+
+Therefore, `.box-two` appears above `.box-one` when they overlap within the same stacking context.
+
+---
+
+## Higher Positive Values
+
+You can use different positive values to create multiple stacking levels.
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 5;
+}
+
+.box-three {
+    position: relative;
+    z-index: 10;
+}
+```
+
+The resulting order is:
+
+```text
+Front
+  │
+  ├── Box Three   10
+  ├── Box Two      5
+  └── Box One      1
+  │
+Back
+```
+
+---
+
+## Positive `z-index` Does Not Mean Pixel Distance
+
+A `z-index` value is not a physical distance from the screen.
+
+For example:
+
+```css
+.box-one {
+    z-index: 1;
+}
+
+.box-two {
+    z-index: 100;
+}
+```
+
+This does not mean that `.box-two` is `99` pixels closer to the user.
+
+The numbers simply represent **relative stacking levels**.
+
+> 💡 **Remember:** `z-index: 100` does not mean `100px` above another element. It only represents a stacking level.
+
+---
+
+## Common Use Cases
+
+Positive `z-index` values are commonly used for elements that should appear above normal page content.
+
+### Dropdown Menu
+
+```css
+.dropdown {
+    position: absolute;
+    z-index: 20;
+}
+```
+
+A dropdown can use a positive `z-index` to appear above surrounding content.
+
+---
+
+### Navigation Header
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+```
+
+This can help keep the header above content that scrolls underneath it.
+
+---
+
+### Notification
+
+```css
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 50;
+}
+```
+
+The notification can be placed above normal page content.
+
+---
+
+### Modal
+
+```css
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+```
+
+A modal commonly needs a high stacking level so it can appear above other interface elements.
+
+---
+
+## Creating a Layer Hierarchy
+
+Positive values can be used to establish a simple layering system.
+
+```css
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    position: relative;
+    z-index: 10;
+}
+
+.dropdown {
+    position: absolute;
+    z-index: 20;
+}
+
+.notification {
+    position: fixed;
+    z-index: 30;
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+}
+```
+
+The intended hierarchy is:
+
+```text
+Front
+  │
+  ├── Modal          100
+  ├── Notification    30
+  ├── Dropdown        20
+  ├── Header           10
+  └── Content           1
+  │
+Back
+```
+
+This makes the layering relationship easy to understand.
+
+---
+
+## `z-index: 1` vs `z-index: 10`
+
+Both values are positive.
+
+```css
+.box-one {
+    z-index: 1;
+}
+
+.box-two {
+    z-index: 10;
+}
+```
+
+When compared within the same stacking context:
+
+```text
+z-index: 10
+      ↓
+Higher stacking level
+
+z-index: 1
+      ↓
+Lower stacking level
+```
+
+Therefore, `.box-two` appears above `.box-one` when they overlap.
+
+---
+
+## `z-index` Values Do Not Need to Be Consecutive
+
+You do not have to use:
+
+```css
+z-index: 1;
+z-index: 2;
+z-index: 3;
+z-index: 4;
+```
+
+You can leave gaps:
+
+```css
+z-index: 10;
+z-index: 20;
+z-index: 50;
+z-index: 100;
+```
+
+The actual numbers are less important than the relative ordering.
+
+This can make it easier to introduce new layers later.
+
+> 💡 **Pro Tip:** Using meaningful ranges such as `10`, `20`, `50`, and `100` can make a project's layering system easier to extend and maintain.
+
+---
+
+## Positive Z-Index and Stacking Contexts
+
+A positive `z-index` value does not allow an element to escape its stacking context.
+
+For example:
+
+```css
+.parent-one {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+
+.parent-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The child has a very large `z-index`, but it is still inside `.parent-one`'s stacking context.
+
+```text
+Parent One
+z-index: 1
+   │
+   └── Child
+       z-index: 9999
+
+Parent Two
+z-index: 2
+```
+
+The child's `9999` does not automatically make it appear above everything inside the page.
+
+> ⚠️ **Important:** A positive `z-index` is only compared within the relevant stacking context. A very large value cannot automatically overcome a higher-level stacking context.
+
+---
+
+## Practical Example
+
+```html
+<div class="container">
+    <div class="card card-one">Card One</div>
+    <div class="card card-two">Card Two</div>
+</div>
+```
+
+```css
+.container {
+    position: relative;
+}
+
+.card {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+}
+
+.card-one {
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+}
+
+.card-two {
+    top: 60px;
+    left: 60px;
+    z-index: 2;
+}
+```
+
+The cards overlap:
+
+```text
+┌───────────────────────┐
+│                       │
+│   ┌─────────────┐     │
+│   │   Card One  │     │
+│   │       ┌───────────┐
+│   │       │ Card Two  │
+│   └───────│           │
+│           └───────────┘
+│                       │
+└───────────────────────┘
+```
+
+Because `.card-two` has a higher `z-index`, it appears above `.card-one` in the overlapping area.
+
+---
+
+## Important Difference
+
+Positive `z-index` values do not change:
+
+- The element's width
+- The element's height
+- Its `top` position
+- Its `left` position
+- The normal layout position of other elements
+
+They control the **stacking order**.
+
+```text
+Positioning
+    ↓
+Controls where the element is placed
+
+z-index
+    ↓
+Controls which overlapping layer appears in front
+```
+
+---
+
+> 💡 **Remember:** Positive `z-index` values are useful when an element needs to appear **above other overlapping elements**. The value establishes a stacking level, but the final result still depends on the relevant stacking context.
