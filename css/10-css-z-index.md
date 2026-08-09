@@ -77,3 +77,37 @@ For example:
     position: relative;
     z-index: 2;
 }
+
+
+---
+
+
+## Why is CSS Z-Index Important?
+
+The `z-index` property is important when multiple elements overlap and their **stacking order** needs to be controlled.
+
+It helps determine which elements should appear in front of or behind other elements.
+
+`z-index` is commonly useful for:
+
+- Dropdown menus
+- Navigation bars
+- Modal windows
+- Tooltips
+- Notifications
+- Image overlays
+- Fixed elements
+- Sticky elements
+
+For example:
+
+```css
+.dropdown {
+    position: absolute;
+    z-index: 10;
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+}
