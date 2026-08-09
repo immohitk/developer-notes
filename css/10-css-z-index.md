@@ -4010,3 +4010,614 @@ The exact numbers are not important. The relationship between the layers is what
 ---
 
 > 💡 **Remember:** Flexbox items can use `z-index` to control their stacking order, even without `position`. When flex items overlap, `z-index` can determine which item appears in front, while stacking contexts still control the overall layering hierarchy.
+
+
+---
+
+
+# Z-Index and Grid
+
+`z-index` can be used with **CSS Grid items** to control their stacking order.
+
+Like Flexbox items, Grid items can use `z-index` without explicitly setting:
+
+```css
+position: relative;
+```
+
+This makes `z-index` useful when creating overlapping Grid layouts.
+
+---
+
+## Basic Example
+
+Consider a Grid container:
+
+```html
+<div class="container">
+    <div class="box box-one">Box One</div>
+    <div class="box box-two">Box Two</div>
+</div>
+```
+
+```css
+.container {
+    display: grid;
+}
+
+.box-one {
+    z-index: 1;
+}
+
+.box-two {
+    z-index: 2;
+}
+```
+
+When the Grid items overlap, `.box-two` can appear above `.box-one`.
+
+```text
+Front
+  │
+  └── Box Two   z-index: 2
+  │
+  └── Box One   z-index: 1
+  │
+Back
+```
+
+---
+
+## Grid Items Can Use `z-index` Without `position`
+
+With traditional positioned elements, you may commonly see:
+
+```css
+.box {
+    position: relative;
+    z-index: 10;
+}
+```
+
+However, a Grid item can use `z-index` without setting `position`.
+
+For example:
+
+```css
+.container {
+    display: grid;
+}
+
+.item {
+    z-index: 10;
+}
+```
+
+Here, `.item` is a Grid item and can participate in the stacking order.
+
+> 💡 **Remember:** A Grid item can use `z-index` without needing `position: relative`.
+
+---
+
+## Overlapping Grid Items
+
+Grid makes it easy to place multiple items in the same grid area.
+
+For example:
+
+```html
+<div class="container">
+    <div class="background">Background</div>
+    <div class="content">Content</div>
+</div>
+```
+
+```css
+.container {
+    display: grid;
+}
+
+.background,
+.content {
+    grid-area: 1 / 1;
+}
+```
+
+Both elements occupy the same grid area.
+
+```text
+┌─────────────────────────────┐
+│                             │
+│          Content            │
+│                             │
+│       Background            │
+│                             │
+└─────────────────────────────┘
+```
+
+Because they overlap, `z-index` can be used to control which layer appears in front.
+
+---
+
+## Using `z-index` with Overlapping Grid Items
+
+```css
+.background {
+    grid-area: 1 / 1;
+    z-index: 1;
+}
+
+.content {
+    grid-area: 1 / 1;
+    z-index: 2;
+}
+```
+
+The stacking order becomes:
+
+```text
+Front
+  │
+  └── Content       2
+  │
+  └── Background    1
+  │
+Back
+```
+
+The content appears above the background.
+
+---
+
+## Positive `z-index` with Grid
+
+Positive values can place Grid items at higher stacking levels.
+
+```css
+.item-one {
+    z-index: 1;
+}
+
+.item-two {
+    z-index: 5;
+}
+
+.item-three {
+    z-index: 10;
+}
+```
+
+The order becomes:
+
+```text
+Front
+  │
+  ├── Item Three   10
+  ├── Item Two      5
+  └── Item One      1
+  │
+Back
+```
+
+When the items overlap within the same stacking context, the higher stacking level appears in front.
+
+---
+
+## Negative `z-index` with Grid
+
+Grid items can also use negative `z-index` values.
+
+```css
+.background {
+    z-index: -1;
+}
+
+.content {
+    z-index: 1;
+}
+```
+
+The stacking order becomes:
+
+```text
+Front
+  │
+  └── Content       1
+  │
+  └── Background   -1
+  │
+Back
+```
+
+This can be useful when creating layered Grid components.
+
+---
+
+## Grid Layering Example
+
+A common pattern is placing content over a background image.
+
+```html
+<div class="hero">
+    <img class="hero-image" src="image.jpg" alt="Hero">
+    <div class="hero-content">
+        <h1>Welcome</h1>
+        <p>Learn CSS Grid.</p>
+    </div>
+</div>
+```
+
+```css
+.hero {
+    display: grid;
+}
+
+.hero-image,
+.hero-content {
+    grid-area: 1 / 1;
+}
+
+.hero-image {
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+}
+```
+
+Both elements occupy the same grid area.
+
+The content is therefore layered above the image.
+
+```text
+┌─────────────────────────────┐
+│                             │
+│          IMAGE              │
+│                             │
+│        ┌───────────┐        │
+│        │  Welcome  │        │
+│        │ Learn CSS │        │
+│        └───────────┘        │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Grid Area and Z-Index
+
+Grid allows elements to occupy the same grid area.
+
+For example:
+
+```css
+.item-one {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.item-two {
+    grid-column: 1;
+    grid-row: 1;
+}
+```
+
+Both items occupy:
+
+```text
+Column 1
+Row 1
+```
+
+Therefore, they overlap.
+
+You can then use:
+
+```css
+.item-one {
+    z-index: 1;
+}
+
+.item-two {
+    z-index: 2;
+}
+```
+
+to control the visual stacking order.
+
+---
+
+## DOM Order and Grid
+
+If overlapping Grid items have equivalent stacking levels, their document order can affect which item is painted on top.
+
+For example:
+
+```html
+<div class="box box-one">One</div>
+<div class="box box-two">Two</div>
+```
+
+If both items occupy the same grid area and no explicit stacking difference is introduced, the later item can appear above the earlier item according to the applicable stacking rules.
+
+Adding `z-index` makes the intended stacking relationship clearer:
+
+```css
+.box-one {
+    z-index: 2;
+}
+
+.box-two {
+    z-index: 1;
+}
+```
+
+Now `.box-one` can appear above `.box-two`.
+
+> 💡 **Pro Tip:** When Grid items overlap, use explicit `z-index` values when the intended visual hierarchy matters. This makes the layout easier to understand and maintain.
+
+---
+
+## Grid Container and Stacking Context
+
+The Grid container itself can establish a stacking context.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    position: relative;
+    z-index: 1;
+}
+```
+
+The container can establish a stacking context because it has a non-`auto` `z-index` together with positioning.
+
+Its Grid items then participate inside that stacking environment.
+
+```text
+Container
+z-index: 1
+│
+├── Grid Item One
+│   z-index: 1
+│
+└── Grid Item Two
+    z-index: 2
+```
+
+---
+
+## Grid Items and Parent Stacking Context
+
+Consider:
+
+```css
+.parent-one {
+    display: grid;
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    z-index: 9999;
+}
+
+.parent-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The Grid item has:
+
+```css
+z-index: 9999;
+```
+
+but it still participates inside `.parent-one`'s stacking context.
+
+```text
+Parent One
+z-index: 1
+│
+└── Grid Item
+    z-index: 9999
+
+Parent Two
+z-index: 2
+```
+
+The Grid item's large value does not allow it to escape the parent's stacking context.
+
+> ⚠️ **Important:** Grid items can use `z-index` directly, but stacking contexts still determine the larger layering hierarchy.
+
+---
+
+## Practical Example: Card Overlay
+
+CSS Grid can be used to create an image card with text layered over it.
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Card image">
+    <div class="overlay">
+        <h2>CSS Grid</h2>
+        <p>Layered content.</p>
+    </div>
+</div>
+```
+
+```css
+.card {
+    display: grid;
+}
+
+.card img,
+.overlay {
+    grid-area: 1 / 1;
+}
+
+.card img {
+    z-index: 1;
+}
+
+.overlay {
+    z-index: 2;
+}
+```
+
+The image and overlay occupy the same grid area:
+
+```text
+┌─────────────────────────────┐
+│                             │
+│          IMAGE              │
+│                             │
+│      CSS Grid               │
+│      Layered content        │
+│                             │
+└─────────────────────────────┘
+```
+
+The overlay appears above the image because it has the higher `z-index`.
+
+---
+
+## Practical Example: Badge
+
+A Grid layout can also place a badge over an image.
+
+```html
+<div class="product">
+    <img src="product.jpg" alt="Product">
+    <span class="badge">Sale</span>
+</div>
+```
+
+```css
+.product {
+    display: grid;
+}
+
+.product img,
+.badge {
+    grid-area: 1 / 1;
+}
+
+.product img {
+    z-index: 1;
+}
+
+.badge {
+    z-index: 2;
+    justify-self: end;
+    align-self: start;
+}
+```
+
+The Grid layout handles both the positioning and layering.
+
+```text
+┌─────────────────────────────┐
+│                     ┌─────┐ │
+│       PRODUCT       │Sale │ │
+│                     └─────┘ │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Flexbox vs Grid
+
+Both Flexbox and Grid items can use `z-index` without requiring traditional positioning.
+
+| Feature | Flex Item | Grid Item |
+|---------|-----------|-----------|
+| Can use `z-index` | ✅ | ✅ |
+| Requires `position` | ❌ | ❌ |
+| Can overlap | ✅ | ✅ |
+| Can create layered layouts | ✅ | ✅ |
+| Useful for component layering | ✅ | ✅ |
+
+Grid is particularly convenient when multiple elements need to occupy the same grid area.
+
+---
+
+## Common Mistake
+
+A common mistake is assuming that Grid automatically puts later elements above earlier elements in every situation.
+
+For example:
+
+```css
+.item-one {
+    grid-area: 1 / 1;
+}
+
+.item-two {
+    grid-area: 1 / 1;
+}
+```
+
+Although document order can influence painting, explicit stacking rules are clearer when the layering is intentional.
+
+Instead, use:
+
+```css
+.item-one {
+    z-index: 1;
+}
+
+.item-two {
+    z-index: 2;
+}
+```
+
+This clearly communicates the intended hierarchy.
+
+---
+
+## Practical Layering System
+
+A Grid component can use a simple layering system:
+
+```css
+.background {
+    z-index: -1;
+}
+
+.image {
+    z-index: 1;
+}
+
+.content {
+    z-index: 2;
+}
+
+.badge {
+    z-index: 3;
+}
+```
+
+The hierarchy becomes:
+
+```text
+Front
+  │
+  ├── Badge         3
+  ├── Content       2
+  ├── Image         1
+  └── Background   -1
+  │
+Back
+```
+
+This pattern is useful for layered UI components.
+
+---
+
+> 💡 **Remember:** CSS Grid items can use `z-index` without `position`, making Grid especially useful for layered layouts. When multiple Grid items occupy the same grid area, `z-index` can control which item appears in front.
