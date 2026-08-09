@@ -4621,3 +4621,646 @@ This pattern is useful for layered UI components.
 ---
 
 > 💡 **Remember:** CSS Grid items can use `z-index` without `position`, making Grid especially useful for layered layouts. When multiple Grid items occupy the same grid area, `z-index` can control which item appears in front.
+
+
+---
+
+
+# Common Use Cases
+
+`z-index` is commonly used in modern web interfaces whenever multiple elements need to **overlap** and have a specific visual layering order.
+
+Some of the most common use cases include:
+
+- Dropdown menus
+- Modals
+- Tooltips
+- Notifications
+- Sticky headers
+- Navigation menus
+- Badges
+- Image overlays
+- Floating buttons
+- Background decorations
+
+---
+
+## Dropdown Menus
+
+Dropdown menus often need to appear above surrounding page content.
+
+```css
+.dropdown {
+    position: absolute;
+    z-index: 20;
+}
+```
+
+For example:
+
+```text
+┌──────────────────────────────┐
+│          Navigation          │
+│      ┌───────────────┐       │
+│      │ Menu Item 1   │       │
+│      │ Menu Item 2   │       │
+│      │ Menu Item 3   │       │
+│      └───────────────┘       │
+│                              │
+│        Page Content          │
+└──────────────────────────────┘
+```
+
+The dropdown is layered above the content below it.
+
+---
+
+## Modal Dialogs
+
+Modals typically need to appear above almost all normal page content.
+
+```css
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+```
+
+A typical layering structure is:
+
+```text
+Front
+  │
+  └── Modal          100
+  │
+  └── Page Content     1
+  │
+Back
+```
+
+This allows the modal to visually cover the page underneath it.
+
+---
+
+## Modal Backdrop
+
+A modal commonly contains a backdrop and modal content.
+
+```html
+<div class="modal">
+    <div class="backdrop"></div>
+
+    <div class="modal-content">
+        <h2>Confirm Action</h2>
+        <p>Are you sure?</p>
+    </div>
+</div>
+```
+
+```css
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+
+.backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The layering becomes:
+
+```text
+Front
+  │
+  └── Modal Content    2
+  │
+  └── Backdrop         1
+  │
+Back
+```
+
+The backdrop covers the page while the modal content remains above the backdrop.
+
+---
+
+## Tooltips
+
+Tooltips are often positioned above other interface elements.
+
+```css
+.tooltip {
+    position: absolute;
+    z-index: 30;
+}
+```
+
+Example:
+
+```text
+        ┌──────────────────┐
+        │ Helpful tooltip  │
+        └────────┬─────────┘
+                 │
+             ┌───┴───┐
+             │ Button│
+             └───────┘
+```
+
+The tooltip can overlap nearby content without being hidden behind it.
+
+---
+
+## Notifications
+
+Notifications commonly appear in a fixed position near a corner of the viewport.
+
+```css
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 50;
+}
+```
+
+For example:
+
+```text
+┌──────────────────────────────┐
+│                  ┌─────────┐ │
+│                  │ Success │ │
+│                  └─────────┘ │
+│                              │
+│         Page Content         │
+│                              │
+└──────────────────────────────┘
+```
+
+The notification can remain above normal page content.
+
+---
+
+## Sticky Headers
+
+A sticky header can use `z-index` to remain above content while scrolling.
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+```
+
+Without an appropriate stacking level, other content may visually overlap the header.
+
+```text
+┌──────────────────────────────┐
+│          Header              │ ← z-index: 10
+├──────────────────────────────┤
+│                              │
+│       Scrolling Content      │
+│                              │
+│       Scrolling Content      │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+## Navigation Menus
+
+Navigation interfaces frequently contain multiple layers.
+
+```css
+.header {
+    position: relative;
+    z-index: 10;
+}
+
+.dropdown {
+    position: absolute;
+    z-index: 20;
+}
+```
+
+The intended hierarchy is:
+
+```text
+Front
+  │
+  └── Dropdown   20
+  │
+  └── Header     10
+  │
+Back
+```
+
+This helps ensure that dropdown content appears above surrounding page content.
+
+---
+
+## Badges
+
+Badges are often positioned over cards, images, or icons.
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+```
+
+Example:
+
+```text
+┌─────────────────────────────┐
+│                     ┌─────┐ │
+│        Product      │ New │ │
+│                     └─────┘ │
+│                             │
+│       Description           │
+└─────────────────────────────┘
+```
+
+The badge is layered above the card content.
+
+---
+
+## Image Overlays
+
+`z-index` can be used to place text or controls over images.
+
+```html
+<div class="image-container">
+    <img src="image.jpg" alt="Example">
+
+    <div class="overlay">
+        <h2>Image Title</h2>
+    </div>
+</div>
+```
+
+```css
+.image-container {
+    position: relative;
+}
+
+.image-container img {
+    position: relative;
+    z-index: 1;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+```
+
+The layering becomes:
+
+```text
+Front
+  │
+  └── Overlay   2
+  │
+  └── Image     1
+  │
+Back
+```
+
+---
+
+## Floating Buttons
+
+Floating action buttons can use a higher stacking level so they remain visible above page content.
+
+```css
+.floating-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 40;
+}
+```
+
+Example:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│         Page Content         │
+│                              │
+│                         ┌──┐ │
+│                         │+ │ │
+│                         └──┘ │
+└──────────────────────────────┘
+```
+
+The button remains visually above normal content.
+
+---
+
+## Background Decorations
+
+Negative `z-index` values can be used for decorative layers.
+
+```css
+.section {
+    position: relative;
+}
+
+.decoration {
+    position: absolute;
+    z-index: -1;
+}
+```
+
+The decoration can sit behind the main content.
+
+```text
+┌──────────────────────────────┐
+│       Decorative Shape       │
+│                              │
+│          Content             │
+│                              │
+└──────────────────────────────┘
+```
+
+> 💡 **Pro Tip:** Decorative elements are a good use case for negative stacking levels, but always check the parent stacking context so the decoration does not disappear behind an ancestor's background.
+
+---
+
+## Card Layers
+
+Cards can contain multiple visual layers.
+
+```css
+.card {
+    position: relative;
+}
+
+.card-background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.card-badge {
+    position: absolute;
+    z-index: 3;
+}
+```
+
+The hierarchy becomes:
+
+```text
+Front
+  │
+  ├── Badge       3
+  ├── Content     2
+  └── Background  1
+  │
+Back
+```
+
+This creates a clear component-level layering system.
+
+---
+
+## Overlapping Avatars
+
+Profile images can be intentionally overlapped.
+
+```css
+.avatars {
+    display: flex;
+}
+
+.avatar {
+    margin-left: -10px;
+}
+
+.avatar:last-child {
+    z-index: 3;
+}
+```
+
+This can create a visual stack:
+
+```text
+   ┌─────┐
+   │  A  │
+   └─────┘
+       ┌─────┐
+       │  B  │
+       └─────┘
+           ┌─────┐
+           │  C  │
+           └─────┘
+```
+
+`z-index` can control which avatar appears above another when they overlap.
+
+---
+
+## Loading Overlays
+
+A loading overlay can be placed above page content.
+
+```css
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+}
+```
+
+The hierarchy might be:
+
+```text
+Front
+  │
+  └── Loading Overlay   90
+  │
+  └── Page Content       1
+  │
+Back
+```
+
+This prevents users from interacting visually with content underneath while a loading state is displayed.
+
+---
+
+## Cookie Banners
+
+Cookie banners often need to appear above normal content.
+
+```css
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 80;
+}
+```
+
+The banner can therefore remain visible above the page.
+
+---
+
+## Common UI Layering System
+
+A project can define a simple hierarchy for common UI components.
+
+```css
+.content {
+    z-index: 1;
+}
+
+.header {
+    z-index: 10;
+}
+
+.dropdown {
+    z-index: 20;
+}
+
+.tooltip {
+    z-index: 30;
+}
+
+.notification {
+    z-index: 50;
+}
+
+.cookie-banner {
+    z-index: 80;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+The resulting hierarchy is:
+
+```text
+Front
+  │
+  ├── Modal           100
+  ├── Cookie Banner    80
+  ├── Notification     50
+  ├── Tooltip          30
+  ├── Dropdown         20
+  ├── Header            10
+  └── Content            1
+  │
+Back
+```
+
+The exact values are not important. What matters is having a predictable relationship between layers.
+
+---
+
+## Avoiding Arbitrary Large Values
+
+A common mistake is assigning huge values everywhere:
+
+```css
+z-index: 999;
+z-index: 9999;
+z-index: 99999;
+z-index: 999999;
+```
+
+This makes the layering system difficult to understand.
+
+Instead, define a small hierarchy:
+
+```css
+.header {
+    z-index: 10;
+}
+
+.dropdown {
+    z-index: 20;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+This is easier to maintain and extend.
+
+> 💡 **Pro Tip:** Treat `z-index` values as part of your project's **layering system**, not as numbers you randomly increase until something appears on top.
+
+---
+
+## When You Do Not Need `z-index`
+
+Not every overlapping situation requires `z-index`.
+
+If elements do not overlap:
+
+```text
+┌──────────┐      ┌──────────┐
+│ Element  │      │ Element  │
+└──────────┘      └──────────┘
+```
+
+there is usually no reason to add `z-index`.
+
+Likewise, if the default document and painting order already produces the desired result, adding `z-index` may be unnecessary.
+
+Use it when you actually need to control the stacking relationship.
+
+---
+
+## Practical Layering Checklist
+
+When creating a layered UI component:
+
+```text
+1. Identify the elements that overlap
+          ↓
+2. Decide which element should be in front
+          ↓
+3. Check their stacking contexts
+          ↓
+4. Assign simple z-index values
+          ↓
+5. Test the component at different screen sizes
+          ↓
+6. Avoid unnecessarily large values
+```
+
+This keeps the layering system predictable.
+
+---
+
+> 💡 **Remember:** `z-index` is especially useful for UI components that overlap, such as **dropdowns, modals, tooltips, notifications, headers, badges, overlays, and floating elements**. Use a clear layering hierarchy instead of relying on unnecessarily large numbers.
