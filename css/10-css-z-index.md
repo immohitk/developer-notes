@@ -8847,3 +8847,757 @@ A: No.
 ---
 
 > 💡 **Remember:** A strong understanding of `z-index` means understanding **stacking contexts, stacking order, positioned elements, Flexbox, Grid, and ancestor relationships**, not just memorizing that larger numbers appear on top.
+
+
+---
+
+
+# Practice Exercises
+
+## Exercise 1 — Basic `z-index`
+
+Create two overlapping boxes.
+
+Requirements:
+
+- Both boxes should overlap.
+- Give the first box `z-index: 1`.
+- Give the second box `z-index: 2`.
+- Observe which box appears on top.
+
+Starter code:
+
+```html
+<div class="box box-one">Box One</div>
+<div class="box box-two">Box Two</div>
+```
+
+```css
+.box {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+}
+
+.box-one {
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
+.box-two {
+    top: 100px;
+    left: 100px;
+    z-index: 2;
+}
+```
+
+### Goal
+
+Understand how `z-index` controls the stacking order of overlapping elements.
+
+---
+
+## Exercise 2 — Change the Stacking Order
+
+Using the previous example, change:
+
+```css
+.box-one {
+    z-index: 1;
+}
+```
+
+to:
+
+```css
+.box-one {
+    z-index: 3;
+}
+```
+
+### Questions
+
+1. Which box is now on top?
+2. Why did the visual order change?
+3. What happens if both boxes have the same `z-index`?
+
+---
+
+## Exercise 3 — Negative `z-index`
+
+Create a background decoration behind some content.
+
+```html
+<div class="container">
+    <div class="decoration"></div>
+    <div class="content">
+        <h2>Hello CSS</h2>
+        <p>Practice z-index.</p>
+    </div>
+</div>
+```
+
+Try:
+
+```css
+.container {
+    position: relative;
+}
+
+.decoration {
+    position: absolute;
+    z-index: -1;
+}
+```
+
+### Goal
+
+Understand how negative stacking levels work.
+
+---
+
+## Exercise 4 — Card Badge
+
+Create a card with a badge positioned in its top-right corner.
+
+```html
+<div class="card">
+    <span class="badge">NEW</span>
+
+    <h2>Product</h2>
+    <p>Product description.</p>
+</div>
+```
+
+Requirements:
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+```
+
+Then add an appropriate `z-index`.
+
+### Goal
+
+Practice the common:
+
+```text
+relative parent
+      +
+absolute child
+      +
+z-index
+```
+
+pattern.
+
+---
+
+## Exercise 5 — Image Overlay
+
+Create an image container with text displayed over the image.
+
+```html
+<div class="image-container">
+    <img src="image.jpg" alt="Example image">
+
+    <div class="image-label">
+        Featured
+    </div>
+</div>
+```
+
+Requirements:
+
+- The image should occupy the container.
+- The label should appear over the image.
+- Position the label in the bottom-left corner.
+- Use `z-index` to control the layer.
+
+### Goal
+
+Practice layering content over an image.
+
+---
+
+## Exercise 6 — Flexbox Overlap
+
+Create overlapping Flexbox items.
+
+```html
+<div class="container">
+    <div class="item item-one">One</div>
+    <div class="item item-two">Two</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    width: 150px;
+    height: 150px;
+}
+
+.item-one {
+    z-index: 1;
+}
+
+.item-two {
+    z-index: 2;
+}
+```
+
+### Questions
+
+1. Can the Flex items use `z-index` without `position`?
+2. Which item appears above the other?
+3. What happens when their `z-index` values are changed?
+
+---
+
+## Exercise 7 — Grid Layering
+
+Create two Grid items that occupy the same grid area.
+
+```html
+<div class="container">
+    <div class="background">Background</div>
+    <div class="content">Content</div>
+</div>
+```
+
+```css
+.container {
+    display: grid;
+}
+
+.background,
+.content {
+    grid-area: 1 / 1;
+}
+
+.background {
+    z-index: 1;
+}
+
+.content {
+    z-index: 2;
+}
+```
+
+### Goal
+
+Understand how Grid can be used to create intentional layers.
+
+---
+
+## Exercise 8 — Parent Stacking Context
+
+Create the following structure:
+
+```text
+Parent A
+z-index: 1
+│
+└── Child
+    z-index: 9999
+
+Parent B
+z-index: 2
+```
+
+Use:
+
+```html
+<div class="parent parent-a">
+    <div class="child">Child</div>
+</div>
+
+<div class="parent parent-b">
+    Parent B
+</div>
+```
+
+### Questions
+
+1. Does the child automatically appear above Parent B?
+2. Why does `z-index: 9999` not guarantee that?
+3. Which stacking context controls the child?
+
+### Goal
+
+Understand that `z-index` is not a global number system.
+
+---
+
+## Exercise 9 — Stacking Context Debugging
+
+Create a layout where an element appears behind another despite having a large `z-index`.
+
+Then investigate:
+
+```css
+position
+z-index
+transform
+opacity
+filter
+isolation
+overflow
+```
+
+### Goal
+
+Find the actual cause instead of repeatedly increasing:
+
+```css
+z-index: 9999;
+```
+
+---
+
+## Exercise 10 — Dropdown Menu
+
+Create a navigation bar with a dropdown menu.
+
+Requirements:
+
+```text
+Header
+   ↓
+Navigation
+   ↓
+Dropdown
+```
+
+The dropdown should appear above the page content.
+
+Example:
+
+```css
+.header {
+    position: relative;
+    z-index: 10;
+}
+
+.dropdown {
+    position: absolute;
+    z-index: 20;
+}
+```
+
+### Goal
+
+Practice a real-world `z-index` use case.
+
+---
+
+## Exercise 11 — Modal and Backdrop
+
+Create a modal with a backdrop.
+
+Layer the elements as:
+
+```text
+Modal Content
+      ↓
+Backdrop
+      ↓
+Page Content
+```
+
+Example:
+
+```css
+.page {
+    z-index: 1;
+}
+
+.backdrop {
+    z-index: 90;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+### Goal
+
+Build a predictable modal layering system.
+
+---
+
+## Exercise 12 — Tooltip
+
+Create a tooltip that appears above a card.
+
+```html
+<div class="card">
+    Hover me
+
+    <div class="tooltip">
+        Tooltip text
+    </div>
+</div>
+```
+
+Requirements:
+
+- Position the tooltip.
+- Place it above the card content.
+- Use `z-index`.
+- Make the card the appropriate positioning context.
+
+### Goal
+
+Practice another common UI layering pattern.
+
+---
+
+## Exercise 13 — Build a Layering System
+
+Create a CSS layering system using custom properties.
+
+```css
+:root {
+    --z-content: 1;
+    --z-header: 10;
+    --z-dropdown: 20;
+    --z-tooltip: 30;
+    --z-notification: 50;
+    --z-modal: 100;
+}
+```
+
+Use these values for different UI components.
+
+### Goal
+
+Practice creating a maintainable project-wide layering system.
+
+---
+
+## Exercise 14 — Find the Mistake
+
+Consider:
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+
+.other {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The `.child` still appears behind `.other`.
+
+### Task
+
+Explain why.
+
+### Expected Concept
+
+The child is inside the parent's stacking context.
+
+```text
+Parent
+z-index: 1
+│
+└── Child
+    z-index: 9999
+
+Other
+z-index: 2
+```
+
+The child's `9999` does not automatically place it above the parent stacking context with `z-index: 2`.
+
+---
+
+## Exercise 15 — Find the Hidden Stacking Context
+
+Given:
+
+```css
+.container {
+    transform: translateX(0);
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+```
+
+### Task
+
+Investigate why the child may behave differently from what you expect.
+
+### Goal
+
+Identify how `transform` can create a stacking context.
+
+---
+
+## Exercise 16 — `overflow` vs `z-index`
+
+Create an element that extends outside its parent:
+
+```css
+.parent {
+    overflow: hidden;
+}
+```
+
+Then give the child:
+
+```css
+.child {
+    position: absolute;
+    z-index: 9999;
+}
+```
+
+### Questions
+
+1. Is the child still clipped?
+2. Does increasing `z-index` remove the clipping?
+3. What property controls the clipping?
+
+### Goal
+
+Understand that not every visual layering problem is a `z-index` problem.
+
+---
+
+## Exercise 17 — Debugging Challenge
+
+Create a page containing:
+
+```text
+Header
+Dropdown
+Card
+Tooltip
+Notification
+Modal
+```
+
+Give each layer an appropriate `z-index`.
+
+Then intentionally create a stacking-context problem.
+
+### Task
+
+Use browser developer tools to identify why one component appears behind another.
+
+### Goal
+
+Practice real-world `z-index` debugging.
+
+---
+
+## Exercise 18 — Build a Layered Card
+
+Create a card containing:
+
+```text
+Background
+Image
+Gradient
+Content
+Badge
+Button
+```
+
+Use CSS to create the following hierarchy:
+
+```text
+        Button
+          ↑
+        Badge
+          ↑
+        Content
+          ↑
+       Gradient
+          ↑
+         Image
+          ↑
+      Background
+```
+
+### Goal
+
+Practice designing multiple intentional layers within a single component.
+
+---
+
+## Exercise 19 — Refactor Bad `z-index` Values
+
+Given:
+
+```css
+.header {
+    z-index: 999;
+}
+
+.dropdown {
+    z-index: 9999;
+}
+
+.tooltip {
+    z-index: 99999;
+}
+
+.modal {
+    z-index: 999999;
+}
+```
+
+### Task
+
+Replace the values with a simple and predictable layering system.
+
+For example:
+
+```css
+.header {
+    z-index: 10;
+}
+
+.dropdown {
+    z-index: 20;
+}
+
+.tooltip {
+    z-index: 30;
+}
+
+.modal {
+    z-index: 100;
+}
+```
+
+### Goal
+
+Practice writing maintainable CSS.
+
+---
+
+## Exercise 20 — Final Challenge
+
+Build a small interface containing:
+
+```text
+┌────────────────────────────────────┐
+│             Header                 │
+├────────────────────────────────────┤
+│                                    │
+│        Card                        │
+│        ┌──────────────┐            │
+│        │        Badge │            │
+│        │              │            │
+│        │    Content   │            │
+│        └──────────────┘            │
+│                                    │
+│                     Notification   │
+│                                    │
+└────────────────────────────────────┘
+```
+
+Add:
+
+- A header.
+- A card.
+- A badge.
+- A dropdown.
+- A tooltip.
+- A notification.
+- A modal.
+- A modal backdrop.
+
+Create a predictable stacking hierarchy.
+
+Example:
+
+```text
+Content        → 1
+Header         → 10
+Dropdown       → 20
+Tooltip        → 30
+Notification   → 50
+Backdrop       → 90
+Modal          → 100
+```
+
+### Goal
+
+Apply everything learned in the chapter to one complete interface.
+
+---
+
+## Practice Checklist
+
+```text
+☐ Create overlapping elements
+
+☐ Use positive z-index values
+
+☐ Use negative z-index values
+
+☐ Use relative + absolute positioning
+
+☐ Use z-index with Flexbox
+
+☐ Use z-index with Grid
+
+☐ Create a stacking context
+
+☐ Debug a stacking context
+
+☐ Work with dropdowns
+
+☐ Work with tooltips
+
+☐ Work with notifications
+
+☐ Work with modals
+
+☐ Understand overflow clipping
+
+☐ Build a layering system
+
+☐ Avoid unnecessarily large z-index values
+
+☐ Debug z-index using browser developer tools
+```
+
+---
+
+> 💡 **Pro Tip:** Do not just complete these exercises by copying the examples. Intentionally break the stacking order and debug it. Learning how to **find why `z-index` fails** is more valuable than memorizing `z-index` values.
+
+---
+
+> 💡 **Remember:** The goal of these exercises is to understand **stacking order and stacking contexts**, not simply to make one element appear above another.
