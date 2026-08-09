@@ -28,21 +28,23 @@
 ---
 
 
-# CSS Z-Index
-
 ## Introduction
 
 CSS `z-index` controls the **stacking order of overlapping elements**.
 
-When multiple elements overlap, the stacking order determines which element appears in front and which appears behind.
+When multiple elements overlap, their stacking order determines which element appears in front and which element appears behind.
 
-For example:
+The `z-index` property is commonly useful when working with:
 
-```css
-.box-one {
-    z-index: 1;
-}
+- Overlapping elements
+- Dropdown menus
+- Modals
+- Navigation bars
+- Tooltips
+- Notifications
+- Image overlays
+- Fixed and sticky elements
 
-.box-two {
-    z-index: 2;
-}
+Understanding `z-index` is closely related to **CSS positioning**, **stacking order**, and **stacking contexts**.
+
+> 💡 **Remember:** `z-index` controls the **stacking order of overlapping elements**.
