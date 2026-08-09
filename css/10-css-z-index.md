@@ -2539,3 +2539,481 @@ For example:
 The element is positioned using `position`, while its visual layer is controlled using `z-index`.
 
 > 💡 **Remember:** `position` determines **how and where an element is positioned**, while `z-index` determines **how overlapping elements are layered**. They are related, but they solve different problems.
+
+
+---
+
+
+# Stacking Context
+
+A **stacking context** is a group of elements that are stacked together as a single unit within another stacking context.
+
+Each stacking context creates its own independent environment for determining the stacking order of its child elements.
+
+This means that a child element's `z-index` is generally compared **inside its own stacking context**, rather than directly against every element on the page.
+
+---
+
+## Basic Structure
+
+A stacking context can be visualized as:
+
+```text
+Root Stacking Context
+│
+├── Element A
+│
+├── Stacking Context B
+│   │
+│   ├── Child B1
+│   └── Child B2
+│
+└── Element C
+```
+
+The children inside Stacking Context B are first stacked relative to one another.
+
+The entire stacking context is then positioned relative to the other elements in its parent stacking context.
+
+---
+
+## Why Stacking Contexts Matter
+
+Consider:
+
+```css
+.parent-one {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+
+.parent-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+The structure is:
+
+```text
+Parent One
+z-index: 1
+   │
+   └── Child
+       z-index: 9999
+
+Parent Two
+z-index: 2
+```
+
+It may seem that the child should always appear above `Parent Two` because it has `z-index: 9999`.
+
+However, the child is part of `Parent One`'s stacking context.
+
+The parent stacking contexts are compared at their own level:
+
+```text
+Parent Two   → 2
+Parent One   → 1
+```
+
+The child cannot simply escape its parent's stacking context because it has a larger `z-index`.
+
+> 💡 **Pro Tip:** Think of a stacking context as a **container of layers**. A child can move up and down inside that container, but it cannot use its `z-index` to escape the container's stacking order.
+
+---
+
+## Stacking Contexts Are Independent
+
+Suppose a parent creates a stacking context:
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+```
+
+Its children can have their own stacking levels:
+
+```css
+.child-one {
+    position: relative;
+    z-index: 1;
+}
+
+.child-two {
+    position: relative;
+    z-index: 10;
+}
+```
+
+Inside the parent:
+
+```text
+Parent Stacking Context
+│
+├── Child Two   10
+└── Child One    1
+```
+
+The browser compares the children according to their stacking order inside that context.
+
+The entire parent stacking context is then compared with other stacking contexts at the parent level.
+
+---
+
+## Nested Stacking Contexts
+
+Stacking contexts can be nested.
+
+```text
+Root Stacking Context
+│
+├── Parent A
+│   │
+│   └── Stacking Context B
+│       │
+│       ├── Child B1
+│       └── Child B2
+│
+└── Parent C
+```
+
+Here:
+
+- The root creates the outer stacking environment.
+- Parent A can create another stacking context.
+- Stacking Context B can create another nested stacking context.
+- The children inside B are compared within B.
+
+This hierarchy is important when debugging complex layering problems.
+
+---
+
+## Common Way to Create a Stacking Context
+
+One common way to create a stacking context is to use a positioned element with a non-`auto` `z-index`.
+
+For example:
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+```
+
+The element can establish a stacking context.
+
+Its children are then stacked within that context.
+
+---
+
+## `position` and `z-index`
+
+A common pattern is:
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: absolute;
+    z-index: 10;
+}
+```
+
+The parent establishes the positioning and stacking environment.
+
+The child has its own stacking level inside that environment.
+
+```text
+Parent
+z-index: 1
+│
+├── Child
+│   z-index: 10
+│
+└── Other Child
+    z-index: 5
+```
+
+The child with `z-index: 10` appears above the child with `z-index: 5` when they are compared within the same stacking context.
+
+---
+
+## Stacking Context vs Normal Element
+
+A normal element can participate in a stacking order without necessarily creating a new stacking context.
+
+A stacking context, however, creates an **independent stacking environment**.
+
+```text
+Normal Element
+    ↓
+Participates in its parent's stacking environment
+
+Stacking Context
+    ↓
+Creates an independent stacking environment
+    ↓
+Contains its own stacking order
+```
+
+This distinction is one of the most important concepts when working with `z-index`.
+
+---
+
+## Stacking Context Hierarchy
+
+Consider:
+
+```css
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+.card {
+    position: relative;
+    z-index: 5;
+}
+
+.badge {
+    position: absolute;
+    z-index: 10;
+}
+```
+
+The hierarchy can be represented as:
+
+```text
+Root
+│
+└── Container
+    z-index: 2
+    │
+    └── Card
+        z-index: 5
+        │
+        └── Badge
+            z-index: 10
+```
+
+The badge's `z-index: 10` is not a global page-level value.
+
+It is evaluated within the stacking context in which the badge participates.
+
+> ⚠️ **Important:** `z-index` values from different stacking contexts should not be treated as if they were all part of one global number line.
+
+---
+
+## Why `z-index: 9999` Can Fail
+
+Consider:
+
+```css
+.parent {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: relative;
+    z-index: 9999;
+}
+
+.other {
+    position: relative;
+    z-index: 2;
+}
+```
+
+You might expect:
+
+```text
+9999 > 2
+```
+
+and therefore expect `.child` to appear above `.other`.
+
+But the child belongs to the stacking context created by `.parent`.
+
+The browser first compares the relevant parent-level stacking contexts.
+
+```text
+Parent
+z-index: 1
+│
+└── Child
+    z-index: 9999
+
+Other
+z-index: 2
+```
+
+The entire `Parent` stacking context is still below `Other` at that level.
+
+---
+
+## Real-World Example
+
+Consider a page with:
+
+```css
+.header {
+    position: relative;
+    z-index: 10;
+}
+
+.modal-container {
+    position: relative;
+    z-index: 20;
+}
+
+.modal {
+    position: absolute;
+    z-index: 1;
+}
+```
+
+The modal has only `z-index: 1`, but it is inside a stacking context at `20`.
+
+The simplified hierarchy is:
+
+```text
+Front
+  │
+  └── Modal Container   20
+       │
+       └── Modal         1
+  │
+  └── Header            10
+  │
+Back
+```
+
+The important comparison is between the parent stacking contexts.
+
+---
+
+## Properties That Can Create Stacking Contexts
+
+Several CSS features can create stacking contexts.
+
+Common examples include:
+
+- A positioned element with a non-`auto` `z-index`
+- `position: fixed`
+- `position: sticky`
+- `opacity` less than `1`
+- `transform` other than `none`
+- `filter` with a value other than `none`
+- `isolation: isolate`
+- Certain values of `mix-blend-mode`
+- Certain containment properties
+
+The exact list is broader and depends on the CSS specification.
+
+> 💡 **Remember:** When debugging `z-index`, check whether a parent creates a stacking context through properties such as `z-index`, `transform`, `opacity`, or `isolation`.
+
+---
+
+## Creating an Explicit Stacking Context
+
+The `isolation` property can be used when you intentionally want an element to establish a new stacking context.
+
+```css
+.container {
+    isolation: isolate;
+}
+```
+
+This can be useful when you want the layering of a component to remain isolated from surrounding content.
+
+For example:
+
+```css
+.card {
+    isolation: isolate;
+}
+
+.badge {
+    position: absolute;
+    z-index: 10;
+}
+```
+
+The card can provide an isolated stacking environment for its contents.
+
+---
+
+## Stacking Context Visualization
+
+A complex page can contain several stacking contexts:
+
+```text
+Root
+│
+├── Header
+│   └── Navigation
+│       └── Dropdown
+│
+├── Main Content
+│   └── Card
+│       └── Badge
+│
+└── Modal
+    └── Modal Content
+```
+
+Each component can have its own stacking relationships.
+
+This is why a large `z-index` value alone is not always enough to solve layering problems.
+
+---
+
+## Practical Debugging Approach
+
+When `z-index` does not behave as expected, check the following:
+
+```text
+1. Are the elements overlapping?
+          ↓
+2. What are their z-index values?
+          ↓
+3. What stacking context does each element belong to?
+          ↓
+4. Does a parent create another stacking context?
+          ↓
+5. Are properties such as transform or opacity involved?
+          ↓
+6. Compare the parent stacking contexts
+```
+
+This approach is much more reliable than continuously increasing the `z-index` value.
+
+> 💡 **Pro Tip:** Debug the **stacking context hierarchy from the outside inward**. Start with the parents, then inspect the child elements.
+
+---
+
+## Stacking Context vs `z-index`
+
+| Concept | Purpose |
+|---------|---------|
+| `z-index` | Controls an element's stacking level |
+| Stacking context | Creates an independent stacking environment |
+| Parent stacking context | Determines the layer in which the child context participates |
+| Child `z-index` | Controls stacking inside its relevant context |
+
+---
+
+> 💡 **Remember:** A stacking context is an **independent layering environment**. Elements inside it are stacked according to their own rules, while the entire stacking context is then positioned relative to other elements in its parent stacking context.
