@@ -2141,3 +2141,401 @@ Back
 ---
 
 > 💡 **Remember:** Negative `z-index` values place elements at **lower stacking levels** and are especially useful for decorative or background layers. Always consider the element's **stacking context** before relying on a negative value.
+
+
+---
+
+
+# Z-Index with Positioned Elements
+
+The `z-index` property is commonly used together with **positioned elements**.
+
+Positioned elements include:
+
+- `position: relative`
+- `position: absolute`
+- `position: fixed`
+- `position: sticky`
+
+A common pattern is:
+
+```css
+.box {
+    position: relative;
+    z-index: 10;
+}
+```
+
+The `position` property controls how the element is positioned, while `z-index` controls its stacking level.
+
+---
+
+## `relative` with `z-index`
+
+`position: relative` is commonly combined with `z-index`.
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: relative;
+    z-index: 2;
+}
+```
+
+When the elements overlap within the same stacking context, `.box-two` appears above `.box-one`.
+
+```text
+Front
+  │
+  └── Box Two   z-index: 2
+  │
+  └── Box One   z-index: 1
+  │
+Back
+```
+
+---
+
+## `absolute` with `z-index`
+
+Absolutely positioned elements are frequently used with `z-index` for overlays and layered components.
+
+```css
+.container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 10;
+}
+```
+
+For example:
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Image">
+    <span class="badge">New</span>
+</div>
+```
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+```
+
+The badge can appear above the image.
+
+```text
+┌─────────────────────────────┐
+│                      ┌────┐ │
+│        IMAGE         │ New│ │
+│                      └────┘ │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## `fixed` with `z-index`
+
+Fixed elements are often used for elements that need to remain visible above page content.
+
+```css
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+```
+
+The element remains fixed relative to the viewport while the `z-index` controls its stacking level.
+
+Common examples include:
+
+- Notifications
+- Floating buttons
+- Fixed navigation
+- Cookie banners
+- Modal overlays
+
+---
+
+## `sticky` with `z-index`
+
+Sticky elements can also use `z-index`.
+
+```css
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+```
+
+This is useful when a sticky header needs to remain visually above content while scrolling.
+
+```text
+┌─────────────────────────────┐
+│          Header             │ ← z-index: 10
+├─────────────────────────────┤
+│                             │
+│       Page Content          │
+│                             │
+│       Page Content          │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Positioning and Z-Index Work Together
+
+It is important to understand that `position` and `z-index` perform different jobs.
+
+```css
+.box {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 5;
+}
+```
+
+Here:
+
+```text
+position
+   ↓
+Determines how the element participates in positioning
+
+top / left
+   ↓
+Determines where the element is placed
+
+z-index
+   ↓
+Determines its stacking level
+```
+
+The properties work together to create layered layouts.
+
+---
+
+## Common Pattern: Relative Parent + Absolute Child
+
+One of the most common CSS patterns is:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    z-index: 2;
+}
+```
+
+For example:
+
+```html
+<div class="card">
+    <div class="badge">Sale</div>
+    <h2>Product</h2>
+</div>
+```
+
+```css
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+```
+
+The parent establishes the positioning context, while the child can be positioned and layered inside it.
+
+```text
+┌─────────────────────────────┐
+│                     ┌─────┐ │
+│                     │Sale │ │
+│                     └─────┘ │
+│                             │
+│          Product            │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Multiple Positioned Elements
+
+Multiple positioned elements can have different stacking levels.
+
+```css
+.box-one {
+    position: relative;
+    z-index: 1;
+}
+
+.box-two {
+    position: absolute;
+    z-index: 5;
+}
+
+.box-three {
+    position: fixed;
+    z-index: 10;
+}
+```
+
+When they are being compared within the same stacking context:
+
+```text
+Front
+  │
+  ├── Box Three   10
+  ├── Box Two      5
+  └── Box One      1
+  │
+Back
+```
+
+The positioning method itself does not mean that one element is automatically above another. The stacking rules determine the final result.
+
+> ⚠️ **Important:** `fixed` or `absolute` does not automatically mean "above everything." The final stacking order still depends on `z-index` and stacking contexts.
+
+---
+
+## `z-index` Without Positioning
+
+Modern CSS also allows `z-index` to affect certain elements that are not traditionally positioned, including **flex items** and **grid items**.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    z-index: 2;
+}
+```
+
+The item can participate in stacking even without explicitly setting:
+
+```css
+position: relative;
+```
+
+This is particularly important when working with Flexbox and Grid.
+
+> 💡 **Pro Tip:** Do not assume that `position: relative` is always required for `z-index`. Flex items and grid items can use `z-index` without being positioned in the traditional sense.
+
+---
+
+## Comparison
+
+| Position | Common Use | Can Use `z-index` |
+|----------|-------------|-------------------|
+| `relative` | Small offsets and positioning context | ✅ |
+| `absolute` | Overlays and positioned children | ✅ |
+| `fixed` | Viewport-level UI | ✅ |
+| `sticky` | Sticky headers and sections | ✅ |
+| `static` | Normal document flow | Usually not for traditional positioned stacking |
+
+---
+
+## Practical Example: Modal
+
+A modal commonly combines `fixed` positioning with a high `z-index`.
+
+```html
+<div class="modal">
+    <div class="modal-content">
+        <h2>Modal</h2>
+        <p>This is a modal window.</p>
+    </div>
+</div>
+```
+
+```css
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 101;
+}
+```
+
+The modal is placed above normal page content, while the modal content can be given its own stacking level.
+
+```text
+Front
+  │
+  └── Modal Content   101
+  │
+  └── Modal           100
+  │
+  └── Page Content
+  │
+Back
+```
+
+---
+
+## Important Difference
+
+The following properties should not be confused:
+
+```css
+position: absolute;
+```
+
+controls **positioning**.
+
+```css
+z-index: 10;
+```
+
+controls **stacking level**.
+
+For example:
+
+```css
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+}
+```
+
+The element is positioned using `position`, while its visual layer is controlled using `z-index`.
+
+> 💡 **Remember:** `position` determines **how and where an element is positioned**, while `z-index` determines **how overlapping elements are layered**. They are related, but they solve different problems.
