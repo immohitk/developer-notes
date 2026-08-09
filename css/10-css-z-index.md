@@ -1737,3 +1737,407 @@ Controls which overlapping layer appears in front
 ---
 
 > 💡 **Remember:** Positive `z-index` values are useful when an element needs to appear **above other overlapping elements**. The value establishes a stacking level, but the final result still depends on the relevant stacking context.
+
+
+---
+
+
+# Negative Z-Index
+
+A **negative `z-index` value** places an element at a lower stacking level within its stacking context.
+
+Negative values are useful when an element needs to appear **behind other content** while still participating in the stacking order.
+
+```css
+.background {
+    position: absolute;
+    z-index: -1;
+}
+```
+
+Common uses include:
+
+- Decorative backgrounds
+- Background shapes
+- Visual effects
+- Overlays placed behind content
+- Layered design elements
+
+---
+
+## Basic Example
+
+Consider two overlapping elements:
+
+```css
+.box-one {
+    position: relative;
+    z-index: 0;
+}
+
+.box-two {
+    position: relative;
+    z-index: -1;
+}
+```
+
+The stacking order is:
+
+```text
+Front
+  │
+  └── Box One    z-index: 0
+  │
+  └── Box Two    z-index: -1
+  │
+Back
+```
+
+When the elements overlap within the appropriate stacking context, `.box-two` appears behind `.box-one`.
+
+---
+
+## Using `z-index: -1`
+
+A common pattern is to place a decorative element behind the main content.
+
+```html
+<div class="card">
+    <div class="decoration"></div>
+    <h2>Card Title</h2>
+    <p>Card content.</p>
+</div>
+```
+
+```css
+.card {
+    position: relative;
+}
+
+.decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+```
+
+The decoration can be positioned behind the card's content.
+
+```text
+┌─────────────────────────────┐
+│  ┌───────────────────────┐  │
+│  │    Decorative Shape   │  │
+│  │                       │  │
+│  │      Card Title       │  │
+│  │      Card Content     │  │
+│  └───────────────────────┘  │
+└─────────────────────────────┘
+```
+
+---
+
+## Negative Values Compared
+
+Different negative values can create different stacking levels.
+
+```css
+.background {
+    position: absolute;
+    z-index: -10;
+}
+
+.decoration {
+    position: absolute;
+    z-index: -5;
+}
+
+.content {
+    position: relative;
+    z-index: 0;
+}
+```
+
+The stacking order is:
+
+```text
+Front
+  │
+  ├── Content       0
+  ├── Decoration   -5
+  └── Background  -10
+  │
+Back
+```
+
+A value of `-5` is higher than `-10`.
+
+Therefore:
+
+```text
+0 > -5 > -10
+```
+
+> 💡 **Remember:** With negative values, a value closer to zero has a **higher stacking level** than a more negative value.
+
+---
+
+## Negative Z-Index for Decorative Elements
+
+Negative `z-index` values are often useful for decorative shapes.
+
+```html
+<section class="hero">
+    <div class="circle"></div>
+
+    <div class="content">
+        <h1>Welcome</h1>
+        <p>Learn CSS.</p>
+    </div>
+</section>
+```
+
+```css
+.hero {
+    position: relative;
+}
+
+.circle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+```
+
+The decorative circle can sit behind the content.
+
+```text
+┌─────────────────────────────┐
+│       ◯                     │
+│          Welcome            │
+│          Learn CSS          │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Negative Z-Index and the Parent
+
+A negative `z-index` does not automatically mean that an element will appear behind everything on the page.
+
+The element still participates in its relevant **stacking context**.
+
+For example:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    z-index: -1;
+}
+```
+
+The child is placed at a negative stacking level within the parent's stacking context.
+
+```text
+Parent Stacking Context
+│
+├── Content
+│
+└── Child
+    z-index: -1
+```
+
+The final visual result depends on the parent's stacking context and other elements around it.
+
+> ⚠️ **Important:** `z-index: -1` does not mean "put this behind the entire webpage." It places the element at a negative stacking level within the relevant stacking context.
+
+---
+
+## Negative Z-Index and Background Effects
+
+Negative `z-index` can be useful for creating visual effects behind content.
+
+```css
+.card {
+    position: relative;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+```
+
+The pseudo-element can be used as a decorative layer behind the card's content.
+
+This pattern is commonly used for:
+
+- Background shapes
+- Gradient layers
+- Decorative borders
+- Visual effects
+- Highlight effects
+
+---
+
+## Negative vs Positive Z-Index
+
+| Feature | Negative `z-index` | Positive `z-index` |
+|---------|--------------------|--------------------|
+| Stacking level | Lower | Higher |
+| Common purpose | Background/decorative layers | Foreground/UI layers |
+| Example | `z-index: -1` | `z-index: 10` |
+| Can overlap content | ✅ | ✅ |
+| Affected by stacking contexts | ✅ | ✅ |
+
+---
+
+## Example: Layered Card
+
+```html
+<div class="card">
+    <div class="background-shape"></div>
+
+    <div class="card-content">
+        <h2>CSS</h2>
+        <p>Learn positioning and layering.</p>
+    </div>
+</div>
+```
+
+```css
+.card {
+    position: relative;
+}
+
+.background-shape {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+}
+```
+
+The intended layering is:
+
+```text
+Front
+  │
+  └── Card Content      1
+  │
+  └── Background Shape -1
+  │
+Back
+```
+
+---
+
+## Common Mistake
+
+A common mistake is using:
+
+```css
+z-index: -9999;
+```
+
+simply because an element needs to appear behind another element.
+
+A very large negative value is usually unnecessary.
+
+If you only need a lower stacking level, a simple value such as:
+
+```css
+z-index: -1;
+```
+
+may be enough.
+
+> 💡 **Pro Tip:** Prefer small, meaningful `z-index` values. Use the smallest value that clearly expresses the intended stacking relationship.
+
+---
+
+## Negative Z-Index and Visibility Problems
+
+Negative `z-index` can sometimes cause an element to appear behind an ancestor's background or become difficult to see.
+
+For example:
+
+```css
+.parent {
+    background: white;
+}
+
+.child {
+    position: absolute;
+    z-index: -1;
+}
+```
+
+The child may end up behind the parent's background depending on the stacking context.
+
+This is one reason negative `z-index` should be used carefully.
+
+> ⚠️ **Important:** If an element with `z-index: -1` unexpectedly disappears, inspect its **parent stacking context and background layers**.
+
+---
+
+## Practical Layering System
+
+A page can use negative values for background layers and positive values for foreground elements.
+
+```css
+.background {
+    position: absolute;
+    z-index: -10;
+}
+
+.decoration {
+    position: absolute;
+    z-index: -5;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+}
+```
+
+The intended hierarchy becomes:
+
+```text
+Front
+  │
+  ├── Modal          100
+  ├── Content          1
+  ├── Decoration      -5
+  └── Background     -10
+  │
+Back
+```
+
+---
+
+> 💡 **Remember:** Negative `z-index` values place elements at **lower stacking levels** and are especially useful for decorative or background layers. Always consider the element's **stacking context** before relying on a negative value.
