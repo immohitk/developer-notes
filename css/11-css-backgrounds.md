@@ -380,3 +380,331 @@ CSS backgrounds are commonly used for:
 ---
 
 > 💡 **Remember:** CSS backgrounds help control the visual layer behind an element. They are especially useful for **colors, decorative images, patterns, and section backgrounds**.
+
+---
+
+# Background Color
+
+The `background-color` property is used to set the **background color** of an HTML element.
+
+```css
+.element {
+    background-color: lightblue;
+}
+```
+
+The color appears behind the element's content.
+
+---
+
+## Basic Example
+
+```html
+<div class="box">
+    This is a box.
+</div>
+```
+
+```css
+.box {
+    background-color: lightblue;
+}
+```
+
+The `<div>` receives a light blue background.
+
+---
+
+## Using Color Names
+
+CSS supports predefined color names.
+
+```css
+.box {
+    background-color: red;
+}
+```
+
+Other examples:
+
+```css
+background-color: blue;
+background-color: green;
+background-color: yellow;
+background-color: orange;
+background-color: purple;
+```
+
+---
+
+## Using Hexadecimal Colors
+
+Hexadecimal color values can also be used.
+
+```css
+.box {
+    background-color: #3498db;
+}
+```
+
+Example:
+
+```css
+.header {
+    background-color: #222222;
+}
+```
+
+---
+
+## Using RGB
+
+RGB values can be used to define a background color.
+
+```css
+.box {
+    background-color: rgb(52, 152, 219);
+}
+```
+
+The three values represent:
+
+```text
+Red
+Green
+Blue
+```
+
+---
+
+## Using RGBA
+
+`rgba()` allows you to specify a color with transparency.
+
+```css
+.box {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+```
+
+The fourth value controls the alpha channel.
+
+```text
+0   → Completely transparent
+1   → Completely opaque
+```
+
+For example:
+
+```css
+background-color: rgba(0, 0, 0, 0.2);
+```
+
+creates a partially transparent black background.
+
+---
+
+## Using HSL
+
+HSL can also be used for background colors.
+
+```css
+.box {
+    background-color: hsl(200, 70%, 50%);
+}
+```
+
+HSL represents:
+
+```text
+Hue
+Saturation
+Lightness
+```
+
+---
+
+## Transparent Background
+
+The `transparent` keyword can be used when no visible background color is required.
+
+```css
+.box {
+    background-color: transparent;
+}
+```
+
+This allows the background behind the element to remain visible.
+
+---
+
+## Background Color and Content
+
+The background color appears behind the element's content.
+
+```css
+.card {
+    background-color: lightgray;
+    padding: 20px;
+}
+```
+
+The background covers the element's background area, including the area occupied by its padding.
+
+```text
+┌─────────────────────────────┐
+│         Padding             │
+│   ┌─────────────────────┐   │
+│   │       Content       │   │
+│   └─────────────────────┘   │
+└─────────────────────────────┘
+      Background Color
+```
+
+---
+
+## Background Color and Border
+
+A background color can be combined with a border.
+
+```css
+.card {
+    background-color: lightblue;
+    border: 2px solid blue;
+}
+```
+
+The border and background can be styled independently.
+
+---
+
+## Example: Card
+
+```html
+<div class="card">
+    <h2>CSS Backgrounds</h2>
+    <p>Learning background colors.</p>
+</div>
+```
+
+```css
+.card {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+```
+
+---
+
+## Example: Header
+
+```css
+header {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+}
+```
+
+This creates a dark header background.
+
+---
+
+## Example: Button
+
+```css
+button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+}
+```
+
+The background color helps visually distinguish the button from surrounding content.
+
+---
+
+## Changing Background Color on Hover
+
+`background-color` can be combined with pseudo-classes.
+
+```css
+button {
+    background-color: blue;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+```
+
+When the user moves the pointer over the button, the background color changes.
+
+---
+
+## Using CSS Variables
+
+Background colors can also use CSS custom properties.
+
+```css
+:root {
+    --primary-color: #3498db;
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+This makes it easier to reuse the same color throughout a project.
+
+---
+
+## Common Uses
+
+`background-color` is commonly used for:
+
+- Page backgrounds
+- Headers
+- Footers
+- Cards
+- Buttons
+- Navigation bars
+- Sections
+- Forms
+- Alerts
+- Modals
+
+---
+
+## `background-color` vs `color`
+
+These two properties control different things.
+
+```css
+.element {
+    background-color: blue;
+    color: white;
+}
+```
+
+Here:
+
+```text
+background-color
+        ↓
+Background of the element
+
+color
+        ↓
+Text color
+```
+
+---
+
+> 💡 **Pro Tip:** Use `background-color` for the visual background and `color` for the foreground text. Always make sure there is enough contrast between them for readability.
+
+---
+
+> 💡 **Remember:** `background-color` changes the color behind an element's content. It does not change the text color — that is controlled by the `color` property.
