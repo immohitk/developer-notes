@@ -1794,3 +1794,330 @@ Example:
 ---
 
 > 💡 **Remember:** `background-position` controls **where the background image is placed**, while `background-size` controls **how large the image is**.
+
+---
+
+# Background Size
+
+The `background-size` property controls the **size of a background image** inside an element.
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-size: cover;
+}
+```
+
+It is useful when you want to control how a background image fits inside its container.
+
+---
+
+## Default Behavior
+
+The default value is:
+
+```css
+background-size: auto;
+```
+
+The image keeps its original size.
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-size: auto;
+}
+```
+
+---
+
+## `auto`
+
+The `auto` value keeps the background image at its natural dimensions.
+
+```css
+.box {
+    background-size: auto;
+}
+```
+
+This is the default behavior.
+
+---
+
+## Using Width and Height
+
+You can specify the width and height of a background image.
+
+```css
+.box {
+    background-size: 300px 200px;
+}
+```
+
+The first value controls the width.
+
+The second value controls the height.
+
+```text
+Width  → 300px
+Height → 200px
+```
+
+---
+
+## Using One Value
+
+If only one value is provided:
+
+```css
+.box {
+    background-size: 300px;
+}
+```
+
+The width is set to `300px`.
+
+The height is automatically calculated to preserve the image's aspect ratio.
+
+```text
+Width  → 300px
+Height → auto
+```
+
+---
+
+## Using Percentages
+
+Percentages can be used to size the background image relative to the background positioning area.
+
+```css
+.box {
+    background-size: 100% 100%;
+}
+```
+
+This makes the image fill the available background area.
+
+Another example:
+
+```css
+.box {
+    background-size: 50% auto;
+}
+```
+
+The image width becomes `50%` of the background positioning area while the height remains proportional.
+
+---
+
+## `cover`
+
+The `cover` value scales the background image so that it **completely covers the background area**.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+}
+```
+
+The image maintains its aspect ratio.
+
+If necessary, parts of the image may be cropped.
+
+```text
+┌─────────────────────────────┐
+│                             │
+│      IMAGE                  │
+│   ┌─────────────────────┐   │
+│   │                     │   │
+│   │     Cropped Area    │   │
+│   │                     │   │
+│   └─────────────────────┘   │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## `contain`
+
+The `contain` value scales the background image so that the **entire image fits inside the background area**.
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-size: contain;
+}
+```
+
+The entire image remains visible.
+
+However, empty space may remain around the image.
+
+```text
+┌─────────────────────────────┐
+│                             │
+│       ┌─────────────┐       │
+│       │    IMAGE    │       │
+│       └─────────────┘       │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## `cover` vs `contain`
+
+| Value | Behavior | Image Cropping | Empty Space |
+|-------|----------|----------------|-------------|
+| `cover` | Covers entire area | Possible | Usually no |
+| `contain` | Entire image fits | No | Possible |
+
+---
+
+## Example: Hero Section with `cover`
+
+```css
+.hero {
+    height: 400px;
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+```
+
+This is a very common pattern for hero sections.
+
+The image fills the entire section while keeping its aspect ratio.
+
+---
+
+## Example: Logo with `contain`
+
+```css
+.logo-container {
+    width: 300px;
+    height: 150px;
+    background-image: url("logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+```
+
+The complete logo remains visible inside the container.
+
+---
+
+## Preserving Aspect Ratio
+
+When using:
+
+```css
+background-size: cover;
+```
+
+or:
+
+```css
+background-size: contain;
+```
+
+the image's aspect ratio is preserved.
+
+This prevents the image from being stretched unnaturally.
+
+---
+
+## Distorting an Image
+
+Using explicit width and height values can change the image's proportions.
+
+```css
+.box {
+    background-size: 300px 100px;
+}
+```
+
+If these dimensions do not match the original aspect ratio, the image can appear distorted.
+
+---
+
+## Combining with `background-position`
+
+`background-size` is commonly used with `background-position`.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+```
+
+Here:
+
+```text
+background-size
+        ↓
+Controls how large the image becomes
+
+background-position
+        ↓
+Controls where the image is positioned
+```
+
+---
+
+## Combining with `background-repeat`
+
+For a full background image, these properties are often used together:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+```
+
+This creates a common full-section background.
+
+---
+
+## Common Values
+
+```css
+background-size: auto;
+background-size: 300px;
+background-size: 300px 200px;
+background-size: 50% auto;
+background-size: cover;
+background-size: contain;
+```
+
+---
+
+## Common Use Cases
+
+`background-size` is commonly used for:
+
+- Hero sections
+- Full-screen backgrounds
+- Banners
+- Cards
+- Responsive layouts
+- Logos
+- Decorative images
+- Image overlays
+
+---
+
+> 💡 **Pro Tip:** For responsive hero images, `background-size: cover` is often the most useful starting point. Combine it with `background-position: center` and adjust the position when important parts of the image are cropped.
+
+---
+
+> 💡 **Remember:** `cover` makes the background image **cover the entire area**, while `contain` makes the **entire image fit inside the area**.
