@@ -2325,3 +2325,400 @@ Those are controlled by:
 background-size
 background-position
 ```
+
+---
+
+# Background Shorthand
+
+The `background` property is a **shorthand property** that allows multiple background properties to be written in a single declaration.
+
+Instead of writing:
+
+```css
+.box {
+    background-color: lightblue;
+    background-image: url("image.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+```
+
+You can write:
+
+```css
+.box {
+    background: lightblue url("image.jpg") no-repeat center / cover;
+}
+```
+
+---
+
+## Basic Syntax
+
+A background shorthand can include values for:
+
+```text
+background-color
+background-image
+background-repeat
+background-position
+background-size
+background-attachment
+```
+
+Example:
+
+```css
+.box {
+    background:
+        lightblue
+        url("image.jpg")
+        no-repeat
+        center / cover
+        fixed;
+}
+```
+
+---
+
+## Background Color
+
+The shorthand can set the background color.
+
+```css
+.box {
+    background: lightblue;
+}
+```
+
+This is equivalent to:
+
+```css
+.box {
+    background-color: lightblue;
+}
+```
+
+---
+
+## Background Image
+
+The shorthand can set a background image.
+
+```css
+.box {
+    background: url("image.jpg");
+}
+```
+
+This is equivalent to:
+
+```css
+.box {
+    background-image: url("image.jpg");
+}
+```
+
+---
+
+## Background Image and Color
+
+Both a color and image can be specified.
+
+```css
+.box {
+    background: lightgray url("pattern.png");
+}
+```
+
+The image is displayed over the background color.
+
+---
+
+## Background Repeat
+
+The shorthand can include the repeat behavior.
+
+```css
+.box {
+    background: url("pattern.png") no-repeat;
+}
+```
+
+This is equivalent to:
+
+```css
+.box {
+    background-image: url("pattern.png");
+    background-repeat: no-repeat;
+}
+```
+
+---
+
+## Background Position
+
+The shorthand can include the image position.
+
+```css
+.box {
+    background: url("image.jpg") center;
+}
+```
+
+This is equivalent to:
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-position: center;
+}
+```
+
+---
+
+## Background Size
+
+The background size can be specified using `/`.
+
+```css
+.box {
+    background: url("image.jpg") center / cover;
+}
+```
+
+The `/` separates:
+
+```text
+background-position
+        ↓
+      center
+
+        /
+
+background-size
+        ↓
+      cover
+```
+
+This distinction is important.
+
+Without `/`, `cover` would not be interpreted as the `background-size` value in this shorthand form.
+
+---
+
+## Complete Example
+
+```css
+.hero {
+    background:
+        lightgray
+        url("hero.jpg")
+        no-repeat
+        center / cover;
+}
+```
+
+This represents:
+
+```text
+Color      → lightgray
+Image      → hero.jpg
+Repeat     → no-repeat
+Position   → center
+Size       → cover
+```
+
+---
+
+## Including Attachment
+
+The `background-attachment` value can also be included.
+
+```css
+.hero {
+    background:
+        url("hero.jpg")
+        center / cover
+        no-repeat
+        fixed;
+}
+```
+
+This combines:
+
+```css
+background-image
+background-position
+background-size
+background-repeat
+background-attachment
+```
+
+---
+
+## Equivalent Longhand Version
+
+Shorthand:
+
+```css
+.hero {
+    background:
+        url("hero.jpg")
+        center / cover
+        no-repeat
+        fixed;
+}
+```
+
+Equivalent longhand:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+```
+
+Both approaches produce the same background configuration.
+
+---
+
+## Multiple Backgrounds with Shorthand
+
+The `background` shorthand can also define multiple background layers.
+
+```css
+.element {
+    background:
+        url("foreground.png") center / contain no-repeat,
+        url("background.png") center / cover no-repeat;
+}
+```
+
+The first layer is painted above the second layer.
+
+```text
+Top Layer
+    ↓
+foreground.png
+
+    ↓
+
+background.png
+    ↓
+Bottom Layer
+```
+
+---
+
+## Resetting Background Properties
+
+Using the `background` shorthand can reset background properties that are not explicitly specified.
+
+For example:
+
+```css
+.box {
+    background: blue;
+}
+```
+
+This sets the background color and resets other background properties to their initial values.
+
+This behavior is important when overriding existing styles.
+
+---
+
+## Shorthand vs Longhand
+
+| Approach | Example |
+|----------|---------|
+| Longhand | `background-color: blue;` |
+| Shorthand | `background: blue;` |
+
+Longhand properties are often easier to understand individually.
+
+Shorthand is more concise.
+
+---
+
+## When to Use Shorthand
+
+Use the shorthand when:
+
+```text
+You understand the values
+        ↓
+The declaration remains readable
+        ↓
+Multiple background properties are being configured
+```
+
+Example:
+
+```css
+.hero {
+    background: url("hero.jpg") center / cover no-repeat;
+}
+```
+
+---
+
+## When Longhand Can Be Better
+
+Longhand properties can be clearer when only one property needs to be changed.
+
+```css
+.hero {
+    background-position: top center;
+}
+```
+
+This clearly communicates that only the position is being changed.
+
+---
+
+## Common Shorthand Examples
+
+```css
+background: red;
+```
+
+```css
+background: url("image.jpg");
+```
+
+```css
+background: url("image.jpg") no-repeat;
+```
+
+```css
+background: url("image.jpg") center;
+```
+
+```css
+background: url("image.jpg") center / cover no-repeat;
+```
+
+```css
+background: #222 url("image.jpg") center / cover no-repeat;
+```
+
+---
+
+> 💡 **Pro Tip:** When using `background` shorthand with both position and size, remember the `/` separator:
+
+```css
+background: url("image.jpg") center / cover no-repeat;
+```
+
+Here `center` is the position and `cover` is the size.
+
+---
+
+> 💡 **Remember:** `background` is a shorthand property. It can combine multiple background properties into one declaration, making CSS shorter while still providing the same styling control.
