@@ -3132,3 +3132,309 @@ This can keep the HTML structure simpler when the layers are purely decorative.
 ---
 
 > 💡 **Remember:** Multiple background images are separated by commas, and the **first background layer is painted above the following layers**.
+
+---
+
+# Background Origin
+
+The `background-origin` property specifies **where the background image positioning area begins**.
+
+It determines whether the background image is positioned relative to the:
+
+```text
+border box
+padding box
+content box
+```
+
+```css
+.box {
+    background-origin: border-box;
+}
+```
+
+---
+
+## The Three Values
+
+The main values are:
+
+```css
+border-box
+padding-box
+content-box
+```
+
+These values determine the area used as the reference for `background-position`.
+
+---
+
+## `border-box`
+
+```css
+.box {
+    background-origin: border-box;
+}
+```
+
+The background image is positioned relative to the **outer edge of the border**.
+
+```text
+┌───────────────────────────────┐
+│           Border              │
+│  ┌─────────────────────────┐  │
+│  │         Padding         │  │
+│  │   ┌─────────────────┐   │  │
+│  │   │     Content     │   │  │
+│  │   └─────────────────┘   │  │
+│  └─────────────────────────┘  │
+└───────────────────────────────┘
+       ↑
+   Origin area
+```
+
+---
+
+## `padding-box`
+
+```css
+.box {
+    background-origin: padding-box;
+}
+```
+
+The background image is positioned relative to the **padding box**.
+
+This is the default value.
+
+```text
+┌───────────────────────────────┐
+│           Border              │
+│  ┌─────────────────────────┐  │
+│  │       Origin Area       │  │
+│  │   ┌─────────────────┐   │  │
+│  │   │     Content     │   │  │
+│  │   └─────────────────┘   │  │
+│  └─────────────────────────┘  │
+└───────────────────────────────┘
+       ↑
+   Padding box
+```
+
+---
+
+## `content-box`
+
+```css
+.box {
+    background-origin: content-box;
+}
+```
+
+The background image is positioned relative to the **content area**.
+
+```text
+┌───────────────────────────────┐
+│           Border              │
+│  ┌─────────────────────────┐  │
+│  │         Padding         │  │
+│  │   ┌─────────────────┐   │  │
+│  │   │   Origin Area   │   │  │
+│  │   │     Content     │   │  │
+│  │   └─────────────────┘   │  │
+│  └─────────────────────────┘  │
+└───────────────────────────────┘
+             ↑
+        Content box
+```
+
+---
+
+## Default Value
+
+The default value is:
+
+```css
+background-origin: padding-box;
+```
+
+Therefore, if `background-origin` is not specified, the background image is positioned relative to the padding box.
+
+---
+
+## Example
+
+Consider:
+
+```css
+.box {
+    width: 300px;
+    padding: 30px;
+    border: 10px solid black;
+
+    background-image: url("image.jpg");
+    background-origin: border-box;
+}
+```
+
+The background image's positioning area begins at the border box.
+
+Changing the value changes the reference area:
+
+```css
+background-origin: border-box;
+```
+
+```css
+background-origin: padding-box;
+```
+
+```css
+background-origin: content-box;
+```
+
+---
+
+## Relationship with `background-position`
+
+`background-origin` is closely related to `background-position`.
+
+For example:
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-position: 0 0;
+    background-origin: border-box;
+}
+```
+
+Here, the `0 0` position is calculated from the border box.
+
+If you change it to:
+
+```css
+.box {
+    background-origin: content-box;
+}
+```
+
+the same `background-position: 0 0` is calculated from the content box instead.
+
+---
+
+## `background-origin` vs `background-clip`
+
+These two properties are related but control different things.
+
+```css
+background-origin
+```
+
+controls:
+
+```text
+Where the background image is positioned from
+```
+
+while:
+
+```css
+background-clip
+```
+
+controls:
+
+```text
+Where the background is allowed to extend
+```
+
+Example:
+
+```css
+.box {
+    background-origin: content-box;
+    background-clip: padding-box;
+}
+```
+
+The image positioning starts from the content box, while the background is clipped at the padding box.
+
+---
+
+## Background Origin and Borders
+
+A useful example is a background image that should be positioned relative to the entire element, including its border.
+
+```css
+.box {
+    border: 10px solid black;
+    background-image: url("pattern.png");
+    background-origin: border-box;
+}
+```
+
+The background image positioning area includes the border box.
+
+---
+
+## Multiple Backgrounds
+
+`background-origin` can also specify different origins for multiple background layers.
+
+```css
+.box {
+    background-image:
+        url("foreground.png"),
+        url("background.jpg");
+
+    background-origin:
+        content-box,
+        border-box;
+}
+```
+
+Here:
+
+```text
+foreground.png
+    ↓
+content-box
+
+background.jpg
+    ↓
+border-box
+```
+
+Each value corresponds to the background layer in the same order.
+
+---
+
+## Comparison
+
+| Value | Background Positioning Area |
+|-------|-----------------------------|
+| `border-box` | Border box |
+| `padding-box` | Padding box |
+| `content-box` | Content box |
+
+---
+
+## Common Use Cases
+
+`background-origin` can be useful when:
+
+- Positioning backgrounds precisely
+- Working with borders
+- Creating layered designs
+- Controlling multiple background layers
+- Building decorative components
+- Combining backgrounds with padding
+
+---
+
+> 💡 **Pro Tip:** `background-origin` becomes especially useful when an element has significant padding or borders and the background image needs to align with a specific part of the box.
+
+---
+
+> 💡 **Remember:** `background-origin` controls **the box from which a background image is positioned**. It does not determine where the background is painted or clipped — that is the job of `background-clip`.
