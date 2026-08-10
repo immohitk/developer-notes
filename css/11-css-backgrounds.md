@@ -708,3 +708,404 @@ Text color
 ---
 
 > 💡 **Remember:** `background-color` changes the color behind an element's content. It does not change the text color — that is controlled by the `color` property.
+
+---
+
+# Background Image
+
+The `background-image` property is used to set an **image as the background** of an HTML element.
+
+```css
+.element {
+    background-image: url("image.jpg");
+}
+```
+
+The image is displayed behind the element's content.
+
+---
+
+## Basic Example
+
+```html
+<div class="hero">
+    <h1>Welcome</h1>
+</div>
+```
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+}
+```
+
+The image becomes the background of the `.hero` element.
+
+---
+
+## Using `url()`
+
+The `url()` function specifies the location of the background image.
+
+```css
+.box {
+    background-image: url("image.jpg");
+}
+```
+
+The image path can be:
+
+- A relative path
+- An absolute URL
+- A path from another directory
+
+Example:
+
+```css
+.box {
+    background-image: url("../images/background.jpg");
+}
+```
+
+---
+
+## Using an Absolute URL
+
+A background image can also come from another website.
+
+```css
+.box {
+    background-image: url("https://example.com/image.jpg");
+}
+```
+
+However, external resources should be used carefully because they depend on network availability and the external server.
+
+---
+
+## Background Image with a Color
+
+A background color can be combined with a background image.
+
+```css
+.box {
+    background-color: lightgray;
+    background-image: url("pattern.png");
+}
+```
+
+The image is displayed over the background color.
+
+If the image does not cover the entire background area, the background color can still be visible.
+
+---
+
+## Background Image Does Not Change the Content
+
+A background image is visual decoration and does not become an HTML content element.
+
+For example:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+}
+```
+
+The image is not part of the document content in the same way as:
+
+```html
+<img src="hero.jpg" alt="Hero image">
+```
+
+This distinction is important when deciding whether an image is decorative or meaningful content.
+
+---
+
+## Background Image and Text
+
+Text can appear above a background image.
+
+```html
+<section class="hero">
+    <h1>Welcome to My Website</h1>
+</section>
+```
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+}
+```
+
+The result can be visualized as:
+
+```text
+┌───────────────────────────────┐
+│                               │
+│      Background Image         │
+│                               │
+│       Welcome to My Website   │
+│                               │
+└───────────────────────────────┘
+```
+
+---
+
+## Background Image and `background-repeat`
+
+By default, a background image can repeat if it is smaller than the element.
+
+```css
+.box {
+    background-image: url("pattern.png");
+}
+```
+
+The image can repeat horizontally and vertically.
+
+The `background-repeat` property can be used to control this behavior.
+
+```css
+.box {
+    background-image: url("pattern.png");
+    background-repeat: no-repeat;
+}
+```
+
+More details about `background-repeat` will be covered in the next section.
+
+---
+
+## Background Image and `background-size`
+
+The size of a background image can be controlled using:
+
+```css
+background-size
+```
+
+For example:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+}
+```
+
+This allows the image to cover the background area.
+
+`background-size` will be covered in detail later in this chapter.
+
+---
+
+## Background Image and `background-position`
+
+The position of a background image can also be controlled.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-position: center;
+}
+```
+
+This is useful when you want to control which part of an image is visible.
+
+`background-position` will be covered in detail later.
+
+---
+
+## Using Multiple Background Images
+
+CSS allows multiple background images on the same element.
+
+```css
+.element {
+    background-image:
+        url("foreground.png"),
+        url("background.png");
+}
+```
+
+The first image is painted above the second image.
+
+```text
+Top Layer
+    ↓
+foreground.png
+
+    ↓
+
+background.png
+    ↓
+Bottom Layer
+```
+
+This allows multiple visual layers to be created without additional HTML elements.
+
+---
+
+## Background Image with a Gradient
+
+Gradients can also be used as background images.
+
+For example:
+
+```css
+.box {
+    background-image: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+}
+```
+
+A gradient is treated as a background image by CSS.
+
+---
+
+## Linear Gradient
+
+A linear gradient changes colors along a straight line.
+
+```css
+.box {
+    background-image: linear-gradient(
+        to right,
+        red,
+        blue
+    );
+}
+```
+
+The colors transition from one side to the other.
+
+---
+
+## Radial Gradient
+
+A radial gradient spreads outward from a central point.
+
+```css
+.box {
+    background-image: radial-gradient(
+        circle,
+        white,
+        blue
+    );
+}
+```
+
+This can be useful for creating circular lighting and decorative effects.
+
+---
+
+## Gradient with an Image
+
+A gradient and image can be combined.
+
+```css
+.hero {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg");
+}
+```
+
+This creates a dark overlay above the image.
+
+This technique is commonly used when text needs to remain readable over a background image.
+
+---
+
+## Example: Hero Section
+
+```html
+<section class="hero">
+    <h1>Build Better Websites</h1>
+    <p>Learn CSS step by step.</p>
+</section>
+```
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+}
+```
+
+This creates a large visual hero section.
+
+---
+
+## Example: Image Overlay
+
+```css
+.hero {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg");
+}
+```
+
+The gradient provides a darker layer over the image.
+
+```text
+┌───────────────────────────────┐
+│                               │
+│        Dark Overlay           │
+│                               │
+│       Hero Content            │
+│                               │
+└───────────────────────────────┘
+```
+
+---
+
+## Common Uses
+
+`background-image` is commonly used for:
+
+- Hero sections
+- Website banners
+- Decorative patterns
+- Section backgrounds
+- Image overlays
+- Landing pages
+- Cards
+- Textured backgrounds
+- Gradient backgrounds
+
+---
+
+## `background-image` vs `<img>`
+
+| Feature | `background-image` | `<img>` |
+|---------|--------------------|---------|
+| HTML content | ❌ | ✅ |
+| Mainly decorative | ✅ | Can be |
+| Alternative text | ❌ | ✅ |
+| Easy background positioning | ✅ | Different approach |
+| Common for hero backgrounds | ✅ | Sometimes |
+| Part of document content | ❌ | ✅ |
+
+If an image conveys important information, an `<img>` with appropriate `alt` text is often more suitable.
+
+---
+
+> 💡 **Pro Tip:** Use `background-image` when the image is primarily part of the **visual design or decoration**. Use `<img>` when the image is meaningful content that should be part of the document.
+
+---
+
+> 💡 **Remember:** `background-image` places an image behind an element's content. Properties such as `background-repeat`, `background-position`, and `background-size` control how that image is displayed.
