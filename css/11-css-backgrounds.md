@@ -4919,3 +4919,23 @@ Then learn `background-origin`, `background-clip`, and `background-blend-mode` w
 ---
 
 > 💡 **Remember:** CSS backgrounds can control much more than a simple background color. They can create **images, gradients, patterns, layers, overlays, responsive hero sections, and visual effects** without adding unnecessary decorative HTML.
+
+---
+
+# References
+
+- [MDN — CSS Backgrounds and Borders](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders)
+- [MDN — `background`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background)
+- [MDN — `background-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-color)
+- [MDN — `background-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-image)
+- [MDN — `background-repeat`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-repeat)
+- [MDN — `background-position`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-position)
+- [MDN — `background-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-size)
+- [MDN — `background-attachment`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-attachment)
+- [MDN — `background-origin`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-origin)
+- [MDN — `background-clip`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-clip)
+- [MDN — `background-blend-mode`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-blend-mode)
+
+---
+
+> 💡 **Pro Tip:** Use MDN as your primary reference when you need to verify CSS property syntax, available values, browser behavior, or detailed specifications.
