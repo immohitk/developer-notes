@@ -2722,3 +2722,413 @@ Here `center` is the position and `cover` is the size.
 ---
 
 > 💡 **Remember:** `background` is a shorthand property. It can combine multiple background properties into one declaration, making CSS shorter while still providing the same styling control.
+
+---
+
+# Multiple Backgrounds
+
+CSS allows you to apply **multiple background images to the same element**.
+
+Multiple backgrounds are separated using commas:
+
+```css
+.element {
+    background-image:
+        url("foreground.png"),
+        url("background.png");
+}
+```
+
+The first background image is placed on top of the second background image.
+
+---
+
+## Basic Example
+
+```css
+.box {
+    background-image:
+        url("clouds.png"),
+        url("sky.jpg");
+}
+```
+
+Here:
+
+```text
+Top Layer
+    ↓
+clouds.png
+
+    ↓
+
+sky.jpg
+    ↓
+Bottom Layer
+```
+
+The browser paints the first image above the following images.
+
+---
+
+## Multiple Backgrounds with Position
+
+Each background image can have its own position.
+
+```css
+.box {
+    background-image:
+        url("icon.png"),
+        url("background.jpg");
+
+    background-position:
+        right bottom,
+        center;
+}
+```
+
+Here:
+
+```text
+icon.png
+    ↓
+right bottom
+
+background.jpg
+    ↓
+center
+```
+
+The values correspond to the background images in the same order.
+
+---
+
+## Multiple Backgrounds with Size
+
+Each background image can also have its own size.
+
+```css
+.box {
+    background-image:
+        url("icon.png"),
+        url("background.jpg");
+
+    background-size:
+        100px,
+        cover;
+}
+```
+
+This means:
+
+```text
+icon.png
+    ↓
+100px
+
+background.jpg
+    ↓
+cover
+```
+
+---
+
+## Multiple Backgrounds with Repeat
+
+Each background can have its own repeat behavior.
+
+```css
+.box {
+    background-image:
+        url("pattern.png"),
+        url("background.jpg");
+
+    background-repeat:
+        repeat,
+        no-repeat;
+}
+```
+
+The first image repeats.
+
+The second image does not repeat.
+
+---
+
+## Multiple Backgrounds with Shorthand
+
+Multiple background layers can also be written using the `background` shorthand.
+
+```css
+.box {
+    background:
+        url("icon.png") right bottom / 100px no-repeat,
+        url("background.jpg") center / cover no-repeat;
+}
+```
+
+Each layer is separated by a comma.
+
+---
+
+## Layer Order
+
+The order of background images is important.
+
+Consider:
+
+```css
+.box {
+    background-image:
+        url("top.png"),
+        url("middle.png"),
+        url("bottom.png");
+}
+```
+
+The stacking order is:
+
+```text
+Top
+ ↓
+top.png
+
+middle.png
+
+bottom.png
+ ↓
+Bottom
+```
+
+The first image is the topmost background layer.
+
+The last image is the bottommost background layer.
+
+---
+
+## Multiple Backgrounds and Background Color
+
+A background color can also be used with multiple background images.
+
+```css
+.box {
+    background-color: lightblue;
+
+    background-image:
+        url("clouds.png"),
+        url("pattern.png");
+}
+```
+
+The background color appears underneath the background images.
+
+```text
+Background Images
+        ↓
+Background Color
+        ↓
+Element
+```
+
+---
+
+## Example: Decorative Layers
+
+```css
+.hero {
+    background-image:
+        url("clouds.png"),
+        url("mountains.png"),
+        url("sky.jpg");
+
+    background-position:
+        center top,
+        center bottom,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat;
+
+    background-size:
+        cover,
+        cover,
+        cover;
+}
+```
+
+This creates multiple visual layers inside one element.
+
+---
+
+## Example: Pattern Over an Image
+
+```css
+.card {
+    background-image:
+        url("dots.png"),
+        url("photo.jpg");
+
+    background-repeat:
+        repeat,
+        no-repeat;
+
+    background-position:
+        center,
+        center;
+
+    background-size:
+        auto,
+        cover;
+}
+```
+
+The pattern appears above the photo.
+
+---
+
+## Example: Gradient and Image
+
+Gradients can also be combined with images.
+
+```css
+.hero {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg");
+
+    background-size:
+        cover,
+        cover;
+
+    background-position:
+        center,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+}
+```
+
+The gradient becomes the top layer and creates an overlay over the image.
+
+---
+
+## Matching Values to Background Layers
+
+When using multiple backgrounds, values are matched in order.
+
+Example:
+
+```css
+.box {
+    background-image:
+        url("one.png"),
+        url("two.png");
+
+    background-position:
+        left top,
+        right bottom;
+
+    background-repeat:
+        no-repeat,
+        repeat;
+
+    background-size:
+        100px,
+        cover;
+}
+```
+
+The values correspond like this:
+
+```text
+one.png
+ ├── left top
+ ├── no-repeat
+ └── 100px
+
+two.png
+ ├── right bottom
+ ├── repeat
+ └── cover
+```
+
+---
+
+## Fewer Values Than Images
+
+If fewer values are provided than background layers, CSS repeats or uses the available values according to the property's rules.
+
+For example:
+
+```css
+.box {
+    background-image:
+        url("one.png"),
+        url("two.png"),
+        url("three.png");
+
+    background-repeat: no-repeat;
+}
+```
+
+The specified repeat value applies according to CSS's list-value rules.
+
+For predictable and readable code, explicitly defining values for each layer can be helpful when working with complex backgrounds.
+
+---
+
+## Common Uses
+
+Multiple backgrounds are commonly used for:
+
+- Image overlays
+- Decorative patterns
+- Hero sections
+- Layered illustrations
+- Textures
+- Gradients over images
+- Complex visual effects
+- Decorative UI components
+
+---
+
+## Multiple Backgrounds vs Multiple HTML Elements
+
+Without multiple backgrounds, you might create several elements:
+
+```html
+<div class="background">
+    <div class="overlay">
+        <div class="content">
+            ...
+        </div>
+    </div>
+</div>
+```
+
+With multiple backgrounds, some decorative layers can be created directly in CSS:
+
+```css
+.element {
+    background-image:
+        url("overlay.png"),
+        url("background.jpg");
+}
+```
+
+This can keep the HTML structure simpler when the layers are purely decorative.
+
+---
+
+> 💡 **Pro Tip:** Think of multiple backgrounds as **layers**. The first image is the top layer, and each following image is placed underneath it. Keeping this order in mind makes complex background declarations much easier to understand.
+
+---
+
+> 💡 **Remember:** Multiple background images are separated by commas, and the **first background layer is painted above the following layers**.
