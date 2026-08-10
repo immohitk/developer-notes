@@ -1109,3 +1109,302 @@ If an image conveys important information, an `<img>` with appropriate `alt` tex
 ---
 
 > 💡 **Remember:** `background-image` places an image behind an element's content. Properties such as `background-repeat`, `background-position`, and `background-size` control how that image is displayed.
+
+---
+
+# Background Repeat
+
+The `background-repeat` property controls **whether and how a background image repeats** inside an element.
+
+By default, a background image can repeat both horizontally and vertically if it is smaller than the element.
+
+```css
+.box {
+    background-image: url("pattern.png");
+    background-repeat: repeat;
+}
+```
+
+---
+
+## Default Behavior
+
+The default value is:
+
+```css
+background-repeat: repeat;
+```
+
+This repeats the image in both directions.
+
+```text
+┌─────────────────────────────┐
+│ 🟦 🟦 🟦 🟦 🟦 🟦 │
+│ 🟦 🟦 🟦 🟦 🟦 🟦 │
+│ 🟦 🟦 🟦 🟦 🟦 🟦 │
+│ 🟦 🟦 🟦 🟦 🟦 🟦 │
+└─────────────────────────────┘
+```
+
+---
+
+## `repeat`
+
+The `repeat` value repeats the background image horizontally and vertically.
+
+```css
+.box {
+    background-repeat: repeat;
+}
+```
+
+This is the default behavior.
+
+It is useful for creating:
+
+- Patterns
+- Textures
+- Tiles
+- Decorative backgrounds
+
+---
+
+## `no-repeat`
+
+The `no-repeat` value prevents the background image from repeating.
+
+```css
+.box {
+    background-repeat: no-repeat;
+}
+```
+
+The image appears only once.
+
+```text
+┌─────────────────────────────┐
+│ 🟦                          │
+│                             │
+│                             │
+│                             │
+└─────────────────────────────┘
+```
+
+This is commonly used with large background images.
+
+---
+
+## `repeat-x`
+
+The `repeat-x` value repeats the image **horizontally**.
+
+```css
+.box {
+    background-repeat: repeat-x;
+}
+```
+
+```text
+┌─────────────────────────────┐
+│ 🟦 🟦 🟦 🟦 🟦 🟦 │
+│                             │
+│                             │
+│                             │
+└─────────────────────────────┘
+```
+
+It can be useful for horizontal patterns.
+
+---
+
+## `repeat-y`
+
+The `repeat-y` value repeats the image **vertically**.
+
+```css
+.box {
+    background-repeat: repeat-y;
+}
+```
+
+```text
+┌─────────────────────────────┐
+│ 🟦                          │
+│ 🟦                          │
+│ 🟦                          │
+│ 🟦                          │
+└─────────────────────────────┘
+```
+
+It can be useful for vertical patterns.
+
+---
+
+## `space`
+
+The `space` value repeats the image without clipping it.
+
+Extra space is distributed between the repeated images.
+
+```css
+.box {
+    background-repeat: space;
+}
+```
+
+This can result in spacing between repeated background images.
+
+---
+
+## `round`
+
+The `round` value adjusts the size of the background image so that it can repeat an integer number of times without being clipped.
+
+```css
+.box {
+    background-repeat: round;
+}
+```
+
+The browser may resize the background image slightly to achieve this.
+
+---
+
+## Using Two Values
+
+`background-repeat` can accept two values.
+
+```css
+.box {
+    background-repeat: repeat no-repeat;
+}
+```
+
+The first value controls the horizontal direction.
+
+The second value controls the vertical direction.
+
+```text
+Horizontal → repeat
+Vertical   → no-repeat
+```
+
+For example:
+
+```css
+background-repeat: repeat no-repeat;
+```
+
+means:
+
+```text
+X-axis → repeat
+Y-axis → no-repeat
+```
+
+---
+
+## Another Example
+
+```css
+.box {
+    background-repeat: no-repeat repeat;
+}
+```
+
+This means:
+
+```text
+X-axis → no-repeat
+Y-axis → repeat
+```
+
+---
+
+## Combining with `background-image`
+
+`background-repeat` is normally used together with `background-image`.
+
+```css
+.pattern {
+    background-image: url("pattern.png");
+    background-repeat: repeat;
+}
+```
+
+Or:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-repeat: no-repeat;
+}
+```
+
+---
+
+## Example: Decorative Pattern
+
+```css
+.pattern {
+    background-image: url("dots.png");
+    background-repeat: repeat;
+    padding: 40px;
+}
+```
+
+The small image can create a repeating decorative pattern across the element.
+
+---
+
+## Example: Single Background Image
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-repeat: no-repeat;
+}
+```
+
+This prevents the image from appearing multiple times.
+
+---
+
+## `repeat` vs `no-repeat`
+
+| Value | Behavior |
+|-------|----------|
+| `repeat` | Repeats horizontally and vertically |
+| `no-repeat` | Does not repeat |
+| `repeat-x` | Repeats horizontally |
+| `repeat-y` | Repeats vertically |
+| `space` | Repeats with distributed spacing |
+| `round` | Repeats while adjusting image size |
+
+---
+
+## Common Use Cases
+
+`background-repeat` is commonly used for:
+
+- Repeating patterns
+- Textures
+- Decorative backgrounds
+- Horizontal borders
+- Vertical patterns
+- Single hero images
+
+---
+
+> 💡 **Pro Tip:** For large photographs and hero images, `background-repeat: no-repeat` is usually a good starting point. For small textures and patterns, `repeat` can be useful.
+
+---
+
+> 💡 **Remember:** `background-repeat` controls **how many times a background image is repeated and in which direction**. It does not control the size or position of the image.
+
+Those are controlled by:
+
+```css
+background-size
+background-position
+```
