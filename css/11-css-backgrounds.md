@@ -1408,3 +1408,389 @@ Those are controlled by:
 background-size
 background-position
 ```
+
+---
+
+# Background Position
+
+The `background-position` property controls **where a background image is positioned inside an element**.
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-position: center;
+}
+```
+
+It is especially useful when the background image does not completely fill the element or when you want to control which part of an image is visible.
+
+---
+
+## Basic Example
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-position: center;
+}
+```
+
+The image is positioned in the center of the element.
+
+---
+
+## Default Position
+
+The default value is:
+
+```css
+background-position: 0% 0%;
+```
+
+This places the background image at the top-left corner.
+
+```text
+┌─────────────────────────────┐
+│ IMAGE                       │
+│                             │
+│                             │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## Position Keywords
+
+CSS provides several keywords for positioning background images.
+
+Common values include:
+
+```css
+left
+center
+right
+top
+bottom
+```
+
+These can be combined.
+
+---
+
+## `left top`
+
+```css
+.box {
+    background-position: left top;
+}
+```
+
+The image is positioned at the top-left.
+
+```text
+┌─────────────────────────────┐
+│ IMAGE                       │
+│                             │
+│                             │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## `center`
+
+```css
+.box {
+    background-position: center;
+}
+```
+
+The image is centered horizontally and vertically.
+
+```text
+┌─────────────────────────────┐
+│                             │
+│          IMAGE              │
+│                             │
+└─────────────────────────────┘
+```
+
+---
+
+## `right bottom`
+
+```css
+.box {
+    background-position: right bottom;
+}
+```
+
+The image is positioned at the bottom-right.
+
+```text
+┌─────────────────────────────┐
+│                             │
+│                             │
+│                       IMAGE │
+└─────────────────────────────┘
+```
+
+---
+
+## Horizontal and Vertical Position
+
+`background-position` can use two values.
+
+```css
+.box {
+    background-position: left center;
+}
+```
+
+The first value controls the horizontal position.
+
+The second value controls the vertical position.
+
+```text
+Horizontal → left
+Vertical   → center
+```
+
+For example:
+
+```css
+background-position: right top;
+```
+
+means:
+
+```text
+Horizontal → right
+Vertical   → top
+```
+
+---
+
+## Using Percentages
+
+Percentages can be used to position the background image.
+
+```css
+.box {
+    background-position: 50% 50%;
+}
+```
+
+This centers the image.
+
+The following is equivalent:
+
+```css
+background-position: center;
+```
+
+Other examples:
+
+```css
+background-position: 0% 0%;
+background-position: 100% 100%;
+```
+
+These represent:
+
+```text
+0% 0%       → top-left
+50% 50%     → center
+100% 100%   → bottom-right
+```
+
+---
+
+## Using Length Values
+
+Length units can also be used.
+
+```css
+.box {
+    background-position: 20px 30px;
+}
+```
+
+The first value controls the horizontal position.
+
+The second value controls the vertical position.
+
+```text
+Horizontal → 20px
+Vertical   → 30px
+```
+
+---
+
+## Example with `px`
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-repeat: no-repeat;
+    background-position: 20px 40px;
+}
+```
+
+The image is positioned:
+
+- `20px` horizontally.
+- `40px` vertically.
+
+---
+
+## Negative Values
+
+Negative values can also be used.
+
+```css
+.box {
+    background-position: -20px -10px;
+}
+```
+
+This moves the background image toward the left and upward.
+
+Negative positioning can be useful when only a particular part of a larger background image should be visible.
+
+---
+
+## Combining with `background-size`
+
+`background-position` is often used together with `background-size`.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+```
+
+Here:
+
+```text
+background-size
+        ↓
+Controls the size of the image
+
+background-position
+        ↓
+Controls which part is positioned in the container
+```
+
+This combination is very common for hero sections.
+
+---
+
+## Example: Hero Section
+
+```css
+.hero {
+    height: 400px;
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+```
+
+The image covers the hero section while remaining centered.
+
+---
+
+## Focusing on a Specific Part of an Image
+
+Sometimes the important part of an image is not in the center.
+
+For example:
+
+```css
+.hero {
+    background-image: url("person.jpg");
+    background-size: cover;
+    background-position: 70% center;
+}
+```
+
+This changes the horizontal position of the image so that a different part of it remains visible.
+
+---
+
+## `background-position-x`
+
+The horizontal position can be controlled separately using:
+
+```css
+background-position-x
+```
+
+Example:
+
+```css
+.box {
+    background-position-x: right;
+}
+```
+
+---
+
+## `background-position-y`
+
+The vertical position can be controlled separately using:
+
+```css
+background-position-y
+```
+
+Example:
+
+```css
+.box {
+    background-position-y: bottom;
+}
+```
+
+---
+
+## Common Values
+
+| Value | Result |
+|-------|--------|
+| `left top` | Top-left |
+| `center top` | Top-center |
+| `right top` | Top-right |
+| `left center` | Middle-left |
+| `center` | Center |
+| `right center` | Middle-right |
+| `left bottom` | Bottom-left |
+| `center bottom` | Bottom-center |
+| `right bottom` | Bottom-right |
+
+---
+
+## Common Use Cases
+
+`background-position` is commonly used for:
+
+- Hero sections
+- Banner images
+- Image overlays
+- Decorative backgrounds
+- Background patterns
+- Focusing on a specific part of an image
+- Responsive image backgrounds
+
+---
+
+> 💡 **Pro Tip:** When using `background-size: cover`, start with `background-position: center`. If the important part of the image is being cropped, adjust the position using percentages such as `30%`, `70%`, or another value that keeps the important area visible.
+
+---
+
+> 💡 **Remember:** `background-position` controls **where the background image is placed**, while `background-size` controls **how large the image is**.
