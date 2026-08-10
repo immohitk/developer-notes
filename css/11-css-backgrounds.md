@@ -3438,3 +3438,344 @@ Each value corresponds to the background layer in the same order.
 ---
 
 > 💡 **Remember:** `background-origin` controls **the box from which a background image is positioned**. It does not determine where the background is painted or clipped — that is the job of `background-clip`.
+
+---
+
+# Background Clip
+
+The `background-clip` property specifies **how far the background extends inside an element**.
+
+It controls whether the background is painted underneath the:
+
+```text
+border
+padding
+content
+```
+
+```css
+.box {
+    background-clip: padding-box;
+}
+```
+
+---
+
+## The Three Main Values
+
+The commonly used values are:
+
+```css
+border-box
+padding-box
+content-box
+```
+
+These values determine the area where the background is painted.
+
+---
+
+## `border-box`
+
+```css
+.box {
+    background-clip: border-box;
+}
+```
+
+The background extends underneath the border.
+
+This is the default value.
+
+```text
+┌───────────────────────────────┐
+│███████████████████████████████│ ← Background
+│██                           ██│
+│██          Padding          ██│
+│██    ┌─────────────────┐    ██│
+│██    │     Content     │    ██│
+│██    └─────────────────┘    ██│
+│██                           ██│
+└───────────────────────────────┘
+```
+
+---
+
+## `padding-box`
+
+```css
+.box {
+    background-clip: padding-box;
+}
+```
+
+The background extends through the padding area but does **not** paint underneath the border.
+
+```text
+┌───────────────────────────────┐
+│           Border              │
+│  ███████████████████████████  │
+│  █                         █  │
+│  █        Padding          █  │
+│  █    ┌───────────────┐    █  │
+│  █    │    Content    │    █  │
+│  █    └───────────────┘    █  │
+│  █                         █  │
+│  ███████████████████████████  │
+└───────────────────────────────┘
+```
+
+---
+
+## `content-box`
+
+```css
+.box {
+    background-clip: content-box;
+}
+```
+
+The background is painted only within the content area.
+
+The padding and border remain outside the background.
+
+```text
+┌───────────────────────────────┐
+│           Border              │
+│  ┌─────────────────────────┐  │
+│  │         Padding         │  │
+│  │   ┌─────────────────┐   │  │
+│  │   │█████████████████│   │  │
+│  │   │     Content     │   │  │
+│  │   │█████████████████│   │  │
+│  │   └─────────────────┘   │  │
+│  └─────────────────────────┘  │
+└───────────────────────────────┘
+```
+
+---
+
+## Default Value
+
+The default value is:
+
+```css
+background-clip: border-box;
+```
+
+Therefore, if `background-clip` is not specified, the background normally extends underneath the border.
+
+---
+
+## Example
+
+```css
+.box {
+    width: 300px;
+    padding: 30px;
+    border: 10px solid black;
+    background-color: lightblue;
+    background-clip: padding-box;
+}
+```
+
+The background color extends through the padding area but stops before the border.
+
+---
+
+## Background Clip with `background-color`
+
+`background-clip` works with background colors.
+
+```css
+.box {
+    background-color: lightblue;
+    background-clip: padding-box;
+}
+```
+
+The background color is clipped to the padding box.
+
+---
+
+## Background Clip with `background-image`
+
+It also works with background images.
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-clip: content-box;
+}
+```
+
+The background image is painted only within the content box.
+
+---
+
+## `background-origin` vs `background-clip`
+
+These properties are closely related but have different purposes.
+
+### `background-origin`
+
+Controls:
+
+```text
+Where the background image positioning area starts
+```
+
+### `background-clip`
+
+Controls:
+
+```text
+Where the background is allowed to be painted
+```
+
+Example:
+
+```css
+.box {
+    background-origin: content-box;
+    background-clip: padding-box;
+}
+```
+
+Here:
+
+```text
+Origin
+  ↓
+Content box
+
+Clip
+  ↓
+Padding box
+```
+
+---
+
+## Visual Comparison
+
+```text
+border-box
+┌─────────────────────────────┐
+│█████████████████████████████│
+│█████████████████████████████│
+│█████████████████████████████│
+└─────────────────────────────┘
+
+padding-box
+┌─────────────────────────────┐
+│           BORDER            │
+│  ████████████████████████   │
+│  ████████████████████████   │
+│  ████████████████████████   │
+└─────────────────────────────┘
+
+content-box
+┌─────────────────────────────┐
+│           BORDER            │
+│        PADDING              │
+│      ███████████████        │
+│      ███████████████        │
+│      ███████████████        │
+└─────────────────────────────┘
+```
+
+---
+
+## Multiple Backgrounds
+
+`background-clip` can also be specified separately for multiple background layers.
+
+```css
+.box {
+    background-image:
+        url("foreground.png"),
+        url("background.jpg");
+
+    background-clip:
+        content-box,
+        border-box;
+}
+```
+
+Here:
+
+```text
+foreground.png
+    ↓
+content-box
+
+background.jpg
+    ↓
+border-box
+```
+
+Each value corresponds to the background layer in the same order.
+
+---
+
+## Common Use Cases
+
+`background-clip` is commonly used for:
+
+- Controlling backgrounds around borders
+- Component styling
+- Decorative effects
+- Multiple background layers
+- Creating text gradient effects
+- Precise background layouts
+
+---
+
+## Background Clip for Text
+
+A special use of `background-clip` is:
+
+```css
+background-clip: text;
+```
+
+This allows a background to be clipped to the shape of the text.
+
+A common pattern is:
+
+```css
+.title {
+    background: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+
+    background-clip: text;
+    color: transparent;
+}
+```
+
+The background becomes visible through the text.
+
+```text
+BLUE → PURPLE
+  Gradient Text
+```
+
+This technique is commonly used for decorative headings.
+
+---
+
+> 💡 **Pro Tip:** Remember the difference with a simple rule:
+
+```text
+background-origin → Where positioning starts
+background-clip   → Where painting stops
+```
+
+This makes the two properties much easier to distinguish.
+
+---
+
+> 💡 **Remember:** `background-clip` controls **the area where a background is painted**. The three main box values are `border-box`, `padding-box`, and `content-box`.
