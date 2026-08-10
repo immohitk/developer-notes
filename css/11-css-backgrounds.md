@@ -6990,11 +6990,11 @@ Try to build it from memory first.
 - [CSS Text and Fonts](05-css-text-and-fonts.md)
 - [CSS Box Model](06-css-box-model.md)
 - [CSS Units](08-css-units.md)
+- [CSS Position](09-css-position.md)
+- [CSS Z-Index](10-css-z-index.md)
 
 ### Next Topics
 
-- [CSS Z-Index](10-css-z-index.md)
-- [CSS Backgrounds](11-css-backgrounds.md)
 - [CSS Flexbox](12-css-flexbox.md)
 - [CSS Media Queries](13-css-media-queries.md)
 - [CSS Transforms](14-css-transforms.md)
