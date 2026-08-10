@@ -5576,3 +5576,395 @@ background-blend-mode
 ---
 
 > 💡 **Remember:** Good background CSS should be **readable, responsive, accessible, optimized, and appropriate for the purpose of the image**.
+
+---
+
+# Common Mistakes
+
+Understanding common background mistakes helps prevent layout problems, unexpected image cropping, and difficult-to-maintain CSS.
+
+---
+
+## 1. Forgetting `background-repeat: no-repeat`
+
+A background image repeats by default.
+
+```css
+.box {
+    background-image: url("image.png");
+}
+```
+
+This can produce an unexpected tiled image.
+
+If only one image is required:
+
+```css
+.box {
+    background-image: url("image.png");
+    background-repeat: no-repeat;
+}
+```
+
+---
+
+## 2. Confusing `cover` and `contain`
+
+These values behave differently.
+
+```css
+background-size: cover;
+```
+
+makes the image cover the entire area but may crop parts of it.
+
+```css
+background-size: contain;
+```
+
+keeps the entire image visible but may leave empty space.
+
+Remember:
+
+```text
+cover
+→ Fill the area
+
+contain
+→ Show the complete image
+```
+
+---
+
+## 3. Using the Wrong `background-position`
+
+With:
+
+```css
+background-size: cover;
+```
+
+parts of the image may be cropped.
+
+If the important content is not centered, this can make the design look wrong.
+
+```css
+.hero {
+    background-size: cover;
+    background-position: center;
+}
+```
+
+Adjust the position when necessary:
+
+```css
+background-position: top center;
+```
+
+---
+
+## 4. Forgetting the `/` in Background Shorthand
+
+When using both position and size:
+
+```css
+background: url("image.jpg") center / cover no-repeat;
+```
+
+The `/` separates:
+
+```text
+background-position
+        ↓
+      center
+
+        /
+
+background-size
+        ↓
+      cover
+```
+
+Without the correct syntax, the values may not be interpreted as intended.
+
+---
+
+## 5. Confusing `background-origin` and `background-clip`
+
+These properties sound similar but do different jobs.
+
+```text
+background-origin
+→ Where background positioning starts
+
+background-clip
+→ Where background painting stops
+```
+
+Example:
+
+```css
+.box {
+    background-origin: content-box;
+    background-clip: padding-box;
+}
+```
+
+---
+
+## 6. Assuming Background Images Are Content
+
+A background image is generally decorative.
+
+```css
+.card {
+    background-image: url("product.jpg");
+}
+```
+
+If the image communicates important information, use an `<img>` element instead:
+
+```html
+<img src="product.jpg" alt="Product image">
+```
+
+---
+
+## 7. Using Huge Background Images
+
+A very large image can increase page loading time.
+
+Avoid unnecessarily large assets:
+
+```text
+Large image
+    ↓
+More data
+    ↓
+Slower loading
+```
+
+Use appropriately sized and optimized images.
+
+---
+
+## 8. Forgetting Text Contrast
+
+Text placed directly over a background image may become difficult to read.
+
+Problem:
+
+```css
+.hero {
+    background-image: url("busy-image.jpg");
+}
+```
+
+A gradient overlay can improve readability:
+
+```css
+.hero {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("busy-image.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+---
+
+## 9. Overusing `background-attachment: fixed`
+
+This effect:
+
+```css
+background-attachment: fixed;
+```
+
+can look attractive, but it should not be added everywhere.
+
+Use it only when the visual effect is actually needed and test the result across devices.
+
+---
+
+## 10. Forgetting Mobile Layouts
+
+A background that looks good on a large screen may not work well on a small screen.
+
+For example:
+
+```css
+.hero {
+    background-position: center;
+}
+```
+
+may need a different position on mobile.
+
+Use media queries when necessary:
+
+```css
+.hero {
+    background-image: url("desktop.jpg");
+}
+
+@media (max-width: 768px) {
+    .hero {
+        background-image: url("mobile.jpg");
+    }
+}
+```
+
+---
+
+## 11. Using Too Many Background Layers
+
+Multiple backgrounds are powerful:
+
+```css
+.box {
+    background-image:
+        url("one.png"),
+        url("two.png"),
+        url("three.png"),
+        url("four.png");
+}
+```
+
+But too many layers can make CSS difficult to understand and maintain.
+
+Use multiple layers when they provide a clear benefit.
+
+---
+
+## 12. Making Complex Shorthand Hard to Read
+
+This is valid:
+
+```css
+.hero {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+But if the declaration becomes too complex, longhand properties may be clearer:
+
+```css
+.hero {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+```
+
+Readable CSS is usually easier to maintain.
+
+---
+
+## 13. Confusing Backgrounds with Borders
+
+A background does not replace a border.
+
+```css
+.box {
+    background-color: blue;
+}
+```
+
+If you need an actual border:
+
+```css
+.box {
+    border: 2px solid black;
+}
+```
+
+Use the property that represents the visual concept you actually need.
+
+---
+
+## 14. Forgetting the Background Color Behind an Image
+
+If an image fails to load, a fallback color can provide a better visual result.
+
+```css
+.hero {
+    background-color: #222;
+    background-image: url("hero.jpg");
+}
+```
+
+The color can appear behind the image or when the image is unavailable.
+
+---
+
+## 15. Using `background-image` for Important Textures Without Considering Accessibility
+
+Purely decorative backgrounds do not need alternative text.
+
+However, if important information is communicated only through a background image, the design can become inaccessible.
+
+Use semantic HTML for meaningful content.
+
+```html
+<img src="sale-banner.jpg" alt="50% off sale">
+```
+
+instead of relying entirely on:
+
+```css
+background-image: url("sale-banner.jpg");
+```
+
+---
+
+## Common Mistake Checklist
+
+Before finalizing a background, check:
+
+```text
+☐ Is the image decorative or meaningful?
+☐ Is the image appropriately sized?
+☐ Should it repeat?
+☐ Is the position correct?
+☐ Is `cover` or `contain` appropriate?
+☐ Is the text readable?
+☐ Does it work on mobile?
+☐ Is the CSS still readable?
+☐ Are multiple background layers actually necessary?
+☐ Is a fallback background color useful?
+```
+
+---
+
+> 💡 **Pro Tip:** Most background problems come from three properties:
+
+```css
+background-size
+background-position
+background-repeat
+```
+
+When an image looks wrong, check these three first.
+
+---
+
+> 💡 **Remember:** Good background CSS is not just about making an image appear. Always consider **cropping, positioning, repetition, readability, performance, responsiveness, and whether the image belongs in CSS or HTML**.
