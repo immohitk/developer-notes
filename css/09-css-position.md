@@ -3825,6 +3825,7 @@ Before moving to the next chapter, make sure you can answer:
 - [CSS Colors](04-css-colors.md)
 - [CSS Text and Fonts](05-css-text-and-fonts.md)
 - [CSS Box Model](06-css-box-model.md)
+- [CSS Display](07-css-display.md)
 - [CSS Units](08-css-units.md)
 
 ### Next Topics
