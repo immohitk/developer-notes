@@ -3779,3 +3779,356 @@ This makes the two properties much easier to distinguish.
 ---
 
 > 💡 **Remember:** `background-clip` controls **the area where a background is painted**. The three main box values are `border-box`, `padding-box`, and `content-box`.
+
+---
+
+# Background Blend Mode
+
+The `background-blend-mode` property controls **how background images and the background color blend with each other**.
+
+```css
+.box {
+    background-blend-mode: multiply;
+}
+```
+
+It is useful for creating visual effects by combining background layers.
+
+---
+
+## Basic Example
+
+```css
+.box {
+    background-color: blue;
+    background-image: url("image.jpg");
+    background-blend-mode: multiply;
+}
+```
+
+The background image and background color are blended using the `multiply` blend mode.
+
+---
+
+## Default Value
+
+The default value is:
+
+```css
+background-blend-mode: normal;
+```
+
+With `normal`, background layers are displayed without special blending.
+
+```css
+.box {
+    background-blend-mode: normal;
+}
+```
+
+---
+
+## Common Blend Modes
+
+Some commonly used blend modes include:
+
+```css
+normal
+multiply
+screen
+overlay
+darken
+lighten
+color-dodge
+color-burn
+difference
+exclusion
+hard-light
+soft-light
+```
+
+Each mode produces a different visual result.
+
+---
+
+## `normal`
+
+```css
+.box {
+    background-blend-mode: normal;
+}
+```
+
+The backgrounds are displayed normally without blending.
+
+This is the default behavior.
+
+---
+
+## `multiply`
+
+```css
+.box {
+    background-blend-mode: multiply;
+}
+```
+
+`multiply` generally produces a darker result by combining the colors of the layers.
+
+It is commonly useful for:
+
+- Dark overlays
+- Textures
+- Image effects
+- Color tinting
+
+---
+
+## `screen`
+
+```css
+.box {
+    background-blend-mode: screen;
+}
+```
+
+`screen` generally produces a lighter result.
+
+It can be useful for:
+
+- Light effects
+- Glows
+- Bright overlays
+- Decorative effects
+
+---
+
+## `overlay`
+
+```css
+.box {
+    background-blend-mode: overlay;
+}
+```
+
+`overlay` combines the colors while preserving contrast.
+
+It can create stronger visual effects than normal blending.
+
+---
+
+## `darken`
+
+```css
+.box {
+    background-blend-mode: darken;
+}
+```
+
+`darken` keeps the darker color from the blended layers.
+
+---
+
+## `lighten`
+
+```css
+.box {
+    background-blend-mode: lighten;
+}
+```
+
+`lighten` keeps the lighter color from the blended layers.
+
+---
+
+## Example: Color Overlay
+
+A common technique is combining a background color with an image.
+
+```css
+.hero {
+    background-color: blue;
+    background-image: url("hero.jpg");
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+}
+```
+
+The blue color blends with the image and creates a tinted effect.
+
+---
+
+## Example: Gradient Overlay
+
+A gradient can also be used as a background layer.
+
+```css
+.hero {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg");
+
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+}
+```
+
+The gradient and image are blended together.
+
+---
+
+## Multiple Background Layers
+
+`background-blend-mode` can be used with multiple background images.
+
+```css
+.box {
+    background-image:
+        url("pattern.png"),
+        url("image.jpg");
+
+    background-blend-mode:
+        multiply;
+}
+```
+
+Blend modes can also be specified for individual layers.
+
+```css
+.box {
+    background-image:
+        url("pattern.png"),
+        url("image.jpg");
+
+    background-blend-mode:
+        multiply,
+        screen;
+}
+```
+
+Each blend mode corresponds to a background layer.
+
+---
+
+## Background Color and Background Image
+
+The background color can also participate in blending.
+
+```css
+.box {
+    background-color: orange;
+    background-image: url("image.jpg");
+    background-blend-mode: multiply;
+}
+```
+
+The image is blended with the orange background.
+
+---
+
+## `background-blend-mode` vs `mix-blend-mode`
+
+These properties have different purposes.
+
+### `background-blend-mode`
+
+Controls blending between:
+
+```text
+Background color
+        +
+Background images
+```
+
+Example:
+
+```css
+.box {
+    background-blend-mode: multiply;
+}
+```
+
+### `mix-blend-mode`
+
+Controls how an element blends with the content behind the element.
+
+Example:
+
+```css
+.box {
+    mix-blend-mode: multiply;
+}
+```
+
+So:
+
+```text
+background-blend-mode
+        ↓
+Background layers
+
+mix-blend-mode
+        ↓
+Element with surrounding content
+```
+
+---
+
+## Common Use Cases
+
+`background-blend-mode` is commonly used for:
+
+- Color overlays
+- Image tinting
+- Textures
+- Artistic effects
+- Hero sections
+- Decorative backgrounds
+- Layered visual designs
+
+---
+
+## Choosing a Blend Mode
+
+Different blend modes create different visual effects.
+
+```text
+normal
+  ↓
+No special blending
+
+multiply
+  ↓
+Darker result
+
+screen
+  ↓
+Lighter result
+
+overlay
+  ↓
+Stronger contrast
+
+darken
+  ↓
+Keeps darker colors
+
+lighten
+  ↓
+Keeps lighter colors
+```
+
+The best blend mode depends on the colors and images being combined.
+
+---
+
+> 💡 **Pro Tip:** Start with `multiply` for dark image tints and `screen` for lighter effects. Then experiment with `overlay` when you want stronger contrast.
+
+---
+
+> 💡 **Remember:** `background-blend-mode` controls **how background layers blend with each other and with the background color**. It does not control the size, position, or clipping of the background.
