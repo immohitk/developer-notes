@@ -5261,3 +5261,318 @@ Then add other properties only when the design requires them.
 ---
 
 > 💡 **Remember:** CSS backgrounds are mainly about **what appears behind an element, how it is positioned and sized, how it behaves during scrolling, and how multiple background layers interact**.
+
+---
+
+# Best Practices
+
+Following a few practical rules makes CSS background code easier to maintain, understand, and optimize.
+
+---
+
+## 1. Use Shorthand When It Improves Readability
+
+Instead of writing:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+```
+
+You can use:
+
+```css
+.hero {
+    background: url("hero.jpg") center / cover no-repeat;
+}
+```
+
+Use shorthand when the declaration remains easy to understand.
+
+---
+
+## 2. Use `cover` Carefully
+
+`background-size: cover` is useful for hero sections and banners.
+
+```css
+.hero {
+    background-size: cover;
+}
+```
+
+However, `cover` can crop parts of the image.
+
+Therefore, choose an image whose important content can tolerate cropping.
+
+---
+
+## 3. Choose the Correct `background-position`
+
+When using `cover`, the image may be cropped.
+
+Use:
+
+```css
+background-position: center;
+```
+
+for general-purpose images.
+
+For images where the important content is near a particular edge, adjust the position.
+
+```css
+background-position: top center;
+```
+
+or:
+
+```css
+background-position: center right;
+```
+
+---
+
+## 4. Avoid Unnecessary Background Images
+
+Do not use a background image when a simple CSS property can achieve the same result.
+
+For example:
+
+```css
+.box {
+    background-color: blue;
+}
+```
+
+is preferable to using an image just to create a solid color.
+
+---
+
+## 5. Use `<img>` for Meaningful Images
+
+Background images are generally best for decorative content.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+}
+```
+
+For meaningful content, use an image element:
+
+```html
+<img src="product.jpg" alt="Product image">
+```
+
+This provides semantic information and allows alternative text.
+
+---
+
+## 6. Provide Sufficient Contrast
+
+When text appears over a background image, make sure the text remains readable.
+
+For example, use a gradient overlay:
+
+```css
+.hero {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+The overlay can improve text contrast.
+
+---
+
+## 7. Use Appropriate Image Sizes
+
+Large background images can increase page load time.
+
+Use appropriately sized and optimized images instead of unnecessarily large files.
+
+For example:
+
+```text
+Small component
+    ↓
+Smaller image
+
+Large hero section
+    ↓
+Larger image when necessary
+```
+
+---
+
+## 8. Use Modern Image Formats
+
+When appropriate, use modern image formats such as:
+
+```text
+WebP
+AVIF
+```
+
+These formats can provide good image quality with smaller file sizes.
+
+---
+
+## 9. Avoid Overusing `background-attachment: fixed`
+
+Although:
+
+```css
+background-attachment: fixed;
+```
+
+can create attractive effects, it is not always ideal for every device or layout.
+
+Use it only when the visual effect is actually needed.
+
+---
+
+## 10. Keep Multiple Backgrounds Organized
+
+When using multiple backgrounds, keep each layer easy to identify.
+
+For example:
+
+```css
+.hero {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+For more complex declarations, longhand properties may improve readability.
+
+---
+
+## 11. Use Meaningful File Names
+
+Prefer descriptive image names:
+
+```text
+hero-home.webp
+product-background.webp
+card-pattern.png
+```
+
+instead of:
+
+```text
+img1.jpg
+image2.png
+bg-final-new.jpg
+```
+
+Meaningful names make projects easier to maintain.
+
+---
+
+## 12. Keep Decorative Images in CSS
+
+If an image is purely decorative, a background can keep the HTML cleaner.
+
+```css
+.card {
+    background-image: url("decoration.svg");
+}
+```
+
+This avoids adding unnecessary decorative elements to the HTML structure.
+
+---
+
+## 13. Test Backgrounds at Different Screen Sizes
+
+A background that looks good on a desktop may not look good on a smaller screen.
+
+Test:
+
+```text
+Desktop
+Tablet
+Mobile
+```
+
+Pay particular attention to:
+
+```css
+background-size
+background-position
+```
+
+because these properties strongly affect how images appear at different sizes.
+
+---
+
+## 14. Use Media Queries When Necessary
+
+Different images can be used for different screen sizes.
+
+```css
+.hero {
+    background-image: url("desktop.jpg");
+}
+
+@media (max-width: 768px) {
+    .hero {
+        background-image: url("mobile.jpg");
+    }
+}
+```
+
+This can provide better control over mobile layouts.
+
+---
+
+## 15. Do Not Memorize Every Property
+
+You do not need to memorize every possible background property.
+
+Focus first on the most commonly used properties:
+
+```css
+background-color
+background-image
+background-repeat
+background-position
+background-size
+background
+```
+
+Then learn advanced properties when you need them:
+
+```css
+background-attachment
+background-origin
+background-clip
+background-blend-mode
+```
+
+---
+
+> 💡 **Pro Tip:** In real projects, readable CSS is usually more valuable than extremely short CSS. Use shorthand when it makes the code cleaner, but prefer longhand when complex background layers become difficult to understand.
+
+---
+
+> 💡 **Remember:** Good background CSS should be **readable, responsive, accessible, optimized, and appropriate for the purpose of the image**.
