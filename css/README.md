@@ -8,7 +8,18 @@ The notes are organized in a step-by-step manner and include explanations, examp
 
 ## 📚 Topics
 
-- 🚧 CSS Basics
+- [CSS Basics](01-css-basics.md)
+- [Ways to Add CSS](02-ways-to-add-css.md)
+- [CSS Selectors](03-css-selectors.md)
+- [CSS Colors](04-css-colors.md)
+- [CSS Text and Fonts](05-css-text-and-fonts.md)
+- [CSS Box Model](06-css-box-model.md)
+- [CSS Borders](07-css-borders.md)
+- [CSS Units](08-css-units.md)
+- [CSS Position](09-css-position.md)
+- [CSS Z-Index](10-css-z-index.md)
+- [CSS Backgrounds](11-css-backgrounds.md)
+- [CSS Flexbox](12-css-flexbox.md)
 
 More topics will be added as I continue learning CSS.
 
