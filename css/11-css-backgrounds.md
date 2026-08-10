@@ -5968,3 +5968,552 @@ When an image looks wrong, check these three first.
 ---
 
 > 💡 **Remember:** Good background CSS is not just about making an image appear. Always consider **cropping, positioning, repetition, readability, performance, responsiveness, and whether the image belongs in CSS or HTML**.
+
+---
+
+# Interview Questions
+
+## 1. What is the purpose of CSS backgrounds?
+
+CSS backgrounds are used to add visual backgrounds to elements, including:
+
+- Colors
+- Images
+- Gradients
+- Patterns
+- Multiple background layers
+- Visual effects
+
+---
+
+## 2. What is the difference between `background-color` and `background-image`?
+
+`background-color` sets a background color:
+
+```css
+.box {
+    background-color: blue;
+}
+```
+
+`background-image` adds an image or gradient:
+
+```css
+.box {
+    background-image: url("image.jpg");
+}
+```
+
+They can also be used together.
+
+---
+
+## 3. What is the default value of `background-repeat`?
+
+The default value is:
+
+```css
+repeat
+```
+
+Therefore, a background image repeats by default.
+
+---
+
+## 4. What does `background-repeat: no-repeat` do?
+
+It prevents the background image from repeating.
+
+```css
+.box {
+    background-repeat: no-repeat;
+}
+```
+
+The image is displayed only once.
+
+---
+
+## 5. What is the difference between `background-size: cover` and `contain`?
+
+### `cover`
+
+```css
+background-size: cover;
+```
+
+The image completely covers the background area.
+
+Some parts of the image may be cropped.
+
+### `contain`
+
+```css
+background-size: contain;
+```
+
+The entire image remains visible.
+
+Empty space may appear around the image.
+
+---
+
+## 6. What does `background-position` do?
+
+`background-position` controls where a background image is placed inside its element.
+
+Example:
+
+```css
+.box {
+    background-position: center;
+}
+```
+
+Other examples:
+
+```css
+background-position: top;
+background-position: right;
+background-position: bottom left;
+```
+
+---
+
+## 7. What is `background-attachment`?
+
+`background-attachment` controls how a background image behaves when the page or element is scrolled.
+
+Common values:
+
+```css
+scroll
+fixed
+local
+```
+
+---
+
+## 8. What is the default value of `background-attachment`?
+
+The default value is:
+
+```css
+scroll
+```
+
+---
+
+## 9. What does `background-attachment: fixed` do?
+
+It makes the background image fixed relative to the viewport.
+
+```css
+.hero {
+    background-attachment: fixed;
+}
+```
+
+The background can appear to remain stationary while page content scrolls.
+
+---
+
+## 10. What is the CSS `background` property?
+
+`background` is a shorthand property used to set multiple background properties in a single declaration.
+
+Example:
+
+```css
+.hero {
+    background: url("hero.jpg") center / cover no-repeat;
+}
+```
+
+---
+
+## 11. Why is `/` used in background shorthand?
+
+The `/` separates `background-position` from `background-size`.
+
+```css
+background: url("image.jpg") center / cover no-repeat;
+```
+
+Here:
+
+```text
+center
+  ↓
+background-position
+
+cover
+  ↓
+background-size
+```
+
+---
+
+## 12. Can an element have multiple background images?
+
+Yes.
+
+Multiple background images are separated by commas.
+
+```css
+.box {
+    background-image:
+        url("top.png"),
+        url("bottom.jpg");
+}
+```
+
+The first background layer is painted above the following layers.
+
+---
+
+## 13. What is `background-origin`?
+
+`background-origin` specifies the box used as the positioning area for a background image.
+
+Main values:
+
+```css
+border-box
+padding-box
+content-box
+```
+
+---
+
+## 14. What is `background-clip`?
+
+`background-clip` controls the area where the background is painted.
+
+Main values:
+
+```css
+border-box
+padding-box
+content-box
+```
+
+---
+
+## 15. What is the difference between `background-origin` and `background-clip`?
+
+```text
+background-origin
+→ Where background positioning starts
+
+background-clip
+→ Where background painting stops
+```
+
+This is one of the most important differences to remember.
+
+---
+
+## 16. What is `background-blend-mode`?
+
+`background-blend-mode` controls how background images and background colors blend together.
+
+Example:
+
+```css
+.box {
+    background-blend-mode: multiply;
+}
+```
+
+---
+
+## 17. What is the difference between `background-blend-mode` and `mix-blend-mode`?
+
+`background-blend-mode` controls blending between background layers and the background color.
+
+```css
+.box {
+    background-blend-mode: multiply;
+}
+```
+
+`mix-blend-mode` controls how an element blends with the content behind it.
+
+```css
+.box {
+    mix-blend-mode: multiply;
+}
+```
+
+---
+
+## 18. How can you create a dark overlay over a background image?
+
+Use a gradient as one background layer and the image as another.
+
+```css
+.hero {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+---
+
+## 19. When should you use a background image instead of `<img>`?
+
+Use a background image when the image is primarily decorative.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+}
+```
+
+Use `<img>` when the image represents meaningful content.
+
+```html
+<img src="product.jpg" alt="Product image">
+```
+
+---
+
+## 20. What is the most common background pattern for a hero section?
+
+A common pattern is:
+
+```css
+.hero {
+    background:
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+For a text overlay:
+
+```css
+.hero {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+---
+
+## 21. What is the difference between `cover` and `contain` in an interview?
+
+A concise answer:
+
+```text
+cover:
+Fills the entire container and may crop the image.
+
+contain:
+Keeps the entire image visible and may leave empty space.
+```
+
+---
+
+## 22. What happens if `background-repeat` is not specified?
+
+The default value is:
+
+```css
+repeat
+```
+
+So the background image can tile horizontally and vertically.
+
+---
+
+## 23. Can gradients be used as background images?
+
+Yes.
+
+```css
+.box {
+    background-image: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+}
+```
+
+Gradients are treated as background images and can also be combined with regular images.
+
+---
+
+## 24. Can gradients and images be combined?
+
+Yes.
+
+```css
+.hero {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg");
+}
+```
+
+The gradient becomes one background layer and the image becomes another.
+
+---
+
+## 25. How do you make a background image cover an entire element?
+
+Use:
+
+```css
+background-size: cover;
+```
+
+Usually together with:
+
+```css
+background-position: center;
+background-repeat: no-repeat;
+```
+
+Example:
+
+```css
+.hero {
+    background:
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+---
+
+## 26. How do you prevent a background image from repeating?
+
+Use:
+
+```css
+background-repeat: no-repeat;
+```
+
+---
+
+## 27. How do you position a background image in the center?
+
+Use:
+
+```css
+background-position: center;
+```
+
+---
+
+## 28. How do you create a gradient text effect using a background?
+
+A common technique is:
+
+```css
+.title {
+    background: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+
+    background-clip: text;
+    color: transparent;
+}
+```
+
+The background is clipped to the text.
+
+---
+
+## 29. What should you consider when using large background images?
+
+Consider:
+
+- Image file size
+- Loading performance
+- Appropriate image dimensions
+- Responsive behavior
+- Image cropping
+- Mobile layouts
+
+Optimized image formats such as WebP or AVIF can help reduce file size when appropriate.
+
+---
+
+## 30. What are the three properties you should check first when a background image looks wrong?
+
+Usually check:
+
+```css
+background-size
+background-position
+background-repeat
+```
+
+These three properties control the image's size, placement, and repetition.
+
+---
+
+# Quick Interview Revision
+
+```text
+background-color
+→ Sets background color
+
+background-image
+→ Adds image or gradient
+
+background-repeat
+→ Controls repetition
+
+background-position
+→ Controls position
+
+background-size
+→ Controls size
+
+background-attachment
+→ Controls scrolling behavior
+
+background
+→ Shorthand
+
+background-origin
+→ Controls positioning area
+
+background-clip
+→ Controls painting area
+
+background-blend-mode
+→ Controls background blending
+```
+
+---
+
+> 💡 **Pro Tip:** In an interview, do not just memorize property definitions. Be ready to explain the practical difference between `cover` and `contain`, `background-origin` and `background-clip`, and `background-blend-mode` and `mix-blend-mode`.
+
+---
+
+> 💡 **Remember:** A strong CSS background answer should explain both **what the property does and when you would actually use it**.
