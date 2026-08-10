@@ -6517,3 +6517,462 @@ background-blend-mode
 ---
 
 > 💡 **Remember:** A strong CSS background answer should explain both **what the property does and when you would actually use it**.
+
+---
+
+# Practice Exercises
+
+These exercises are designed to help you practice CSS backgrounds by building small real-world examples.
+
+---
+
+## Exercise 1: Background Color
+
+Create a `<div>` with:
+
+- A width of `300px`
+- A height of `200px`
+- A background color
+- Some text inside it
+
+Example starting point:
+
+```html
+<div class="box">
+    Background Color
+</div>
+```
+
+```css
+.box {
+    width: 300px;
+    height: 200px;
+    background-color: lightblue;
+}
+```
+
+### Goal
+
+Practice:
+
+```css
+background-color
+```
+
+---
+
+## Exercise 2: Background Image
+
+Create a section with a background image.
+
+```html
+<section class="hero">
+    <h1>Welcome</h1>
+</section>
+```
+
+Apply:
+
+```css
+background-image
+```
+
+### Goal
+
+Make the image appear as the section background.
+
+---
+
+## Exercise 3: Prevent Background Repetition
+
+Start with a small background image.
+
+```css
+.box {
+    background-image: url("pattern.png");
+}
+```
+
+Now prevent it from repeating.
+
+### Goal
+
+Use:
+
+```css
+background-repeat
+```
+
+and make the image appear only once.
+
+---
+
+## Exercise 4: Background Position
+
+Create a box with a background image and position the image in different locations.
+
+Try:
+
+```css
+background-position: center;
+```
+
+Then experiment with:
+
+```css
+background-position: top right;
+background-position: bottom left;
+background-position: center center;
+```
+
+### Goal
+
+Understand how the position changes the visible part of the image.
+
+---
+
+## Exercise 5: `cover` vs `contain`
+
+Create a box with a background image.
+
+Test:
+
+```css
+background-size: cover;
+```
+
+Then change it to:
+
+```css
+background-size: contain;
+```
+
+### Goal
+
+Observe the difference between:
+
+```text
+cover
+→ Fills the entire area
+
+contain
+→ Keeps the entire image visible
+```
+
+---
+
+## Exercise 6: Build a Hero Section
+
+Create a hero section with:
+
+- A background image
+- Minimum height of `400px`
+- Centered background
+- `cover` sizing
+- No repetition
+
+Target pattern:
+
+```css
+.hero {
+    min-height: 400px;
+    background:
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+### Goal
+
+Build a common real-world hero background.
+
+---
+
+## Exercise 7: Add a Dark Overlay
+
+Take the hero section from Exercise 6.
+
+Add a semi-transparent dark gradient over the image.
+
+Target structure:
+
+```css
+.hero {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("hero.jpg")
+        center / cover
+        no-repeat;
+}
+```
+
+Add white text over the background.
+
+### Goal
+
+Practice layered backgrounds and improve text readability.
+
+---
+
+## Exercise 8: Multiple Backgrounds
+
+Create an element with two background images.
+
+```css
+.box {
+    background-image:
+        url("pattern.png"),
+        url("image.jpg");
+}
+```
+
+Experiment with:
+
+```css
+background-repeat
+background-position
+background-size
+```
+
+### Goal
+
+Understand how multiple background layers work.
+
+---
+
+## Exercise 9: Background Blend Mode
+
+Create an element with:
+
+```css
+background-color: blue;
+background-image: url("image.jpg");
+```
+
+Then experiment with:
+
+```css
+background-blend-mode: multiply;
+```
+
+Try other values such as:
+
+```css
+screen
+overlay
+darken
+lighten
+```
+
+### Goal
+
+Observe how different blend modes change the visual result.
+
+---
+
+## Exercise 10: Background Origin and Clip
+
+Create an element with:
+
+```css
+border: 10px solid transparent;
+padding: 30px;
+```
+
+Add a background image.
+
+Experiment with:
+
+```css
+background-origin: border-box;
+background-origin: padding-box;
+background-origin: content-box;
+```
+
+Then experiment with:
+
+```css
+background-clip: border-box;
+background-clip: padding-box;
+background-clip: content-box;
+```
+
+### Goal
+
+Understand the difference between:
+
+```text
+background-origin
+→ Positioning area
+
+background-clip
+→ Painting area
+```
+
+---
+
+## Exercise 11: Gradient Background
+
+Create a section with a gradient background.
+
+Try:
+
+```css
+.section {
+    background-image: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+}
+```
+
+Then experiment with:
+
+```text
+to left
+to top
+to bottom
+45deg
+```
+
+### Goal
+
+Practice gradients as background images.
+
+---
+
+## Exercise 12: Responsive Background
+
+Create a hero section that uses one background image on desktop and another on smaller screens.
+
+```css
+.hero {
+    background-image: url("desktop.jpg");
+}
+
+@media (max-width: 768px) {
+    .hero {
+        background-image: url("mobile.jpg");
+    }
+}
+```
+
+### Goal
+
+Practice responsive background images.
+
+---
+
+## Exercise 13: Background Shorthand
+
+Rewrite this:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+```
+
+using the `background` shorthand.
+
+### Goal
+
+Produce:
+
+```css
+.hero {
+    background: url("hero.jpg") center / cover no-repeat;
+}
+```
+
+---
+
+## Exercise 14: Decorative Background
+
+Create a card with a decorative image positioned in the top-right corner.
+
+Requirements:
+
+- Image should not repeat.
+- Image should remain in the top-right.
+- The main card content should remain unaffected.
+
+Use:
+
+```css
+background-image
+background-repeat
+background-position
+```
+
+### Goal
+
+Practice using backgrounds for decorative elements.
+
+---
+
+## Exercise 15: Final Mini Project
+
+Build a complete hero section containing:
+
+- Background image
+- Gradient overlay
+- Centered content
+- Responsive height
+- `background-size: cover`
+- `background-position: center`
+- `background-repeat: no-repeat`
+
+Example structure:
+
+```html
+<section class="hero">
+    <div class="hero-content">
+        <h1>Build Something Great</h1>
+        <p>Learn CSS backgrounds through practice.</p>
+        <button>Get Started</button>
+    </div>
+</section>
+```
+
+### Goal
+
+Combine the major concepts from this chapter into one practical component.
+
+---
+
+# Challenge
+
+Create a hero section without copying the examples above.
+
+Requirements:
+
+```text
+☐ Background image
+☐ Gradient overlay
+☐ Cover sizing
+☐ Center positioning
+☐ No repetition
+☐ Responsive layout
+☐ Readable text
+☐ Button
+☐ Clean CSS
+```
+
+Try to build it from memory first.
+
+---
+
+> 💡 **Pro Tip:** Do the exercises without immediately looking at the previous sections. If you get stuck, identify which background property controls the behavior you need and then check its syntax.
+
+---
+
+> 💡 **Remember:** The goal of these exercises is not just to memorize CSS properties. The real skill is knowing **which background property to use for a specific visual problem**.
