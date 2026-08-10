@@ -2121,3 +2121,207 @@ background-size: contain;
 ---
 
 > 💡 **Remember:** `cover` makes the background image **cover the entire area**, while `contain` makes the **entire image fit inside the area**.
+
+---
+
+# Background Attachment
+
+The `background-attachment` property controls **how a background image behaves when the page or element is scrolled**.
+
+```css
+.element {
+    background-image: url("image.jpg");
+    background-attachment: fixed;
+}
+```
+
+The main values are:
+
+```css
+scroll
+fixed
+local
+```
+
+---
+
+## `scroll`
+
+The default value is:
+
+```css
+background-attachment: scroll;
+```
+
+The background image scrolls along with the element.
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-attachment: scroll;
+}
+```
+
+This is the default behavior.
+
+---
+
+## `fixed`
+
+The `fixed` value makes the background image fixed relative to the viewport.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-attachment: fixed;
+}
+```
+
+As the page scrolls, the background image can appear to remain in the same position while the content moves.
+
+```text
+Before scrolling:
+
+┌───────────────────────────┐
+│      Background Image     │
+│                           │
+│        Content            │
+└───────────────────────────┘
+
+After scrolling:
+
+┌───────────────────────────┐
+│      Background Image     │
+│                           │
+│    Different Content      │
+└───────────────────────────┘
+```
+
+This can create a visual parallax-like effect.
+
+---
+
+## `local`
+
+The `local` value makes the background image scroll with the element's contents.
+
+```css
+.box {
+    background-image: url("image.jpg");
+    background-attachment: local;
+}
+```
+
+This is particularly useful for elements that have their own scrolling content.
+
+For example:
+
+```css
+.box {
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+    background-image: url("pattern.png");
+    background-attachment: local;
+}
+```
+
+The background moves as the element's content is scrolled.
+
+---
+
+## `scroll` vs `fixed` vs `local`
+
+| Value | Background Behavior |
+|-------|---------------------|
+| `scroll` | Scrolls with the element |
+| `fixed` | Fixed relative to the viewport |
+| `local` | Scrolls with the element's contents |
+
+---
+
+## Example: Fixed Background
+
+```css
+body {
+    background-image: url("background.jpg");
+    background-attachment: fixed;
+}
+```
+
+The background remains fixed while the page content scrolls.
+
+---
+
+## Example: Scroll Background
+
+```css
+.section {
+    background-image: url("background.jpg");
+    background-attachment: scroll;
+}
+```
+
+The background scrolls normally with the page.
+
+---
+
+## Example: Local Scrolling Element
+
+```css
+.container {
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+    background-image: url("pattern.png");
+    background-attachment: local;
+}
+```
+
+When the content inside the container is scrolled, the background moves with the content.
+
+---
+
+## Combining with Other Background Properties
+
+`background-attachment` can be combined with other background properties.
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+```
+
+This can create a full-section background that remains fixed during page scrolling.
+
+---
+
+## Common Use Cases
+
+`background-attachment` can be used for:
+
+- Fixed page backgrounds
+- Hero sections
+- Visual scrolling effects
+- Decorative backgrounds
+- Scrollable content areas
+- Parallax-style designs
+
+---
+
+> 💡 **Pro Tip:** `background-attachment: fixed` can create attractive scrolling effects, but test it carefully on mobile devices because fixed background behavior can differ across browsers and devices.
+
+---
+
+> 💡 **Remember:** `background-attachment` controls **how the background behaves during scrolling**. It does not control the image's size or position.
+
+Those are controlled by:
+
+```css
+background-size
+background-position
+```
