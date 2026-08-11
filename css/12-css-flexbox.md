@@ -9325,3 +9325,774 @@ flex-basis: auto;
 > 💡 **Remember:** `flex-basis` defines an item's initial main-axis size. It is not necessarily the final size because Flexbox can grow or shrink the item afterward.
 
 ---
+
+# Flex Shorthand
+
+The `flex` property is a shorthand for three flex item properties:
+
+```css
+flex-grow
+flex-shrink
+flex-basis
+```
+
+Instead of writing:
+
+```css
+.item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+}
+```
+
+you can write:
+
+```css
+.item {
+    flex: 1 1 200px;
+}
+```
+
+---
+
+## Syntax
+
+The general syntax is:
+
+```css
+.item {
+    flex: grow shrink basis;
+}
+```
+
+For example:
+
+```css
+.item {
+    flex: 1 1 200px;
+}
+```
+
+This corresponds to:
+
+```css
+.item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+}
+```
+
+---
+
+## The Three Components
+
+The shorthand follows this order:
+
+```text
+flex: grow shrink basis;
+       │     │     │
+       │     │     └── flex-basis
+       │     └──────── flex-shrink
+       └────────────── flex-grow
+```
+
+For example:
+
+```css
+.item {
+    flex: 2 1 250px;
+}
+```
+
+means:
+
+```css
+flex-grow: 2;
+flex-shrink: 1;
+flex-basis: 250px;
+```
+
+---
+
+## Why Use the Shorthand?
+
+The shorthand makes Flexbox CSS shorter and easier to read.
+
+Instead of:
+
+```css
+.item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+```
+
+you can write:
+
+```css
+.item {
+    flex: 1 1 0;
+}
+```
+
+This is especially useful when working with multiple flex items.
+
+---
+
+## `flex: 1`
+
+One of the most common Flexbox declarations is:
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+This is a special shorthand form.
+
+It is commonly used when you want multiple flex items to share available space.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    flex: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────┬──────────┬──────────┐
+│  Item 1  │  Item 2  │  Item 3  │
+└──────────┴──────────┴──────────┘
+```
+
+If the items have the same relevant sizing conditions, they can share the available space equally.
+
+---
+
+## `flex: 1 1 0`
+
+You can explicitly write:
+
+```css
+.item {
+    flex: 1 1 0;
+}
+```
+
+This means:
+
+```css
+flex-grow: 1;
+flex-shrink: 1;
+flex-basis: 0;
+```
+
+This pattern is commonly used when creating equally flexible items.
+
+---
+
+## `flex: 0 1 auto`
+
+The initial value of the `flex` shorthand is:
+
+```css
+flex: 0 1 auto;
+```
+
+This corresponds conceptually to:
+
+```css
+flex-grow: 0;
+flex-shrink: 1;
+flex-basis: auto;
+```
+
+Therefore:
+
+```text
+Grow → No
+Shrink → Yes
+Basis → auto
+```
+
+This is the default flex item behavior.
+
+---
+
+## `flex: none`
+
+The keyword:
+
+```css
+flex: none;
+```
+
+is equivalent to:
+
+```css
+flex: 0 0 auto;
+```
+
+Conceptually:
+
+```text
+Do not grow
+Do not shrink
+Use auto basis
+```
+
+This can be useful for an item that should not participate in flexible growth or shrinking.
+
+---
+
+## `flex: auto`
+
+The keyword:
+
+```css
+flex: auto;
+```
+
+is equivalent to:
+
+```css
+flex: 1 1 auto;
+```
+
+Conceptually:
+
+```text
+Grow → Yes
+Shrink → Yes
+Basis → auto
+```
+
+---
+
+## `flex: initial`
+
+The keyword:
+
+```css
+flex: initial;
+```
+
+represents the initial flex behavior:
+
+```css
+flex: 0 1 auto;
+```
+
+Conceptually:
+
+```text
+Grow → No
+Shrink → Yes
+Basis → auto
+```
+
+---
+
+## Comparing Common Shorthand Values
+
+| Declaration | Grow | Shrink | Basis |
+|-------------|------|--------|-------|
+| `flex: initial` | `0` | `1` | `auto` |
+| `flex: auto` | `1` | `1` | `auto` |
+| `flex: none` | `0` | `0` | `auto` |
+| `flex: 1 1 0` | `1` | `1` | `0` |
+
+These values have different layout behaviors.
+
+---
+
+## `flex: 1` vs `flex: 1 1 0`
+
+For learning and practical Flexbox work, it is useful to understand the difference between the shorthand form and the explicit three-value form.
+
+```css
+flex: 1;
+```
+
+is commonly used as a convenient way to make an item flexible.
+
+When you need to communicate the exact intended values, you can write:
+
+```css
+flex: 1 1 0;
+```
+
+The explicit form makes the three components visible:
+
+```text
+grow  shrink  basis
+ 1      1       0
+```
+
+---
+
+## Example: Equal Columns
+
+HTML:
+
+```html
+<div class="container">
+    <div class="item">One</div>
+    <div class="item">Two</div>
+    <div class="item">Three</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.item {
+    flex: 1;
+}
+```
+
+The items can share the available space.
+
+```text
+┌──────────┬──────────┬──────────┐
+│   One    │   Two    │  Three   │
+└──────────┴──────────┴──────────┘
+```
+
+The `gap` remains between the items.
+
+---
+
+## Example: Sidebar and Content
+
+A common layout is:
+
+```css
+.sidebar {
+    flex: 0 0 250px;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+The sidebar uses:
+
+```text
+grow   = 0
+shrink = 0
+basis  = 250px
+```
+
+while the content is flexible.
+
+Conceptually:
+
+```text
+┌──────────────┬─────────────────────────┐
+│   Sidebar    │         Content         │
+│    250px     │        flexible         │
+└──────────────┴─────────────────────────┘
+```
+
+This is a useful real-world Flexbox pattern.
+
+---
+
+## Example: Different Flexible Items
+
+```css
+.one {
+    flex: 1;
+}
+
+.two {
+    flex: 2;
+}
+
+.three {
+    flex: 1;
+}
+```
+
+Conceptually, the flexible growth ratio is:
+
+```text
+1 : 2 : 1
+```
+
+The second item receives a larger share of available positive free space.
+
+---
+
+## Explicit Three-Value Syntax
+
+You can specify all three components:
+
+```css
+.item {
+    flex: 2 1 300px;
+}
+```
+
+This means:
+
+```css
+flex-grow: 2;
+flex-shrink: 1;
+flex-basis: 300px;
+```
+
+The mental model is:
+
+```text
+Starting size
+     ↓
+300px
+
+Extra space?
+     ↓
+Grow using factor 2
+
+Not enough space?
+     ↓
+Shrink using factor 1
+```
+
+---
+
+## Two-Value Syntax
+
+The `flex` shorthand also supports two-value forms.
+
+For example:
+
+```css
+.item {
+    flex: 2 1;
+}
+```
+
+The first value is interpreted as:
+
+```text
+flex-grow
+```
+
+and the second as:
+
+```text
+flex-shrink
+```
+
+with the basis using its appropriate default behavior for the shorthand form.
+
+Another common form is:
+
+```css
+.item {
+    flex: 1 200px;
+}
+```
+
+where the values represent:
+
+```text
+flex-grow
+flex-basis
+```
+
+The exact interpretation depends on the value types.
+
+For clarity, when learning Flexbox it is often useful to use the explicit three-value form:
+
+```css
+flex: 1 1 200px;
+```
+
+---
+
+## One-Value Syntax
+
+A single number can be used:
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+A single basis value can also be used:
+
+```css
+.item {
+    flex: 200px;
+}
+```
+
+The browser interprets these according to the `flex` shorthand syntax.
+
+When you need predictable and explicit behavior, writing all three values can make the intention clearer:
+
+```css
+flex: 1 1 200px;
+```
+
+---
+
+## `flex` and `width`
+
+Consider:
+
+```css
+.item {
+    width: 200px;
+    flex: 1;
+}
+```
+
+The `flex` shorthand changes the flex item's flexible sizing behavior.
+
+Therefore, do not assume that:
+
+```css
+width: 200px;
+```
+
+will always remain the final width when the item is participating in a flexible layout.
+
+The Flexbox sizing algorithm determines the final size.
+
+---
+
+## `flex` and `gap`
+
+The shorthand works normally with container spacing:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.item {
+    flex: 1;
+}
+```
+
+The items share the available space while:
+
+```css
+gap: 20px;
+```
+
+maintains the space between them.
+
+---
+
+## `flex` and `flex-direction`
+
+The `flex` property operates on the item's main-axis sizing.
+
+For:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+For:
+
+```css
+flex-direction: column;
+```
+
+the main axis is vertical.
+
+Therefore, the same:
+
+```css
+flex: 1;
+```
+
+can make an item flexible along different physical directions depending on the container's `flex-direction`.
+
+---
+
+## Common Use Cases
+
+The `flex` shorthand is commonly used for:
+
+- Equal-width columns
+- Flexible content areas
+- Sidebar layouts
+- Responsive cards
+- Navigation layouts
+- Flexible buttons
+- Space distribution between items
+
+---
+
+## Common Mistake
+
+Do not confuse:
+
+```css
+flex: 1;
+```
+
+with:
+
+```css
+width: 1px;
+```
+
+They are completely different.
+
+```text
+flex: 1
+→ Flex shorthand
+
+width: 1px
+→ Explicit width
+```
+
+Similarly, do not assume that the first value of:
+
+```css
+flex: 1 2 200px;
+```
+
+is the basis.
+
+The order is:
+
+```text
+grow → shrink → basis
+```
+
+---
+
+## Quick Reference
+
+### Three Values
+
+```css
+flex: 1 1 200px;
+```
+
+means:
+
+```css
+flex-grow: 1;
+flex-shrink: 1;
+flex-basis: 200px;
+```
+
+### Common Keywords
+
+```css
+flex: initial;
+flex: auto;
+flex: none;
+```
+
+Conceptually:
+
+```text
+initial → 0 1 auto
+auto    → 1 1 auto
+none    → 0 0 auto
+```
+
+### Common Flexible Pattern
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+### Explicit Flexible Pattern
+
+```css
+.item {
+    flex: 1 1 0;
+}
+```
+
+---
+
+## Flexbox Item Properties Recap
+
+At this point, the three main sizing properties have been covered:
+
+```css
+flex-grow
+flex-shrink
+flex-basis
+```
+
+They can be written individually:
+
+```css
+.item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+}
+```
+
+or using the shorthand:
+
+```css
+.item {
+    flex: 1 1 200px;
+}
+```
+
+This is why understanding the individual properties first is important before relying heavily on the shorthand.
+
+---
+
+> 💡 **Pro Tip:** Learn `flex-grow`, `flex-shrink`, and `flex-basis` individually first. Then use `flex` for cleaner CSS once you understand what each value controls.
+
+---
+
+> 💡 **Remember:** The `flex` shorthand combines **grow, shrink, and basis** in that order:
+
+```text
+flex: grow shrink basis;
+```
+
+For example:
+
+```css
+flex: 1 1 200px;
+```
+
+means:
+
+```css
+flex-grow: 1;
+flex-shrink: 1;
+flex-basis: 200px;
+```
