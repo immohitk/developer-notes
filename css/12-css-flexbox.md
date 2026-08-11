@@ -12346,3 +12346,1044 @@ align-items: center;
 ```
 
 It centers the flex items along both axes.
+
+---
+
+# Common Flexbox Layouts
+
+Flexbox is useful for creating many common web layouts without relying on complicated positioning.
+
+The same core properties can be combined in different ways depending on the layout requirement.
+
+Common patterns include:
+
+- Navigation bars
+- Headers
+- Footers
+- Sidebars
+- Card layouts
+- Button groups
+- Centered layouts
+- Split layouts
+- Responsive sections
+
+---
+
+## Navigation Bar
+
+A navigation bar is a common Flexbox use case.
+
+HTML:
+
+```html
+<nav class="navbar">
+    <div class="logo">Logo</div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+```
+
+CSS:
+
+```css
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────────────────────────────┐
+│ Logo          Home About Services Contact  │
+└────────────────────────────────────────────┘
+```
+
+The outer container positions the logo and navigation links.
+
+The nested container arranges the links.
+
+---
+
+## Header Layout
+
+A header can contain multiple groups:
+
+```text
+┌─────────────────────────────────────────────┐
+│ Logo        Navigation          User        │
+└─────────────────────────────────────────────┘
+```
+
+Example:
+
+```css
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+```
+
+If the navigation itself contains multiple items:
+
+```css
+.navigation {
+    display: flex;
+    gap: 24px;
+}
+```
+
+This creates a simple nested Flexbox layout.
+
+---
+
+## Footer Layout
+
+Flexbox can also arrange footer sections.
+
+HTML:
+
+```html
+<footer class="footer">
+    <div>Company</div>
+    <div>Resources</div>
+    <div>Social</div>
+</footer>
+```
+
+CSS:
+
+```css
+.footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────┬────────────┬────────────┐
+│  Company   │ Resources  │   Social   │
+└────────────┴────────────┴────────────┘
+```
+
+---
+
+## Sidebar Layout
+
+A common page layout consists of a sidebar and a content area.
+
+```text
+┌──────────────┬────────────────────────────┐
+│   Sidebar    │          Content           │
+│              │                            │
+│              │                            │
+└──────────────┴────────────────────────────┘
+```
+
+Example:
+
+```css
+.page {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+The sidebar starts at `240px` while the content uses the remaining available space.
+
+---
+
+## Sidebar With a Non-Shrinking Width
+
+A sidebar often should not become smaller than intended.
+
+```css
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+}
+```
+
+This prevents Flexbox from shrinking the sidebar through negative free-space distribution.
+
+The content can remain flexible:
+
+```css
+.content {
+    flex: 1;
+}
+```
+
+---
+
+## Two-Column Layout
+
+A simple two-column layout can be created with:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────┬────────────────────┐
+│      Column 1      │      Column 2      │
+└────────────────────┴────────────────────┘
+```
+
+Both columns can share the available space.
+
+---
+
+## Three-Column Layout
+
+The same pattern can be extended:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+}
+```
+
+HTML:
+
+```html
+<div class="container">
+    <div class="column">One</div>
+    <div class="column">Two</div>
+    <div class="column">Three</div>
+</div>
+```
+
+Conceptually:
+
+```text
+┌────────────┬────────────┬────────────┐
+│    One     │    Two     │   Three    │
+└────────────┴────────────┴────────────┘
+```
+
+Because the items have the same flexible sizing, they can share the available space.
+
+---
+
+## Unequal Columns
+
+Not every layout needs equal columns.
+
+For example:
+
+```css
+.main {
+    flex: 2;
+}
+
+.side {
+    flex: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────────┬──────────────┐
+│          Main          │     Side     │
+│                        │              │
+└────────────────────────┴──────────────┘
+```
+
+The main section has a larger growth factor than the side section.
+
+---
+
+## Card Layout
+
+Flexbox can arrange cards in a row.
+
+```html
+<div class="cards">
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+</div>
+```
+
+CSS:
+
+```css
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────┬──────────┬──────────┐
+│  Card 1  │  Card 2  │  Card 3  │
+└──────────┴──────────┴──────────┘
+```
+
+---
+
+## Responsive Card Layout
+
+Cards can wrap when the container becomes too narrow.
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 250px;
+}
+```
+
+The basis provides an initial size:
+
+```css
+flex-basis: 250px;
+```
+
+while:
+
+```css
+flex-wrap: wrap;
+```
+
+allows items to move to another line when necessary.
+
+Conceptually:
+
+```text
+Wide screen:
+
+┌────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │
+└────────┴────────┴────────┘
+
+
+Narrower screen:
+
+┌────────┬────────┐
+│ Card 1 │ Card 2 │
+├────────┼────────┤
+│ Card 3 │        │
+└────────┴────────┘
+```
+
+The exact arrangement depends on the available space and item sizing.
+
+---
+
+## Button Group
+
+Flexbox is useful for arranging buttons.
+
+```css
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────┐  ┌──────────┐  ┌──────────┐
+│  Cancel  │  │   Save   │  │  Delete  │
+└──────────┘  └──────────┘  └──────────┘
+```
+
+You can also center the group:
+
+```css
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+```
+
+---
+
+## Vertically Stacked Content
+
+Flexbox can arrange content vertically.
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+```
+
+Conceptually:
+
+```text
+Item 1
+  ↓
+Item 2
+  ↓
+Item 3
+```
+
+This is useful for:
+
+- Forms
+- Menus
+- Card content
+- Sidebars
+- Sections
+
+---
+
+## Card With Content and Button
+
+A card can use a column-based Flexbox layout:
+
+```css
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+```
+
+For example:
+
+```text
+┌────────────────────┐
+│ Title              │
+│                    │
+│ Description        │
+│                    │
+│ Button             │
+└────────────────────┘
+```
+
+Each direct child is arranged along the column's main axis.
+
+---
+
+## Card With Button at the Bottom
+
+Flexbox can also help keep a button at the bottom of a card.
+
+```css
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    margin-top: auto;
+}
+```
+
+The auto margin consumes available free space.
+
+Conceptually:
+
+```text
+┌────────────────────┐
+│ Title              │
+│                    │
+│ Description        │
+│                    │
+│                    │
+│       Button       │
+└────────────────────┘
+```
+
+This is useful when cards have different amounts of content but need their actions aligned toward the bottom.
+
+---
+
+## Centered Content Section
+
+A section can center its content in both directions:
+
+```css
+.section {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│                              │
+│          Content             │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+This is useful for:
+
+- Hero sections
+- Empty states
+- Login screens
+- Welcome messages
+- Loading screens
+
+---
+
+## Split Layout
+
+A common layout divides a section into two parts:
+
+```text
+┌───────────────────┬───────────────────┐
+│                   │                   │
+│      Image        │      Content      │
+│                   │                   │
+└───────────────────┴───────────────────┘
+```
+
+Example:
+
+```css
+.section {
+    display: flex;
+    gap: 40px;
+}
+
+.image {
+    flex: 1;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+Both sections can share the available space.
+
+---
+
+## Image and Content With Different Sizes
+
+You can give the content a larger share:
+
+```css
+.image {
+    flex: 1;
+}
+
+.content {
+    flex: 2;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────┬──────────────────────────┐
+│    Image     │         Content          │
+│              │                          │
+└──────────────┴──────────────────────────┘
+```
+
+The content has a larger growth factor.
+
+---
+
+## Navigation With a Flexible Middle Section
+
+A header can contain:
+
+```text
+Logo | Navigation | Actions
+```
+
+Example:
+
+```css
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navigation {
+    flex: 1;
+}
+```
+
+The navigation can use the available space between the other sections.
+
+A nested Flexbox can then arrange the navigation items:
+
+```css
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+```
+
+---
+
+## Full Page Layout
+
+A page can use a column-based Flexbox layout:
+
+```css
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+```
+
+The structure can be:
+
+```text
+┌────────────────────────────┐
+│           Header           │
+├────────────────────────────┤
+│                            │
+│          Content           │
+│                            │
+├────────────────────────────┤
+│           Footer           │
+└────────────────────────────┘
+```
+
+If the content should consume the remaining space:
+
+```css
+.content {
+    flex: 1;
+}
+```
+
+This allows the content section to grow and push the footer toward the bottom of the page.
+
+---
+
+## Header, Content, and Footer
+
+A practical example:
+
+```css
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────────┐
+│          Header          │
+├──────────────────────────┤
+│                          │
+│                          │
+│         Content          │
+│                          │
+│                          │
+├──────────────────────────┤
+│          Footer          │
+└──────────────────────────┘
+```
+
+The content area uses the flexible remaining space.
+
+---
+
+## Wrapping Navigation Items
+
+A navigation group can wrap:
+
+```css
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+```
+
+This allows items to move to additional flex lines when the available width becomes insufficient.
+
+Conceptually:
+
+```text
+Wide:
+
+Home  About  Services  Contact
+
+
+Narrow:
+
+Home  About
+Services  Contact
+```
+
+The exact wrapping depends on the available space and item sizes.
+
+---
+
+## Form Layout
+
+Flexbox can be used to arrange form controls vertically.
+
+```css
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+```
+
+Conceptually:
+
+```text
+Name
+  ↓
+Email
+  ↓
+Password
+  ↓
+Submit
+```
+
+This provides a simple and predictable structure for form controls.
+
+---
+
+## Form Row
+
+Multiple controls can be placed in a row:
+
+```css
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-field {
+    flex: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────┬──────────────────┐
+│      First       │       Last       │
+└──────────────────┴──────────────────┘
+```
+
+The fields can share the available space.
+
+---
+
+## Common Layout Pattern
+
+Many real-world layouts can be understood using a combination of:
+
+```css
+display: flex;
+flex-direction;
+justify-content;
+align-items;
+gap;
+flex;
+flex-wrap;
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+}
+```
+
+The exact combination depends on the design requirement.
+
+---
+
+## Choosing the Right Flexbox Properties
+
+A useful way to approach a layout is:
+
+### Step 1 — Create the Flex Container
+
+```css
+.container {
+    display: flex;
+}
+```
+
+### Step 2 — Choose the Direction
+
+```css
+flex-direction: row;
+```
+
+or:
+
+```css
+flex-direction: column;
+```
+
+### Step 3 — Control Main-Axis Distribution
+
+```css
+justify-content: center;
+```
+
+### Step 4 — Control Cross-Axis Alignment
+
+```css
+align-items: center;
+```
+
+### Step 5 — Add Spacing
+
+```css
+gap: 20px;
+```
+
+### Step 6 — Control Item Sizing
+
+```css
+flex: 1;
+```
+
+### Step 7 — Handle Wrapping When Needed
+
+```css
+flex-wrap: wrap;
+```
+
+This step-by-step approach makes complex layouts easier to build.
+
+---
+
+## Common Mistakes
+
+### Using Too Much Positioning
+
+Avoid using:
+
+```css
+position: absolute;
+left: ...;
+top: ...;
+```
+
+for layouts that can naturally be handled by Flexbox.
+
+Flexbox is designed for distributing and aligning elements within a layout.
+
+---
+
+### Forgetting the Main Axis
+
+Before using:
+
+```css
+justify-content
+```
+
+identify the main axis.
+
+The main axis depends on:
+
+```css
+flex-direction;
+```
+
+---
+
+### Making Every Element a Flex Container
+
+Not every element needs:
+
+```css
+display: flex;
+```
+
+Use Flexbox where it provides a layout benefit.
+
+Nested Flexbox is useful, but unnecessary nesting can make a stylesheet harder to understand.
+
+---
+
+### Using Flexbox for Every Layout
+
+Flexbox is primarily designed for **one-dimensional layouts**.
+
+If the layout needs simultaneous control of rows and columns, CSS Grid may be a better choice.
+
+---
+
+## Quick Reference
+
+### Navigation
+
+```css
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+```
+
+### Equal Columns
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+}
+```
+
+### Sidebar + Content
+
+```css
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+### Centering
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+### Vertical Stack
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+```
+
+### Responsive Cards
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 250px;
+}
+```
+
+### Full Page Layout
+
+```css
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+---
+
+> 💡 **Pro Tip:** When creating a Flexbox layout, first identify the layout direction, then decide how space should be distributed, how items should align, and finally how individual items should size themselves.
+
+---
+
+> 💡 **Remember:** Most practical Flexbox layouts are combinations of a few core properties: `flex-direction`, `justify-content`, `align-items`, `gap`, `flex`, and `flex-wrap`.
