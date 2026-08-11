@@ -2163,3 +2163,457 @@ Therefore, a common combination is:
 ---
 
 > 💡 **Remember:** `flex-direction` controls the direction of the flex items and determines the **main axis**. Its four values are `row`, `row-reverse`, `column`, and `column-reverse`.
+
+---
+
+# Main Axis and Cross Axis
+
+Flexbox layouts are based on two axes:
+
+```text
+Main Axis
+Cross Axis
+```
+
+Understanding these axes is essential because Flexbox alignment properties work relative to them.
+
+The direction of these axes depends on the value of:
+
+```css
+flex-direction
+```
+
+---
+
+## Main Axis
+
+The **main axis** is the primary direction in which flex items are laid out.
+
+For example, with:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+the main axis is horizontal.
+
+```text
+Item 1 → Item 2 → Item 3
+────────────────────────→
+        Main Axis
+```
+
+With:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+the main axis becomes vertical.
+
+```text
+        Main Axis
+             ↓
+             ↓
+             ↓
+```
+
+---
+
+## Cross Axis
+
+The **cross axis** is perpendicular to the main axis.
+
+When:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal and the cross axis is vertical.
+
+```text
+             Cross Axis
+                  ↓
+                  ↓
+                  ↓
+
+Item 1    Item 2    Item 3
+────────────────────────────→
+          Main Axis
+```
+
+When:
+
+```css
+flex-direction: column;
+```
+
+the main axis is vertical and the cross axis is horizontal.
+
+```text
+        Cross Axis
+    ←────────────────→
+
+         Item 1
+            ↓
+         Item 2
+            ↓
+         Item 3
+
+        Main Axis
+```
+
+---
+
+## Axes Depend on `flex-direction`
+
+The relationship between the axes changes depending on the flex direction.
+
+### `row`
+
+```css
+flex-direction: row;
+```
+
+```text
+Main Axis   → Horizontal
+Cross Axis  ↓ Vertical
+```
+
+### `row-reverse`
+
+```css
+flex-direction: row-reverse;
+```
+
+```text
+Main Axis   ← Horizontal
+Cross Axis  ↓ Vertical
+```
+
+### `column`
+
+```css
+flex-direction: column;
+```
+
+```text
+Main Axis   ↓ Vertical
+Cross Axis  → Horizontal
+```
+
+### `column-reverse`
+
+```css
+flex-direction: column-reverse;
+```
+
+```text
+Main Axis   ↑ Vertical
+Cross Axis  → Horizontal
+```
+
+---
+
+## Visual Comparison
+
+```text
+flex-direction: row
+
+Cross Axis
+    ↓
+    ↓
+    ↓
+┌──────────────────────────────┐
+│  1    2    3                 │
+└──────────────────────────────┘
+──────────────────────────────→
+          Main Axis
+```
+
+```text
+flex-direction: column
+
+       Cross Axis
+←────────────────────→
+
+┌─────────┐
+│    1    │
+└─────────┘
+     ↓
+┌─────────┐
+│    2    │
+└─────────┘
+     ↓
+┌─────────┐
+│    3    │
+└─────────┘
+
+     Main Axis
+```
+
+---
+
+## Why Are the Axes Important?
+
+Flexbox properties such as:
+
+```css
+justify-content
+align-items
+align-content
+```
+
+use the flex container's axes to determine how items are positioned.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+`justify-content` aligns items along the **main axis**.
+
+Therefore, changing:
+
+```css
+flex-direction: row;
+```
+
+to:
+
+```css
+flex-direction: column;
+```
+
+changes the direction in which `justify-content` operates.
+
+---
+
+## `justify-content` and the Main Axis
+
+With:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+```
+
+the items are centered horizontally.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│        1   2   3             │
+│                              │
+└──────────────────────────────┘
+```
+
+The main axis is horizontal, so `justify-content` works horizontally.
+
+Now change the direction:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+```
+
+The main axis becomes vertical.
+
+Therefore, `justify-content` now centers the items vertically.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│            1                 │
+│            2                 │
+│            3                 │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+## `align-items` and the Cross Axis
+
+`align-items` operates along the **cross axis**.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+```
+
+Since the cross axis is vertical, the items are centered vertically.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│      1    2    3             │
+│                              │
+└──────────────────────────────┘
+```
+
+If the direction changes:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+```
+
+the cross axis becomes horizontal.
+
+The items are therefore centered horizontally.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│            1                 │
+│            2                 │
+│            3                 │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+## The Most Important Rule
+
+A useful way to remember Flexbox axes is:
+
+```text
+justify-content
+        ↓
+Main Axis
+
+align-items
+        ↓
+Cross Axis
+```
+
+And:
+
+```text
+flex-direction
+        ↓
+Determines the Main Axis
+        ↓
+Cross Axis is perpendicular to it
+```
+
+---
+
+## Complete Example
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+Here:
+
+```text
+display: flex
+    ↓
+Creates Flexbox
+
+flex-direction: row
+    ↓
+Main Axis = Horizontal
+Cross Axis = Vertical
+
+justify-content: center
+    ↓
+Centers items on Main Axis
+
+align-items: center
+    ↓
+Centers items on Cross Axis
+```
+
+Result:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│          1   2   3           │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+## Common Mistake
+
+A common mistake is memorizing:
+
+```text
+justify-content = horizontal
+align-items = vertical
+```
+
+This is **not always true**.
+
+These properties are based on the **main and cross axes**, not permanently on horizontal and vertical directions.
+
+For example:
+
+```css
+flex-direction: column;
+```
+
+changes the main axis to vertical.
+
+Therefore:
+
+```css
+justify-content
+```
+
+also operates vertically.
+
+---
+
+## Quick Reference
+
+| `flex-direction` | Main Axis | Cross Axis |
+|-------------------|-----------|------------|
+| `row` | Horizontal | Vertical |
+| `row-reverse` | Horizontal | Vertical |
+| `column` | Vertical | Horizontal |
+| `column-reverse` | Vertical | Horizontal |
+
+---
+
+> 💡 **Pro Tip:** Never memorize `justify-content` as "horizontal" and `align-items` as "vertical." Instead, remember **`justify-content` follows the main axis** and **`align-items` follows the cross axis**.
+
+---
+
+> 💡 **Remember:** `flex-direction` determines the **main axis**, while the **cross axis** is perpendicular to it. Flexbox alignment properties work according to these axes.
