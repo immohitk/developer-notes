@@ -16475,3 +16475,699 @@ Before considering a Flexbox layout complete, ask:
 ---
 
 > 💡 **Remember:** Good Flexbox code is not about using many Flexbox properties. It is about choosing the right properties for the layout problem and keeping the resulting CSS simple and predictable.
+
+---
+
+# Common Mistakes
+
+Flexbox is powerful, but some common mistakes can lead to unexpected layout behavior.
+
+Understanding these mistakes makes Flexbox easier to debug and use correctly.
+
+---
+
+## Forgetting `display: flex`
+
+Flexbox properties only work when the parent is actually a flex container.
+
+Incorrect:
+
+```css
+.container {
+    justify-content: center;
+}
+```
+
+Correct:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+Without:
+
+```css
+display: flex;
+```
+
+the element does not establish a flex formatting context.
+
+---
+
+## Confusing the Main Axis and Cross Axis
+
+A common mistake is assuming:
+
+```text
+justify-content → horizontal
+align-items     → vertical
+```
+
+This is not always true.
+
+The direction depends on:
+
+```css
+flex-direction;
+```
+
+With:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+With:
+
+```css
+flex-direction: column;
+```
+
+the main axis is vertical.
+
+Remember:
+
+```text
+justify-content
+→ Main Axis
+
+align-items
+→ Cross Axis
+```
+
+---
+
+## Using `align-content` Instead of `align-items`
+
+These properties have different purposes.
+
+`align-items` controls the alignment of flex items along the cross axis.
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+`align-content` controls the distribution of multiple flex lines.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+```
+
+If there is only one flex line, `align-content` generally does not provide the effect people expect.
+
+---
+
+## Forgetting That `flex-wrap` Is Needed
+
+Flex items do not automatically wrap onto multiple lines.
+
+The default is:
+
+```css
+flex-wrap: nowrap;
+```
+
+If wrapping is required:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+Without wrapping, items may shrink or overflow depending on the layout.
+
+---
+
+## Using `width` When Flexible Sizing Is Needed
+
+A rigid width can make a layout less flexible.
+
+For example:
+
+```css
+.card {
+    width: 300px;
+}
+```
+
+may not behave as desired in a flexible responsive layout.
+
+Depending on the requirement, a flexible basis can be more appropriate:
+
+```css
+.card {
+    flex: 1 1 250px;
+}
+```
+
+The correct choice depends on the design.
+
+---
+
+## Using `flex: 1` Without Understanding It
+
+This pattern is common:
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+But it should not be treated as a magic "make equal width" rule without understanding what it does.
+
+The `flex` shorthand controls:
+
+```text
+flex-grow
+flex-shrink
+flex-basis
+```
+
+Understanding these properties helps explain the resulting sizes.
+
+---
+
+## Setting `flex-shrink: 0` Everywhere
+
+Preventing an item from shrinking can be useful:
+
+```css
+.sidebar {
+    flex-shrink: 0;
+}
+```
+
+But using it unnecessarily can cause overflow.
+
+For example, a row of fixed-size items may become wider than its container.
+
+Use:
+
+```css
+flex-shrink: 0;
+```
+
+only when the item genuinely should not shrink.
+
+---
+
+## Using Too Many Fixed Sizes
+
+A layout such as:
+
+```css
+.item {
+    width: 300px;
+    height: 200px;
+}
+```
+
+can become difficult to adapt to different container sizes.
+
+Flexbox is intended to help distribute available space.
+
+Consider whether flexible sizing is more appropriate.
+
+---
+
+## Forgetting `min-width: 0`
+
+A flex item containing long content can sometimes refuse to shrink as expected.
+
+For example:
+
+```css
+.content {
+    min-width: 0;
+}
+```
+
+can allow the flex item to shrink within its container.
+
+This is particularly useful when the item contains:
+
+- Long text
+- Long URLs
+- Code
+- Wide content
+
+---
+
+## Expecting `margin: auto` to Behave Like Normal Margins
+
+In a flex container, an auto margin can absorb available free space.
+
+For example:
+
+```css
+.button {
+    margin-left: auto;
+}
+```
+
+can push the button toward the opposite side of a row.
+
+This is useful, but it should be understood as a Flexbox free-space mechanism rather than ordinary fixed spacing.
+
+---
+
+## Using Too Many Alignment Properties
+
+Adding every available alignment property does not automatically improve a layout.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+    gap: 20px;
+}
+```
+
+Some of these properties may not be relevant to the actual layout.
+
+Start with the minimum required properties.
+
+---
+
+## Using Absolute Positioning Instead of Flexbox
+
+A common mistake is manually positioning elements that could naturally be arranged with Flexbox.
+
+For example:
+
+```css
+.item {
+    position: absolute;
+    left: 100px;
+}
+```
+
+If the elements are part of a normal layout, consider:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+Absolute positioning still has valid use cases, but it should not replace Flexbox unnecessarily.
+
+---
+
+## Changing `flex-direction` Without Reconsidering Alignment
+
+Changing:
+
+```css
+flex-direction: row;
+```
+
+to:
+
+```css
+flex-direction: column;
+```
+
+changes the main axis.
+
+Therefore, existing alignment rules may produce a different visual result.
+
+For example:
+
+```css
+justify-content: center;
+```
+
+will operate along the new main axis.
+
+Always reconsider the axes when changing the direction.
+
+---
+
+## Confusing `align-items` and `align-self`
+
+`align-items` is a container property:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+`align-self` is an item property:
+
+```css
+.item {
+    align-self: flex-end;
+}
+```
+
+Use `align-self` when one particular item needs different cross-axis alignment.
+
+---
+
+## Forgetting That Flex Properties Apply to Direct Children
+
+Flex container properties arrange the container's direct children.
+
+For example:
+
+```html
+<div class="container">
+    <div class="item">
+        <span>Text</span>
+    </div>
+</div>
+```
+
+The `.item` is the flex item.
+
+The `<span>` is not a flex item of `.container`.
+
+If the span needs Flexbox behavior, its own parent must become a flex container.
+
+---
+
+## Making Every Nested Element a Flex Container
+
+Nested Flexbox is useful, but unnecessary nesting can make CSS harder to understand.
+
+Avoid:
+
+```css
+div {
+    display: flex;
+}
+```
+
+just because Flexbox is available.
+
+Instead, apply Flexbox to elements that actually need to control the layout of their children.
+
+---
+
+## Ignoring Content Size
+
+A Flexbox layout may appear correct with short text but fail with longer content.
+
+For example:
+
+```text
+Short title
+```
+
+may fit perfectly, while:
+
+```text
+A very long title that requires significantly more space
+```
+
+may cause unexpected shrinking or overflow.
+
+Test realistic content.
+
+---
+
+## Ignoring Responsive Behavior
+
+A layout that works on a wide screen may not work on a narrow screen.
+
+For example:
+
+```text
+Desktop:
+
+Image | Content
+```
+
+may need to become:
+
+```text
+Mobile:
+
+Image
+  ↓
+Content
+```
+
+Use wrapping or responsive rules when necessary.
+
+---
+
+## Overusing `order`
+
+The `order` property changes visual ordering:
+
+```css
+.item {
+    order: -1;
+}
+```
+
+However, it does not replace the logical order of the HTML.
+
+Avoid using `order` excessively to compensate for poorly structured markup.
+
+Keep the document structure logical whenever possible.
+
+---
+
+## Depending on Visual Order for Meaning
+
+If the content has a meaningful sequence, the HTML should generally reflect that sequence.
+
+Flexbox is primarily a layout and presentation tool.
+
+Do not rely on CSS ordering to completely redefine the logical structure of content.
+
+---
+
+## Using Flexbox for a Two-Dimensional Problem
+
+Flexbox can create wrapped layouts:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+But if the design requires precise relationships between rows and columns, CSS Grid may be a better choice.
+
+For example:
+
+```text
+┌─────┬─────┬─────┐
+│  A  │  B  │  C  │
+├─────┼─────┼─────┤
+│  D  │  E  │  F  │
+└─────┴─────┴─────┘
+```
+
+If both dimensions are important, consider Grid.
+
+---
+
+## Assuming Flexbox Automatically Makes Everything Responsive
+
+Flexbox provides flexible layout behavior, but it does not automatically solve every responsive design problem.
+
+You may still need:
+
+```css
+flex-wrap
+```
+
+or:
+
+```css
+@media
+```
+
+or:
+
+```css
+min-width
+max-width
+```
+
+depending on the layout.
+
+---
+
+## Forgetting `gap` Is Not the Same as Margins
+
+`gap` creates spacing between flex items.
+
+For example:
+
+```css
+.container {
+    gap: 20px;
+}
+```
+
+It does not create the same kind of outer spacing around the container.
+
+If the container itself needs space from surrounding elements, use appropriate container margins or padding.
+
+---
+
+## Relying on `space-between` for All Spacing
+
+This:
+
+```css
+justify-content: space-between;
+```
+
+distributes available free space between items.
+
+It is not always a replacement for:
+
+```css
+gap
+```
+
+If you simply need consistent spacing between items:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+may communicate the intent more clearly.
+
+---
+
+## Forgetting to Inspect the Parent
+
+When a Flexbox item behaves unexpectedly, developers sometimes modify the item immediately.
+
+First inspect the parent.
+
+Ask:
+
+```text
+Is the parent a flex container?
+What is its flex-direction?
+Is wrapping enabled?
+What is its available size?
+How are items being aligned?
+```
+
+Many Flexbox problems originate from the container rather than the item.
+
+---
+
+## Debugging Only the Child
+
+If an item appears in the wrong position, check:
+
+```text
+Parent
+ ↓
+display
+ ↓
+flex-direction
+ ↓
+justify-content
+ ↓
+align-items
+ ↓
+gap
+ ↓
+child sizing
+```
+
+Do not immediately add random margins or positioning rules to the child.
+
+---
+
+## Adding Random Margins to Fix Alignment
+
+A common temporary fix is:
+
+```css
+.item {
+    margin-left: 13px;
+    margin-top: 7px;
+}
+```
+
+This may visually fix one situation but create problems when the container size changes.
+
+Prefer solving the actual layout problem with Flexbox properties when appropriate.
+
+---
+
+## Ignoring Overflow
+
+If items cannot shrink or wrap correctly, they may overflow the container.
+
+Check:
+
+```css
+flex-wrap
+flex-shrink
+min-width
+max-width
+```
+
+and inspect the content that is causing the overflow.
+
+---
+
+## Common Debugging Checklist
+
+When a Flexbox layout does not behave as expected, check:
+
+```text
+☑ Is display: flex applied?
+☑ Is the correct parent selected?
+☑ What is flex-direction?
+☑ What is the main axis?
+☑ What is the cross axis?
+☑ Is flex-wrap enabled if needed?
+☑ Is justify-content being applied on the expected axis?
+☑ Is align-items being applied on the expected axis?
+☑ Is align-content actually relevant?
+☑ Is gap being used correctly?
+☑ Are flex items growing or shrinking?
+☑ Is flex-basis affecting the initial size?
+☑ Is min-width causing overflow?
+☑ Is the content itself too large?
+☑ Would Grid be more appropriate?
+```
+
+---
+
+> 💡 **Pro Tip:** When Flexbox behaves unexpectedly, don't immediately add margins, offsets, or absolute positioning. First check the container, axes, alignment, wrapping, and item sizing.
+
+---
+
+> 💡 **Remember:** Most Flexbox problems become easier to diagnose when you work from the **parent container → axes → alignment → spacing → item sizing → content**.
