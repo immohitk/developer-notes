@@ -5153,3 +5153,530 @@ flex-wrap: wrap;
 ---
 
 > 💡 **Remember:** `align-items` aligns **items within a flex line**, while `align-content` controls the distribution of **multiple flex lines** along the cross axis.
+
+---
+
+# Gap
+
+The `gap` property controls the **space between flex items**.
+
+It is especially useful when multiple flex items need consistent spacing.
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+This creates `20px` of space between the flex items.
+
+```text
+┌──────────────────────────────────────┐
+│                                      │
+│  ┌─────┐    ┌─────┐    ┌─────┐      │
+│  │  1  │    │  2  │    │  3  │      │
+│  └─────┘    └─────┘    └─────┘      │
+│      ↑          ↑          ↑         │
+│    20px       20px       20px        │
+└──────────────────────────────────────┘
+```
+
+---
+
+## Syntax
+
+```css
+.container {
+    display: flex;
+    gap: value;
+}
+```
+
+Example:
+
+```css
+.container {
+    display: flex;
+    gap: 16px;
+}
+```
+
+The `gap` property can accept lengths such as:
+
+```css
+gap: 10px;
+gap: 1rem;
+gap: 5%;
+```
+
+---
+
+## Basic Example
+
+```html
+<div class="container">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+The items are separated by consistent spacing:
+
+```text
+One    20px    Two    20px    Three
+```
+
+---
+
+## Why Use `gap`?
+
+Before `gap`, developers often used margins to create spacing between flex items.
+
+For example:
+
+```css
+.item {
+    margin-right: 20px;
+}
+```
+
+This can create unwanted spacing at the end of the row.
+
+```text
+1    2    3    20px
+```
+
+With `gap`:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+the spacing is applied **between the items**.
+
+```text
+1    2    3
+```
+
+There is no extra gap added after the last item just because it is the last item.
+
+---
+
+## `gap` vs Margin
+
+Consider:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+The container controls the spacing between its flex items.
+
+With margins:
+
+```css
+.item {
+    margin-right: 20px;
+}
+```
+
+each item is responsible for creating its own spacing.
+
+A simple comparison:
+
+| `gap` | Margin |
+|-------|--------|
+| Controlled by container | Controlled by items |
+| Designed for spacing between layout items | General-purpose spacing |
+| Avoids special handling for the last item | Can require last-item adjustments |
+| Works naturally with Flexbox | Works in many layout contexts |
+
+---
+
+## Gap With `flex-direction: row`
+
+For:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+```
+
+the gap creates spacing between items horizontally.
+
+```text
+1    20px    2    20px    3
+```
+
+---
+
+## Gap With `flex-direction: column`
+
+For:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+```
+
+the gap creates spacing between items vertically.
+
+```text
+1
+↓
+20px
+↓
+2
+↓
+20px
+↓
+3
+```
+
+Therefore, `gap` follows the layout direction.
+
+---
+
+## Gap With Wrapping
+
+`gap` also works when flex items wrap onto multiple lines.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+Example:
+
+```text
+┌────────────────────────────────┐
+│  1      2      3               │
+│                                │
+│  4      5      6               │
+└────────────────────────────────┘
+```
+
+The spacing is applied between items and between flex lines.
+
+---
+
+## Gap With Different Item Sizes
+
+Flex items can have different dimensions.
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+The same gap is maintained between neighboring flex items even when their sizes differ.
+
+```text
+┌──────┐    ┌──────────┐    ┌─────┐
+│  1   │    │    2     │    │  3  │
+└──────┘    └──────────┘    └─────┘
+     ↑            ↑
+   20px         20px
+```
+
+---
+
+## Gap and Free Space
+
+`gap` reserves space **between flex items**.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+```
+
+Here both properties can influence the spacing:
+
+```text
+gap
+→ Minimum specified spacing between items
+
+justify-content
+→ Distribution of remaining free space
+```
+
+The final spacing depends on the available space and the other Flexbox properties.
+
+---
+
+## Gap With `justify-content`
+
+Consider:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+```
+
+The items are grouped in the center while maintaining `20px` between neighboring items.
+
+```text
+┌──────────────────────────────────────┐
+│                                      │
+│        1    20px    2    20px    3  │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+This combination is very common.
+
+---
+
+## Gap With `align-items`
+
+`gap` can also be used alongside:
+
+```css
+align-items
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+```
+
+Here:
+
+```text
+align-items
+→ Controls cross-axis alignment
+
+gap
+→ Controls spacing between items
+```
+
+Each property has a separate responsibility.
+
+---
+
+## Gap With Wrapped Rows
+
+When a flex container wraps:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+the same gap value is used for both:
+
+```text
+Horizontal spacing
++
+Vertical spacing
+```
+
+For example:
+
+```text
+┌────────────────────────────────┐
+│  1      2      3               │
+│                                │
+│       20px                     │
+│                                │
+│  4      5      6               │
+└────────────────────────────────┘
+```
+
+For more precise control over row and column spacing, CSS also provides:
+
+```css
+row-gap
+column-gap
+```
+
+These will be covered separately.
+
+---
+
+## Zero Gap
+
+You can explicitly remove the spacing:
+
+```css
+.container {
+    display: flex;
+    gap: 0;
+}
+```
+
+The items will have no gap created by the container.
+
+```text
+1  2  3
+```
+
+---
+
+## Responsive Values
+
+The gap can use relative units.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    gap: 1rem;
+}
+```
+
+or:
+
+```css
+.container {
+    display: flex;
+    gap: 2vw;
+}
+```
+
+The appropriate unit depends on the design requirements.
+
+---
+
+## Common Use Cases
+
+`gap` is useful for:
+
+- Navigation links
+- Button groups
+- Card layouts
+- Form controls
+- Tags
+- Lists
+- Toolbars
+- Responsive components
+
+### Navigation
+
+```css
+.nav {
+    display: flex;
+    gap: 24px;
+}
+```
+
+### Buttons
+
+```css
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+```
+
+### Cards
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+---
+
+## Important Difference
+
+`gap` does not control alignment.
+
+For example:
+
+```css
+gap: 20px;
+```
+
+does not center items.
+
+It only controls the spacing between them.
+
+For alignment, use properties such as:
+
+```css
+justify-content
+align-items
+```
+
+Therefore:
+
+```text
+gap
+→ Spacing
+
+justify-content
+→ Main-axis distribution
+
+align-items
+→ Cross-axis alignment
+```
+
+---
+
+## `gap` Does Not Replace All Margins
+
+`gap` is useful for spacing between layout items, but margins still have important uses.
+
+For example, margin can be useful when an element needs spacing from:
+
+- Its parent
+- Other unrelated elements
+- A specific side
+- The surrounding layout
+
+Use `gap` when the spacing is fundamentally part of the relationship between items in the flex container.
+
+---
+
+> 💡 **Pro Tip:** When you need consistent spacing between Flexbox items, prefer `gap` instead of adding margins to every child. It keeps the spacing responsibility in the container and usually makes the CSS easier to maintain.
+
+---
+
+> 💡 **Remember:** `gap` controls the spacing between flex items. With wrapped layouts, it can also create spacing between flex lines. For separate control over horizontal and vertical gaps, use `column-gap` and `row-gap`.
