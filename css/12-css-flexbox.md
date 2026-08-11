@@ -3037,3 +3037,415 @@ Cross-axis direction reversed
 ---
 
 > 💡 **Remember:** `flex-wrap` controls whether flex items stay on one line or are allowed to form multiple flex lines. Its three values are `nowrap`, `wrap`, and `wrap-reverse`.
+
+---
+
+# Flex Flow
+
+The `flex-flow` property is a **shorthand property** that combines:
+
+```css
+flex-direction
+flex-wrap
+```
+
+Instead of writing both properties separately:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+```
+
+you can write:
+
+```css
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+```
+
+Both produce the same Flexbox configuration.
+
+---
+
+## Syntax
+
+```css
+.container {
+    display: flex;
+    flex-flow: <flex-direction> <flex-wrap>;
+}
+```
+
+The two values are:
+
+```text
+flex-direction
++
+flex-wrap
+```
+
+For example:
+
+```css
+flex-flow: row wrap;
+```
+
+means:
+
+```css
+flex-direction: row;
+flex-wrap: wrap;
+```
+
+---
+
+## Basic Example
+
+```css
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+```
+
+This means:
+
+```text
+Direction → row
+Wrapping  → wrap
+```
+
+The items are arranged horizontally and can move onto additional lines when necessary.
+
+```text
+┌───────────────────────────────┐
+│  1     2     3                │
+│                               │
+│  4     5     6                │
+└───────────────────────────────┘
+```
+
+---
+
+## `flex-flow: row nowrap`
+
+```css
+.container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+```
+
+Equivalent to:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+```
+
+Items are arranged in a row and remain on one flex line.
+
+---
+
+## `flex-flow: row wrap`
+
+```css
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+```
+
+Equivalent to:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+```
+
+Items are arranged in a row and can wrap onto additional lines.
+
+---
+
+## `flex-flow: row-reverse wrap`
+
+```css
+.container {
+    display: flex;
+    flex-flow: row-reverse wrap;
+}
+```
+
+Equivalent to:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+```
+
+The items are arranged in the reverse row direction and can wrap.
+
+---
+
+## `flex-flow: column wrap`
+
+```css
+.container {
+    display: flex;
+    flex-flow: column wrap;
+}
+```
+
+Equivalent to:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+```
+
+The main direction is vertical, and items can form additional flex lines.
+
+```text
+1    4
+2    5
+3    6
+```
+
+---
+
+## `flex-flow: column-reverse wrap`
+
+```css
+.container {
+    display: flex;
+    flex-flow: column-reverse wrap;
+}
+```
+
+Equivalent to:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+}
+```
+
+The items use a reversed column direction and are allowed to wrap.
+
+---
+
+## Order of Values
+
+The values are normally written as:
+
+```css
+flex-flow: flex-direction flex-wrap;
+```
+
+For example:
+
+```css
+flex-flow: row wrap;
+```
+
+However, the two values can be provided in either order because the values have different allowed keywords.
+
+For clarity and readability, the conventional order is:
+
+```css
+flex-flow: row wrap;
+```
+
+---
+
+## Default Value
+
+The initial value of `flex-flow` is equivalent to:
+
+```css
+flex-flow: row nowrap;
+```
+
+This means:
+
+```css
+flex-direction: row;
+flex-wrap: nowrap;
+```
+
+Therefore:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+uses the default Flexbox flow of:
+
+```text
+row
++
+nowrap
+```
+
+---
+
+## Common Combinations
+
+### Row Without Wrapping
+
+```css
+flex-flow: row nowrap;
+```
+
+### Row With Wrapping
+
+```css
+flex-flow: row wrap;
+```
+
+### Reversed Row With Wrapping
+
+```css
+flex-flow: row-reverse wrap;
+```
+
+### Column Without Wrapping
+
+```css
+flex-flow: column nowrap;
+```
+
+### Column With Wrapping
+
+```css
+flex-flow: column wrap;
+```
+
+### Reversed Column With Wrapping
+
+```css
+flex-flow: column-reverse wrap;
+```
+
+---
+
+## `flex-flow` vs Individual Properties
+
+Using separate properties:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+```
+
+Using the shorthand:
+
+```css
+.container {
+    display: flex;
+    flex-flow: column wrap;
+}
+```
+
+The result is equivalent.
+
+The shorthand simply provides a more compact way to specify both properties.
+
+---
+
+## When to Use `flex-flow`
+
+`flex-flow` can be useful when:
+
+- You need both `flex-direction` and `flex-wrap`.
+- You want to keep related Flexbox settings together.
+- You prefer concise CSS.
+- The direction and wrapping behavior are clear from one declaration.
+
+For example:
+
+```css
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+}
+```
+
+This clearly communicates that the cards should flow horizontally and wrap when necessary.
+
+---
+
+## Important Difference
+
+`flex-flow` does not replace:
+
+```css
+display: flex;
+```
+
+You still need to create the flex container.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+```
+
+Here:
+
+```text
+display: flex
+    ↓
+Creates the Flexbox container
+
+flex-flow
+    ↓
+Controls direction + wrapping
+```
+
+---
+
+> 💡 **Pro Tip:** Use `flex-flow` when you want to configure direction and wrapping together. If you are learning or debugging Flexbox, writing `flex-direction` and `flex-wrap` separately can sometimes make the CSS easier to understand.
+
+---
+
+> 💡 **Remember:** `flex-flow` is shorthand for **`flex-direction` + `flex-wrap`**.
+
+```css
+flex-flow: row wrap;
+```
+
+is equivalent to:
+
+```css
+flex-direction: row;
+flex-wrap: wrap;
+```
