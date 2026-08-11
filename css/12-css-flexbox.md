@@ -1275,3 +1275,388 @@ The parent creates the Flexbox layout:
 ---
 
 > 💡 **Remember:** `display: flex` creates the **flex container**, while its **direct children automatically become flex items**. A flex container can also be a flex item if it is itself a child of another flex container.
+
+---
+
+# Creating a Flex Container
+
+To use Flexbox, an element must first be turned into a **flex container**.
+
+This is done using:
+
+```css
+display: flex;
+```
+
+---
+
+## Basic Syntax
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Once `display: flex` is applied, the element becomes a flex container.
+
+Its direct children automatically become flex items.
+
+```text
+.container
+     ↓
+Flex Container
+     │
+     ├── Item 1 → Flex Item
+     ├── Item 2 → Flex Item
+     └── Item 3 → Flex Item
+```
+
+---
+
+## Basic Example
+
+```html
+<div class="container">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+}
+```
+
+By default, the items are arranged in a row:
+
+```text
+┌─────────────────────────────────────┐
+│                                     │
+│  ┌───────┐  ┌───────┐  ┌───────┐   │
+│  │ Item 1│  │ Item 2│  │ Item 3│   │
+│  └───────┘  └───────┘  └───────┘   │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+---
+
+## What Changes When `display: flex` Is Applied?
+
+Before Flexbox, block-level elements normally stack vertically.
+
+```text
+┌─────────┐
+│ Item 1  │
+└─────────┘
+
+┌─────────┐
+│ Item 2  │
+└─────────┘
+
+┌─────────┐
+│ Item 3  │
+└─────────┘
+```
+
+After:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+the direct children are laid out according to Flexbox.
+
+By default:
+
+```text
+┌─────────┐  ┌─────────┐  ┌─────────┐
+│ Item 1  │  │ Item 2  │  │ Item 3  │
+└─────────┘  └─────────┘  └─────────┘
+```
+
+This happens because the default `flex-direction` is:
+
+```css
+row
+```
+
+---
+
+## `display: flex` vs `display: block`
+
+Consider:
+
+```html
+<div class="container">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+</div>
+```
+
+Without Flexbox:
+
+```css
+.container {
+    display: block;
+}
+```
+
+The children follow the normal block layout.
+
+With:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+the children become flex items and participate in the Flexbox layout.
+
+```text
+display: block
+→ Normal block layout
+
+display: flex
+→ Flexbox layout
+```
+
+---
+
+## Flex Container Is Still a Normal Element
+
+Making an element a flex container does not remove its normal CSS properties.
+
+You can still use:
+
+```css
+.container {
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+    border: 1px solid black;
+    background-color: lightgray;
+    display: flex;
+}
+```
+
+Flexbox controls how the children are laid out inside the container.
+
+---
+
+## Adding a Gap
+
+A common pattern is to combine Flexbox with `gap`.
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+This creates space between the flex items.
+
+```text
+Item 1
+   ↓
+  20px
+   ↓
+Item 2
+   ↓
+  20px
+   ↓
+Item 3
+```
+
+The `gap` property will be covered in more detail later.
+
+---
+
+## Creating a Column Layout
+
+Although the default direction is a row, the container can be changed to a column.
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+Result:
+
+```text
+┌─────────┐
+│ Item 1  │
+└─────────┘
+     ↓
+┌─────────┐
+│ Item 2  │
+└─────────┘
+     ↓
+┌─────────┐
+│ Item 3  │
+└─────────┘
+```
+
+The `flex-direction` property will be covered separately.
+
+---
+
+## Flex Container Establishes a Flex Formatting Context
+
+When:
+
+```css
+display: flex;
+```
+
+is applied, the element establishes a **flex formatting context** for its contents.
+
+Its direct children are laid out as flex items instead of following the normal layout behavior of the parent.
+
+This is what enables Flexbox properties such as:
+
+```css
+justify-content
+align-items
+flex-wrap
+gap
+```
+
+to control the layout.
+
+---
+
+## Inline Flex Container
+
+CSS also provides:
+
+```css
+display: inline-flex;
+```
+
+This creates an **inline-level flex container**.
+
+Example:
+
+```css
+.container {
+    display: inline-flex;
+}
+```
+
+The element itself participates in the surrounding inline layout, while its children are still laid out using Flexbox.
+
+Compare:
+
+```text
+display: flex
+→ Block-level flex container
+
+display: inline-flex
+→ Inline-level flex container
+```
+
+Both create Flexbox layouts for their children.
+
+---
+
+## `flex` vs `inline-flex`
+
+Example:
+
+```css
+.block-container {
+    display: flex;
+}
+```
+
+and:
+
+```css
+.inline-container {
+    display: inline-flex;
+}
+```
+
+The main difference is how the **container itself participates in the surrounding layout**.
+
+The children of both containers are still flex items.
+
+---
+
+## Example with `inline-flex`
+
+```html
+<div class="container">
+    <span>One</span>
+    <span>Two</span>
+</div>
+
+<div class="container">
+    <span>Three</span>
+    <span>Four</span>
+</div>
+```
+
+```css
+.container {
+    display: inline-flex;
+}
+```
+
+The containers can participate alongside other inline-level content.
+
+---
+
+## Common Pattern
+
+A very common Flexbox setup is:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+```
+
+This means:
+
+```text
+display: flex
+→ Enable Flexbox
+
+gap
+→ Add space between items
+
+align-items
+→ Control cross-axis alignment
+```
+
+Additional properties can then be added depending on the layout requirements.
+
+---
+
+> 💡 **Pro Tip:** When starting a Flexbox layout, begin with the smallest useful declaration:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Then add properties such as `flex-direction`, `justify-content`, `align-items`, and `gap` only when the layout actually requires them. This keeps the CSS easier to understand and debug.
+
+---
+
+> 💡 **Remember:** `display: flex` is the declaration that creates a **flex container**. Its direct children become **flex items**, and the container can then control their direction, alignment, spacing, and distribution.
