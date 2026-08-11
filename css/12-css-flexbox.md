@@ -17171,3 +17171,818 @@ When a Flexbox layout does not behave as expected, check:
 ---
 
 > 💡 **Remember:** Most Flexbox problems become easier to diagnose when you work from the **parent container → axes → alignment → spacing → item sizing → content**.
+
+---
+
+# Interview Questions
+
+## Basic Questions
+
+### 1. What is CSS Flexbox?
+
+Flexbox is a one-dimensional CSS layout system used to arrange and align elements inside a container along a main axis.
+
+---
+
+### 2. How do you create a Flexbox container?
+
+Use:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+The direct children of the container become flex items.
+
+---
+
+### 3. What is a flex container?
+
+A flex container is an element whose `display` property is set to:
+
+```css
+display: flex;
+```
+
+It controls the layout of its direct children.
+
+---
+
+### 4. What are flex items?
+
+Flex items are the direct children of a flex container.
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+</div>
+```
+
+Here, both inner `div` elements are flex items.
+
+---
+
+### 5. What is the default `flex-direction`?
+
+The default value is:
+
+```css
+flex-direction: row;
+```
+
+---
+
+### 6. What is the main axis?
+
+The main axis is the primary axis along which flex items are laid out.
+
+It is determined by:
+
+```css
+flex-direction;
+```
+
+For example:
+
+```css
+flex-direction: row;
+```
+
+makes the horizontal direction the main axis.
+
+---
+
+### 7. What is the cross axis?
+
+The cross axis is perpendicular to the main axis.
+
+If the main axis is horizontal, the cross axis is vertical.
+
+If the main axis is vertical, the cross axis is horizontal.
+
+---
+
+## Alignment Questions
+
+### 8. What does `justify-content` do?
+
+`justify-content` controls the distribution of flex items along the main axis.
+
+Example:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+---
+
+### 9. What does `align-items` do?
+
+`align-items` controls the alignment of flex items along the cross axis.
+
+Example:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+---
+
+### 10. What is the difference between `justify-content` and `align-items`?
+
+The basic distinction is:
+
+```text
+justify-content
+→ Main axis
+
+align-items
+→ Cross axis
+```
+
+Their physical horizontal or vertical direction depends on `flex-direction`.
+
+---
+
+### 11. What does `align-content` do?
+
+`align-content` controls the distribution of multiple flex lines along the cross axis.
+
+It becomes relevant when flex items wrap onto multiple lines.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+```
+
+---
+
+### 12. What is the difference between `align-items` and `align-content`?
+
+```text
+align-items
+→ Aligns items within a flex line
+
+align-content
+→ Distributes multiple flex lines
+```
+
+`align-content` generally has no useful effect when there is only one flex line.
+
+---
+
+### 13. How do you center an element horizontally and vertically using Flexbox?
+
+A common pattern is:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+---
+
+## Wrapping Questions
+
+### 14. What is `flex-wrap`?
+
+`flex-wrap` controls whether flex items are allowed to move onto multiple lines.
+
+Example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+---
+
+### 15. What is the default value of `flex-wrap`?
+
+The default value is:
+
+```css
+flex-wrap: nowrap;
+```
+
+---
+
+### 16. What is `flex-flow`?
+
+`flex-flow` is a shorthand for:
+
+```css
+flex-direction
+flex-wrap
+```
+
+Example:
+
+```css
+.container {
+    flex-flow: row wrap;
+}
+```
+
+---
+
+## Spacing Questions
+
+### 17. What does `gap` do in Flexbox?
+
+`gap` creates spacing between flex items.
+
+Example:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+---
+
+### 18. What is the difference between `gap`, `row-gap`, and `column-gap`?
+
+```text
+gap
+→ Controls row and column gaps
+
+row-gap
+→ Controls spacing between rows
+
+column-gap
+→ Controls spacing between columns
+```
+
+Example:
+
+```css
+.container {
+    row-gap: 10px;
+    column-gap: 20px;
+}
+```
+
+---
+
+## Flex Item Questions
+
+### 19. What does the `order` property do?
+
+`order` changes the visual order of flex items.
+
+Example:
+
+```css
+.item {
+    order: 2;
+}
+```
+
+The default value is:
+
+```css
+order: 0;
+```
+
+Items with lower order values appear before items with higher values.
+
+---
+
+### 20. What does `flex-grow` do?
+
+`flex-grow` controls how a flex item can grow when extra space is available.
+
+Example:
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+---
+
+### 21. What does `flex-shrink` do?
+
+`flex-shrink` controls how a flex item can shrink when there is insufficient space.
+
+Example:
+
+```css
+.item {
+    flex-shrink: 1;
+}
+```
+
+---
+
+### 22. What does `flex-basis` do?
+
+`flex-basis` defines the initial main-size contribution of a flex item before remaining free space is distributed.
+
+Example:
+
+```css
+.item {
+    flex-basis: 200px;
+}
+```
+
+---
+
+### 23. What is the `flex` property?
+
+`flex` is a shorthand for:
+
+```css
+flex-grow
+flex-shrink
+flex-basis
+```
+
+Example:
+
+```css
+.item {
+    flex: 1 1 200px;
+}
+```
+
+---
+
+### 24. What does `flex: 1` mean?
+
+It is a shorthand form that provides a flexible sizing configuration.
+
+It is commonly used when multiple flex items should share available space.
+
+Example:
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+---
+
+### 25. What does `align-self` do?
+
+`align-self` allows an individual flex item to override the container's `align-items` setting.
+
+Example:
+
+```css
+.item {
+    align-self: flex-end;
+}
+```
+
+---
+
+## Practical Questions
+
+### 26. How do you create equal-width columns with Flexbox?
+
+A common approach is:
+
+```css
+.container {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+}
+```
+
+Each item can share the available space.
+
+---
+
+### 27. How do you create a vertical Flexbox layout?
+
+Use:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+---
+
+### 28. How do you create a horizontal Flexbox layout?
+
+Use:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+`row` is also the default direction.
+
+---
+
+### 29. How do you create a responsive card layout using Flexbox?
+
+A common approach is:
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 250px;
+}
+```
+
+The cards can grow, shrink, and wrap depending on the available space.
+
+---
+
+### 30. How can you push one flex item to the opposite side?
+
+An auto margin can consume available free space.
+
+For example:
+
+```css
+.button {
+    margin-left: auto;
+}
+```
+
+This can push the item toward the opposite side of a row.
+
+---
+
+### 31. How can Flexbox be used for a sidebar and content layout?
+
+A common pattern is:
+
+```css
+.page {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+The sidebar gets a fixed basis while the content uses the remaining space.
+
+---
+
+### 32. How can you create a full-page layout with a footer at the bottom?
+
+A common pattern is:
+
+```css
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+The content area can consume the available remaining space.
+
+---
+
+## Conceptual Questions
+
+### 33. Is Flexbox one-dimensional or two-dimensional?
+
+Flexbox is primarily a **one-dimensional layout system**.
+
+It works along one main axis at a time.
+
+---
+
+### 34. How is Flexbox different from CSS Grid?
+
+The basic distinction is:
+
+```text
+Flexbox
+→ One-dimensional
+
+Grid
+→ Two-dimensional
+```
+
+Flexbox is well suited to rows or columns, while Grid is designed to control rows and columns together.
+
+---
+
+### 35. Can Flexbox and Grid be used together?
+
+Yes.
+
+For example:
+
+```text
+Page
+ ↓
+Grid
+
+Component
+ ↓
+Flexbox
+```
+
+Grid can handle the overall page structure while Flexbox handles the internal layout of individual components.
+
+---
+
+### 36. Can a flex item also be a flex container?
+
+Yes.
+
+A flex item can also have:
+
+```css
+display: flex;
+```
+
+This creates a nested Flexbox layout.
+
+---
+
+### 37. Do Flexbox properties apply to all descendants?
+
+No.
+
+Flex container properties primarily affect the **direct children** of that flex container.
+
+Nested descendants require their own layout context.
+
+---
+
+### 38. Why might `align-content` appear to do nothing?
+
+A common reason is that the container has only one flex line.
+
+`align-content` is primarily concerned with distributing multiple flex lines.
+
+Wrapping may be required:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+---
+
+### 39. Why might a flex item overflow its container?
+
+Possible causes include:
+
+- Content that cannot shrink sufficiently
+- `flex-shrink: 0`
+- Large fixed sizes
+- Long unbreakable content
+- Minimum-size constraints
+- Lack of wrapping
+
+A useful property to investigate is:
+
+```css
+min-width: 0;
+```
+
+for flex items containing content that should be allowed to shrink.
+
+---
+
+### 40. Why should `order` be used carefully?
+
+`order` changes the visual order of flex items, but it does not change the underlying HTML document order.
+
+For meaningful content, keeping the HTML structure logical is important for accessibility and maintainability.
+
+---
+
+## Scenario-Based Questions
+
+### 41. You have three buttons that should be displayed in a row with equal spacing. Which Flexbox properties could you use?
+
+A simple solution is:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+If the buttons also need to share available space:
+
+```css
+.button {
+    flex: 1;
+}
+```
+
+---
+
+### 42. You have a sidebar and a content section. The sidebar should remain 240px while the content fills the remaining space. How would you approach it?
+
+```css
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+---
+
+### 43. You have cards that should move onto new lines when there is not enough space. What should you use?
+
+Use:
+
+```css
+flex-wrap: wrap;
+```
+
+For example:
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+---
+
+### 44. You need to center a loading indicator horizontally and vertically. Which properties would you use?
+
+```css
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+---
+
+### 45. A component displays an image beside text on desktop but should stack vertically on smaller screens. How could Flexbox help?
+
+Start with:
+
+```css
+.component {
+    display: flex;
+}
+```
+
+Then change the direction at a smaller viewport:
+
+```css
+@media (max-width: 600px) {
+    .component {
+        flex-direction: column;
+    }
+}
+```
+
+---
+
+### 46. You need a dashboard with precise rows and columns. Would Flexbox or Grid generally be more appropriate?
+
+CSS Grid would generally be the more natural choice because the layout is two-dimensional.
+
+---
+
+### 47. You need a simple navigation bar with links arranged in one row. Would Flexbox or Grid generally be more appropriate?
+
+Flexbox is often a natural choice because the navigation is primarily one-dimensional.
+
+---
+
+### 48. A flex item refuses to become narrower even though there appears to be available space. What should you investigate?
+
+Check:
+
+```text
+flex-shrink
+min-width
+flex-basis
+fixed widths
+content size
+```
+
+In particular, consider:
+
+```css
+min-width: 0;
+```
+
+when the item's content should be allowed to shrink.
+
+---
+
+## Quick Interview Revision
+
+Remember these core answers:
+
+```text
+Flexbox
+→ One-dimensional layout
+
+display: flex
+→ Creates a flex container
+
+Direct children
+→ Become flex items
+
+flex-direction
+→ Defines the main axis direction
+
+justify-content
+→ Main-axis distribution
+
+align-items
+→ Cross-axis alignment
+
+align-content
+→ Distribution of multiple flex lines
+
+flex-wrap
+→ Allows items to wrap
+
+gap
+→ Spacing between items
+
+flex-grow
+→ Controls growth
+
+flex-shrink
+→ Controls shrinking
+
+flex-basis
+→ Initial main-size contribution
+
+flex
+→ grow + shrink + basis
+
+align-self
+→ Individual cross-axis alignment
+
+Grid
+→ Two-dimensional layout
+```
+
+---
+
+> 💡 **Interview Tip:** When explaining Flexbox, don't just memorize property definitions. Be able to explain the relationship between the **flex container, flex items, main axis, cross axis, alignment, and flexible sizing**.
