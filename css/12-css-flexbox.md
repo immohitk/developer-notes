@@ -4500,3 +4500,656 @@ is being used.
 ---
 
 > 💡 **Remember:** `align-items` controls the alignment of flex items along the **cross axis**. It is commonly used with `justify-content` to control alignment in both axes.
+
+---
+
+# Align Content
+
+The `align-content` property controls how **multiple flex lines** are aligned and distributed along the **cross axis** of a flex container.
+
+It becomes relevant when:
+
+```css
+flex-wrap: wrap;
+```
+
+creates multiple flex lines and there is extra space available along the cross axis.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+```
+
+---
+
+## Syntax
+
+```css
+.container {
+    display: flex;
+    align-content: value;
+}
+```
+
+Common values include:
+
+```text
+normal
+flex-start
+flex-end
+center
+space-between
+space-around
+space-evenly
+stretch
+```
+
+---
+
+## Why `align-content` Is Different
+
+A common source of confusion is the difference between:
+
+```css
+align-items
+```
+
+and:
+
+```css
+align-content
+```
+
+They control different things.
+
+```text
+align-items
+     ↓
+Items inside a flex line
+
+align-content
+     ↓
+Multiple flex lines
+```
+
+For example:
+
+```text
+Line 1 → 1   2   3
+
+Line 2 → 4   5   6
+
+Line 3 → 7   8   9
+```
+
+`align-items` controls the items within each line.
+
+`align-content` controls the positioning of the lines themselves.
+
+---
+
+## `align-content` Requires Multiple Lines
+
+Consider:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+If all items fit on one line:
+
+```text
+1   2   3   4   5
+```
+
+there is only one flex line.
+
+In that situation, `align-content` generally has no visible effect.
+
+When items wrap:
+
+```text
+1   2   3
+4   5   6
+7   8   9
+```
+
+there are multiple flex lines, so `align-content` can control their distribution.
+
+---
+
+## `normal`
+
+The default value is:
+
+```css
+align-content: normal;
+```
+
+For flex containers, this behaves like:
+
+```css
+stretch;
+```
+
+when there is extra cross-axis space.
+
+---
+
+## `flex-start`
+
+The `flex-start` value places the flex lines at the beginning of the cross axis.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+```
+
+For a row-based container:
+
+```text
+┌──────────────────────────────┐
+│ 1   2   3                    │
+│ 4   5   6                    │
+│ 7   8   9                    │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+The lines are grouped toward the start.
+
+---
+
+## `flex-end`
+
+The `flex-end` value places the flex lines at the end of the cross axis.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│                              │
+│ 1   2   3                    │
+│ 4   5   6                    │
+│ 7   8   9                    │
+└──────────────────────────────┘
+```
+
+---
+
+## `center`
+
+The `center` value groups the flex lines in the center of the cross axis.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│ 1   2   3                    │
+│ 4   5   6                    │
+│ 7   8   9                    │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+## `space-between`
+
+The `space-between` value distributes the available space **between the flex lines**.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────────────┐
+│ 1   2   3                    │
+│                              │
+│ 4   5   6                    │
+│                              │
+│ 7   8   9                    │
+└──────────────────────────────┘
+```
+
+The first line is at the beginning and the last line is at the end, with extra space distributed between the lines.
+
+---
+
+## `space-around`
+
+The `space-around` value distributes space around each flex line.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│ 1   2   3                    │
+│                              │
+│ 4   5   6                    │
+│                              │
+│ 7   8   9                    │
+│                              │
+└──────────────────────────────┘
+```
+
+Each flex line receives space around it.
+
+---
+
+## `space-evenly`
+
+The `space-evenly` value distributes the available space equally between:
+
+- The container's start edge and first line
+- Each pair of lines
+- The last line and the container's end edge
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│ 1   2   3                    │
+│                              │
+│ 4   5   6                    │
+│                              │
+│ 7   8   9                    │
+│                              │
+└──────────────────────────────┘
+```
+
+The available spaces are equal.
+
+---
+
+## `stretch`
+
+The `stretch` value allows flex lines to stretch to use available cross-axis space.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+```
+
+This is the default behavior for flex containers through the `normal` initial value.
+
+The flex lines can grow to fill available cross-axis space.
+
+---
+
+## Comparing `align-content` Values
+
+Suppose a container has three flex lines:
+
+```text
+1  2  3
+4  5  6
+7  8  9
+```
+
+### `flex-start`
+
+```text
+1  2  3
+4  5  6
+7  8  9
+```
+
+Lines are grouped at the start.
+
+### `flex-end`
+
+```text
+7  8  9
+```
+
+The group is positioned toward the end of the cross axis.
+
+### `center`
+
+```text
+   1  2  3
+   4  5  6
+   7  8  9
+```
+
+Lines are grouped in the center.
+
+### `space-between`
+
+```text
+1  2  3
+
+4  5  6
+
+7  8  9
+```
+
+Extra space is placed between lines.
+
+### `space-around`
+
+```text
+  1  2  3
+
+  4  5  6
+
+  7  8  9
+```
+
+Space is distributed around lines.
+
+### `space-evenly`
+
+```text
+  1  2  3
+
+  4  5  6
+
+  7  8  9
+```
+
+The spaces between the container edges and the lines, as well as between the lines, are equal.
+
+---
+
+## `align-content` Uses the Cross Axis
+
+The property works along the:
+
+```text
+Cross Axis
+```
+
+For:
+
+```css
+flex-direction: row;
+```
+
+the cross axis is vertical.
+
+Therefore, `align-content` distributes flex lines vertically.
+
+```text
+Cross Axis
+    ↓
+
+Line 1
+Line 2
+Line 3
+
+    ↑
+Cross Axis
+```
+
+For:
+
+```css
+flex-direction: column;
+```
+
+the cross axis becomes horizontal.
+
+Therefore, `align-content` distributes the flex lines horizontally.
+
+---
+
+## Example With Row Direction
+
+```css
+.container {
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+```
+
+The items wrap into multiple rows, and those rows are centered vertically.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│  1   2   3                   │
+│  4   5   6                   │
+│  7   8   9                   │
+│                              │
+└──────────────────────────────┘
+```
+
+Here:
+
+```text
+flex-direction: row
+        ↓
+Cross Axis = Vertical
+
+align-content: center
+        ↓
+Centers the flex lines vertically
+```
+
+---
+
+## Example With Column Direction
+
+```css
+.container {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+```
+
+The flex lines are distributed along the horizontal cross axis.
+
+```text
+┌──────────────────────────────────┐
+│                                  │
+│       1    4                     │
+│       2    5                     │
+│       3    6                     │
+│                                  │
+└──────────────────────────────────┘
+```
+
+---
+
+## `align-items` vs `align-content`
+
+This distinction is extremely important.
+
+### `align-items`
+
+Controls the alignment of items within a flex line.
+
+```text
+Line
+────────────────────
+  1     2     3
+```
+
+### `align-content`
+
+Controls the distribution of multiple flex lines.
+
+```text
+Line 1
+Line 2
+Line 3
+```
+
+A simple way to remember:
+
+```text
+align-items
+→ Items
+
+align-content
+→ Content of multiple lines
+```
+
+---
+
+## Example
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-between;
+}
+```
+
+Here:
+
+```text
+align-items
+    ↓
+Controls items inside each line
+
+align-content
+    ↓
+Controls spacing between the lines
+```
+
+Both properties can therefore be used together.
+
+---
+
+## Why `align-content` Sometimes Appears Not to Work
+
+A common reason is that the container does not have enough extra cross-axis space.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+If the flex lines already occupy the entire cross-axis space:
+
+```text
+Available space
+────────────────────
+
+Flex lines
+────────────────────
+```
+
+there may be no extra space for `align-content` to distribute.
+
+A larger container can make the effect visible:
+
+```css
+.container {
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+```
+
+---
+
+## Important Requirement
+
+For `align-content` to have a meaningful effect, you generally need:
+
+```text
+1. Multiple flex lines
+2. Extra space along the cross axis
+```
+
+Multiple lines are commonly created using:
+
+```css
+flex-wrap: wrap;
+```
+
+---
+
+## Quick Reference
+
+| Value | Behavior |
+|-------|----------|
+| `normal` | Default behavior; equivalent to stretching in Flexbox |
+| `flex-start` | Lines at the start |
+| `flex-end` | Lines at the end |
+| `center` | Lines centered |
+| `space-between` | Space between lines |
+| `space-around` | Space around lines |
+| `space-evenly` | Equal space around and between lines |
+| `stretch` | Lines stretch across available space |
+
+---
+
+> 💡 **Pro Tip:** If `align-content` appears to have no effect, check two things first: **Are there multiple flex lines?** and **Is there extra space along the cross axis?** Without those conditions, there may be nothing for `align-content` to distribute.
+
+---
+
+> 💡 **Remember:** `align-items` aligns **items within a flex line**, while `align-content` controls the distribution of **multiple flex lines** along the cross axis.
