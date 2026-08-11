@@ -13387,3 +13387,699 @@ If the layout needs simultaneous control of rows and columns, CSS Grid may be a 
 ---
 
 > 💡 **Remember:** Most practical Flexbox layouts are combinations of a few core properties: `flex-direction`, `justify-content`, `align-items`, `gap`, `flex`, and `flex-wrap`.
+
+---
+
+# Flexbox vs Grid
+
+Both **Flexbox** and **CSS Grid** are modern CSS layout systems.
+
+They can solve many of the same layout problems, but they are designed with different strengths.
+
+The simplest distinction is:
+
+```text
+Flexbox
+→ One-dimensional layout
+
+Grid
+→ Two-dimensional layout
+```
+
+---
+
+## Flexbox
+
+Flexbox is designed primarily for arranging items along **one axis at a time**.
+
+The layout can be:
+
+```css
+flex-direction: row;
+```
+
+or:
+
+```css
+flex-direction: column;
+```
+
+Conceptually:
+
+```text
+Row:
+
+Item → Item → Item → Item
+```
+
+or:
+
+```text
+Column:
+
+Item
+  ↓
+Item
+  ↓
+Item
+```
+
+Flexbox is especially useful when the relationship between items is mainly along one direction.
+
+---
+
+## CSS Grid
+
+CSS Grid is designed for **two-dimensional layouts**.
+
+It can control:
+
+```text
+Rows
+  +
+Columns
+```
+
+at the same time.
+
+Conceptually:
+
+```text
+┌───────┬───────┬───────┐
+│       │       │       │
+│   A   │   B   │   C   │
+│       │       │       │
+├───────┼───────┼───────┤
+│       │       │       │
+│   D   │   E   │   F   │
+│       │       │       │
+└───────┴───────┴───────┘
+```
+
+Grid is therefore well suited to layouts where both rows and columns matter.
+
+---
+
+## One-Dimensional vs Two-Dimensional
+
+This is the most important difference.
+
+### Flexbox
+
+```text
+One dimension
+
+──────────────→
+Main Axis
+```
+
+Flexbox primarily works along the main axis, while also providing cross-axis alignment.
+
+### Grid
+
+```text
+Two dimensions
+
+Rows
+ ↓
+┌───┬───┬───┐
+│   │   │   │
+├───┼───┼───┤
+│   │   │   │
+└───┴───┴───┘
+      →
+   Columns
+```
+
+Grid manages rows and columns together.
+
+---
+
+## Flexbox Is Content-Oriented
+
+Flexbox is often useful when the size and arrangement of the content should influence the layout.
+
+For example:
+
+```css
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+```
+
+This is a natural Flexbox use case because navigation items are arranged along one primary direction.
+
+---
+
+## Grid Is Layout-Oriented
+
+Grid is often useful when you have a defined two-dimensional structure.
+
+For example:
+
+```text
+┌────────────┬────────────┐
+│   Header   │   Header   │
+├────────────┼────────────┤
+│  Sidebar   │   Main     │
+├────────────┼────────────┤
+│   Footer   │   Footer   │
+└────────────┴────────────┘
+```
+
+This kind of row-and-column relationship is a natural Grid use case.
+
+---
+
+## Simple Comparison
+
+| Feature | Flexbox | Grid |
+|---------|---------|------|
+| Primary dimension | One-dimensional | Two-dimensional |
+| Main focus | Items along an axis | Rows and columns |
+| Direction | Row or column | Rows and columns together |
+| Alignment | Strong | Strong |
+| Navigation | Excellent | Possible |
+| Simple component layouts | Excellent | Excellent |
+| Complex page layouts | Possible | Excellent |
+| Card rows | Excellent | Excellent |
+| Two-dimensional structure | Limited | Excellent |
+
+---
+
+## Flexbox Example
+
+Suppose you want three buttons in a row:
+
+```html
+<div class="buttons">
+    <button>Save</button>
+    <button>Cancel</button>
+    <button>Reset</button>
+</div>
+```
+
+Flexbox is a natural choice:
+
+```css
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+```
+
+Conceptually:
+
+```text
+Save   Cancel   Reset
+```
+
+The primary concern is the horizontal arrangement.
+
+---
+
+## Grid Example
+
+Suppose you want a dashboard:
+
+```text
+┌──────────┬──────────┬──────────┐
+│          │          │          │
+│    A     │    B     │    C     │
+│          │          │          │
+├──────────┼──────────┼──────────┤
+│          │          │          │
+│    D     │    E     │    F     │
+│          │          │          │
+└──────────┴──────────┴──────────┘
+```
+
+Both rows and columns are important.
+
+This is a natural Grid use case.
+
+---
+
+## Flexbox for Navigation
+
+Navigation is commonly one-dimensional:
+
+```text
+Home → About → Services → Contact
+```
+
+Therefore:
+
+```css
+.nav {
+    display: flex;
+    gap: 20px;
+}
+```
+
+is a simple and readable solution.
+
+---
+
+## Grid for a Page Layout
+
+A page can have:
+
+```text
+Header
+────────────────────
+Sidebar | Main
+────────────────────
+Footer
+```
+
+This involves relationships between both rows and columns.
+
+Grid is often a better fit for this type of overall page structure.
+
+---
+
+## Flexbox for Component Layout
+
+Flexbox is excellent for arranging the internal parts of a component.
+
+For example:
+
+```text
+┌──────────────────────────┐
+│ Icon   Title              │
+│        Description        │
+│                          │
+│        Button             │
+└──────────────────────────┘
+```
+
+You can use nested Flexbox containers to arrange these elements.
+
+---
+
+## Grid for Component Layout
+
+Grid can also be used inside components.
+
+For example, a dashboard card might have:
+
+```text
+┌────────────┬────────────┐
+│    Icon    │   Status   │
+├────────────┴────────────┤
+│       Statistics        │
+├─────────────────────────┤
+│         Actions         │
+└─────────────────────────┘
+```
+
+Because the design has multiple rows and columns, Grid may be more convenient.
+
+---
+
+## Flexbox and Grid Can Be Used Together
+
+You do not have to choose only one layout system for an entire website.
+
+They can be combined.
+
+For example:
+
+```text
+Page
+│
+├── Header
+│     ↓
+│   Flexbox
+│
+├── Main
+│     ↓
+│    Grid
+│
+└── Footer
+      ↓
+    Flexbox
+```
+
+This is a common and practical approach.
+
+---
+
+## Example: Grid Page + Flexbox Navigation
+
+HTML:
+
+```html
+<div class="page">
+    <header class="header">
+        <div class="logo">Logo</div>
+
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main class="main">
+        <aside class="sidebar">Sidebar</aside>
+        <section class="content">Content</section>
+    </main>
+</div>
+```
+
+The header can use Flexbox:
+
+```css
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+```
+
+The navigation can use another Flexbox:
+
+```css
+.nav {
+    display: flex;
+    gap: 20px;
+}
+```
+
+The main page structure could use Grid:
+
+```text
+Header
+──────────────────────
+
+Sidebar | Content
+
+──────────────────────
+```
+
+This demonstrates that Flexbox and Grid can complement each other.
+
+---
+
+## Which One Should You Choose?
+
+A useful decision process is:
+
+### Use Flexbox When:
+
+The layout is primarily along one direction.
+
+Examples:
+
+```text
+Navigation
+Button group
+Toolbar
+Form row
+Horizontal card content
+Vertical content stack
+```
+
+---
+
+### Use Grid When:
+
+The layout requires simultaneous row and column control.
+
+Examples:
+
+```text
+Dashboard
+Gallery
+Page structure
+Complex card grid
+Two-dimensional application layout
+```
+
+---
+
+## Flexbox Is Not "Better" Than Grid
+
+It is incorrect to think:
+
+```text
+Flexbox > Grid
+```
+
+or:
+
+```text
+Grid > Flexbox
+```
+
+They solve different layout problems.
+
+A better way to think about them is:
+
+```text
+Flexbox
+→ Best tool for many one-dimensional layouts
+
+Grid
+→ Best tool for many two-dimensional layouts
+```
+
+---
+
+## Can Flexbox Create a Grid?
+
+Flexbox can create layouts that look like grids.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex: 1 1 250px;
+}
+```
+
+This can produce multiple rows of items.
+
+However, Flexbox is still fundamentally managing **flex lines**, rather than providing the same explicit row-and-column model as Grid.
+
+If precise row and column relationships are important, Grid is generally the more natural choice.
+
+---
+
+## Can Grid Create a One-Dimensional Layout?
+
+Yes.
+
+Grid can be used for simple layouts too.
+
+However, just because something can be done with Grid does not mean Grid is always the simplest choice.
+
+For example:
+
+```css
+.nav {
+    display: flex;
+    gap: 20px;
+}
+```
+
+may be more straightforward than creating a Grid layout for a simple navigation row.
+
+Choose the system that best matches the layout problem.
+
+---
+
+## Flexbox Alignment
+
+Flexbox provides useful alignment properties such as:
+
+```css
+justify-content
+align-items
+align-content
+align-self
+```
+
+These make it particularly convenient for aligning items along the main and cross axes.
+
+---
+
+## Grid Alignment
+
+Grid also provides alignment capabilities, including:
+
+```css
+justify-items
+align-items
+justify-content
+align-content
+```
+
+The exact property depends on whether you are aligning the grid items themselves or the grid tracks within the container.
+
+---
+
+## Flexbox vs Grid Mental Model
+
+A useful mental model is:
+
+```text
+Flexbox:
+
+"How should these items be arranged
+along this axis?"
+```
+
+Grid:
+
+```text
+"Where should these items go
+within this row-and-column structure?"
+```
+
+This is not a strict technical definition, but it is a useful starting point when choosing a layout system.
+
+---
+
+## Common Mistake
+
+Do not choose Grid simply because the layout contains multiple elements.
+
+The important question is:
+
+```text
+Is the layout primarily one-dimensional
+or two-dimensional?
+```
+
+For example:
+
+```text
+A row of buttons
+→ Flexbox
+
+A dashboard with rows and columns
+→ Grid
+```
+
+---
+
+## Another Common Mistake
+
+Do not force Flexbox to handle a complex two-dimensional layout when Grid provides a clearer structure.
+
+For example, if you need specific relationships between:
+
+```text
+Rows
++
+Columns
+```
+
+Grid may make the CSS easier to understand and maintain.
+
+---
+
+## Practical Rule
+
+A useful starting rule is:
+
+```text
+One dimension
+     ↓
+Flexbox
+
+Two dimensions
+     ↓
+Grid
+```
+
+Then consider the actual design requirements before making the final choice.
+
+---
+
+## Quick Reference
+
+### Flexbox
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Best suited for:
+
+```text
+One-dimensional layouts
+Navigation
+Toolbars
+Button groups
+Component internals
+Simple rows and columns
+```
+
+### Grid
+
+```css
+.container {
+    display: grid;
+}
+```
+
+Best suited for:
+
+```text
+Two-dimensional layouts
+Dashboards
+Page structures
+Galleries
+Complex card layouts
+```
+
+### Both
+
+You can combine them:
+
+```text
+Page
+ ↓
+Grid
+
+Component
+ ↓
+Flexbox
+```
+
+or:
+
+```text
+Page
+ ↓
+Flexbox
+
+Component
+ ↓
+Grid
+```
+
+Choose based on the layout requirements.
+
+---
+
+> 💡 **Pro Tip:** Don't memorize "Flexbox for rows, Grid for columns." That rule is too simplistic. Think in terms of **one-dimensional vs two-dimensional layout**.
+
+---
+
+> 💡 **Remember:** Flexbox is primarily a one-dimensional layout system, while Grid is a two-dimensional layout system. They can also be combined within the same page or component.
+
+---
