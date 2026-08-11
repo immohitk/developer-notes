@@ -14081,5 +14081,3 @@ Choose based on the layout requirements.
 ---
 
 > 💡 **Remember:** Flexbox is primarily a one-dimensional layout system, while Grid is a two-dimensional layout system. They can also be combined within the same page or component.
-
----
