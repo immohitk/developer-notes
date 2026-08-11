@@ -5680,3 +5680,522 @@ Use `gap` when the spacing is fundamentally part of the relationship between ite
 ---
 
 > 💡 **Remember:** `gap` controls the spacing between flex items. With wrapped layouts, it can also create spacing between flex lines. For separate control over horizontal and vertical gaps, use `column-gap` and `row-gap`.
+
+---
+
+# Row Gap and Column Gap
+
+CSS provides two properties for controlling spacing separately:
+
+```css
+row-gap
+column-gap
+```
+
+They are useful when a flex container contains multiple flex lines and you need different spacing between rows and columns.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 30px;
+}
+```
+
+Here:
+
+```text
+row-gap
+→ Space between flex rows
+
+column-gap
+→ Space between flex columns
+```
+
+---
+
+## `row-gap`
+
+The `row-gap` property controls the space between rows.
+
+```css
+.container {
+    row-gap: 20px;
+}
+```
+
+With a wrapped row-based flex container:
+
+```text
+┌──────────────────────────────────┐
+│  1      2      3                 │
+│                                  │
+│          20px                    │
+│                                  │
+│  4      5      6                 │
+└──────────────────────────────────┘
+```
+
+The vertical space between the flex lines is controlled by `row-gap`.
+
+---
+
+## `column-gap`
+
+The `column-gap` property controls the space between columns.
+
+```css
+.container {
+    column-gap: 30px;
+}
+```
+
+Example:
+
+```text
+┌──────────────────────────────────┐
+│  1     30px     2     30px     3 │
+└──────────────────────────────────┘
+```
+
+The horizontal space between neighboring items is controlled by `column-gap`.
+
+---
+
+## Using Both Together
+
+You can specify both properties:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 30px;
+}
+```
+
+This means:
+
+```text
+Vertical spacing   → 20px
+Horizontal spacing → 30px
+```
+
+Conceptually:
+
+```text
+┌──────────────────────────────────┐
+│  1      2      3                 │
+│                                  │
+│          20px                    │
+│                                  │
+│  4      5      6                 │
+└──────────────────────────────────┘
+
+Horizontal gaps → 30px
+```
+
+---
+
+## `gap` vs `row-gap` and `column-gap`
+
+The `gap` property is shorthand for:
+
+```css
+row-gap
+column-gap
+```
+
+For example:
+
+```css
+.container {
+    gap: 20px;
+}
+```
+
+is equivalent to:
+
+```css
+.container {
+    row-gap: 20px;
+    column-gap: 20px;
+}
+```
+
+Both directions use the same value.
+
+---
+
+## Different Values
+
+If you need different spacing in each direction:
+
+```css
+.container {
+    row-gap: 20px;
+    column-gap: 40px;
+}
+```
+
+You can think of it as:
+
+```text
+row-gap
+   ↓
+20px
+
+column-gap
+   ↓
+40px
+```
+
+This cannot be expressed with a single-value `gap` declaration without using the two-value syntax.
+
+---
+
+## Two-Value `gap` Syntax
+
+The `gap` shorthand can accept two values:
+
+```css
+.container {
+    gap: 20px 40px;
+}
+```
+
+The order is:
+
+```text
+gap: row-gap column-gap;
+```
+
+Therefore:
+
+```css
+gap: 20px 40px;
+```
+
+means:
+
+```css
+row-gap: 20px;
+column-gap: 40px;
+```
+
+This is equivalent to:
+
+```css
+.container {
+    row-gap: 20px;
+    column-gap: 40px;
+}
+```
+
+---
+
+## Common Patterns
+
+### Same Gap in Both Directions
+
+```css
+.container {
+    gap: 20px;
+}
+```
+
+Equivalent to:
+
+```css
+.container {
+    row-gap: 20px;
+    column-gap: 20px;
+}
+```
+
+### Different Row and Column Gaps
+
+```css
+.container {
+    gap: 20px 40px;
+}
+```
+
+Equivalent to:
+
+```css
+.container {
+    row-gap: 20px;
+    column-gap: 40px;
+}
+```
+
+### Using Individual Properties
+
+```css
+.container {
+    row-gap: 20px;
+    column-gap: 40px;
+}
+```
+
+This is useful when the two directions need to be clearly specified.
+
+---
+
+## Flexbox Example
+
+```html
+<div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 30px;
+}
+```
+
+If the items wrap:
+
+```text
+┌──────────────────────────────────┐
+│  1      2      3                 │
+│                                  │
+│          20px                    │
+│                                  │
+│  4      5      6                 │
+└──────────────────────────────────┘
+```
+
+The horizontal spacing between items is `30px`, while the vertical spacing between flex lines is `20px`.
+
+---
+
+## With `flex-direction: row`
+
+For:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 30px;
+}
+```
+
+the layout generally appears as:
+
+```text
+1     2     3
+
+4     5     6
+```
+
+Here:
+
+```text
+row-gap
+→ Vertical spacing between rows
+
+column-gap
+→ Horizontal spacing between items
+```
+
+---
+
+## With `flex-direction: column`
+
+When using:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+```
+
+the meaning of the properties is still based on **rows and columns**, not simply "main axis" and "cross axis."
+
+Therefore, always consider the actual layout direction when determining where the visual space will appear.
+
+---
+
+## `gap` With `justify-content`
+
+You can combine gap properties with alignment properties.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 20px;
+    column-gap: 30px;
+}
+```
+
+Here:
+
+```text
+justify-content
+→ Distributes items along the main axis
+
+row-gap
+→ Controls spacing between rows
+
+column-gap
+→ Controls spacing between columns
+```
+
+Each property has a different responsibility.
+
+---
+
+## `gap` With `align-content`
+
+You can also combine them with:
+
+```css
+align-content
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    row-gap: 20px;
+    column-gap: 30px;
+}
+```
+
+Here:
+
+```text
+align-content
+→ Controls distribution of flex lines
+
+row-gap
+→ Controls space between rows
+
+column-gap
+→ Controls space between columns
+```
+
+---
+
+## Zero Values
+
+You can remove one direction's gap independently.
+
+```css
+.container {
+    row-gap: 0;
+    column-gap: 20px;
+}
+```
+
+This creates horizontal spacing but no row spacing.
+
+Or:
+
+```css
+.container {
+    row-gap: 20px;
+    column-gap: 0;
+}
+```
+
+This creates row spacing but no column spacing.
+
+---
+
+## Practical Card Layout
+
+A common use case is a responsive card layout:
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 24px;
+    column-gap: 16px;
+}
+```
+
+This allows you to use different spacing vertically and horizontally.
+
+For example:
+
+```text
+┌───────┐   ┌───────┐   ┌───────┐
+│ Card  │   │ Card  │   │ Card  │
+└───────┘   └───────┘   └───────┘
+
+          24px
+
+┌───────┐   ┌───────┐   ┌───────┐
+│ Card  │   │ Card  │   │ Card  │
+└───────┘   └───────┘   └───────┘
+```
+
+---
+
+## Quick Reference
+
+| Property | Controls |
+|----------|----------|
+| `gap` | Row and column spacing |
+| `row-gap` | Space between rows |
+| `column-gap` | Space between columns |
+
+### Shorthand
+
+```css
+gap: 20px;
+```
+
+means:
+
+```css
+row-gap: 20px;
+column-gap: 20px;
+```
+
+### Two Values
+
+```css
+gap: 20px 40px;
+```
+
+means:
+
+```css
+row-gap: 20px;
+column-gap: 40px;
+```
+
+---
+
+> 💡 **Pro Tip:** Use `gap` when the same spacing works in both directions. Use `row-gap` and `column-gap` when your design needs different vertical and horizontal spacing.
+
+---
+
+> 💡 **Remember:** `row-gap` controls the space between rows, while `column-gap` controls the space between columns. The `gap` shorthand lets you control both together.
