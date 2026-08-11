@@ -7941,8 +7941,6 @@ Therefore:
 
 ---
 
----
-
 # Flex Shrink
 
 The `flex-shrink` property controls how much a flex item can **shrink relative to other flex items** when there is not enough available space in the flex container.
@@ -8579,8 +8577,6 @@ Can shrink
 ---
 
 > 💡 **Remember:** `flex-shrink` controls how flex items respond to **negative free space** along the main axis. Its default is `1`, while `0` prevents the item from participating in Flexbox's shrinking behavior.
-
----
 
 ---
 
@@ -11594,3 +11590,759 @@ A nested flex container creates another independent Flexbox layout for its own c
 > 💡 **Remember:** A flex item can also be a flex container. This allows Flexbox layouts to be nested, with each container controlling the arrangement of its own direct children.
 
 ---
+
+# Centering with Flexbox
+
+One of the most common uses of Flexbox is centering content.
+
+By combining:
+
+```css
+justify-content
+```
+
+and:
+
+```css
+align-items
+```
+
+you can easily center an element along both axes.
+
+---
+
+## Horizontal Centering
+
+For a typical row-based flex container:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+`justify-content` controls the main axis.
+
+With the default:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+Conceptually:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│          Content             │
+│                              │
+└──────────────────────────────┘
+```
+
+The content is centered horizontally.
+
+---
+
+## Vertical Centering
+
+To center an item vertically in a typical row-based flex container:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+`align-items` controls the cross axis.
+
+With:
+
+```css
+flex-direction: row;
+```
+
+the cross axis is vertical.
+
+Conceptually:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│          Content             │
+│                              │
+└──────────────────────────────┘
+```
+
+The item is centered vertically.
+
+---
+
+## Centering Both Horizontally and Vertically
+
+The most common Flexbox centering pattern is:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+This centers the content along both axes.
+
+Conceptually:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│                              │
+│          Content             │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+This works because:
+
+```text
+justify-content
+→ Main-axis centering
+
+align-items
+→ Cross-axis centering
+```
+
+---
+
+## Complete Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="box">
+        Centered Content
+    </div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.box {
+    padding: 20px;
+}
+```
+
+The `.box` is centered inside the `.container`.
+
+---
+
+## Full-Page Centering
+
+Flexbox can also center content within the viewport.
+
+```css
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+```
+
+The content can be centered both horizontally and vertically within the viewport.
+
+A common pattern is:
+
+```css
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+---
+
+## Why `min-height: 100vh`?
+
+Consider:
+
+```css
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+The body may not have enough height for vertical centering to have the expected effect.
+
+Using:
+
+```css
+min-height: 100vh;
+```
+
+makes the body at least as tall as the viewport.
+
+```text
+Viewport
+┌────────────────────────────┐
+│                            │
+│                            │
+│         Content            │
+│                            │
+│                            │
+└────────────────────────────┘
+```
+
+---
+
+## Centering a Button
+
+HTML:
+
+```html
+<div class="container">
+    <button>Click Me</button>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+The button is centered along both axes within the available container.
+
+---
+
+## Centering an Image
+
+HTML:
+
+```html
+<div class="container">
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+The image is centered along the main and cross axes.
+
+---
+
+## Centering Multiple Items
+
+Suppose:
+
+```html
+<div class="container">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+```
+
+The group is centered, while `gap` controls the spacing between the items.
+
+Conceptually:
+
+```text
+┌────────────────────────────────┐
+│                                │
+│       One   Two   Three        │
+│                                │
+└────────────────────────────────┘
+```
+
+---
+
+## Centering With `flex-direction: column`
+
+When using:
+
+```css
+flex-direction: column;
+```
+
+the axes change.
+
+```text
+Main Axis
+   ↓
+   ↓
+   ↓
+
+Cross Axis →
+```
+
+Therefore:
+
+```css
+justify-content: center;
+```
+
+centers along the vertical main axis.
+
+And:
+
+```css
+align-items: center;
+```
+
+centers along the horizontal cross axis.
+
+So this still centers content in both directions:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+The important concept is that Flexbox properties work according to the **main axis and cross axis**, not fixed physical directions.
+
+---
+
+## `justify-content` vs `align-items` for Centering
+
+For the default row direction:
+
+```css
+flex-direction: row;
+```
+
+use:
+
+```text
+justify-content: center
+        ↓
+Horizontal centering
+
+align-items: center
+        ↓
+Vertical centering
+```
+
+For column direction:
+
+```css
+flex-direction: column;
+```
+
+use:
+
+```text
+justify-content: center
+        ↓
+Vertical centering
+
+align-items: center
+        ↓
+Horizontal centering
+```
+
+This is why understanding the axes is important.
+
+---
+
+## Centering a Card
+
+A common UI pattern is a centered card:
+
+```html
+<div class="page">
+    <div class="card">
+        <h2>Welcome</h2>
+        <p>Hello!</p>
+    </div>
+</div>
+```
+
+CSS:
+
+```css
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    padding: 30px;
+}
+```
+
+The card is centered within the page.
+
+---
+
+## Centering With `margin: auto`
+
+Flexbox also supports another useful technique.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    margin: auto;
+}
+```
+
+Auto margins can absorb available free space.
+
+However, for straightforward two-axis centering, the following is usually easier to understand:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+---
+
+## Centering One Item Among Others
+
+Suppose a container has multiple items:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+You can use:
+
+```css
+.item {
+    margin-left: auto;
+    margin-right: auto;
+}
+```
+
+in appropriate layouts to consume available horizontal free space.
+
+However, this is different from:
+
+```css
+justify-content: center;
+```
+
+because auto margins participate directly in free-space distribution.
+
+Choose the technique based on the desired layout behavior.
+
+---
+
+## Common Centering Pattern
+
+For a single element that needs to be centered inside a container:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+For a full viewport:
+
+```css
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+These are two patterns worth remembering.
+
+---
+
+## Centering With a Gap
+
+You can combine centering with spacing:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+```
+
+The group is centered while the items maintain a `16px` gap.
+
+---
+
+## Centering Does Not Mean Fixed Positioning
+
+Flexbox centering is part of the layout system.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+The item remains part of the normal Flexbox layout.
+
+This is different from using:
+
+```css
+position: absolute;
+```
+
+and manually calculating offsets.
+
+Flexbox is therefore often a cleaner choice for responsive alignment.
+
+---
+
+## Responsive Centering
+
+Because Flexbox distributes available space dynamically, centered layouts can naturally adapt to different container sizes.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+```
+
+The content remains centered as the viewport size changes, subject to the normal layout constraints.
+
+---
+
+## Common Mistakes
+
+### Forgetting `display: flex`
+
+This will not work as Flexbox centering:
+
+```css
+.container {
+    justify-content: center;
+    align-items: center;
+}
+```
+
+The container must first be a flex container:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+---
+
+### Confusing the Axes
+
+Do not always think:
+
+```text
+justify-content = horizontal
+align-items = vertical
+```
+
+Instead remember:
+
+```text
+justify-content
+→ Main axis
+
+align-items
+→ Cross axis
+```
+
+The physical direction depends on:
+
+```css
+flex-direction
+```
+
+---
+
+### Forgetting Container Size
+
+Vertical centering is difficult to see when the container has no meaningful height.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+If the container's height is only determined by its content, there may be little or no extra vertical space to distribute.
+
+A defined or minimum height can make the effect clear:
+
+```css
+.container {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+}
+```
+
+---
+
+## Quick Reference
+
+### Horizontal Centering in a Row
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+### Vertical Centering in a Row
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+### Both Directions
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+### Full Viewport
+
+```css
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+---
+
+## Centering Mental Model
+
+Remember:
+
+```text
+             Main Axis
+                ↓
+        justify-content
+                ↓
+           CENTER
+
+             Cross Axis
+                ↓
+          align-items
+                ↓
+           CENTER
+```
+
+For a row:
+
+```text
+justify-content → horizontal
+align-items     → vertical
+```
+
+For a column:
+
+```text
+justify-content → vertical
+align-items     → horizontal
+```
+
+---
+
+> 💡 **Pro Tip:** When you need to center something with Flexbox, first identify the main and cross axes. Then use `justify-content` for the main axis and `align-items` for the cross axis.
+
+---
+
+> 💡 **Remember:** The classic Flexbox centering pattern is:
+
+```css
+display: flex;
+justify-content: center;
+align-items: center;
+```
+
+It centers the flex items along both axes.
