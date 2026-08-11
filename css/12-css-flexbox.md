@@ -7940,3 +7940,644 @@ Therefore:
 > 💡 **Remember:** `flex-grow` controls how flex items use **positive free space along the main axis**. Its default value is `0`, and larger values receive proportionally larger shares of the available extra space.
 
 ---
+
+---
+
+# Flex Shrink
+
+The `flex-shrink` property controls how much a flex item can **shrink relative to other flex items** when there is not enough available space in the flex container.
+
+```css
+.item {
+    flex-shrink: 1;
+}
+```
+
+It applies to **flex items**, not the flex container.
+
+---
+
+## Syntax
+
+```css
+.item {
+    flex-shrink: value;
+}
+```
+
+The value is a non-negative number.
+
+For example:
+
+```css
+.item {
+    flex-shrink: 1;
+}
+```
+
+or:
+
+```css
+.item {
+    flex-shrink: 2;
+}
+```
+
+---
+
+## Default Value
+
+The default value is:
+
+```css
+flex-shrink: 1;
+```
+
+This means flex items are allowed to shrink when there is insufficient space along the main axis.
+
+```text
+Not enough space
+        ↓
+Flex items can shrink
+```
+
+---
+
+## Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="item one">One</div>
+    <div class="item two">Two</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+    width: 300px;
+}
+
+.one,
+.two {
+    width: 200px;
+}
+```
+
+The items would require:
+
+```text
+200px + 200px = 400px
+```
+
+but the container only has:
+
+```text
+300px
+```
+
+There is not enough space.
+
+Because the default is:
+
+```css
+flex-shrink: 1;
+```
+
+the items are allowed to shrink.
+
+---
+
+## `flex-shrink: 0`
+
+You can prevent an item from shrinking:
+
+```css
+.item {
+    flex-shrink: 0;
+}
+```
+
+For example:
+
+```css
+.sidebar {
+    width: 200px;
+    flex-shrink: 0;
+}
+```
+
+The sidebar will not shrink because of Flexbox's negative free-space distribution.
+
+This is useful when an element needs to maintain its intended size.
+
+---
+
+## `flex-shrink: 1`
+
+The default behavior is:
+
+```css
+.item {
+    flex-shrink: 1;
+}
+```
+
+The item participates in distributing negative free space.
+
+For example:
+
+```text
+Available space < Required space
+        ↓
+Negative free space
+        ↓
+Items shrink
+```
+
+---
+
+## `flex-shrink: 2`
+
+A value of:
+
+```css
+.item {
+    flex-shrink: 2;
+}
+```
+
+gives the item a larger shrink factor relative to an item with:
+
+```css
+flex-shrink: 1;
+```
+
+For example:
+
+```css
+.one {
+    flex-shrink: 1;
+}
+
+.two {
+    flex-shrink: 2;
+}
+```
+
+The second item has a greater shrink factor.
+
+However, the final sizes are **not determined by the shrink values alone**. Flexbox also considers the items' base sizes when distributing negative free space.
+
+---
+
+## `flex-shrink` Is Not a Percentage
+
+Do not interpret:
+
+```css
+flex-shrink: 2;
+```
+
+as:
+
+```text
+Shrink the item by 200%
+```
+
+It is a **factor used by the Flexbox sizing algorithm**.
+
+For example:
+
+```text
+Item A → shrink factor 1
+Item B → shrink factor 2
+```
+
+means Item B has twice the shrink factor of Item A, subject to the other sizing constraints involved in Flexbox.
+
+---
+
+## Flex Shrink Works Along the Main Axis
+
+Like `flex-grow`, `flex-shrink` works along the **main axis**.
+
+With:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+```text
+←──────── Main Axis ────────→
+```
+
+Therefore, shrinking generally affects horizontal sizing.
+
+With:
+
+```css
+flex-direction: column;
+```
+
+the main axis is vertical.
+
+```text
+Main Axis
+   ↓
+   ↓
+   ↓
+```
+
+Therefore, shrinking generally affects vertical sizing.
+
+---
+
+## Example With Row Direction
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    flex-shrink: 1;
+}
+```
+
+The items can shrink along the horizontal main axis when required.
+
+---
+
+## Example With Column Direction
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    flex-shrink: 1;
+}
+```
+
+The items can shrink along the vertical main axis when required.
+
+---
+
+## Negative Free Space
+
+`flex-shrink` becomes relevant when the flex items require more space than the container provides.
+
+For example:
+
+```text
+Container = 500px
+
+Required item size = 700px
+```
+
+Then:
+
+```text
+500px - 700px = -200px
+```
+
+There is:
+
+```text
+200px of negative free space
+```
+
+Flexbox can distribute this negative free space among shrinkable items.
+
+---
+
+## Positive vs Negative Free Space
+
+This is an important distinction.
+
+```text
+Extra space available
+        ↓
+Positive free space
+        ↓
+flex-grow
+```
+
+Whereas:
+
+```text
+Not enough space
+        ↓
+Negative free space
+        ↓
+flex-shrink
+```
+
+So:
+
+```text
+flex-grow
+→ Handles available extra space
+
+flex-shrink
+→ Handles insufficient space
+```
+
+---
+
+## `flex-grow` vs `flex-shrink`
+
+| Property | Used When | Default |
+|----------|-----------|---------|
+| `flex-grow` | Positive free space exists | `0` |
+| `flex-shrink` | Negative free space exists | `1` |
+
+A useful mental model:
+
+```text
+Too much space
+    ↓
+Grow
+
+Too little space
+    ↓
+Shrink
+```
+
+---
+
+## Preventing a Sidebar From Shrinking
+
+A common practical example is a sidebar.
+
+```css
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.content {
+    flex-grow: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────┬──────────────────────────┐
+│  Sidebar   │         Content          │
+│   240px    │       flexible           │
+└────────────┴──────────────────────────┘
+```
+
+The sidebar is prevented from shrinking while the content takes the remaining space.
+
+---
+
+## `flex-shrink` With Width
+
+Consider:
+
+```css
+.item {
+    width: 300px;
+    flex-shrink: 1;
+}
+```
+
+The `width` contributes to the item's sizing, while:
+
+```css
+flex-shrink: 1;
+```
+
+allows the item to shrink if the Flexbox layout requires it.
+
+Therefore:
+
+```text
+width
+→ Influences the item's size
+
+flex-shrink
+→ Controls whether/how it participates in negative free-space distribution
+```
+
+---
+
+## `flex-shrink: 0` Does Not Mean "Never Change Size"
+
+This distinction is important.
+
+```css
+.item {
+    flex-shrink: 0;
+}
+```
+
+means the item does not shrink due to Flexbox's negative free-space distribution.
+
+It does not mean the item's size can never change for every possible reason.
+
+Other CSS properties and layout constraints can still affect the final rendered size.
+
+---
+
+## Multiple Shrinking Items
+
+Consider:
+
+```css
+.one {
+    flex-shrink: 1;
+}
+
+.two {
+    flex-shrink: 1;
+}
+
+.three {
+    flex-shrink: 1;
+}
+```
+
+All three items participate in shrinking according to the Flexbox algorithm.
+
+If one item has:
+
+```css
+flex-shrink: 0;
+```
+
+that item does not participate in the shrink distribution.
+
+---
+
+## Different Shrink Factors
+
+For example:
+
+```css
+.one {
+    flex-shrink: 1;
+}
+
+.two {
+    flex-shrink: 2;
+}
+```
+
+The values establish a relative shrink factor:
+
+```text
+One → 1
+Two → 2
+```
+
+But the final amount each item shrinks is also influenced by its flex base size.
+
+Therefore, avoid thinking of the values as simple percentages.
+
+---
+
+## Shrinking Can Be Limited
+
+Flex items can have minimum-size constraints.
+
+For example:
+
+```css
+.item {
+    flex-shrink: 1;
+    min-width: 150px;
+}
+```
+
+The item may shrink until its minimum-size constraints prevent further shrinking.
+
+This is one reason why setting:
+
+```css
+flex-shrink: 1;
+```
+
+does not guarantee that an item will become arbitrarily small.
+
+---
+
+## `flex-shrink` and `flex-wrap`
+
+When wrapping is enabled:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+items can move onto another flex line instead of remaining on the same line and shrinking indefinitely.
+
+Conceptually:
+
+```text
+Without wrapping:
+
+1  2  3  4
+← items may shrink →
+
+
+With wrapping:
+
+1  2  3
+4
+```
+
+Whether items shrink or wrap depends on the complete Flexbox configuration and available space.
+
+---
+
+## Common Use Cases
+
+`flex-shrink` is useful for:
+
+- Preventing important elements from becoming smaller
+- Creating flexible sidebars
+- Building responsive layouts
+- Controlling how cards react to limited space
+- Managing fixed-size controls inside flexible containers
+
+---
+
+## Common Mistake
+
+Do not assume:
+
+```css
+flex-shrink: 0;
+```
+
+automatically makes an item completely fixed-size.
+
+It only prevents that item from participating in Flexbox's shrinking behavior.
+
+If you need a fixed-size component, consider all relevant sizing properties and constraints together.
+
+---
+
+## Quick Reference
+
+| Value | Meaning |
+|-------|---------|
+| `0` | Item does not shrink through Flexbox negative free-space distribution |
+| `1` | Default shrink factor |
+| `2` | Larger shrink factor relative to `1` |
+| Higher value | Greater relative shrink factor |
+
+Example:
+
+```css
+.sidebar {
+    flex-shrink: 0;
+}
+
+.content {
+    flex-shrink: 1;
+}
+```
+
+Conceptually:
+
+```text
+Sidebar
+   ↓
+Does not shrink
+
+Content
+   ↓
+Can shrink
+```
+
+---
+
+> 💡 **Pro Tip:** If an important sidebar, logo, button, or control keeps becoming smaller when the container gets tight, check its `flex-shrink` value. Setting `flex-shrink: 0` can prevent Flexbox from shrinking it.
+
+---
+
+> 💡 **Remember:** `flex-shrink` controls how flex items respond to **negative free space** along the main axis. Its default is `1`, while `0` prevents the item from participating in Flexbox's shrinking behavior.
+
+---
