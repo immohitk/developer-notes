@@ -228,3 +228,367 @@ Flexbox is commonly used for:
 ---
 
 > 💡 **Remember:** `display: flex` turns an element into a **flex container**, and its direct children become **flex items**. Flexbox is designed primarily for arranging items in a single direction at a time.
+
+---
+
+# What Is Flexbox?
+
+**Flexbox** is a CSS layout model that provides a flexible way to arrange elements inside a container.
+
+It is designed to make it easier to control the:
+
+- Direction of elements
+- Alignment of elements
+- Distribution of available space
+- Size of elements
+- Spacing between elements
+
+Flexbox is especially useful when elements need to adapt to the available space.
+
+---
+
+## Flex Container
+
+The element on which Flexbox is enabled is called the **flex container**.
+
+A flex container is created using:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Example:
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Here:
+
+```text
+.container
+    ↓
+Flex Container
+```
+
+---
+
+## Flex Items
+
+The **direct children** of a flex container automatically become **flex items**.
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+</div>
+```
+
+```text
+Flex Container
+      │
+      ├── Item 1 → Flex Item
+      ├── Item 2 → Flex Item
+      └── Item 3 → Flex Item
+```
+
+You do not need to add a separate property to the children to make them flex items.
+
+Simply using:
+
+```css
+display: flex;
+```
+
+on the parent is enough.
+
+---
+
+## Only Direct Children Become Flex Items
+
+Consider:
+
+```html
+<div class="container">
+    <div class="item">
+        <span>Text</span>
+    </div>
+</div>
+```
+
+If:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+then:
+
+```text
+.container
+    ↓
+Flex Container
+
+.item
+    ↓
+Flex Item
+
+span
+    ↓
+Not a flex item of .container
+```
+
+The `<span>` is a descendant of the flex container, but it is not its direct child.
+
+This distinction is important when working with nested layouts.
+
+---
+
+## Flexbox Is One-Dimensional
+
+Flexbox is primarily a **one-dimensional layout system**.
+
+It works along one main direction at a time:
+
+```text
+Row
+→ Horizontal layout
+
+Column
+→ Vertical layout
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+creates a horizontal layout.
+
+While:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+creates a vertical layout.
+
+---
+
+## Default Flexbox Direction
+
+When only:
+
+```css
+display: flex;
+```
+
+is specified, Flexbox uses:
+
+```css
+flex-direction: row;
+```
+
+Therefore:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+is equivalent to:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+The items are placed along the horizontal main axis.
+
+```text
+Item 1 → Item 2 → Item 3
+────────────────────────→
+       Main Axis
+```
+
+---
+
+## Flexbox Layout Model
+
+A basic Flexbox layout can be visualized as:
+
+```text
+┌─────────────────────────────────────┐
+│          Flex Container             │
+│                                     │
+│  ┌───────┐  ┌───────┐  ┌───────┐   │
+│  │ Item 1│  │ Item 2│  │ Item 3│   │
+│  └───────┘  └───────┘  └───────┘   │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+The container controls how its flex items are laid out.
+
+---
+
+## Flex Container Properties
+
+Many important Flexbox properties are applied to the container.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+```
+
+These properties control the arrangement of the flex items.
+
+Common container properties include:
+
+```css
+display
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
+gap
+```
+
+---
+
+## Flex Item Properties
+
+Individual flex items can also have their own Flexbox properties.
+
+For example:
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+Common item properties include:
+
+```css
+order
+flex-grow
+flex-shrink
+flex-basis
+flex
+align-self
+```
+
+This gives Flexbox two levels of control:
+
+```text
+Flex Container
+      ↓
+Controls overall layout
+
+Flex Items
+      ↓
+Controls individual items
+```
+
+---
+
+## Flexbox and Available Space
+
+One of the main strengths of Flexbox is its ability to distribute available space.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+```
+
+The available space is distributed between the flex items.
+
+```text
+┌─────────────────────────────────────┐
+│ Item 1          Item 2          Item 3│
+└─────────────────────────────────────┘
+```
+
+This makes Flexbox useful for layouts where spacing needs to adapt to different container sizes.
+
+---
+
+## Flexbox Does Not Mean "Everything Is Automatically Responsive"
+
+Flexbox provides flexible layout behavior, but a responsive design may still require:
+
+- Flexible widths
+- `flex-wrap`
+- Media queries
+- Relative units
+- Minimum and maximum sizes
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+allows items to move onto additional lines when necessary.
+
+---
+
+> 💡 **Pro Tip:** Remember the basic relationship:
+
+```text
+display: flex
+      ↓
+Parent becomes Flex Container
+      ↓
+Direct children become Flex Items
+      ↓
+Flexbox controls their layout
+```
+
+Once this relationship is clear, the rest of Flexbox becomes much easier to understand.
+
+---
+
+> 💡 **Remember:** Flexbox is not a property applied to individual elements independently. It establishes a **layout context on a parent**, which controls the arrangement of its direct children.
