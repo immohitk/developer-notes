@@ -17986,3 +17986,811 @@ Grid
 ---
 
 > 💡 **Interview Tip:** When explaining Flexbox, don't just memorize property definitions. Be able to explain the relationship between the **flex container, flex items, main axis, cross axis, alignment, and flexible sizing**.
+
+---
+
+# Practice Exercises
+
+Practice is one of the best ways to understand Flexbox. Try to solve the following exercises without looking at the solution first.
+
+---
+
+## Exercise 1 — Create a Flex Container
+
+Create a container containing three items.
+
+Requirements:
+
+- Make the container a flex container.
+- Arrange the items in a row.
+- Add visible spacing between them.
+
+Concepts:
+
+```text
+display
+flex-direction
+gap
+```
+
+---
+
+## Exercise 2 — Horizontal Centering
+
+Create a container containing one element.
+
+Requirements:
+
+- Center the element horizontally.
+- Do not use `position`.
+- Use Flexbox alignment.
+
+Concepts:
+
+```text
+justify-content
+```
+
+---
+
+## Exercise 3 — Vertical Centering
+
+Create a container with one element.
+
+Requirements:
+
+- Center the element vertically.
+- Use Flexbox.
+- Do not use absolute positioning.
+
+Think about:
+
+```text
+Main axis
+Cross axis
+```
+
+---
+
+## Exercise 4 — Perfect Centering
+
+Create a full-screen container containing a box.
+
+Requirements:
+
+- Center the box horizontally.
+- Center the box vertically.
+- The container should fill the viewport.
+
+Suggested concepts:
+
+```text
+display: flex
+justify-content
+align-items
+min-height
+```
+
+---
+
+## Exercise 5 — Navigation Bar
+
+Create a navigation bar containing:
+
+```text
+Logo
+Home
+About
+Projects
+Contact
+```
+
+Requirements:
+
+- Arrange the elements in a row.
+- Add consistent spacing.
+- Vertically align the items.
+- Keep the layout clean.
+
+Concepts:
+
+```text
+flex-direction
+align-items
+gap
+```
+
+---
+
+## Exercise 6 — Space Between
+
+Create a header containing:
+
+```text
+Logo
+Navigation
+Profile
+```
+
+Requirements:
+
+- Place the logo on the left.
+- Place the profile section on the right.
+- Distribute the content using Flexbox.
+
+Try:
+
+```css
+justify-content
+```
+
+---
+
+## Exercise 7 — Equal Width Items
+
+Create three boxes.
+
+Requirements:
+
+- Arrange them in a row.
+- Make each item share the available space.
+- Add spacing between the items.
+
+Concepts:
+
+```text
+flex
+flex-grow
+gap
+```
+
+---
+
+## Exercise 8 — Vertical Layout
+
+Create a component containing:
+
+```text
+Heading
+Description
+Button
+```
+
+Requirements:
+
+- Arrange the elements vertically.
+- Add consistent spacing.
+- Center the elements horizontally.
+
+Concepts:
+
+```text
+flex-direction: column
+align-items
+gap
+```
+
+---
+
+## Exercise 9 — Wrapping Cards
+
+Create six cards.
+
+Requirements:
+
+- Display cards using Flexbox.
+- Allow cards to wrap onto multiple lines.
+- Add consistent spacing.
+- Give cards a flexible initial size.
+
+Concepts:
+
+```text
+flex-wrap
+gap
+flex-basis
+```
+
+---
+
+## Exercise 10 — Responsive Cards
+
+Create a card layout where:
+
+```text
+Large screen
+→ Multiple cards in a row
+
+Small screen
+→ Cards wrap
+```
+
+Requirements:
+
+- Use Flexbox.
+- Allow the cards to wrap.
+- Avoid giving every card a rigid width.
+
+Concepts:
+
+```text
+flex-wrap
+flex
+flex-basis
+```
+
+---
+
+## Exercise 11 — Sidebar and Content
+
+Create a page layout containing:
+
+```text
+Sidebar | Main Content
+```
+
+Requirements:
+
+- Give the sidebar a stable width.
+- Allow the main content to use the remaining space.
+- Use Flexbox.
+
+Concepts:
+
+```text
+flex-basis
+flex-grow
+flex-shrink
+```
+
+---
+
+## Exercise 12 — Header With Actions
+
+Create a header containing:
+
+```text
+Logo
+Search
+Actions
+```
+
+Requirements:
+
+- Arrange everything in one row.
+- Vertically center the items.
+- Allow the search section to use available space.
+
+Think about:
+
+```css
+flex: 1;
+```
+
+---
+
+## Exercise 13 — Button Group
+
+Create a group of buttons:
+
+```text
+Save
+Cancel
+Delete
+```
+
+Requirements:
+
+- Place them in a row.
+- Add consistent spacing.
+- Align them properly.
+- Make the layout easy to modify.
+
+Concepts:
+
+```text
+display: flex
+gap
+align-items
+```
+
+---
+
+## Exercise 14 — Individual Alignment
+
+Create a flex container with three items.
+
+Requirements:
+
+- Align all items normally.
+- Make the second item use a different cross-axis alignment.
+- Do not change the alignment of the other items.
+
+Concept:
+
+```css
+align-self
+```
+
+---
+
+## Exercise 15 — Change Visual Order
+
+Create three items:
+
+```text
+A
+B
+C
+```
+
+Use the `order` property so that the visual order becomes:
+
+```text
+C
+A
+B
+```
+
+Then consider:
+
+> Would changing the HTML order be better if the sequence has semantic meaning?
+
+Concept:
+
+```css
+order
+```
+
+---
+
+## Exercise 16 — Fixed Sidebar
+
+Create:
+
+```text
+Sidebar | Content
+```
+
+Requirements:
+
+- Sidebar should start at `240px`.
+- Sidebar should not shrink.
+- Content should consume the remaining space.
+
+Concepts:
+
+```css
+flex: 0 0 240px;
+flex: 1;
+```
+
+---
+
+## Exercise 17 — Flexible Search Bar
+
+Create a toolbar containing:
+
+```text
+Logo | Search | Button
+```
+
+Requirements:
+
+- Logo should keep its natural size.
+- Search should consume remaining space.
+- Button should remain at its required size.
+
+Think about:
+
+```css
+.search {
+    flex: 1;
+}
+```
+
+---
+
+## Exercise 18 — Auto Margin
+
+Create a navigation bar containing:
+
+```text
+Home
+About
+Projects
+Login
+```
+
+Requirements:
+
+- Keep the first three items together.
+- Push `Login` to the opposite side.
+- Use an auto margin.
+
+Concept:
+
+```css
+margin-left: auto;
+```
+
+---
+
+## Exercise 19 — Nested Flexbox
+
+Create a card containing:
+
+```text
+Image
+Content
+```
+
+Inside the content section, create:
+
+```text
+Title
+Description
+Actions
+```
+
+Requirements:
+
+- Use Flexbox for the card.
+- Use another Flexbox container inside the content section.
+- Arrange the inner content vertically.
+
+Concept:
+
+```text
+Nested Flex Containers
+```
+
+---
+
+## Exercise 20 — Full Page Layout
+
+Create a page containing:
+
+```text
+Header
+Main
+Footer
+```
+
+Requirements:
+
+- Stack the sections vertically.
+- Make the page at least the height of the viewport.
+- Allow the main section to consume the remaining available space.
+
+Concepts:
+
+```text
+flex-direction
+min-height
+flex
+```
+
+---
+
+## Exercise 21 — Responsive Component
+
+Create a component containing:
+
+```text
+Image | Content
+```
+
+Requirements:
+
+### Desktop
+
+```text
+Image | Content
+```
+
+### Small Screen
+
+```text
+Image
+  ↓
+Content
+```
+
+Use Flexbox and a responsive rule.
+
+Concepts:
+
+```text
+flex-direction
+media query
+```
+
+---
+
+## Exercise 22 — Wrapping Navigation
+
+Create a navigation menu with many links.
+
+Requirements:
+
+- Display links in a row when there is enough space.
+- Allow links to wrap when the container becomes narrow.
+- Keep consistent spacing.
+
+Concepts:
+
+```text
+flex-wrap
+gap
+```
+
+---
+
+## Exercise 23 — Flexbox vs Grid
+
+Create the same simple layout using:
+
+1. Flexbox
+2. CSS Grid
+
+Then answer:
+
+> Which solution is more appropriate for this particular layout and why?
+
+Focus on the difference between:
+
+```text
+One-dimensional
+Two-dimensional
+```
+
+---
+
+## Exercise 24 — Debug a Broken Layout
+
+Consider:
+
+```css
+.container {
+    justify-content: center;
+    align-items: center;
+}
+```
+
+The elements are not behaving as expected.
+
+Find the missing requirement.
+
+Hint:
+
+```text
+Is the element actually a flex container?
+```
+
+---
+
+## Exercise 25 — Debug the Axes
+
+Create a layout using:
+
+```css
+flex-direction: column;
+```
+
+Then use:
+
+```css
+justify-content: center;
+```
+
+Observe which direction the items move.
+
+Then change:
+
+```css
+flex-direction: row;
+```
+
+Observe the difference.
+
+Goal:
+
+> Understand why `justify-content` is not permanently "horizontal".
+
+---
+
+## Exercise 26 — Debug `align-content`
+
+Create a wrapping flex container with multiple rows.
+
+Test:
+
+```css
+align-items: center;
+```
+
+and:
+
+```css
+align-content: center;
+```
+
+Compare their behavior.
+
+Goal:
+
+> Understand the difference between item alignment and line distribution.
+
+---
+
+## Exercise 27 — Debug Overflow
+
+Create a flex container containing an item with a long unbreakable string.
+
+Observe the overflow.
+
+Experiment with:
+
+```css
+min-width: 0;
+```
+
+and the relevant flex sizing properties.
+
+Goal:
+
+> Understand why flex items may sometimes refuse to shrink as expected.
+
+---
+
+## Exercise 28 — Build a Card Grid With Flexbox
+
+Create a collection of cards.
+
+Requirements:
+
+- Cards should wrap.
+- Cards should have a reasonable initial size.
+- Cards should share available space.
+- Spacing should be consistent.
+- The layout should adapt to different container widths.
+
+Suggested starting point:
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+Then determine an appropriate `flex` value for the cards.
+
+---
+
+# Challenge Exercises
+
+## Challenge 1 — Responsive Navigation
+
+Build a navigation component with:
+
+```text
+Logo
+Navigation Links
+Action Button
+```
+
+Requirements:
+
+- Horizontal layout on large screens.
+- Appropriate wrapping or stacking on smaller screens.
+- Consistent spacing.
+- Proper alignment.
+- No unnecessary absolute positioning.
+
+---
+
+## Challenge 2 — Dashboard Layout
+
+Build a dashboard containing:
+
+```text
+Sidebar
+Main Content
+```
+
+Inside the main content:
+
+```text
+Header
+Cards
+Actions
+```
+
+Use Flexbox where the relationships are one-dimensional.
+
+Then identify areas where CSS Grid might be a better choice.
+
+---
+
+## Challenge 3 — Complete Responsive Card Component
+
+Create a reusable card component containing:
+
+```text
+Image
+Title
+Description
+Button
+```
+
+Requirements:
+
+- Use nested Flexbox where appropriate.
+- Make the content vertically organized.
+- Keep spacing consistent.
+- Allow the card to participate in a responsive wrapping layout.
+- Test with short and long content.
+
+---
+
+## Challenge 4 — Flexbox Layout From Scratch
+
+Create a complete page using Flexbox:
+
+```text
+┌─────────────────────────────┐
+│           Header            │
+├───────────┬─────────────────┤
+│           │                 │
+│ Sidebar   │     Content     │
+│           │                 │
+├───────────┴─────────────────┤
+│           Footer            │
+└─────────────────────────────┘
+```
+
+Then answer:
+
+1. Which element is the main flex container?
+2. Which elements are flex items?
+3. What is the main axis?
+4. Where is `flex-direction` used?
+5. Where is `flex` used?
+6. Where could Grid be more appropriate?
+7. How would the layout change on a small screen?
+
+---
+
+# Practice Checklist
+
+```text
+☐ Create a flex container
+☐ Arrange items in a row
+☐ Arrange items in a column
+☐ Center an item
+☐ Use justify-content
+☐ Use align-items
+☐ Understand align-content
+☐ Use gap
+☐ Use flex-wrap
+☐ Use flex-grow
+☐ Use flex-shrink
+☐ Use flex-basis
+☐ Use flex shorthand
+☐ Use align-self
+☐ Use order
+☐ Use auto margins
+☐ Create nested Flexbox layouts
+☐ Build a responsive card layout
+☐ Build a sidebar layout
+☐ Build a navigation layout
+☐ Debug Flexbox problems
+☐ Decide between Flexbox and Grid
+```
+
+---
+
+> 💡 **Practice Tip:** Try to solve each exercise yourself before checking documentation. The goal is not just to remember Flexbox properties, but to understand which property solves a particular layout problem.
