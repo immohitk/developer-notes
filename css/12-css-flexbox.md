@@ -7245,3 +7245,698 @@ B → C → A
 ---
 
 > 💡 **Remember:** `order` changes the **visual sequence of flex items**. The default is `0`, smaller values appear first, and items with equal values retain their source order.
+
+---
+
+# Flex Grow
+
+The `flex-grow` property controls how much a flex item can **grow relative to the other flex items** when there is extra available space in the flex container.
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+It applies to **flex items**, not the flex container.
+
+---
+
+## Syntax
+
+```css
+.item {
+    flex-grow: value;
+}
+```
+
+The value is a non-negative number.
+
+For example:
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+or:
+
+```css
+.item {
+    flex-grow: 2;
+}
+```
+
+---
+
+## Default Value
+
+The default value is:
+
+```css
+flex-grow: 0;
+```
+
+This means a flex item does not grow to consume extra free space by default.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+The items keep their normal sizes rather than automatically expanding to fill all available space.
+
+---
+
+## Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="item one">One</div>
+    <div class="item two">Two</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+}
+
+.one {
+    flex-grow: 1;
+}
+```
+
+The first item can grow into available extra space.
+
+```text
+Before:
+
+┌──────────────────────────────────────┐
+│ One │ Two                            │
+└──────────────────────────────────────┘
+
+After:
+
+┌──────────────────────────────────────┐
+│ One grows │ Two                      │
+└──────────────────────────────────────┘
+```
+
+The second item remains at its normal size because its default is:
+
+```css
+flex-grow: 0;
+```
+
+---
+
+## Two Items With Equal Growth
+
+Consider:
+
+```css
+.one {
+    flex-grow: 1;
+}
+
+.two {
+    flex-grow: 1;
+}
+```
+
+Both items have the same growth factor.
+
+```text
+1 part → One
+1 part → Two
+```
+
+The available positive free space is distributed equally between them.
+
+Conceptually:
+
+```text
+┌──────────────────────────────────────┐
+│          One          │      Two     │
+└──────────────────────────────────────┘
+```
+
+---
+
+## Different Growth Values
+
+Consider:
+
+```css
+.one {
+    flex-grow: 1;
+}
+
+.two {
+    flex-grow: 2;
+}
+```
+
+The growth factors are:
+
+```text
+One → 1
+Two → 2
+```
+
+So the extra available space is distributed in a:
+
+```text
+1 : 2
+```
+
+ratio.
+
+The second item receives twice the share of the positive free space received by the first item.
+
+Conceptually:
+
+```text
+┌──────────────────────────────────────┐
+│    One    │          Two             │
+│  1 part   │         2 parts          │
+└──────────────────────────────────────┘
+```
+
+---
+
+## Three Items
+
+Consider:
+
+```css
+.one {
+    flex-grow: 1;
+}
+
+.two {
+    flex-grow: 2;
+}
+
+.three {
+    flex-grow: 1;
+}
+```
+
+The total growth factor is:
+
+```text
+1 + 2 + 1 = 4
+```
+
+Therefore, the available positive free space is divided proportionally:
+
+```text
+One   → 1/4
+Two   → 2/4
+Three → 1/4
+```
+
+Conceptually:
+
+```text
+┌────────────────────────────────────────┐
+│ One │       Two       │ Three │
+│ 1   │        2        │  1    │
+└────────────────────────────────────────┘
+```
+
+---
+
+## `flex-grow: 0`
+
+The default behavior is:
+
+```css
+.item {
+    flex-grow: 0;
+}
+```
+
+The item does not grow to consume positive free space.
+
+For example:
+
+```css
+.one {
+    flex-grow: 0;
+}
+
+.two {
+    flex-grow: 1;
+}
+```
+
+Only the second item participates in distributing the available positive free space.
+
+---
+
+## `flex-grow: 1`
+
+A value of:
+
+```css
+flex-grow: 1;
+```
+
+means the item participates in distributing positive free space.
+
+It does **not** mean:
+
+```text
+Make the item exactly twice as wide
+```
+
+Instead, it means:
+
+```text
+Give this item one share of the available positive free space.
+```
+
+This distinction is important.
+
+---
+
+## `flex-grow: 2`
+
+A value of:
+
+```css
+flex-grow: 2;
+```
+
+means the item receives two growth shares relative to an item with:
+
+```css
+flex-grow: 1;
+```
+
+For example:
+
+```css
+.one {
+    flex-grow: 1;
+}
+
+.two {
+    flex-grow: 2;
+}
+```
+
+The ratio is:
+
+```text
+One : Two
+ 1  :  2
+```
+
+This applies to the **extra free space**, not necessarily to the final widths themselves.
+
+---
+
+## Flex Grow Works Along the Main Axis
+
+`flex-grow` operates along the **main axis**.
+
+If:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+```text
+Main Axis →
+```
+
+Therefore, growth generally affects the horizontal size.
+
+If:
+
+```css
+flex-direction: column;
+```
+
+the main axis is vertical.
+
+```text
+Main Axis
+   ↓
+```
+
+Therefore, growth generally affects the vertical size.
+
+---
+
+## Example With Row Direction
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    flex-grow: 1;
+}
+```
+
+The items can grow horizontally:
+
+```text
+←──────── Main Axis ────────→
+```
+
+---
+
+## Example With Column Direction
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    flex-grow: 1;
+}
+```
+
+The items can grow vertically:
+
+```text
+Main Axis
+   ↓
+   ↓
+   ↓
+```
+
+---
+
+## `flex-grow` and Available Space
+
+`flex-grow` matters when there is **positive free space**.
+
+For example:
+
+```text
+Container width = 600px
+
+Items' base sizes = 400px
+
+Remaining space = 200px
+```
+
+There is:
+
+```text
+200px
+```
+
+of positive free space.
+
+If the items have growth factors:
+
+```text
+Item A → 1
+Item B → 1
+```
+
+that extra space is distributed between them according to their growth factors.
+
+---
+
+## Growth Is Relative
+
+Suppose:
+
+```css
+.one {
+    flex-grow: 1;
+}
+
+.two {
+    flex-grow: 3;
+}
+```
+
+The values do not mean:
+
+```text
+One = 25% of container
+Two = 75% of container
+```
+
+They describe the **relative distribution of positive free space**.
+
+The existing base sizes of the items also matter.
+
+Therefore, `flex-grow` should be understood as a growth factor rather than a direct width percentage.
+
+---
+
+## `flex-grow` Does Not Set the Initial Size
+
+Consider:
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+This does not define the initial size of the item.
+
+The initial size can be influenced by factors such as:
+
+```css
+width
+flex-basis
+content size
+```
+
+`flex-grow` determines how the item participates in distributing positive free space after the initial sizing stage.
+
+---
+
+## `flex-grow` vs `width`
+
+These properties have different purposes.
+
+```css
+.item {
+    width: 200px;
+}
+```
+
+defines a width.
+
+Whereas:
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+defines how the item participates in growing when extra main-axis space is available.
+
+They can also be used together, although the final size is determined by the Flexbox sizing algorithm.
+
+---
+
+## Common Layout Pattern
+
+A common pattern is:
+
+```css
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+}
+
+.content {
+    flex-grow: 1;
+}
+```
+
+The sidebar keeps its intended size while the content item can consume the remaining available space.
+
+Conceptually:
+
+```text
+┌──────────┬─────────────────────────────┐
+│ Sidebar  │           Content           │
+│  200px   │       grows as needed       │
+└──────────┴─────────────────────────────┘
+```
+
+This is a very common Flexbox layout pattern.
+
+---
+
+## Multiple Growing Items
+
+You can have multiple growing items:
+
+```css
+.item-a {
+    flex-grow: 1;
+}
+
+.item-b {
+    flex-grow: 2;
+}
+
+.item-c {
+    flex-grow: 1;
+}
+```
+
+The positive free space is distributed according to:
+
+```text
+1 : 2 : 1
+```
+
+The middle item receives twice the growth share of each of the other items.
+
+---
+
+## `flex-grow` and `gap`
+
+`flex-grow` can be combined with:
+
+```css
+gap
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.item {
+    flex-grow: 1;
+}
+```
+
+The gap remains between the items, while the available positive free space is distributed among the growing items.
+
+Conceptually:
+
+```text
+┌──────────────────────────────────────┐
+│      Item 1    20px    Item 2       │
+│       grows             grows       │
+└──────────────────────────────────────┘
+```
+
+---
+
+## `flex-grow` and `justify-content`
+
+Both properties can affect the use of available space, but they do different jobs.
+
+```text
+flex-grow
+→ Allows flex items to grow into positive free space
+
+justify-content
+→ Distributes remaining free space along the main axis
+```
+
+When flex items grow and consume the available positive free space, there may be little or no free space left for `justify-content` to distribute.
+
+---
+
+## Common Mistake
+
+Do not think:
+
+```css
+flex-grow: 1;
+```
+
+means:
+
+```text
+width: 100%;
+```
+
+It does not.
+
+It means the item is allowed to receive a proportional share of available positive free space.
+
+---
+
+## Quick Reference
+
+| Value | Meaning |
+|-------|---------|
+| `0` | Item does not grow |
+| `1` | One growth share |
+| `2` | Two growth shares |
+| `3` | Three growth shares |
+| Higher value | Larger share relative to lower values |
+
+Example:
+
+```css
+.one {
+    flex-grow: 1;
+}
+
+.two {
+    flex-grow: 2;
+}
+
+.three {
+    flex-grow: 1;
+}
+```
+
+Growth ratio:
+
+```text
+One   → 1
+Two   → 2
+Three → 1
+```
+
+Therefore:
+
+```text
+1 : 2 : 1
+```
+
+---
+
+> 💡 **Pro Tip:** Think of `flex-grow` as a **share of extra space**, not as a direct width. If two items have `flex-grow: 1`, they share the available positive free space equally; if one has `2`, it receives twice the share of an item with `1`.
+
+---
+
+> 💡 **Remember:** `flex-grow` controls how flex items use **positive free space along the main axis**. Its default value is `0`, and larger values receive proportionally larger shares of the available extra space.
+
+---
