@@ -3956,3 +3956,547 @@ align-items
 ---
 
 > 💡 **Remember:** `justify-content` controls how flex items are positioned and distributed along the **main axis**. The main axis is determined by `flex-direction`.
+
+---
+
+# Align Items
+
+The `align-items` property controls how flex items are **aligned along the cross axis** of a flex container.
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+The cross axis depends on the value of:
+
+```css
+flex-direction
+```
+
+---
+
+## Syntax
+
+```css
+.container {
+    display: flex;
+    align-items: value;
+}
+```
+
+Common values include:
+
+```text
+stretch
+flex-start
+flex-end
+center
+baseline
+```
+
+---
+
+## `stretch`
+
+The default value is:
+
+```css
+align-items: stretch;
+```
+
+Flex items stretch along the cross axis when their cross-axis size is `auto`.
+
+Example:
+
+```css
+.container {
+    display: flex;
+    align-items: stretch;
+}
+```
+
+For a row-based container:
+
+```text
+┌──────────────────────────────────────┐
+│  ┌────┐  ┌────┐  ┌────┐              │
+│  │    │  │    │  │    │              │
+│  │  1 │  │  2 │  │  3 │              │
+│  │    │  │    │  │    │              │
+│  └────┘  └────┘  └────┘              │
+└──────────────────────────────────────┘
+```
+
+The items can stretch to fill the available cross-axis space.
+
+---
+
+## `flex-start`
+
+The `flex-start` value places items at the beginning of the cross axis.
+
+```css
+.container {
+    display: flex;
+    align-items: flex-start;
+}
+```
+
+For a normal row:
+
+```text
+┌──────────────────────────────────────┐
+│  1      2      3                     │
+│                                      │
+│                                      │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+The items are aligned toward the start of the cross axis.
+
+---
+
+## `flex-end`
+
+The `flex-end` value places items at the end of the cross axis.
+
+```css
+.container {
+    display: flex;
+    align-items: flex-end;
+}
+```
+
+For a normal row:
+
+```text
+┌──────────────────────────────────────┐
+│                                      │
+│                                      │
+│                                      │
+│  1      2      3                     │
+└──────────────────────────────────────┘
+```
+
+---
+
+## `center`
+
+The `center` value centers the flex items along the cross axis.
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+For a row-based container:
+
+```text
+┌──────────────────────────────────────┐
+│                                      │
+│       1      2      3                │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+This is one of the most commonly used values.
+
+---
+
+## `baseline`
+
+The `baseline` value aligns flex items according to their text baselines.
+
+```css
+.container {
+    display: flex;
+    align-items: baseline;
+}
+```
+
+This is particularly useful when items contain text with different font sizes.
+
+Example:
+
+```text
+┌──────────────────────────────────────┐
+│  Small     LARGE     Medium          │
+│     ────────────────                 │
+│          Common Baseline             │
+└──────────────────────────────────────┘
+```
+
+The text baselines are aligned rather than simply aligning the top or bottom edges of the items.
+
+---
+
+## Comparing the Values
+
+For a row-based container:
+
+### `flex-start`
+
+```text
+1   2   3
+```
+
+Items align at the top.
+
+### `flex-end`
+
+```text
+        1   2   3
+```
+
+Items align at the bottom.
+
+### `center`
+
+```text
+    1   2   3
+```
+
+Items align in the center.
+
+### `stretch`
+
+```text
+┌───┐ ┌───┐ ┌───┐
+│ 1 │ │ 2 │ │ 3 │
+│   │ │   │ │   │
+│   │ │   │ │   │
+└───┘ └───┘ └───┘
+```
+
+Items stretch across the available cross-axis space when applicable.
+
+### `baseline`
+
+```text
+1       LARGE       3
+───────────────
+   Common Baseline
+```
+
+Text baselines are aligned.
+
+---
+
+## `align-items` Uses the Cross Axis
+
+The most important rule is:
+
+```text
+align-items
+     ↓
+Cross Axis
+```
+
+For:
+
+```css
+flex-direction: row;
+```
+
+the cross axis is vertical.
+
+Therefore:
+
+```css
+align-items: center;
+```
+
+centers items vertically.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│       1   2   3              │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+## With `flex-direction: column`
+
+Consider:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+```
+
+Now the main axis is vertical and the cross axis is horizontal.
+
+Therefore, `align-items: center` centers the items horizontally.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│            1                 │
+│            2                 │
+│            3                 │
+│                              │
+└──────────────────────────────┘
+```
+
+This is why `align-items` should not simply be remembered as "vertical alignment."
+
+It always operates along the **cross axis**.
+
+---
+
+## `justify-content` vs `align-items`
+
+These two properties are often used together.
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+Their responsibilities are:
+
+```text
+justify-content
+      ↓
+Main Axis
+
+align-items
+      ↓
+Cross Axis
+```
+
+For a normal row:
+
+```text
+Main Axis
+────────────────────────→
+
+Cross Axis
+      ↓
+      ↓
+      ↓
+```
+
+Therefore:
+
+```css
+justify-content: center;
+```
+
+centers items along the horizontal main axis.
+
+And:
+
+```css
+align-items: center;
+```
+
+centers them along the vertical cross axis.
+
+Together, they can center items in both directions.
+
+---
+
+## Complete Centering Example
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────┐
+│                              │
+│                              │
+│          1   2   3           │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+Here:
+
+```text
+justify-content
+→ Centers on the main axis
+
+align-items
+→ Centers on the cross axis
+```
+
+---
+
+## `align-items` and Item Height
+
+The effect of `align-items` is easiest to see when the flex container has extra space along its cross axis.
+
+For example:
+
+```css
+.container {
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
+```
+
+The items can then be positioned within the available vertical space.
+
+Without enough cross-axis space, there may be little or no visible difference between some alignment values.
+
+---
+
+## `align-items` With Different Item Sizes
+
+Flex items do not have to be the same size.
+
+Example:
+
+```html
+<div class="container">
+    <div class="item small">Small</div>
+    <div class="item large">Large</div>
+    <div class="item medium">Medium</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+The different-sized items are aligned according to the selected cross-axis alignment.
+
+```text
+┌──────────────────────────────────────┐
+│                                      │
+│   Small     Large     Medium         │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+---
+
+## Common Use Cases
+
+### Vertically Centering a Row
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+### Centering Items in a Column
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+```
+
+### Aligning Header Content
+
+```css
+.header {
+    display: flex;
+    align-items: center;
+}
+```
+
+This is commonly used to vertically align a logo, navigation, and buttons.
+
+### Aligning Different Text Sizes
+
+```css
+.container {
+    display: flex;
+    align-items: baseline;
+}
+```
+
+This can keep text baselines visually aligned.
+
+---
+
+## Important Difference From `align-content`
+
+Do not confuse:
+
+```css
+align-items
+```
+
+with:
+
+```css
+align-content
+```
+
+`align-items` controls the alignment of **items within a flex line**.
+
+`align-content` controls the distribution of **multiple flex lines** when wrapping creates extra cross-axis space.
+
+```text
+align-items
+     ↓
+Items
+
+align-content
+     ↓
+Flex Lines
+```
+
+`align-content` becomes relevant when there are multiple flex lines, such as when:
+
+```css
+flex-wrap: wrap;
+```
+
+is being used.
+
+---
+
+## Quick Reference
+
+| Value | Behavior |
+|-------|----------|
+| `stretch` | Stretches items along the cross axis when applicable |
+| `flex-start` | Aligns items at the start of the cross axis |
+| `flex-end` | Aligns items at the end of the cross axis |
+| `center` | Centers items along the cross axis |
+| `baseline` | Aligns items according to their baselines |
+
+---
+
+> 💡 **Pro Tip:** If you want to understand what `align-items` is doing, first identify the cross axis. Ask: **"Which direction is perpendicular to my `flex-direction`?"** That is the direction in which `align-items` works.
+
+---
+
+> 💡 **Remember:** `align-items` controls the alignment of flex items along the **cross axis**. It is commonly used with `justify-content` to control alignment in both axes.
