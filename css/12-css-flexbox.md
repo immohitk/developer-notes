@@ -15180,3 +15180,507 @@ This is a useful starting point when deciding which CSS layout system to use.
 ---
 
 > 💡 **Note:** These references are provided for further learning and for verifying Flexbox behavior and property details.
+
+---
+
+# Quick Revision
+
+## What Is Flexbox?
+
+Flexbox is a **one-dimensional CSS layout system** used to arrange and align elements inside a container.
+
+```css
+.container {
+    display: flex;
+}
+```
+
+---
+
+## Flex Container
+
+An element becomes a flex container when:
+
+```css
+display: flex;
+```
+
+Its direct children become flex items.
+
+```text
+Flex Container
+      │
+      ├── Flex Item
+      ├── Flex Item
+      └── Flex Item
+```
+
+---
+
+## Flex Direction
+
+Controls the direction of the main axis.
+
+```css
+flex-direction: row;
+```
+
+```text
+Item → Item → Item
+```
+
+```css
+flex-direction: column;
+```
+
+```text
+Item
+  ↓
+Item
+  ↓
+Item
+```
+
+Other values:
+
+```css
+row-reverse;
+column-reverse;
+```
+
+---
+
+## Main Axis and Cross Axis
+
+The main axis depends on `flex-direction`.
+
+```text
+flex-direction: row
+
+Main Axis   → → →
+Cross Axis  ↓
+```
+
+```text
+flex-direction: column
+
+Main Axis   ↓
+            ↓
+            ↓
+
+Cross Axis  →
+```
+
+---
+
+## Flex Wrap
+
+Controls whether flex items can move onto multiple lines.
+
+```css
+flex-wrap: nowrap;
+```
+
+Default behavior.
+
+```css
+flex-wrap: wrap;
+```
+
+Allows wrapping.
+
+```css
+flex-wrap: wrap-reverse;
+```
+
+Allows wrapping in the reverse cross-axis direction.
+
+---
+
+## Flex Flow
+
+Shorthand for:
+
+```css
+flex-direction
+flex-wrap
+```
+
+Example:
+
+```css
+flex-flow: row wrap;
+```
+
+---
+
+## Justify Content
+
+Controls how flex items are distributed along the **main axis**.
+
+Common values:
+
+```css
+justify-content: flex-start;
+justify-content: flex-end;
+justify-content: center;
+justify-content: space-between;
+justify-content: space-around;
+justify-content: space-evenly;
+```
+
+---
+
+## Align Items
+
+Controls alignment along the **cross axis**.
+
+Common values:
+
+```css
+align-items: stretch;
+align-items: flex-start;
+align-items: flex-end;
+align-items: center;
+align-items: baseline;
+```
+
+---
+
+## Align Content
+
+Controls the distribution of **multiple flex lines**.
+
+It becomes useful when:
+
+```css
+flex-wrap: wrap;
+```
+
+is being used.
+
+Common values include:
+
+```css
+align-content: flex-start;
+align-content: center;
+align-content: flex-end;
+align-content: space-between;
+align-content: space-around;
+align-content: space-evenly;
+align-content: stretch;
+```
+
+---
+
+## Gap
+
+Creates consistent spacing between flex items.
+
+```css
+gap: 20px;
+```
+
+Separate row and column gaps can be defined:
+
+```css
+row-gap: 20px;
+column-gap: 30px;
+```
+
+Or together:
+
+```css
+gap: 20px 30px;
+```
+
+---
+
+# Flex Item Properties
+
+Flex item properties control individual flex items.
+
+```css
+order;
+flex-grow;
+flex-shrink;
+flex-basis;
+flex;
+align-self;
+```
+
+---
+
+## Order
+
+Changes the visual order of flex items.
+
+```css
+.item {
+    order: 2;
+}
+```
+
+The default value is:
+
+```css
+order: 0;
+```
+
+Items are arranged according to their order value, with lower values appearing first.
+
+---
+
+## Flex Grow
+
+Controls how an item can grow when extra space is available.
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+A larger grow factor means the item can receive a larger share of available free space.
+
+---
+
+## Flex Shrink
+
+Controls how an item can shrink when there is insufficient space.
+
+```css
+.item {
+    flex-shrink: 1;
+}
+```
+
+The default value is:
+
+```css
+flex-shrink: 1;
+```
+
+---
+
+## Flex Basis
+
+Defines the initial main-size contribution of a flex item before remaining free space is distributed.
+
+```css
+.item {
+    flex-basis: 200px;
+}
+```
+
+---
+
+## Flex Shorthand
+
+Combines:
+
+```css
+flex-grow
+flex-shrink
+flex-basis
+```
+
+Example:
+
+```css
+.item {
+    flex: 1 1 200px;
+}
+```
+
+---
+
+## Align Self
+
+Overrides the container's `align-items` value for an individual flex item.
+
+```css
+.item {
+    align-self: center;
+}
+```
+
+---
+
+# Centering With Flexbox
+
+A common pattern for horizontal and vertical centering is:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+This is one of the most commonly used Flexbox patterns.
+
+---
+
+# Common Flexbox Patterns
+
+### Horizontal Layout
+
+```css
+.container {
+    display: flex;
+}
+```
+
+### Vertical Layout
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+### Centering
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+### Space Between
+
+```css
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+```
+
+### Wrapping
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+### Flexible Items
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+### Consistent Spacing
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+```
+
+---
+
+# Common Use Cases
+
+Flexbox is commonly used for:
+
+```text
+Navigation bars
+Headers
+Footers
+Sidebars
+Button groups
+Toolbars
+Forms
+Cards
+Media objects
+Search bars
+Pagination
+Centered content
+Responsive components
+```
+
+---
+
+# Flexbox vs Grid
+
+The basic distinction:
+
+```text
+Flexbox
+→ One-dimensional layout
+
+Grid
+→ Two-dimensional layout
+```
+
+Use Flexbox when the primary relationship is along one axis.
+
+Use Grid when both rows and columns need to be controlled together.
+
+They can also be combined.
+
+---
+
+# Important Mental Model
+
+When working with Flexbox, think in this order:
+
+```text
+1. Flex Container
+       ↓
+2. Flex Direction
+       ↓
+3. Main Axis / Cross Axis
+       ↓
+4. Item Distribution
+       ↓
+5. Item Alignment
+       ↓
+6. Item Sizing
+       ↓
+7. Wrapping if needed
+```
+
+---
+
+# Most Important Properties
+
+### Container
+
+```css
+display
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
+gap
+```
+
+### Items
+
+```css
+order
+flex-grow
+flex-shrink
+flex-basis
+flex
+align-self
+```
+
+---
+
+> 💡 **Remember:** If you understand the **main axis, cross axis, container properties, and item properties**, most Flexbox layouts become much easier to reason about.
+
+---
