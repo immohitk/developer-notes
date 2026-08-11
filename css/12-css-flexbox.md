@@ -6606,3 +6606,642 @@ This section serves as an overview of the **flex item property group**.
 > 💡 **Remember:** Container properties control the overall Flexbox layout, while flex item properties control the behavior of individual flex items.
 
 ---
+
+---
+
+# Order
+
+The `order` property controls the **visual order of flex items** inside a flex container.
+
+```css
+.item {
+    order: 2;
+}
+```
+
+By default, all flex items have:
+
+```css
+order: 0;
+```
+
+Flex items are displayed according to their `order` values.
+
+---
+
+## Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="item one">1</div>
+    <div class="item two">2</div>
+    <div class="item three">3</div>
+</div>
+```
+
+By default:
+
+```text
+1 → 2 → 3
+```
+
+The HTML order and visual order are the same.
+
+Now change the order:
+
+```css
+.one {
+    order: 3;
+}
+
+.two {
+    order: 1;
+}
+
+.three {
+    order: 2;
+}
+```
+
+The visual order becomes:
+
+```text
+2 → 3 → 1
+```
+
+The HTML itself has not changed.
+
+---
+
+## Default Value
+
+The default value of `order` is:
+
+```css
+order: 0;
+```
+
+Therefore:
+
+```html
+<div>1</div>
+<div>2</div>
+<div>3</div>
+```
+
+behaves as though each item has:
+
+```css
+order: 0;
+```
+
+When all items have the same `order` value, their original source order is preserved.
+
+---
+
+## How Ordering Works
+
+Flexbox sorts items according to their `order` values.
+
+For example:
+
+```css
+.item-1 {
+    order: 3;
+}
+
+.item-2 {
+    order: 1;
+}
+
+.item-3 {
+    order: 2;
+}
+```
+
+The browser effectively arranges them as:
+
+```text
+order: 1
+    ↓
+Item 2
+
+order: 2
+    ↓
+Item 3
+
+order: 3
+    ↓
+Item 1
+```
+
+Result:
+
+```text
+2 → 3 → 1
+```
+
+---
+
+## Smaller Values Come First
+
+Consider:
+
+```css
+.one {
+    order: 5;
+}
+
+.two {
+    order: 2;
+}
+
+.three {
+    order: 4;
+}
+
+.four {
+    order: 1;
+}
+```
+
+The visual order becomes:
+
+```text
+4 → 2 → 3 → 1
+```
+
+because:
+
+```text
+1 → Item 4
+2 → Item 2
+4 → Item 3
+5 → Item 1
+```
+
+The lowest `order` value appears first.
+
+---
+
+## Negative Values
+
+The `order` property also accepts negative values.
+
+```css
+.item {
+    order: -1;
+}
+```
+
+For example:
+
+```css
+.one {
+    order: 0;
+}
+
+.two {
+    order: -1;
+}
+
+.three {
+    order: 1;
+}
+```
+
+The visual order becomes:
+
+```text
+2 → 1 → 3
+```
+
+because:
+
+```text
+-1 → Item 2
+ 0 → Item 1
+ 1 → Item 3
+```
+
+Negative values can be useful when an item needs to move before items using the default value of `0`.
+
+---
+
+## Same `order` Values
+
+Multiple items can have the same `order` value.
+
+```css
+.one {
+    order: 1;
+}
+
+.two {
+    order: 1;
+}
+
+.three {
+    order: 2;
+}
+```
+
+The result is:
+
+```text
+1 → 2 → 3
+```
+
+Items with the same `order` value maintain their original source order.
+
+Therefore, if two items both have:
+
+```css
+order: 1;
+```
+
+their relative order follows the HTML order.
+
+---
+
+## Changing One Item
+
+You do not need to assign an `order` value to every item.
+
+For example:
+
+```css
+.special {
+    order: -1;
+}
+```
+
+If the other items use the default:
+
+```css
+order: 0;
+```
+
+the special item moves before them.
+
+```text
+Before:
+
+1 → 2 → 3
+
+After:
+
+special → 1 → 2 → 3
+```
+
+---
+
+## Example: Move an Item to the End
+
+HTML:
+
+```html
+<div class="container">
+    <div class="item">A</div>
+    <div class="item">B</div>
+    <div class="item last">C</div>
+</div>
+```
+
+CSS:
+
+```css
+.last {
+    order: 1;
+}
+```
+
+If the other items have the default:
+
+```css
+order: 0;
+```
+
+the result becomes:
+
+```text
+A → B → C
+```
+
+However, if the original item was in the middle:
+
+```text
+A → C → B
+```
+
+and:
+
+```css
+.c {
+    order: 1;
+}
+```
+
+while the others remain at `0`, it moves after them:
+
+```text
+A → B → C
+```
+
+---
+
+## `order` Works on Flex Items
+
+The `order` property applies to **flex items**.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    order: 2;
+}
+```
+
+The `.item` elements are flex items because their parent is a flex container.
+
+If the parent is not a flex or grid container, `order` does not provide this Flexbox ordering behavior.
+
+---
+
+## `order` Does Not Change the HTML
+
+This is an important concept.
+
+Suppose the HTML is:
+
+```html
+<div>One</div>
+<div>Two</div>
+<div>Three</div>
+```
+
+and CSS changes the visual order to:
+
+```text
+Three → One → Two
+```
+
+The HTML source is still:
+
+```text
+One
+Two
+Three
+```
+
+The `order` property changes the **visual layout order**, not the source code.
+
+---
+
+## Visual Order vs Source Order
+
+Think of it as two different orders:
+
+```text
+HTML Source Order
+        ↓
+1 → 2 → 3
+
+
+Visual Flexbox Order
+        ↓
+3 → 1 → 2
+```
+
+This distinction is important for accessibility and keyboard navigation.
+
+---
+
+## Accessibility Consideration
+
+Using `order` to rearrange content visually does not necessarily change the logical order of the document.
+
+For important content, the HTML source should generally be arranged in a meaningful and logical order first.
+
+Avoid using `order` simply to make a poorly structured document appear correct visually.
+
+For example, if the intended reading order is:
+
+```text
+Heading
+Content
+Image
+```
+
+it is better for the HTML structure to reflect that order rather than relying entirely on CSS to rearrange it.
+
+---
+
+## Responsive Design Example
+
+`order` can be useful when a layout needs to change at different screen sizes.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.sidebar {
+    order: 1;
+}
+
+.content {
+    order: 2;
+}
+```
+
+A media query can change the visual arrangement on smaller screens:
+
+```css
+@media (max-width: 600px) {
+    .content {
+        order: 1;
+    }
+
+    .sidebar {
+        order: 2;
+    }
+}
+```
+
+This allows the visual arrangement to change without changing the HTML structure.
+
+---
+
+## Order With Negative Values
+
+A common pattern is:
+
+```css
+.item {
+    order: -1;
+}
+```
+
+Since the default is:
+
+```css
+order: 0;
+```
+
+the item moves before the default-ordered items.
+
+```text
+Default:
+
+1 → 2 → 3
+
+Special item with order: -1:
+
+Special → 1 → 2 → 3
+```
+
+---
+
+## Order and Flex Direction
+
+The `order` property determines the sequence of flex items along the flex layout.
+
+It works with different values of:
+
+```css
+flex-direction
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+The reordered items appear along the row.
+
+With:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+the reordered items appear along the column.
+
+The `order` values still determine the sequence.
+
+---
+
+## Common Use Cases
+
+The `order` property can be useful for:
+
+- Responsive layouts
+- Rearranging sidebar and content sections
+- Changing the visual position of buttons
+- Mobile layout adjustments
+- Reordering cards
+- Creating alternate visual arrangements
+
+---
+
+## Common Mistake
+
+Do not confuse:
+
+```css
+order
+```
+
+with:
+
+```css
+z-index
+```
+
+They control different things.
+
+```text
+order
+→ Controls the sequence of flex items
+
+z-index
+→ Controls stacking order
+```
+
+For example:
+
+```text
+order:
+
+1 → 2 → 3
+```
+
+does not mean:
+
+```text
+z-index:
+
+1 → behind
+2 → middle
+3 → front
+```
+
+They solve different layout problems.
+
+---
+
+## Quick Reference
+
+| Value | Meaning |
+|-------|---------|
+| `order: 0` | Default order |
+| Negative value | Appears before higher order values |
+| Smaller value | Appears earlier |
+| Larger value | Appears later |
+| Same value | Source order is preserved |
+
+Example:
+
+```css
+.item-a {
+    order: 2;
+}
+
+.item-b {
+    order: -1;
+}
+
+.item-c {
+    order: 1;
+}
+```
+
+Visual order:
+
+```text
+B → C → A
+```
+
+---
+
+> 💡 **Pro Tip:** Use `order` when the visual arrangement genuinely needs to differ from the source order, especially for responsive layouts. Keep the HTML source in a sensible logical order whenever possible.
+
+---
+
+> 💡 **Remember:** `order` changes the **visual sequence of flex items**. The default is `0`, smaller values appear first, and items with equal values retain their source order.
