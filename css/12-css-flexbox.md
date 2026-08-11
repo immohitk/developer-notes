@@ -1660,3 +1660,506 @@ Then add properties such as `flex-direction`, `justify-content`, `align-items`, 
 ---
 
 > 💡 **Remember:** `display: flex` is the declaration that creates a **flex container**. Its direct children become **flex items**, and the container can then control their direction, alignment, spacing, and distribution.
+
+---
+
+# Flex Direction
+
+The `flex-direction` property controls the **direction in which flex items are placed** inside a flex container.
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+The default value is:
+
+```css
+row
+```
+
+---
+
+## Syntax
+
+```css
+.container {
+    display: flex;
+    flex-direction: value;
+}
+```
+
+The `flex-direction` property accepts four values:
+
+```text
+row
+row-reverse
+column
+column-reverse
+```
+
+---
+
+## `row`
+
+The default value is:
+
+```css
+flex-direction: row;
+```
+
+Items are arranged from left to right in a left-to-right writing mode.
+
+```text
+┌────────┐  ┌────────┐  ┌────────┐
+│ Item 1 │  │ Item 2 │  │ Item 3 │
+└────────┘  └────────┘  └────────┘
+      ────────────────────────→
+            Main Axis
+```
+
+Example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+This is the same as:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+because `row` is the default value.
+
+---
+
+## `row-reverse`
+
+The `row-reverse` value reverses the direction of the row.
+
+```css
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+```
+
+The items are placed in the opposite direction of `row`.
+
+```text
+┌────────┐  ┌────────┐  ┌────────┐
+│ Item 3 │  │ Item 2 │  │ Item 1 │
+└────────┘  └────────┘  └────────┘
+←────────────────────────
+        Main Axis
+```
+
+The visual order is reversed.
+
+---
+
+## `column`
+
+The `column` value arranges items vertically.
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+Result:
+
+```text
+┌────────┐
+│ Item 1 │
+└────────┘
+     ↓
+┌────────┐
+│ Item 2 │
+└────────┘
+     ↓
+┌────────┐
+│ Item 3 │
+└────────┘
+```
+
+The main axis is now vertical.
+
+```text
+Main Axis
+    ↓
+    ↓
+    ↓
+```
+
+---
+
+## `column-reverse`
+
+The `column-reverse` value reverses the vertical direction.
+
+```css
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+```
+
+Result:
+
+```text
+┌────────┐
+│ Item 3 │
+└────────┘
+     ↑
+┌────────┐
+│ Item 2 │
+└────────┘
+     ↑
+┌────────┐
+│ Item 1 │
+└────────┘
+```
+
+The items are arranged in the reverse direction of `column`.
+
+---
+
+## Comparing the Four Values
+
+| Value | Direction | Main Axis |
+|-------|-----------|-----------|
+| `row` | Horizontal | Left → Right |
+| `row-reverse` | Horizontal reversed | Right → Left |
+| `column` | Vertical | Top → Bottom |
+| `column-reverse` | Vertical reversed | Bottom → Top |
+
+The exact visual direction can also be affected by the document's writing mode and direction.
+
+---
+
+## `row` Example
+
+```html
+<div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+Result:
+
+```text
+1 → 2 → 3
+```
+
+---
+
+## `row-reverse` Example
+
+```css
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+```
+
+Result:
+
+```text
+3 → 2 → 1
+```
+
+The items are visually arranged in the reverse direction.
+
+---
+
+## `column` Example
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+Result:
+
+```text
+1
+↓
+2
+↓
+3
+```
+
+---
+
+## `column-reverse` Example
+
+```css
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+```
+
+Result:
+
+```text
+3
+↑
+2
+↑
+1
+```
+
+---
+
+## Flex Direction Changes the Main Axis
+
+The `flex-direction` property is important because it determines the **main axis**.
+
+With:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+```text
+────────────────────→
+     Main Axis
+```
+
+With:
+
+```css
+flex-direction: column;
+```
+
+the main axis is vertical.
+
+```text
+     Main Axis
+          ↓
+          ↓
+          ↓
+```
+
+This is important when using properties such as:
+
+```css
+justify-content
+align-items
+```
+
+because their behavior is based on the flex container's axes.
+
+---
+
+## `flex-direction` and `justify-content`
+
+`justify-content` operates along the **main axis**.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+```
+
+The items are centered horizontally.
+
+```text
+┌──────────────────────────────┐
+│       1   2   3              │
+└──────────────────────────────┘
+```
+
+If the direction changes:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+```
+
+the same `justify-content: center` centers the items along the vertical main axis.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│          1                   │
+│          2                   │
+│          3                   │
+│                              │
+└──────────────────────────────┘
+```
+
+This is why understanding the main axis is essential when working with Flexbox.
+
+---
+
+## `flex-direction` and `align-items`
+
+`align-items` operates along the **cross axis**.
+
+For:
+
+```css
+flex-direction: row;
+```
+
+the cross axis is vertical.
+
+For:
+
+```css
+flex-direction: column;
+```
+
+the cross axis is horizontal.
+
+Therefore, changing `flex-direction` changes how these alignment properties behave.
+
+---
+
+## Reversing Direction vs Changing HTML Order
+
+Consider:
+
+```html
+<div>1</div>
+<div>2</div>
+<div>3</div>
+```
+
+Using:
+
+```css
+flex-direction: row-reverse;
+```
+
+changes the visual direction without changing the HTML source order.
+
+```text
+HTML order:
+
+1 → 2 → 3
+
+Visual arrangement:
+
+3 → 2 → 1
+```
+
+This distinction can be important for accessibility and logical document structure.
+
+For many layouts, it is preferable to keep meaningful content in a logical HTML order and use CSS for presentation.
+
+---
+
+## Common Use Cases
+
+### Horizontal Navigation
+
+```css
+.nav {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+### Vertical Menu
+
+```css
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+### Reversing a Layout
+
+```css
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+```
+
+### Reversing a Vertical Layout
+
+```css
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+```
+
+---
+
+## Important Difference
+
+`flex-direction` does **not** determine whether an element is a flex container.
+
+This:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+creates the Flexbox layout.
+
+This:
+
+```css
+.container {
+    flex-direction: column;
+}
+```
+
+controls the direction of that layout.
+
+Therefore, a common combination is:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+---
+
+> 💡 **Pro Tip:** When a Flexbox alignment property seems to behave unexpectedly, check `flex-direction` first. The main axis and cross axis depend on the direction of the flex container.
+
+---
+
+> 💡 **Remember:** `flex-direction` controls the direction of the flex items and determines the **main axis**. Its four values are `row`, `row-reverse`, `column`, and `column-reverse`.
