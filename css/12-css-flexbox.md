@@ -15151,3 +15151,32 @@ This is a useful starting point when deciding which CSS layout system to use.
 ---
 
 > 💡 **Remember:** The most important Flexbox concepts are the flex container, flex items, main axis, cross axis, alignment, distribution, wrapping, and flexible sizing.
+
+---
+
+# References
+
+- [MDN — CSS Flexible Box Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout)
+  - Comprehensive reference for CSS Flexbox concepts and properties.
+
+- [MDN — Basic Concepts of Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout/Basic_concepts_of_flexbox)
+  - Covers flex containers, flex items, axes, and the basic Flexbox model.
+
+- [MDN — Aligning Items in a Flex Container](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout/Mastering_wrapping_of_flex_items)
+  - Useful for understanding alignment and wrapping behavior.
+
+- [MDN — `flex` CSS Property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex)
+  - Reference for the `flex` shorthand property.
+
+- [MDN — `justify-content`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/justify-content)
+  - Reference for distributing items along the main axis.
+
+- [MDN — `align-items`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/align-items)
+  - Reference for cross-axis alignment.
+
+- [MDN — `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap)
+  - Reference for spacing between flex and grid items.
+
+---
+
+> 💡 **Note:** These references are provided for further learning and for verifying Flexbox behavior and property details.
