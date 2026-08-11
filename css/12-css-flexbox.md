@@ -18794,3 +18794,39 @@ Then answer:
 ---
 
 > 💡 **Practice Tip:** Try to solve each exercise yourself before checking documentation. The goal is not just to remember Flexbox properties, but to understand which property solves a particular layout problem.
+
+---
+
+# Related Topics
+
+### Previous Topics
+
+- [CSS Basics](01-css-basics.md)
+- [Ways to Add CSS](02-ways-to-add-css.md)
+- [CSS Selectors](03-css-selectors.md)
+- [CSS Colors](04-css-colors.md)
+- [CSS Text and Fonts](05-css-text-and-fonts.md)
+- [CSS Box Model](06-css-box-model.md)
+- [CSS Positioning](07-css-positioning.md)
+- [CSS Units](08-css-units.md)
+- [CSS Z-Index](09-css-z-index.md)
+- [CSS Backgrounds](11-css-backgrounds.md)
+
+
+### Next Topics
+
+- [CSS Media Queries](13-css-media-queries.md)
+- [CSS Transforms](14-css-transforms.md)
+- [CSS Transitions](15-css-transitions.md)
+- [CSS Animations](16-css-animations.md)
+- [CSS Pseudo-Classes](17-css-pseudo-classes.md)
+- [CSS Pseudo-Elements](18-css-pseudo-elements.md)
+- [CSS Variables](19-css-variables.md)
+- [CSS Grid](20-css-grid.md)
+- [CSS Overflow](21-css-overflow.md)
+- [CSS Opacity](22-css-opacity.md)
+- [CSS Object Fit](23-css-object-fit.md)
+- [CSS Cursor](24-css-cursor.md)
+- [CSS Functions](25-css-functions.md)
+- [CSS Specificity](26-css-specificity.md)
+- [CSS Best Practices](27-css-best-practices.md)
