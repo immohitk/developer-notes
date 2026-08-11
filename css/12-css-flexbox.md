@@ -14081,3 +14081,824 @@ Choose based on the layout requirements.
 ---
 
 > 💡 **Remember:** Flexbox is primarily a one-dimensional layout system, while Grid is a two-dimensional layout system. They can also be combined within the same page or component.
+
+---
+
+# Common Use Cases
+
+Flexbox is widely used for arranging and aligning elements in web interfaces.
+
+Its one-dimensional layout model makes it especially useful for components where elements need to be positioned in a row or column.
+
+Common use cases include:
+
+- Navigation bars
+- Headers
+- Footers
+- Sidebars
+- Button groups
+- Forms
+- Cards
+- Toolbars
+- Media objects
+- Centered content
+- Page sections
+- Responsive components
+
+---
+
+## Navigation Bars
+
+Navigation bars are one of the most common uses of Flexbox.
+
+```css
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+```
+
+A nested navigation group can also use Flexbox:
+
+```css
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+```
+
+Conceptually:
+
+```text
+Logo          Home  About  Contact
+```
+
+Flexbox makes it easy to align the logo and navigation items.
+
+---
+
+## Website Headers
+
+Headers often contain multiple groups of content:
+
+```text
+Logo | Navigation | Actions
+```
+
+Flexbox can arrange these groups:
+
+```css
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+```
+
+The header can then contain nested flex containers for individual groups.
+
+---
+
+## Footers
+
+A footer may contain several sections:
+
+```text
+Company     Resources     Social
+```
+
+Flexbox can distribute them across the available space:
+
+```css
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
+```
+
+For smaller layouts, the direction can be changed:
+
+```css
+.footer {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+---
+
+## Sidebars
+
+A common page structure is:
+
+```text
+┌─────────────┬──────────────────────┐
+│   Sidebar   │       Content        │
+│             │                      │
+│             │                      │
+└─────────────┴──────────────────────┘
+```
+
+Flexbox can create this structure:
+
+```css
+.page {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+The sidebar has a fixed basis while the content uses the remaining space.
+
+---
+
+## Button Groups
+
+Flexbox is useful for arranging related buttons.
+
+```css
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+```
+
+Example:
+
+```text
+[Cancel] [Save] [Delete]
+```
+
+The group can also be centered:
+
+```css
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+```
+
+---
+
+## Toolbars
+
+Toolbars often contain several controls in a row.
+
+```text
+[Undo] [Redo] [Search] [Settings]
+```
+
+Flexbox can arrange these controls:
+
+```css
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+```
+
+This keeps the controls aligned while maintaining consistent spacing.
+
+---
+
+## Forms
+
+Flexbox can organize form controls vertically.
+
+```css
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+```
+
+Conceptually:
+
+```text
+Name
+  ↓
+Email
+  ↓
+Password
+  ↓
+Submit
+```
+
+This is useful for login forms, registration forms, search forms, and other vertical form layouts.
+
+---
+
+## Form Rows
+
+Related form fields can be placed beside each other.
+
+```css
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-field {
+    flex: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌───────────────┬───────────────┐
+│ First Name    │ Last Name     │
+└───────────────┴───────────────┘
+```
+
+The fields can share the available width.
+
+---
+
+## Cards
+
+Flexbox can arrange cards horizontally:
+
+```css
+.cards {
+    display: flex;
+    gap: 20px;
+}
+```
+
+Individual cards can share available space:
+
+```css
+.card {
+    flex: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────┬──────────┬──────────┐
+│ Card 1   │ Card 2   │ Card 3   │
+└──────────┴──────────┴──────────┘
+```
+
+---
+
+## Card Content
+
+Flexbox can also organize the internal content of a card.
+
+```css
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+```
+
+This can create:
+
+```text
+Title
+  ↓
+Description
+  ↓
+Button
+```
+
+Nested Flexbox can therefore be useful at the component level.
+
+---
+
+## Keeping Actions at the Bottom
+
+A card can use an auto margin to push an action toward the bottom.
+
+```css
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-action {
+    margin-top: auto;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────┐
+│ Title              │
+│                    │
+│ Description        │
+│                    │
+│                    │
+│       Button       │
+└────────────────────┘
+```
+
+This is particularly useful when cards have different amounts of content.
+
+---
+
+## Media Objects
+
+A common component contains an image next to text:
+
+```text
+┌──────┬─────────────────────┐
+│Image │ Title               │
+│      │ Description         │
+└──────┴─────────────────────┘
+```
+
+Flexbox can create this layout:
+
+```css
+.media {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+```
+
+This pattern is useful for:
+
+- User profiles
+- Comments
+- Notifications
+- Articles
+- Product previews
+
+---
+
+## Profile Components
+
+A profile section might contain:
+
+```text
+[Avatar]  Name
+          Role
+```
+
+Flexbox can align the avatar and information:
+
+```css
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+```
+
+The text itself can use another Flexbox container:
+
+```css
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+---
+
+## Centered Login Screens
+
+Flexbox is useful for centering a login form.
+
+```css
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────────────┐
+│                            │
+│       ┌───────────┐        │
+│       │ Login     │        │
+│       │           │        │
+│       └───────────┘        │
+│                            │
+└────────────────────────────┘
+```
+
+---
+
+## Hero Sections
+
+A hero section often needs centered or split content.
+
+For centered content:
+
+```css
+.hero {
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+For image and text:
+
+```css
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+```
+
+---
+
+## Responsive Navigation
+
+Flexbox can also help navigation adapt to smaller widths.
+
+For example:
+
+```css
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+```
+
+When there is not enough horizontal space, items can move onto additional flex lines.
+
+A different layout can also be applied at a smaller screen size:
+
+```css
+.nav {
+    display: flex;
+}
+
+@media (max-width: 600px) {
+    .nav {
+        flex-direction: column;
+    }
+}
+```
+
+---
+
+## Responsive Card Groups
+
+Card groups can use wrapping:
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 250px;
+}
+```
+
+This allows cards to move onto additional lines when necessary.
+
+---
+
+## Search Bars
+
+A search area can contain an input and button:
+
+```text
+┌────────────────────────────┬──────────┐
+│ Search...                  │ Search   │
+└────────────────────────────┴──────────┘
+```
+
+Flexbox can arrange them:
+
+```css
+.search {
+    display: flex;
+}
+
+.search input {
+    flex: 1;
+}
+
+.search button {
+    flex-shrink: 0;
+}
+```
+
+The input can grow while the button maintains its required size.
+
+---
+
+## Status Indicators
+
+A small icon and text can be aligned with Flexbox.
+
+```css
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+```
+
+Conceptually:
+
+```text
+● Online
+```
+
+This pattern can be used for:
+
+- Online status
+- Notifications
+- Labels
+- Badges
+- Metadata
+
+---
+
+## Breadcrumbs
+
+Breadcrumb navigation is another simple one-dimensional layout.
+
+```text
+Home → Products → Details
+```
+
+Example:
+
+```css
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+```
+
+Each item is arranged along the main axis.
+
+---
+
+## Pagination
+
+Pagination controls can be arranged using Flexbox:
+
+```text
+[Previous] [1] [2] [3] [Next]
+```
+
+Example:
+
+```css
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+```
+
+---
+
+## Loading Indicators
+
+Flexbox can center a loading indicator inside a container:
+
+```css
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+```
+
+This is useful for loading states and empty states.
+
+---
+
+## Empty States
+
+An empty state often contains an icon, message, and action.
+
+```text
+      Icon
+
+   No Results
+
+   [Try Again]
+```
+
+Flexbox can arrange the content vertically:
+
+```css
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+```
+
+---
+
+## Dashboard Components
+
+Flexbox is useful inside dashboard components even when the overall dashboard uses Grid.
+
+For example:
+
+```text
+Dashboard
+│
+├── Grid
+│
+└── Card
+     │
+     └── Flexbox
+```
+
+The dashboard may use Grid for its two-dimensional structure while individual cards use Flexbox internally.
+
+This combination is common in real-world interfaces.
+
+---
+
+## Responsive Component Layouts
+
+Flexbox can change direction depending on available space.
+
+For example:
+
+```css
+.component {
+    display: flex;
+    gap: 20px;
+}
+```
+
+On smaller screens:
+
+```css
+@media (max-width: 600px) {
+    .component {
+        flex-direction: column;
+    }
+}
+```
+
+The same component can therefore have:
+
+```text
+Large screen:
+
+Image | Content
+
+
+Small screen:
+
+Image
+  ↓
+Content
+```
+
+---
+
+## Page Layouts
+
+Flexbox can be used for larger page structures.
+
+A common example is:
+
+```css
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+This creates:
+
+```text
+Header
+   ↓
+Content
+   ↓
+Footer
+```
+
+with the content area taking the available remaining space.
+
+---
+
+## When Flexbox Is a Good Choice
+
+Flexbox is a good choice when:
+
+- Elements are primarily arranged in one direction.
+- Content needs simple alignment.
+- Items need to grow or shrink.
+- Space needs to be distributed between items.
+- Elements need to wrap when necessary.
+- Components need flexible internal layouts.
+- Items need easy horizontal or vertical centering.
+
+---
+
+## When Flexbox May Not Be the Best Choice
+
+Flexbox may not be the best choice when the layout requires precise control over both rows and columns.
+
+For example:
+
+```text
+┌─────┬─────┬─────┐
+│     │     │     │
+├─────┼─────┼─────┤
+│     │     │     │
+├─────┼─────┼─────┤
+│     │     │     │
+└─────┴─────┴─────┘
+```
+
+For this kind of two-dimensional structure, CSS Grid may provide a clearer solution.
+
+---
+
+## Practical Decision Guide
+
+Use this mental checklist:
+
+```text
+Need one-dimensional alignment?
+        ↓
+      Flexbox
+```
+
+```text
+Need two-dimensional row + column control?
+        ↓
+       Grid
+```
+
+```text
+Need both?
+        ↓
+Combine Flexbox and Grid
+```
+
+---
+
+## Quick Reference
+
+| Use Case | Typical Flexbox Approach |
+|----------|---------------------------|
+| Navigation | `display: flex` |
+| Header | `align-items` + `justify-content` |
+| Footer | `display: flex` |
+| Sidebar | Fixed basis + flexible content |
+| Buttons | `gap` |
+| Forms | `flex-direction: column` |
+| Form rows | `flex: 1` |
+| Cards | `flex` + `gap` |
+| Media object | `align-items` + `gap` |
+| Centered content | `justify-content` + `align-items` |
+| Search bar | `flex: 1` |
+| Pagination | `justify-content` + `gap` |
+| Responsive cards | `flex-wrap` |
+| Responsive components | `flex-direction` |
+| Page structure | `flex-direction: column` |
+
+---
+
+> 💡 **Pro Tip:** Think of Flexbox as a tool for building flexible relationships between elements. Instead of manually positioning every element, describe how the elements should align, grow, shrink, wrap, and distribute available space.
+
+---
+
+> 💡 **Remember:** Flexbox is especially powerful for component-level layouts. A page can use Grid for its overall structure while individual components use Flexbox for their internal arrangement.
