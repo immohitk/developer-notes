@@ -10835,3 +10835,762 @@ Individual cross-axis alignment
 ---
 
 > 💡 **Remember:** `align-items` controls the default cross-axis alignment for flex items, while `align-self` lets an individual flex item override that default.
+
+---
+
+# Nested Flex Containers
+
+A flex container can also be a flex item of another flex container.
+
+This allows Flexbox layouts to be **nested**.
+
+For example:
+
+```html
+<div class="outer">
+    <div class="item">One</div>
+
+    <div class="inner">
+        <div>Two</div>
+        <div>Three</div>
+    </div>
+</div>
+```
+
+The `.outer` element can be a flex container:
+
+```css
+.outer {
+    display: flex;
+}
+```
+
+The `.inner` element can also be a flex container:
+
+```css
+.inner {
+    display: flex;
+}
+```
+
+This creates two levels of Flexbox:
+
+```text
+Outer Flex Container
+│
+├── Item
+│
+└── Inner Flex Container
+    ├── Item
+    └── Item
+```
+
+---
+
+## A Flex Item Can Also Be a Flex Container
+
+This is an important Flexbox concept.
+
+An element can simultaneously be:
+
+```text
+Flex Item
+    +
+Flex Container
+```
+
+For example:
+
+```css
+.outer {
+    display: flex;
+}
+
+.inner {
+    display: flex;
+}
+```
+
+If `.inner` is a child of `.outer`, then:
+
+```text
+.outer
+→ Flex Container
+
+.inner
+→ Flex Item of .outer
+→ Flex Container for its own children
+```
+
+---
+
+## Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="item">A</div>
+
+    <div class="nested">
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+
+    <div class="item">D</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+}
+
+.nested {
+    display: flex;
+}
+```
+
+The outer container controls:
+
+```text
+A
+Nested
+D
+```
+
+The nested container controls:
+
+```text
+B
+C
+```
+
+Conceptually:
+
+```text
+Outer Flexbox
+┌──────┬──────────────┬──────┐
+│  A   │    Nested    │  D   │
+│      │              │      │
+│      │   B   C      │      │
+└──────┴──────────────┴──────┘
+```
+
+---
+
+## Two Independent Flex Layouts
+
+The outer and inner containers have their own Flexbox properties.
+
+For example:
+
+```css
+.outer {
+    display: flex;
+    gap: 20px;
+}
+
+.inner {
+    display: flex;
+    gap: 10px;
+}
+```
+
+The outer container controls:
+
+```text
+Spacing between A, Inner, and D
+```
+
+The inner container controls:
+
+```text
+Spacing between B and C
+```
+
+The two `gap` properties operate at different levels.
+
+---
+
+## Different Flex Directions
+
+Nested containers do not have to use the same direction.
+
+For example:
+
+```css
+.outer {
+    display: flex;
+    flex-direction: row;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+The outer layout is horizontal:
+
+```text
+A → Inner → D
+```
+
+while the inner layout is vertical:
+
+```text
+B
+↓
+C
+```
+
+Conceptually:
+
+```text
+┌─────┬───────────┬─────┐
+│  A  │     B     │  D  │
+│     │     ↓     │     │
+│     │     C     │     │
+└─────┴───────────┴─────┘
+```
+
+This is one of the most useful patterns with nested Flexbox.
+
+---
+
+## Different Alignment Rules
+
+Each flex container can have its own alignment rules.
+
+For example:
+
+```css
+.outer {
+    display: flex;
+    align-items: center;
+}
+
+.inner {
+    display: flex;
+    align-items: flex-start;
+}
+```
+
+The outer container controls how the nested container itself is aligned.
+
+The inner container controls how its own children are aligned.
+
+Think of the levels separately:
+
+```text
+Outer Flexbox
+    ↓
+Positions the inner container
+
+Inner Flexbox
+    ↓
+Positions the inner container's children
+```
+
+---
+
+## Container Properties Do Not Automatically Pass Down
+
+Suppose:
+
+```css
+.outer {
+    display: flex;
+    justify-content: center;
+}
+```
+
+This controls the direct children of `.outer`.
+
+It does not automatically center the grandchildren inside `.inner`.
+
+For example:
+
+```text
+.outer
+│
+└── .inner
+    ├── Item A
+    └── Item B
+```
+
+`justify-content` on `.outer` affects:
+
+```text
+.inner
+```
+
+as an outer flex item.
+
+It does not directly control:
+
+```text
+Item A
+Item B
+```
+
+Those items are controlled by `.inner` if `.inner` is a flex container.
+
+---
+
+## Nested Flexbox Mental Model
+
+Consider:
+
+```html
+<div class="outer">
+    <div class="inner">
+        <div class="child">A</div>
+        <div class="child">B</div>
+    </div>
+</div>
+```
+
+Think about the layout in two steps.
+
+### Level 1
+
+```css
+.outer {
+    display: flex;
+}
+```
+
+This creates:
+
+```text
+Outer Flexbox
+    ↓
+Inner
+```
+
+### Level 2
+
+```css
+.inner {
+    display: flex;
+}
+```
+
+This creates:
+
+```text
+Inner Flexbox
+    ↓
+A
+B
+```
+
+Therefore:
+
+```text
+Outer Flexbox
+     ↓
+  Inner
+     ↓
+Inner Flexbox
+   ↓     ↓
+  A       B
+```
+
+---
+
+## Nested Navigation Example
+
+Nested Flexbox is common in navigation layouts.
+
+HTML:
+
+```html
+<nav class="navbar">
+    <div class="logo">Logo</div>
+
+    <div class="links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+```
+
+CSS:
+
+```css
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+    gap: 20px;
+}
+```
+
+The outer container controls:
+
+```text
+Logo       Links
+```
+
+The nested container controls:
+
+```text
+Home → About → Contact
+```
+
+Conceptually:
+
+```text
+┌────────────────────────────────────────┐
+│ Logo             Home About Contact   │
+└────────────────────────────────────────┘
+```
+
+---
+
+## Nested Card Example
+
+Nested Flexbox is also useful for cards.
+
+HTML:
+
+```html
+<div class="card">
+    <div class="card-content">
+        <h2>Title</h2>
+        <p>Description</p>
+    </div>
+
+    <button>Read More</button>
+</div>
+```
+
+CSS:
+
+```css
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+The card uses Flexbox to position:
+
+```text
+Content + Button
+```
+
+while the nested content uses another Flexbox layout for:
+
+```text
+Title
+   ↓
+Description
+```
+
+---
+
+## Nested Flexbox and `flex-grow`
+
+A nested flex container can also be a flex item that grows.
+
+For example:
+
+```css
+.outer {
+    display: flex;
+}
+
+.inner {
+    display: flex;
+    flex-grow: 1;
+}
+```
+
+Here `.inner` has two roles:
+
+```text
+As a child of .outer:
+→ Flex item
+
+For its own children:
+→ Flex container
+```
+
+Therefore:
+
+```text
+Outer
+│
+├── Other Item
+│
+└── Inner
+      ↑
+      Can grow
+
+      ↓
+   Inner children
+```
+
+---
+
+## Nested Flexbox and `align-self`
+
+The nested container can also use item properties.
+
+For example:
+
+```css
+.outer {
+    display: flex;
+    align-items: center;
+}
+
+.inner {
+    display: flex;
+    align-self: flex-start;
+}
+```
+
+Here:
+
+```text
+.outer
+→ Controls .inner as a flex item
+
+.inner
+→ Controls its own children as a flex container
+```
+
+This demonstrates how Flexbox properties can apply at different levels.
+
+---
+
+## Three Levels of Flexbox
+
+Flexbox can be nested more than once.
+
+For example:
+
+```html
+<div class="level-one">
+    <div class="level-two">
+        <div class="level-three">
+            <div>Content</div>
+        </div>
+    </div>
+</div>
+```
+
+Each level can become a flex container:
+
+```css
+.level-one {
+    display: flex;
+}
+
+.level-two {
+    display: flex;
+}
+
+.level-three {
+    display: flex;
+}
+```
+
+Conceptually:
+
+```text
+Level 1 Flex Container
+        ↓
+Level 2 Flex Container
+        ↓
+Level 3 Flex Container
+        ↓
+Content
+```
+
+Each level controls its own direct children.
+
+---
+
+## Important Rule
+
+Flexbox properties generally affect the **direct children** of a flex container.
+
+For example:
+
+```css
+.parent {
+    display: flex;
+    justify-content: center;
+}
+```
+
+The direct children of `.parent` are flex items.
+
+But grandchildren are not directly controlled by `.parent`'s Flexbox layout.
+
+```text
+Parent
+│
+├── Child        ← Flex Item
+│
+└── Child        ← Flex Item
+     │
+     └── Grandchild ← Not a direct flex item of Parent
+```
+
+If the child also has:
+
+```css
+display: flex;
+```
+
+then it creates a new Flexbox context for its own children.
+
+---
+
+## Common Use Cases
+
+Nested Flexbox is useful for:
+
+- Navigation bars
+- Cards
+- Headers
+- Footers
+- Sidebars
+- Form layouts
+- Dashboard layouts
+- Button groups
+- Responsive components
+- Complex page sections
+
+---
+
+## Common Mistake
+
+Do not assume that applying:
+
+```css
+display: flex;
+```
+
+to a parent automatically makes every descendant a flex item.
+
+Only the **direct children** become flex items.
+
+For example:
+
+```text
+Parent
+│
+├── Child A ← Flex Item
+│
+└── Child B ← Flex Item
+     │
+     └── Grandchild ← Not a flex item of Parent
+```
+
+If you want the grandchildren to participate in another Flexbox layout, their direct parent can also become a flex container.
+
+---
+
+## Nested Flexbox vs One Large Flexbox
+
+Instead of trying to control every element from one container:
+
+```text
+One huge Flexbox
+    ↓
+Many unrelated elements
+```
+
+it is often cleaner to divide the layout into logical groups:
+
+```text
+Main Flexbox
+    │
+    ├── Header Group
+    │      ↓
+    │   Nested Flexbox
+    │
+    ├── Content Group
+    │      ↓
+    │   Nested Flexbox
+    │
+    └── Footer Group
+           ↓
+        Nested Flexbox
+```
+
+This makes each layout responsibility easier to understand.
+
+---
+
+## Quick Reference
+
+A nested flex container can be:
+
+```text
+Flex Item
+    +
+Flex Container
+```
+
+Example:
+
+```css
+.outer {
+    display: flex;
+}
+
+.inner {
+    display: flex;
+}
+```
+
+Therefore:
+
+```text
+.outer
+→ Flex container
+
+.inner
+→ Flex item of .outer
+→ Flex container for its children
+```
+
+The key rule is:
+
+```text
+Flexbox properties apply to direct children.
+```
+
+A nested flex container creates another independent Flexbox layout for its own children.
+
+---
+
+> 💡 **Pro Tip:** When a component becomes complicated, break its layout into smaller Flexbox containers. Let the parent control the component's position and let nested containers control the internal arrangement.
+
+---
+
+> 💡 **Remember:** A flex item can also be a flex container. This allows Flexbox layouts to be nested, with each container controlling the arrangement of its own direct children.
+
+---
