@@ -2617,3 +2617,423 @@ also operates vertically.
 ---
 
 > 💡 **Remember:** `flex-direction` determines the **main axis**, while the **cross axis** is perpendicular to it. Flexbox alignment properties work according to these axes.
+
+---
+
+# Flex Wrap
+
+By default, Flexbox tries to place all flex items on a **single line**.
+
+The `flex-wrap` property controls whether flex items are allowed to move onto multiple lines when there is not enough available space.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+---
+
+## Default Behavior
+
+The default value of `flex-wrap` is:
+
+```css
+nowrap
+```
+
+This means flex items remain on a single line.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────────────────┐
+│  1    2    3    4    5    6    7       │
+└──────────────────────────────────────────┘
+```
+
+If the container becomes too small, the items can become compressed or overflow depending on their sizing and the available space.
+
+---
+
+## `nowrap`
+
+```css
+flex-wrap: nowrap;
+```
+
+This is the default value.
+
+All flex items remain on one flex line.
+
+```text
+Container
+
+┌───────────────────────────────┐
+│  1   2   3   4   5   6        │
+└───────────────────────────────┘
+```
+
+The items do not automatically move onto another line.
+
+---
+
+## `wrap`
+
+The `wrap` value allows flex items to move onto additional lines when necessary.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+Example:
+
+```text
+┌───────────────────────────────┐
+│  1    2    3                  │
+│                               │
+│  4    5    6                  │
+└───────────────────────────────┘
+```
+
+The items remain flex items, but they can now form multiple flex lines.
+
+---
+
+## Basic Example
+
+```html
+<div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.item {
+    width: 100px;
+    padding: 20px;
+}
+```
+
+If the container is not wide enough to hold all the items on one line, the items can wrap:
+
+```text
+┌──────────────────────────────────┐
+│  ┌─────┐  ┌─────┐  ┌─────┐      │
+│  │  1  │  │  2  │  │  3  │      │
+│  └─────┘  └─────┘  └─────┘      │
+│                                  │
+│  ┌─────┐  ┌─────┐  ┌─────┐      │
+│  │  4  │  │  5  │  │  6  │      │
+│  └─────┘  └─────┘  └─────┘      │
+└──────────────────────────────────┘
+```
+
+---
+
+## `wrap-reverse`
+
+The third value is:
+
+```css
+flex-wrap: wrap-reverse;
+```
+
+This also allows multiple flex lines, but the cross-axis direction of the lines is reversed.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+```
+
+Conceptually:
+
+```text
+Normal wrap:
+
+Line 1
+Line 2
+Line 3
+   ↓
+
+
+Wrap reverse:
+
+Line 3
+Line 2
+Line 1
+```
+
+The exact visual direction depends on the flex direction and writing mode.
+
+---
+
+## Comparing the Values
+
+| Value | Behavior |
+|-------|----------|
+| `nowrap` | Keeps items on one line |
+| `wrap` | Allows items to move onto multiple lines |
+| `wrap-reverse` | Allows multiple lines and reverses their cross-axis direction |
+
+---
+
+## `flex-wrap` and Container Size
+
+Wrapping becomes useful when the container has limited available space.
+
+For example:
+
+```css
+.container {
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+If the items cannot all fit on one line, additional items can move to another line.
+
+```text
+┌──────────────────────────────┐
+│  1     2     3               │
+│                              │
+│  4     5     6               │
+└──────────────────────────────┘
+```
+
+Without wrapping:
+
+```css
+.container {
+    width: 400px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+```
+
+the items are kept on one line.
+
+---
+
+## Wrapping Is Based on Available Space
+
+Flexbox does not wrap simply because a certain number of items exists.
+
+Wrapping depends on whether the items can fit within the available space.
+
+For example:
+
+```text
+Wide container:
+
+┌─────────────────────────────────────┐
+│  1   2   3   4   5   6             │
+└─────────────────────────────────────┘
+```
+
+The same items in a smaller container:
+
+```text
+┌──────────────────────┐
+│  1   2   3           │
+│                      │
+│  4   5   6           │
+└──────────────────────┘
+```
+
+This makes `flex-wrap` particularly useful for responsive layouts.
+
+---
+
+## `flex-wrap` With `flex-direction`
+
+`flex-wrap` works together with `flex-direction`.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+```
+
+The items are laid out in rows and can create additional rows.
+
+```text
+1   2   3
+4   5   6
+```
+
+With:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+```
+
+the main direction is vertical, so additional flex lines can form horizontally.
+
+```text
+1   4
+2   5
+3   6
+```
+
+The exact result depends on the available container dimensions.
+
+---
+
+## `flex-wrap` With `gap`
+
+`flex-wrap` is commonly used together with `gap`.
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+This provides consistent spacing between items and between flex lines.
+
+```text
+┌───────────────────────────────┐
+│  1     2     3                │
+│                               │
+│  4     5     6                │
+└───────────────────────────────┘
+```
+
+---
+
+## Common Use Cases
+
+`flex-wrap` is commonly useful for:
+
+- Card layouts
+- Product lists
+- Button groups
+- Tags
+- Navigation elements
+- Image galleries
+- Responsive components
+
+### Card Example
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+Cards can move to additional lines when the available width becomes smaller.
+
+---
+
+## Responsive Layout Example
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 250px;
+}
+```
+
+This allows the cards to grow and shrink while also wrapping when necessary.
+
+The `flex` property will be covered later in this chapter.
+
+---
+
+## `flex-wrap` Does Not Change Item Order
+
+When normal wrapping occurs:
+
+```css
+flex-wrap: wrap;
+```
+
+items continue following their normal order.
+
+For example:
+
+```text
+1   2   3
+4   5   6
+```
+
+The order remains:
+
+```text
+1 → 2 → 3 → 4 → 5 → 6
+```
+
+Wrapping changes the layout into multiple lines; it does not by itself reorder the items.
+
+---
+
+## Single Line vs Multiple Lines
+
+A useful way to think about `flex-wrap` is:
+
+```text
+nowrap
+   ↓
+One flex line
+
+wrap
+   ↓
+Multiple flex lines allowed
+
+wrap-reverse
+   ↓
+Multiple flex lines allowed
++
+Cross-axis direction reversed
+```
+
+---
+
+> 💡 **Pro Tip:** For responsive card or button layouts, `flex-wrap: wrap` is often a good starting point. Combine it with flexible item sizing and `gap` to create layouts that adapt naturally to available space.
+
+---
+
+> 💡 **Remember:** `flex-wrap` controls whether flex items stay on one line or are allowed to form multiple flex lines. Its three values are `nowrap`, `wrap`, and `wrap-reverse`.
