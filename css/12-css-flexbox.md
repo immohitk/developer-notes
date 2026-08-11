@@ -8581,3 +8581,747 @@ Can shrink
 > 💡 **Remember:** `flex-shrink` controls how flex items respond to **negative free space** along the main axis. Its default is `1`, while `0` prevents the item from participating in Flexbox's shrinking behavior.
 
 ---
+
+---
+
+# Flex Basis
+
+The `flex-basis` property defines the **initial size of a flex item along the main axis** before Flexbox distributes positive or negative free space.
+
+```css
+.item {
+    flex-basis: 200px;
+}
+```
+
+It is one of the three properties represented by the `flex` shorthand:
+
+```css
+flex-grow
+flex-shrink
+flex-basis
+```
+
+---
+
+## Syntax
+
+```css
+.item {
+    flex-basis: value;
+}
+```
+
+Example:
+
+```css
+.item {
+    flex-basis: 200px;
+}
+```
+
+Common values include:
+
+```css
+flex-basis: 200px;
+flex-basis: 20%;
+flex-basis: 10rem;
+flex-basis: auto;
+flex-basis: 0;
+```
+
+---
+
+## Default Value
+
+The default value is:
+
+```css
+flex-basis: auto;
+```
+
+With `auto`, Flexbox uses the item's main-size property, such as:
+
+```css
+width
+```
+
+when the main axis is horizontal, or:
+
+```css
+height
+```
+
+when the main axis is vertical.
+
+The item's content and other sizing rules can also affect its final size.
+
+---
+
+## Main Axis
+
+`flex-basis` is based on the **main axis**, not necessarily the horizontal width.
+
+For:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+```text
+←──────── Main Axis ────────→
+```
+
+Therefore:
+
+```css
+flex-basis: 200px;
+```
+
+generally establishes an initial horizontal size.
+
+For:
+
+```css
+flex-direction: column;
+```
+
+the main axis is vertical.
+
+```text
+Main Axis
+   ↓
+   ↓
+   ↓
+```
+
+Therefore, `flex-basis` generally establishes an initial vertical size.
+
+---
+
+## Basic Example
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    flex-basis: 200px;
+}
+```
+
+Each item starts with a flex basis of:
+
+```text
+200px
+```
+
+before Flexbox distributes any remaining free space.
+
+Conceptually:
+
+```text
+Item 1 → 200px
+Item 2 → 200px
+Item 3 → 200px
+```
+
+The final sizes can change depending on:
+
+```css
+flex-grow
+flex-shrink
+```
+
+and other layout constraints.
+
+---
+
+## `flex-basis` vs `width`
+
+A common question is:
+
+```text
+What is the difference between flex-basis and width?
+```
+
+They are not exactly the same.
+
+```css
+width: 200px;
+```
+
+sets the element's width.
+
+Whereas:
+
+```css
+flex-basis: 200px;
+```
+
+sets the item's initial size along the **main axis** for Flexbox sizing.
+
+Therefore:
+
+```text
+width
+→ Physical horizontal size property
+
+flex-basis
+→ Initial Flexbox main-axis size
+```
+
+---
+
+## Row Direction
+
+Consider:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    flex-basis: 200px;
+}
+```
+
+The main axis is horizontal:
+
+```text
+←────────────────────────────→
+        Main Axis
+```
+
+Therefore, the basis generally corresponds to the initial horizontal size.
+
+---
+
+## Column Direction
+
+Now consider:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    flex-basis: 200px;
+}
+```
+
+The main axis is vertical:
+
+```text
+Main Axis
+   ↓
+   ↓
+   ↓
+```
+
+Therefore, the basis generally corresponds to the initial vertical size.
+
+This is why `flex-basis` is more flexible than simply using `width`.
+
+---
+
+## `flex-basis: auto`
+
+The default is:
+
+```css
+flex-basis: auto;
+```
+
+This tells Flexbox to use the item's main-size property as the basis when appropriate.
+
+For example:
+
+```css
+.item {
+    width: 200px;
+    flex-basis: auto;
+}
+```
+
+In a row-based flex container, the `width` can provide the initial main size.
+
+---
+
+## `flex-basis: 0`
+
+You can explicitly set:
+
+```css
+.item {
+    flex-basis: 0;
+}
+```
+
+This means the item's flex base size starts from zero, subject to the Flexbox sizing algorithm and other constraints.
+
+This is commonly seen with:
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+which is frequently used to create equally flexible items.
+
+---
+
+## Percentage Values
+
+`flex-basis` can use percentages:
+
+```css
+.item {
+    flex-basis: 50%;
+}
+```
+
+The percentage is resolved relative to the flex container's inner main size when that size is definite.
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    flex-basis: 50%;
+}
+```
+
+Two items with:
+
+```css
+flex-basis: 50%;
+```
+
+can initially occupy approximately half of the container's main size each, before other Flexbox calculations.
+
+---
+
+## Fixed Length Values
+
+You can use fixed lengths:
+
+```css
+.item {
+    flex-basis: 250px;
+}
+```
+
+Other CSS length units can also be used:
+
+```css
+flex-basis: 20rem;
+flex-basis: 30vw;
+```
+
+Choose the unit based on the layout requirements.
+
+---
+
+## `flex-basis` and `flex-grow`
+
+These properties work together.
+
+For example:
+
+```css
+.item {
+    flex-basis: 200px;
+    flex-grow: 1;
+}
+```
+
+The process can be understood conceptually as:
+
+```text
+1. Establish the initial flex size
+           ↓
+     flex-basis: 200px
+
+2. Check available free space
+           ↓
+3. Distribute positive free space
+           ↓
+     flex-grow: 1
+```
+
+Therefore, `flex-basis` does not necessarily represent the final size.
+
+---
+
+## `flex-basis` and `flex-shrink`
+
+The same applies when there is not enough space.
+
+```css
+.item {
+    flex-basis: 300px;
+    flex-shrink: 1;
+}
+```
+
+Conceptually:
+
+```text
+Initial flex size
+       ↓
+300px
+
+Not enough space?
+       ↓
+flex-shrink
+       ↓
+Item may become smaller
+```
+
+So:
+
+```text
+flex-basis
+→ Starting point
+
+flex-shrink
+→ Handles negative free space
+```
+
+---
+
+## `flex-basis` Does Not Guarantee Final Size
+
+This is one of the most important points.
+
+If you write:
+
+```css
+.item {
+    flex-basis: 200px;
+}
+```
+
+it does **not** necessarily mean the final rendered size will always be exactly `200px`.
+
+The final size can be affected by:
+
+```css
+flex-grow
+flex-shrink
+min-width
+max-width
+min-height
+max-height
+content size
+```
+
+and other Flexbox constraints.
+
+Think of `flex-basis` as the **starting point for Flexbox sizing**.
+
+---
+
+## Example With Extra Space
+
+```css
+.container {
+    display: flex;
+}
+
+.one,
+.two {
+    flex-basis: 200px;
+}
+
+.one,
+.two {
+    flex-grow: 1;
+}
+```
+
+Suppose the container provides more space than the two 200px bases require.
+
+The extra space can be distributed because:
+
+```css
+flex-grow: 1;
+```
+
+is enabled.
+
+Conceptually:
+
+```text
+flex-basis
+   ↓
+200px + 200px
+
+Extra space
+   ↓
+Distributed by flex-grow
+```
+
+---
+
+## Example With Insufficient Space
+
+```css
+.container {
+    display: flex;
+    width: 300px;
+}
+
+.one,
+.two {
+    flex-basis: 200px;
+    flex-shrink: 1;
+}
+```
+
+The initial bases require:
+
+```text
+200px + 200px = 400px
+```
+
+but the container has only:
+
+```text
+300px
+```
+
+There is negative free space.
+
+Because:
+
+```css
+flex-shrink: 1;
+```
+
+is enabled, the items can shrink.
+
+Conceptually:
+
+```text
+flex-basis
+   ↓
+400px total
+
+Available
+   ↓
+300px
+
+Negative free space
+   ↓
+flex-shrink
+```
+
+---
+
+## `flex-basis` and `width` in a Row
+
+Consider:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    width: 300px;
+    flex-basis: 200px;
+}
+```
+
+When `flex-basis` is not `auto`, it generally takes precedence as the flex item's basis for the main-axis sizing calculation.
+
+Therefore, do not assume:
+
+```text
+width = final flex size
+```
+
+when an explicit `flex-basis` is being used.
+
+---
+
+## `flex-basis` and `height` in a Column
+
+For:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    height: 300px;
+    flex-basis: 200px;
+}
+```
+
+the main axis is vertical, so the flex basis is relevant to the initial vertical sizing.
+
+This demonstrates why `flex-basis` should be understood as a **main-axis property** rather than simply a width property.
+
+---
+
+## Common Use Cases
+
+`flex-basis` is useful for:
+
+- Setting initial card sizes
+- Creating flexible columns
+- Building responsive layouts
+- Defining sidebar starting sizes
+- Combining with `flex-grow`
+- Combining with `flex-shrink`
+- Creating equal-width flexible items
+
+---
+
+## Example: Sidebar and Content
+
+```css
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex-basis: 250px;
+    flex-shrink: 0;
+}
+
+.content {
+    flex-grow: 1;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────┬─────────────────────────┐
+│   Sidebar    │         Content         │
+│   250px      │        flexible         │
+└──────────────┴─────────────────────────┘
+```
+
+The sidebar starts from a basis of `250px`, while the content can use the remaining space.
+
+---
+
+## Example: Equal Flexible Items
+
+A common pattern is:
+
+```css
+.item {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+```
+
+All items start from the same basis and then share available positive free space according to the same growth factor.
+
+Conceptually:
+
+```text
+┌──────────┬──────────┬──────────┐
+│    1     │    2     │    3     │
+└──────────┴──────────┴──────────┘
+```
+
+This pattern is often written more conveniently using:
+
+```css
+flex: 1;
+```
+
+The shorthand will be covered separately.
+
+---
+
+## `flex-basis` vs `flex-grow` vs `flex-shrink`
+
+These three properties have different responsibilities:
+
+```text
+flex-basis
+     ↓
+Initial main-axis size
+
+flex-grow
+     ↓
+Uses positive free space
+
+flex-shrink
+     ↓
+Handles negative free space
+```
+
+A useful mental model is:
+
+```text
+Start
+ ↓
+flex-basis
+ ↓
+Is there extra space?
+ ├── Yes → flex-grow
+ │
+ └── No → Is space insufficient?
+             ↓
+         flex-shrink
+```
+
+This is a simplified mental model; the actual Flexbox sizing algorithm also considers constraints and other factors.
+
+---
+
+## Quick Reference
+
+| Property | Purpose |
+|----------|---------|
+| `flex-basis` | Defines the initial main-axis size |
+| `flex-grow` | Controls growth into positive free space |
+| `flex-shrink` | Controls shrinking when space is insufficient |
+
+Common values:
+
+```css
+flex-basis: auto;
+flex-basis: 0;
+flex-basis: 200px;
+flex-basis: 50%;
+```
+
+Default:
+
+```css
+flex-basis: auto;
+```
+
+---
+
+> 💡 **Pro Tip:** Think of `flex-basis` as the **starting size** of a flex item along the main axis. Then `flex-grow` and `flex-shrink` determine how that starting size can change when the available space differs from what the items need.
+
+---
+
+> 💡 **Remember:** `flex-basis` defines an item's initial main-axis size. It is not necessarily the final size because Flexbox can grow or shrink the item afterward.
+
+---
