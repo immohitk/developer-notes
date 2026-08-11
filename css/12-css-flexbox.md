@@ -34,3 +34,197 @@
 32. [Interview Questions](#interview-questions)
 33. [Practice Exercises](#practice-exercises)
 34. [Related Topics](#related-topics)
+
+---
+
+# Introduction
+
+**Flexbox**, short for **Flexible Box Layout**, is a CSS layout system designed to arrange elements efficiently within a container.
+
+It provides a convenient way to control:
+
+- The direction of elements
+- Alignment
+- Spacing
+- Distribution of available space
+- Sizing of elements
+- Responsive layouts
+
+A basic Flexbox container is created using:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+When an element becomes a flex container, its **direct children** become flex items.
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+</div>
+```
+
+```css
+.container {
+    display: flex;
+}
+```
+
+The structure becomes:
+
+```text
+Flex Container
+      │
+      ├── Flex Item
+      ├── Flex Item
+      └── Flex Item
+```
+
+---
+
+## Why Was Flexbox Introduced?
+
+Before Flexbox, developers commonly used techniques such as:
+
+- Floats
+- Inline-block
+- Tables
+- Positioning
+
+These techniques could make common layout tasks unnecessarily complicated.
+
+For example, vertically and horizontally centering an element often required additional CSS techniques.
+
+Flexbox provides dedicated properties for these types of layout problems.
+
+---
+
+## One-Dimensional Layout
+
+Flexbox is primarily a **one-dimensional layout system**.
+
+This means it handles layout in one direction at a time:
+
+```text
+Horizontal
+→ Row
+
+Vertical
+→ Column
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+arranges items horizontally.
+
+While:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+arranges items vertically.
+
+---
+
+## Basic Visual Example
+
+With:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+the default layout is:
+
+```text
+┌─────────┐  ┌─────────┐  ┌─────────┐
+│ Item 1  │  │ Item 2  │  │ Item 3  │
+└─────────┘  └─────────┘  └─────────┘
+```
+
+With:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+the layout becomes:
+
+```text
+┌─────────┐
+│ Item 1  │
+└─────────┘
+     ↓
+┌─────────┐
+│ Item 2  │
+└─────────┘
+     ↓
+┌─────────┐
+│ Item 3  │
+└─────────┘
+```
+
+---
+
+## Flexbox Is Controlled by the Parent
+
+One important concept is that many Flexbox properties are applied to the **parent container**.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+These properties control how the child elements are positioned and aligned within the container.
+
+Individual flex items also have their own properties, which will be covered later.
+
+---
+
+## Common Uses of Flexbox
+
+Flexbox is commonly used for:
+
+- Navigation bars
+- Button groups
+- Card layouts
+- Toolbars
+- Form layouts
+- Headers
+- Footers
+- Centering content
+- Aligning icons and text
+- Responsive components
+
+---
+
+> 💡 **Pro Tip:** Don't try to memorize every Flexbox property at once. First understand the relationship between the **container and its items**, then learn how the main axis and cross axis control their layout.
+
+---
+
+> 💡 **Remember:** `display: flex` turns an element into a **flex container**, and its direct children become **flex items**. Flexbox is designed primarily for arranging items in a single direction at a time.
