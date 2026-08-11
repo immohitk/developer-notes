@@ -3449,3 +3449,510 @@ is equivalent to:
 flex-direction: row;
 flex-wrap: wrap;
 ```
+
+---
+
+# Justify Content
+
+The `justify-content` property controls how flex items are **aligned and distributed along the main axis** of a flex container.
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+The effect of `justify-content` depends on the value of:
+
+```css
+flex-direction
+```
+
+because `flex-direction` determines the main axis.
+
+---
+
+## Syntax
+
+```css
+.container {
+    display: flex;
+    justify-content: value;
+}
+```
+
+Common values include:
+
+```text
+flex-start
+flex-end
+center
+space-between
+space-around
+space-evenly
+```
+
+---
+
+## `flex-start`
+
+The default value is:
+
+```css
+justify-content: flex-start;
+```
+
+Items are placed at the beginning of the main axis.
+
+For a normal left-to-right `row`:
+
+```text
+┌──────────────────────────────────────┐
+│  1    2    3                         │
+└──────────────────────────────────────┘
+→ Main Axis
+```
+
+Example:
+
+```css
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+```
+
+---
+
+## `flex-end`
+
+The `flex-end` value places the items at the end of the main axis.
+
+```css
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+```
+
+Result for a normal `row`:
+
+```text
+┌──────────────────────────────────────┐
+│                         1    2    3  │
+└──────────────────────────────────────┘
+```
+
+---
+
+## `center`
+
+The `center` value places the items together in the center of the main axis.
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────────────┐
+│             1    2    3              │
+└──────────────────────────────────────┘
+```
+
+This is one of the most commonly used values.
+
+---
+
+## `space-between`
+
+The `space-between` value distributes the available space **between the items**.
+
+```css
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────────────┐
+│  1             2              3      │
+└──────────────────────────────────────┘
+```
+
+The first item is placed at the beginning and the last item at the end.
+
+There is no extra distributed space before the first item or after the last item.
+
+---
+
+## `space-around`
+
+The `space-around` value distributes space around each item.
+
+```css
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────────────────────┐
+│    1        2        3               │
+└──────────────────────────────────────┘
+```
+
+Each item receives space around it.
+
+The space between two neighboring items is effectively twice the space at either outer edge.
+
+---
+
+## `space-evenly`
+
+The `space-evenly` value distributes the available space so that the spaces between items and the container edges are equal.
+
+```css
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────────────┐
+│     1        2        3              │
+└──────────────────────────────────────┘
+```
+
+The spacing is equal:
+
+```text
+Edge
+ ↓
+[space] 1 [space] 2 [space] 3 [space]
+                                             ↑
+                                            Edge
+```
+
+---
+
+## Comparing the Values
+
+Consider three items:
+
+```text
+1   2   3
+```
+
+### `flex-start`
+
+```text
+1   2   3
+```
+
+Items start at the beginning.
+
+### `flex-end`
+
+```text
+                    1   2   3
+```
+
+Items move to the end.
+
+### `center`
+
+```text
+            1   2   3
+```
+
+Items are grouped in the center.
+
+### `space-between`
+
+```text
+1              2              3
+```
+
+Space is placed between the items.
+
+### `space-around`
+
+```text
+   1        2        3
+```
+
+Space is distributed around each item.
+
+### `space-evenly`
+
+```text
+    1       2       3
+```
+
+All available spaces are equal.
+
+---
+
+## `justify-content` Uses the Main Axis
+
+A very important concept is:
+
+```text
+justify-content
+        ↓
+Main Axis
+```
+
+For:
+
+```css
+flex-direction: row;
+```
+
+the main axis is horizontal.
+
+Therefore:
+
+```css
+justify-content: center;
+```
+
+centers the items horizontally.
+
+```text
+┌──────────────────────────────┐
+│        1   2   3             │
+└──────────────────────────────┘
+```
+
+---
+
+## With `flex-direction: column`
+
+Now consider:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+```
+
+The main axis is now vertical.
+
+Therefore, `justify-content` centers the items vertically.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│            1                 │
+│            2                 │
+│            3                 │
+│                              │
+└──────────────────────────────┘
+```
+
+This is why `justify-content` should not simply be remembered as "horizontal alignment."
+
+It always works along the **main axis**.
+
+---
+
+## `justify-content` With `row`
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────────────┐
+│  1              2              3     │
+└──────────────────────────────────────┘
+```
+
+The main axis is horizontal.
+
+---
+
+## `justify-content` With `column`
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────┐
+│ 1                    │
+│                      │
+│ 2                    │
+│                      │
+│ 3                    │
+└──────────────────────┘
+```
+
+The main axis is vertical, so the available space is distributed vertically.
+
+---
+
+## Free Space
+
+`justify-content` becomes especially useful when there is **extra free space** along the main axis.
+
+For example:
+
+```css
+.container {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+}
+```
+
+If the items occupy less space than the container, the remaining space can be distributed according to the chosen `justify-content` value.
+
+```text
+Container width
+────────────────────────────────────────
+
+Items width
+──────────────
+
+Remaining space
+────────────────────
+```
+
+`justify-content` determines how that remaining space is handled.
+
+---
+
+## Common Navigation Example
+
+A navigation bar can use:
+
+```css
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+```
+
+This can position one group at the beginning and another at the end.
+
+```text
+┌──────────────────────────────────────┐
+│ Logo                 Home About Login│
+└──────────────────────────────────────┘
+```
+
+---
+
+## Common Centering Example
+
+To center items along the main axis:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+For complete horizontal and vertical centering in a row-based container, it is common to combine:
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+Here:
+
+```text
+justify-content
+→ Main axis
+
+align-items
+→ Cross axis
+```
+
+---
+
+## Important Difference
+
+Do not confuse:
+
+```css
+justify-content
+```
+
+with:
+
+```css
+align-items
+```
+
+`justify-content` controls distribution along the **main axis**.
+
+`align-items` controls alignment along the **cross axis**.
+
+```text
+Main Axis
+    ↓
+justify-content
+
+Cross Axis
+    ↓
+align-items
+```
+
+---
+
+## Quick Reference
+
+| Value | Behavior |
+|-------|----------|
+| `flex-start` | Items at the start |
+| `flex-end` | Items at the end |
+| `center` | Items centered |
+| `space-between` | Equal space between items |
+| `space-around` | Space around each item |
+| `space-evenly` | Equal space everywhere |
+
+---
+
+> 💡 **Pro Tip:** If `justify-content` appears to do nothing, check whether there is any free space along the main axis. If the flex items already consume all available space, there may be no extra space for the property to distribute.
+
+---
+
+> 💡 **Remember:** `justify-content` controls how flex items are positioned and distributed along the **main axis**. The main axis is determined by `flex-direction`.
