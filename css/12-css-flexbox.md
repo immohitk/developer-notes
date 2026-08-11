@@ -10096,3 +10096,742 @@ flex-grow: 1;
 flex-shrink: 1;
 flex-basis: 200px;
 ```
+
+---
+
+# Align Self
+
+The `align-self` property controls the alignment of an **individual flex item** along the cross axis.
+
+It allows one flex item to override the alignment defined by the flex container's:
+
+```css
+align-items
+```
+
+property.
+
+---
+
+## Syntax
+
+```css
+.item {
+    align-self: value;
+}
+```
+
+Common values include:
+
+```css
+align-self: auto;
+align-self: flex-start;
+align-self: flex-end;
+align-self: center;
+align-self: stretch;
+align-self: baseline;
+```
+
+---
+
+## Default Value
+
+The default value is:
+
+```css
+align-self: auto;
+```
+
+With `auto`, the item uses the value of the parent's:
+
+```css
+align-items
+```
+
+property.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+An item with:
+
+```css
+.item {
+    align-self: auto;
+}
+```
+
+follows:
+
+```css
+align-items: center;
+```
+
+---
+
+## Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="item">One</div>
+    <div class="item special">Two</div>
+    <div class="item">Three</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.special {
+    align-self: flex-start;
+}
+```
+
+The normal items are centered:
+
+```text
+        One
+        Three
+```
+
+while the special item is aligned at the start of the cross axis.
+
+---
+
+## Why Use `align-self`?
+
+Suppose the container has:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+```
+
+This affects all flex items.
+
+But perhaps one particular item needs different alignment.
+
+Instead of changing:
+
+```css
+align-items
+```
+
+for the entire container, use:
+
+```css
+align-self
+```
+
+on that individual item.
+
+```text
+Container
+    │
+    ├── Item 1 → center
+    ├── Item 2 → start
+    └── Item 3 → center
+```
+
+This is the main purpose of `align-self`.
+
+---
+
+## `align-self: auto`
+
+```css
+.item {
+    align-self: auto;
+}
+```
+
+The item follows the parent's:
+
+```css
+align-items
+```
+
+value.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    align-items: flex-end;
+}
+
+.item {
+    align-self: auto;
+}
+```
+
+The item behaves as if it were using:
+
+```css
+align-items: flex-end;
+```
+
+---
+
+## `align-self: flex-start`
+
+```css
+.item {
+    align-self: flex-start;
+}
+```
+
+The item is positioned at the start of the cross axis.
+
+For a typical row layout:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+```
+
+the cross axis is vertical.
+
+Conceptually:
+
+```text
+Cross Axis
+
+Start
+  ↓
+┌──────────────────────┐
+│ Item                 │
+│                      │
+│                      │
+└──────────────────────┘
+  ↑
+End
+```
+
+---
+
+## `align-self: flex-end`
+
+```css
+.item {
+    align-self: flex-end;
+}
+```
+
+The item is positioned at the end of the cross axis.
+
+In a typical row layout:
+
+```text
+┌──────────────────────┐
+│                      │
+│                      │
+│ Item                 │
+└──────────────────────┘
+```
+
+---
+
+## `align-self: center`
+
+```css
+.item {
+    align-self: center;
+}
+```
+
+The item is centered along the cross axis.
+
+```text
+┌──────────────────────┐
+│                      │
+│        Item          │
+│                      │
+└──────────────────────┘
+```
+
+---
+
+## `align-self: stretch`
+
+```css
+.item {
+    align-self: stretch;
+}
+```
+
+The item can stretch to fill the available cross-axis space, subject to its size constraints.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.item {
+    align-self: stretch;
+}
+```
+
+The individual item can stretch even though the other items use the container's:
+
+```css
+align-items: flex-start;
+```
+
+---
+
+## `align-self: baseline`
+
+```css
+.item {
+    align-self: baseline;
+}
+```
+
+The item is aligned according to the flex line's baseline.
+
+This is useful when aligning content based on text or other baseline-aligned content.
+
+---
+
+## `align-self` vs `align-items`
+
+These properties are closely related but operate at different levels.
+
+### `align-items`
+
+Applied to the **flex container**:
+
+```css
+.container {
+    align-items: center;
+}
+```
+
+It controls the default cross-axis alignment of the flex items.
+
+### `align-self`
+
+Applied to an **individual flex item**:
+
+```css
+.item {
+    align-self: flex-end;
+}
+```
+
+It allows that item to override the container's default.
+
+---
+
+## Mental Model
+
+Think of:
+
+```css
+align-items
+```
+
+as:
+
+```text
+"What should all my children do?"
+```
+
+and:
+
+```css
+align-self
+```
+
+as:
+
+```text
+"What should this particular child do?"
+```
+
+For example:
+
+```text
+Container:
+align-items: center
+
+       ↓
+
+Item 1 → center
+Item 2 → center
+Item 3 → center
+```
+
+Now:
+
+```css
+.item-2 {
+    align-self: flex-start;
+}
+```
+
+Result:
+
+```text
+Item 1 → center
+Item 2 → flex-start
+Item 3 → center
+```
+
+---
+
+## Example: One Item at the Top
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.top {
+    align-self: flex-start;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────────────┐
+│ Top                        │
+│                            │
+│       Other items          │
+│                            │
+└────────────────────────────┘
+```
+
+Only the `.top` item changes its cross-axis alignment.
+
+---
+
+## Example: One Item at the Bottom
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.bottom {
+    align-self: flex-end;
+}
+```
+
+The other items remain centered while the selected item moves toward the cross-axis end.
+
+---
+
+## Example: Different Items, Different Alignment
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.start {
+    align-self: flex-start;
+}
+
+.center {
+    align-self: center;
+}
+
+.end {
+    align-self: flex-end;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────────────────┐
+│ Start                          │
+│                                │
+│             Center             │
+│                                │
+│                          End   │
+└────────────────────────────────┘
+```
+
+Each item can have its own cross-axis alignment.
+
+---
+
+## `align-self` and `flex-direction`
+
+`align-self` works along the **cross axis**.
+
+With:
+
+```css
+flex-direction: row;
+```
+
+the cross axis is generally vertical.
+
+```text
+Main Axis →
+Cross Axis
+    ↓
+```
+
+With:
+
+```css
+flex-direction: column;
+```
+
+the cross axis is generally horizontal.
+
+```text
+Cross Axis →
+Main Axis
+    ↓
+```
+
+Therefore, the physical direction affected by `align-self` depends on the container's `flex-direction`.
+
+---
+
+## `align-self` Does Not Control the Main Axis
+
+Do not confuse:
+
+```css
+align-self
+```
+
+with:
+
+```css
+justify-content
+```
+
+In a typical row-based flex container:
+
+```text
+justify-content
+→ Main axis
+
+align-self
+→ Individual item's cross-axis alignment
+```
+
+For example:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    align-self: flex-end;
+}
+```
+
+This does not move the item toward the end of the main axis.
+
+It changes its position along the cross axis.
+
+---
+
+## `align-self` vs `justify-self`
+
+Flexbox does not use:
+
+```css
+justify-self
+```
+
+for positioning individual flex items along the main axis in the same way CSS Grid does.
+
+For Flexbox, individual cross-axis alignment is handled by:
+
+```css
+align-self
+```
+
+while main-axis distribution is generally controlled by the container's:
+
+```css
+justify-content
+```
+
+---
+
+## `align-self` and `align-items`
+
+A useful comparison:
+
+```text
+align-items
+     ↓
+Container
+     ↓
+Controls default alignment of all items
+
+
+align-self
+     ↓
+Individual item
+     ↓
+Overrides the container's default
+```
+
+Example:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.special {
+    align-self: flex-end;
+}
+```
+
+Result:
+
+```text
+Normal items → center
+Special item → flex-end
+```
+
+---
+
+## Common Use Cases
+
+`align-self` is useful for:
+
+- Positioning one special item differently
+- Responsive layouts
+- Aligning buttons independently
+- Creating card layouts
+- Adjusting individual navigation items
+- Fine-tuning cross-axis alignment
+
+---
+
+## Common Mistake
+
+Do not apply:
+
+```css
+align-self
+```
+
+to the flex container expecting it to control all children.
+
+It is an **item property**.
+
+Correct:
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    align-self: center;
+}
+```
+
+For controlling all items, use:
+
+```css
+.container {
+    align-items: center;
+}
+```
+
+---
+
+## Quick Reference
+
+| Value | Purpose |
+|-------|---------|
+| `auto` | Uses the parent's `align-items` value |
+| `flex-start` | Aligns item at cross-axis start |
+| `flex-end` | Aligns item at cross-axis end |
+| `center` | Centers item on the cross axis |
+| `stretch` | Stretches item across the cross axis when possible |
+| `baseline` | Aligns item according to the baseline |
+
+---
+
+## Flex Item Properties Recap
+
+The main flex item properties covered so far are:
+
+```css
+order
+flex-grow
+flex-shrink
+flex-basis
+flex
+align-self
+```
+
+Their responsibilities can be summarized as:
+
+```text
+order
+  ↓
+Visual sequence
+
+flex-grow
+  ↓
+Growth into positive free space
+
+flex-shrink
+  ↓
+Response to negative free space
+
+flex-basis
+  ↓
+Initial main-axis size
+
+flex
+  ↓
+Shorthand for grow, shrink, basis
+
+align-self
+  ↓
+Individual cross-axis alignment
+```
+
+---
+
+> 💡 **Pro Tip:** If most flex items need the same cross-axis alignment, use `align-items` on the container. Use `align-self` only when individual items need to behave differently.
+
+---
+
+> 💡 **Remember:** `align-items` controls the default cross-axis alignment for flex items, while `align-self` lets an individual flex item override that default.
