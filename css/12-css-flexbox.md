@@ -6199,3 +6199,410 @@ column-gap: 40px;
 ---
 
 > 💡 **Remember:** `row-gap` controls the space between rows, while `column-gap` controls the space between columns. The `gap` shorthand lets you control both together.
+
+---
+
+# Flex Item Properties
+
+Flexbox properties can be divided into two broad groups:
+
+```text
+Flex Container Properties
+        ↓
+Control the layout
+
+Flex Item Properties
+        ↓
+Control individual items
+```
+
+The container properties discussed so far include:
+
+```css
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
+gap
+```
+
+Flex items also have their own properties.
+
+The main flex item properties are:
+
+```css
+order
+flex-grow
+flex-shrink
+flex-basis
+flex
+align-self
+```
+
+These properties are applied directly to individual flex items.
+
+---
+
+## Flex Container vs Flex Item
+
+Consider this HTML:
+
+```html
+<div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+</div>
+```
+
+The parent is the flex container:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+The children are flex items:
+
+```text
+.container
+    │
+    ├── .item
+    ├── .item
+    └── .item
+```
+
+Container properties are applied to:
+
+```css
+.container
+```
+
+Item properties are applied to:
+
+```css
+.item
+```
+
+---
+
+## `order`
+
+The `order` property controls the visual order of a flex item.
+
+```css
+.item {
+    order: 2;
+}
+```
+
+The default value is:
+
+```css
+order: 0;
+```
+
+Flex items are arranged according to their `order` value.
+
+For example:
+
+```css
+.item:nth-child(1) {
+    order: 3;
+}
+
+.item:nth-child(2) {
+    order: 1;
+}
+
+.item:nth-child(3) {
+    order: 2;
+}
+```
+
+The visual order becomes:
+
+```text
+2 → 3 → 1
+```
+
+The `order` property will be covered in detail in the next section.
+
+---
+
+## `flex-grow`
+
+The `flex-grow` property controls how a flex item can grow when there is extra space available along the main axis.
+
+```css
+.item {
+    flex-grow: 1;
+}
+```
+
+For example:
+
+```css
+.item:nth-child(1) {
+    flex-grow: 1;
+}
+
+.item:nth-child(2) {
+    flex-grow: 2;
+}
+```
+
+The second item is given a larger share of the available positive free space.
+
+Conceptually:
+
+```text
+┌──────────────────────────────────────┐
+│   Item 1   │       Item 2            │
+│            │                          │
+└──────────────────────────────────────┘
+     1 part          2 parts
+```
+
+The `flex-grow` property will be covered in detail later.
+
+---
+
+## `flex-shrink`
+
+The `flex-shrink` property controls how a flex item can shrink when there is not enough space along the main axis.
+
+```css
+.item {
+    flex-shrink: 1;
+}
+```
+
+The default value is:
+
+```css
+flex-shrink: 1;
+```
+
+When the items require more space than the container provides, Flexbox can shrink them according to their shrink factors.
+
+The `flex-shrink` property will be covered in detail later.
+
+---
+
+## `flex-basis`
+
+The `flex-basis` property defines the initial size of a flex item along the main axis before the remaining available space is distributed.
+
+```css
+.item {
+    flex-basis: 200px;
+}
+```
+
+For a row-based flex container, this generally corresponds to the item's initial main size in the horizontal direction.
+
+For a column-based flex container, it generally corresponds to the vertical direction.
+
+The `flex-basis` property will be covered in detail later.
+
+---
+
+## `flex`
+
+The `flex` property is a shorthand for:
+
+```css
+flex-grow
+flex-shrink
+flex-basis
+```
+
+For example:
+
+```css
+.item {
+    flex: 1;
+}
+```
+
+The `flex` shorthand will be covered separately after its individual components are understood.
+
+---
+
+## `align-self`
+
+The `align-self` property allows an individual flex item to override the container's:
+
+```css
+align-items
+```
+
+value.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.item {
+    align-self: flex-start;
+}
+```
+
+The other items follow:
+
+```css
+align-items: center;
+```
+
+while this particular item uses:
+
+```css
+align-self: flex-start;
+```
+
+The `align-self` property will be covered later.
+
+---
+
+## Main Flex Item Properties
+
+| Property | Purpose |
+|----------|---------|
+| `order` | Changes the visual order of an item |
+| `flex-grow` | Controls how an item grows |
+| `flex-shrink` | Controls how an item shrinks |
+| `flex-basis` | Defines the initial main-axis size |
+| `flex` | Shorthand for grow, shrink, and basis |
+| `align-self` | Overrides the item's cross-axis alignment |
+
+---
+
+## Container Properties vs Item Properties
+
+### Container Properties
+
+Applied to the flex container:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+}
+```
+
+They control the overall layout.
+
+### Item Properties
+
+Applied to individual flex items:
+
+```css
+.item {
+    order: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+    align-self: center;
+}
+```
+
+They control the behavior of individual items.
+
+---
+
+## A Simple Mental Model
+
+Think of Flexbox as having two levels.
+
+```text
+                 Flex Container
+                       │
+        ┌──────────────┼──────────────┐
+        ↓              ↓              ↓
+     Item 1          Item 2         Item 3
+```
+
+The container decides:
+
+```text
+How should the items be arranged?
+```
+
+The items decide:
+
+```text
+How should I behave within that arrangement?
+```
+
+---
+
+## Example
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.item {
+    flex-grow: 1;
+}
+```
+
+Here:
+
+```text
+.container
+    ↓
+Creates the Flexbox layout
+Controls spacing and alignment
+
+.item
+    ↓
+Controls how each individual item grows
+```
+
+This separation is important when learning Flexbox.
+
+---
+
+## Important Note
+
+The properties introduced in this section are not all equally simple.
+
+The following properties involve more detailed Flexbox sizing behavior:
+
+```css
+flex-grow
+flex-shrink
+flex-basis
+flex
+```
+
+They will therefore be explained individually in the upcoming sections.
+
+This section serves as an overview of the **flex item property group**.
+
+---
+
+> 💡 **Pro Tip:** When debugging a Flexbox layout, first determine whether the problem belongs to the **container** or to an **individual item**. This makes it much easier to choose the correct property.
+
+---
+
+> 💡 **Remember:** Container properties control the overall Flexbox layout, while flex item properties control the behavior of individual flex items.
+
+---
