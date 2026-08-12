@@ -6761,3 +6761,1148 @@ This keeps responsive CSS easier to maintain.
 ---
 
 > 💡 **Remember:** A responsive breakpoint is a point where your CSS changes to accommodate the available viewport space. There is no single set of breakpoints that is correct for every website. Use flexible CSS where possible and add breakpoints when the design actually needs them.
+
+---
+
+## Mobile-First Approach
+
+The mobile-first approach is a responsive design strategy where the base CSS is written for smaller screens first.
+
+Larger-screen layouts are then added using media queries with `min-width`.
+
+The basic idea is:
+
+```text
+Small screen
+    ↓
+Base CSS
+    ↓
+Larger screen
+    ↓
+Add styles with media queries
+```
+
+For example:
+
+```css
+.container {
+    width: 100%;
+    padding: 15px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 30px;
+    }
+}
+```
+
+The base styles work on smaller screens, while the media query adds or changes styles when the viewport becomes wider.
+
+---
+
+## Why Is It Called Mobile-First?
+
+It is called mobile-first because the development process starts with the smaller-screen experience.
+
+Instead of creating a large desktop layout first and then trying to reduce it, the layout begins with the constraints of smaller screens.
+
+```text
+Mobile
+   ↓
+Base design
+   ↓
+Tablet
+   ↓
+Add enhancements
+   ↓
+Desktop
+   ↓
+Add more enhancements
+```
+
+This creates a progressive approach to responsive design.
+
+---
+
+## Basic Mobile-First Structure
+
+A typical mobile-first stylesheet looks like this:
+
+```css
+/* Base styles - smaller screens */
+
+.container {
+    width: 100%;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* Larger screens */
+
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Even larger screens */
+
+@media (min-width: 1200px) {
+    .container {
+        width: 80%;
+    }
+
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+```
+
+The base CSS establishes the smallest layout.
+
+The media queries progressively enhance it.
+
+---
+
+## Mobile-First Uses `min-width`
+
+Mobile-first designs commonly use `min-width`.
+
+For example:
+
+```css
+.card {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .card {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card {
+        width: 25%;
+    }
+}
+```
+
+The logic is:
+
+```text
+Base
+ ↓
+All viewport sizes
+
+min-width: 768px
+ ↓
+768px and wider
+
+min-width: 1200px
+ ↓
+1200px and wider
+```
+
+As the viewport gets wider, additional styles become active.
+
+---
+
+## Mobile-First vs Desktop-First
+
+The two approaches work in opposite directions.
+
+### Mobile-First
+
+```text
+Small
+  ↓
+Base styles
+  ↓
+Larger
+  ↓
+Add enhancements
+```
+
+Usually:
+
+```css
+/* Base */
+```
+
+followed by:
+
+```css
+@media (min-width: 768px) {
+    /* Larger layout */
+}
+```
+
+### Desktop-First
+
+```text
+Large
+  ↓
+Base styles
+  ↓
+Smaller
+  ↓
+Override styles
+```
+
+Usually:
+
+```css
+/* Base */
+```
+
+followed by:
+
+```css
+@media (max-width: 768px) {
+    /* Smaller layout */
+}
+```
+
+The important difference is the direction in which the layout is developed.
+
+---
+
+## Example Comparison
+
+### Mobile-First
+
+```css
+.navigation {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .navigation {
+        flex-direction: row;
+    }
+}
+```
+
+The default layout is vertical.
+
+On larger screens, it becomes horizontal.
+
+```text
+Small
+┌──────────────┐
+│ Home         │
+├──────────────┤
+│ About        │
+├──────────────┤
+│ Projects     │
+└──────────────┘
+
+        ↓
+
+Large
+┌──────┬───────┬──────────┐
+│ Home │ About │ Projects │
+└──────┴───────┴──────────┘
+```
+
+---
+
+### Desktop-First
+
+The same layout can be written in the opposite direction:
+
+```css
+.navigation {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 767px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The default layout is horizontal.
+
+The smaller-screen media query changes it to vertical.
+
+---
+
+## Why Use Mobile-First?
+
+Mobile-first design can make responsive CSS easier to structure.
+
+The smaller layout is often simpler.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+```
+
+Then larger screens can progressively add columns:
+
+```css
+@media (min-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+```
+
+The layout grows as more space becomes available.
+
+```text
+Small
+   ↓
+1 column
+
+Medium
+   ↓
+2 columns
+
+Large
+   ↓
+4 columns
+```
+
+---
+
+## Mobile-First and Progressive Enhancement
+
+Mobile-first development follows a progressive enhancement idea.
+
+Start with a simple layout:
+
+```text
+Small viewport
+     ↓
+Basic usable experience
+```
+
+Then add capabilities as more space becomes available:
+
+```text
+Small
+ ↓
+Basic layout
+
+Medium
+ ↓
+Additional columns
+Additional spacing
+
+Large
+ ↓
+More columns
+Larger spacing
+Additional layout features
+```
+
+The design therefore grows with the available space.
+
+---
+
+## Mobile-First and Content
+
+A mobile-first approach encourages developers to prioritize important content.
+
+On a small screen, there is limited space.
+
+Therefore, the design should first ensure that the essential information is accessible.
+
+For example:
+
+```text
+Small screen
+
+┌──────────────┐
+│ Logo         │
+│ Navigation   │
+│ Main Content │
+│ Main Action  │
+└──────────────┘
+```
+
+Larger screens can then provide additional space for secondary content:
+
+```text
+Large screen
+
+┌────────┬──────────────────────┐
+│ Side   │ Main Content         │
+│ bar    │                      │
+│        │ Additional Content   │
+└────────┴──────────────────────┘
+```
+
+---
+
+## Mobile-First Navigation
+
+A navigation menu can start as a compact vertical layout.
+
+```css
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+```
+
+On larger screens:
+
+```css
+@media (min-width: 768px) {
+    .navigation {
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+```
+
+The navigation progressively uses the additional horizontal space.
+
+---
+
+## Mobile-First Cards
+
+Cards are another common example.
+
+Start with one column:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+```
+
+Add columns for larger viewports:
+
+```css
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+```
+
+The result is:
+
+```text
+Small
+
+┌───────────┐
+│   Card    │
+├───────────┤
+│   Card    │
+├───────────┤
+│   Card    │
+└───────────┘
+```
+
+```text
+Medium
+
+┌───────────┬───────────┐
+│   Card    │   Card    │
+├───────────┼───────────┤
+│   Card    │   Card    │
+└───────────┴───────────┘
+```
+
+```text
+Large
+
+┌──────┬──────┬──────┬──────┐
+│ Card │ Card │ Card │ Card │
+└──────┴──────┴──────┴──────┘
+```
+
+---
+
+## Mobile-First Typography
+
+Typography can also start with smaller values.
+
+For example:
+
+```css
+h1 {
+    font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    h1 {
+        font-size: 3rem;
+    }
+}
+```
+
+The heading becomes larger as more space becomes available.
+
+```text
+Small
+ ↓
+2rem
+
+Medium
+ ↓
+2.5rem
+
+Large
+ ↓
+3rem
+```
+
+For many situations, fluid sizing with `clamp()` can also reduce the need for multiple typography breakpoints.
+
+---
+
+## Mobile-First Spacing
+
+Spacing can follow the same pattern.
+
+```css
+.section {
+    padding: 40px 15px;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 60px 30px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .section {
+        padding: 80px 40px;
+    }
+}
+```
+
+The layout starts compact and progressively gains space.
+
+---
+
+## Mobile-First Images
+
+Images should generally be flexible by default.
+
+For example:
+
+```css
+.image {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+Additional styles can be introduced at larger widths when necessary:
+
+```css
+@media (min-width: 768px) {
+    .image {
+        max-width: 600px;
+    }
+}
+```
+
+The image remains responsive while larger screens can use a larger maximum size.
+
+---
+
+## Mobile-First With Flexbox
+
+Flexbox works naturally with mobile-first design.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+}
+```
+
+The layout starts vertically:
+
+```text
+Small
+
+┌───────────┐
+│ Content 1 │
+├───────────┤
+│ Content 2 │
+└───────────┘
+```
+
+Then becomes horizontal:
+
+```text
+Large
+
+┌───────────┬───────────┐
+│ Content 1 │ Content 2 │
+└───────────┴───────────┘
+```
+
+---
+
+## Mobile-First With Grid
+
+Grid also works well with the mobile-first approach.
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .layout {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+```
+
+The mobile layout uses one column.
+
+The larger layout uses two columns.
+
+```text
+Small
+
+┌───────────────┐
+│ Main Content  │
+├───────────────┤
+│ Sidebar       │
+└───────────────┘
+```
+
+```text
+Large
+
+┌────────────────────┬──────────┐
+│ Main Content       │ Sidebar  │
+└────────────────────┴──────────┘
+```
+
+---
+
+## Mobile-First CSS Order
+
+A mobile-first stylesheet can be organized like this:
+
+```css
+/* Base styles */
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    padding: 15px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* Medium screens */
+
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large screens */
+
+@media (min-width: 1200px) {
+    .container {
+        width: 80%;
+    }
+
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+```
+
+The structure is easy to follow:
+
+```text
+Base
+ ↓
+768px+
+ ↓
+1200px+
+```
+
+---
+
+## Mobile-First and CSS Cascade
+
+Mobile-first CSS works with the normal CSS cascade.
+
+The base rules are written first:
+
+```css
+.cards {
+    grid-template-columns: 1fr;
+}
+```
+
+A later media query can override the property:
+
+```css
+@media (min-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
+
+At larger widths, the media query's declaration applies because the media condition matches and the rule appears later.
+
+---
+
+## Mobile-First Does Not Mean Mobile-Only
+
+The mobile-first approach does not mean the website should be designed only for mobile devices.
+
+It means the smallest practical layout is established first.
+
+Then larger layouts are added.
+
+```text
+Mobile
+   ↓
+Tablet
+   ↓
+Laptop
+   ↓
+Desktop
+   ↓
+Large displays
+```
+
+The same HTML and CSS can support all of these viewport sizes.
+
+---
+
+## Mobile-First and Accessibility
+
+A mobile-first approach can also encourage developers to prioritize essential content.
+
+Important content and actions should remain usable at smaller sizes.
+
+For example:
+
+```text
+Primary action
+     ↓
+Always accessible
+
+Secondary information
+     ↓
+Can use additional space when available
+```
+
+However, responsive design alone does not guarantee accessibility.
+
+Accessibility also requires appropriate:
+
+- Contrast
+- Font sizes
+- Keyboard navigation
+- Focus styles
+- Semantic HTML
+- Alternative text
+- Touch target sizes
+
+Responsive design is one part of creating an accessible interface.
+
+---
+
+## Mobile-First and Performance
+
+Mobile-first development can encourage attention to the constraints of smaller devices and networks.
+
+For example, the base design should avoid unnecessary visual complexity.
+
+However, CSS media queries alone do not automatically make a website faster.
+
+Performance also depends on:
+
+- Image sizes
+- JavaScript
+- Fonts
+- Network requests
+- CSS size
+- Caching
+- Rendering complexity
+
+Therefore:
+
+```text
+Mobile-first
+    ≠
+Automatically fast
+```
+
+It is a design strategy, not a complete performance strategy.
+
+---
+
+## When Mobile-First Works Well
+
+Mobile-first is particularly useful when:
+
+- The majority of users are on smaller screens.
+- The layout needs to progressively expand.
+- The mobile layout is simpler than the desktop layout.
+- The project is being designed responsively from the beginning.
+- The CSS can naturally use `min-width` enhancements.
+
+For example:
+
+```text
+Small
+ ↓
+Simple layout
+
+Medium
+ ↓
+More columns
+
+Large
+ ↓
+More space and additional layout features
+```
+
+---
+
+## When the Approach May Need More Planning
+
+Some applications are primarily designed around large-screen interfaces.
+
+For example, a complex desktop dashboard may contain many controls and data tables.
+
+In such cases, the mobile experience may require significant redesign rather than simply shrinking the desktop layout.
+
+The important principle is:
+
+```text
+Do not simply shrink the desktop layout.
+
+Design an appropriate experience for each available space.
+```
+
+---
+
+## Mobile-First vs Shrinking Desktop
+
+A common mistake is to create a desktop layout first and then simply reduce everything.
+
+For example:
+
+```text
+Desktop layout
+      ↓
+Make everything smaller
+      ↓
+Mobile
+```
+
+This can produce:
+
+```text
+Tiny text
+Crowded controls
+Horizontal scrolling
+Difficult navigation
+```
+
+Mobile-first encourages a different process:
+
+```text
+Small layout
+      ↓
+Prioritize content
+      ↓
+Create usable structure
+      ↓
+Expand for larger screens
+```
+
+---
+
+## Practical Complete Example
+
+```css
+/* Base: small screens */
+
+.container {
+    width: 100%;
+    padding: 15px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+/* Medium screens */
+
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .navigation {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Large screens */
+
+@media (min-width: 1200px) {
+    .container {
+        width: 80%;
+        padding: 40px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}
+```
+
+The complete progression is:
+
+```text
+SMALL
+ ↓
+1 column
+Vertical navigation
+Compact spacing
+Smaller heading
+ ↓
+MEDIUM
+ ↓
+2 columns
+Horizontal navigation
+More spacing
+Larger heading
+ ↓
+LARGE
+ ↓
+4 columns
+More available space
+Larger heading
+```
+
+---
+
+## Mobile-First Development Workflow
+
+A practical workflow is:
+
+```text
+1. Start with the smallest layout.
+        ↓
+2. Make the essential content usable.
+        ↓
+3. Use flexible widths and layouts.
+        ↓
+4. Test the layout at larger widths.
+        ↓
+5. Find where the layout can improve.
+        ↓
+6. Add a min-width media query.
+        ↓
+7. Test again.
+        ↓
+8. Repeat only when necessary.
+```
+
+This produces a progressive responsive layout.
+
+---
+
+## Common Mistake
+
+Do not automatically add a media query for every device size.
+
+For example:
+
+```css
+@media (min-width: 375px) { ... }
+@media (min-width: 480px) { ... }
+@media (min-width: 576px) { ... }
+@media (min-width: 768px) { ... }
+@media (min-width: 820px) { ... }
+@media (min-width: 900px) { ... }
+@media (min-width: 1024px) { ... }
+@media (min-width: 1200px) { ... }
+```
+
+This may be unnecessary.
+
+Instead:
+
+```text
+Flexible base CSS
+        +
+Meaningful breakpoints
+        ↓
+Simpler responsive design
+```
+
+---
+
+## Another Common Mistake
+
+Do not write the mobile-first base styles and then unnecessarily override every property at larger sizes.
+
+For example:
+
+```css
+.container {
+    width: 100%;
+    padding: 15px;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+        margin: 0;
+    }
+}
+```
+
+If `padding` and `margin` do not need to change, they do not need to be repeated.
+
+A cleaner version is:
+
+```css
+.container {
+    width: 100%;
+    padding: 15px;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+```
+
+Only change what actually needs to change.
+
+---
+
+## Best Practices
+
+A good mobile-first approach generally follows these principles:
+
+```text
+1. Write base styles for smaller screens.
+2. Use flexible layouts.
+3. Use min-width for larger-screen enhancements.
+4. Add breakpoints based on layout needs.
+5. Avoid unnecessary overrides.
+6. Keep important content accessible.
+7. Test between breakpoints.
+8. Use Flexbox and Grid where appropriate.
+9. Use fluid CSS where possible.
+10. Keep the responsive CSS maintainable.
+```
+
+---
+
+> 💡 **Pro Tip:** Think of mobile-first CSS as building upward. Start with the simplest usable layout, then use `min-width` media queries to progressively enhance the design as more viewport space becomes available.
+
+---
+
+> 💡 **Remember:** In a mobile-first approach, the base CSS targets the smaller layout and larger layouts are added progressively using `min-width` media queries. Mobile-first is not about targeting a specific device; it is about starting with limited space and enhancing the layout as more space becomes available.
