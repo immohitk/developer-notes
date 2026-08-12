@@ -2589,3 +2589,790 @@ However, width-based conditions are commonly used because many layout changes ar
 ---
 
 > 💡 **Remember:** Media features describe characteristics of the viewing environment. Common examples include `width`, `height`, `min-width`, `max-width`, `orientation`, `aspect-ratio`, and `resolution`.
+
+---
+
+## Width and Height
+
+The `width` and `height` media features allow CSS to respond to the dimensions of the viewport.
+
+Viewport dimensions are important in responsive design because the available horizontal and vertical space can change significantly between devices and window sizes.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Here, `max-width` checks the available viewport width.
+
+The basic relationship is:
+
+```text
+Viewport
+    ↓
+┌──────────────────────────────┐
+│                              │
+│          Content             │
+│                              │
+└──────────────────────────────┘
+      ←──── Width ────→
+
+             ↑
+             │
+           Height
+             │
+             ↓
+```
+
+---
+
+## Viewport Width
+
+The viewport width represents the horizontal space available to the webpage.
+
+For example:
+
+```text
+←────────────── Viewport Width ──────────────→
+
+┌─────────────────────────────────────────────┐
+│                                             │
+│                 Webpage                     │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+A media query can use the viewport width to change the layout.
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+When the viewport becomes `768px` or smaller, the styles inside the media query are applied.
+
+---
+
+## Exact `width`
+
+The `width` media feature can check for an exact viewport width.
+
+For example:
+
+```css
+@media (width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+This condition checks whether the viewport width is exactly `600px`.
+
+Conceptually:
+
+```text
+Viewport width
+      ↓
+Exactly 600px?
+   ┌──┴──┐
+  Yes    No
+   ↓      ↓
+Apply   Ignore
+ CSS      CSS
+```
+
+Exact width conditions are less common in responsive layouts because viewport sizes can vary continuously.
+
+Range-based features such as `min-width` and `max-width` are generally more useful.
+
+---
+
+## `min-width`
+
+The `min-width` media feature checks whether the viewport width is at least a specified value.
+
+For example:
+
+```css
+@media (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport width >= 768px
+```
+
+Therefore:
+
+```text
+600px
+   ↓
+Condition false
+
+768px
+   ↓
+Condition true
+
+900px
+   ↓
+Condition true
+```
+
+The styles apply when the viewport is `768px` or wider.
+
+---
+
+## `max-width`
+
+The `max-width` media feature checks whether the viewport width is at most a specified value.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport width <= 768px
+```
+
+Therefore:
+
+```text
+500px
+   ↓
+Condition true
+
+768px
+   ↓
+Condition true
+
+900px
+   ↓
+Condition false
+```
+
+The styles apply when the viewport is `768px` or narrower.
+
+---
+
+## Comparing `min-width` and `max-width`
+
+The difference can be visualized as:
+
+```text
+min-width: 768px
+
+0px ─────────── 767px │ 768px ───────────────→
+                       ↑
+                    Apply CSS
+```
+
+```text
+max-width: 768px
+
+0px ───────────────── 768px │ 769px ─────────→
+                       ↑
+                    Apply CSS
+```
+
+A simple rule to remember is:
+
+```text
+min-width
+    ↓
+768px and above
+
+max-width
+    ↓
+768px and below
+```
+
+---
+
+## Using Width Ranges
+
+A design may need to respond only within a specific width range.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 85%;
+    }
+}
+```
+
+The condition requires both rules to be satisfied.
+
+```text
+Viewport width
+      ↓
+At least 600px?
+      ↓
+     Yes
+      ↓
+At most 1000px?
+      ↓
+     Yes
+      ↓
+Apply CSS
+```
+
+The range can be visualized as:
+
+```text
+0px        600px                  1000px       →
+│────────────│──────────────────────│────────────│
+             ↑                      ↑
+          Start                    End
+```
+
+Only the viewport widths inside the specified range match the condition.
+
+---
+
+## Width and Responsive Layouts
+
+Width-based media queries are commonly used to change the structure of a layout.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout changes as the viewport becomes narrower.
+
+Large viewport:
+
+```text
+┌────────┬────────┬────────┐
+│   1    │   2    │   3    │
+└────────┴────────┴────────┘
+```
+
+Medium viewport:
+
+```text
+┌────────┬────────┐
+│   1    │   2    │
+├────────┼────────┤
+│   3    │   4    │
+└────────┴────────┘
+```
+
+Small viewport:
+
+```text
+┌────────┐
+│   1    │
+├────────┤
+│   2    │
+├────────┤
+│   3    │
+└────────┘
+```
+
+This is one of the most common uses of width-based media queries.
+
+---
+
+## Viewport Height
+
+The viewport height represents the vertical space available to the webpage.
+
+For example:
+
+```text
+        ↑
+        │
+      Height
+        │
+        ↓
+
+┌──────────────────┐
+│                  │
+│                  │
+│     Webpage      │
+│                  │
+│                  │
+└──────────────────┘
+   ←──── Width ───→
+```
+
+Height-based media queries can be useful when the amount of vertical space affects the layout.
+
+---
+
+## Exact `height`
+
+The `height` media feature can check for an exact viewport height.
+
+For example:
+
+```css
+@media (height: 800px) {
+    .hero {
+        min-height: 400px;
+    }
+}
+```
+
+This condition matches when the viewport height is exactly `800px`.
+
+Conceptually:
+
+```text
+Viewport height
+      ↓
+Exactly 800px?
+   ┌──┴──┐
+  Yes    No
+   ↓      ↓
+Apply   Ignore
+ CSS      CSS
+```
+
+As with exact width conditions, exact height queries are less common than minimum and maximum height conditions.
+
+---
+
+## `min-height`
+
+The `min-height` media feature checks whether the viewport height is at least a specified value.
+
+For example:
+
+```css
+@media (min-height: 700px) {
+    .hero {
+        min-height: 500px;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport height >= 700px
+```
+
+Therefore, the styles apply when there is at least `700px` of vertical viewport space.
+
+---
+
+## `max-height`
+
+The `max-height` media feature checks whether the viewport height is at most a specified value.
+
+For example:
+
+```css
+@media (max-height: 600px) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport height <= 600px
+```
+
+The styles apply when the available vertical space is limited.
+
+---
+
+## Comparing `min-height` and `max-height`
+
+The difference is similar to `min-width` and `max-width`.
+
+```text
+min-height
+    ↓
+At or above the specified height
+```
+
+```text
+max-height
+    ↓
+At or below the specified height
+```
+
+For example:
+
+```css
+@media (min-height: 700px) {
+    /* 700px and taller */
+}
+```
+
+```css
+@media (max-height: 600px) {
+    /* 600px and shorter */
+}
+```
+
+---
+
+## Width and Height Together
+
+Width and height can be used together in the same media query.
+
+For example:
+
+```css
+@media (max-width: 768px) and (max-height: 600px) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+The CSS is applied only when both conditions are satisfied.
+
+Conceptually:
+
+```text
+Viewport
+    ↓
+Width <= 768px?
+    ↓
+   Yes
+    ↓
+Height <= 600px?
+    ↓
+   Yes
+    ↓
+Apply CSS
+```
+
+If either condition is false, the complete media query does not match.
+
+---
+
+## Practical Example: Limited Vertical Space
+
+Consider a hero section with a large amount of padding.
+
+```css
+.hero {
+    padding: 100px 20px;
+}
+```
+
+On a viewport with limited height, this may consume too much vertical space.
+
+A media query can reduce the padding:
+
+```css
+@media (max-height: 600px) {
+    .hero {
+        padding: 40px 20px;
+    }
+}
+```
+
+The result can be represented as:
+
+```text
+Normal height
+
+┌──────────────────────────┐
+│                          │
+│       Large padding      │
+│                          │
+│        HERO CONTENT      │
+│                          │
+│       Large padding      │
+│                          │
+└──────────────────────────┘
+```
+
+With limited height:
+
+```text
+┌──────────────────────────┐
+│      Smaller padding     │
+│      HERO CONTENT        │
+│      Smaller padding     │
+└──────────────────────────┘
+```
+
+This prevents the hero section from consuming too much vertical space.
+
+---
+
+## Practical Example: Full-Screen Layout
+
+A page may use a minimum height based on the viewport.
+
+```css
+.hero {
+    min-height: 100vh;
+}
+```
+
+A height-based media query can further adjust the design when the viewport becomes very short.
+
+```css
+@media (max-height: 600px) {
+    .hero {
+        min-height: auto;
+        padding: 40px 20px;
+    }
+}
+```
+
+This gives the layout more flexibility when vertical space is limited.
+
+---
+
+## Width and Height With Flexbox
+
+Width and height conditions can also work together with Flexbox.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+@media (max-height: 600px) {
+    .container {
+        justify-content: flex-start;
+        padding-top: 30px;
+    }
+}
+```
+
+The normal layout centers the content vertically.
+
+When the viewport becomes short, the layout moves the content toward the top.
+
+Conceptually:
+
+```text
+Normal viewport
+       ↓
+┌───────────────┐
+│               │
+│               │
+│    CONTENT    │
+│               │
+│               │
+└───────────────┘
+       ↓
+    Centered
+
+
+Short viewport
+       ↓
+┌───────────────┐
+│    CONTENT    │
+│               │
+│               │
+└───────────────┘
+       ↓
+    Top aligned
+```
+
+---
+
+## Width and Height With Navigation
+
+A navigation layout may also need to respond to both width and height.
+
+For example:
+
+```css
+.navigation {
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    .navigation {
+        padding: 10px;
+    }
+}
+
+@media (max-height: 500px) {
+    .navigation {
+        padding: 5px;
+    }
+}
+```
+
+Different conditions can therefore adjust the same component according to different constraints.
+
+---
+
+## Width vs Height
+
+Width and height solve different responsive problems.
+
+| Media Feature | Checks |
+|---|---|
+| `width` | Exact viewport width |
+| `min-width` | Minimum viewport width |
+| `max-width` | Maximum viewport width |
+| `height` | Exact viewport height |
+| `min-height` | Minimum viewport height |
+| `max-height` | Maximum viewport height |
+
+A useful mental model is:
+
+```text
+Horizontal space
+       ↓
+width
+min-width
+max-width
+
+Vertical space
+       ↓
+height
+min-height
+max-height
+```
+
+---
+
+## Choosing Width or Height
+
+When deciding which feature to use, first identify what is causing the layout problem.
+
+```text
+Layout problem
+      ↓
+Is horizontal space the issue?
+      ↓
+     Yes
+      ↓
+Use width-based media features
+```
+
+Or:
+
+```text
+Layout problem
+      ↓
+Is vertical space the issue?
+      ↓
+     Yes
+      ↓
+Use height-based media features
+```
+
+This helps avoid adding unnecessary media queries.
+
+---
+
+## Common Mistake
+
+Do not assume that every responsive change should be based on width.
+
+Width is often the most important factor because layouts frequently become constrained horizontally, but some interfaces also depend heavily on vertical space.
+
+For example:
+
+```css
+@media (max-height: 500px) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+This is useful when the problem is limited height rather than limited width.
+
+---
+
+## Another Common Mistake
+
+Do not confuse CSS element dimensions with viewport media features.
+
+For example:
+
+```css
+.container {
+    width: 600px;
+}
+```
+
+This changes the width of an element.
+
+Whereas:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+checks the viewport width before applying the CSS rule.
+
+Conceptually:
+
+```text
+Element property
+    ↓
+Changes an element
+
+Media feature
+    ↓
+Checks the viewing environment
+```
+
+---
+
+> 💡 **Pro Tip:** Start by identifying whether your responsive problem comes from limited horizontal space or limited vertical space. Then choose a width-based or height-based media feature accordingly.
+
+---
+
+> 💡 **Remember:** `width`, `min-width`, and `max-width` respond to viewport width, while `height`, `min-height`, and `max-height` respond to viewport height. Use the feature that matches the actual responsive problem.
