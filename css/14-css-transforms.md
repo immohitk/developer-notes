@@ -2172,3 +2172,110 @@ Therefore, `skewX()` is useful when you only want to distort the element horizon
 > 💡 **Tip:** Use `skewX()` when you need a horizontal slant without changing the Y-axis skew.
 
 > 💡 **Remember:** Positive and negative angle values control the direction of the X-axis skew.
+
+---
+
+## Skew Y
+
+The `skewY()` function distorts an element by tilting it along the **Y-axis**.
+
+It changes the vertical angles of the element while keeping its general position in the document flow.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: skewY(angle);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: skewY(20deg);
+}
+```
+
+This skews the element by `20deg` along the Y-axis.
+
+### Positive Values
+
+Positive values skew the element in one direction:
+
+```css
+.box {
+    transform: skewY(20deg);
+}
+```
+
+The element is visually tilted along the Y-axis.
+
+### Negative Values
+
+Negative values skew the element in the opposite direction:
+
+```css
+.box {
+    transform: skewY(-20deg);
+}
+```
+
+This creates a tilt in the opposite direction.
+
+### Practical Example
+
+```html
+<div class="box">Skew Y</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transform: skewY(15deg);
+}
+```
+
+The element is visually distorted along the Y-axis.
+
+### Hover Effect
+
+`skewY()` can be combined with a transition:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: skewY(10deg);
+}
+```
+
+When the user hovers over the element, it smoothly tilts along the Y-axis.
+
+### Comparing `skew()` and `skewY()`
+
+`skew()` can control both the X-axis and Y-axis:
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+`skewY()` specifically controls the Y-axis:
+
+```css
+.box {
+    transform: skewY(20deg);
+}
+```
+
+Therefore, `skewY()` is useful when you only want to distort the element vertically.
+
+> 💡 **Tip:** Use `skewY()` when you need a vertical slant without changing the X-axis skew.
+
+> 💡 **Remember:** Positive and negative angle values control the direction of the Y-axis skew.
