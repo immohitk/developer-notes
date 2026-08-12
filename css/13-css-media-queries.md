@@ -14306,3 +14306,841 @@ Remove unnecessary overrides
 ---
 
 > 💡 **Remember:** **Content first, layout second, breakpoint third.** Let the content determine when the layout needs to change rather than designing around a fixed list of devices.
+
+---
+
+## Common Mistakes
+
+Media queries are powerful, but they can easily become difficult to maintain when they are used incorrectly.
+
+Understanding common mistakes helps prevent responsive layouts from becoming fragile or unnecessarily complicated.
+
+---
+
+## 1. Using Too Many Breakpoints
+
+One of the most common mistakes is creating a media query for every possible screen size.
+
+Avoid:
+
+```css
+@media (max-width: 320px) {
+    /* styles */
+}
+
+@media (max-width: 375px) {
+    /* styles */
+}
+
+@media (max-width: 480px) {
+    /* styles */
+}
+
+@media (max-width: 600px) {
+    /* styles */
+}
+
+@media (max-width: 768px) {
+    /* styles */
+}
+
+@media (max-width: 900px) {
+    /* styles */
+}
+
+@media (max-width: 1024px) {
+    /* styles */
+}
+```
+
+This creates unnecessary complexity.
+
+Prefer a smaller number of meaningful breakpoints based on actual layout requirements.
+
+---
+
+## 2. Choosing Breakpoints Only for Devices
+
+Avoid thinking:
+
+```text
+320px = phone
+768px = tablet
+1024px = desktop
+```
+
+These categories are not enough to describe all possible viewport sizes.
+
+Instead, choose a breakpoint when the content needs a layout change.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The breakpoint exists because the navigation needs more space, not simply because `700px` represents a specific device.
+
+---
+
+## 3. Using Fixed Widths Everywhere
+
+Fixed widths can cause horizontal overflow.
+
+Avoid:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+On a smaller viewport, the element may become wider than the available space.
+
+Prefer:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+```
+
+This allows the container to shrink while maintaining a maximum width.
+
+---
+
+## 4. Forgetting About Horizontal Overflow
+
+A page may look correct at one viewport size but create unwanted horizontal scrolling at another.
+
+Common causes include:
+
+```text
+Fixed-width elements
+Large images
+Long text
+Wide tables
+Large gaps
+Absolute positioning
+Large transforms
+```
+
+For example:
+
+```css
+.box {
+    width: 1000px;
+}
+```
+
+can overflow a small viewport.
+
+Always check the page at different widths.
+
+---
+
+## 5. Making Images Fixed-Size
+
+Avoid unnecessarily large fixed image dimensions.
+
+For example:
+
+```css
+img {
+    width: 800px;
+    height: 500px;
+}
+```
+
+This can cause problems on smaller screens.
+
+A common responsive approach is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+---
+
+## 6. Hiding Important Content
+
+Do not remove important content simply because the screen is smaller.
+
+Avoid:
+
+```css
+@media (max-width: 600px) {
+    .important-information {
+        display: none;
+    }
+}
+```
+
+If content is important, consider changing its layout instead:
+
+```text
+Horizontal
+    ↓
+Vertical
+```
+
+or:
+
+```text
+Expanded
+    ↓
+Collapsed
+```
+
+or:
+
+```text
+Sidebar
+    ↓
+Stacked Content
+```
+
+---
+
+## 7. Making Text Too Small
+
+Responsive design should not mean shrinking text until it becomes difficult to read.
+
+Avoid:
+
+```css
+@media (max-width: 500px) {
+    body {
+        font-size: 10px;
+    }
+}
+```
+
+Instead, maintain readable typography.
+
+Fluid sizing can be useful:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+## 8. Forgetting Long Text
+
+A layout may work with short placeholder text but fail with real content.
+
+For example:
+
+```text
+Short title
+```
+
+may work perfectly while:
+
+```text
+This is a much longer heading that can completely change the layout
+```
+
+causes wrapping or overflow.
+
+Always test with realistic content.
+
+---
+
+## 9. Relying Only on Hover
+
+Hover is not available in the same way across all input devices.
+
+Avoid making important functionality depend entirely on:
+
+```css
+:hover
+```
+
+For example, a navigation menu should not become unusable simply because a user cannot hover over it.
+
+Interactive functionality should have an appropriate alternative.
+
+---
+
+## 10. Making Touch Controls Too Small
+
+Small screens are often touch-based.
+
+Avoid unnecessarily tiny controls:
+
+```css
+.button {
+    padding: 2px;
+    font-size: 10px;
+}
+```
+
+Instead, provide comfortable controls:
+
+```css
+.button {
+    padding: 12px 20px;
+}
+```
+
+Responsive design should preserve usability, not just visual fit.
+
+---
+
+## 11. Using JavaScript for Simple CSS Layout Changes
+
+A common mistake is using JavaScript to detect viewport width when CSS can handle the layout.
+
+Unnecessary approach:
+
+```javascript
+if (window.innerWidth < 768) {
+    // change layout
+}
+```
+
+Often the layout can simply use CSS:
+
+```css
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Use CSS for presentation and layout whenever appropriate.
+
+---
+
+## 12. Overriding Too Many Properties
+
+A media query should not become a complete replacement stylesheet.
+
+Avoid:
+
+```css
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+        height: auto;
+        margin: 10px;
+        padding: 20px;
+        color: black;
+        background: white;
+        border: 1px solid;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
+```
+
+if most of these values do not actually need to change.
+
+Override only what needs to be different.
+
+```css
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+}
+```
+
+---
+
+## 13. Creating Conflicting Media Queries
+
+Multiple media queries can accidentally override one another.
+
+For example:
+
+```css
+@media (max-width: 900px) {
+    .box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .box {
+        padding: 30px;
+    }
+}
+```
+
+At `600px`, both rules apply.
+
+The later rule may override the earlier one.
+
+This is not necessarily wrong, but overlapping conditions should be intentional and easy to understand.
+
+---
+
+## 14. Ignoring Source Order
+
+CSS follows the cascade.
+
+Consider:
+
+```css
+@media (max-width: 768px) {
+    .box {
+        color: red;
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        color: blue;
+    }
+}
+```
+
+Both conditions match.
+
+The later declaration wins when specificity is otherwise equal.
+
+Keep responsive rules organized so that the cascade is predictable.
+
+---
+
+## 15. Using `!important` to Fix Responsive Problems
+
+Avoid using:
+
+```css
+!important
+```
+
+as a quick solution to media-query conflicts.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .box {
+        width: 100% !important;
+    }
+}
+```
+
+This may hide the actual specificity or cascade problem.
+
+Instead, understand:
+
+```text
+Specificity
++
+Source Order
++
+Cascade
+```
+
+and fix the underlying issue.
+
+---
+
+## 16. Ignoring the Base Styles
+
+Media queries are usually overrides or conditional rules.
+
+Do not put every style inside media queries.
+
+Instead, create a sensible base style:
+
+```css
+.card {
+    display: flex;
+    gap: 20px;
+}
+```
+
+Then change what is necessary:
+
+```css
+@media (max-width: 700px) {
+    .card {
+        flex-direction: column;
+    }
+}
+```
+
+This keeps the stylesheet cleaner.
+
+---
+
+## 17. Designing Only at Exact Breakpoints
+
+Do not assume the layout is correct simply because it works at:
+
+```text
+768px
+1024px
+```
+
+Test values between them:
+
+```text
+800px
+850px
+900px
+950px
+```
+
+A responsive layout should work across a range of widths.
+
+---
+
+## 18. Ignoring Orientation
+
+A device can change between portrait and landscape.
+
+If orientation affects the layout, test both.
+
+```css
+@media (orientation: landscape) {
+    .hero {
+        min-height: 70vh;
+    }
+}
+```
+
+Do not assume a device always remains in portrait mode.
+
+---
+
+## 19. Ignoring Accessibility Preferences
+
+Media queries can also respond to user preferences.
+
+For example:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms;
+        transition-duration: 0.01ms;
+        scroll-behavior: auto;
+    }
+}
+```
+
+Ignoring such preferences can create unnecessary motion for users who have requested reduced motion.
+
+---
+
+## 20. Ignoring Color Scheme Preferences
+
+Some users prefer a dark color scheme.
+
+Media queries can detect this preference:
+
+```css
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #111;
+        color: #fff;
+    }
+}
+```
+
+If an application supports system-based color schemes, test both light and dark environments.
+
+---
+
+## 21. Changing Visual Order Without Considering HTML Order
+
+Flexbox and Grid can change visual order.
+
+For example:
+
+```css
+@media (max-width: 700px) {
+    .image {
+        order: 2;
+    }
+
+    .content {
+        order: 1;
+    }
+}
+```
+
+This may be useful visually, but the HTML structure should still make sense.
+
+Do not create confusing reading or navigation sequences.
+
+---
+
+## 22. Using Absolute Positioning for Responsive Layouts
+
+Absolute positioning can be useful for specific elements, but relying on it for the entire layout often causes responsive problems.
+
+Avoid building a complete layout like:
+
+```css
+.title {
+    position: absolute;
+    left: 500px;
+    top: 200px;
+}
+```
+
+As the viewport changes, fixed coordinates may no longer work.
+
+Prefer:
+
+```text
+Flexbox
+Grid
+Normal Flow
+Relative Units
+```
+
+for most layout structures.
+
+---
+
+## 23. Ignoring Container Queries
+
+Sometimes the problem is not the viewport.
+
+A reusable component may appear inside containers of different sizes.
+
+Using only:
+
+```css
+@media (max-width: 768px) {
+    .card {
+        /* styles */
+    }
+}
+```
+
+means the component responds to the viewport rather than the component's available space.
+
+Container queries may be more appropriate:
+
+```css
+.card-wrapper {
+    container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+    .card {
+        display: flex;
+    }
+}
+```
+
+---
+
+## 24. Using Media Queries When CSS Can Adapt Automatically
+
+Not every responsive change requires a breakpoint.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+}
+```
+
+This can allow the grid to adapt automatically.
+
+Using multiple media queries for the same problem may be unnecessary.
+
+---
+
+## 25. Forgetting `box-sizing`
+
+Box sizing can affect responsive dimensions.
+
+A common setup is:
+
+```css
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+```
+
+With `border-box`, padding and borders are included within the declared width and height.
+
+This can make responsive sizing easier to reason about.
+
+---
+
+## 26. Forgetting the Viewport Meta Tag
+
+For responsive webpages, the HTML document should normally include an appropriate viewport declaration:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+Without the appropriate viewport configuration, mobile browsers may not render the page as intended for responsive layouts.
+
+---
+
+## 27. Testing Only With Developer Tools
+
+Browser developer tools are extremely useful, but responsive testing should not stop there.
+
+Also consider:
+
+```text
+Different browsers
+Different input methods
+Real devices when available
+Different orientations
+Different content lengths
+Different user preferences
+```
+
+The goal is to verify actual usability.
+
+---
+
+## 28. Ignoring Performance
+
+A responsive design can still perform poorly if it loads unnecessarily large resources.
+
+For example:
+
+```text
+Large images
+Too many assets
+Unnecessary animations
+Heavy JavaScript
+```
+
+Responsive design should consider both layout and performance.
+
+---
+
+## 29. Using Media Queries Without a Clear Reason
+
+Before adding:
+
+```css
+@media (...) {
+    ...
+}
+```
+
+ask:
+
+```text
+What problem does this solve?
+```
+
+If there is no clear layout or presentation problem, the media query may not be necessary.
+
+---
+
+## 30. Treating Media Queries as the Entire Responsive Strategy
+
+Media queries are important, but responsive design also uses:
+
+```text
+Flexbox
+Grid
+Relative units
+min()
+max()
+clamp()
+minmax()
+auto-fit
+auto-fill
+Container queries
+Responsive images
+Accessible interaction patterns
+```
+
+A good responsive layout combines these techniques instead of depending entirely on media queries.
+
+---
+
+## Common Mistakes Checklist
+
+Before finishing a responsive stylesheet, check:
+
+```text
+☐ Too many breakpoints?
+☐ Breakpoints chosen only for devices?
+☐ Fixed widths causing overflow?
+☐ Images overflowing?
+☐ Important content being hidden?
+☐ Text becoming too small?
+☐ Touch controls becoming difficult to use?
+☐ Hover being used for essential functionality?
+☐ JavaScript being used unnecessarily?
+☐ Too many properties overridden?
+☐ Conflicting media queries?
+☐ Unnecessary !important?
+☐ Base styles missing?
+☐ Intermediate widths tested?
+☐ Portrait and landscape tested when relevant?
+☐ Accessibility preferences considered?
+☐ Visual order still makes sense?
+☐ Too much absolute positioning?
+☐ Container queries considered?
+☐ Automatic CSS layout features considered?
+☐ Viewport configuration included?
+```
+
+---
+
+## Main Lesson
+
+Most responsive CSS problems come from trying to control every possible screen size manually.
+
+A better approach is:
+
+```text
+Flexible Layout
+      ↓
+Natural CSS Adaptation
+      ↓
+Meaningful Breakpoints
+      ↓
+Minimal Overrides
+      ↓
+Testing
+      ↓
+Accessible Result
+```
+
+---
+
+> 💡 **Pro Tip:** If you keep adding media queries to fix one problem after another, stop and inspect the underlying layout. The real solution may be better Flexbox/Grid structure, flexible sizing, or a different component design.
+
+---
+
+> 💡 **Remember:** **Do not make every screen size a special case. Build a flexible layout first, then use media queries only where the design genuinely needs to change.**
