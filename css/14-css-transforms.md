@@ -1625,3 +1625,153 @@ This moves, rotates, and scales the element.
 > 💡 **Tip:** Use `rotateX()` when you want to create a 3D effect where the element appears to tilt forward or backward.
 
 > 💡 **Remember:** `rotateX()` rotates an element around the horizontal X-axis and is commonly used together with `perspective` for realistic 3D effects.
+
+---
+
+## Rotate Y
+
+The `rotateY()` function rotates an element around the **Y-axis**.
+
+It is mainly used for **3D transformations** because the rotation creates a change in the element's depth and perspective.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: rotateY(angle);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+This rotates the element `45deg` around the Y-axis.
+
+### Positive Rotation
+
+Positive angle values rotate the element around the Y-axis in one direction:
+
+```css
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+A larger angle produces a stronger 3D rotation effect:
+
+```css
+.box {
+    transform: rotateY(90deg);
+}
+```
+
+This rotates the element by `90deg` around the Y-axis.
+
+### Negative Rotation
+
+Negative values rotate the element in the opposite direction:
+
+```css
+.box {
+    transform: rotateY(-45deg);
+}
+```
+
+This rotates the element `45deg` in the opposite direction around the Y-axis.
+
+### Understanding the Y-Axis
+
+The Y-axis runs vertically through the element:
+
+```text
+        Y-axis
+          ↑
+          │
+          │
+          │
+          ↓
+```
+
+When an element is rotated around the Y-axis, its left and right sides move toward or away from the viewer.
+
+This creates a horizontal 3D rotation effect.
+
+### Perspective
+
+To make the 3D effect easier to see, you can use `perspective`:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+The `perspective` property controls how the depth of the 3D transformation appears to the viewer.
+
+### Practical Example
+
+```html
+<div class="container">
+    <div class="box">Rotate Y</div>
+</div>
+```
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transform: rotateY(45deg);
+}
+```
+
+The element rotates around its vertical Y-axis and produces a 3D effect.
+
+### Hover Effect
+
+`rotateY()` can be combined with a transition:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    transform: rotateY(20deg);
+}
+```
+
+When the user hovers over the element, it smoothly rotates around the Y-axis.
+
+### Combining with Other Transforms
+
+`rotateY()` can be combined with other transform functions:
+
+```css
+.box {
+    transform: translateY(-10px) rotateY(20deg) scale(1.05);
+}
+```
+
+This moves, rotates, and scales the element.
+
+> 💡 **Tip:** Use `rotateY()` when you want to create a 3D effect where an element appears to turn from side to side.
+
+> 💡 **Remember:** `rotateY()` rotates an element around the vertical Y-axis and is commonly used together with `perspective` for 3D effects.
