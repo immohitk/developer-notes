@@ -3128,3 +3128,114 @@ This changes the viewer's perspective position.
 > 💡 **Tip:** Use `perspective` when working with 3D transforms to make depth and rotation effects easier to see.
 
 > 💡 **Remember:** Smaller perspective values create a stronger depth effect, while larger values create a more subtle 3D appearance.
+
+---
+
+## Transform Style
+
+The `transform-style` property specifies how an element's child elements are positioned in **3D space**.
+
+It is mainly used when creating 3D effects with nested elements.
+
+### Basic Syntax
+
+```css
+selector {
+    transform-style: value;
+}
+```
+
+The property has two commonly used values:
+
+```text
+flat
+preserve-3d
+```
+
+### `flat`
+
+The default value is `flat`.
+
+```css
+.parent {
+    transform-style: flat;
+}
+```
+
+With `flat`, the child elements are rendered as if they are on the same plane as their parent.
+
+Their 3D transformations are flattened into the parent's plane.
+
+### `preserve-3d`
+
+The `preserve-3d` value allows child elements to maintain their own 3D position:
+
+```css
+.parent {
+    transform-style: preserve-3d;
+}
+```
+
+This is useful when multiple nested elements need to participate in the same 3D scene.
+
+### Practical Example
+
+```html
+<div class="container">
+    <div class="box">
+        <div class="face">3D</div>
+    </div>
+</div>
+```
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.box:hover {
+    transform: rotateY(45deg);
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    transform: translateZ(50px);
+}
+```
+
+Here, `preserve-3d` allows the child `.face` to maintain its 3D position instead of being flattened into the parent's plane.
+
+### `flat` vs `preserve-3d`
+
+| Value | Description |
+| --- | --- |
+| `flat` | Child elements are flattened into the parent's plane |
+| `preserve-3d` | Child elements maintain their 3D positioning |
+
+### Using with `perspective`
+
+`transform-style: preserve-3d` is commonly used together with `perspective`:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform-style: preserve-3d;
+}
+```
+
+The parent provides the perspective, while the transformed element allows its children to remain in 3D space.
+
+> 💡 **Tip:** Use `preserve-3d` when building 3D cards, cubes, flip effects, or other interfaces containing nested 3D elements.
+
+> 💡 **Remember:** `transform-style` controls whether an element's children remain in 3D space or are flattened into the element's plane.
