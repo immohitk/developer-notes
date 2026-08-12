@@ -1006,3 +1006,142 @@ Now the element scales outward from its top-left corner.
 > 💡 **Tip:** Small scale changes such as `1.05` or `1.1` are commonly used for buttons, cards, and images because they provide subtle visual feedback.
 
 > 💡 **Remember:** Values greater than `1` enlarge the element, values between `0` and `1` shrink it, and `1` keeps its original scale.
+
+---
+
+## Scale X
+
+The `scaleX()` function changes the visual width of an element by scaling it along the **X-axis**.
+
+It affects the element's horizontal size while keeping its vertical scale unchanged.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: scaleX(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: scaleX(1.5);
+}
+```
+
+This makes the element visually `1.5` times wider than its original width.
+
+### Scaling Up Horizontally
+
+Values greater than `1` increase the element's width:
+
+```css
+.box {
+    transform: scaleX(2);
+}
+```
+
+The element becomes twice as wide.
+
+### Scaling Down Horizontally
+
+Values between `0` and `1` reduce the element's width:
+
+```css
+.box {
+    transform: scaleX(0.5);
+}
+```
+
+The element becomes half as wide.
+
+### Using `scaleX(1)`
+
+A value of `1` keeps the original horizontal scale:
+
+```css
+.box {
+    transform: scaleX(1);
+}
+```
+
+The element keeps its original width.
+
+### Negative Values
+
+Negative values can flip the element horizontally:
+
+```css
+.box {
+    transform: scaleX(-1);
+}
+```
+
+This mirrors the element along the X-axis.
+
+For example, an image can be flipped horizontally:
+
+```css
+.image {
+    transform: scaleX(-1);
+}
+```
+
+### Practical Example
+
+```html
+<div class="box">Scale X</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 20px;
+    background: steelblue;
+    transform: scaleX(1.5);
+}
+```
+
+The element becomes visually wider without changing its height.
+
+### Hover Effect
+
+`scaleX()` can be combined with a transition:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scaleX(1.1);
+}
+```
+
+When the user hovers over the element, its width smoothly increases.
+
+### Comparing `scale()` and `scaleX()`
+
+`scale()` can control both the X and Y axes:
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+`scaleX()` only affects the X-axis:
+
+```css
+.box {
+    transform: scaleX(1.2);
+}
+```
+
+Therefore, `scaleX()` is useful when you want to change the width without changing the height.
+
+> 💡 **Tip:** Use `scaleX()` when you specifically need horizontal scaling and want to keep the vertical size unchanged.
+
+> 💡 **Remember:** Values greater than `1` make the element wider, values between `0` and `1` make it narrower, and negative values can mirror the element horizontally.
