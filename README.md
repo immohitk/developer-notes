@@ -2,7 +2,7 @@
 
 Welcome to **Developer Notes**!
 
-This repository contains my personal notes as I learn web development and related technologies. Instead of simply collecting information, I focus on understanding each concept through explanations, examples, best practices, and hands-on exercises.
+This repository contains my personal notes as I learn web development and related technologies. Instead of simply collecting information, I focus on understanding each concept through explanations, examples, best practices, common mistakes, interview questions, and hands-on exercises.
 
 These notes help me track my learning journey while also serving as a reference that others can use to learn or revise web development concepts.
 
@@ -13,6 +13,8 @@ These notes help me track my learning journey while also serving as a reference 
 - Build a strong foundation in web development.
 - Document my learning in a structured way.
 - Create a reliable reference for future revision.
+- Understand concepts through practical examples and exercises.
+- Keep my learning journey organized and consistent.
 - Share organized notes that may help other learners.
 
 ---
@@ -80,7 +82,7 @@ If you find any mistakes or have suggestions for improvement, feel free to open 
 
 ## 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ---
 
