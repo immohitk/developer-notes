@@ -841,3 +841,168 @@ This moves, rotates, and scales the element.
 > 💡 **Tip:** Use `translate3d()` when you need to control movement along all three axes. For simple horizontal or vertical movement, `translateX()` or `translateY()` is usually clearer.
 
 > 💡 **Remember:** The three values represent **X, Y, and Z** movement respectively.
+
+---
+
+## Scale
+
+The `scale()` function changes the visual size of an element.
+
+It can make an element **larger or smaller** while keeping its original position in the document flow.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: scale(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: scale(1.5);
+}
+```
+
+This makes the element visually **1.5 times larger** than its original size.
+
+### Scaling Up
+
+Values greater than `1` increase the size of the element:
+
+```css
+.box {
+    transform: scale(1.5);
+}
+```
+
+The element becomes `1.5` times its original size.
+
+Another example:
+
+```css
+.box {
+    transform: scale(2);
+}
+```
+
+This makes the element twice its original visual size.
+
+### Scaling Down
+
+Values between `0` and `1` make the element smaller:
+
+```css
+.box {
+    transform: scale(0.8);
+}
+```
+
+The element becomes `80%` of its original visual size.
+
+For example:
+
+```css
+.box {
+    transform: scale(0.5);
+}
+```
+
+This makes the element half its original visual size.
+
+### Scaling on Both Axes
+
+The `scale()` function can accept two values:
+
+```css
+.box {
+    transform: scale(1.5, 0.8);
+}
+```
+
+Here:
+
+```text
+1.5 → X-axis scaling
+0.8 → Y-axis scaling
+```
+
+The element becomes wider while becoming shorter.
+
+### Practical Example
+
+```html
+<div class="box">Scale Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 20px;
+    background: steelblue;
+    transform: scale(1.2);
+}
+```
+
+The element is visually increased to `1.2` times its original size.
+
+### Hover Effect
+
+`scale()` is commonly used to create hover effects:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+```
+
+When the user hovers over the element, it smoothly becomes slightly larger.
+
+### Scaling Down on Hover
+
+You can also create a shrinking effect:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(0.9);
+}
+```
+
+The element becomes slightly smaller when hovered.
+
+### Scale and Transform Origin
+
+Scaling occurs around the element's transform origin.
+
+By default, the transform origin is generally the center:
+
+```css
+.box {
+    transform: scale(1.5);
+}
+```
+
+You can change the origin:
+
+```css
+.box {
+    transform-origin: top left;
+    transform: scale(1.5);
+}
+```
+
+Now the element scales outward from its top-left corner.
+
+> 💡 **Tip:** Small scale changes such as `1.05` or `1.1` are commonly used for buttons, cards, and images because they provide subtle visual feedback.
+
+> 💡 **Remember:** Values greater than `1` enlarge the element, values between `0` and `1` shrink it, and `1` keeps its original scale.
