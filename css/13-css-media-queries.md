@@ -3376,3 +3376,788 @@ Checks the viewing environment
 ---
 
 > 💡 **Remember:** `width`, `min-width`, and `max-width` respond to viewport width, while `height`, `min-height`, and `max-height` respond to viewport height. Use the feature that matches the actual responsive problem.
+
+---
+
+## Combining Conditions
+
+Media queries can combine multiple conditions to create more specific responsive rules.
+
+Instead of checking only one condition, a media query can check several conditions at the same time.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+This query checks two conditions:
+
+```text
+Viewport width
+      ↓
+At least 600px?
+      ↓
+     Yes
+      ↓
+At most 1000px?
+      ↓
+     Yes
+      ↓
+Apply the CSS
+```
+
+The styles are applied only when both conditions are satisfied.
+
+---
+
+## Why Combine Conditions?
+
+A single media feature may not always be enough to describe the situation a layout needs to respond to.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+This checks only the viewport width.
+
+Sometimes a design needs to consider additional conditions such as:
+
+- Minimum width
+- Maximum width
+- Height
+- Orientation
+- Media type
+- Aspect ratio
+
+Combining conditions allows CSS to target a more specific situation.
+
+---
+
+## Using `and`
+
+The `and` operator is used to combine media conditions.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 85%;
+    }
+}
+```
+
+The two conditions are:
+
+```text
+(min-width: 600px)
+        AND
+(max-width: 1000px)
+```
+
+Both must be true.
+
+Conceptually:
+
+```text
+Condition 1
+    ↓
+   TRUE
+    ↓
+Condition 2
+    ↓
+   TRUE
+    ↓
+Apply CSS
+```
+
+If either condition is false, the complete media query does not match.
+
+---
+
+## Combining `min-width` and `max-width`
+
+One of the most common combinations is:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+This creates a width range.
+
+```text
+0px          600px                 1000px          →
+│──────────────│──────────────────────│──────────────│
+               ↑                      ↑
+            Minimum                Maximum
+```
+
+The styles apply between the specified limits.
+
+Conceptually:
+
+```text
+600px ≤ viewport width ≤ 1000px
+```
+
+This is useful when a layout needs a specific design for medium-sized viewports.
+
+---
+
+## Combining Width and Height
+
+Width and height conditions can also be combined.
+
+For example:
+
+```css
+@media (max-width: 768px) and (max-height: 600px) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+The browser checks:
+
+```text
+Width <= 768px?
+       ↓
+      Yes
+       ↓
+Height <= 600px?
+       ↓
+      Yes
+       ↓
+Apply CSS
+```
+
+The CSS is therefore applied only when both the width and height conditions match.
+
+---
+
+## Combining a Media Type and a Feature
+
+A media type can also be combined with a media feature.
+
+For example:
+
+```css
+@media screen and (max-width: 600px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The query contains:
+
+```text
+screen
+   ↓
+Media Type
+
+and
+   ↓
+Combines Conditions
+
+(max-width: 600px)
+   ↓
+Media Feature
+```
+
+The CSS is applied when the query matches the screen media type and the viewport width is `600px` or less.
+
+---
+
+## Combining Multiple Features
+
+More than two conditions can be combined.
+
+For example:
+
+```css
+@media screen and (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+This query contains three conditions:
+
+```text
+screen
+   ↓
+Media Type
+
+min-width: 768px
+   ↓
+Minimum Width
+
+max-width: 1200px
+   ↓
+Maximum Width
+
+orientation: landscape
+   ↓
+Orientation
+```
+
+All conditions must match.
+
+The logical flow is:
+
+```text
+screen?
+   ↓
+ Yes
+   ↓
+Width >= 768px?
+   ↓
+ Yes
+   ↓
+Width <= 1200px?
+   ↓
+ Yes
+   ↓
+Landscape?
+   ↓
+ Yes
+   ↓
+Apply CSS
+```
+
+If any condition fails, the complete query does not match.
+
+---
+
+## Combining Conditions as a Range
+
+Combining `min-width` and `max-width` is especially useful for creating responsive ranges.
+
+For example:
+
+```css
+@media (min-width: 768px) and (max-width: 1199px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
+
+The layout can be represented as:
+
+```text
+Small
+0px ──────────────── 767px
+                         ↓
+                      Other CSS
+
+
+Medium
+768px ─────────────── 1199px
+   ↓                       ↓
+   └────── Apply CSS ──────┘
+
+
+Large
+1200px ─────────────────────→
+             ↓
+          Other CSS
+```
+
+This allows a specific layout to be used for a specific viewport range.
+
+---
+
+## Combining Conditions With Flexbox
+
+Media query conditions can be used to control Flexbox layouts.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The navigation changes to a column only when:
+
+```text
+Viewport <= 600px
+        AND
+Orientation = portrait
+```
+
+This allows the responsive behavior to be more specific than using width alone.
+
+---
+
+## Combining Conditions With Grid
+
+Multiple conditions can also control CSS Grid layouts.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 599px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout can therefore respond to different viewport ranges.
+
+```text
+Large
+┌──────┬──────┬──────┐
+│ Card │ Card │ Card │
+└──────┴──────┴──────┘
+
+Medium
+┌──────┬──────┐
+│ Card │ Card │
+├──────┼──────┤
+│ Card │ Card │
+└──────┴──────┘
+
+Small
+┌──────┐
+│ Card │
+├──────┤
+│ Card │
+├──────┤
+│ Card │
+└──────┘
+```
+
+---
+
+## Multiple Conditions Must Match
+
+When conditions are combined with `and`, every condition must match.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+Consider different viewport widths:
+
+```text
+500px
+  ↓
+min-width: 600px → FALSE
+  ↓
+Do not apply
+
+
+800px
+  ↓
+min-width: 600px → TRUE
+  ↓
+max-width: 1000px → TRUE
+  ↓
+Apply CSS
+
+
+1200px
+  ↓
+min-width: 600px → TRUE
+  ↓
+max-width: 1000px → FALSE
+  ↓
+Do not apply
+```
+
+This is the key behavior of combined `and` conditions.
+
+---
+
+## Combining Width, Height, and Orientation
+
+A more specific query can combine width, height, and orientation.
+
+For example:
+
+```css
+@media (max-width: 800px) and (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+The CSS applies only when all three conditions match:
+
+```text
+Width <= 800px
+       ↓
+Height <= 600px
+       ↓
+Landscape orientation
+       ↓
+Apply CSS
+```
+
+This can be useful for layouts that have very limited space in both dimensions.
+
+---
+
+## Combining Conditions With `print`
+
+Conditions can also be combined with the `print` media type.
+
+For example:
+
+```css
+@media print and (orientation: landscape) {
+    .report {
+        width: 100%;
+    }
+}
+```
+
+This targets printed output in landscape orientation.
+
+The query can be understood as:
+
+```text
+Print?
+   ↓
+ Yes
+   ↓
+Landscape?
+   ↓
+ Yes
+   ↓
+Apply CSS
+```
+
+This can be useful for reports, tables, charts, and other content that may need a different print layout.
+
+---
+
+## Conditions and Specific Responsive Behavior
+
+Combining conditions allows different parts of a design to respond to different situations.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 85%;
+    }
+}
+
+@media (min-width: 1001px) {
+    .container {
+        width: 75%;
+    }
+}
+```
+
+The design can be divided into different ranges:
+
+```text
+Small
+     ↓
+0px ───────────── 599px
+
+Medium
+     ↓
+600px ─────────── 1000px
+
+Large
+     ↓
+1001px ─────────────────→
+```
+
+Each range can have its own responsive rules.
+
+---
+
+## Practical Example: Responsive Dashboard
+
+Consider a dashboard with several cards.
+
+```css
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The dashboard changes according to viewport width.
+
+```text
+Large
+
+┌────┬────┬────┬────┐
+│  1 │  2 │  3 │  4 │
+└────┴────┴────┴────┘
+
+
+Medium
+
+┌────┬────┐
+│  1 │  2 │
+├────┼────┤
+│  3 │  4 │
+└────┴────┘
+
+
+Small
+
+┌────┐
+│  1 │
+├────┤
+│  2 │
+├────┤
+│  3 │
+├────┤
+│  4 │
+└────┘
+```
+
+The media queries allow the same dashboard to adapt without changing the HTML structure.
+
+---
+
+## Practical Example: Short Mobile Landscape View
+
+A mobile device can have a small width and limited height when rotated into landscape mode.
+
+A media query can target that situation:
+
+```css
+@media (max-width: 800px) and (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 10px;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+}
+```
+
+The layout can therefore respond to the combination of:
+
+```text
+Small width
+    +
+Short height
+    +
+Landscape orientation
+```
+
+This is more precise than using only one condition.
+
+---
+
+## Combining Conditions vs Separate Media Queries
+
+Sometimes several conditions can be combined into one query.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 85%;
+    }
+}
+```
+
+Instead of writing separate rules for each condition:
+
+```css
+@media (min-width: 600px) {
+    /* ... */
+}
+
+@media (max-width: 1000px) {
+    /* ... */
+}
+```
+
+The combined version is more precise when the CSS should apply only to the overlapping range.
+
+Conceptually:
+
+```text
+min-width: 600px
+       ↓
+     Range
+       ↓
+max-width: 1000px
+       ↓
+Specific target area
+```
+
+---
+
+## Common Mistake
+
+A common mistake is assuming that:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    /* CSS */
+}
+```
+
+means either condition can be true.
+
+It does not.
+
+With `and`, both conditions must be satisfied.
+
+```text
+Condition A = TRUE
+Condition B = TRUE
+        ↓
+   Apply CSS
+```
+
+But:
+
+```text
+Condition A = TRUE
+Condition B = FALSE
+        ↓
+ Do not apply CSS
+```
+
+---
+
+## Another Common Mistake
+
+Avoid combining conditions unnecessarily.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        color: red;
+    }
+}
+```
+
+If the color does not actually need to change based on this range, the condition may add unnecessary complexity.
+
+Media queries should represent a real responsive requirement.
+
+---
+
+## Practical Decision Guide
+
+When deciding whether to combine conditions, ask:
+
+```text
+Does one condition describe the situation?
+        ↓
+       Yes
+        ↓
+Use one media feature
+
+
+Do multiple conditions need to be true?
+        ↓
+       Yes
+        ↓
+Combine them with "and"
+```
+
+For example:
+
+```text
+Need a style below 600px?
+        ↓
+max-width
+
+
+Need a style between 600px and 1000px?
+        ↓
+min-width + max-width
+
+
+Need a style only in portrait?
+        ↓
+orientation
+
+
+Need a style for a small portrait screen?
+        ↓
+max-width + orientation
+```
+
+---
+
+> 💡 **Pro Tip:** Combine conditions only when the design actually depends on multiple characteristics. This keeps your media queries easier to read, debug, and maintain.
+
+---
+
+> 💡 **Remember:** When media query conditions are combined with `and`, all conditions must match before the CSS rules are applied. Combining `min-width` and `max-width` is a common way to target a specific viewport range.
