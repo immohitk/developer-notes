@@ -4161,3 +4161,734 @@ max-width + orientation
 ---
 
 > 💡 **Remember:** When media query conditions are combined with `and`, all conditions must match before the CSS rules are applied. Combining `min-width` and `max-width` is a common way to target a specific viewport range.
+
+---
+
+## Logical Operators
+
+Logical operators allow multiple conditions to be combined in CSS media queries.
+
+They make it possible to create more specific rules based on different characteristics of the viewing environment.
+
+Common ways to combine media query conditions include:
+
+- `and`
+- comma-separated conditions, which act like `or`
+- `not`
+
+For example:
+
+```css
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Here, `and` connects the media type with the media feature.
+
+---
+
+## `and` Operator
+
+The `and` operator requires all conditions in the media query to match.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+Both conditions must be true:
+
+```text
+min-width: 600px
+       AND
+max-width: 1000px
+       ↓
+Apply CSS
+```
+
+If either condition is false, the CSS is not applied.
+
+---
+
+## Understanding `and`
+
+Consider this query:
+
+```css
+@media (min-width: 600px) and (orientation: landscape) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The browser checks:
+
+```text
+Width >= 600px?
+      ↓
+     Yes
+      ↓
+Landscape?
+      ↓
+     Yes
+      ↓
+Apply CSS
+```
+
+If the viewport is `700px` wide but in portrait orientation:
+
+```text
+Width >= 600px → TRUE
+Orientation landscape → FALSE
+                     ↓
+              Do not apply CSS
+```
+
+Both conditions are required.
+
+---
+
+## Multiple `and` Conditions
+
+More than two conditions can be connected with `and`.
+
+For example:
+
+```css
+@media screen and (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+This requires all conditions to match:
+
+```text
+screen
+   AND
+width >= 768px
+   AND
+width <= 1200px
+   AND
+landscape
+   ↓
+Apply CSS
+```
+
+This allows a very specific responsive situation to be targeted.
+
+---
+
+## Comma-Separated Conditions
+
+A comma can be used to create alternatives in a media query.
+
+For example:
+
+```css
+@media (max-width: 600px), (orientation: portrait) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+This means the CSS applies when **at least one** of the conditions matches.
+
+Conceptually:
+
+```text
+Condition A
+     OR
+Condition B
+     ↓
+Apply CSS
+```
+
+So:
+
+```text
+(max-width: 600px), (orientation: portrait)
+```
+
+means:
+
+```text
+Viewport <= 600px
+OR
+Orientation = portrait
+```
+
+---
+
+## `and` vs Comma
+
+The difference between `and` and a comma is important.
+
+Using `and`:
+
+```css
+@media (max-width: 600px) and (orientation: portrait) {
+    /* CSS */
+}
+```
+
+Means:
+
+```text
+Small width
+    AND
+Portrait
+```
+
+Both must match.
+
+Using a comma:
+
+```css
+@media (max-width: 600px), (orientation: portrait) {
+    /* CSS */
+}
+```
+
+Means:
+
+```text
+Small width
+    OR
+Portrait
+```
+
+Either condition can match.
+
+---
+
+## Visual Comparison
+
+### Using `and`
+
+```text
+Condition A ─────── TRUE
+                     +
+Condition B ─────── TRUE
+                     ↓
+                Apply CSS
+```
+
+If either condition is false:
+
+```text
+TRUE + FALSE
+     ↓
+Do not apply CSS
+```
+
+### Using a comma
+
+```text
+Condition A ─────── TRUE
+                     OR
+Condition B ─────── FALSE
+                     ↓
+                Apply CSS
+```
+
+Only one matching condition is enough.
+
+---
+
+## Multiple Comma-Separated Conditions
+
+Several alternatives can be included.
+
+For example:
+
+```css
+@media (max-width: 600px), (orientation: portrait), (max-height: 500px) {
+    .container {
+        padding: 10px;
+    }
+}
+```
+
+The CSS can apply when any of these conditions matches:
+
+```text
+Viewport <= 600px
+       OR
+Portrait orientation
+       OR
+Viewport height <= 500px
+```
+
+This provides multiple ways for the media query to match.
+
+---
+
+## `not` Operator
+
+The `not` operator is used to negate a media query condition.
+
+For example:
+
+```css
+@media not print {
+    body {
+        font-family: Arial, sans-serif;
+    }
+}
+```
+
+This targets media environments that do not match the `print` media type.
+
+Conceptually:
+
+```text
+Print?
+  ↓
+Yes → Condition does not match
+No  → Condition matches
+```
+
+---
+
+## Using `not` With a Media Type
+
+A simple example is:
+
+```css
+@media not print {
+    .navigation {
+        display: flex;
+    }
+}
+```
+
+The rule is intended for media that is not `print`.
+
+This can be useful when styles should apply to other media types but not printed output.
+
+---
+
+## `not` and Media Features
+
+The `not` operator can also be used to negate a media condition.
+
+For example:
+
+```css
+@media not (orientation: portrait) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The idea is to target environments that do not match the specified condition.
+
+Conceptually:
+
+```text
+orientation = portrait?
+        ↓
+       NOT
+        ↓
+Apply when condition is not matched
+```
+
+---
+
+## Important `not` Syntax
+
+When using `not`, the placement of the operator matters.
+
+For example:
+
+```css
+@media not print {
+    /* CSS */
+}
+```
+
+The `not` applies to the media query.
+
+It should not be treated as a replacement for `and`.
+
+Compare:
+
+```css
+@media not print {
+    /* CSS */
+}
+```
+
+with:
+
+```css
+@media screen and (max-width: 600px) {
+    /* CSS */
+}
+```
+
+These perform different logical operations.
+
+---
+
+## Combining `not` With Other Conditions
+
+Media queries can also contain more complex combinations.
+
+For example:
+
+```css
+@media not screen and (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+}
+```
+
+When writing complex media queries, it is important to understand which part of the query is being negated.
+
+For maintainability, prefer clear and simple conditions whenever possible.
+
+---
+
+## Logical Thinking
+
+Media queries become easier to understand when they are viewed as logical expressions.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    /* CSS */
+}
+```
+
+Can be represented as:
+
+```text
+A AND B
+```
+
+Where:
+
+```text
+A = width >= 600px
+B = width <= 1000px
+```
+
+The result is:
+
+```text
+A = TRUE
+B = TRUE
+     ↓
+  TRUE
+```
+
+---
+
+## OR Logic
+
+A comma-separated query can be represented as `OR`.
+
+For example:
+
+```css
+@media (max-width: 600px), (orientation: portrait) {
+    /* CSS */
+}
+```
+
+Can be represented as:
+
+```text
+A OR B
+```
+
+Where:
+
+```text
+A = width <= 600px
+B = orientation = portrait
+```
+
+The result is true when either condition matches.
+
+---
+
+## NOT Logic
+
+The `not` operator can be represented as negation.
+
+For example:
+
+```css
+@media not print {
+    /* CSS */
+}
+```
+
+Can be thought of as:
+
+```text
+NOT print
+```
+
+The query matches when the specified condition is not matched.
+
+---
+
+## Combining Logical Operators
+
+Media queries can use different logical concepts together.
+
+For example:
+
+```css
+@media screen and (min-width: 768px), print {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+This creates two alternatives:
+
+```text
+Option 1:
+screen
+AND
+width >= 768px
+
+OR
+
+Option 2:
+print
+```
+
+This can be useful when the same style should apply under different circumstances.
+
+---
+
+## Practical Example
+
+Consider a navigation menu that should be displayed as a column on small screens or portrait-oriented layouts.
+
+```css
+@media (max-width: 600px), (orientation: portrait) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The layout changes when either condition matches.
+
+```text
+Small viewport?
+      OR
+Portrait?
+      ↓
+Yes
+      ↓
+Column navigation
+```
+
+---
+
+## Practical Example With `and`
+
+Suppose a layout should use a compact design only when the viewport is both narrow and short.
+
+```css
+@media (max-width: 800px) and (max-height: 600px) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+This requires:
+
+```text
+Width <= 800px
+       AND
+Height <= 600px
+```
+
+Both conditions must match.
+
+---
+
+## Practical Example With Multiple Alternatives
+
+A design may need compact spacing in several situations.
+
+```css
+@media (max-width: 600px),
+       (max-height: 500px),
+       (orientation: portrait) {
+    .container {
+        padding: 10px;
+    }
+}
+```
+
+The CSS applies when at least one of the listed conditions matches.
+
+This can be useful when different device characteristics can independently create a need for compact spacing.
+
+---
+
+## Practical Example With `not`
+
+Suppose a navigation element should be displayed except when the document is being printed.
+
+```css
+@media not print {
+    .navigation {
+        display: flex;
+    }
+}
+```
+
+When viewing the page normally:
+
+```text
+Not print
+   ↓
+Navigation visible
+```
+
+When printing:
+
+```text
+Print
+   ↓
+Condition does not match
+   ↓
+Navigation rule is not applied
+```
+
+---
+
+## Logical Operators Summary
+
+| Operator | Meaning | Example |
+|---|---|---|
+| `and` | All conditions must match | `(min-width: 600px) and (max-width: 1000px)` |
+| `,` | At least one condition can match | `(max-width: 600px), (orientation: portrait)` |
+| `not` | Negates a media query | `not print` |
+
+A simple way to remember them is:
+
+```text
+and
+ ↓
+ALL
+
+comma
+ ↓
+ANY
+
+not
+ ↓
+NEGATE
+```
+
+---
+
+## Common Mistake
+
+Do not confuse `and` with a comma.
+
+This:
+
+```css
+@media (max-width: 600px) and (orientation: portrait) {
+    /* CSS */
+}
+```
+
+requires both conditions.
+
+While this:
+
+```css
+@media (max-width: 600px), (orientation: portrait) {
+    /* CSS */
+}
+```
+
+allows either condition to match.
+
+The difference can completely change when the CSS is applied.
+
+---
+
+## Another Common Mistake
+
+Avoid making media queries unnecessarily complicated.
+
+For example:
+
+```css
+@media screen and (min-width: 500px) and (max-width: 1000px) and (orientation: landscape) and (min-height: 500px) {
+    /* CSS */
+}
+```
+
+This may be valid, but if the design does not actually require all these conditions, it becomes harder to understand and maintain.
+
+Prefer the simplest condition that correctly describes the responsive requirement.
+
+---
+
+## Choosing the Right Operator
+
+Use this simple decision guide:
+
+```text
+Do ALL conditions need to match?
+        ↓
+       Yes
+        ↓
+      and
+
+
+Can ANY condition match?
+        ↓
+       Yes
+        ↓
+Comma-separated conditions
+
+
+Do you need to exclude a condition?
+        ↓
+       Yes
+        ↓
+       not
+```
+
+This makes logical media queries easier to construct.
+
+---
+
+> 💡 **Pro Tip:** Keep complex media queries readable. If a query contains many conditions, format it across multiple lines and make sure every condition represents a real responsive requirement.
+
+---
+
+> 💡 **Remember:** `and` requires all conditions to match, comma-separated media queries provide alternatives where any matching query can apply, and `not` negates a media query condition.
