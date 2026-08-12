@@ -7906,3 +7906,1237 @@ A good mobile-first approach generally follows these principles:
 ---
 
 > 💡 **Remember:** In a mobile-first approach, the base CSS targets the smaller layout and larger layouts are added progressively using `min-width` media queries. Mobile-first is not about targeting a specific device; it is about starting with limited space and enhancing the layout as more space becomes available.
+
+---
+
+## Desktop-First Approach
+
+The desktop-first approach is a responsive design strategy where the base CSS is written for larger screens first.
+
+Smaller-screen layouts are then created using media queries with `max-width`.
+
+The basic idea is:
+
+```text
+Large screen
+    ↓
+Base CSS
+    ↓
+Smaller screen
+    ↓
+Adjust styles with media queries
+```
+
+For example:
+
+```css
+.container {
+    width: 80%;
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+}
+```
+
+The base styles create the larger-screen layout, while the media query changes the layout when the viewport becomes narrower.
+
+---
+
+## Why Is It Called Desktop-First?
+
+It is called desktop-first because development begins with the larger-screen experience.
+
+The desktop layout is established first, and then adjustments are made for smaller screens.
+
+```text
+Desktop
+   ↓
+Base design
+   ↓
+Tablet
+   ↓
+Adjust layout
+   ↓
+Mobile
+   ↓
+Adjust further
+```
+
+This is the opposite direction of the mobile-first approach.
+
+---
+
+## Basic Desktop-First Structure
+
+A typical desktop-first stylesheet can look like this:
+
+```css
+/* Base styles - larger screens */
+
+.container {
+    width: 80%;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Smaller screens */
+
+@media (max-width: 1000px) {
+    .container {
+        width: 90%;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small screens */
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The base CSS establishes the large layout.
+
+The media queries progressively simplify it as the viewport becomes narrower.
+
+---
+
+## Desktop-First Uses `max-width`
+
+Desktop-first designs commonly use `max-width`.
+
+For example:
+
+```css
+.card {
+    width: 25%;
+}
+
+@media (max-width: 1000px) {
+    .card {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
+}
+```
+
+The logic is:
+
+```text
+Base
+ ↓
+Large viewport
+
+max-width: 1000px
+ ↓
+1000px and below
+
+max-width: 600px
+ ↓
+600px and below
+```
+
+As the viewport becomes narrower, additional responsive styles are applied.
+
+---
+
+## Desktop-First vs Mobile-First
+
+The two approaches work in opposite directions.
+
+### Desktop-First
+
+```text
+Large
+  ↓
+Base styles
+  ↓
+Smaller
+  ↓
+Override styles
+```
+
+Usually:
+
+```css
+/* Base desktop styles */
+```
+
+followed by:
+
+```css
+@media (max-width: 768px) {
+    /* Smaller layout */
+}
+```
+
+### Mobile-First
+
+```text
+Small
+  ↓
+Base styles
+  ↓
+Larger
+  ↓
+Add enhancements
+```
+
+Usually:
+
+```css
+/* Base mobile styles */
+```
+
+followed by:
+
+```css
+@media (min-width: 768px) {
+    /* Larger layout */
+}
+```
+
+The main difference is the direction in which the responsive layout is developed.
+
+---
+
+## Example Comparison
+
+### Desktop-First
+
+```css
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+```
+
+The default layout is horizontal.
+
+On smaller screens, it becomes vertical.
+
+```text
+Large
+
+┌──────┬───────┬──────────┐
+│ Home │ About │ Projects │
+└──────┴───────┴──────────┘
+```
+
+Smaller:
+
+```text
+┌──────────────┐
+│ Home         │
+├──────────────┤
+│ About        │
+├──────────────┤
+│ Projects     │
+└──────────────┘
+```
+
+---
+
+## Desktop-First Cards
+
+A desktop layout can begin with several columns.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+```
+
+Then reduce the number of columns as the viewport becomes narrower:
+
+```css
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout becomes:
+
+```text
+Large
+
+┌────┬────┬────┬────┐
+│ 1  │ 2  │ 3  │ 4  │
+└────┴────┴────┴────┘
+```
+
+Medium:
+
+```text
+┌────┬────┐
+│ 1  │ 2  │
+├────┼────┤
+│ 3  │ 4  │
+└────┴────┘
+```
+
+Small:
+
+```text
+┌────┐
+│ 1  │
+├────┤
+│ 2  │
+├────┤
+│ 3  │
+├────┤
+│ 4  │
+└────┘
+```
+
+---
+
+## Desktop-First Navigation
+
+Desktop navigation often starts horizontally:
+
+```css
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+```
+
+A smaller-screen media query can change the layout:
+
+```css
+@media (max-width: 700px) {
+    .navigation {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+```
+
+The navigation adapts as horizontal space decreases.
+
+---
+
+## Desktop-First Layout With Sidebar
+
+A desktop layout may start with two columns:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+}
+```
+
+On smaller screens, the columns can be arranged vertically:
+
+```css
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Desktop:
+
+```text
+┌──────────────────────┬──────────┐
+│ Main Content         │ Sidebar  │
+│                      │          │
+└──────────────────────┴──────────┘
+```
+
+Smaller screen:
+
+```text
+┌──────────────────────┐
+│ Main Content         │
+├──────────────────────┤
+│ Sidebar              │
+└──────────────────────┘
+```
+
+---
+
+## Desktop-First Typography
+
+A desktop-first design may begin with larger typography:
+
+```css
+h1 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.1rem;
+}
+```
+
+Smaller screens can reduce the sizes:
+
+```css
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+```
+
+The typography is adjusted to better fit smaller viewports.
+
+---
+
+## Desktop-First Spacing
+
+A large-screen layout may use generous spacing:
+
+```css
+.section {
+    padding: 80px 40px;
+}
+```
+
+Smaller screens can use more compact spacing:
+
+```css
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+}
+```
+
+This prevents excessive spacing from consuming too much of the limited viewport.
+
+---
+
+## Desktop-First Images
+
+A desktop layout may display an image at a larger size:
+
+```css
+.image {
+    width: 600px;
+}
+```
+
+On smaller screens:
+
+```css
+@media (max-width: 600px) {
+    .image {
+        width: 100%;
+    }
+}
+```
+
+A more generally responsive approach is:
+
+```css
+.image {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This can reduce the need for additional breakpoint-specific image rules.
+
+---
+
+## Desktop-First With Flexbox
+
+Flexbox can make desktop-first layouts easier to adapt.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+Large screen:
+
+```text
+┌───────────┬───────────┐
+│ Content 1 │ Content 2 │
+└───────────┴───────────┘
+```
+
+Small screen:
+
+```text
+┌───────────┐
+│ Content 1 │
+├───────────┤
+│ Content 2 │
+└───────────┘
+```
+
+---
+
+## Desktop-First With Grid
+
+CSS Grid can also be used with a desktop-first strategy.
+
+```css
+.dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The grid progressively reduces its columns as space becomes limited.
+
+---
+
+## Desktop-First CSS Order
+
+A desktop-first stylesheet can be organized like this:
+
+```css
+/* Base styles - large screens */
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    padding: 40px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Medium screens */
+
+@media (max-width: 1000px) {
+    .container {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small screens */
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The structure is:
+
+```text
+Large
+ ↓
+max-width: 1000px
+ ↓
+max-width: 600px
+```
+
+---
+
+## Desktop-First and CSS Cascade
+
+Desktop-first CSS also relies on the CSS cascade.
+
+The base rule is defined first:
+
+```css
+.cards {
+    grid-template-columns: repeat(4, 1fr);
+}
+```
+
+A later media query overrides it:
+
+```css
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+When the media condition matches, the responsive declaration can override the base declaration.
+
+---
+
+## Desktop-First Does Not Mean Desktop-Only
+
+Desktop-first does not mean the website is designed only for desktop users.
+
+It means the larger-screen layout is established first.
+
+Smaller layouts are then created through responsive rules.
+
+```text
+Desktop
+   ↓
+Tablet
+   ↓
+Mobile
+```
+
+The goal is still to provide a usable experience across different viewport sizes.
+
+---
+
+## When Desktop-First Works Well
+
+Desktop-first can be useful when:
+
+- The project is primarily designed around large-screen interfaces.
+- The desktop layout is the main starting point for the design.
+- The application contains complex desktop-oriented structures.
+- The existing CSS is already desktop-oriented.
+- The smaller layout can be created through clear responsive overrides.
+
+For example:
+
+```text
+Large dashboard
+       ↓
+Establish desktop structure
+       ↓
+Reduce columns
+       ↓
+Stack sections
+       ↓
+Adapt controls
+       ↓
+Smaller layout
+```
+
+---
+
+## Desktop-First and Existing Projects
+
+Desktop-first can be practical when working with an existing project whose CSS was originally written for desktop.
+
+For example:
+
+```text
+Existing desktop CSS
+        ↓
+Identify layouts that break
+        ↓
+Add max-width media queries
+        ↓
+Adjust smaller layouts
+        ↓
+Test across viewports
+```
+
+Rewriting an entire project into mobile-first CSS may not always be necessary.
+
+The appropriate strategy depends on the project and its existing structure.
+
+---
+
+## Desktop-First and Content
+
+The desktop-first approach should still prioritize important content on smaller screens.
+
+A common mistake is to simply shrink everything.
+
+Instead, smaller layouts may need structural changes.
+
+For example:
+
+```text
+Desktop:
+
+Main Content | Sidebar | Extra Panel
+```
+
+On a smaller screen:
+
+```text
+Main Content
+     ↓
+Sidebar
+     ↓
+Extra Panel
+```
+
+The content remains available while the layout changes to fit the smaller viewport.
+
+---
+
+## Desktop-First vs Shrinking Everything
+
+A poor desktop-first implementation may do this:
+
+```text
+Desktop layout
+      ↓
+Make everything smaller
+      ↓
+Mobile
+```
+
+This can create:
+
+- Tiny text
+- Crowded controls
+- Difficult navigation
+- Horizontal scrolling
+- Poor spacing
+
+A better approach is:
+
+```text
+Desktop layout
+      ↓
+Identify what no longer fits
+      ↓
+Change structure
+      ↓
+Adjust spacing
+      ↓
+Adjust typography
+      ↓
+Create usable smaller layout
+```
+
+---
+
+## Desktop-First and Breakpoints
+
+Desktop-first commonly uses descending `max-width` breakpoints.
+
+For example:
+
+```css
+@media (max-width: 1200px) {
+    /* Smaller desktop / large tablet */
+}
+
+@media (max-width: 900px) {
+    /* Tablet */
+}
+
+@media (max-width: 600px) {
+    /* Small screens */
+}
+```
+
+These breakpoints should still be based on layout requirements.
+
+They are not required to match particular device categories.
+
+---
+
+## Desktop-First and Fluid CSS
+
+Desktop-first does not mean every responsive change must use a media query.
+
+Flexible CSS can reduce the number of breakpoints.
+
+For example:
+
+```css
+.container {
+    width: min(90%, 1200px);
+    margin-inline: auto;
+}
+```
+
+Grid can also adapt automatically:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+```
+
+This allows the layout to respond continuously to available space.
+
+---
+
+## Desktop-First and `clamp()`
+
+Fluid typography can also reduce breakpoint usage.
+
+For example:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+```
+
+Instead of manually changing the font size at several breakpoints, the value can scale within a defined range.
+
+This works alongside desktop-first responsive design.
+
+---
+
+## Desktop-First and Flex-Wrapping
+
+Flexbox can also handle some responsive behavior without explicit breakpoints.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+Items can wrap when the available space becomes insufficient.
+
+A breakpoint may still be needed if the design requires a completely different arrangement.
+
+---
+
+## Desktop-First and Accessibility
+
+A desktop-first layout must still remain accessible on smaller screens.
+
+Important considerations include:
+
+- Readable text
+- Adequate contrast
+- Keyboard navigation
+- Visible focus states
+- Accessible controls
+- Appropriate touch target sizes
+- No unnecessary horizontal scrolling
+- Logical content order
+
+Responsive CSS should change presentation without making important content inaccessible.
+
+---
+
+## Testing a Desktop-First Layout
+
+A desktop-first layout should be tested at multiple viewport sizes.
+
+For example:
+
+```text
+1440px
+1200px
+1024px
+900px
+768px
+600px
+480px
+375px
+320px
+```
+
+The exact values are not mandatory.
+
+The important point is to test the layout across a range of widths, including widths between breakpoints.
+
+---
+
+## Breakpoint Boundary Testing
+
+Suppose the CSS contains:
+
+```css
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Test around the breakpoint:
+
+```text
+767px
+768px
+769px
+```
+
+This helps identify unexpected layout changes.
+
+Also test widths between major breakpoints:
+
+```text
+650px
+700px
+750px
+800px
+850px
+```
+
+A responsive layout should not only work at the exact breakpoint values.
+
+---
+
+## Mobile-First vs Desktop-First
+
+| Feature | Mobile-First | Desktop-First |
+|---|---|---|
+| Base layout | Smaller screens | Larger screens |
+| Common media feature | `min-width` | `max-width` |
+| Direction | Progressive enhancement | Progressive reduction |
+| Starting point | Limited space | More available space |
+| Common CSS flow | Small → Large | Large → Small |
+
+Example mobile-first:
+
+```css
+/* Base */
+.container {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+```
+
+Example desktop-first:
+
+```css
+/* Base */
+.container {
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Both approaches can produce responsive websites.
+
+---
+
+## Which Approach Should You Use?
+
+There is no universal rule that every project must use one approach.
+
+Choose based on the project.
+
+```text
+New responsive project
+        ↓
+Mobile-first is often a strong choice
+
+
+Existing desktop-oriented project
+        ↓
+Desktop-first may be practical
+
+
+Desktop-heavy application
+        ↓
+Desktop-first may fit the design process
+```
+
+The important goal is a responsive and usable interface.
+
+---
+
+## Practical Complete Example
+
+```css
+/* Base: large screens */
+
+.container {
+    width: 80%;
+    margin-inline: auto;
+    padding: 40px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.title {
+    font-size: 3rem;
+}
+
+/* Medium screens */
+
+@media (max-width: 1000px) {
+    .container {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Small screens */
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+```
+
+The progression is:
+
+```text
+LARGE
+ ↓
+4 columns
+Horizontal navigation
+Large spacing
+Large heading
+ ↓
+MEDIUM
+ ↓
+2 columns
+Reduced spacing
+Smaller heading
+ ↓
+SMALL
+ ↓
+1 column
+Vertical navigation
+Compact spacing
+Smaller heading
+```
+
+---
+
+## Desktop-First Development Workflow
+
+A practical workflow is:
+
+```text
+1. Start with the large-screen layout.
+        ↓
+2. Make the desktop experience usable.
+        ↓
+3. Test the layout at narrower widths.
+        ↓
+4. Find where the layout starts to break.
+        ↓
+5. Add a max-width media query.
+        ↓
+6. Change the layout where necessary.
+        ↓
+7. Test again.
+        ↓
+8. Repeat only when necessary.
+```
+
+This creates a progressive responsive layout from large to small.
+
+---
+
+## Common Mistake
+
+Do not create a separate media query for every device.
+
+For example:
+
+```css
+@media (max-width: 1400px) { ... }
+@media (max-width: 1200px) { ... }
+@media (max-width: 1024px) { ... }
+@media (max-width: 900px) { ... }
+@media (max-width: 768px) { ... }
+@media (max-width: 600px) { ... }
+@media (max-width: 480px) { ... }
+```
+
+This may create unnecessary CSS complexity.
+
+Instead:
+
+```text
+Flexible CSS
+      +
+Meaningful breakpoints
+      ↓
+Maintainable responsive layout
+```
+
+---
+
+## Another Common Mistake
+
+Do not override properties unnecessarily.
+
+For example:
+
+```css
+.container {
+    width: 80%;
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 40px;
+    }
+}
+```
+
+If the padding does not need to change, there is no reason to repeat it.
+
+A cleaner version is:
+
+```css
+.container {
+    width: 80%;
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Only change what actually needs to change.
+
+---
+
+## Best Practices
+
+A good desktop-first approach generally follows these principles:
+
+```text
+1. Establish a usable large-screen layout.
+2. Use flexible widths and layouts.
+3. Use max-width for smaller-screen adjustments.
+4. Add breakpoints based on layout requirements.
+5. Avoid unnecessary overrides.
+6. Change structure when shrinking is not enough.
+7. Test between breakpoints.
+8. Use Flexbox and Grid where appropriate.
+9. Use fluid CSS where possible.
+10. Keep responsive CSS maintainable.
+```
+
+---
+
+> 💡 **Pro Tip:** Think of desktop-first CSS as building downward. Start with the larger layout, then use `max-width` media queries to progressively adapt the design as the available viewport space decreases.
+
+---
+
+> 💡 **Remember:** In a desktop-first approach, the base CSS targets the larger layout and smaller layouts are created using `max-width` media queries. Desktop-first and mobile-first are both valid responsive strategies; choose the approach that fits the project's design and development requirements.
