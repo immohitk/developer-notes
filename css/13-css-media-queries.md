@@ -4892,3 +4892,876 @@ This makes logical media queries easier to construct.
 ---
 
 > 💡 **Remember:** `and` requires all conditions to match, comma-separated media queries provide alternatives where any matching query can apply, and `not` negates a media query condition.
+
+---
+
+## Orientation
+
+The `orientation` media feature allows CSS to respond to the orientation of the viewport.
+
+It is useful when a layout needs to change depending on whether the available space is arranged vertically or horizontally.
+
+CSS provides two orientation values:
+
+- `portrait`
+- `landscape`
+
+For example:
+
+```css
+@media (orientation: portrait) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+The CSS is applied when the viewport is in portrait orientation.
+
+---
+
+## What Is Portrait Orientation?
+
+A viewport is considered to be in `portrait` orientation when its height is greater than its width.
+
+Conceptually:
+
+```text
+Height > Width
+
+┌──────────┐
+│          │
+│          │
+│          │
+│          │
+│          │
+└──────────┘
+```
+
+A typical portrait layout has more vertical space than horizontal space.
+
+For example:
+
+```css
+@media (orientation: portrait) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+This can make a navigation layout better suited to a vertically oriented viewport.
+
+---
+
+## What Is Landscape Orientation?
+
+A viewport is considered to be in `landscape` orientation when its width is greater than its height.
+
+Conceptually:
+
+```text
+Width > Height
+
+┌────────────────────┐
+│                    │
+│                    │
+└────────────────────┘
+```
+
+For example:
+
+```css
+@media (orientation: landscape) {
+    .navigation {
+        flex-direction: row;
+    }
+}
+```
+
+This can take advantage of the additional horizontal space available in landscape orientation.
+
+---
+
+## Portrait vs Landscape
+
+The two orientation values can be visualized as:
+
+```text
+              Orientation
+                   ↓
+        ┌──────────┴──────────┐
+        ↓                     ↓
+    Portrait              Landscape
+        ↓                     ↓
+ Height > Width          Width > Height
+        ↓                     ↓
+ Vertical layout        Horizontal layout
+```
+
+A simple rule to remember is:
+
+```text
+portrait
+    ↓
+Taller than wide
+
+landscape
+    ↓
+Wider than tall
+```
+
+---
+
+## Basic Orientation Syntax
+
+The basic syntax is:
+
+```css
+@media (orientation: portrait) {
+    /* CSS rules */
+}
+```
+
+Or:
+
+```css
+@media (orientation: landscape) {
+    /* CSS rules */
+}
+```
+
+The value determines which viewport orientation the styles target.
+
+---
+
+## Portrait Example
+
+Consider a card layout.
+
+```css
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+@media (orientation: portrait) {
+    .cards {
+        flex-direction: column;
+    }
+}
+```
+
+In portrait orientation, the cards are arranged vertically.
+
+```text
+Portrait
+
+┌─────────────┐
+│    Card 1   │
+├─────────────┤
+│    Card 2   │
+├─────────────┤
+│    Card 3   │
+└─────────────┘
+```
+
+This can make better use of limited horizontal space.
+
+---
+
+## Landscape Example
+
+The same layout can use a horizontal arrangement in landscape orientation.
+
+```css
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+@media (orientation: landscape) {
+    .cards {
+        flex-direction: row;
+    }
+}
+```
+
+The cards can appear horizontally:
+
+```text
+Landscape
+
+┌────────┐  ┌────────┐  ┌────────┐
+│ Card 1 │  │ Card 2 │  │ Card 3 │
+└────────┘  └────────┘  └────────┘
+```
+
+This takes advantage of the additional horizontal space.
+
+---
+
+## Using Orientation With Width
+
+Orientation can be combined with width conditions.
+
+For example:
+
+```css
+@media (max-width: 800px) and (orientation: portrait) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+Both conditions must match:
+
+```text
+Width <= 800px
+       AND
+Portrait orientation
+       ↓
+Apply CSS
+```
+
+This is more specific than checking orientation alone.
+
+---
+
+## Using Orientation With Height
+
+Orientation can also be combined with height.
+
+For example:
+
+```css
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+The CSS applies when:
+
+```text
+Height <= 500px
+       AND
+Landscape orientation
+       ↓
+Apply CSS
+```
+
+This can be useful for short landscape viewports where vertical space is limited.
+
+---
+
+## Orientation With Width and Height
+
+Multiple conditions can be combined.
+
+For example:
+
+```css
+@media (max-width: 800px) and (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 20px;
+    }
+}
+```
+
+The browser checks:
+
+```text
+Width <= 800px?
+      ↓
+     Yes
+      ↓
+Height <= 500px?
+      ↓
+     Yes
+      ↓
+Landscape?
+      ↓
+     Yes
+      ↓
+Apply CSS
+```
+
+This targets a very specific viewing situation.
+
+---
+
+## Orientation With Flexbox
+
+Orientation media queries work especially well with Flexbox.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (orientation: portrait) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The layout changes according to the viewport orientation.
+
+```text
+Landscape
+
+┌──────┬──────┬──────┐
+│ Home │ Blog │ About│
+└──────┴──────┴──────┘
+```
+
+Portrait:
+
+```text
+┌──────────────┐
+│     Home     │
+├──────────────┤
+│     Blog     │
+├──────────────┤
+│     About    │
+└──────────────┘
+```
+
+---
+
+## Orientation With CSS Grid
+
+CSS Grid can also respond to orientation.
+
+For example:
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (orientation: portrait) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
+
+The grid uses fewer columns in portrait orientation.
+
+This can help prevent individual grid items from becoming too narrow.
+
+---
+
+## Practical Example: Image Gallery
+
+Consider an image gallery.
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+@media (orientation: portrait) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (orientation: landscape) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+```
+
+The gallery can adapt to the available space.
+
+Portrait:
+
+```text
+┌───────┬───────┐
+│ Image │ Image │
+├───────┼───────┤
+│ Image │ Image │
+├───────┼───────┤
+│ Image │ Image │
+└───────┴───────┘
+```
+
+Landscape:
+
+```text
+┌──────┬──────┬──────┬──────┐
+│ Img  │ Img  │ Img  │ Img  │
+└──────┴──────┴──────┴──────┘
+```
+
+---
+
+## Orientation and Mobile Devices
+
+Orientation is particularly useful on mobile devices because users can change the orientation of the device.
+
+For example:
+
+```text
+Phone held vertically
+
+┌─────────┐
+│         │
+│         │
+│         │
+│         │
+└─────────┘
+
+    ↓ Rotate
+
+Phone held horizontally
+
+┌─────────────────┐
+│                 │
+│                 │
+└─────────────────┘
+```
+
+The webpage can respond to the change without requiring a page reload.
+
+For example:
+
+```css
+@media (orientation: portrait) {
+    .sidebar {
+        display: none;
+    }
+}
+
+@media (orientation: landscape) {
+    .sidebar {
+        display: block;
+    }
+}
+```
+
+The available space can therefore determine which layout is more appropriate.
+
+---
+
+## Orientation Is Not the Same as Device Type
+
+Do not assume that `portrait` always means mobile and `landscape` always means desktop.
+
+Orientation describes the relationship between viewport width and height.
+
+A desktop browser window can be narrow and tall.
+
+A tablet can be in either orientation.
+
+A phone can also be in either orientation.
+
+Therefore:
+
+```text
+Orientation
+    ↓
+Describes viewport shape
+
+Not:
+
+Orientation
+    ↓
+Identifies a specific device
+```
+
+This distinction is important when writing responsive CSS.
+
+---
+
+## Orientation and Viewport Dimensions
+
+Orientation can be understood using viewport dimensions.
+
+```text
+Portrait:
+
+Height > Width
+```
+
+```text
+Landscape:
+
+Width > Height
+```
+
+For example:
+
+```text
+800 × 1200
+
+Width  = 800px
+Height = 1200px
+
+1200 > 800
+    ↓
+Portrait
+```
+
+And:
+
+```text
+1200 × 800
+
+Width  = 1200px
+Height = 800px
+
+1200 > 800
+    ↓
+Landscape
+```
+
+The orientation is therefore determined by the relationship between the viewport dimensions.
+
+---
+
+## Orientation With Responsive Breakpoints
+
+Orientation can be combined with responsive breakpoints.
+
+For example:
+
+```css
+@media (max-width: 768px) and (orientation: portrait) {
+    .container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        padding: 10px;
+    }
+}
+```
+
+The same viewport width can therefore have different styles depending on its orientation.
+
+---
+
+## Same Width, Different Orientation
+
+Suppose a device has a viewport width that matches a responsive condition.
+
+The layout may still behave differently depending on orientation.
+
+For example:
+
+```text
+Portrait
+┌──────────┐
+│          │
+│          │
+│          │
+│          │
+└──────────┘
+```
+
+Versus:
+
+```text
+Landscape
+┌────────────────────┐
+│                    │
+│                    │
+└────────────────────┘
+```
+
+The available horizontal and vertical space changes, so the layout may need to change as well.
+
+---
+
+## Practical Example: Hero Section
+
+A hero section may be tall in portrait mode:
+
+```css
+.hero {
+    min-height: 80vh;
+}
+
+@media (orientation: landscape) {
+    .hero {
+        min-height: 60vh;
+    }
+}
+```
+
+The landscape version uses a smaller minimum height because the viewport may have limited vertical space.
+
+Conceptually:
+
+```text
+Portrait
+    ↓
+More vertical space available
+    ↓
+Larger hero height
+
+
+Landscape
+    ↓
+Less vertical space available
+    ↓
+Smaller hero height
+```
+
+---
+
+## Practical Example: Navigation
+
+A navigation menu can change based on orientation.
+
+```css
+.navigation {
+    display: flex;
+    gap: 20px;
+}
+
+@media (orientation: portrait) {
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+```
+
+In portrait orientation:
+
+```text
+Home
+Blog
+Projects
+Contact
+```
+
+In landscape orientation:
+
+```text
+Home   Blog   Projects   Contact
+```
+
+The layout adapts to the available space.
+
+---
+
+## Practical Example: Dashboard
+
+A dashboard can use different numbers of columns depending on orientation.
+
+```css
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (orientation: portrait) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
+
+Landscape:
+
+```text
+┌────┬────┬────┬────┐
+│ 1  │ 2  │ 3  │ 4  │
+└────┴────┴────┴────┘
+```
+
+Portrait:
+
+```text
+┌────┬────┐
+│ 1  │ 2  │
+├────┼────┤
+│ 3  │ 4  │
+└────┴────┘
+```
+
+This can improve readability when horizontal space is reduced.
+
+---
+
+## Orientation and Content Priority
+
+Orientation can also be used to prioritize content.
+
+For example:
+
+```css
+@media (orientation: portrait) {
+    .secondary-content {
+        display: none;
+    }
+}
+```
+
+This can keep the primary content visible when horizontal space is limited.
+
+However, hiding important content should be done carefully. Responsive design should preserve usability and access to important information.
+
+---
+
+## Common Mistake
+
+Do not use orientation as a replacement for width-based responsive design in every situation.
+
+For example:
+
+```css
+@media (orientation: portrait) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+This may work for a particular design, but orientation alone does not tell you how much actual space is available.
+
+A better approach may sometimes be:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Or a combination:
+
+```css
+@media (max-width: 600px) and (orientation: portrait) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Choose the condition that matches the actual design requirement.
+
+---
+
+## Another Common Mistake
+
+Do not assume that rotating a device always changes the physical device type or the HTML structure.
+
+The document remains the same.
+
+Only the available viewing conditions change.
+
+```text
+Same HTML
+    ↓
+Viewport changes
+    ↓
+Media query evaluated
+    ↓
+Different CSS can apply
+```
+
+This is one of the fundamental ideas behind responsive design.
+
+---
+
+## Orientation vs Width
+
+Width and orientation provide different information.
+
+```text
+Width
+    ↓
+How much horizontal space is available?
+
+Orientation
+    ↓
+Is the viewport taller or wider?
+```
+
+For example, two viewports can have different widths but the same orientation.
+
+Therefore, orientation should be used when the shape of the viewport matters to the design.
+
+---
+
+## Quick Comparison
+
+| Orientation | Relationship | Typical Layout |
+|---|---|---|
+| `portrait` | Height > Width | More vertical arrangement |
+| `landscape` | Width > Height | More horizontal arrangement |
+
+Example:
+
+```css
+@media (orientation: portrait) {
+    /* Portrait styles */
+}
+```
+
+```css
+@media (orientation: landscape) {
+    /* Landscape styles */
+}
+```
+
+---
+
+## Orientation With Multiple Conditions
+
+Orientation can be combined with other media features.
+
+For example:
+
+```css
+@media screen and (max-width: 800px) and (orientation: portrait) {
+    .container {
+        padding: 15px;
+    }
+}
+```
+
+This means:
+
+```text
+Screen
+  AND
+Width <= 800px
+  AND
+Portrait
+  ↓
+Apply CSS
+```
+
+This provides more control over the responsive behavior.
+
+---
+
+> 💡 **Pro Tip:** Use `orientation` when the difference between a tall viewport and a wide viewport actually affects your layout. Combine it with width or height conditions when you need more precise control.
+
+---
+
+> 💡 **Remember:** `orientation: portrait` targets viewports where the height is greater than the width, while `orientation: landscape` targets viewports where the width is greater than the height. Orientation describes the viewport shape, not a specific device type.
