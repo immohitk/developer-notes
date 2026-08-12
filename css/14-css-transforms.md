@@ -2474,3 +2474,164 @@ This allows you to control the origin in three-dimensional space.
 > 💡 **Tip:** Change `transform-origin` when you want an element to rotate or scale from a specific point instead of its center.
 
 > 💡 **Remember:** `transform-origin` changes the point around which a transformation occurs; it does not itself transform the element.
+
+---
+
+## Multiple Transforms
+
+CSS allows you to apply multiple transformations to the same element using a single `transform` property.
+
+You can combine functions such as:
+
+- `translate()`
+- `scale()`
+- `rotate()`
+- `skew()`
+- `translate3d()`
+- `rotateX()`
+- `rotateY()`
+- `rotateZ()`
+
+### Basic Syntax
+
+```css
+selector {
+    transform: function1(value) function2(value) function3(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg) scale(1.2);
+}
+```
+
+This applies three transformations:
+
+```text
+translateX() → Moves the element horizontally
+rotate()     → Rotates the element
+scale()      → Changes its size
+```
+
+### Combining Translate and Rotate
+
+You can move and rotate an element together:
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg);
+}
+```
+
+The element is moved horizontally and rotated.
+
+### Combining Scale and Rotate
+
+You can also resize and rotate an element:
+
+```css
+.box {
+    transform: scale(1.2) rotate(15deg);
+}
+```
+
+The element becomes larger and rotates by `15deg`.
+
+### Combining Translate, Rotate, and Scale
+
+Multiple transformations can be combined:
+
+```css
+.box {
+    transform: translate(50px, 20px) rotate(15deg) scale(1.1);
+}
+```
+
+Here:
+
+```text
+translate() → Moves the element
+rotate()    → Rotates the element
+scale()     → Enlarges the element
+```
+
+### Combining 3D Transforms
+
+3D transformations can also be combined:
+
+```css
+.box {
+    transform: translate3d(50px, 20px, 30px)
+               rotateX(20deg)
+               rotateY(15deg);
+}
+```
+
+This applies movement and rotation in three-dimensional space.
+
+### Order of Transformations
+
+The order of transform functions matters.
+
+For example:
+
+```css
+.box {
+    transform: translateX(50px) rotate(45deg);
+}
+```
+
+is not necessarily equivalent to:
+
+```css
+.box {
+    transform: rotate(45deg) translateX(50px);
+}
+```
+
+The transformations are applied in the order in which they are written, so changing the order can produce a different final result.
+
+### Practical Example
+
+```html
+<div class="box">Transform Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    transform: translateY(-10px) rotate(5deg) scale(1.05);
+}
+```
+
+When the user hovers over the element, it:
+
+1. Moves upward.
+2. Rotates slightly.
+3. Becomes slightly larger.
+
+### Using Multiple Transforms with `transform-origin`
+
+The transform origin applies to transformations that use an origin point:
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(10deg) scale(1.2);
+}
+```
+
+The element rotates and scales around its top-left origin.
+
+> 💡 **Tip:** Keep transform combinations simple and use the order of functions intentionally because changing their order can change the final visual result.
+
+> 💡 **Remember:** Multiple transform functions are written together inside the same `transform` declaration and are separated by spaces.
