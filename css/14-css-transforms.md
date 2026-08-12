@@ -573,3 +573,116 @@ You can also move an element toward the left:
 > 💡 **Tip:** Use `translateX()` when you only need horizontal movement. It is simpler and clearer than using `translate()` when the Y-axis does not need to change.
 
 > 💡 **Remember:** Positive values move the element to the right, while negative values move it to the left.
+
+---
+
+## Translate Y
+
+The `translateY()` function moves an element vertically along the Y-axis.
+
+It is useful when you want to move an element upward or downward without changing its normal position in the document flow.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: translateY(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: translateY(50px);
+}
+```
+
+This moves the element `50px` downward.
+
+### Moving Down
+
+Positive values move the element downward:
+
+```css
+.box {
+    transform: translateY(100px);
+}
+```
+
+The element is visually moved `100px` toward the bottom.
+
+### Moving Up
+
+Negative values move the element upward:
+
+```css
+.box {
+    transform: translateY(-100px);
+}
+```
+
+The element is visually moved `100px` toward the top.
+
+### Using Percentage Values
+
+You can also use percentage values:
+
+```css
+.box {
+    transform: translateY(50%);
+}
+```
+
+The percentage is calculated relative to the element's own height.
+
+### Practical Example
+
+```html
+<div class="box">Move Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 20px;
+    background: steelblue;
+    transform: translateY(50px);
+}
+```
+
+The box is visually moved `50px` downward.
+
+### Hover Effect
+
+`translateY()` is commonly used with transitions to create smooth vertical movement:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+```
+
+When the user hovers over the element, it smoothly moves `10px` upward.
+
+### Moving Down on Hover
+
+You can also move an element downward:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(10px);
+}
+```
+
+> 💡 **Tip:** Use `translateY()` when you only need vertical movement. It is clearer than using `translate()` when the X-axis does not need to change.
+
+> 💡 **Remember:** Positive values move the element downward, while negative values move it upward.
