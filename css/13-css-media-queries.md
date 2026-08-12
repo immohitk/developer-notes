@@ -12856,3 +12856,81 @@ CSS Media Queries
 ---
 
 > 💡 **Remember:** The purpose of responsive CSS is not to create a different website for every device. It is to create one flexible design that adapts gracefully to different available spaces.
+
+---
+
+## References
+
+The following resources can be used to study CSS media queries and related responsive CSS concepts in more detail.
+
+### MDN Web Docs
+
+**CSS Media Queries**
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries
+
+This is the primary reference for understanding CSS media queries, media features, conditions, and responsive styling.
+
+---
+
+**`@media` CSS at-rule**
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media
+
+This reference explains the syntax and behavior of the `@media` rule.
+
+---
+
+**Using media queries**
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Media_queries/Using
+
+This guide provides practical information about creating and using media queries.
+
+---
+
+### W3C
+
+**CSS Conditional Rules Module**
+
+https://www.w3.org/TR/css-conditional-3/
+
+This specification describes conditional CSS rules, including the foundations behind media queries.
+
+---
+
+### Related CSS References
+
+**CSS Flexible Box Layout**
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout
+
+Useful for understanding how Flexbox can be combined with media queries to create responsive layouts.
+
+---
+
+**CSS Grid Layout**
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout
+
+Useful for understanding responsive grid layouts and changing grid columns at different viewport sizes.
+
+---
+
+**CSS `clamp()`**
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp
+
+Useful for creating fluid responsive values for properties such as typography and spacing.
+
+---
+
+**CSS Container Queries**
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries
+
+Useful for understanding component-level responsive behavior based on container size rather than viewport size.
+
+---
+
+> 💡 **Note:** MDN should be the primary learning reference for this chapter, while the W3C specification can be used when you need the formal definition and technical details of CSS conditional rules.
