@@ -136,3 +136,253 @@ In this example:
 ---
 
 > 💡 **Remember:** Media queries allow CSS to respond to different conditions and are one of the fundamental tools used to create responsive websites.
+
+---
+
+# What Are Media Queries?
+
+**Media Queries** are a CSS feature that allows styles to be applied conditionally based on the characteristics of the device, viewport, or browsing environment.
+
+They are mainly used to create **responsive layouts** that can adapt to different screen sizes and device conditions.
+
+A basic media query looks like this:
+
+```css
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+}
+```
+
+In this example, the CSS rule inside the media query is applied when the viewport width is `600px` or less.
+
+---
+
+## Basic Concept
+
+A media query allows CSS to check whether a particular condition is true.
+
+The basic structure is:
+
+```css
+@media (condition) {
+    /* CSS rules */
+}
+```
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Here, the browser checks the following condition:
+
+```text
+Is the viewport width 768px or less?
+```
+
+If the condition is true, the CSS rules inside the media query are applied.
+
+If the condition is false, those rules are not applied.
+
+---
+
+## Media Queries Are Conditional CSS
+
+A normal CSS rule is applied whenever its selector matches an element.
+
+For example:
+
+```css
+.container {
+    width: 80%;
+}
+```
+
+A media query adds an additional condition:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+The `.container` will have a width of `100%` only when the viewport width is `768px` or less.
+
+This can be visualized as:
+
+```text
+CSS Rule
+   │
+   ▼
+Condition Checked
+   │
+   ├── True  → Apply CSS
+   │
+   └── False → Do Not Apply CSS
+```
+
+---
+
+## Media Queries and Responsive Design
+
+Media queries are one of the fundamental tools used to create responsive websites.
+
+A responsive website can change its layout depending on the available screen space.
+
+For example, a desktop layout may display items horizontally:
+
+```text
+┌──────────┐  ┌──────────┐  ┌──────────┐
+│  Item 1  │  │  Item 2  │  │  Item 3  │
+└──────────┘  └──────────┘  └──────────┘
+```
+
+On a smaller screen, the same items can be arranged vertically:
+
+```text
+┌──────────┐
+│  Item 1  │
+└──────────┘
+      ↓
+┌──────────┐
+│  Item 2  │
+└──────────┘
+      ↓
+┌──────────┐
+│  Item 3  │
+└──────────┘
+```
+
+This can be achieved using a media query:
+
+```css
+.container {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+The HTML structure can remain unchanged while the CSS layout adapts to the viewport.
+
+---
+
+## Common Characteristics Checked by Media Queries
+
+Media queries can be used to check different characteristics of the browsing environment.
+
+Common examples include:
+
+- Viewport width
+- Viewport height
+- Device orientation
+- Display characteristics
+- User preferences
+
+For example:
+
+```css
+@media (orientation: landscape) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+This rule is applied when the viewport is in landscape orientation.
+
+---
+
+## Media Queries Do Not Require Separate HTML Pages
+
+A media query allows the same webpage to adapt to different conditions.
+
+For example, the same HTML can be used for both desktop and mobile layouts:
+
+```html
+<div class="container">
+    <div class="box">One</div>
+    <div class="box">Two</div>
+    <div class="box">Three</div>
+</div>
+```
+
+The layout can then be changed with CSS:
+
+```css
+.container {
+    display: flex;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+The HTML remains the same.
+
+Only the CSS presentation changes according to the viewport condition.
+
+---
+
+## Media Query Example
+
+Consider a navigation menu:
+
+```css
+.nav {
+    display: flex;
+    gap: 20px;
+}
+```
+
+On a smaller screen, the navigation can be changed to a vertical layout:
+
+```css
+@media (max-width: 600px) {
+    .nav {
+        flex-direction: column;
+    }
+}
+```
+
+The result can be visualized as:
+
+```text
+Large Screen:
+
+Home    About    Services    Contact
+
+
+Small Screen:
+
+Home
+About
+Services
+Contact
+```
+
+This is one of the common ways media queries are used in responsive web development.
+
+---
+
+> 💡 **Pro Tip:** Think of a media query as a condition that tells CSS when a particular set of styles should be used.
+
+---
+
+> 💡 **Remember:** A media query is a conditional CSS feature that allows different styles to be applied when specific conditions of the viewing environment are satisfied.
