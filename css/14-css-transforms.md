@@ -4099,3 +4099,195 @@ Controls whether the back face of a 3D-transformed element is visible.
 | `backface-visibility` | Controls visibility of the back face |
 
 > 💡 **Remember:** `transform` is used for visual transformations, while properties such as `transform-origin`, `perspective`, `transform-style`, and `backface-visibility` control how those transformations behave.
+
+---
+
+## Best Practices
+
+Following good practices when using CSS transforms makes styles easier to understand, maintain, and reuse.
+
+### 1. Use Transforms for Visual Changes
+
+Use `transform` when you need to visually move, rotate, scale, or skew an element.
+
+```css
+.card:hover {
+    transform: translateY(-8px);
+}
+```
+
+Avoid using transforms when the actual document layout needs to change.
+
+### 2. Use `transition` for Smooth Effects
+
+Combine transforms with `transition` when creating interactive effects:
+
+```css
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+```
+
+This creates a smoother visual effect.
+
+### 3. Keep Transform Values Reasonable
+
+Avoid unnecessarily large transformations:
+
+```css
+/* Better */
+.box {
+    transform: scale(1.05);
+}
+```
+
+Instead of:
+
+```css
+.box {
+    transform: scale(3);
+}
+```
+
+Small transformations are often more suitable for interface interactions.
+
+### 4. Use the Appropriate Transform Function
+
+Choose the transform function that matches the required effect:
+
+```css
+transform: translateX(20px);
+```
+
+for horizontal movement,
+
+```css
+transform: rotate(10deg);
+```
+
+for rotation, and
+
+```css
+transform: scale(1.1);
+```
+
+for scaling.
+
+Using the appropriate function makes the CSS easier to understand.
+
+### 5. Be Careful with Multiple Transforms
+
+When combining transforms, remember that their order matters:
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg);
+}
+```
+
+Keep the transformation order intentional and easy to understand.
+
+### 6. Use `transform-origin` When Necessary
+
+If an element needs to rotate or scale from a specific point, explicitly define the origin:
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(10deg);
+}
+```
+
+This makes the intended transformation behavior clearer.
+
+### 7. Use Perspective for 3D Effects
+
+When creating 3D effects, use `perspective` to establish depth:
+
+```css
+.container {
+    perspective: 800px;
+}
+```
+
+Then apply a 3D transformation to the child:
+
+```css
+.box {
+    transform: rotateY(30deg);
+}
+```
+
+### 8. Use `preserve-3d` for Nested 3D Elements
+
+When child elements need to remain in 3D space:
+
+```css
+.card {
+    transform-style: preserve-3d;
+}
+```
+
+This is especially useful for 3D card and flip effects.
+
+### 9. Use `backface-visibility` for Flip Effects
+
+For elements that rotate to reveal another side:
+
+```css
+.card-face {
+    backface-visibility: hidden;
+}
+```
+
+This prevents the reverse side from being displayed when it faces away from the viewer.
+
+### 10. Avoid Unnecessary Transformations
+
+Do not add transforms simply because they are available.
+
+Use them when they provide a meaningful visual or interactive effect.
+
+### 11. Keep Transform Code Readable
+
+For simple transformations, keep the declaration concise:
+
+```css
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+```
+
+For more complex effects, use clear formatting:
+
+```css
+.card:hover {
+    transform:
+        translateY(-10px)
+        rotate(3deg)
+        scale(1.05);
+}
+```
+
+### 12. Consider Accessibility
+
+Avoid creating excessive motion that can make interfaces uncomfortable for some users.
+
+For animations and transitions involving transforms, consider the user's reduced-motion preference:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none;
+        animation: none;
+    }
+}
+```
+
+> 💡 **Tip:** Use transforms to enhance an interface rather than making the interface dependent on complex visual effects.
+
+> 💡 **Remember:** Good transform code should be purposeful, readable, smooth, and appropriate for the interaction being created.
