@@ -460,3 +460,116 @@ The box is visually moved `50px` to the right and `30px` downward.
 > 💡 **Tip:** Use `translate()` when you need to move an element along the X and Y axes together.
 
 > 💡 **Remember:** `translate()` visually moves an element without changing its original position in the normal document flow.
+
+---
+
+## Translate X
+
+The `translateX()` function moves an element horizontally along the X-axis.
+
+It is useful when you want to move an element to the left or right without changing its normal position in the document flow.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: translateX(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+This moves the element `50px` to the right.
+
+### Moving to the Right
+
+Positive values move the element to the right:
+
+```css
+.box {
+    transform: translateX(100px);
+}
+```
+
+The element is visually moved `100px` toward the right.
+
+### Moving to the Left
+
+Negative values move the element to the left:
+
+```css
+.box {
+    transform: translateX(-100px);
+}
+```
+
+The element is visually moved `100px` toward the left.
+
+### Using Percentage Values
+
+You can also use percentage values:
+
+```css
+.box {
+    transform: translateX(50%);
+}
+```
+
+The percentage is calculated relative to the element's own width.
+
+### Practical Example
+
+```html
+<div class="box">Move Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 20px;
+    background: steelblue;
+    transform: translateX(80px);
+}
+```
+
+The box is visually moved `80px` to the right.
+
+### Hover Effect
+
+`translateX()` is commonly used with transitions to create interactive effects:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateX(20px);
+}
+```
+
+When the user hovers over the element, it smoothly moves `20px` to the right.
+
+### Negative Hover Movement
+
+You can also move an element toward the left:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateX(-20px);
+}
+```
+
+> 💡 **Tip:** Use `translateX()` when you only need horizontal movement. It is simpler and clearer than using `translate()` when the Y-axis does not need to change.
+
+> 💡 **Remember:** Positive values move the element to the right, while negative values move it to the left.
