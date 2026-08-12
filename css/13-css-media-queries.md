@@ -1398,3 +1398,505 @@ This mental model becomes especially useful when working with multiple condition
 ---
 
 > 💡 **Remember:** A media query starts with `@media`, contains a condition, and includes CSS rules that are applied when that condition is satisfied.
+
+---
+
+## Media Types
+
+Media types describe the general category of media for which a CSS style is intended.
+
+A media query can use a media type together with media features to determine when CSS rules should be applied.
+
+The basic structure is:
+
+```css
+@media media-type {
+    /* CSS rules */
+}
+```
+
+For example:
+
+```css
+@media screen {
+    body {
+        font-size: 16px;
+    }
+}
+```
+
+Here, `screen` is the media type.
+
+---
+
+## Common Media Types
+
+CSS media queries provide several media types, including:
+
+- `all`
+- `screen`
+- `print`
+
+These media types can be used to target different output environments.
+
+Conceptually:
+
+```text
+Media Types
+     ↓
+┌─────────┬──────────┬─────────┐
+│   all   │  screen  │  print  │
+└─────────┴──────────┴─────────┘
+```
+
+---
+
+## `all`
+
+The `all` media type matches all devices.
+
+For example:
+
+```css
+@media all {
+    body {
+        font-family: Arial, sans-serif;
+    }
+}
+```
+
+This media type is useful when the styles are intended to apply across all media types.
+
+In many situations, the media type can simply be omitted because `all` is the default media type.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+}
+```
+
+This is effectively targeting the default `all` media type together with the specified condition.
+
+---
+
+## `screen`
+
+The `screen` media type is used for devices with screens.
+
+For example:
+
+```css
+@media screen {
+    body {
+        background-color: white;
+    }
+}
+```
+
+A screen can include devices such as:
+
+- Mobile phones
+- Tablets
+- Laptops
+- Desktop computers
+
+The `screen` media type is commonly seen when a stylesheet also contains styles specifically intended for printed documents.
+
+---
+
+## `print`
+
+The `print` media type is used when a document is printed or prepared for print output.
+
+For example:
+
+```css
+@media print {
+    body {
+        color: black;
+        background: white;
+    }
+}
+```
+
+Print styles can be used to create a more suitable version of a webpage for printing.
+
+For example, a navigation menu may not be useful on a printed page.
+
+```css
+@media print {
+    .navigation {
+        display: none;
+    }
+}
+```
+
+This hides the navigation when the document is printed.
+
+---
+
+## Screen vs Print
+
+A webpage may need different styles for screen viewing and printing.
+
+For example:
+
+```text
+                 Webpage
+                    ↓
+          ┌─────────┴─────────┐
+          ↓                   ↓
+       Screen                Print
+          ↓                   ↓
+   Interactive layout     Printable layout
+```
+
+The CSS can therefore provide different presentations for the same document.
+
+For example:
+
+```css
+body {
+    font-family: Arial, sans-serif;
+}
+
+@media print {
+    body {
+        font-family: serif;
+    }
+}
+```
+
+The normal style is used for the webpage, while the print media query provides a different style for printed output.
+
+---
+
+## Combining Media Types With Media Features
+
+A media type can be combined with a media feature.
+
+For example:
+
+```css
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+This contains two parts:
+
+```text
+screen
+   ↓
+Media Type
+
+and
+   ↓
+Logical Operator
+
+(max-width: 600px)
+   ↓
+Media Feature
+```
+
+The CSS is applied when the query matches the screen media type and the viewport width is `600px` or less.
+
+---
+
+## `screen` With `min-width`
+
+Media types can also be combined with `min-width`.
+
+For example:
+
+```css
+@media screen and (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The condition can be understood as:
+
+```text
+Is the output a screen?
+        ↓
+      Yes
+        ↓
+Is the viewport at least 768px?
+        ↓
+      Yes
+        ↓
+Apply the styles
+```
+
+---
+
+## `print` With Media Features
+
+Print styles can also use media features.
+
+For example:
+
+```css
+@media print and (orientation: landscape) {
+    .report {
+        width: 100%;
+    }
+}
+```
+
+This allows print styles to be adjusted according to additional conditions.
+
+Media features such as orientation will be discussed in more detail later.
+
+---
+
+## Using Separate Screen and Print Styles
+
+A stylesheet can contain separate rules for screens and printing.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+}
+
+@media print {
+    .navigation {
+        display: none;
+    }
+}
+```
+
+On a screen:
+
+```text
+Navigation
+    ↓
+Visible
+```
+
+When printing:
+
+```text
+Navigation
+    ↓
+Hidden
+```
+
+This allows the same webpage to provide an appropriate presentation for different output environments.
+
+---
+
+## Practical Example: Printable Article
+
+Consider an article page with navigation, content, and a footer.
+
+```text
+Screen
+┌──────────────────────────────┐
+│          Navigation          │
+├──────────────────────────────┤
+│                              │
+│          Article             │
+│                              │
+├──────────────────────────────┤
+│           Footer             │
+└──────────────────────────────┘
+```
+
+For printing, some elements may not be necessary.
+
+```css
+@media print {
+    .navigation,
+    .footer {
+        display: none;
+    }
+}
+```
+
+The printed version can therefore focus on the article content.
+
+```text
+Print
+┌──────────────────────────────┐
+│                              │
+│          Article             │
+│                              │
+└──────────────────────────────┘
+```
+
+This is a practical use of the `print` media type.
+
+---
+
+## Why Media Types Matter
+
+Media types allow CSS to distinguish between different output environments.
+
+For example:
+
+```text
+Same HTML
+    ↓
+Different Media Types
+    ↓
+┌──────────────┬──────────────┐
+│    Screen    │    Print     │
+└──────────────┴──────────────┘
+       ↓               ↓
+Interactive        Printable
+  design             design
+```
+
+This allows a single document to have different presentations without requiring separate HTML pages.
+
+---
+
+## Media Type vs Media Feature
+
+A media type describes the general type of output.
+
+A media feature describes a characteristic or condition of that output.
+
+For example:
+
+```css
+@media screen and (max-width: 600px) {
+    /* CSS rules */
+}
+```
+
+Here:
+
+```text
+screen
+   ↓
+Media Type
+
+max-width
+   ↓
+Media Feature
+```
+
+A useful mental model is:
+
+```text
+Media Type
+    ↓
+"What kind of output?"
+
+Media Feature
+    ↓
+"What condition does it have?"
+```
+
+This distinction becomes important when writing more advanced media queries.
+
+---
+
+## Omitting the Media Type
+
+The media type is optional in many common media queries.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+This is often preferred when the styles are intended for the normal screen-based presentation and no explicit media type is required.
+
+Compared with:
+
+```css
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+both forms can be useful, but the shorter form is common in responsive CSS.
+
+---
+
+## Quick Comparison
+
+| Media Type | Purpose |
+|------------|---------|
+| `all` | Matches all media types |
+| `screen` | Targets screen-based output |
+| `print` | Targets printed output |
+
+Example:
+
+```css
+@media screen {
+    /* Screen styles */
+}
+```
+
+```css
+@media print {
+    /* Print styles */
+}
+```
+
+```css
+@media all {
+    /* Styles for all media types */
+}
+```
+
+---
+
+## Common Mistake
+
+Do not confuse a media type with a media feature.
+
+For example:
+
+```css
+@media screen and (max-width: 600px) {
+    /* CSS rules */
+}
+```
+
+Here:
+
+```text
+screen
+    ↓
+Media Type
+
+max-width: 600px
+    ↓
+Media Feature
+```
+
+`screen` does not describe the viewport width.
+
+`max-width` describes the viewport width condition.
+
+---
+
+> 💡 **Pro Tip:** Use a media type when you actually need to distinguish the output environment, such as screen and print. For many responsive layouts, a media feature such as `max-width` or `min-width` is enough.
+
+---
+
+> 💡 **Remember:** Media types describe the general output environment, such as `screen`, `print`, or `all`. Media features describe characteristics or conditions such as width, height, or orientation.
