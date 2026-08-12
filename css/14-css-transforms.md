@@ -1477,3 +1477,151 @@ Now the element rotates around its top-left corner.
 > 💡 **Tip:** Use small rotation values for normal UI interactions. Values such as `5deg`, `10deg`, or `15deg` can provide subtle visual feedback without making the interface difficult to use.
 
 > 💡 **Remember:** Positive angles rotate clockwise, while negative angles rotate counterclockwise.
+
+---
+
+## Rotate X
+
+The `rotateX()` function rotates an element around the **X-axis**.
+
+It is mainly used for **3D transformations** because the rotation creates a change in the element's depth and perspective.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: rotateX(angle);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+This rotates the element `45deg` around the X-axis.
+
+### Positive Rotation
+
+A positive angle rotates the element around the X-axis in one direction:
+
+```css
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+Increasing the angle produces a stronger 3D rotation effect.
+
+For example:
+
+```css
+.box {
+    transform: rotateX(90deg);
+}
+```
+
+This rotates the element by `90deg` around the X-axis.
+
+### Negative Rotation
+
+Negative values rotate the element in the opposite direction:
+
+```css
+.box {
+    transform: rotateX(-45deg);
+}
+```
+
+This rotates the element `45deg` in the opposite direction around the X-axis.
+
+### Understanding the X-Axis
+
+The X-axis runs horizontally through the element:
+
+```text
+        X-axis
+←──────────────────→
+```
+
+When an element is rotated around the X-axis, its top and bottom edges move toward or away from the viewer.
+
+This creates a vertical 3D rotation effect.
+
+### Perspective
+
+To make the 3D effect easier to see, you can use `perspective`:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+The `perspective` property controls how the depth of the 3D transformation appears to the viewer.
+
+### Practical Example
+
+```html
+<div class="container">
+    <div class="box">Rotate X</div>
+</div>
+```
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transform: rotateX(45deg);
+}
+```
+
+The element rotates around its horizontal X-axis and produces a 3D effect.
+
+### Hover Effect
+
+`rotateX()` can be combined with a transition:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    transform: rotateX(20deg);
+}
+```
+
+When the user hovers over the element, it smoothly rotates around the X-axis.
+
+### Combining with Other Transforms
+
+`rotateX()` can be combined with other transform functions:
+
+```css
+.box {
+    transform: translateY(-10px) rotateX(20deg) scale(1.05);
+}
+```
+
+This moves, rotates, and scales the element.
+
+> 💡 **Tip:** Use `rotateX()` when you want to create a 3D effect where the element appears to tilt forward or backward.
+
+> 💡 **Remember:** `rotateX()` rotates an element around the horizontal X-axis and is commonly used together with `perspective` for realistic 3D effects.
