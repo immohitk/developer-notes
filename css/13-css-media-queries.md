@@ -1900,3 +1900,692 @@ Media Feature
 ---
 
 > 💡 **Remember:** Media types describe the general output environment, such as `screen`, `print`, or `all`. Media features describe characteristics or conditions such as width, height, or orientation.
+
+---
+
+## Media Features
+
+Media features describe specific characteristics of the device, browser, or viewing environment.
+
+While a media type describes the general type of output, such as `screen` or `print`, a media feature describes a particular characteristic or condition.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+Here, `max-width` is a media feature.
+
+It checks the available viewport width and determines whether the condition is satisfied.
+
+Conceptually:
+
+```text
+Media Query
+     ↓
+Media Feature
+     ↓
+Check a characteristic
+     ↓
+Condition satisfied?
+     ├── Yes → Apply CSS
+     │
+     └── No  → Do not apply CSS
+```
+
+---
+
+## Media Type vs Media Feature
+
+A media type describes the general type of output.
+
+A media feature describes a specific characteristic of that output.
+
+For example:
+
+```css
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+The query can be divided into:
+
+```text
+screen
+   ↓
+Media Type
+
+max-width: 600px
+   ↓
+Media Feature
+```
+
+A simple way to remember the difference is:
+
+```text
+Media Type
+    ↓
+"What kind of output is this?"
+
+Media Feature
+    ↓
+"What characteristics or conditions does it have?"
+```
+
+---
+
+## Common Media Features
+
+CSS provides many media features that can be used to describe characteristics of the viewing environment.
+
+Common examples include:
+
+- `width`
+- `min-width`
+- `max-width`
+- `height`
+- `min-height`
+- `max-height`
+- `orientation`
+- `aspect-ratio`
+- `resolution`
+
+Some media features describe viewport dimensions, while others describe characteristics such as orientation or display resolution.
+
+---
+
+## Width
+
+The `width` media feature checks the width of the viewport.
+
+For example:
+
+```css
+@media (width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+The condition checks whether the viewport width is exactly `600px`.
+
+Conceptually:
+
+```text
+Viewport width
+      ↓
+Exactly 600px?
+      ↓
+   ┌───┴───┐
+  Yes      No
+   ↓        ↓
+Apply    Ignore
+ CSS       CSS
+```
+
+Exact-value queries are less common in responsive design than range-based queries such as `min-width` and `max-width`.
+
+---
+
+## `min-width`
+
+The `min-width` media feature checks whether the viewport width is at least a specified value.
+
+For example:
+
+```css
+@media (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport width >= 768px
+```
+
+Therefore, the styles apply at `768px` and wider.
+
+---
+
+## `max-width`
+
+The `max-width` media feature checks whether the viewport width is at most a specified value.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport width <= 768px
+```
+
+Therefore, the styles apply at `768px` and narrower.
+
+---
+
+## Width Range
+
+Media features can be combined to target a range of viewport widths.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        width: 85%;
+    }
+}
+```
+
+The condition can be understood as:
+
+```text
+Viewport width
+      ↓
+At least 600px?
+      ↓
+     Yes
+      ↓
+At most 1000px?
+      ↓
+     Yes
+      ↓
+Apply the styles
+```
+
+This allows a design to target a specific range rather than only a single minimum or maximum size.
+
+---
+
+## Height
+
+The `height` media feature checks the height of the viewport.
+
+For example:
+
+```css
+@media (height: 800px) {
+    .container {
+        min-height: 400px;
+    }
+}
+```
+
+This checks whether the viewport height is exactly `800px`.
+
+As with exact width queries, exact height queries are less common than range-based conditions.
+
+---
+
+## `min-height`
+
+The `min-height` media feature checks whether the viewport height is at least a specified value.
+
+For example:
+
+```css
+@media (min-height: 700px) {
+    .hero {
+        min-height: 500px;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport height >= 700px
+        ↓
+Apply the styles
+```
+
+This can be useful when a design needs to respond to available vertical space.
+
+---
+
+## `max-height`
+
+The `max-height` media feature checks whether the viewport height is at most a specified value.
+
+For example:
+
+```css
+@media (max-height: 600px) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport height <= 600px
+        ↓
+Apply the styles
+```
+
+This can be useful when the available vertical space becomes limited.
+
+---
+
+## Width and Height Together
+
+Width and height conditions can be combined.
+
+For example:
+
+```css
+@media (max-width: 768px) and (max-height: 600px) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+The styles are applied when both conditions are satisfied.
+
+Conceptually:
+
+```text
+Viewport
+   ↓
+Width <= 768px?
+   ↓
+ Yes
+   ↓
+Height <= 600px?
+   ↓
+ Yes
+   ↓
+Apply CSS
+```
+
+This allows responsive styles to consider both horizontal and vertical space.
+
+---
+
+## Orientation
+
+The `orientation` media feature checks whether the viewport is in portrait or landscape orientation.
+
+There are two commonly used values:
+
+```text
+portrait
+landscape
+```
+
+For example:
+
+```css
+@media (orientation: portrait) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+This applies when the viewport is in portrait orientation.
+
+For landscape:
+
+```css
+@media (orientation: landscape) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The basic relationship is:
+
+```text
+Orientation
+     ↓
+┌─────────────┬─────────────┐
+│  portrait   │  landscape  │
+└─────────────┴─────────────┘
+```
+
+---
+
+## Portrait Orientation
+
+Portrait orientation means the viewport is taller than it is wide.
+
+Conceptually:
+
+```text
+┌──────────┐
+│          │
+│          │
+│          │
+│          │
+│          │
+└──────────┘
+```
+
+A media query can target portrait orientation:
+
+```css
+@media (orientation: portrait) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+This can be useful when the available horizontal space is limited.
+
+---
+
+## Landscape Orientation
+
+Landscape orientation means the viewport is wider than it is tall.
+
+Conceptually:
+
+```text
+┌────────────────────┐
+│                    │
+│                    │
+└────────────────────┘
+```
+
+A media query can target landscape orientation:
+
+```css
+@media (orientation: landscape) {
+    .navigation {
+        flex-direction: row;
+    }
+}
+```
+
+This can be useful when more horizontal space is available.
+
+---
+
+## Aspect Ratio
+
+The `aspect-ratio` media feature describes the ratio between the viewport's width and height.
+
+For example:
+
+```css
+@media (aspect-ratio: 16 / 9) {
+    .video {
+        width: 100%;
+    }
+}
+```
+
+An aspect ratio can be represented as:
+
+```text
+Width : Height
+   ↓
+16 : 9
+```
+
+The `aspect-ratio` feature can be useful when a design needs to respond to the shape of the viewport rather than only its width or height.
+
+---
+
+## Minimum and Maximum Aspect Ratio
+
+Aspect ratio can also be used with range conditions.
+
+For example:
+
+```css
+@media (min-aspect-ratio: 16 / 9) {
+    .container {
+        width: 90%;
+    }
+}
+```
+
+And:
+
+```css
+@media (max-aspect-ratio: 4 / 3) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+These conditions allow CSS to respond to different viewport proportions.
+
+---
+
+## Resolution
+
+The `resolution` media feature describes the resolution of the output device.
+
+For example:
+
+```css
+@media (min-resolution: 2dppx) {
+    .logo {
+        background-image: url("logo-high-resolution.png");
+    }
+}
+```
+
+This can be useful when different assets or styles are needed for displays with different pixel densities.
+
+The `resolution` feature is more specialized than common responsive features such as `min-width` and `max-width`.
+
+---
+
+## Combining Different Media Features
+
+Multiple media features can be combined using logical operators.
+
+For example:
+
+```css
+@media screen and (min-width: 768px) and (orientation: landscape) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The query contains:
+
+```text
+screen
+   ↓
+Media Type
+
+min-width: 768px
+   ↓
+Width Condition
+
+orientation: landscape
+   ↓
+Orientation Condition
+```
+
+All conditions must match for the styles to apply.
+
+---
+
+## Media Features and Responsive Design
+
+Media features are one of the main tools used to make responsive layouts.
+
+A responsive layout can respond to:
+
+```text
+Viewport Width
+      ↓
+Viewport Height
+      ↓
+Orientation
+      ↓
+Aspect Ratio
+      ↓
+Resolution
+      ↓
+Responsive CSS
+```
+
+For example:
+
+```css
+.container {
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media (orientation: landscape) {
+    .container {
+        max-width: 1000px;
+    }
+}
+```
+
+Different media features can therefore control different aspects of the design.
+
+---
+
+## Practical Example
+
+Consider a card layout that needs to adapt to different viewport conditions.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout changes as the available width decreases.
+
+```text
+Large viewport
+
+┌───────┬───────┬───────┐
+│ Card  │ Card  │ Card  │
+└───────┴───────┴───────┘
+
+
+Medium viewport
+
+┌───────┬───────┐
+│ Card  │ Card  │
+├───────┼───────┤
+│ Card  │ Card  │
+└───────┴───────┘
+
+
+Small viewport
+
+┌───────┐
+│ Card  │
+├───────┤
+│ Card  │
+├───────┤
+│ Card  │
+└───────┘
+```
+
+This demonstrates how media features can be used to create layouts that adapt to available space.
+
+---
+
+## Choosing the Right Media Feature
+
+Different design problems require different media features.
+
+```text
+Need to respond to width?
+        ↓
+Use width / min-width / max-width
+
+Need to respond to height?
+        ↓
+Use height / min-height / max-height
+
+Need to respond to orientation?
+        ↓
+Use orientation
+
+Need to respond to viewport proportions?
+        ↓
+Use aspect-ratio
+
+Need to respond to display resolution?
+        ↓
+Use resolution
+```
+
+This makes it easier to choose an appropriate condition instead of using the same media feature for every situation.
+
+---
+
+## Common Mistake
+
+Do not assume that `min-width` and `max-width` are the only media features available.
+
+Responsive design can also respond to:
+
+- Height
+- Orientation
+- Aspect ratio
+- Resolution
+- Other media characteristics
+
+However, width-based conditions are commonly used because many layout changes are primarily caused by limited horizontal space.
+
+---
+
+> 💡 **Pro Tip:** Choose a media feature based on the actual design problem. If the layout breaks because there is not enough horizontal space, use a width-based condition. If the problem is vertical space or orientation, use the corresponding media feature.
+
+---
+
+> 💡 **Remember:** Media features describe characteristics of the viewing environment. Common examples include `width`, `height`, `min-width`, `max-width`, `orientation`, `aspect-ratio`, and `resolution`.
