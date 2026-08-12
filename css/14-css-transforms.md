@@ -2635,3 +2635,154 @@ The element rotates and scales around its top-left origin.
 > 💡 **Tip:** Keep transform combinations simple and use the order of functions intentionally because changing their order can change the final visual result.
 
 > 💡 **Remember:** Multiple transform functions are written together inside the same `transform` declaration and are separated by spaces.
+
+---
+
+## 2D Transforms
+
+CSS 2D transforms allow you to visually move, resize, rotate, and skew an element within a two-dimensional plane.
+
+2D transformations work along the **X-axis and Y-axis**.
+
+Common 2D transform functions include:
+
+- `translate()`
+- `translateX()`
+- `translateY()`
+- `scale()`
+- `scaleX()`
+- `scaleY()`
+- `rotate()`
+- `skew()`
+- `skewX()`
+- `skewY()`
+
+### Basic Syntax
+
+```css
+selector {
+    transform: function(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: translate(50px, 20px);
+}
+```
+
+This moves the element horizontally and vertically.
+
+### Moving an Element
+
+You can use `translate()` to move an element:
+
+```css
+.box {
+    transform: translate(50px, 30px);
+}
+```
+
+The element moves:
+
+```text
+50px → X-axis
+30px → Y-axis
+```
+
+### Scaling an Element
+
+You can use `scale()` to change the visual size:
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+The element becomes `1.2` times its original size.
+
+### Rotating an Element
+
+You can use `rotate()` to rotate an element:
+
+```css
+.box {
+    transform: rotate(30deg);
+}
+```
+
+The element rotates by `30deg`.
+
+### Skewing an Element
+
+You can use `skew()` to distort an element:
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+This skews the element along the X-axis and Y-axis.
+
+### Combining 2D Transforms
+
+Multiple 2D transformations can be combined:
+
+```css
+.box {
+    transform: translate(50px, 20px)
+               rotate(15deg)
+               scale(1.1);
+}
+```
+
+The element is moved, rotated, and scaled.
+
+### Practical Example
+
+```html
+<div class="box">2D Transform</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    transform: translateY(-10px) rotate(5deg) scale(1.05);
+}
+```
+
+When the user hovers over the element, it moves upward, rotates slightly, and becomes slightly larger.
+
+### 2D vs 3D Transforms
+
+2D transforms work primarily with the **X-axis and Y-axis**:
+
+```css
+.box {
+    transform: translate(50px, 20px);
+}
+```
+
+3D transforms can additionally use the **Z-axis**:
+
+```css
+.box {
+    transform: translate3d(50px, 20px, 30px);
+}
+```
+
+The Z-axis introduces depth and is used for three-dimensional effects.
+
+> 💡 **Tip:** Use 2D transforms for common interface effects such as moving, scaling, rotating, and skewing elements on the screen.
+
+> 💡 **Remember:** 2D transforms operate within the X-Y plane, while 3D transforms can also manipulate depth using the Z-axis.
