@@ -260,3 +260,87 @@ This creates a smooth scaling effect when the user moves the pointer over the bu
 > 💡 **Tip:** Use transforms for visual movement and effects instead of using positioning properties when you do not actually need to change the layout.
 
 > 💡 **Remember:** CSS Transforms are especially useful for interactive interfaces because they can be combined with transitions and animations to create smooth visual feedback.
+
+---
+
+## Transform Syntax
+
+The `transform` property is used to apply transformations to an element.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: function(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+Here:
+
+- `transform` is the CSS property.
+- `rotate()` is the transform function.
+- `45deg` is the value passed to the function.
+
+### Using Translate
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+This moves the element `50px` along the X-axis.
+
+### Using Scale
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+This increases the visual size of the element.
+
+### Using Rotate
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+This rotates the element by `45deg`.
+
+### Using Skew
+
+```css
+.box {
+    transform: skewX(20deg);
+}
+```
+
+This skews the element along the X-axis.
+
+### Multiple Transform Functions
+
+Multiple transform functions can be combined in a single declaration:
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg) scale(1.1);
+}
+```
+
+The order of the functions matters because the transformations are applied as a sequence.
+
+> 💡 **Tip:** The `transform` property accepts one or more transform functions.
+
+> 💡 **Remember:** Transform functions such as `translate()`, `scale()`, `rotate()`, and `skew()` provide different ways to visually modify an element.
