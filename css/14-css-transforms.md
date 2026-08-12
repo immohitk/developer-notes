@@ -4848,3 +4848,361 @@ Common mistakes include:
 - Forgetting `backface-visibility` in flip effects
 
 > 💡 **Interview Tip:** When explaining CSS transforms, remember the four core concepts: **transform functions, transform origin, 2D/3D space, and transform-related 3D properties** such as `perspective`, `transform-style`, and `backface-visibility`.
+
+---
+
+## Practice Exercises
+
+Practice these exercises to strengthen your understanding of CSS transforms.
+
+### Exercise 1: Translate an Element
+
+Create a box and move it `50px` horizontally and `30px` vertically using `translate()`.
+
+```html
+<div class="box">Move Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+
+    /* Add your transform here */
+}
+```
+
+**Task:** Use `translate()` to move the box.
+
+---
+
+### Exercise 2: Scale a Button
+
+Create a button that becomes slightly larger when the user hovers over it.
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    padding: 12px 24px;
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    /* Add your transform here */
+}
+```
+
+**Task:** Use `scale()` to make the button approximately `5%` larger.
+
+---
+
+### Exercise 3: Rotate an Element
+
+Create a square that rotates when the user hovers over it.
+
+```html
+<div class="box">Rotate</div>
+```
+
+```css
+.box {
+    width: 150px;
+    height: 150px;
+    background: steelblue;
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    /* Add your transform here */
+}
+```
+
+**Task:** Rotate the box by `45deg`.
+
+---
+
+### Exercise 4: Skew an Element
+
+Create a banner with a slanted appearance.
+
+```html
+<div class="banner">Special Offer</div>
+```
+
+```css
+.banner {
+    padding: 20px;
+    background: steelblue;
+
+    /* Add your transform here */
+}
+```
+
+**Task:** Use `skewX()` to create a horizontal slant.
+
+---
+
+### Exercise 5: Change Transform Origin
+
+Create a box that rotates around its top-left corner.
+
+```html
+<div class="box">Rotate</div>
+```
+
+```css
+.box {
+    width: 150px;
+    height: 150px;
+    background: steelblue;
+
+    /* Add transform-origin */
+    /* Add transform */
+}
+```
+
+**Task:** Set the transform origin to `top left` and rotate the element by `20deg`.
+
+---
+
+### Exercise 6: Combine Multiple Transforms
+
+Create a card that moves upward, rotates slightly, and becomes larger when hovered.
+
+```html
+<div class="card">Hover Me</div>
+```
+
+```css
+.card {
+    width: 200px;
+    padding: 30px;
+    background: steelblue;
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    /* Add multiple transforms */
+}
+```
+
+**Task:** Combine:
+
+```text
+translateY()
+rotate()
+scale()
+```
+
+---
+
+### Exercise 7: Create a 3D Rotation
+
+Create a box that rotates around the Y-axis when hovered.
+
+```html
+<div class="container">
+    <div class="box">3D</div>
+</div>
+```
+
+```css
+.container {
+    /* Add perspective */
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    background: steelblue;
+    transition: transform 0.5s ease;
+}
+
+.box:hover {
+    /* Add 3D transform */
+}
+```
+
+**Task:**
+
+1. Add `perspective` to the container.
+2. Use `rotateY()` on the box.
+3. Add a smooth transition.
+
+---
+
+### Exercise 8: Create a 3D Flip Effect
+
+Create a basic card that flips when the user hovers over it.
+
+```html
+<div class="card">
+    <div class="card-front">Front</div>
+    <div class="card-back">Back</div>
+</div>
+```
+
+**Task:** Use the following properties:
+
+```text
+perspective
+transform-style
+rotateY()
+backface-visibility
+transition
+```
+
+The front should display initially, and the back should appear after the card flips.
+
+---
+
+### Exercise 9: Image Zoom
+
+Create an image that slightly zooms when the user hovers over it.
+
+```html
+<div class="image-container">
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+```css
+.image-container {
+    overflow: hidden;
+}
+
+.image-container img {
+    transition: transform 0.4s ease;
+}
+
+.image-container img:hover {
+    /* Add scale transform */
+}
+```
+
+**Task:** Use `scale()` to create a smooth zoom effect.
+
+---
+
+### Exercise 10: Transform Order
+
+Experiment with the order of multiple transforms.
+
+Try:
+
+```css
+.box {
+    transform: translateX(100px) rotate(45deg);
+}
+```
+
+Then try:
+
+```css
+.box {
+    transform: rotate(45deg) translateX(100px);
+}
+```
+
+**Task:** Observe and explain why the two results can look different.
+
+---
+
+### Exercise 11: 2D Transform Challenge
+
+Create a card that performs all of the following on hover:
+
+```text
+Move upward
+Rotate slightly
+Scale slightly
+```
+
+Use only 2D transforms.
+
+**Task:** Combine the required functions into a single `transform` declaration.
+
+---
+
+### Exercise 12: 3D Transform Challenge
+
+Create a card that:
+
+1. Uses `perspective`.
+2. Preserves 3D child positioning.
+3. Rotates around the Y-axis.
+4. Moves slightly along the Z-axis.
+5. Hides the back face.
+
+**Task:** Build the effect using:
+
+```css
+perspective
+transform-style
+rotateY()
+translateZ()
+backface-visibility
+```
+
+---
+
+### Exercise 13: Reduced Motion
+
+Create a transform-based hover effect and then add support for users who prefer reduced motion.
+
+Use:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    /* Add your styles */
+}
+```
+
+**Task:** Reduce or remove the transition and animation effects when reduced motion is preferred.
+
+---
+
+### Exercise 14: Build a Transform Demo
+
+Create a page containing several boxes demonstrating:
+
+```text
+Translate
+Scale
+Rotate
+Skew
+3D Rotate
+```
+
+Each box should have a different hover effect.
+
+**Task:** Add a heading and a short description for each transformation.
+
+---
+
+### Exercise 15: Mini Project — Interactive Card
+
+Build an interactive card using CSS transforms.
+
+The card should:
+
+- Move upward on hover.
+- Scale slightly.
+- Rotate slightly.
+- Use a smooth transition.
+- Use a suitable `transform-origin`.
+
+Optional challenge:
+
+- Add a 3D flip effect.
+- Add `perspective`.
+- Use `transform-style: preserve-3d`.
+- Use `backface-visibility: hidden`.
+
+> 💡 **Practice Tip:** Try solving each exercise without looking at the previous examples first. After completing an exercise, compare your solution with the concepts covered in this chapter.
+
+> 💡 **Remember:** The goal is not only to memorize transform functions, but to understand how different transformations work together.
