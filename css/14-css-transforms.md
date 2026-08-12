@@ -344,3 +344,119 @@ The order of the functions matters because the transformations are applied as a 
 > 💡 **Tip:** The `transform` property accepts one or more transform functions.
 
 > 💡 **Remember:** Transform functions such as `translate()`, `scale()`, `rotate()`, and `skew()` provide different ways to visually modify an element.
+
+---
+
+## Translate
+
+The `translate()` function moves an element from its current position along the X-axis, Y-axis, or both axes.
+
+It is commonly used to create movement effects without changing the element's normal position in the document flow.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: translate(x, y);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: translate(50px, 20px);
+}
+```
+
+This moves the element:
+
+- `50px` to the right along the X-axis.
+- `20px` downward along the Y-axis.
+
+### Translate on the X-Axis
+
+You can move an element horizontally by providing only the first value:
+
+```css
+.box {
+    transform: translate(50px);
+}
+```
+
+This moves the element `50px` to the right.
+
+A negative value moves it to the left:
+
+```css
+.box {
+    transform: translate(-50px);
+}
+```
+
+### Translate on Both Axes
+
+You can specify separate X and Y values:
+
+```css
+.box {
+    transform: translate(100px, 50px);
+}
+```
+
+Here:
+
+```text
+100px → X-axis
+50px  → Y-axis
+```
+
+### Using Percentage Values
+
+`translate()` can also use percentage values:
+
+```css
+.box {
+    transform: translate(50%, 20%);
+}
+```
+
+Percentage values are calculated relative to the element's own dimensions.
+
+### Negative Values
+
+Negative values can be used to move an element in the opposite direction:
+
+```css
+.box {
+    transform: translate(-30px, -20px);
+}
+```
+
+This moves the element:
+
+```text
+30px ← left
+20px ↑ up
+```
+
+### Practical Example
+
+```html
+<div class="box">Move Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 20px;
+    background: steelblue;
+    transform: translate(50px, 30px);
+}
+```
+
+The box is visually moved `50px` to the right and `30px` downward.
+
+> 💡 **Tip:** Use `translate()` when you need to move an element along the X and Y axes together.
+
+> 💡 **Remember:** `translate()` visually moves an element without changing its original position in the normal document flow.
