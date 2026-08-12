@@ -124,3 +124,70 @@ Here:
 - `50px` is the value applied to the transformation.
 
 > 💡 **Remember:** The `transform` property can contain one or multiple transform functions.
+
+---
+
+## What Are CSS Transforms?
+
+CSS Transforms allow you to visually modify an element in two-dimensional or three-dimensional space.
+
+Using the `transform` property, you can:
+
+- Move an element
+- Resize an element
+- Rotate an element
+- Skew an element
+- Create 2D effects
+- Create 3D effects
+
+### Basic Example
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+This moves the element `50px` horizontally.
+
+You can also rotate an element:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+This rotates the element by `45deg`.
+
+### Transform Functions
+
+CSS provides different transform functions for different purposes:
+
+| Function | Purpose |
+|----------|---------|
+| `translate()` | Moves an element |
+| `scale()` | Changes the size of an element |
+| `rotate()` | Rotates an element |
+| `skew()` | Distorts an element |
+| `matrix()` | Applies a combined transformation |
+| `translate3d()` | Moves an element in 3D space |
+| `rotateX()` | Rotates around the X-axis |
+| `rotateY()` | Rotates around the Y-axis |
+| `rotateZ()` | Rotates around the Z-axis |
+
+### Combining Transforms
+
+Multiple transform functions can be used together:
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg) scale(1.1);
+}
+```
+
+This applies multiple transformations to the same element.
+
+> 💡 **Tip:** Transform functions can be combined to create more advanced visual effects.
+
+> 💡 **Remember:** The order of transform functions matters because each transformation is applied as part of the transformation sequence.
