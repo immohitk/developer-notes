@@ -4552,3 +4552,299 @@ Keep interactive transformations subtle and consider reduced-motion preferences:
 > 💡 **Tip:** When a transform does not behave as expected, first check the transform function, axis, order, origin, and whether the effect requires 3D perspective.
 
 > 💡 **Remember:** Most transform problems come from incorrect syntax, transform order, unexpected origins, excessive values, or missing 3D-related properties.
+
+---
+
+## Interview Questions
+
+### 1. What is CSS `transform`?
+
+The `transform` property is used to visually move, scale, rotate, or skew an element.
+
+```css
+.box {
+    transform: rotate(20deg);
+}
+```
+
+### 2. What are the main types of CSS transforms?
+
+The main transform functions include:
+
+- `translate()`
+- `scale()`
+- `rotate()`
+- `skew()`
+- 3D transform functions such as `translate3d()`, `rotateX()`, and `rotateY()`
+
+### 3. What is the difference between `translateX()` and `translateY()`?
+
+`translateX()` moves an element along the horizontal X-axis:
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+`translateY()` moves an element along the vertical Y-axis:
+
+```css
+.box {
+    transform: translateY(50px);
+}
+```
+
+### 4. What does `scale()` do?
+
+The `scale()` function changes the visual size of an element.
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+A value greater than `1` enlarges the element, while a value between `0` and `1` makes it smaller.
+
+### 5. What is the difference between `rotate()`, `rotateX()`, and `rotateY()`?
+
+`rotate()` rotates an element in the 2D plane.
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+`rotateX()` rotates around the X-axis:
+
+```css
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+`rotateY()` rotates around the Y-axis:
+
+```css
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+### 6. What does `skew()` do?
+
+The `skew()` function distorts an element along the X and Y axes.
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+### 7. What is `transform-origin`?
+
+`transform-origin` defines the point around which a transformation occurs.
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(20deg);
+}
+```
+
+### 8. Can multiple transforms be applied to one element?
+
+Yes. Multiple transform functions can be combined in a single `transform` declaration.
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg) scale(1.1);
+}
+```
+
+The order of the transform functions matters.
+
+### 9. What is the difference between 2D and 3D transforms?
+
+2D transforms operate within the X-Y plane.
+
+```css
+.box {
+    transform: translate(50px, 20px);
+}
+```
+
+3D transforms additionally use the Z-axis to create depth.
+
+```css
+.box {
+    transform: translate3d(50px, 20px, 30px);
+}
+```
+
+### 10. What is the Z-axis in CSS 3D transforms?
+
+The Z-axis represents depth.
+
+It controls movement toward or away from the viewer.
+
+```css
+.box {
+    transform: translateZ(50px);
+}
+```
+
+### 11. What is the `perspective` property?
+
+The `perspective` property establishes a viewer distance for a 3D scene and controls how strong the depth effect appears.
+
+```css
+.container {
+    perspective: 800px;
+}
+```
+
+### 12. What is `transform-style: preserve-3d`?
+
+`transform-style: preserve-3d` allows an element's children to maintain their 3D positioning instead of being flattened into the parent's plane.
+
+```css
+.parent {
+    transform-style: preserve-3d;
+}
+```
+
+### 13. What is `backface-visibility`?
+
+`backface-visibility` controls whether the back face of a 3D-transformed element is visible.
+
+```css
+.box {
+    backface-visibility: hidden;
+}
+```
+
+It is commonly used for 3D flip effects.
+
+### 14. Does `transform` change the normal document layout?
+
+No. CSS transforms generally modify the visual rendering of an element without changing the normal document flow.
+
+```css
+.box {
+    transform: translateX(100px);
+}
+```
+
+The element moves visually, but its original layout space remains.
+
+### 15. Why is transform order important?
+
+Multiple transforms are applied in the order they are written, so changing the order can change the final result.
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg);
+}
+```
+
+and:
+
+```css
+.box {
+    transform: rotate(20deg) translateX(50px);
+}
+```
+
+can produce different visual results.
+
+### 16. How can a transform be made smooth?
+
+Use the `transition` property:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+```
+
+### 17. How can you create a 3D flip card?
+
+A basic 3D flip effect can use:
+
+```css
+.card {
+    perspective: 800px;
+}
+
+.card-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    backface-visibility: hidden;
+}
+```
+
+This combines perspective, 3D transforms, transitions, and backface visibility.
+
+### 18. What is the difference between `perspective` and `perspective()`?
+
+The `perspective` property establishes perspective for a containing element:
+
+```css
+.container {
+    perspective: 800px;
+}
+```
+
+The `perspective()` function applies perspective as part of an element's `transform`:
+
+```css
+.box {
+    transform: perspective(800px) rotateY(45deg);
+}
+```
+
+They establish perspective differently.
+
+### 19. When should CSS transforms be used?
+
+Transforms are useful for visual and interactive effects such as:
+
+- Moving elements
+- Scaling buttons or cards
+- Rotating icons
+- Creating hover effects
+- Creating 2D effects
+- Creating 3D interfaces
+- Building flip cards
+- Creating image zoom effects
+
+### 20. What are some common mistakes when using CSS transforms?
+
+Common mistakes include:
+
+- Overwriting the `transform` property
+- Ignoring transform order
+- Using the wrong axis
+- Forgetting angle units
+- Using excessive scaling
+- Forgetting `transform-origin`
+- Expecting transforms to change layout
+- Missing `perspective` for some 3D effects
+- Forgetting `transform-style: preserve-3d`
+- Forgetting `backface-visibility` in flip effects
+
+> 💡 **Interview Tip:** When explaining CSS transforms, remember the four core concepts: **transform functions, transform origin, 2D/3D space, and transform-related 3D properties** such as `perspective`, `transform-style`, and `backface-visibility`.
