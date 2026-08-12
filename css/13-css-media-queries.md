@@ -10583,3 +10583,1524 @@ Common responsive patterns should generally follow these principles:
 ---
 
 > 💡 **Remember:** Responsive design is about adapting the structure and presentation of content to available space. Media queries provide the conditions, while Flexbox, Grid, flexible sizing, and other CSS features provide the actual layout changes.
+
+---
+
+## Practical Examples
+
+The concepts of CSS media queries become easier to understand when they are applied to real layouts.
+
+The following examples demonstrate how media queries can be combined with Flexbox, Grid, spacing, typography, and responsive sizing.
+
+---
+
+## Example 1: Responsive Navigation
+
+A navigation bar can be horizontal on larger screens and vertical on smaller screens.
+
+```html
+<nav class="navigation">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+</nav>
+```
+
+```css
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.navigation a {
+    text-decoration: none;
+    padding: 10px;
+}
+
+@media (max-width: 600px) {
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+```
+
+Large screen:
+
+```text
+Home    About    Projects    Contact
+```
+
+Small screen:
+
+```text
+Home
+About
+Projects
+Contact
+```
+
+The media query changes the direction of the navigation when the viewport becomes narrower.
+
+---
+
+## Example 2: Responsive Card Grid
+
+A card layout can use multiple columns on large screens and fewer columns on smaller screens.
+
+```html
+<div class="cards">
+    <article class="card">Card 1</article>
+    <article class="card">Card 2</article>
+    <article class="card">Card 3</article>
+    <article class="card">Card 4</article>
+</div>
+```
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    padding: 30px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout changes from:
+
+```text
+4 columns
+    ↓
+2 columns
+    ↓
+1 column
+```
+
+This is one of the most common responsive patterns.
+
+---
+
+## Example 3: Responsive Two-Column Layout
+
+A common page structure contains main content and a sidebar.
+
+```html
+<div class="layout">
+    <main class="content">
+        <h1>Main Content</h1>
+        <p>
+            This is the main content area.
+        </p>
+    </main>
+
+    <aside class="sidebar">
+        <h2>Sidebar</h2>
+        <p>
+            Additional information.
+        </p>
+    </aside>
+</div>
+```
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+}
+
+.content,
+.sidebar {
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large screen:
+
+```text
+┌────────────────────────┬──────────┐
+│ Main Content            │ Sidebar  │
+└────────────────────────┴──────────┘
+```
+
+Small screen:
+
+```text
+┌────────────────────────────┐
+│ Main Content               │
+├────────────────────────────┤
+│ Sidebar                    │
+└────────────────────────────┘
+```
+
+---
+
+## Example 4: Responsive Hero Section
+
+A hero section can place text and an image beside each other on larger screens.
+
+```html
+<section class="hero">
+    <div class="hero-content">
+        <h1>Build Responsive Websites</h1>
+        <p>
+            Create layouts that adapt to different screen sizes.
+        </p>
+        <button>Learn More</button>
+    </div>
+
+    <img src="hero.jpg" alt="Responsive design example">
+</section>
+```
+
+```css
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 80px 40px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero img {
+    width: 50%;
+    max-width: 500px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    .hero img {
+        width: 100%;
+    }
+}
+```
+
+Large:
+
+```text
+┌──────────────────────────────────┐
+│ Text              Image          │
+│                                  │
+└──────────────────────────────────┘
+```
+
+Small:
+
+```text
+┌──────────────────────┐
+│        Text          │
+│                      │
+│        Image         │
+└──────────────────────┘
+```
+
+---
+
+## Example 5: Responsive Form
+
+A form can use two columns on larger screens and one column on smaller screens.
+
+```html
+<form class="form">
+    <div>
+        <label for="first-name">First Name</label>
+        <input id="first-name" type="text">
+    </div>
+
+    <div>
+        <label for="last-name">Last Name</label>
+        <input id="last-name" type="text">
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input id="email" type="email">
+    </div>
+
+    <div>
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel">
+    </div>
+</form>
+```
+
+```css
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form input {
+    padding: 10px;
+}
+
+@media (max-width: 700px) {
+    .form {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large:
+
+```text
+First Name       Last Name
+Email            Phone
+```
+
+Small:
+
+```text
+First Name
+Last Name
+Email
+Phone
+```
+
+This prevents form controls from becoming too narrow.
+
+---
+
+## Example 6: Responsive Button Group
+
+Buttons can be arranged horizontally on large screens and vertically on smaller screens.
+
+```html
+<div class="buttons">
+    <button>Learn More</button>
+    <button>Contact Us</button>
+</div>
+```
+
+```css
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 500px) {
+    .buttons {
+        flex-direction: column;
+    }
+
+    .buttons button {
+        width: 100%;
+    }
+}
+```
+
+Large:
+
+```text
+[ Learn More ] [ Contact Us ]
+```
+
+Small:
+
+```text
+[ Learn More ]
+[ Contact Us ]
+```
+
+---
+
+## Example 7: Responsive Typography
+
+Media queries can adjust typography for smaller screens.
+
+```html
+<h1 class="title">
+    Responsive Web Design
+</h1>
+```
+
+```css
+.title {
+    font-size: 4rem;
+}
+
+@media (max-width: 900px) {
+    .title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+}
+```
+
+The heading becomes smaller as the viewport becomes narrower.
+
+A fluid alternative is:
+
+```css
+.title {
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+```
+
+This allows the browser to calculate a size within the specified range.
+
+---
+
+## Example 8: Responsive Spacing
+
+Large screens may have more generous spacing.
+
+```css
+.section {
+    padding: 100px 60px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 40px 15px;
+    }
+}
+```
+
+The spacing progressively becomes smaller.
+
+```text
+Large
+100px / 60px
+     ↓
+Medium
+60px / 20px
+     ↓
+Small
+40px / 15px
+```
+
+---
+
+## Example 9: Responsive Image
+
+Images should generally be able to shrink with their container.
+
+```html
+<img
+    class="responsive-image"
+    src="image.jpg"
+    alt="Example image"
+>
+```
+
+```css
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+The image will not normally become wider than its containing element.
+
+A maximum size can also be added:
+
+```css
+.responsive-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+```
+
+This allows the image to remain flexible while preventing it from becoming excessively large.
+
+---
+
+## Example 10: Responsive Footer
+
+A footer with multiple columns can progressively reduce its columns.
+
+```html
+<footer class="footer">
+    <section>
+        <h2>Company</h2>
+        <p>About us</p>
+        <p>Careers</p>
+    </section>
+
+    <section>
+        <h2>Services</h2>
+        <p>Design</p>
+        <p>Development</p>
+    </section>
+
+    <section>
+        <h2>Support</h2>
+        <p>Help</p>
+        <p>Contact</p>
+    </section>
+
+    <section>
+        <h2>Social</h2>
+        <p>GitHub</p>
+        <p>LinkedIn</p>
+    </section>
+</footer>
+```
+
+```css
+.footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 50px;
+}
+
+@media (max-width: 900px) {
+    .footer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .footer {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+    }
+}
+```
+
+The footer changes from:
+
+```text
+4 columns
+    ↓
+2 columns
+    ↓
+1 column
+```
+
+---
+
+## Example 11: Responsive Dashboard
+
+A dashboard can use a grid that adapts to different viewport sizes.
+
+```html
+<div class="dashboard">
+    <div class="widget">Users</div>
+    <div class="widget">Revenue</div>
+    <div class="widget">Orders</div>
+    <div class="widget">Messages</div>
+    <div class="widget">Reports</div>
+    <div class="widget">Settings</div>
+</div>
+```
+
+```css
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.widget {
+    padding: 30px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 900px) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large:
+
+```text
+┌──────┬──────┬──────┐
+│  1   │  2   │  3   │
+├──────┼──────┼──────┤
+│  4   │  5   │  6   │
+└──────┴──────┴──────┘
+```
+
+Medium:
+
+```text
+┌──────┬──────┐
+│  1   │  2   │
+├──────┼──────┤
+│  3   │  4   │
+├──────┼──────┤
+│  5   │  6   │
+└──────┴──────┘
+```
+
+Small:
+
+```text
+┌──────┐
+│  1   │
+├──────┤
+│  2   │
+├──────┤
+│  3   │
+├──────┤
+│  4   │
+├──────┤
+│  5   │
+├──────┤
+│  6   │
+└──────┘
+```
+
+---
+
+## Example 12: Responsive Table
+
+Tables can become difficult to fit on smaller screens.
+
+A wrapper can provide horizontal scrolling.
+
+```html
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Alex</td>
+                <td>alex@example.com</td>
+                <td>Developer</td>
+                <td>Active</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+```
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+```
+
+The table remains readable while the wrapper allows horizontal scrolling when necessary.
+
+---
+
+## Example 13: Responsive Card With Image
+
+A card can use a horizontal layout on large screens.
+
+```html
+<article class="profile-card">
+    <img src="profile.jpg" alt="Profile">
+
+    <div>
+        <h2>Developer Profile</h2>
+        <p>
+            Front-end development and responsive design.
+        </p>
+    </div>
+</article>
+```
+
+```css
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.profile-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-card img {
+        width: 120px;
+        height: 120px;
+    }
+}
+```
+
+Large:
+
+```text
+┌──────────┬─────────────────────┐
+│  Image   │ Profile Information │
+└──────────┴─────────────────────┘
+```
+
+Small:
+
+```text
+┌─────────────────────┐
+│        Image        │
+│                     │
+│ Profile Information │
+└─────────────────────┘
+```
+
+---
+
+## Example 14: Responsive Header
+
+A header can change from a horizontal arrangement to a vertical arrangement.
+
+```html
+<header class="header">
+    <div class="logo">
+        My Website
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+```
+
+```css
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.header nav {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+```
+
+---
+
+## Example 15: Desktop Navigation to Mobile Menu
+
+A common responsive pattern is showing full navigation on larger screens and a menu button on smaller screens.
+
+```html
+<header class="header">
+    <div class="logo">
+        My Website
+    </div>
+
+    <button class="menu-button">
+        ☰
+    </button>
+
+    <nav class="menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+```
+
+```css
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-button {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .menu {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+}
+```
+
+The layout becomes:
+
+```text
+Large:
+
+Logo       Home About Projects Contact
+```
+
+Small:
+
+```text
+Logo                         ☰
+```
+
+This example only changes visibility.
+
+Opening and closing the menu requires an appropriate interaction mechanism, such as JavaScript.
+
+---
+
+## Example 16: Responsive Two-Column Article
+
+A long article may have a main reading area and related information.
+
+```html
+<div class="article-layout">
+    <article class="article">
+        <h1>Responsive CSS</h1>
+        <p>
+            Responsive design allows a layout to adapt
+            to different viewport sizes.
+        </p>
+    </article>
+
+    <aside class="related">
+        <h2>Related Topics</h2>
+        <ul>
+            <li>Flexbox</li>
+            <li>Grid</li>
+            <li>Media Queries</li>
+        </ul>
+    </aside>
+</div>
+```
+
+```css
+.article-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 40px;
+}
+
+@media (max-width: 800px) {
+    .article-layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The related content moves below the article on smaller screens.
+
+---
+
+## Example 17: Responsive Pricing Cards
+
+Pricing cards can use multiple columns on large screens.
+
+```html
+<section class="pricing">
+    <article class="plan">
+        <h2>Basic</h2>
+        <p>$10</p>
+    </article>
+
+    <article class="plan">
+        <h2>Pro</h2>
+        <p>$25</p>
+    </article>
+
+    <article class="plan">
+        <h2>Business</h2>
+        <p>$50</p>
+    </article>
+</section>
+```
+
+```css
+.pricing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.plan {
+    padding: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .pricing {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large:
+
+```text
+┌────────┬────────┬────────┐
+│ Basic  │  Pro   │Business│
+└────────┴────────┴────────┘
+```
+
+Small:
+
+```text
+┌────────────┐
+│   Basic    │
+├────────────┤
+│    Pro     │
+├────────────┤
+│  Business  │
+└────────────┘
+```
+
+---
+
+## Example 18: Responsive Gallery
+
+A gallery can automatically change the number of columns.
+
+```html
+<div class="gallery">
+    <img src="1.jpg" alt="Gallery image 1">
+    <img src="2.jpg" alt="Gallery image 2">
+    <img src="3.jpg" alt="Gallery image 3">
+    <img src="4.jpg" alt="Gallery image 4">
+</div>
+```
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The gallery changes from:
+
+```text
+4 → 2 → 1 columns
+```
+
+as the viewport becomes smaller.
+
+---
+
+## Example 19: Responsive Sidebar With Navigation
+
+A dashboard sidebar can be displayed beside the main content on large screens.
+
+```html
+<div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+        <a href="#">Dashboard</a>
+        <a href="#">Users</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+    </aside>
+
+    <main class="dashboard-content">
+        <h1>Dashboard</h1>
+        <p>
+            Dashboard content goes here.
+        </p>
+    </main>
+</div>
+```
+
+```css
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+.dashboard-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.dashboard-content {
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .dashboard-content {
+        padding: 20px;
+    }
+}
+```
+
+On large screens:
+
+```text
+┌───────────┬────────────────────┐
+│ Sidebar   │ Main Content       │
+│           │                    │
+│ Dashboard │                    │
+│ Users     │                    │
+│ Reports   │                    │
+│ Settings  │                    │
+└───────────┴────────────────────┘
+```
+
+On smaller screens:
+
+```text
+┌───────────────────────────────┐
+│ Dashboard Users Reports ... → │
+├───────────────────────────────┤
+│ Main Content                  │
+└───────────────────────────────┘
+```
+
+---
+
+## Example 20: Complete Responsive Page
+
+A complete page can combine several responsive patterns.
+
+```html
+<header class="site-header">
+    <h1>My Website</h1>
+
+    <nav class="site-nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <div>
+            <h2>Build Responsive Websites</h2>
+            <p>
+                Create interfaces that adapt to different
+                viewport sizes.
+            </p>
+            <button>Get Started</button>
+        </div>
+
+        <img src="hero.jpg" alt="Responsive design">
+    </section>
+
+    <section class="cards">
+        <article class="card">
+            <h3>HTML</h3>
+            <p>Structure your content.</p>
+        </article>
+
+        <article class="card">
+            <h3>CSS</h3>
+            <p>Style your interface.</p>
+        </article>
+
+        <article class="card">
+            <h3>Responsive Design</h3>
+            <p>Adapt your layout.</p>
+        </article>
+    </section>
+</main>
+```
+
+```css
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px;
+}
+
+.site-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 100px 50px;
+}
+
+.hero > div {
+    flex: 1;
+}
+
+.hero img {
+    width: 50%;
+    max-width: 500px;
+    height: auto;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 50px;
+}
+
+.card {
+    padding: 30px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 900px) {
+    .site-header {
+        padding: 20px 30px;
+    }
+
+    .hero {
+        padding: 70px 30px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .site-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    .hero img {
+        width: 100%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+}
+```
+
+This example combines:
+
+```text
+Header
+  ↓
+Responsive navigation
+  ↓
+Hero section
+  ↓
+Responsive image
+  ↓
+Responsive cards
+  ↓
+Multiple breakpoints
+```
+
+The page progressively adapts:
+
+```text
+Large
+│
+├── Horizontal header
+├── Horizontal hero
+└── 3-column cards
+        ↓
+Medium
+│
+├── Horizontal header
+├── Horizontal hero
+└── 2-column cards
+        ↓
+Small
+│
+├── Vertical header
+├── Vertical hero
+└── 1-column cards
+```
+
+---
+
+## Example 21: Responsive Layout Without Many Media Queries
+
+Not every responsive layout needs many breakpoints.
+
+CSS Grid can automatically adapt using `auto-fit` and `minmax()`.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+    gap: 20px;
+}
+```
+
+The browser automatically determines how many columns can fit.
+
+Conceptually:
+
+```text
+Wide
+┌────┬────┬────┬────┐
+│ 1  │ 2  │ 3  │ 4  │
+└────┴────┴────┴────┘
+
+Narrower
+┌────┬────┬────┐
+│ 1  │ 2  │ 3  │
+└────┴────┴────┘
+
+Smaller
+┌────┬────┐
+│ 1  │ 2  │
+└────┴────┘
+```
+
+The exact number of columns depends on the available width and the minimum column size.
+
+---
+
+## Example 22: Responsive Container With `min()`
+
+A container can also use `min()` to limit its width.
+
+```css
+.container {
+    width: min(90%, 1200px);
+    margin-inline: auto;
+}
+```
+
+This means the container uses the smaller of:
+
+```text
+90% of available width
+        OR
+1200px
+```
+
+This can reduce the need for breakpoint-specific container widths.
+
+---
+
+## Example 23: Responsive Width With `clamp()`
+
+`clamp()` can provide a flexible value between a minimum and maximum.
+
+```css
+.container {
+    width: clamp(300px, 80%, 1200px);
+}
+```
+
+The value is constrained between:
+
+```text
+Minimum: 300px
+Preferred: 80%
+Maximum: 1200px
+```
+
+This can help create fluid layouts without adding many media queries.
+
+---
+
+## Example 24: Responsive Gap
+
+Spacing between grid or flex items can also be fluid.
+
+```css
+.cards {
+    display: grid;
+    gap: clamp(10px, 3vw, 30px);
+}
+```
+
+The gap can change according to viewport width while remaining within the specified range.
+
+---
+
+## Example 25: Responsive Layout Using Container Queries
+
+Media queries respond to the viewport.
+
+Container queries can respond to the size of a component's container.
+
+For example:
+
+```css
+.card-container {
+    container-type: inline-size;
+}
+
+.card {
+    display: block;
+}
+
+@container (min-width: 500px) {
+    .card {
+        display: flex;
+        gap: 20px;
+    }
+}
+```
+
+This allows the card to adapt based on the available width of its container rather than the entire viewport.
+
+Container queries are useful for reusable components that may appear in different parts of a page.
+
+---
+
+## Practical Responsive Design Process
+
+When creating a responsive component, follow a simple process:
+
+```text
+1. Create the normal layout.
+        ↓
+2. Identify where the content becomes crowded.
+        ↓
+3. Decide what needs to change.
+        ↓
+4. Choose Flexbox, Grid, or another CSS feature.
+        ↓
+5. Add a media query if necessary.
+        ↓
+6. Test at several widths.
+        ↓
+7. Test between breakpoints.
+        ↓
+8. Remove unnecessary CSS.
+```
+
+---
+
+## Testing Practical Examples
+
+After creating a responsive layout, test it at different viewport sizes.
+
+For example:
+
+```text
+320px
+375px
+480px
+600px
+768px
+900px
+1024px
+1200px
+1440px
+```
+
+Also test widths between breakpoints.
+
+For example, if a media query uses:
+
+```css
+@media (max-width: 768px)
+```
+
+test:
+
+```text
+767px
+768px
+769px
+```
+
+This helps identify unexpected layout transitions.
+
+---
+
+## What These Examples Demonstrate
+
+The examples in this section demonstrate several important responsive techniques:
+
+```text
+Media Queries
+      +
+Flexbox
+      +
+CSS Grid
+      +
+Flexible Widths
+      +
+Responsive Images
+      +
+Responsive Typography
+      +
+Responsive Spacing
+      +
+Content Reordering
+      +
+Progressive Column Reduction
+      ↓
+Responsive Layout
+```
+
+The key idea is that media queries do not create responsiveness by themselves.
+
+They provide conditions under which CSS rules can change.
+
+The actual responsive behavior comes from changing properties such as:
+
+```css
+display
+flex-direction
+grid-template-columns
+width
+padding
+margin
+font-size
+gap
+order
+```
+
+and many others.
+
+---
+
+> 💡 **Pro Tip:** Before adding a media query, first ask whether Flexbox, Grid, `min()`, `max()`, `clamp()`, `auto-fit`, or flexible sizing can solve the problem automatically. Good responsive CSS often uses fewer media queries than expected.
+
+---
+
+> 💡 **Remember:** A practical responsive layout usually changes structure rather than simply shrinking everything. Columns can stack, grids can reduce columns, navigation can wrap, images can become fluid, and spacing and typography can adapt to the available space.
