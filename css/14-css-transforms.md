@@ -2954,3 +2954,177 @@ This applies movement and rotation in three-dimensional space.
 > 💡 **Tip:** Use `perspective` with 3D transformations when you want the depth and rotation to appear more realistic.
 
 > 💡 **Remember:** 3D transforms use the X, Y, and Z axes. The Z-axis represents depth, allowing elements to move toward or away from the viewer.
+
+---
+
+## Perspective
+
+The `perspective` property defines the distance between the viewer and the **Z=0 plane** of a 3D transformed element.
+
+It controls how strong the **3D depth effect** appears when using 3D transforms such as `rotateX()`, `rotateY()`, and `translateZ()`.
+
+### Basic Syntax
+
+```css
+selector {
+    perspective: value;
+}
+```
+
+For example:
+
+```css
+.container {
+    perspective: 800px;
+}
+```
+
+A smaller perspective value generally creates a stronger depth effect, while a larger value creates a more subtle effect.
+
+### Using Perspective with 3D Transforms
+
+`perspective` is commonly used on a parent element:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+The parent establishes the perspective for its transformed child.
+
+### Perspective Distance
+
+Compare these examples:
+
+```css
+.container {
+    perspective: 300px;
+}
+```
+
+```css
+.container {
+    perspective: 1000px;
+}
+```
+
+The `300px` perspective creates a stronger sense of depth, while `1000px` produces a more subtle 3D effect.
+
+### Perspective with `rotateX()`
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+The element appears to tilt forward or backward in 3D space.
+
+### Perspective with `rotateY()`
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+The element appears to turn from side to side.
+
+### Perspective with `translateZ()`
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: translateZ(100px);
+}
+```
+
+The element moves along the Z-axis and appears closer to the viewer.
+
+### Practical Example
+
+```html
+<div class="container">
+    <div class="box">Perspective</div>
+</div>
+```
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    transform: rotateY(35deg) translateZ(40px);
+}
+```
+
+When the user hovers over the element, the perspective makes the rotation and depth movement appear three-dimensional.
+
+### `perspective` Property vs `perspective()`
+
+The `perspective` property is generally applied to a parent or containing element:
+
+```css
+.container {
+    perspective: 800px;
+}
+```
+
+The `perspective()` function is used directly inside the `transform` property:
+
+```css
+.box {
+    transform: perspective(800px) rotateY(45deg);
+}
+```
+
+They can produce similar visual effects, but they establish perspective differently.
+
+### Perspective Origin
+
+You can control the position from which the 3D scene is viewed using `perspective-origin`:
+
+```css
+.container {
+    perspective: 800px;
+    perspective-origin: center;
+}
+```
+
+Other values can be used:
+
+```css
+.container {
+    perspective-origin: top left;
+}
+```
+
+This changes the viewer's perspective position.
+
+> 💡 **Tip:** Use `perspective` when working with 3D transforms to make depth and rotation effects easier to see.
+
+> 💡 **Remember:** Smaller perspective values create a stronger depth effect, while larger values create a more subtle 3D appearance.
