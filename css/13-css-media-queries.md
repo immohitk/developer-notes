@@ -15947,3 +15947,1432 @@ No. They should generally be based on content and layout requirements.
 ---
 
 > 💡 **Remember:** **Media Queries provide conditions; CSS layout systems provide the adaptation.** Good responsive design combines both.
+
+---
+
+## Practice Exercises
+
+The following exercises are designed to practice the concepts covered throughout this chapter.
+
+Try to solve each exercise yourself before looking at the suggested requirements.
+
+---
+
+## Exercise 1: Responsive Navigation
+
+Create a navigation bar containing:
+
+```text
+Home
+About
+Services
+Projects
+Contact
+```
+
+### Requirements
+
+On larger screens:
+
+```text
+Home | About | Services | Projects | Contact
+```
+
+On smaller screens:
+
+```text
+Home
+About
+Services
+Projects
+Contact
+```
+
+Use:
+
+```css
+display: flex;
+flex-direction;
+gap;
+@media;
+```
+
+### Goal
+
+Practice changing a horizontal layout into a vertical layout.
+
+---
+
+## Exercise 2: Responsive Card Grid
+
+Create six cards.
+
+```text
+Card 1
+Card 2
+Card 3
+Card 4
+Card 5
+Card 6
+```
+
+### Requirements
+
+Large screens:
+
+```text
+┌──────┬──────┬──────┐
+│  1   │  2   │  3   │
+├──────┼──────┼──────┤
+│  4   │  5   │  6   │
+└──────┴──────┴──────┘
+```
+
+Medium screens:
+
+```text
+┌──────┬──────┐
+│  1   │  2   │
+├──────┼──────┤
+│  3   │  4   │
+├──────┼──────┤
+│  5   │  6   │
+└──────┴──────┘
+```
+
+Small screens:
+
+```text
+┌──────┐
+│  1   │
+├──────┤
+│  2   │
+├──────┤
+│  3   │
+├──────┤
+│  4   │
+├──────┤
+│  5   │
+├──────┤
+│  6   │
+└──────┘
+```
+
+Use CSS Grid and media queries.
+
+---
+
+## Exercise 3: Responsive Two-Column Layout
+
+Create a layout containing:
+
+```text
+Main Content
+Sidebar
+```
+
+### Requirements
+
+Large screens:
+
+```text
+┌──────────────────────┬──────────┐
+│ Main Content         │ Sidebar  │
+└──────────────────────┴──────────┘
+```
+
+Small screens:
+
+```text
+┌──────────────────────┐
+│ Main Content         │
+├──────────────────────┤
+│ Sidebar              │
+└──────────────────────┘
+```
+
+Use:
+
+```css
+display: grid;
+grid-template-columns;
+@media;
+```
+
+---
+
+## Exercise 4: Responsive Hero Section
+
+Create a hero section containing:
+
+```text
+Heading
+Description
+Button
+Image
+```
+
+### Requirements
+
+Large screens:
+
+```text
+┌─────────────────────────────────┐
+│ Text                 Image      │
+└─────────────────────────────────┘
+```
+
+Small screens:
+
+```text
+┌─────────────────────┐
+│       Text          │
+│                     │
+│       Image         │
+└─────────────────────┘
+```
+
+Use Flexbox.
+
+Change:
+
+```css
+flex-direction: row;
+```
+
+to:
+
+```css
+flex-direction: column;
+```
+
+at an appropriate breakpoint.
+
+---
+
+## Exercise 5: Responsive Form
+
+Create a form containing:
+
+```text
+First Name
+Last Name
+Email
+Phone
+City
+Country
+```
+
+### Requirements
+
+Large screens:
+
+```text
+First Name     Last Name
+Email          Phone
+City           Country
+```
+
+Small screens:
+
+```text
+First Name
+Last Name
+Email
+Phone
+City
+Country
+```
+
+Use CSS Grid.
+
+---
+
+## Exercise 6: Responsive Buttons
+
+Create two buttons:
+
+```text
+[ Learn More ] [ Contact Us ]
+```
+
+### Requirements
+
+Large screens:
+
+```text
+[ Learn More ] [ Contact Us ]
+```
+
+Small screens:
+
+```text
+[ Learn More ]
+[ Contact Us ]
+```
+
+On small screens, make both buttons full width.
+
+Practice:
+
+```css
+flex-direction;
+width;
+gap;
+```
+
+---
+
+## Exercise 7: Responsive Typography
+
+Create a heading:
+
+```text
+Responsive Web Design
+```
+
+### Requirements
+
+Use a large font size on desktop.
+
+Reduce the font size on smaller screens.
+
+Start with:
+
+```css
+font-size: 4rem;
+```
+
+Then create appropriate responsive values.
+
+Also create a second version using:
+
+```css
+clamp();
+```
+
+Compare both approaches.
+
+---
+
+## Exercise 8: Responsive Spacing
+
+Create a section with:
+
+```text
+Heading
+Paragraph
+Button
+```
+
+### Requirements
+
+Use larger padding on large screens.
+
+Use smaller padding on smaller screens.
+
+For example, begin with:
+
+```css
+padding: 100px 50px;
+```
+
+Then adapt it using a media query.
+
+Try solving the same problem using:
+
+```css
+clamp();
+```
+
+---
+
+## Exercise 9: Responsive Image
+
+Create an image that:
+
+- Never overflows its container
+- Can shrink on smaller screens
+- Has a maximum width on larger screens
+
+Try using:
+
+```css
+max-width;
+width;
+height;
+```
+
+A possible target structure is:
+
+```css
+img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+```
+
+---
+
+## Exercise 10: Responsive Footer
+
+Create a footer with four sections:
+
+```text
+Company
+Services
+Support
+Social
+```
+
+### Requirements
+
+Large screens:
+
+```text
+Company | Services | Support | Social
+```
+
+Medium screens:
+
+```text
+Company | Services
+Support | Social
+```
+
+Small screens:
+
+```text
+Company
+Services
+Support
+Social
+```
+
+Use CSS Grid and multiple breakpoints.
+
+---
+
+## Exercise 11: Responsive Dashboard
+
+Create six dashboard widgets:
+
+```text
+Users
+Revenue
+Orders
+Messages
+Reports
+Settings
+```
+
+### Requirements
+
+Large:
+
+```text
+3 columns
+```
+
+Medium:
+
+```text
+2 columns
+```
+
+Small:
+
+```text
+1 column
+```
+
+Use:
+
+```css
+grid-template-columns;
+repeat();
+fr;
+@media;
+```
+
+---
+
+## Exercise 12: Responsive Table
+
+Create a table containing:
+
+```text
+Name
+Email
+Role
+Department
+Status
+```
+
+### Requirements
+
+The table should remain readable on smaller screens.
+
+Instead of forcing every column to shrink, create a wrapper that allows horizontal scrolling.
+
+Use:
+
+```css
+overflow-x: auto;
+```
+
+The table itself should maintain a reasonable minimum width.
+
+---
+
+## Exercise 13: Responsive Profile Card
+
+Create a profile card containing:
+
+```text
+Profile Image
+Name
+Description
+Button
+```
+
+### Requirements
+
+Large screens:
+
+```text
+┌──────────┬──────────────────────┐
+│  Image   │ Name                 │
+│          │ Description          │
+│          │ Button               │
+└──────────┴──────────────────────┘
+```
+
+Small screens:
+
+```text
+┌──────────────────────┐
+│        Image         │
+│                      │
+│        Name          │
+│      Description     │
+│       Button         │
+└──────────────────────┘
+```
+
+Use Flexbox.
+
+---
+
+## Exercise 14: Responsive Pricing Section
+
+Create three pricing plans:
+
+```text
+Basic
+Pro
+Business
+```
+
+### Requirements
+
+Desktop:
+
+```text
+Basic | Pro | Business
+```
+
+Mobile:
+
+```text
+Basic
+Pro
+Business
+```
+
+Use CSS Grid.
+
+---
+
+## Exercise 15: Responsive Gallery
+
+Create a gallery containing at least eight images.
+
+### Requirements
+
+Use:
+
+```text
+4 columns on large screens
+2 columns on medium screens
+1 column on small screens
+```
+
+Images should be responsive.
+
+Use:
+
+```css
+width: 100%;
+height: auto;
+```
+
+---
+
+## Exercise 16: Responsive Header
+
+Create a header containing:
+
+```text
+Logo
+Navigation
+```
+
+### Requirements
+
+Large:
+
+```text
+Logo                 Home About Contact
+```
+
+Small:
+
+```text
+Logo
+
+Home
+About
+Contact
+```
+
+Use Flexbox and a media query.
+
+---
+
+## Exercise 17: Mobile Navigation Button
+
+Create:
+
+```text
+Logo
+Menu Button
+Navigation
+```
+
+### Requirements
+
+Large screens:
+
+```text
+Logo       Home About Projects Contact
+```
+
+Small screens:
+
+```text
+Logo                         ☰
+```
+
+Hide the full navigation on smaller screens.
+
+Show the menu button.
+
+Focus on the CSS responsive visibility behavior.
+
+---
+
+## Exercise 18: Mobile-First Card Layout
+
+Create a card layout using a mobile-first approach.
+
+### Requirements
+
+Base styles:
+
+```text
+1 column
+```
+
+At a larger breakpoint:
+
+```text
+2 columns
+```
+
+At another breakpoint:
+
+```text
+3 columns
+```
+
+Use:
+
+```css
+grid-template-columns;
+min-width;
+@media;
+```
+
+Start with the mobile layout instead of the desktop layout.
+
+---
+
+## Exercise 19: Desktop-First Card Layout
+
+Create the same card layout using a desktop-first approach.
+
+### Requirements
+
+Base styles:
+
+```text
+3 columns
+```
+
+Smaller viewport:
+
+```text
+2 columns
+```
+
+Smallest viewport:
+
+```text
+1 column
+```
+
+Use:
+
+```css
+max-width;
+@media;
+```
+
+Compare the CSS with Exercise 18.
+
+---
+
+## Exercise 20: Breakpoint Testing
+
+Create any responsive layout.
+
+Choose one breakpoint:
+
+```css
+@media (max-width: 768px) {
+    /* responsive styles */
+}
+```
+
+Test the layout at:
+
+```text
+767px
+768px
+769px
+```
+
+Then test at:
+
+```text
+600px
+700px
+800px
+900px
+```
+
+### Goal
+
+Understand why testing only the exact breakpoint is not enough.
+
+---
+
+## Exercise 21: Find the Correct Breakpoint
+
+Create a navigation containing several links.
+
+Start with:
+
+```css
+display: flex;
+```
+
+Resize the viewport gradually.
+
+Do not choose the breakpoint in advance.
+
+Instead, find the width where the navigation becomes crowded.
+
+Then create a media query at that point.
+
+### Goal
+
+Practice choosing breakpoints based on content rather than device categories.
+
+---
+
+## Exercise 22: Remove Unnecessary Media Queries
+
+Create this layout:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+### Task
+
+Identify which media query is unnecessary.
+
+Then simplify the CSS.
+
+### Goal
+
+Practice keeping responsive CSS maintainable.
+
+---
+
+## Exercise 23: Use `auto-fit` Instead of Breakpoints
+
+Create a card grid using:
+
+```css
+repeat(auto-fit, minmax(...))
+```
+
+Do not use multiple media queries.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+}
+```
+
+### Goal
+
+Understand how CSS Grid can create responsive behavior automatically.
+
+---
+
+## Exercise 24: Use `clamp()` for Typography
+
+Create:
+
+```text
+Heading
+Paragraph
+```
+
+Use `clamp()` for the heading.
+
+Example:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+Resize the viewport and observe how the heading changes.
+
+### Goal
+
+Understand fluid typography.
+
+---
+
+## Exercise 25: Use `min()` for a Container
+
+Create a centered content container.
+
+Instead of:
+
+```css
+width: 80%;
+max-width: 1200px;
+```
+
+try:
+
+```css
+width: min(90%, 1200px);
+```
+
+### Goal
+
+Understand how `min()` can simplify responsive sizing.
+
+---
+
+## Exercise 26: Use `max()` for Spacing
+
+Create a container with responsive horizontal padding.
+
+Try:
+
+```css
+padding-inline: max(20px, 5vw);
+```
+
+### Goal
+
+Understand how `max()` can maintain a minimum amount of spacing while allowing larger spacing on larger viewports.
+
+---
+
+## Exercise 27: Container Query Exercise
+
+Create a reusable card component.
+
+First create its container:
+
+```css
+.card-container {
+    container-type: inline-size;
+}
+```
+
+Then change the card when the container becomes wide enough:
+
+```css
+@container (min-width: 500px) {
+    .card {
+        display: flex;
+    }
+}
+```
+
+### Goal
+
+Understand the difference between viewport-based responsiveness and component-based responsiveness.
+
+---
+
+## Exercise 28: Reduced Motion
+
+Create an animation.
+
+For example:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+```
+
+Then add:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    .box {
+        transition: none;
+    }
+}
+```
+
+### Goal
+
+Understand how Media Queries can respond to user accessibility preferences.
+
+---
+
+## Exercise 29: Dark Mode
+
+Create a simple page with light colors.
+
+Then add:
+
+```css
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #111;
+        color: #fff;
+    }
+}
+```
+
+### Goal
+
+Understand that Media Queries are not limited to viewport width.
+
+---
+
+## Exercise 30: Fix a Broken Responsive Layout
+
+Consider:
+
+```css
+.container {
+    width: 1200px;
+}
+
+.image {
+    width: 800px;
+}
+
+.cards {
+    display: flex;
+    gap: 50px;
+}
+
+.card {
+    width: 400px;
+}
+```
+
+### Task
+
+Make the layout responsive.
+
+Consider:
+
+```text
+Flexible widths
+Max-width
+Flexbox
+Grid
+Responsive images
+Media queries
+```
+
+### Goal
+
+Practice identifying the source of responsive problems rather than simply adding more breakpoints.
+
+---
+
+## Exercise 31: Find the Horizontal Overflow
+
+Create a page containing:
+
+```text
+Header
+Hero
+Cards
+Footer
+```
+
+Make the page responsive.
+
+Then intentionally introduce a fixed-width element.
+
+For example:
+
+```css
+.box {
+    width: 1000px;
+}
+```
+
+Resize the viewport.
+
+### Task
+
+Find the element causing horizontal scrolling and fix it.
+
+### Goal
+
+Practice debugging responsive overflow.
+
+---
+
+## Exercise 32: Responsive Article Layout
+
+Create:
+
+```text
+Article
+Related Articles
+```
+
+### Requirements
+
+Desktop:
+
+```text
+Article | Related Articles
+```
+
+Mobile:
+
+```text
+Article
+Related Articles
+```
+
+Add:
+
+```text
+Responsive typography
+Responsive spacing
+Responsive images
+```
+
+---
+
+## Exercise 33: Responsive Landing Page
+
+Create a complete landing page containing:
+
+```text
+Header
+Hero
+Features
+Pricing
+Testimonials
+Footer
+```
+
+### Requirements
+
+The page should adapt to:
+
+```text
+Large
+Medium
+Small
+```
+
+Use a combination of:
+
+```text
+Flexbox
+Grid
+Media Queries
+Responsive images
+Flexible units
+clamp()
+```
+
+### Goal
+
+Combine the concepts from the entire chapter.
+
+---
+
+## Exercise 34: Mobile-First vs Desktop-First
+
+Create the same component twice.
+
+### Version A
+
+Use mobile-first CSS.
+
+### Version B
+
+Use desktop-first CSS.
+
+Compare:
+
+```text
+Base styles
+Media queries
+min-width
+max-width
+Number of overrides
+```
+
+### Goal
+
+Understand the practical difference between the two strategies.
+
+---
+
+## Exercise 35: Responsive Design Audit
+
+Take one of your existing webpages.
+
+Check:
+
+```text
+☐ Navigation
+☐ Images
+☐ Typography
+☐ Buttons
+☐ Forms
+☐ Cards
+☐ Spacing
+☐ Grid
+☐ Flexbox
+☐ Overflow
+☐ Breakpoints
+☐ Accessibility
+```
+
+Resize the viewport.
+
+Write down every component that needs improvement.
+
+Then fix them one by one.
+
+---
+
+## Exercise 36: Breakpoint Challenge
+
+Create a layout with no predefined breakpoint values.
+
+Start with:
+
+```text
+Desktop layout
+```
+
+Resize the browser.
+
+Whenever the layout becomes difficult to use, record the viewport width.
+
+Continue until the smallest practical width.
+
+Then create only the breakpoints that were actually necessary.
+
+### Goal
+
+Learn to derive breakpoints from content.
+
+---
+
+## Exercise 37: Responsive Component Challenge
+
+Create a reusable component that works in two different containers.
+
+For example:
+
+```text
+Large container:
+
+┌──────────────────────────────┐
+│ Image │ Content              │
+└──────────────────────────────┘
+```
+
+Small container:
+
+```text
+┌───────────────┐
+│     Image     │
+├───────────────┤
+│    Content    │
+└───────────────┘
+```
+
+Try using a container query rather than a viewport media query.
+
+---
+
+## Exercise 38: Final Responsive Project
+
+Create a complete responsive website.
+
+Choose any topic:
+
+```text
+Portfolio
+Blog
+Restaurant
+Product Landing Page
+Dashboard
+Documentation Website
+Course Website
+```
+
+### Minimum Requirements
+
+The project must include:
+
+```text
+1. Responsive header
+2. Responsive navigation
+3. Hero section
+4. Responsive content sections
+5. Responsive cards
+6. Responsive images
+7. Responsive typography
+8. Responsive footer
+9. At least one media query
+10. Flexbox
+11. CSS Grid
+12. Testing at multiple widths
+```
+
+### Recommended Features
+
+Try adding:
+
+```text
+clamp()
+min()
+max()
+minmax()
+auto-fit
+Container Queries
+prefers-reduced-motion
+prefers-color-scheme
+```
+
+---
+
+## Exercise 39: Debug Your Own Responsive Project
+
+After completing the final project, test it at:
+
+```text
+320px
+375px
+480px
+600px
+768px
+900px
+1024px
+1200px
+1440px
+```
+
+For every width, check:
+
+```text
+☐ No unexpected horizontal scrolling
+☐ Navigation works
+☐ Text remains readable
+☐ Images fit
+☐ Buttons remain usable
+☐ Cards fit
+☐ Sections do not overlap
+☐ Important content remains visible
+☐ Spacing remains reasonable
+```
+
+---
+
+## Exercise 40: Explain Your Responsive Design
+
+After completing the project, explain:
+
+```text
+1. Which responsive strategy did you use?
+2. Why did you choose it?
+3. Which breakpoints did you use?
+4. Why were those breakpoints necessary?
+5. Where did you use Flexbox?
+6. Where did you use Grid?
+7. Which components change structure?
+8. Which components use fluid sizing?
+9. Did you use clamp(), min(), or max()?
+10. Did you use container queries?
+11. How did you test the layout?
+12. What responsive problems did you discover?
+```
+
+### Goal
+
+Being able to explain the design is just as important as being able to write the CSS.
+
+---
+
+## Practice Strategy
+
+A useful order for completing these exercises is:
+
+```text
+Basic
+  ↓
+Exercise 1–10
+  ↓
+Intermediate
+  ↓
+Exercise 11–20
+  ↓
+Modern CSS
+  ↓
+Exercise 21–30
+  ↓
+Advanced
+  ↓
+Exercise 31–40
+```
+
+Do not try to memorize the solutions.
+
+The goal is to understand why a responsive change is needed and which CSS technique is appropriate.
+
+---
+
+## Final Practice Checklist
+
+Before considering this chapter complete, make sure you can:
+
+```text
+☐ Write a basic @media rule
+☐ Use min-width
+☐ Use max-width
+☐ Combine conditions
+☐ Use orientation
+☐ Choose meaningful breakpoints
+☐ Build mobile-first layouts
+☐ Build desktop-first layouts
+☐ Make Flexbox layouts responsive
+☐ Make Grid layouts responsive
+☐ Make images responsive
+☐ Make typography responsive
+☐ Make spacing responsive
+☐ Build responsive navigation
+☐ Build responsive cards
+☐ Build responsive forms
+☐ Handle tables on small screens
+☐ Use clamp()
+☐ Use min()
+☐ Use max()
+☐ Use minmax()
+☐ Use auto-fit
+☐ Understand container queries
+☐ Consider reduced-motion preferences
+☐ Consider color-scheme preferences
+☐ Debug horizontal overflow
+☐ Test between breakpoints
+☐ Explain responsive design decisions
+```
+
+---
+
+> 💡 **Pro Tip:** Do the exercises without copying the examples from earlier sections. If you get stuck, first identify the layout problem, then choose the CSS feature that naturally solves it.
+
+---
+
+> 💡 **Remember:** The goal of these exercises is not to create hundreds of media queries. The goal is to learn how to build flexible layouts and use Media Queries only when a meaningful responsive change is required.
