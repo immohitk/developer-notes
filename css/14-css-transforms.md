@@ -34,3 +34,41 @@
 - [Interview Questions](#interview-questions)
 - [Practice Exercises](#practice-exercises)
 - [Related Topics](#related-topics)
+
+---
+
+## Introduction
+
+CSS Transforms allow you to visually move, resize, rotate, or distort an element without changing the normal document flow.
+
+Transforms are commonly used for:
+
+- Moving elements
+- Scaling elements
+- Rotating elements
+- Skewing elements
+- Creating hover effects
+- Creating interactive UI effects
+- Building 2D and 3D visual effects
+
+For example:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+This rotates the element by `45deg`.
+
+Another example:
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+This increases the visual size of the element.
+
+CSS Transforms are especially useful when creating interactive interfaces because they can be combined with CSS transitions and animations to create smooth visual effects.
