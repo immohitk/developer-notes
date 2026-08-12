@@ -1284,3 +1284,196 @@ Therefore, `scaleY()` is useful when you want to change the height without chang
 > 💡 **Tip:** Use `scaleY()` when you specifically need vertical scaling and want to keep the horizontal size unchanged.
 
 > 💡 **Remember:** Values greater than `1` make the element taller, values between `0` and `1` make it shorter, and negative values can mirror the element vertically.
+
+---
+
+## Rotate
+
+The `rotate()` function rotates an element around its **transform origin**.
+
+It is commonly used to rotate elements clockwise or counterclockwise and is especially useful for icons, images, buttons, cards, and interactive effects.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: rotate(angle);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+This rotates the element by `45deg` clockwise.
+
+### Positive Rotation
+
+Positive angle values rotate the element clockwise:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+Another example:
+
+```css
+.box {
+    transform: rotate(90deg);
+}
+```
+
+This rotates the element one-quarter of a full turn.
+
+### Negative Rotation
+
+Negative angle values rotate the element counterclockwise:
+
+```css
+.box {
+    transform: rotate(-45deg);
+}
+```
+
+This rotates the element `45deg` counterclockwise.
+
+### Rotation Units
+
+The `rotate()` function accepts angle units such as:
+
+```text
+deg
+rad
+grad
+turn
+```
+
+For example:
+
+```css
+.box {
+    transform: rotate(0.25turn);
+}
+```
+
+A value of `0.25turn` represents one-quarter of a full rotation.
+
+You can also use:
+
+```css
+.box {
+    transform: rotate(1turn);
+}
+```
+
+This represents a complete `360deg` rotation.
+
+### Practical Example
+
+```html
+<div class="box">Rotate Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 20px;
+    background: steelblue;
+    transform: rotate(15deg);
+}
+```
+
+The element is visually rotated by `15deg`.
+
+### Hover Effect
+
+`rotate()` can be combined with a transition to create a smooth rotation:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: rotate(10deg);
+}
+```
+
+When the user hovers over the element, it smoothly rotates `10deg`.
+
+### Rotating an Icon
+
+Rotation is commonly used for icons:
+
+```css
+.icon {
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: rotate(180deg);
+}
+```
+
+The icon smoothly rotates halfway around when hovered.
+
+### Full Rotation
+
+You can create a complete rotation:
+
+```css
+.icon:hover {
+    transform: rotate(360deg);
+}
+```
+
+For continuous rotation, CSS animations can be used:
+
+```css
+.icon {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+### Rotation and Transform Origin
+
+The element rotates around its transform origin.
+
+By default, the transform origin is generally the center of the element:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+You can change the rotation point:
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(45deg);
+}
+```
+
+Now the element rotates around its top-left corner.
+
+> 💡 **Tip:** Use small rotation values for normal UI interactions. Values such as `5deg`, `10deg`, or `15deg` can provide subtle visual feedback without making the interface difficult to use.
+
+> 💡 **Remember:** Positive angles rotate clockwise, while negative angles rotate counterclockwise.
