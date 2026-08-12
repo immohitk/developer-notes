@@ -12104,3 +12104,755 @@ and many others.
 ---
 
 > 💡 **Remember:** A practical responsive layout usually changes structure rather than simply shrinking everything. Columns can stack, grids can reduce columns, navigation can wrap, images can become fluid, and spacing and typography can adapt to the available space.
+
+---
+
+## Key Takeaways
+
+CSS media queries allow CSS rules to respond to different conditions, especially viewport size.
+
+They are one of the core tools used to build responsive websites.
+
+---
+
+## 1. Media Queries Apply Conditional CSS
+
+A media query allows CSS to be applied only when a condition is true.
+
+```css
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+}
+```
+
+The rule inside the media query applies when the viewport width is `768px` or less.
+
+---
+
+## 2. Basic Syntax
+
+The general structure is:
+
+```css
+@media (condition) {
+    selector {
+        property: value;
+    }
+}
+```
+
+For example:
+
+```css
+@media (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+---
+
+## 3. `min-width` and `max-width`
+
+These are commonly used for responsive layouts.
+
+### `min-width`
+
+Applies styles when the viewport is at least the specified width.
+
+```css
+@media (min-width: 768px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+```
+
+### `max-width`
+
+Applies styles when the viewport is at most the specified width.
+
+```css
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+}
+```
+
+---
+
+## 4. Media Queries Can Use Multiple Conditions
+
+Conditions can be combined.
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        padding: 30px;
+    }
+}
+```
+
+The styles apply only when both conditions are satisfied.
+
+---
+
+## 5. Media Queries Are Not Limited to Width
+
+Media queries can check different features.
+
+Common examples include:
+
+```css
+@media (orientation: portrait) {
+    /* styles */
+}
+```
+
+```css
+@media (orientation: landscape) {
+    /* styles */
+}
+```
+
+Other media features can also be used depending on the requirement.
+
+---
+
+## 6. Breakpoints Should Be Based on Content
+
+A breakpoint is a point where the layout changes.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The exact value should not be chosen only because it represents a particular device.
+
+Instead, choose a breakpoint where the content or layout actually starts to become difficult to use.
+
+---
+
+## 7. Mobile-First Design
+
+A mobile-first approach starts with the smaller layout and progressively enhances it.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+```
+
+The layout progresses from:
+
+```text
+Mobile
+1 column
+   ↓
+Tablet
+2 columns
+   ↓
+Desktop
+3 columns
+```
+
+---
+
+## 8. Desktop-First Design
+
+A desktop-first approach starts with the larger layout and modifies it for smaller screens.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Both approaches can work.
+
+The important thing is to use a consistent strategy within a project.
+
+---
+
+## 9. Media Queries Work With Flexbox
+
+Media queries can change Flexbox behavior.
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+This is useful for:
+
+- Navigation
+- Cards
+- Hero sections
+- Forms
+- Button groups
+- Content layouts
+
+---
+
+## 10. Media Queries Work With CSS Grid
+
+Grid layouts can change the number of columns.
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+A layout can therefore change from:
+
+```text
+3 columns
+    ↓
+2 columns
+    ↓
+1 column
+```
+
+as the viewport becomes smaller.
+
+---
+
+## 11. Responsive Design Is More Than Changing Width
+
+A responsive design may change:
+
+```text
+Layout
+Spacing
+Typography
+Navigation
+Alignment
+Image size
+Column count
+Content order
+Visibility
+```
+
+For example:
+
+```css
+.hero {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+```
+
+The structure changes instead of simply becoming smaller.
+
+---
+
+## 12. Responsive Images Are Important
+
+Images should generally be flexible.
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This helps prevent images from overflowing their containers.
+
+A maximum width can also be used:
+
+```css
+img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+```
+
+---
+
+## 13. Responsive Typography
+
+Typography can change at different viewport sizes.
+
+```css
+h1 {
+    font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+```
+
+Fluid typography can also be used:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+This can reduce the need for multiple typography breakpoints.
+
+---
+
+## 14. Responsive Spacing
+
+Spacing can also adapt.
+
+```css
+.section {
+    padding: 100px 50px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+}
+```
+
+Large layouts can use more spacing while smaller layouts can use more compact spacing.
+
+---
+
+## 15. Common Responsive Patterns
+
+Some patterns appear repeatedly in responsive websites.
+
+### Horizontal to Vertical
+
+```text
+Desktop:
+
+A | B | C
+
+
+Mobile:
+
+A
+B
+C
+```
+
+### Multiple Columns to Fewer Columns
+
+```text
+Desktop:
+
+A | B | C | D
+
+
+Tablet:
+
+A | B
+C | D
+
+
+Mobile:
+
+A
+B
+C
+D
+```
+
+### Sidebar to Stacked Content
+
+```text
+Desktop:
+
+Main Content | Sidebar
+
+
+Mobile:
+
+Main Content
+Sidebar
+```
+
+### Large Navigation to Compact Navigation
+
+```text
+Desktop:
+
+Home | About | Projects | Contact
+
+
+Mobile:
+
+Home
+About
+Projects
+Contact
+```
+
+---
+
+## 16. Not Everything Requires a Media Query
+
+Modern CSS provides features that can create responsive behavior automatically.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+}
+```
+
+Other useful functions include:
+
+```css
+min()
+max()
+clamp()
+```
+
+These can reduce the number of media queries required.
+
+---
+
+## 17. Container Queries Are Different
+
+Media queries generally respond to the viewport.
+
+Container queries can respond to the size of a component's container.
+
+```css
+.card-container {
+    container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+    .card {
+        display: flex;
+    }
+}
+```
+
+This is particularly useful for reusable components.
+
+---
+
+## 18. Test Between Breakpoints
+
+Do not test only the exact breakpoint values.
+
+If the CSS contains:
+
+```css
+@media (max-width: 768px) {
+    /* styles */
+}
+```
+
+test around the breakpoint:
+
+```text
+767px
+768px
+769px
+```
+
+Also test common viewport sizes and intermediate widths.
+
+A layout can work at `768px` and still break at `820px`.
+
+---
+
+## 19. Avoid Too Many Breakpoints
+
+A stylesheet does not need a media query for every device size.
+
+Instead of:
+
+```text
+320px
+375px
+390px
+414px
+480px
+600px
+768px
+820px
+900px
+1024px
+1200px
+1440px
+```
+
+prefer a small number of meaningful breakpoints when possible.
+
+The breakpoints should represent actual layout changes.
+
+---
+
+## 20. Keep Important Content Accessible
+
+Responsive design should not unnecessarily remove important information.
+
+Avoid doing this:
+
+```css
+@media (max-width: 600px) {
+    .important-content {
+        display: none;
+    }
+}
+```
+
+unless there is a valid reason and an appropriate alternative exists.
+
+Instead consider:
+
+```text
+Move it
+   ↓
+Stack it
+   ↓
+Collapse it appropriately
+   ↓
+Make it scrollable
+   ↓
+Keep it accessible
+```
+
+---
+
+## 21. Media Queries Should Support Usability
+
+The goal of responsive CSS is not simply to make a page fit.
+
+The layout should remain:
+
+```text
+Readable
+Usable
+Accessible
+Navigable
+Visually clear
+```
+
+A technically fitting layout can still provide a poor user experience.
+
+---
+
+## 22. Combine CSS Features
+
+Responsive layouts usually combine multiple CSS features.
+
+For example:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Here:
+
+```text
+Grid
+ +
+Media Query
+ +
+Flexible Columns
+ +
+Gap
+ =
+Responsive Layout
+```
+
+Media queries are therefore one part of a larger responsive CSS strategy.
+
+---
+
+## 23. Use Flexible Units
+
+Responsive designs commonly use flexible units such as:
+
+```text
+%
+rem
+em
+vw
+vh
+fr
+```
+
+For example:
+
+```css
+.container {
+    width: 90%;
+}
+
+.title {
+    font-size: 5vw;
+}
+```
+
+Flexible units can allow layouts to adapt naturally.
+
+---
+
+## 24. Use Relative Constraints
+
+Functions such as `min()`, `max()`, and `clamp()` can create useful responsive constraints.
+
+Example:
+
+```css
+.container {
+    width: min(90%, 1200px);
+}
+```
+
+Example:
+
+```css
+.title {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+These techniques can complement media queries.
+
+---
+
+## 25. Main Idea to Remember
+
+The most important concept is:
+
+```text
+Media Query
+     ↓
+Detect a condition
+     ↓
+Apply different CSS
+     ↓
+Adapt the layout
+     ↓
+Improve usability
+```
+
+A media query does not automatically make a website responsive.
+
+It provides the condition that allows the stylesheet to adapt.
+
+---
+
+## Quick Summary
+
+```text
+CSS Media Queries
+│
+├── Conditional CSS
+│
+├── min-width
+├── max-width
+├── orientation
+├── Multiple conditions
+│
+├── Breakpoints
+│
+├── Mobile-first
+├── Desktop-first
+│
+├── Flexbox
+├── Grid
+│
+├── Responsive navigation
+├── Responsive cards
+├── Responsive forms
+├── Responsive images
+├── Responsive typography
+├── Responsive spacing
+│
+├── min()
+├── max()
+├── clamp()
+├── auto-fit
+├── minmax()
+│
+├── Container queries
+│
+└── Testing and usability
+```
+
+---
+
+> 💡 **Pro Tip:** Do not memorize a fixed list of device breakpoints. Understand how to recognize when content needs to change and then choose the simplest CSS technique that solves the problem.
+
+---
+
+> 💡 **Remember:** The purpose of responsive CSS is not to create a different website for every device. It is to create one flexible design that adapts gracefully to different available spaces.
