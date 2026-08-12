@@ -3846,3 +3846,256 @@ Controls whether the back side of a 3D-transformed element is visible.
 - [MDN Web Docs — CSS `rotateX()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateX)
 - [MDN Web Docs — CSS `rotateY()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateY)
 - [MDN Web Docs — CSS `rotateZ()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateZ)
+
+---
+
+## Quick Revision
+
+### CSS Transform
+
+The `transform` property is used to visually modify an element by moving, scaling, rotating, or skewing it.
+
+```css
+.box {
+    transform: rotate(20deg);
+}
+```
+
+### Translate
+
+Moves an element along the X and Y axes.
+
+```css
+.box {
+    transform: translate(50px, 20px);
+}
+```
+
+### Translate X
+
+Moves an element horizontally.
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+### Translate Y
+
+Moves an element vertically.
+
+```css
+.box {
+    transform: translateY(20px);
+}
+```
+
+### Translate 3D
+
+Moves an element along the X, Y, and Z axes.
+
+```css
+.box {
+    transform: translate3d(50px, 20px, 30px);
+}
+```
+
+### Scale
+
+Changes the visual size of an element.
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+### Scale X
+
+Changes the horizontal scale.
+
+```css
+.box {
+    transform: scaleX(1.2);
+}
+```
+
+### Scale Y
+
+Changes the vertical scale.
+
+```css
+.box {
+    transform: scaleY(1.2);
+}
+```
+
+### Rotate
+
+Rotates an element around the Z-axis.
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+### Rotate X
+
+Rotates an element around the X-axis.
+
+```css
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+### Rotate Y
+
+Rotates an element around the Y-axis.
+
+```css
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+### Rotate Z
+
+Rotates an element around the Z-axis.
+
+```css
+.box {
+    transform: rotateZ(45deg);
+}
+```
+
+### Skew
+
+Skews an element along the X and Y axes.
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+### Skew X
+
+Skews an element along the X-axis.
+
+```css
+.box {
+    transform: skewX(20deg);
+}
+```
+
+### Skew Y
+
+Skews an element along the Y-axis.
+
+```css
+.box {
+    transform: skewY(20deg);
+}
+```
+
+### Transform Origin
+
+Controls the point around which a transformation occurs.
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(45deg);
+}
+```
+
+### Multiple Transforms
+
+Multiple transformations can be combined in one `transform` declaration.
+
+```css
+.box {
+    transform: translateY(-10px) rotate(5deg) scale(1.05);
+}
+```
+
+The order of the transformations matters.
+
+### 2D Transforms
+
+2D transforms work within the X-Y plane.
+
+```css
+.box {
+    transform: translate(50px, 20px) rotate(15deg);
+}
+```
+
+### 3D Transforms
+
+3D transforms use the X, Y, and Z axes.
+
+```css
+.box {
+    transform: translate3d(30px, 20px, 40px);
+}
+```
+
+### Perspective
+
+Creates a sense of depth for 3D transformations.
+
+```css
+.container {
+    perspective: 800px;
+}
+```
+
+### Transform Style
+
+Controls whether child elements remain in 3D space.
+
+```css
+.box {
+    transform-style: preserve-3d;
+}
+```
+
+### Backface Visibility
+
+Controls whether the back face of a 3D-transformed element is visible.
+
+```css
+.box {
+    backface-visibility: hidden;
+}
+```
+
+### Quick Reference Table
+
+| Property / Function | Purpose |
+| --- | --- |
+| `transform` | Applies transformations |
+| `translate()` | Moves an element |
+| `translateX()` | Moves horizontally |
+| `translateY()` | Moves vertically |
+| `translate3d()` | Moves in 3D space |
+| `scale()` | Changes size |
+| `scaleX()` | Changes horizontal scale |
+| `scaleY()` | Changes vertical scale |
+| `rotate()` | Rotates an element |
+| `rotateX()` | Rotates around X-axis |
+| `rotateY()` | Rotates around Y-axis |
+| `rotateZ()` | Rotates around Z-axis |
+| `skew()` | Skews on X and Y axes |
+| `skewX()` | Skews on X-axis |
+| `skewY()` | Skews on Y-axis |
+| `transform-origin` | Sets transformation origin |
+| `perspective` | Controls 3D depth |
+| `transform-style` | Controls child 3D rendering |
+| `backface-visibility` | Controls visibility of the back face |
+
+> 💡 **Remember:** `transform` is used for visual transformations, while properties such as `transform-origin`, `perspective`, `transform-style`, and `backface-visibility` control how those transformations behave.
