@@ -2786,3 +2786,171 @@ The Z-axis introduces depth and is used for three-dimensional effects.
 > 💡 **Tip:** Use 2D transforms for common interface effects such as moving, scaling, rotating, and skewing elements on the screen.
 
 > 💡 **Remember:** 2D transforms operate within the X-Y plane, while 3D transforms can also manipulate depth using the Z-axis.
+
+---
+
+## 3D Transforms
+
+CSS 3D transforms allow you to visually transform elements in **three-dimensional space**.
+
+Unlike 2D transforms, which work mainly along the X-axis and Y-axis, 3D transforms also use the **Z-axis** to create depth.
+
+### The Three Axes
+
+3D transformations work with three axes:
+
+```text
+              Y-axis
+                ↑
+                │
+                │
+                │
+                └────────────→ X-axis
+               /
+              /
+             ↓
+           Z-axis
+```
+
+They represent:
+
+- **X-axis** → Horizontal direction
+- **Y-axis** → Vertical direction
+- **Z-axis** → Depth
+
+### Common 3D Transform Functions
+
+Some commonly used 3D transform functions include:
+
+- `translate3d()`
+- `translateZ()`
+- `rotateX()`
+- `rotateY()`
+- `rotateZ()`
+
+### Basic Syntax
+
+```css
+selector {
+    transform: function(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+This rotates the element around the Y-axis.
+
+### Moving in 3D Space
+
+The `translate3d()` function can move an element along all three axes:
+
+```css
+.box {
+    transform: translate3d(50px, 20px, 30px);
+}
+```
+
+Here:
+
+```text
+50px → X-axis
+20px → Y-axis
+30px → Z-axis
+```
+
+### Rotating Around the X-Axis
+
+```css
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+This rotates the element around the horizontal X-axis.
+
+### Rotating Around the Y-Axis
+
+```css
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+This rotates the element around the vertical Y-axis.
+
+### Rotating Around the Z-Axis
+
+```css
+.box {
+    transform: rotateZ(45deg);
+}
+```
+
+This rotates the element around the Z-axis.
+
+### Perspective
+
+3D transformations are commonly combined with the `perspective` property:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+The `perspective` property gives the viewer a sense of depth.
+
+### Practical Example
+
+```html
+<div class="container">
+    <div class="box">3D Transform</div>
+</div>
+```
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    transform: rotateY(35deg) translateZ(20px);
+}
+```
+
+When the user hovers over the element, it rotates around the Y-axis and moves forward along the Z-axis.
+
+### Combining Multiple 3D Transforms
+
+You can combine several 3D transformations:
+
+```css
+.box {
+    transform: translate3d(30px, 20px, 40px)
+               rotateX(20deg)
+               rotateY(25deg);
+}
+```
+
+This applies movement and rotation in three-dimensional space.
+
+> 💡 **Tip:** Use `perspective` with 3D transformations when you want the depth and rotation to appear more realistic.
+
+> 💡 **Remember:** 3D transforms use the X, Y, and Z axes. The Z-axis represents depth, allowing elements to move toward or away from the viewer.
