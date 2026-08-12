@@ -2279,3 +2279,198 @@ Therefore, `skewY()` is useful when you only want to distort the element vertica
 > 💡 **Tip:** Use `skewY()` when you need a vertical slant without changing the X-axis skew.
 
 > 💡 **Remember:** Positive and negative angle values control the direction of the Y-axis skew.
+
+---
+
+## Transform Origin
+
+The `transform-origin` property specifies the point around which a transformed element is rotated, scaled, or skewed.
+
+By default, the transform origin is generally the **center of the element**.
+
+### Basic Syntax
+
+```css
+selector {
+    transform-origin: x-axis y-axis;
+}
+```
+
+For example:
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(45deg);
+}
+```
+
+Here, the element rotates around its **top-left corner** instead of its center.
+
+### Default Transform Origin
+
+If you do not specify `transform-origin`, the transformation generally occurs from the center:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+This is equivalent to using:
+
+```css
+.box {
+    transform-origin: center;
+    transform: rotate(45deg);
+}
+```
+
+### Using Keywords
+
+Common keyword values include:
+
+```text
+left
+center
+right
+top
+bottom
+```
+
+You can combine horizontal and vertical values:
+
+```css
+.box {
+    transform-origin: top left;
+}
+```
+
+```css
+.box {
+    transform-origin: center center;
+}
+```
+
+```css
+.box {
+    transform-origin: bottom right;
+}
+```
+
+### Using Percentage Values
+
+You can specify the transform origin using percentages:
+
+```css
+.box {
+    transform-origin: 0% 0%;
+}
+```
+
+This places the origin at the top-left corner.
+
+Another example:
+
+```css
+.box {
+    transform-origin: 50% 50%;
+}
+```
+
+This places the origin at the center.
+
+### Using Length Values
+
+You can also use CSS length units:
+
+```css
+.box {
+    transform-origin: 20px 30px;
+}
+```
+
+The first value controls the horizontal position, while the second value controls the vertical position.
+
+### Transform Origin with Rotation
+
+The effect is easy to see when rotating an element.
+
+Using the default center:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+Using the top-left corner:
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(45deg);
+}
+```
+
+The element rotates around a different point.
+
+### Transform Origin with Scaling
+
+`transform-origin` also affects scaling:
+
+```css
+.box {
+    transform-origin: left center;
+    transform: scale(1.5);
+}
+```
+
+The element scales outward from its left-center point.
+
+### Practical Example
+
+```html
+<div class="box">Transform Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transform-origin: top left;
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: rotate(10deg);
+}
+```
+
+When the user hovers over the element, it rotates around its top-left corner.
+
+### Transform Origin and 3D Transforms
+
+`transform-origin` can also be used with 3D transformations:
+
+```css
+.box {
+    transform-origin: center;
+    transform: rotateY(45deg);
+}
+```
+
+You can also specify a third value for the Z-axis:
+
+```css
+.box {
+    transform-origin: 50% 50% 20px;
+}
+```
+
+This allows you to control the origin in three-dimensional space.
+
+> 💡 **Tip:** Change `transform-origin` when you want an element to rotate or scale from a specific point instead of its center.
+
+> 💡 **Remember:** `transform-origin` changes the point around which a transformation occurs; it does not itself transform the element.
