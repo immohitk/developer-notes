@@ -15144,3 +15144,806 @@ Accessible Result
 ---
 
 > 💡 **Remember:** **Do not make every screen size a special case. Build a flexible layout first, then use media queries only where the design genuinely needs to change.**
+
+---
+
+## Interview Questions
+
+This section contains common interview questions related to CSS Media Queries and responsive design.
+
+---
+
+### 1. What are CSS Media Queries?
+
+CSS Media Queries are conditional CSS rules that allow styles to be applied based on characteristics of the device or viewport.
+
+Example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+}
+```
+
+The styles inside the media query apply when the viewport width is `768px` or less.
+
+---
+
+### 2. Why are Media Queries used?
+
+Media Queries are mainly used to create responsive layouts.
+
+They allow a webpage to adapt to different:
+
+```text
+Viewport sizes
+Screen orientations
+Device characteristics
+User preferences
+```
+
+For example, a desktop layout can be changed into a stacked mobile layout.
+
+---
+
+### 3. What is the basic syntax of a Media Query?
+
+The basic syntax is:
+
+```css
+@media (condition) {
+    selector {
+        property: value;
+    }
+}
+```
+
+Example:
+
+```css
+@media (min-width: 768px) {
+    .box {
+        width: 80%;
+    }
+}
+```
+
+---
+
+### 4. What is the difference between `min-width` and `max-width`?
+
+`min-width` applies styles when the viewport is at least the specified width.
+
+```css
+@media (min-width: 768px) {
+    /* 768px and above */
+}
+```
+
+`max-width` applies styles when the viewport is at most the specified width.
+
+```css
+@media (max-width: 768px) {
+    /* 768px and below */
+}
+```
+
+---
+
+### 5. What is a breakpoint?
+
+A breakpoint is a point where the layout changes because the available space requires a different design.
+
+Example:
+
+```css
+@media (max-width: 700px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The important principle is to choose breakpoints based on the content and layout rather than simply targeting specific devices.
+
+---
+
+### 6. What is mobile-first design?
+
+Mobile-first design starts with the smaller-screen layout and progressively adds styles for larger screens.
+
+Example:
+
+```css
+.cards {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
+
+The basic idea is:
+
+```text
+Mobile
+  ↓
+Tablet
+  ↓
+Desktop
+```
+
+---
+
+### 7. What is desktop-first design?
+
+Desktop-first design starts with the larger-screen layout and uses media queries to modify it for smaller screens.
+
+Example:
+
+```css
+.cards {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+---
+
+### 8. Which is better: mobile-first or desktop-first?
+
+Neither approach is universally better.
+
+However, mobile-first is commonly useful because it encourages a simple base layout and progressive enhancement for larger screens.
+
+The important thing is to choose a consistent strategy that works well for the project.
+
+---
+
+### 9. Can Media Queries be used with Flexbox?
+
+Yes.
+
+Media Queries can change Flexbox properties based on available space.
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+---
+
+### 10. Can Media Queries be used with CSS Grid?
+
+Yes.
+
+For example:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The grid changes from multiple columns to a single column.
+
+---
+
+### 11. Can Media Queries use multiple conditions?
+
+Yes.
+
+Conditions can be combined.
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        padding: 30px;
+    }
+}
+```
+
+Both conditions must be satisfied for the rule to apply.
+
+---
+
+### 12. Can Media Queries detect orientation?
+
+Yes.
+
+For example:
+
+```css
+@media (orientation: portrait) {
+    .hero {
+        padding: 20px;
+    }
+}
+```
+
+And:
+
+```css
+@media (orientation: landscape) {
+    .hero {
+        padding: 40px;
+    }
+}
+```
+
+The two common orientation values are:
+
+```text
+portrait
+landscape
+```
+
+---
+
+### 13. Are Media Queries only used for screen width?
+
+No.
+
+Media Queries can respond to different media features and user preferences.
+
+Examples include:
+
+```text
+Width
+Height
+Orientation
+Color scheme
+Reduced motion preference
+```
+
+For example:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto;
+    }
+}
+```
+
+---
+
+### 14. What is the difference between Media Queries and Container Queries?
+
+Media Queries generally respond to the viewport or device environment.
+
+```css
+@media (max-width: 768px) {
+    .card {
+        /* styles */
+    }
+}
+```
+
+Container Queries respond to the size of a component's containing element.
+
+```css
+.card-wrapper {
+    container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+    .card {
+        display: flex;
+    }
+}
+```
+
+In simple terms:
+
+```text
+Media Query
+    ↓
+Viewport condition
+
+Container Query
+    ↓
+Container condition
+```
+
+---
+
+### 15. Why should you avoid too many breakpoints?
+
+Too many breakpoints make responsive CSS:
+
+```text
+Harder to understand
+Harder to maintain
+More likely to conflict
+More difficult to debug
+```
+
+Instead, use breakpoints only when the layout actually needs to change.
+
+---
+
+### 16. Should breakpoints be based on specific devices?
+
+Not necessarily.
+
+A better approach is to identify where the content or layout starts to become difficult to use.
+
+Think:
+
+```text
+Content problem
+      ↓
+Layout change
+      ↓
+Breakpoint
+```
+
+rather than:
+
+```text
+Device
+      ↓
+Breakpoint
+```
+
+---
+
+### 17. How can you make images responsive?
+
+A common approach is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This prevents the image from exceeding the width of its container.
+
+---
+
+### 18. How can typography be made responsive?
+
+Media Queries can change font sizes:
+
+```css
+h1 {
+    font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+```
+
+Modern CSS can also use `clamp()`:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+### 19. What is `clamp()` and why is it useful for responsive design?
+
+`clamp()` allows a value to have a minimum, preferred, and maximum value.
+
+Syntax:
+
+```css
+clamp(minimum, preferred, maximum)
+```
+
+Example:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+This allows the font size to adapt fluidly while staying within defined limits.
+
+---
+
+### 20. Can responsive layouts be created without Media Queries?
+
+Yes.
+
+Modern CSS provides features that can create responsive behavior without explicit breakpoints.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+}
+```
+
+Other useful tools include:
+
+```text
+Flexbox
+Grid
+min()
+max()
+clamp()
+minmax()
+auto-fit
+auto-fill
+```
+
+Media Queries are still useful when a specific layout change is required.
+
+---
+
+### 21. Why is Flexbox useful in responsive design?
+
+Flexbox allows elements to adapt to available space along one dimension.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+```
+
+It can also change direction at a breakpoint:
+
+```css
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+---
+
+### 22. Why is CSS Grid useful in responsive design?
+
+Grid is useful for layouts involving rows and columns.
+
+Example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+The number of columns can change at a breakpoint:
+
+```css
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+---
+
+### 23. What happens when multiple Media Queries match?
+
+If multiple Media Queries match, their applicable CSS rules participate in the normal CSS cascade.
+
+For example:
+
+```css
+@media (max-width: 900px) {
+    .box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .box {
+        padding: 30px;
+    }
+}
+```
+
+At `600px`, both conditions match.
+
+The later declaration wins when specificity is otherwise equal.
+
+---
+
+### 24. Can Media Queries be combined with logical operators?
+
+Yes.
+
+For example:
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .box {
+        padding: 30px;
+    }
+}
+```
+
+Logical operators allow more precise conditions to be created.
+
+Common operators include:
+
+```text
+and
+not
+or
+```
+
+---
+
+### 25. How should responsive layouts be tested?
+
+Do not test only one or two device widths.
+
+Test:
+
+```text
+Small widths
+Medium widths
+Large widths
+Intermediate widths
+Portrait
+Landscape
+```
+
+Also test around breakpoints.
+
+For example, if the breakpoint is:
+
+```css
+@media (max-width: 768px)
+```
+
+test:
+
+```text
+767px
+768px
+769px
+```
+
+---
+
+### 26. What is a common mistake when using Media Queries?
+
+One common mistake is using too many breakpoints.
+
+Other mistakes include:
+
+```text
+Fixed widths
+Unnecessary overrides
+Poor breakpoint choices
+Ignoring overflow
+Hiding important content
+Making text too small
+Ignoring accessibility
+Using JavaScript unnecessarily
+```
+
+---
+
+### 27. Why should JavaScript not always be used for responsive layouts?
+
+Many layout changes can be handled directly with CSS.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Using JavaScript just to change a CSS layout can add unnecessary complexity.
+
+CSS should generally handle presentation and layout when it can do so appropriately.
+
+---
+
+### 28. How do Media Queries contribute to accessibility?
+
+Media Queries can respond to user preferences.
+
+For example:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms;
+        transition-duration: 0.01ms;
+    }
+}
+```
+
+They can also respond to color-scheme preferences:
+
+```css
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #111;
+        color: #fff;
+    }
+}
+```
+
+Responsive design should also preserve readable text, usable controls, and accessible content.
+
+---
+
+### 29. What is the difference between responsive design and Media Queries?
+
+Responsive design is the broader design approach.
+
+Media Queries are one of the CSS tools used to implement responsive behavior.
+
+In simple terms:
+
+```text
+Responsive Design
+       ↓
+Overall approach
+       ↓
+Flexbox + Grid + Flexible Units + Media Queries + Other CSS Features
+```
+
+Media Queries are therefore a part of responsive design, not the entire concept.
+
+---
+
+### 30. What is the most important principle when writing Media Queries?
+
+The most important principle is to create flexible layouts first and use Media Queries when a meaningful change is required.
+
+A useful strategy is:
+
+```text
+Flexible Layout
+      ↓
+Natural Adaptation
+      ↓
+Identify Layout Problem
+      ↓
+Add Breakpoint
+      ↓
+Test
+      ↓
+Refine
+```
+
+---
+
+## Rapid-Fire Interview Revision
+
+### Q: What does `max-width` mean?
+
+```text
+Apply the rule at or below the specified width.
+```
+
+### Q: What does `min-width` mean?
+
+```text
+Apply the rule at or above the specified width.
+```
+
+### Q: What is a breakpoint?
+
+```text
+A point where the layout changes to adapt to available space.
+```
+
+### Q: What is mobile-first?
+
+```text
+Start with the smaller layout and enhance it for larger screens.
+```
+
+### Q: What is desktop-first?
+
+```text
+Start with the larger layout and adapt it for smaller screens.
+```
+
+### Q: Can Media Queries work with Grid?
+
+```text
+Yes.
+```
+
+### Q: Can Media Queries work with Flexbox?
+
+```text
+Yes.
+```
+
+### Q: Can Media Queries detect orientation?
+
+```text
+Yes.
+```
+
+### Q: Can Media Queries detect user preferences?
+
+```text
+Yes.
+```
+
+### Q: Are Media Queries the only way to create responsive layouts?
+
+```text
+No.
+```
+
+### Q: What can reduce the need for Media Queries?
+
+```text
+Flexbox
+Grid
+min()
+max()
+clamp()
+minmax()
+auto-fit
+auto-fill
+Container Queries
+```
+
+### Q: Should breakpoints be based only on devices?
+
+```text
+No. They should generally be based on content and layout requirements.
+```
+
+---
+
+> 💡 **Interview Tip:** When answering a Media Query question, do not focus only on syntax. Explain the purpose, show a small example, and connect it to responsive design.
+
+---
+
+> 💡 **Remember:** **Media Queries provide conditions; CSS layout systems provide the adaptation.** Good responsive design combines both.
