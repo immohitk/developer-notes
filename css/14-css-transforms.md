@@ -4291,3 +4291,264 @@ For animations and transitions involving transforms, consider the user's reduced
 > 💡 **Tip:** Use transforms to enhance an interface rather than making the interface dependent on complex visual effects.
 
 > 💡 **Remember:** Good transform code should be purposeful, readable, smooth, and appropriate for the interaction being created.
+
+---
+
+## Common Mistakes
+
+Avoiding common mistakes when using CSS transforms helps keep your styles predictable, maintainable, and easier to debug.
+
+### 1. Forgetting the `transform` Property
+
+Transform functions must be used through the `transform` property:
+
+```css
+/* Correct */
+.box {
+    transform: rotate(20deg);
+}
+```
+
+Writing the function without `transform` is invalid:
+
+```css
+/* Incorrect */
+.box {
+    rotate(20deg);
+}
+```
+
+### 2. Overwriting the `transform` Property
+
+If you declare `transform` more than once, the later declaration replaces the earlier one:
+
+```css
+/* Incorrect */
+.box {
+    transform: translateX(50px);
+    transform: rotate(20deg);
+}
+```
+
+Only the rotation is applied.
+
+Combine the transformations instead:
+
+```css
+/* Correct */
+.box {
+    transform: translateX(50px) rotate(20deg);
+}
+```
+
+### 3. Ignoring Transform Order
+
+The order of multiple transformations can affect the final result:
+
+```css
+.box {
+    transform: translateX(50px) rotate(20deg);
+}
+```
+
+is not necessarily visually equivalent to:
+
+```css
+.box {
+    transform: rotate(20deg) translateX(50px);
+}
+```
+
+Always consider the order in which transformations are written.
+
+### 4. Using the Wrong Axis
+
+Using the wrong transform function can produce an unexpected result.
+
+For horizontal movement:
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+For vertical movement:
+
+```css
+.box {
+    transform: translateY(50px);
+}
+```
+
+For depth:
+
+```css
+.box {
+    transform: translateZ(50px);
+}
+```
+
+Choose the axis according to the desired effect.
+
+### 5. Forgetting the Unit for Angles
+
+Rotation and skew functions normally require an angle unit:
+
+```css
+/* Correct */
+.box {
+    transform: rotate(45deg);
+}
+```
+
+Avoid leaving out the unit:
+
+```css
+/* Incorrect */
+.box {
+    transform: rotate(45);
+}
+```
+
+### 6. Using Excessive Scaling
+
+Very large scale values can make an interface look unnatural:
+
+```css
+/* Avoid excessive scaling */
+.box:hover {
+    transform: scale(3);
+}
+```
+
+A smaller value is usually more appropriate for interface interactions:
+
+```css
+.box:hover {
+    transform: scale(1.05);
+}
+```
+
+### 7. Forgetting `transform-origin`
+
+If an element needs to rotate or scale from a specific point, relying on the default origin may produce an unexpected result.
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(15deg);
+}
+```
+
+### 8. Expecting Transforms to Change Layout
+
+Transforms visually modify an element but do not generally cause surrounding elements to reposition as they would with normal layout properties.
+
+For example:
+
+```css
+.box {
+    transform: translateX(100px);
+}
+```
+
+The element moves visually, but its original layout space remains in the document.
+
+### 9. Using 3D Transforms Without Perspective
+
+A 3D transform may not produce the expected depth effect without an appropriate perspective setup:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: rotateY(30deg);
+}
+```
+
+Use perspective when a realistic 3D depth effect is needed.
+
+### 10. Forgetting `transform-style`
+
+When working with nested 3D elements, forgetting `preserve-3d` can cause child elements to be flattened:
+
+```css
+.parent {
+    transform-style: preserve-3d;
+}
+```
+
+Use it when child elements need to maintain their 3D positioning.
+
+### 11. Forgetting `backface-visibility`
+
+In 3D flip effects, the back side of an element may become visible when it should not be.
+
+```css
+.card-face {
+    backface-visibility: hidden;
+}
+```
+
+This is commonly used for card-flipping interfaces.
+
+### 12. Adding Too Many Transformations
+
+Complex transform combinations can make CSS difficult to understand:
+
+```css
+.box {
+    transform:
+        translateX(50px)
+        translateY(20px)
+        rotate(15deg)
+        skewX(10deg)
+        scale(1.2);
+}
+```
+
+Use only the transformations that are necessary for the desired effect.
+
+### 13. Forgetting Transitions for Interactive Effects
+
+A transform applied on hover changes immediately if no transition is defined:
+
+```css
+.box:hover {
+    transform: scale(1.05);
+}
+```
+
+For a smoother effect:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+```
+
+### 14. Creating Excessive Motion
+
+Too much movement, rotation, or scaling can make an interface distracting or uncomfortable.
+
+Keep interactive transformations subtle and consider reduced-motion preferences:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none;
+        animation: none;
+    }
+}
+```
+
+> 💡 **Tip:** When a transform does not behave as expected, first check the transform function, axis, order, origin, and whether the effect requires 3D perspective.
+
+> 💡 **Remember:** Most transform problems come from incorrect syntax, transform order, unexpected origins, excessive values, or missing 3D-related properties.
