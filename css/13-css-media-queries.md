@@ -5765,3 +5765,999 @@ This provides more control over the responsive behavior.
 ---
 
 > 💡 **Remember:** `orientation: portrait` targets viewports where the height is greater than the width, while `orientation: landscape` targets viewports where the width is greater than the height. Orientation describes the viewport shape, not a specific device type.
+
+---
+
+## Responsive Breakpoints
+
+Responsive breakpoints are viewport sizes where the CSS layout changes to provide a better experience for the available space.
+
+A breakpoint is usually defined with a media query.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}
+```
+
+Here, `768px` acts as a breakpoint.
+
+When the viewport becomes `768px` or smaller, the styles inside the media query can be applied.
+
+---
+
+## Why Are Breakpoints Used?
+
+A responsive layout may work well at one viewport size but become difficult to use at another size.
+
+For example:
+
+```text
+Large viewport
+
+┌────────┬────────┬────────┐
+│  Card  │  Card  │  Card  │
+└────────┴────────┴────────┘
+```
+
+As the viewport becomes narrower, the cards may become too small:
+
+```text
+┌────┬────┬────┐
+│ C1 │ C2 │ C3 │
+└────┴────┴────┘
+```
+
+A breakpoint can change the layout:
+
+```text
+┌────────┐
+│ Card 1 │
+├────────┤
+│ Card 2 │
+├────────┤
+│ Card 3 │
+└────────┘
+```
+
+The breakpoint therefore allows the layout to adapt when the current design no longer provides enough space.
+
+---
+
+## What Is a Breakpoint?
+
+A breakpoint is a condition at which responsive CSS changes the layout or presentation.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The breakpoint is:
+
+```text
+600px
+```
+
+The responsive behavior can be represented as:
+
+```text
+Viewport width
+       ↓
+Is width <= 600px?
+       ↓
+      Yes
+       ↓
+Apply mobile layout
+```
+
+---
+
+## Breakpoints Are Not Device Names
+
+A common misunderstanding is to think of breakpoints as fixed device categories.
+
+For example:
+
+```text
+Mobile = 600px
+Tablet = 768px
+Desktop = 1024px
+```
+
+These values can be useful as rough references, but CSS should not assume that every device fits perfectly into these categories.
+
+Devices have many different viewport sizes.
+
+Browser windows can also be resized.
+
+Therefore, responsive design should focus on the available space rather than specific device names.
+
+```text
+❌ Device-first thinking
+
+Phone
+Tablet
+Laptop
+Desktop
+
+
+✅ Responsive thinking
+
+Available viewport space
+        ↓
+Does the current layout still work?
+        ↓
+If not, change the layout
+```
+
+---
+
+## Common Breakpoint Values
+
+Some commonly used breakpoint values are:
+
+```text
+480px
+576px
+600px
+768px
+900px
+992px
+1024px
+1200px
+1400px
+```
+
+These values are not mandatory.
+
+They are simply commonly encountered viewport widths.
+
+The correct breakpoint depends on the design.
+
+---
+
+## Choosing a Breakpoint
+
+A breakpoint should be introduced when the layout needs to change.
+
+For example, imagine a navigation bar:
+
+```text
+Home | About | Services | Projects | Contact
+```
+
+At a sufficiently wide viewport, everything may fit comfortably.
+
+As the viewport becomes narrower:
+
+```text
+Home | About | Services | Projects | Contact
+```
+
+the items may become crowded.
+
+Instead of choosing a breakpoint simply because a device is called a tablet, choose a breakpoint where the navigation actually becomes difficult to use.
+
+For example:
+
+```css
+@media (max-width: 850px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The `850px` value is based on the layout requirement.
+
+---
+
+## Content-Based Breakpoints
+
+A content-based breakpoint is selected according to how the actual content behaves.
+
+For example:
+
+```text
+Wide enough
+    ↓
+Navigation fits
+    ↓
+Keep horizontal layout
+
+
+Too narrow
+    ↓
+Navigation becomes crowded
+    ↓
+Change layout
+```
+
+This is often better than blindly using a predefined device breakpoint.
+
+---
+
+## Example: Navigation Breakpoint
+
+Start with a horizontal navigation:
+
+```css
+.navigation {
+    display: flex;
+    gap: 30px;
+}
+```
+
+If the navigation becomes crowded at smaller widths:
+
+```css
+@media (max-width: 700px) {
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+```
+
+The breakpoint creates two layout ranges:
+
+```text
+700px and below
+       ↓
+Column navigation
+
+
+Above 700px
+       ↓
+Row navigation
+```
+
+---
+
+## Example: Card Layout
+
+A card layout can use different numbers of columns at different widths.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout changes progressively:
+
+```text
+Large
+
+┌────┬────┬────┬────┐
+│ 1  │ 2  │ 3  │ 4  │
+└────┴────┴────┴────┘
+
+
+Medium
+
+┌────┬────┐
+│ 1  │ 2  │
+├────┼────┤
+│ 3  │ 4  │
+└────┴────┘
+
+
+Small
+
+┌────┐
+│ 1  │
+├────┤
+│ 2  │
+├────┤
+│ 3  │
+├────┤
+│ 4  │
+└────┘
+```
+
+This is an example of using multiple responsive breakpoints.
+
+---
+
+## Breakpoints With `max-width`
+
+A breakpoint can be used with `max-width`.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+The styles apply at or below the specified width.
+
+```text
+0px ─────────────────── 768px │ 769px ─────────→
+                              ↑
+                         Breakpoint
+```
+
+This approach is commonly used when progressively changing a desktop-oriented layout as the viewport becomes narrower.
+
+---
+
+## Breakpoints With `min-width`
+
+Breakpoints can also be used with `min-width`.
+
+For example:
+
+```css
+@media (min-width: 768px) {
+    .container {
+        max-width: 1100px;
+        margin: auto;
+    }
+}
+```
+
+The styles apply at or above the specified width.
+
+```text
+0px ─────────── 767px │ 768px ─────────────────→
+                       ↑
+                  Breakpoint
+```
+
+This approach is commonly used in mobile-first responsive design.
+
+---
+
+## Multiple Breakpoints
+
+A responsive layout can contain several breakpoints.
+
+For example:
+
+```css
+.container {
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media (min-width: 900px) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 70%;
+    }
+}
+```
+
+The layout becomes progressively wider as more horizontal space becomes available.
+
+Conceptually:
+
+```text
+0px ─────── 599px
+   ↓
+100% width
+
+
+600px ───── 899px
+   ↓
+90% width
+
+
+900px ───── 1199px
+   ↓
+80% width
+
+
+1200px ───────────→
+   ↓
+70% width
+```
+
+---
+
+## Breakpoints and Layout Changes
+
+A breakpoint does not have to change only width.
+
+It can change many properties.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .navigation {
+        flex-direction: column;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 40px 20px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+```
+
+A single breakpoint can therefore coordinate several responsive changes.
+
+```text
+Breakpoint
+    ↓
+┌─────────────────────────┐
+│ Navigation changes      │
+│ Grid changes             │
+│ Hero spacing changes     │
+│ Typography changes       │
+└─────────────────────────┘
+```
+
+---
+
+## Breakpoints Should Represent Layout Changes
+
+A breakpoint should have a reason.
+
+For example:
+
+```text
+Problem:
+Cards become too narrow.
+
+Solution:
+Reduce the number of columns.
+
+Breakpoint:
+Choose the width where the cards stop being comfortable.
+```
+
+Another example:
+
+```text
+Problem:
+Navigation items no longer fit.
+
+Solution:
+Change navigation layout.
+
+Breakpoint:
+Choose the width where the navigation becomes crowded.
+```
+
+The breakpoint should therefore be connected to an actual layout requirement.
+
+---
+
+## Too Many Breakpoints
+
+Using too many breakpoints can make CSS difficult to maintain.
+
+For example:
+
+```css
+@media (max-width: 1400px) { ... }
+@media (max-width: 1300px) { ... }
+@media (max-width: 1200px) { ... }
+@media (max-width: 1100px) { ... }
+@media (max-width: 1000px) { ... }
+@media (max-width: 900px) { ... }
+@media (max-width: 800px) { ... }
+@media (max-width: 700px) { ... }
+@media (max-width: 600px) { ... }
+```
+
+This may create unnecessary complexity if the design does not actually require so many layout changes.
+
+Prefer a smaller number of meaningful breakpoints.
+
+---
+
+## Too Few Breakpoints
+
+The opposite problem is using too few breakpoints.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    /* Mobile */
+}
+```
+
+A layout may work at `1200px` and `600px` but become awkward at `900px`.
+
+If the design needs a change around `900px`, an additional breakpoint may be appropriate.
+
+The goal is not:
+
+```text
+Fewest possible breakpoints
+```
+
+The goal is:
+
+```text
+Fewest necessary breakpoints
+```
+
+---
+
+## Breakpoints and Fluid Design
+
+Not every responsive change requires a breakpoint.
+
+Modern CSS can often create flexible layouts without many media queries.
+
+For example:
+
+```css
+.container {
+    width: min(90%, 1200px);
+    margin-inline: auto;
+}
+```
+
+The container can adapt continuously as the viewport changes.
+
+Similarly, Grid can use:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+```
+
+This allows the grid to adapt based on available space.
+
+Therefore:
+
+```text
+Flexible CSS
+    +
+Necessary breakpoints
+    ↓
+More adaptable responsive layout
+```
+
+---
+
+## Breakpoints and Flexbox
+
+Flexbox can often reduce the number of breakpoints required.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+```
+
+Instead of manually creating many breakpoints, Flexbox can allow items to wrap when there is not enough space.
+
+However, a breakpoint may still be useful when the design needs a completely different arrangement.
+
+For example:
+
+```css
+@media (max-width: 700px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+---
+
+## Breakpoints and Grid
+
+CSS Grid also provides flexible layout tools.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+```
+
+The grid can automatically adjust the number of columns according to the available space.
+
+This may eliminate the need for several explicit breakpoints.
+
+However, if the design requires a specific layout at a certain range, a breakpoint can still be used.
+
+---
+
+## Breakpoints and Typography
+
+Breakpoints can also change typography.
+
+For example:
+
+```css
+.title {
+    font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+}
+```
+
+The typography becomes smaller as the available width decreases.
+
+However, responsive typography can also be handled with fluid CSS functions such as `clamp()`.
+
+For example:
+
+```css
+.title {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+}
+```
+
+This allows the font size to scale continuously within a defined range.
+
+---
+
+## Breakpoints and Spacing
+
+Spacing can also change at breakpoints.
+
+For example:
+
+```css
+.section {
+    padding: 80px 40px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+}
+```
+
+Large screens can use more spacing while smaller screens use more compact spacing.
+
+---
+
+## Breakpoints and Images
+
+Images may also need responsive adjustments.
+
+For example:
+
+```css
+.image {
+    width: 500px;
+}
+
+@media (max-width: 600px) {
+    .image {
+        width: 100%;
+    }
+}
+```
+
+The image becomes flexible on smaller viewports.
+
+A better general approach is often:
+
+```css
+.image {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This allows the image to scale within its container without necessarily requiring a breakpoint.
+
+---
+
+## Breakpoint Strategy
+
+A simple breakpoint strategy can look like:
+
+```text
+Start with flexible layout
+        ↓
+Test at different viewport widths
+        ↓
+Find where the layout becomes difficult to use
+        ↓
+Add a breakpoint
+        ↓
+Change the layout
+        ↓
+Test again
+```
+
+This is better than choosing breakpoints without looking at the actual design.
+
+---
+
+## Testing Breakpoints
+
+Breakpoints should be tested at several viewport sizes.
+
+For example:
+
+```text
+320px
+375px
+480px
+600px
+768px
+900px
+1024px
+1200px
+1440px
+```
+
+The exact test sizes depend on the project.
+
+The important thing is to check whether the layout remains usable between breakpoints as well as at the breakpoint itself.
+
+---
+
+## Breakpoint Boundaries
+
+Suppose you have:
+
+```css
+@media (max-width: 768px) {
+    /* Small layout */
+}
+
+@media (min-width: 769px) {
+    /* Large layout */
+}
+```
+
+The ranges are:
+
+```text
+0px ───────────── 768px
+       Small
+
+
+769px ─────────────────→
+       Large
+```
+
+In many designs, a mobile-first approach can make breakpoint relationships easier to manage:
+
+```css
+/* Base styles */
+
+@media (min-width: 768px) {
+    /* Larger layout */
+}
+```
+
+The exact strategy depends on how the CSS is structured.
+
+---
+
+## Breakpoints Are About Content
+
+The most important principle is:
+
+```text
+Do not ask:
+
+"What breakpoint should I use for this device?"
+
+Ask:
+
+"At what width does my layout need to change?"
+```
+
+For example:
+
+```text
+Navigation fits
+       ↓
+Keep current layout
+
+Navigation becomes crowded
+       ↓
+Add breakpoint
+
+Cards become too narrow
+       ↓
+Reduce columns
+
+Text becomes difficult to read
+       ↓
+Adjust typography or layout
+```
+
+This creates breakpoints based on the actual design.
+
+---
+
+## Practical Example: Complete Responsive Layout
+
+```css
+.container {
+    width: 100%;
+    margin-inline: auto;
+    padding: 20px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The responsive behavior is:
+
+```text
+Large viewport
+       ↓
+4 columns
+
+
+Medium viewport
+       ↓
+2 columns
+
+
+Small viewport
+       ↓
+1 column
+```
+
+This is a simple and practical breakpoint strategy.
+
+---
+
+## Common Mistake
+
+Do not create breakpoints only because a device specification says a certain width is common.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    /* Everything mobile */
+}
+```
+
+This does not automatically guarantee a good mobile layout.
+
+A better approach is to test the actual content and determine where the layout needs to change.
+
+---
+
+## Another Common Mistake
+
+Do not assume that a breakpoint fixes every responsive problem.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+If the problem is caused by a fixed-width child element, changing the container width may not solve it.
+
+Responsive design often requires a combination of:
+
+- Flexible widths
+- Flexbox
+- Grid
+- Responsive images
+- Flexible typography
+- Appropriate spacing
+- Media queries
+
+Breakpoints are only one part of responsive design.
+
+---
+
+## Best Practice
+
+A good breakpoint strategy usually follows these principles:
+
+```text
+1. Start with a flexible layout.
+2. Test the actual content.
+3. Find where the layout starts to break.
+4. Add a meaningful breakpoint.
+5. Change only what needs to change.
+6. Test again.
+7. Avoid unnecessary breakpoints.
+```
+
+This keeps responsive CSS easier to maintain.
+
+---
+
+> 💡 **Pro Tip:** Choose breakpoints based on where your layout needs to change, not simply because a particular device has a certain screen size.
+
+---
+
+> 💡 **Remember:** A responsive breakpoint is a point where your CSS changes to accommodate the available viewport space. There is no single set of breakpoints that is correct for every website. Use flexible CSS where possible and add breakpoints when the design actually needs them.
