@@ -1919,3 +1919,149 @@ Both can produce the same visual result for a simple 2D rotation.
 > 💡 **Tip:** Use `rotate()` for simple 2D rotation. Use `rotateZ()` when you want to explicitly describe the axis of rotation, especially when working with other 3D transform functions.
 
 > 💡 **Remember:** `rotateZ()` rotates an element around the Z-axis, which produces the familiar clockwise or counterclockwise rotation seen on the screen.
+
+---
+
+## Skew
+
+The `skew()` function distorts an element by tilting it along the **X-axis, Y-axis, or both axes**.
+
+Unlike `rotate()`, which turns an element, `skew()` changes the angles of the element's sides while keeping its general position.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: skew(x-angle, y-angle);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+Here:
+
+```text
+20deg → X-axis skew
+10deg → Y-axis skew
+```
+
+### Skewing on Both Axes
+
+You can provide two angle values:
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+The first value controls the X-axis and the second value controls the Y-axis.
+
+### Skewing on the X-Axis
+
+You can provide only one value:
+
+```css
+.box {
+    transform: skew(20deg);
+}
+```
+
+When only one value is provided, the element is skewed along the X-axis.
+
+### Positive Values
+
+Positive values tilt the element in one direction:
+
+```css
+.box {
+    transform: skew(20deg);
+}
+```
+
+The element is visually tilted along the X-axis.
+
+### Negative Values
+
+Negative values tilt the element in the opposite direction:
+
+```css
+.box {
+    transform: skew(-20deg);
+}
+```
+
+### Practical Example
+
+```html
+<div class="box">Skew Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transform: skew(15deg);
+}
+```
+
+The element is visually tilted along the X-axis.
+
+### Skewing on the Y-Axis
+
+You can explicitly control the Y-axis:
+
+```css
+.box {
+    transform: skew(0, 20deg);
+}
+```
+
+The element is skewed vertically along the Y-axis.
+
+### Hover Effect
+
+`skew()` can be combined with a transition:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: skew(10deg);
+}
+```
+
+When the user hovers over the element, it smoothly tilts.
+
+### `skew()` vs `rotate()`
+
+`rotate()` turns the entire element:
+
+```css
+.box {
+    transform: rotate(20deg);
+}
+```
+
+`skew()` distorts the element:
+
+```css
+.box {
+    transform: skew(20deg);
+}
+```
+
+The two transformations produce different visual effects.
+
+> 💡 **Tip:** Use `skew()` when you want to create a slanted or distorted appearance rather than simply rotating an element.
+
+> 💡 **Remember:** `skew()` accepts angle values and can control both the X-axis and Y-axis.
