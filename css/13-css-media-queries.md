@@ -12934,3 +12934,581 @@ Useful for understanding component-level responsive behavior based on container 
 ---
 
 > 💡 **Note:** MDN should be the primary learning reference for this chapter, while the W3C specification can be used when you need the formal definition and technical details of CSS conditional rules.
+
+---
+
+## Quick Revision
+
+Use this section to quickly revise the complete CSS Media Queries chapter.
+
+---
+
+### What Are Media Queries?
+
+Media queries are CSS conditions that allow different styles to be applied depending on characteristics of the device or viewport.
+
+```css
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+}
+```
+
+---
+
+### Basic Syntax
+
+```css
+@media (condition) {
+    selector {
+        property: value;
+    }
+}
+```
+
+---
+
+### Common Conditions
+
+```css
+@media (min-width: 768px) {
+    /* At least 768px */
+}
+```
+
+```css
+@media (max-width: 768px) {
+    /* At most 768px */
+}
+```
+
+```css
+@media (orientation: portrait) {
+    /* Portrait */
+}
+```
+
+```css
+@media (orientation: landscape) {
+    /* Landscape */
+}
+```
+
+---
+
+### Combining Conditions
+
+```css
+@media (min-width: 600px) and (max-width: 1000px) {
+    .container {
+        padding: 30px;
+    }
+}
+```
+
+Multiple conditions can be combined using logical operators such as:
+
+```text
+and
+not
+or
+```
+
+---
+
+### Common Responsive Breakpoints
+
+There is no universal list of breakpoints.
+
+Breakpoints should generally be chosen according to when the content or layout needs to change.
+
+Example:
+
+```css
+@media (max-width: 768px) {
+    /* Smaller layout */
+}
+```
+
+---
+
+### Mobile-First Approach
+
+Start with the smaller layout and progressively add styles for larger screens.
+
+```css
+.cards {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+```
+
+Pattern:
+
+```text
+Mobile
+  ↓
+Tablet
+  ↓
+Desktop
+```
+
+---
+
+### Desktop-First Approach
+
+Start with the larger layout and modify it for smaller screens.
+
+```css
+.cards {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Pattern:
+
+```text
+Desktop
+  ↓
+Tablet
+  ↓
+Mobile
+```
+
+---
+
+### Media Queries With Flexbox
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+Common transformation:
+
+```text
+Horizontal
+     ↓
+Vertical
+```
+
+---
+
+### Media Queries With Grid
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Common transformation:
+
+```text
+3 columns
+    ↓
+2 columns
+    ↓
+1 column
+```
+
+---
+
+### Responsive Navigation
+
+Desktop:
+
+```text
+Home | About | Projects | Contact
+```
+
+Mobile:
+
+```text
+Home
+About
+Projects
+Contact
+```
+
+Example:
+
+```css
+.navigation {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+---
+
+### Responsive Sidebar
+
+Desktop:
+
+```text
+Main Content | Sidebar
+```
+
+Mobile:
+
+```text
+Main Content
+Sidebar
+```
+
+Example:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+---
+
+### Responsive Cards
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Cards can progressively change:
+
+```text
+3 → 2 → 1
+```
+
+---
+
+### Responsive Images
+
+Use flexible image sizing:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This helps prevent images from overflowing their containers.
+
+---
+
+### Responsive Typography
+
+Using media queries:
+
+```css
+h1 {
+    font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+```
+
+Using fluid typography:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+### Responsive Spacing
+
+```css
+.section {
+    padding: 100px 50px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+}
+```
+
+Large screens can use more spacing while smaller screens can use more compact spacing.
+
+---
+
+### Common Responsive Patterns
+
+Remember these common transformations:
+
+```text
+Horizontal
+    ↓
+Vertical
+```
+
+```text
+Multiple Columns
+    ↓
+Fewer Columns
+```
+
+```text
+Sidebar
+    ↓
+Stacked Content
+```
+
+```text
+Large Navigation
+    ↓
+Compact Navigation
+```
+
+```text
+Large Spacing
+    ↓
+Compact Spacing
+```
+
+```text
+Large Typography
+    ↓
+Smaller Typography
+```
+
+---
+
+### Flexible CSS Without Media Queries
+
+Modern CSS can sometimes create responsive behavior automatically.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+}
+```
+
+Useful functions include:
+
+```css
+min()
+max()
+clamp()
+```
+
+---
+
+### `clamp()`
+
+```css
+.title {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+Structure:
+
+```text
+clamp(minimum, preferred, maximum)
+```
+
+---
+
+### `min()`
+
+```css
+.container {
+    width: min(90%, 1200px);
+}
+```
+
+The smaller value is used.
+
+---
+
+### Container Queries
+
+Media queries generally respond to the viewport.
+
+Container queries respond to the size of a component's container.
+
+```css
+.card-container {
+    container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+    .card {
+        display: flex;
+    }
+}
+```
+
+---
+
+### Important Responsive Properties
+
+Media queries commonly modify:
+
+```text
+display
+flex-direction
+grid-template-columns
+width
+max-width
+padding
+margin
+gap
+font-size
+text-align
+order
+visibility
+```
+
+---
+
+### Testing Responsive Layouts
+
+Do not test only one device size.
+
+Test:
+
+```text
+320px
+375px
+480px
+600px
+768px
+900px
+1024px
+1200px
+1440px
+```
+
+Also test around breakpoints.
+
+For:
+
+```css
+@media (max-width: 768px)
+```
+
+test:
+
+```text
+767px
+768px
+769px
+```
+
+---
+
+### Important Best Practices
+
+```text
+1. Choose breakpoints based on content.
+2. Do not memorize device-specific breakpoints.
+3. Use Flexbox for one-dimensional layouts.
+4. Use Grid for two-dimensional layouts.
+5. Keep images flexible.
+6. Use relative and flexible units.
+7. Consider clamp(), min(), max(), and minmax().
+8. Avoid unnecessary media queries.
+9. Test between breakpoints.
+10. Keep important content accessible.
+11. Focus on usability, not just fitting the screen.
+12. Combine media queries with other CSS features.
+```
+
+---
+
+### Main Concept
+
+The complete idea can be remembered as:
+
+```text
+Media Query
+     ↓
+Detect Condition
+     ↓
+Apply CSS Rules
+     ↓
+Change Layout
+     ↓
+Adapt to Available Space
+     ↓
+Improve Usability
+```
+
+---
+
+### One-Line Revision
+
+> **CSS media queries allow CSS to conditionally adapt the presentation and layout of a webpage according to viewport or other media characteristics.**
+
+---
+
+> 💡 **Quick Memory Tip:** Think of responsive CSS as **condition → change → adapt**. The media query provides the condition, CSS properties provide the change, and the resulting layout adapts to the available space.
