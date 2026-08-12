@@ -9140,3 +9140,1446 @@ A good desktop-first approach generally follows these principles:
 ---
 
 > 💡 **Remember:** In a desktop-first approach, the base CSS targets the larger layout and smaller layouts are created using `max-width` media queries. Desktop-first and mobile-first are both valid responsive strategies; choose the approach that fits the project's design and development requirements.
+
+---
+
+## Common Responsive Patterns
+
+Responsive design often uses a set of common layout patterns to adapt a webpage to different viewport sizes.
+
+These patterns are built using CSS features such as:
+
+- Media queries
+- Flexbox
+- CSS Grid
+- Flexible widths
+- Relative units
+- Responsive images
+- `clamp()`
+- `min()`
+- `max()`
+
+The goal is to make the layout remain usable as the available space changes.
+
+---
+
+## Stacking Columns
+
+One of the most common responsive patterns is changing multiple columns into a single vertical layout.
+
+For example:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large screens:
+
+```text
+┌──────────────────────┬──────────┐
+│ Main Content         │ Sidebar  │
+└──────────────────────┴──────────┘
+```
+
+Smaller screens:
+
+```text
+┌──────────────────────┐
+│ Main Content         │
+├──────────────────────┤
+│ Sidebar              │
+└──────────────────────┘
+```
+
+This pattern is useful when side-by-side content becomes too narrow on smaller screens.
+
+---
+
+## Changing Grid Columns
+
+Another common pattern is reducing the number of grid columns as the viewport becomes narrower.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout progressively changes:
+
+```text
+Large
+4 columns
+
+┌────┬────┬────┬────┐
+│ 1  │ 2  │ 3  │ 4  │
+└────┴────┴────┴────┘
+```
+
+```text
+Medium
+2 columns
+
+┌────┬────┐
+│ 1  │ 2  │
+├────┼────┤
+│ 3  │ 4  │
+└────┴────┘
+```
+
+```text
+Small
+1 column
+
+┌────┐
+│ 1  │
+├────┤
+│ 2  │
+├────┤
+│ 3  │
+├────┤
+│ 4  │
+└────┘
+```
+
+---
+
+## Horizontal to Vertical Navigation
+
+Navigation is commonly horizontal on larger screens and vertical on smaller screens.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+```
+
+Large screen:
+
+```text
+Home   About   Projects   Contact
+```
+
+Small screen:
+
+```text
+Home
+About
+Projects
+Contact
+```
+
+This allows navigation items to use the available space more effectively.
+
+---
+
+## Wrapping Navigation Items
+
+Sometimes navigation does not need to become completely vertical.
+
+Flexbox can allow items to wrap:
+
+```css
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+```
+
+When there is not enough horizontal space, items can move to another line.
+
+```text
+Wide:
+
+Home   About   Projects   Contact
+
+
+Narrow:
+
+Home   About
+Projects   Contact
+```
+
+This can be useful when a full vertical navigation is unnecessary.
+
+---
+
+## Hiding Secondary Content
+
+Some content may be less important on smaller screens.
+
+A responsive design may hide secondary content:
+
+```css
+.sidebar {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        display: none;
+    }
+}
+```
+
+Large screen:
+
+```text
+┌──────────────────────┬──────────┐
+│ Main Content         │ Sidebar  │
+└──────────────────────┴──────────┘
+```
+
+Small screen:
+
+```text
+┌──────────────────────┐
+│ Main Content         │
+└──────────────────────┘
+```
+
+This should be used carefully.
+
+Important information should not simply disappear because the screen is smaller.
+
+---
+
+## Moving Secondary Content Below Main Content
+
+Instead of hiding secondary content, it can be moved below the main content.
+
+For example:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Desktop:
+
+```text
+Main Content | Sidebar
+```
+
+Mobile:
+
+```text
+Main Content
+     ↓
+Sidebar
+```
+
+This preserves the content while adapting its position.
+
+---
+
+## Responsive Container Width
+
+A container often needs to become flexible.
+
+For example:
+
+```css
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+```
+
+The container can also use a media query:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+}
+```
+
+This prevents the content from becoming too wide on large screens while allowing it to use available space on smaller screens.
+
+---
+
+## Full-Width Mobile Layout
+
+A common pattern is allowing content to use almost the full viewport width on smaller screens.
+
+For example:
+
+```css
+.container {
+    width: 80%;
+    margin-inline: auto;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding-inline: 15px;
+    }
+}
+```
+
+Large screens:
+
+```text
+┌────────────────────────────────────┐
+│       ┌──────────────────┐         │
+│       │     Content      │         │
+│       └──────────────────┘         │
+└────────────────────────────────────┘
+```
+
+Small screens:
+
+```text
+┌──────────────────────┐
+│    Content           │
+│                      │
+└──────────────────────┘
+```
+
+---
+
+## Responsive Padding
+
+Large screens can use more spacing while smaller screens use less.
+
+```css
+.section {
+    padding: 80px 40px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+}
+```
+
+This prevents excessive whitespace on smaller screens.
+
+---
+
+## Responsive Typography
+
+Typography can also change at different viewport sizes.
+
+For example:
+
+```css
+h1 {
+    font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+}
+```
+
+The heading becomes smaller when less horizontal space is available.
+
+Fluid typography can also be used:
+
+```css
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+```
+
+Here, the browser can calculate a flexible size within the specified minimum and maximum values.
+
+---
+
+## Responsive Images
+
+Images should generally be able to shrink within their containers.
+
+A common pattern is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This prevents an image from overflowing its container.
+
+For example:
+
+```text
+Large:
+
+┌─────────────────────────┐
+│                         │
+│        IMAGE            │
+│                         │
+└─────────────────────────┘
+```
+
+Smaller:
+
+```text
+┌──────────────────┐
+│                  │
+│      IMAGE       │
+│                  │
+└──────────────────┘
+```
+
+The image scales with the available width.
+
+---
+
+## Responsive Hero Sections
+
+Hero sections often need different spacing or layout arrangements on smaller screens.
+
+For example:
+
+```css
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 100px 40px;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        padding: 60px 20px;
+        text-align: center;
+    }
+}
+```
+
+Large screens:
+
+```text
+┌───────────────────────────────────┐
+│ Text              Image           │
+└───────────────────────────────────┘
+```
+
+Small screens:
+
+```text
+┌──────────────────┐
+│      Text        │
+│                  │
+│      Image       │
+└──────────────────┘
+```
+
+---
+
+## Responsive Buttons
+
+Buttons can also adapt to smaller screens.
+
+For example:
+
+```css
+.button-group {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 600px) {
+    .button-group {
+        flex-direction: column;
+    }
+}
+```
+
+Large:
+
+```text
+[ Learn More ] [ Contact ]
+```
+
+Small:
+
+```text
+[ Learn More ]
+[ Contact   ]
+```
+
+This can make buttons easier to tap and prevent them from becoming crowded.
+
+---
+
+## Responsive Forms
+
+Forms often need to change from multiple columns to a single column.
+
+For example:
+
+```css
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .form {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large:
+
+```text
+First Name     Last Name
+Email          Phone
+```
+
+Small:
+
+```text
+First Name
+Last Name
+Email
+Phone
+```
+
+This improves readability and reduces horizontal crowding.
+
+---
+
+## Responsive Tables
+
+Tables can become difficult to display on small screens because they contain many columns.
+
+One solution is allowing horizontal scrolling:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+HTML:
+
+```html
+<div class="table-container">
+    <table>
+        ...
+    </table>
+</div>
+```
+
+On a smaller viewport:
+
+```text
+┌──────────────────────┐
+│ Table → → → → →     │
+└──────────────────────┘
+```
+
+The user can scroll horizontally to access the remaining columns.
+
+This can be preferable to forcing a complex table into a narrow width.
+
+---
+
+## Responsive Cards
+
+Cards can change from horizontal layouts to vertical layouts.
+
+For example:
+
+```css
+.card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+```
+
+Large:
+
+```text
+┌────────┬──────────────────┐
+│ Image  │ Card Content     │
+└────────┴──────────────────┘
+```
+
+Small:
+
+```text
+┌──────────────────┐
+│      Image       │
+├──────────────────┤
+│   Card Content   │
+└──────────────────┘
+```
+
+---
+
+## Responsive Sidebars
+
+Sidebars are commonly displayed beside content on large screens.
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+}
+```
+
+On smaller screens:
+
+```css
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+This converts the sidebar into content below the main section.
+
+---
+
+## Responsive Header
+
+A header can change structure on smaller screens.
+
+For example:
+
+```css
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 700px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+```
+
+Large:
+
+```text
+Logo                     Navigation
+```
+
+Small:
+
+```text
+Logo
+Navigation
+```
+
+More advanced navigation may use a menu button to reveal navigation links.
+
+---
+
+## Responsive Footer
+
+Footers often contain several columns.
+
+For example:
+
+```css
+.footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .footer {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The footer progressively reduces its columns.
+
+---
+
+## Responsive Spacing Between Components
+
+Spacing can also be adjusted at breakpoints.
+
+```css
+.section {
+    margin-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        margin-bottom: 50px;
+    }
+}
+```
+
+Smaller screens often benefit from more compact spacing because vertical space becomes more important.
+
+---
+
+## Responsive Alignment
+
+A layout may change its alignment depending on the viewport.
+
+For example:
+
+```css
+.hero {
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        text-align: center;
+    }
+}
+```
+
+Large:
+
+```text
+Heading
+Description
+Button
+```
+
+with left alignment.
+
+Small:
+
+```text
+       Heading
+      Description
+        Button
+```
+
+with centered alignment.
+
+---
+
+## Responsive Flex Direction
+
+Changing `flex-direction` is one of the most common responsive patterns.
+
+```css
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+The layout changes from horizontal to vertical.
+
+This pattern is useful for:
+
+- Cards
+- Navigation
+- Hero sections
+- Forms
+- Content sections
+- Button groups
+
+---
+
+## Responsive Grid Columns
+
+Changing `grid-template-columns` is another common pattern.
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The number of columns is reduced when the viewport becomes narrower.
+
+---
+
+## Responsive Order
+
+Flexbox can change the visual order of elements.
+
+For example:
+
+```css
+.content {
+    display: flex;
+}
+
+.image {
+    order: 1;
+}
+
+.text {
+    order: 2;
+}
+
+@media (max-width: 768px) {
+    .image {
+        order: 2;
+    }
+
+    .text {
+        order: 1;
+    }
+}
+```
+
+This can change which content appears first visually.
+
+However, visual order should be used carefully so that the visual presentation does not create confusion compared with the document and reading order.
+
+---
+
+## Responsive Visibility
+
+CSS can change whether an element is displayed.
+
+For example:
+
+```css
+.desktop-only {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .desktop-only {
+        display: none;
+    }
+}
+```
+
+This can be useful for decorative or secondary elements.
+
+Important content should not be hidden merely because the viewport is smaller.
+
+---
+
+## Responsive Utility Classes
+
+A project may also define utility classes for responsive behavior.
+
+For example:
+
+```css
+.hide-mobile {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .hide-mobile {
+        display: none;
+    }
+}
+```
+
+HTML:
+
+```html
+<div class="hide-mobile">
+    Secondary content
+</div>
+```
+
+This allows responsive behavior to be reused across multiple components.
+
+---
+
+## Responsive Navigation Pattern
+
+A common navigation pattern is:
+
+```text
+Large screen:
+
+Logo     Home   About   Projects   Contact
+
+
+Small screen:
+
+Logo                         ☰
+```
+
+The navigation links can be hidden or collapsed behind a menu control.
+
+The CSS may look like:
+
+```css
+.menu {
+    display: flex;
+}
+
+.menu-button {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .menu {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+}
+```
+
+The actual menu interaction usually requires JavaScript or another appropriate mechanism to open and close the navigation.
+
+---
+
+## Responsive Dashboard Pattern
+
+A dashboard may use several columns on large screens:
+
+```css
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+```
+
+Then reduce columns:
+
+```css
+@media (max-width: 1000px) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+This is useful for cards, statistics, widgets, and other dashboard components.
+
+---
+
+## Responsive Content Priority
+
+Responsive design is not only about changing dimensions.
+
+It can also change the priority of content.
+
+For example:
+
+```text
+Large screen:
+
+Main Content
+Sidebar
+Related Content
+Extra Information
+```
+
+Smaller screen:
+
+```text
+Main Content
+Sidebar
+```
+
+Very small screen:
+
+```text
+Main Content
+```
+
+The goal is to keep the most important information accessible when space becomes limited.
+
+---
+
+## Responsive Pattern: Expand and Collapse
+
+Some components can expand on larger screens and collapse on smaller screens.
+
+For example:
+
+```text
+Large:
+
+┌──────────────────────────┐
+│ Filters                  │
+│ Category                 │
+│ Price                    │
+│ Rating                   │
+└──────────────────────────┘
+
+
+Small:
+
+┌──────────────────────────┐
+│ Filters ▼               │
+└──────────────────────────┘
+```
+
+The visual design can change significantly on smaller screens.
+
+The interaction for expanding and collapsing the content may require HTML and JavaScript in addition to CSS.
+
+---
+
+## Responsive Pattern: Horizontal to Vertical
+
+This is one of the most common responsive transformations.
+
+```text
+Large:
+
+A | B | C
+
+
+Small:
+
+A
+B
+C
+```
+
+CSS:
+
+```css
+.items {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 700px) {
+    .items {
+        flex-direction: column;
+    }
+}
+```
+
+This simple pattern can be applied to many components.
+
+---
+
+## Responsive Pattern: Multi-Column to Single Column
+
+Another common transformation is:
+
+```text
+Large:
+
+┌──────┬──────┬──────┐
+│  A   │  B   │  C   │
+└──────┴──────┴──────┘
+```
+
+to:
+
+```text
+Small:
+
+┌──────────────┐
+│      A       │
+├──────────────┤
+│      B       │
+├──────────────┤
+│      C       │
+└──────────────┘
+```
+
+CSS:
+
+```css
+.items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 700px) {
+    .items {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+---
+
+## Responsive Pattern: Multi-Column to Fewer Columns
+
+Instead of immediately switching to one column, a layout can progressively reduce columns.
+
+```css
+.items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1000px) {
+    .items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .items {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+This provides a smoother transition between large, medium, and small layouts.
+
+---
+
+## Responsive Pattern: Fixed to Fluid
+
+A fixed-width element may need to become flexible.
+
+For example:
+
+```css
+.image {
+    width: 600px;
+}
+```
+
+A better responsive approach can be:
+
+```css
+.image {
+    width: 100%;
+    max-width: 600px;
+}
+```
+
+Now the image can shrink when the available space becomes smaller while still being limited to `600px` on larger screens.
+
+---
+
+## Responsive Pattern: Fixed Sidebar to Stacked Content
+
+A desktop layout may use a fixed-width sidebar:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+```
+
+On smaller screens:
+
+```css
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The sidebar becomes part of the normal vertical flow.
+
+---
+
+## Responsive Pattern: Large Spacing to Compact Spacing
+
+```css
+.section {
+    padding: 100px 50px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+}
+```
+
+This prevents large spacing values from consuming too much space on small screens.
+
+---
+
+## Responsive Pattern: Large Typography to Smaller Typography
+
+```css
+.title {
+    font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+}
+```
+
+However, fluid sizing can sometimes provide a smoother solution:
+
+```css
+.title {
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+```
+
+---
+
+## Combining Responsive Patterns
+
+Real websites usually combine several patterns.
+
+For example:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 40px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.navigation {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+Several responsive patterns work together:
+
+```text
+Large
+ ↓
+Sidebar + Content
+3 Card Columns
+Horizontal Navigation
+
+Medium
+ ↓
+Stacked Layout
+2 Card Columns
+Horizontal Navigation
+
+Small
+ ↓
+Stacked Layout
+1 Card Column
+Vertical Navigation
+```
+
+---
+
+## Common Mistake
+
+Do not treat responsive design as simply making everything smaller.
+
+For example:
+
+```text
+Desktop
+   ↓
+Scale everything down
+   ↓
+Mobile
+```
+
+This can create poor usability.
+
+Instead:
+
+```text
+Desktop
+   ↓
+Identify layout changes
+   ↓
+Rearrange content
+   ↓
+Adjust spacing
+   ↓
+Adjust typography
+   ↓
+Adapt controls
+   ↓
+Mobile
+```
+
+Responsive design often requires structural changes, not just smaller dimensions.
+
+---
+
+## Another Common Mistake
+
+Do not hide important content without providing an alternative.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .important-information {
+        display: none;
+    }
+}
+```
+
+This can make the information inaccessible.
+
+Instead, consider:
+
+```text
+Move it
+  ↓
+Stack it
+  ↓
+Collapse it appropriately
+  ↓
+Make it scrollable
+  ↓
+Keep it accessible
+```
+
+The correct solution depends on the content.
+
+---
+
+## Best Practices
+
+Common responsive patterns should generally follow these principles:
+
+```text
+1. Let content determine the layout.
+2. Use Flexbox for one-dimensional layouts.
+3. Use Grid for two-dimensional layouts.
+4. Stack columns when horizontal space becomes limited.
+5. Reduce grid columns progressively when appropriate.
+6. Keep important content accessible.
+7. Use flexible images.
+8. Adjust spacing when necessary.
+9. Use fluid typography where appropriate.
+10. Avoid unnecessary media queries.
+11. Test layouts between breakpoints.
+12. Combine patterns when the design requires it.
+```
+
+---
+
+> 💡 **Pro Tip:** Most responsive layouts are combinations of a few simple patterns: stack columns, reduce grid columns, wrap or rearrange navigation, adjust spacing, and make content flexible. Learn these patterns well and you can solve many responsive layout problems without creating complicated CSS.
+
+---
+
+> 💡 **Remember:** Responsive design is about adapting the structure and presentation of content to available space. Media queries provide the conditions, while Flexbox, Grid, flexible sizing, and other CSS features provide the actual layout changes.
