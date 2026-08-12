@@ -1775,3 +1775,147 @@ This moves, rotates, and scales the element.
 > 💡 **Tip:** Use `rotateY()` when you want to create a 3D effect where an element appears to turn from side to side.
 
 > 💡 **Remember:** `rotateY()` rotates an element around the vertical Y-axis and is commonly used together with `perspective` for 3D effects.
+
+---
+
+## Rotate Z
+
+The `rotateZ()` function rotates an element around the **Z-axis**.
+
+It is commonly used for **2D rotation** because the Z-axis points toward and away from the viewer.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: rotateZ(angle);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: rotateZ(45deg);
+}
+```
+
+This rotates the element by `45deg` around the Z-axis.
+
+### Positive Rotation
+
+Positive angle values rotate the element clockwise:
+
+```css
+.box {
+    transform: rotateZ(45deg);
+}
+```
+
+This rotates the element `45deg` clockwise.
+
+Another example:
+
+```css
+.box {
+    transform: rotateZ(90deg);
+}
+```
+
+This rotates the element by `90deg`.
+
+### Negative Rotation
+
+Negative values rotate the element counterclockwise:
+
+```css
+.box {
+    transform: rotateZ(-45deg);
+}
+```
+
+This rotates the element `45deg` counterclockwise.
+
+### Understanding the Z-Axis
+
+The Z-axis represents depth and points toward or away from the viewer.
+
+```text
+             Z-axis
+              ↕
+              │
+        ┌───────────┐
+        │   Element │
+        └───────────┘
+```
+
+When an element rotates around the Z-axis, it appears to rotate within the screen.
+
+### Practical Example
+
+```html
+<div class="box">Rotate Z</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transform: rotateZ(15deg);
+}
+```
+
+The element is rotated by `15deg` around the Z-axis.
+
+### Hover Effect
+
+`rotateZ()` can be combined with a transition:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: rotateZ(10deg);
+}
+```
+
+When the user hovers over the element, it smoothly rotates around the Z-axis.
+
+### Full Rotation
+
+You can rotate an element through a complete turn:
+
+```css
+.box:hover {
+    transform: rotateZ(360deg);
+}
+```
+
+This rotates the element by `360deg`.
+
+### `rotate()` vs `rotateZ()`
+
+The `rotate()` function is commonly used for simple 2D rotation:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+`rotateZ()` explicitly specifies rotation around the Z-axis:
+
+```css
+.box {
+    transform: rotateZ(45deg);
+}
+```
+
+Both can produce the same visual result for a simple 2D rotation.
+
+> 💡 **Tip:** Use `rotate()` for simple 2D rotation. Use `rotateZ()` when you want to explicitly describe the axis of rotation, especially when working with other 3D transform functions.
+
+> 💡 **Remember:** `rotateZ()` rotates an element around the Z-axis, which produces the familiar clockwise or counterclockwise rotation seen on the screen.
