@@ -3239,3 +3239,150 @@ The parent provides the perspective, while the transformed element allows its ch
 > 💡 **Tip:** Use `preserve-3d` when building 3D cards, cubes, flip effects, or other interfaces containing nested 3D elements.
 
 > 💡 **Remember:** `transform-style` controls whether an element's children remain in 3D space or are flattened into the element's plane.
+
+---
+
+## Backface Visibility
+
+The `backface-visibility` property specifies whether the **back face of an element should be visible when it is rotated in 3D space**.
+
+It is mainly useful when creating 3D effects such as flip cards, where an element can rotate far enough for its back side to face the viewer.
+
+### Basic Syntax
+
+```css
+selector {
+    backface-visibility: value;
+}
+```
+
+The property has two commonly used values:
+
+```text
+visible
+hidden
+```
+
+### `visible`
+
+The default value is `visible`.
+
+```css
+.box {
+    backface-visibility: visible;
+}
+```
+
+The back face of the element remains visible when the element is rotated in 3D space.
+
+### `hidden`
+
+The `hidden` value hides the back face of the element:
+
+```css
+.box {
+    backface-visibility: hidden;
+}
+```
+
+When the back of the element faces the viewer, it is not displayed.
+
+### Practical Example
+
+```html
+<div class="card">
+    <div class="front">Front</div>
+    <div class="back">Back</div>
+</div>
+```
+
+```css
+.card {
+    width: 200px;
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+```
+
+Here, `backface-visibility: hidden` prevents the back of each card face from being visible when it is facing away from the viewer.
+
+### Combining with `transform-style`
+
+`backface-visibility` is commonly used together with:
+
+```css
+transform-style: preserve-3d;
+```
+
+For example:
+
+```css
+.card {
+    transform-style: preserve-3d;
+}
+
+.card-face {
+    backface-visibility: hidden;
+}
+```
+
+This combination is useful for creating 3D interfaces.
+
+### Combining with `rotateY()`
+
+A common pattern is:
+
+```css
+.card {
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    backface-visibility: hidden;
+}
+```
+
+As the card rotates, the hidden back faces are not shown when they face away from the viewer.
+
+### `visible` vs `hidden`
+
+| Value | Description |
+| --- | --- |
+| `visible` | The back face remains visible |
+| `hidden` | The back face is hidden |
+
+### When to Use It
+
+`backface-visibility: hidden` is particularly useful for:
+
+- 3D flip cards
+- 3D navigation effects
+- Rotating panels
+- 3D UI components
+- Interactive 3D animations
+
+> 💡 **Tip:** Use `backface-visibility: hidden` when you do not want the reverse side of a 3D element to appear during rotation.
+
+> 💡 **Remember:** `backface-visibility` controls whether the back face is visible; it does not create the 3D rotation itself.
