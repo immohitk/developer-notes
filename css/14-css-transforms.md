@@ -686,3 +686,158 @@ You can also move an element downward:
 > 💡 **Tip:** Use `translateY()` when you only need vertical movement. It is clearer than using `translate()` when the X-axis does not need to change.
 
 > 💡 **Remember:** Positive values move the element downward, while negative values move it upward.
+
+---
+
+## Translate 3D
+
+The `translate3d()` function moves an element along the **X-axis, Y-axis, and Z-axis**.
+
+It is used for three-dimensional transformations when you need to control horizontal movement, vertical movement, and depth.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: translate3d(x, y, z);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: translate3d(50px, 30px, 20px);
+}
+```
+
+Here:
+
+```text
+50px → X-axis
+30px → Y-axis
+20px → Z-axis
+```
+
+### X-Axis
+
+The first value controls horizontal movement:
+
+```css
+.box {
+    transform: translate3d(50px, 0, 0);
+}
+```
+
+This moves the element `50px` to the right.
+
+A negative value moves it to the left:
+
+```css
+.box {
+    transform: translate3d(-50px, 0, 0);
+}
+```
+
+### Y-Axis
+
+The second value controls vertical movement:
+
+```css
+.box {
+    transform: translate3d(0, 50px, 0);
+}
+```
+
+This moves the element `50px` downward.
+
+A negative value moves it upward:
+
+```css
+.box {
+    transform: translate3d(0, -50px, 0);
+}
+```
+
+### Z-Axis
+
+The third value controls movement along the Z-axis:
+
+```css
+.box {
+    transform: translate3d(0, 0, 50px);
+}
+```
+
+The Z-axis represents movement in depth.
+
+To see the depth effect clearly, 3D perspective is commonly used:
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    transform: translate3d(0, 0, 50px);
+}
+```
+
+### Using All Three Axes
+
+You can move an element along all three axes:
+
+```css
+.box {
+    transform: translate3d(50px, 30px, 40px);
+}
+```
+
+This applies:
+
+```text
+50px → Horizontal movement
+30px → Vertical movement
+40px → Depth movement
+```
+
+### Practical Example
+
+```html
+<div class="container">
+    <div class="box">Move Me</div>
+</div>
+```
+
+```css
+.container {
+    perspective: 800px;
+}
+
+.box {
+    width: 150px;
+    padding: 20px;
+    background: steelblue;
+    transform: translate3d(50px, 20px, 40px);
+}
+```
+
+The element is transformed along all three axes.
+
+### Combining with Other Transforms
+
+`translate3d()` can be combined with other transform functions:
+
+```css
+.box {
+    transform: translate3d(50px, 20px, 30px)
+               rotateY(20deg)
+               scale(1.1);
+}
+```
+
+This moves, rotates, and scales the element.
+
+> 💡 **Tip:** Use `translate3d()` when you need to control movement along all three axes. For simple horizontal or vertical movement, `translateX()` or `translateY()` is usually clearer.
+
+> 💡 **Remember:** The three values represent **X, Y, and Z** movement respectively.
