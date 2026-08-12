@@ -3828,3 +3828,21 @@ Controls whether the back side of a 3D-transformed element is visible.
 - Transforms are commonly combined with `transition` and `animation` for smooth interactions.
 
 > 💡 **Remember:** CSS transforms are primarily used to visually move, resize, rotate, skew, and create 3D effects on elements without changing the normal document layout.
+
+---
+
+## References
+
+- [MDN Web Docs — CSS Transforms](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)
+- [MDN Web Docs — CSS `translate()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate)
+- [MDN Web Docs — CSS `scale()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale)
+- [MDN Web Docs — CSS `rotate()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate)
+- [MDN Web Docs — CSS `skew()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skew)
+- [MDN Web Docs — CSS `transform-origin`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
+- [MDN Web Docs — CSS `perspective`](https://developer.mozilla.org/en-US/docs/Web/CSS/perspective)
+- [MDN Web Docs — CSS `transform-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style)
+- [MDN Web Docs — CSS `backface-visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility)
+- [MDN Web Docs — CSS `translate3d()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d)
+- [MDN Web Docs — CSS `rotateX()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateX)
+- [MDN Web Docs — CSS `rotateY()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateY)
+- [MDN Web Docs — CSS `rotateZ()`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateZ)
