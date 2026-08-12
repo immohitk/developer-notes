@@ -699,3 +699,702 @@ This approach helps keep responsive behavior close to the CSS that controls the 
 ---
 
 > 💡 **Remember:** Media queries are important because they allow websites to adapt their layouts, typography, navigation, components, spacing, and other styles to different screen sizes and viewing conditions.
+
+---
+
+## Media Query Syntax
+
+A media query uses the `@media` rule to apply CSS styles only when a specified condition is satisfied.
+
+The basic syntax is:
+
+```css
+@media (condition) {
+    /* CSS rules */
+}
+```
+
+The browser evaluates the condition.
+
+If the condition is true, the CSS rules inside the media query are applied.
+
+If the condition is false, those rules are not applied.
+
+Conceptually:
+
+```text
+@media
+   ↓
+Condition
+   ↓
+Is the condition true?
+   ├── Yes → Apply the CSS rules
+   │
+   └── No  → Do not apply the CSS rules
+```
+
+---
+
+## Basic Media Query
+
+A simple media query can check the width of the viewport.
+
+```css
+@media (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+}
+```
+
+In this example, the style inside the media query is applied when the viewport width is `600px` or less.
+
+The media query can be understood as:
+
+```text
+Viewport width
+      ↓
+Is it 600px or less?
+      ↓
+     Yes
+      ↓
+Apply the CSS rules
+```
+
+If the viewport is wider than `600px`, the condition is not satisfied and the styles inside the media query are not applied.
+
+---
+
+## Understanding the `@media` Rule
+
+The `@media` rule starts a media query.
+
+It tells the browser that the following CSS rules should be applied only when a specified condition is satisfied.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+}
+```
+
+The structure can be understood as:
+
+```text
+@media
+   ↓
+Start media query
+
+(max-width: 600px)
+   ↓
+Condition
+
+{
+    CSS rules
+}
+   ↓
+Rules applied when the condition is true
+```
+
+---
+
+## Understanding the Condition
+
+The condition determines when the CSS rules inside the media query should be applied.
+
+For example:
+
+```css
+(max-width: 600px)
+```
+
+checks the viewport width.
+
+It can be understood as:
+
+```text
+Viewport width
+      ↓
+600px or less?
+      ├── Yes → Apply styles
+      │
+      └── No  → Do not apply styles
+```
+
+The condition can use different media features such as:
+
+- `max-width`
+- `min-width`
+- `orientation`
+- `height`
+
+These media features will be covered in more detail later in the chapter.
+
+---
+
+## Understanding the CSS Block
+
+The curly braces contain the CSS rules that should be applied when the condition is satisfied.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
+```
+
+When the condition is true, both CSS rules are applied.
+
+Conceptually:
+
+```text
+max-width: 600px
+       ↓
+Condition is true
+       ↓
+┌──────────────────────┐
+│ body → 14px          │
+│ h1   → 28px          │
+└──────────────────────┘
+```
+
+A single media query can therefore contain multiple CSS rules.
+
+---
+
+## Media Queries With Normal CSS
+
+Media queries are normally written together with regular CSS rules.
+
+For example:
+
+```css
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+The normal CSS rule provides the default styling.
+
+When the viewport becomes `600px` or smaller, the media query changes the width.
+
+The process can be represented as:
+
+```text
+Default CSS
+    ↓
+width: 80%
+
+Smaller viewport
+    ↓
+Media Query
+    ↓
+width: 95%
+```
+
+This pattern is commonly used when creating responsive layouts.
+
+---
+
+## Using `min-width`
+
+The `min-width` media feature checks whether the viewport width is at least the specified value.
+
+For example:
+
+```css
+@media (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport width >= 768px
+        ↓
+       True
+        ↓
+Apply the styles
+```
+
+Therefore, the styles are applied when the viewport is `768px` or wider.
+
+---
+
+## Using `max-width`
+
+The `max-width` media feature checks whether the viewport width is at most the specified value.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+```
+
+The condition means:
+
+```text
+Viewport width <= 768px
+        ↓
+       True
+        ↓
+Apply the styles
+```
+
+Therefore, the styles are applied when the viewport is `768px` or narrower.
+
+---
+
+## `min-width` vs `max-width`
+
+These two media features work in opposite directions.
+
+```text
+min-width
+    ↓
+At or above the specified width
+```
+
+```text
+max-width
+    ↓
+At or below the specified width
+```
+
+For example:
+
+```css
+@media (min-width: 768px) {
+    /* 768px and wider */
+}
+```
+
+```css
+@media (max-width: 768px) {
+    /* 768px and narrower */
+}
+```
+
+A simple mental model is:
+
+```text
+min-width
+    ↓
+Minimum viewport width
+
+max-width
+    ↓
+Maximum viewport width
+```
+
+---
+
+## Media Queries With Multiple CSS Rules
+
+A media query can contain multiple CSS declarations and multiple selectors.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        width: 95%;
+    }
+}
+```
+
+When the condition is satisfied, all of these rules can be applied.
+
+Conceptually:
+
+```text
+Media Query
+     ↓
+┌─────────────────────────┐
+│ Typography              │
+│ Spacing                 │
+│ Container width         │
+└─────────────────────────┘
+```
+
+This makes media queries useful when several parts of a layout need to change together.
+
+---
+
+## Media Query With a Media Type
+
+A media query can also include a media type.
+
+For example:
+
+```css
+@media screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+}
+```
+
+Here:
+
+```text
+screen
+   ↓
+Media Type
+
+and
+   ↓
+Logical Operator
+
+(max-width: 600px)
+   ↓
+Condition
+```
+
+The media type and logical operator will be covered in more detail in later sections.
+
+---
+
+## Media Query Without a Media Type
+
+The media type can be omitted.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+}
+```
+
+This is a common form of media query syntax.
+
+The browser evaluates the condition and applies the styles when the condition matches.
+
+---
+
+## Multiple Media Queries
+
+A stylesheet can contain multiple media queries.
+
+For example:
+
+```css
+.container {
+    width: 95%;
+}
+
+@media (min-width: 600px) {
+    .container {
+        width: 85%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .container {
+        width: 75%;
+    }
+}
+```
+
+The layout can therefore change as the viewport becomes wider.
+
+```text
+Small viewport
+     ↓
+width: 95%
+
+Medium viewport
+     ↓
+width: 85%
+
+Large viewport
+     ↓
+width: 75%
+```
+
+This allows different responsive styles to be applied at different viewport sizes.
+
+---
+
+## Media Queries and Responsive Layouts
+
+Media queries are especially useful when a layout needs to change its structure.
+
+For example, a navigation layout may use a horizontal arrangement on larger screens:
+
+```text
+┌────────┬────────┬────────┬────────┐
+│  Home  │ About  │Contact │ Login  │
+└────────┴────────┴────────┴────────┘
+```
+
+On a smaller screen, the same navigation can become vertical:
+
+```text
+┌──────────┐
+│   Home   │
+├──────────┤
+│  About   │
+├──────────┤
+│ Contact  │
+├──────────┤
+│  Login   │
+└──────────┘
+```
+
+The HTML structure can remain the same while the CSS changes through a media query.
+
+---
+
+## Media Queries With Flexbox
+
+Media queries are commonly used together with Flexbox.
+
+For example:
+
+```css
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+}
+```
+
+On a larger screen:
+
+```text
+┌──────────┐  ┌──────────┐
+│  Item 1  │  │  Item 2  │
+└──────────┘  └──────────┘
+```
+
+On a smaller screen:
+
+```text
+┌──────────┐
+│  Item 1  │
+└──────────┘
+      ↓
+┌──────────┐
+│  Item 2  │
+└──────────┘
+```
+
+The media query changes the Flexbox direction when the viewport becomes smaller.
+
+---
+
+## Media Queries With Grid
+
+Media queries can also change the number of Grid columns.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+On a larger screen:
+
+```text
+┌───────┬───────┬───────┐
+│   1   │   2   │   3   │
+└───────┴───────┴───────┘
+```
+
+On a smaller screen:
+
+```text
+┌───────┐
+│   1   │
+├───────┤
+│   2   │
+├───────┤
+│   3   │
+└───────┘
+```
+
+The media query allows the Grid layout to adapt to the available space.
+
+---
+
+## Media Query Syntax and the CSS Cascade
+
+Media queries are part of CSS, so normal CSS cascade rules still apply.
+
+For example:
+
+```css
+.box {
+    width: 300px;
+}
+
+@media (max-width: 600px) {
+    .box {
+        width: 100%;
+    }
+}
+```
+
+When the viewport is `600px` or smaller, the media query matches and its declaration can change the width.
+
+The basic flow is:
+
+```text
+Normal CSS
+    ↓
+width: 300px
+    ↓
+Viewport becomes 600px or smaller
+    ↓
+Media query matches
+    ↓
+width: 100%
+```
+
+Specificity and source order still matter when multiple CSS declarations apply to the same element.
+
+---
+
+## Common Mistake: Confusing `min-width` and `max-width`
+
+A common mistake is confusing the direction of `min-width` and `max-width`.
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    /* Smaller viewport */
+}
+```
+
+means:
+
+```text
+600px or smaller
+```
+
+Whereas:
+
+```css
+@media (min-width: 600px) {
+    /* Larger viewport */
+}
+```
+
+means:
+
+```text
+600px or larger
+```
+
+Remember:
+
+```text
+max-width
+    ↓
+At or below
+
+min-width
+    ↓
+At or above
+```
+
+---
+
+## Practical Mental Model
+
+A useful way to understand media query syntax is to think of it as a decision.
+
+```text
+                Media Query
+                     ↓
+              Check condition
+                     ↓
+             Is it satisfied?
+               ↙          ↘
+             Yes           No
+              ↓             ↓
+        Apply CSS       Ignore CSS
+```
+
+For example:
+
+```css
+@media (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
+}
+```
+
+The browser effectively checks:
+
+```text
+Is viewport width <= 600px?
+          ↓
+      ┌───┴───┐
+     Yes      No
+      ↓        ↓
+Apply CSS   Ignore CSS
+```
+
+This mental model becomes especially useful when working with multiple conditions and logical operators.
+
+---
+
+> 💡 **Pro Tip:** Read a media query as a condition. Instead of memorizing the syntax, ask yourself: **"Under what condition should these CSS rules be applied?"**
+
+---
+
+> 💡 **Remember:** A media query starts with `@media`, contains a condition, and includes CSS rules that are applied when that condition is satisfied.
