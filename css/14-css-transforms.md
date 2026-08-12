@@ -2065,3 +2065,110 @@ The two transformations produce different visual effects.
 > 💡 **Tip:** Use `skew()` when you want to create a slanted or distorted appearance rather than simply rotating an element.
 
 > 💡 **Remember:** `skew()` accepts angle values and can control both the X-axis and Y-axis.
+
+---
+
+## Skew X
+
+The `skewX()` function distorts an element by tilting it along the **X-axis**.
+
+It changes the horizontal angles of the element while keeping its general position in the document flow.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: skewX(angle);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: skewX(20deg);
+}
+```
+
+This skews the element by `20deg` along the X-axis.
+
+### Positive Values
+
+Positive values skew the element in one direction:
+
+```css
+.box {
+    transform: skewX(20deg);
+}
+```
+
+The element is visually tilted along the X-axis.
+
+### Negative Values
+
+Negative values skew the element in the opposite direction:
+
+```css
+.box {
+    transform: skewX(-20deg);
+}
+```
+
+This creates a tilt in the opposite direction.
+
+### Practical Example
+
+```html
+<div class="box">Skew X</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 30px;
+    background: steelblue;
+    transform: skewX(15deg);
+}
+```
+
+The element is visually distorted along the X-axis.
+
+### Hover Effect
+
+`skewX()` can be combined with a transition:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: skewX(10deg);
+}
+```
+
+When the user hovers over the element, it smoothly tilts along the X-axis.
+
+### Comparing `skew()` and `skewX()`
+
+`skew()` can control both the X-axis and Y-axis:
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+`skewX()` specifically controls the X-axis:
+
+```css
+.box {
+    transform: skewX(20deg);
+}
+```
+
+Therefore, `skewX()` is useful when you only want to distort the element horizontally.
+
+> 💡 **Tip:** Use `skewX()` when you need a horizontal slant without changing the Y-axis skew.
+
+> 💡 **Remember:** Positive and negative angle values control the direction of the X-axis skew.
