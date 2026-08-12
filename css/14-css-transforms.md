@@ -1145,3 +1145,142 @@ Therefore, `scaleX()` is useful when you want to change the width without changi
 > 💡 **Tip:** Use `scaleX()` when you specifically need horizontal scaling and want to keep the vertical size unchanged.
 
 > 💡 **Remember:** Values greater than `1` make the element wider, values between `0` and `1` make it narrower, and negative values can mirror the element horizontally.
+
+---
+
+## Scale Y
+
+The `scaleY()` function changes the visual height of an element by scaling it along the **Y-axis**.
+
+It affects the element's vertical size while keeping its horizontal scale unchanged.
+
+### Basic Syntax
+
+```css
+selector {
+    transform: scaleY(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: scaleY(1.5);
+}
+```
+
+This makes the element visually `1.5` times taller than its original height.
+
+### Scaling Up Vertically
+
+Values greater than `1` increase the element's height:
+
+```css
+.box {
+    transform: scaleY(2);
+}
+```
+
+The element becomes twice as tall.
+
+### Scaling Down Vertically
+
+Values between `0` and `1` reduce the element's height:
+
+```css
+.box {
+    transform: scaleY(0.5);
+}
+```
+
+The element becomes half as tall.
+
+### Using `scaleY(1)`
+
+A value of `1` keeps the original vertical scale:
+
+```css
+.box {
+    transform: scaleY(1);
+}
+```
+
+The element keeps its original height.
+
+### Negative Values
+
+Negative values can flip the element vertically:
+
+```css
+.box {
+    transform: scaleY(-1);
+}
+```
+
+This mirrors the element along the Y-axis.
+
+For example, an image can be flipped vertically:
+
+```css
+.image {
+    transform: scaleY(-1);
+}
+```
+
+### Practical Example
+
+```html
+<div class="box">Scale Y</div>
+```
+
+```css
+.box {
+    width: 150px;
+    height: 100px;
+    background: steelblue;
+    transform: scaleY(1.5);
+}
+```
+
+The element becomes visually taller without changing its horizontal size.
+
+### Hover Effect
+
+`scaleY()` can be combined with a transition:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scaleY(1.1);
+}
+```
+
+When the user hovers over the element, its height smoothly increases.
+
+### Comparing `scale()` and `scaleY()`
+
+`scale()` can control both the X and Y axes:
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+`scaleY()` only affects the Y-axis:
+
+```css
+.box {
+    transform: scaleY(1.2);
+}
+```
+
+Therefore, `scaleY()` is useful when you want to change the height without changing the width.
+
+> 💡 **Tip:** Use `scaleY()` when you specifically need vertical scaling and want to keep the horizontal size unchanged.
+
+> 💡 **Remember:** Values greater than `1` make the element taller, values between `0` and `1` make it shorter, and negative values can mirror the element vertically.
