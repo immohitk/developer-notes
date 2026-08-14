@@ -2620,3 +2620,353 @@ When the user hovers over the box, it smoothly moves `40px` to the right.
 > 💡 **Tip:** For simple visual movement, prefer `transform: translate()` with a transition. Use layout properties such as `top` or `left` when you specifically need to change an element's positioned layout.
 
 > 💡 **Remember:** A transition can make position changes smooth, but `transform` is commonly used for efficient visual movement effects.
+
+---
+
+## Practical Examples
+
+CSS transitions are most useful when they are applied to real interface elements. The following examples combine the transition concepts covered in this chapter.
+
+### 1. Button Hover Effect
+
+A button can smoothly change its background color and size when the user hovers over it.
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    padding: 12px 24px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+    transform: scale(1.05);
+}
+```
+
+The button smoothly changes its background color and becomes slightly larger.
+
+### 2. Card Lift Effect
+
+A card can move upward and change its shadow when hovered.
+
+```html
+<div class="card">
+    <h2>CSS Card</h2>
+    <p>Hover over this card.</p>
+</div>
+```
+
+```css
+.card {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+```
+
+The card smoothly moves upward and gains a larger shadow.
+
+### 3. Navigation Link Effect
+
+Navigation links can smoothly change their text color.
+
+```html
+<a href="#" class="nav-link">Home</a>
+```
+
+```css
+.nav-link {
+    color: black;
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: steelblue;
+}
+```
+
+The text color gradually changes when the pointer moves over the link.
+
+### 4. Image Zoom Effect
+
+A transition can be combined with `transform: scale()` to create a smooth image zoom.
+
+```html
+<div class="image-container">
+    <img src="image.jpg" alt="Example" class="image">
+</div>
+```
+
+```css
+.image-container {
+    overflow: hidden;
+}
+
+.image {
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.image:hover {
+    transform: scale(1.05);
+}
+```
+
+The image smoothly grows when hovered.
+
+### 5. Input Focus Effect
+
+Transitions can provide visual feedback when an input receives focus.
+
+```html
+<input type="text" class="input" placeholder="Enter your name">
+```
+
+```css
+.input {
+    padding: 10px;
+    border: 2px solid gray;
+    outline: none;
+
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: steelblue;
+}
+```
+
+The border color changes smoothly when the user focuses on the input.
+
+### 6. Expanding Button
+
+A button can smoothly increase its width when hovered.
+
+```css
+.button {
+    width: 120px;
+    padding: 12px;
+
+    transition: width 0.3s ease;
+}
+
+.button:hover {
+    width: 180px;
+}
+```
+
+The button expands from `120px` to `180px`.
+
+### 7. Moving Element
+
+An element can smoothly move horizontally using `translateX()`.
+
+```css
+.box {
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+
+.box:hover {
+    transform: translateX(50px);
+}
+```
+
+The element moves `50px` to the right when hovered.
+
+### 8. Rotating Icon
+
+A transition can create a smooth rotation effect.
+
+```css
+.icon {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: rotate(45deg);
+}
+```
+
+The icon smoothly rotates by `45deg`.
+
+### 9. Fade Effect
+
+The `opacity` property can be transitioned to create a fade effect.
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.6;
+}
+```
+
+The element gradually becomes more transparent.
+
+### 10. Combined Card Effect
+
+Several transition effects can be combined into one component.
+
+```html
+<div class="product-card">
+    <h2>Product</h2>
+    <p>Example product card.</p>
+    <button>View Product</button>
+</div>
+```
+
+```css
+.product-card {
+    width: 280px;
+    padding: 20px;
+    background-color: white;
+    transform: translateY(0);
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    background-color: lightgray;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card button {
+    background-color: steelblue;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: darkblue;
+    transform: scale(1.05);
+}
+```
+
+This example combines:
+
+- `transform`
+- `background-color`
+- `box-shadow`
+- `transition-duration`
+- `transition-timing-function`
+- `:hover`
+- Multiple transitions
+
+### Choosing a Suitable Transition
+
+The transition should match the type of interaction.
+
+```text
+Color change
+    ↓
+0.2s – 0.4s
+
+Small movement
+    ↓
+0.2s – 0.4s
+
+Card movement
+    ↓
+0.3s – 0.5s
+
+Image zoom
+    ↓
+0.3s – 0.5s
+
+Large visual change
+    ↓
+Use a duration that does not feel unnecessarily slow
+```
+
+These are practical starting points rather than strict rules. The appropriate duration depends on the interface and the amount of visual change.
+
+### Practical Example Combining the Main Concepts
+
+```html
+<div class="card">
+    <h2>Learn CSS</h2>
+    <p>Explore CSS transitions.</p>
+    <button class="button">Learn More</button>
+</div>
+```
+
+```css
+.card {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+
+    transform: translateY(0);
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background-color: lightgray;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+    background-color: steelblue;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+    transform: scale(1.05);
+}
+```
+
+This demonstrates how multiple simple transitions can work together to create a polished interactive component.
+
+> 💡 **Tip:** Start with small, subtle transitions and adjust the duration and timing function based on how the interaction feels.
+
+> 💡 **Remember:** Good transition effects should make interactions clearer and smoother without distracting the user.
