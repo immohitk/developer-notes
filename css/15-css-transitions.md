@@ -1404,3 +1404,187 @@ Both describe the same basic transition behavior.
 > 💡 **Tip:** The shorthand form is commonly preferred when you want to keep transition declarations concise.
 
 > 💡 **Remember:** The `transition` shorthand combines `transition-property`, `transition-duration`, `transition-timing-function`, and `transition-delay` into one declaration.
+
+---
+
+## Multiple Transitions
+
+CSS allows you to apply transitions to multiple properties of an element.
+
+When several CSS properties need to change smoothly, you can define multiple transitions by separating each transition with a comma.
+
+### Syntax
+
+The basic syntax is:
+
+```css
+selector {
+    transition: property1 duration1,
+                property2 duration2;
+}
+```
+
+For example:
+
+```css
+.box {
+    transition:
+        width 0.5s ease,
+        background-color 0.3s ease;
+}
+```
+
+Here:
+
+```text
+width            → 0.5s
+background-color → 0.3s
+```
+
+Each property has its own transition duration.
+
+### Example
+
+```html
+<div class="box">Hover Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    height: 100px;
+    background-color: steelblue;
+
+    transition:
+        width 0.5s ease,
+        background-color 0.3s ease;
+}
+
+.box:hover {
+    width: 250px;
+    background-color: darkblue;
+}
+```
+
+When the user hovers over the box:
+
+- The `width` changes smoothly over `0.5s`.
+- The `background-color` changes smoothly over `0.3s`.
+
+### Multiple Properties with Different Timing Functions
+
+Each property can also have its own timing function.
+
+```css
+.box {
+    transition:
+        width 0.5s ease-in,
+        background-color 0.3s ease-out,
+        transform 0.6s linear;
+}
+```
+
+Here:
+
+```text
+width            → 0.5s → ease-in
+background-color → 0.3s → ease-out
+transform        → 0.6s → linear
+```
+
+### Multiple Properties with Delays
+
+Different transitions can also have different delays.
+
+```css
+.box {
+    transition:
+        width 0.5s ease 0s,
+        background-color 0.5s ease 0.2s,
+        transform 0.5s ease 0.4s;
+}
+```
+
+Here:
+
+```text
+width            → Starts immediately
+background-color → Starts after 0.2s
+transform        → Starts after 0.4s
+```
+
+This can create a staggered visual effect.
+
+### Using Longhand Properties
+
+Multiple transitions can also be defined using the individual transition properties.
+
+```css
+.box {
+    transition-property: width, background-color, transform;
+    transition-duration: 0.5s, 0.3s, 0.6s;
+    transition-timing-function: ease, ease-out, linear;
+    transition-delay: 0s, 0.2s, 0.4s;
+}
+```
+
+The values correspond to the properties in the same order.
+
+```text
+Property         Duration   Timing       Delay
+------------------------------------------------
+width            0.5s       ease         0s
+background-color 0.3s       ease-out     0.2s
+transform        0.6s       linear       0.4s
+```
+
+### Using Multiple Transitions with Transform
+
+Multiple transitions are often used together with CSS transforms.
+
+```css
+.card {
+    background-color: white;
+    transform: translateY(0);
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background-color: lightgray;
+}
+```
+
+Both properties change smoothly when the card is hovered.
+
+### Multiple Transitions with Different Durations
+
+Different properties do not need to use the same duration.
+
+```css
+.button {
+    transform: scale(1);
+    background-color: steelblue;
+    color: white;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.4s ease,
+        color 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    background-color: darkblue;
+    color: lightgray;
+}
+```
+
+This allows each property to have its own transition behavior.
+
+> 💡 **Tip:** Use multiple transitions when different properties need different durations, timing functions, or delays.
+
+> 💡 **Remember:** Multiple transitions are separated by commas, and each transition describes how one property should change.
