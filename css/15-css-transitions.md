@@ -1999,3 +1999,193 @@ This creates a smooth card interaction using both `translateY()` and `scale()`.
 > 💡 **Tip:** `transform` and `transition` are commonly used together because transforms are efficient for creating smooth visual movement and interaction effects.
 
 > 💡 **Remember:** `transform` defines **what visual transformation happens**, while `transition` defines **how smoothly the transformation happens**.
+
+---
+
+## Transitions with Colors
+
+CSS transitions can be used to smoothly change color-related properties such as `color`, `background-color`, and `border-color`.
+
+Instead of changing from one color to another immediately, the browser gradually changes the color over the specified transition duration.
+
+### Background Color
+
+The `background-color` property is commonly used with transitions.
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+When the user hovers over the button, the background color changes smoothly.
+
+### Text Color
+
+The `color` property can also be transitioned.
+
+```css
+.link {
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: steelblue;
+}
+```
+
+The text color gradually changes when the user hovers over the link.
+
+### Border Color
+
+Transitions can be applied to `border-color`.
+
+```css
+.input {
+    border: 2px solid gray;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: steelblue;
+}
+```
+
+When the input receives focus, the border color changes smoothly.
+
+### Multiple Color Properties
+
+Multiple color properties can be transitioned at the same time.
+
+```css
+.button {
+    background-color: white;
+    color: black;
+    border-color: gray;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: steelblue;
+    color: white;
+    border-color: steelblue;
+}
+```
+
+Here, all three color properties transition smoothly.
+
+### Using the `transition` Shorthand
+
+The shorthand property can make color transitions more concise.
+
+```css
+.button {
+    background-color: steelblue;
+    color: white;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+```
+
+### Color Transition with Hover
+
+A common example is a navigation link:
+
+```html
+<a href="#" class="nav-link">Home</a>
+```
+
+```css
+.nav-link {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: steelblue;
+}
+```
+
+The link changes color smoothly when the pointer moves over it.
+
+### Color Transition with Focus
+
+Transitions can also provide smooth feedback when an element receives focus.
+
+```css
+input {
+    border: 2px solid gray;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: steelblue;
+}
+```
+
+This is useful for form controls and other interactive elements.
+
+### Color Transition with Buttons
+
+```html
+<button class="button">Submit</button>
+```
+
+```css
+.button {
+    background-color: steelblue;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+    color: white;
+}
+```
+
+The button's background color changes smoothly when hovered.
+
+### Using Color Transitions with Other Effects
+
+Color transitions can be combined with transforms and other properties.
+
+```css
+.card {
+    background-color: white;
+    transform: translateY(0);
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.card:hover {
+    background-color: lightgray;
+    transform: translateY(-8px);
+}
+```
+
+The card changes its background color while smoothly moving upward.
+
+> 💡 **Tip:** Color transitions are useful for providing visual feedback without requiring complicated animations.
+
+> 💡 **Remember:** Transition the specific color property that changes, such as `color`, `background-color`, or `border-color`.
