@@ -3242,3 +3242,38 @@ This example combines several concepts from the chapter into one practical inter
 > 💡 **Remember:** CSS transitions make property changes smooth. The four main transition components are **property, duration, timing function, and delay**.
 
 > 💡 **Key idea:** Define the state change separately and use `transition` to control how smoothly the browser moves between the states.
+
+---
+
+## References
+
+The following references can be used to further study CSS transitions and the related CSS properties covered in this chapter.
+
+### MDN Web Docs
+
+- CSS Transitions
+- `transition`
+- `transition-property`
+- `transition-duration`
+- `transition-timing-function`
+- `transition-delay`
+
+### CSS Specifications
+
+- CSS Transitions Module
+- CSS Transforms Module
+
+### Related CSS Topics
+
+The following topics are closely related to CSS transitions:
+
+- CSS Transform
+- CSS Animation
+- CSS Pseudo-classes
+- CSS Timing Functions
+- CSS Transforms
+- CSS Visual Effects
+
+> 💡 **Tip:** Use the references to verify syntax, browser behavior, supported values, and advanced transition features.
+
+> 💡 **Remember:** The examples in this chapter are intended to build a practical understanding of CSS transitions. For complete and up-to-date specifications, refer to the official CSS documentation.
