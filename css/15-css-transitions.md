@@ -411,3 +411,154 @@ They are commonly found in:
 > 💡 **Tip:** Transitions should support the user experience rather than distract from it. Subtle transitions are usually more effective than excessive movement.
 
 > 💡 **Remember:** CSS transitions make state changes smoother, improve visual feedback, and help create responsive and polished interfaces.
+
+---
+
+## Transition Syntax
+
+The `transition` property is used to control how a CSS property changes from one value to another.
+
+A basic transition can be written like this:
+
+```css
+.box {
+    transition: property duration;
+}
+```
+
+For example:
+
+```css
+.box {
+    background-color: steelblue;
+    transition: background-color 0.3s;
+}
+
+.box:hover {
+    background-color: darkblue;
+}
+```
+
+Here:
+
+```text
+background-color → Property being transitioned
+0.3s             → Duration of the transition
+```
+
+### Basic Syntax
+
+The general syntax is:
+
+```css
+selector {
+    transition: property duration;
+}
+```
+
+For example:
+
+```css
+button {
+    transition: background-color 0.5s;
+}
+```
+
+This tells the browser to smoothly transition changes to `background-color` over `0.5` seconds.
+
+### Complete Transition Syntax
+
+The `transition` shorthand can include several values:
+
+```css
+selector {
+    transition: property duration timing-function delay;
+}
+```
+
+For example:
+
+```css
+button {
+    transition: background-color 0.5s ease 0.2s;
+}
+```
+
+The values represent:
+
+```text
+background-color → Property
+0.5s             → Duration
+ease             → Timing function
+0.2s             → Delay
+```
+
+### Using `transition-property`
+
+You can specify which CSS property should transition:
+
+```css
+.box {
+    transition-property: background-color;
+}
+```
+
+### Using `transition-duration`
+
+You can specify how long the transition should take:
+
+```css
+.box {
+    transition-duration: 0.5s;
+}
+```
+
+### Using `transition-timing-function`
+
+You can control the speed pattern of the transition:
+
+```css
+.box {
+    transition-timing-function: ease;
+}
+```
+
+### Using `transition-delay`
+
+You can delay the beginning of the transition:
+
+```css
+.box {
+    transition-delay: 0.2s;
+}
+```
+
+These individual properties can also be combined using the `transition` shorthand:
+
+```css
+.box {
+    transition: background-color 0.5s ease 0.2s;
+}
+```
+
+### Example
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    background-color: steelblue;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+The transition syntax tells the browser to smoothly change the `background-color` when the button enters or leaves the hover state.
+
+> 💡 **Remember:** The basic transition syntax is `property duration`, while the complete shorthand can include `property`, `duration`, `timing-function`, and `delay`.
