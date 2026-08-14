@@ -562,3 +562,151 @@ These individual properties can also be combined using the `transition` shorthan
 The transition syntax tells the browser to smoothly change the `background-color` when the button enters or leaves the hover state.
 
 > 💡 **Remember:** The basic transition syntax is `property duration`, while the complete shorthand can include `property`, `duration`, `timing-function`, and `delay`.
+
+---
+
+## Transition Property
+
+The `transition-property` property specifies which CSS property or properties should transition smoothly when their values change.
+
+For example:
+
+```css
+.box {
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+
+.box:hover {
+    background-color: darkblue;
+}
+```
+
+Here, only the `background-color` property is transitioned.
+
+### Syntax
+
+The basic syntax is:
+
+```css
+selector {
+    transition-property: property;
+}
+```
+
+For example:
+
+```css
+.box {
+    transition-property: width;
+}
+```
+
+The transition duration can be specified separately:
+
+```css
+.box {
+    transition-property: width;
+    transition-duration: 0.5s;
+}
+```
+
+### Transitioning Multiple Properties
+
+Multiple properties can be specified by separating them with commas:
+
+```css
+.box {
+    transition-property: width, height, background-color;
+    transition-duration: 0.5s;
+}
+```
+
+Now changes to `width`, `height`, and `background-color` can transition smoothly.
+
+### Example
+
+```html
+<div class="box">Hover Me</div>
+```
+
+```css
+.box {
+    width: 150px;
+    height: 100px;
+    background-color: steelblue;
+
+    transition-property: width, background-color;
+    transition-duration: 0.5s;
+}
+
+.box:hover {
+    width: 250px;
+    background-color: darkblue;
+}
+```
+
+When the user hovers over the box:
+
+- `width` changes smoothly.
+- `background-color` changes smoothly.
+- `height` does not transition because it was not included in `transition-property`.
+
+### Using `all`
+
+The value `all` can be used to transition all properties that can be transitioned:
+
+```css
+.box {
+    transition-property: all;
+    transition-duration: 0.3s;
+}
+```
+
+For example:
+
+```css
+.box {
+    width: 150px;
+    background-color: steelblue;
+    transform: scale(1);
+
+    transition-property: all;
+    transition-duration: 0.3s;
+}
+
+.box:hover {
+    width: 200px;
+    background-color: darkblue;
+    transform: scale(1.05);
+}
+```
+
+All of the applicable changes can transition smoothly.
+
+However, using `all` unnecessarily can make it less clear which properties are intended to transition.
+
+### Using `none`
+
+The `none` value means that no property should transition:
+
+```css
+.box {
+    transition-property: none;
+}
+```
+
+This can be useful when transitions need to be disabled.
+
+### Common Values
+
+| Value | Description |
+| --- | --- |
+| `none` | No properties are transitioned |
+| `all` | All applicable properties are transitioned |
+| `property` | A specific property is transitioned |
+| `property1, property2` | Multiple specific properties are transitioned |
+
+> 💡 **Tip:** When you know exactly which properties need a transition, specifying them explicitly can make your CSS clearer and easier to maintain.
+
+> 💡 **Remember:** `transition-property` decides **what changes smoothly**, while `transition-duration` decides **how long the change takes**.
