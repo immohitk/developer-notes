@@ -4670,3 +4670,361 @@ Can define the changed state
 > 💡 **Interview Tip:** If asked about CSS transitions, remember the four main components: **property, duration, timing function, and delay**.
 
 > 💡 **Key distinction:** `transition` controls **how a change happens**, while the CSS state or rule defines **what changes**.
+
+---
+
+## Practice Exercises
+
+The following exercises are designed to reinforce the concepts covered in the CSS Transitions chapter.
+
+### Exercise 1: Basic Color Transition
+
+Create a button that changes its background color smoothly when the user hovers over it.
+
+Requirements:
+
+- Use `background-color`.
+- Add a transition.
+- Use a duration of `0.3s`.
+- Use `ease` as the timing function.
+
+Expected behavior:
+
+```text
+Normal → Blue
+Hover  → Dark Blue
+```
+
+### Exercise 2: Text Color Transition
+
+Create a navigation link that changes its text color when hovered.
+
+Requirements:
+
+- Use the `color` property.
+- Add a transition.
+- Do not use `transition: all`.
+
+### Exercise 3: Moving Card
+
+Create a card that moves upward by `10px` when hovered.
+
+Requirements:
+
+- Use `transform: translateY()`.
+- Add a transition to `transform`.
+- Use a duration between `0.3s` and `0.5s`.
+
+Expected behavior:
+
+```text
+Normal
+   ↓
+Card at original position
+
+Hover
+   ↓
+Card moves upward
+```
+
+### Exercise 4: Scaling Button
+
+Create a button that becomes slightly larger when hovered.
+
+Requirements:
+
+- Use `transform: scale()`.
+- Add a transition.
+- Use a subtle scale value such as `1.05`.
+
+### Exercise 5: Rotating Icon
+
+Create an element that rotates when hovered.
+
+Requirements:
+
+- Start at `rotate(0deg)`.
+- Rotate to `rotate(45deg)`.
+- Transition the `transform` property.
+
+### Exercise 6: Expanding Box
+
+Create a box that smoothly increases its width.
+
+Requirements:
+
+- Initial width: `150px`.
+- Hover width: `250px`.
+- Transition the `width` property.
+- Use a duration of `0.5s`.
+
+### Exercise 7: Multiple Transitions
+
+Create a card that changes multiple properties when hovered.
+
+Requirements:
+
+- Change `background-color`.
+- Move the card upward using `transform`.
+- Change `box-shadow`.
+- Use separate transition declarations for the properties.
+
+Example structure:
+
+```css
+.card {
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+### Exercise 8: Input Focus Transition
+
+Create an input field whose border changes color smoothly when it receives focus.
+
+Requirements:
+
+- Use `:focus`.
+- Transition `border-color`.
+- Do not remove the focus indicator.
+
+Expected behavior:
+
+```text
+Normal → Gray border
+Focus  → Blue border
+```
+
+### Exercise 9: Image Zoom
+
+Create an image that slightly zooms when the user hovers over it.
+
+Requirements:
+
+- Use `transform: scale()`.
+- Use `overflow: hidden` on a suitable container if needed.
+- Add a smooth transition.
+
+Try:
+
+```css
+transform: scale(1.05);
+```
+
+### Exercise 10: Transition Delay
+
+Create a button that waits briefly before its hover transition begins.
+
+Requirements:
+
+- Use `transition-delay`.
+- Use a delay of approximately `0.2s`.
+- Transition the background color.
+
+### Exercise 11: Timing Functions
+
+Create four boxes and give each one a different timing function.
+
+Use:
+
+```text
+ease
+linear
+ease-in
+ease-out
+```
+
+Compare how the movement feels for each box.
+
+### Exercise 12: Transition Shorthand
+
+Rewrite the following individual properties using the `transition` shorthand:
+
+```css
+.box {
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    transition-delay: 0.1s;
+}
+```
+
+Your result should use one `transition` declaration.
+
+### Exercise 13: Fix the Mistake
+
+The following code does not provide the intended transition behavior:
+
+```css
+.button:hover {
+    transition: background-color 0.3s ease;
+    background-color: darkblue;
+}
+```
+
+Rewrite it so that the transition works when entering and leaving the hover state.
+
+### Exercise 14: Avoid `transition: all`
+
+Rewrite this code:
+
+```css
+.card {
+    transition: all 0.3s ease;
+}
+```
+
+Assume that only these properties should transition:
+
+```text
+transform
+box-shadow
+```
+
+Write a more specific transition declaration.
+
+### Exercise 15: Reduced Motion
+
+Create a button with a scale transition and add a `prefers-reduced-motion` media query.
+
+Requirements:
+
+- Normal state uses a transition.
+- Hover state uses `transform: scale()`.
+- Reduced-motion users should not receive the transition.
+
+### Exercise 16: Complete Interactive Card
+
+Create a complete card component containing:
+
+```text
+Title
+Description
+Button
+```
+
+When the user hovers over the card:
+
+- Move the card upward.
+- Change its background color.
+- Increase its shadow.
+
+When the user hovers over the button:
+
+- Change its background color.
+- Slightly scale the button.
+
+Use multiple transitions.
+
+### Exercise 17: Debug the Transition
+
+Find and fix the problem in this code:
+
+```css
+.box {
+    background-color: steelblue;
+    transition: color 0.3s ease;
+}
+
+.box:hover {
+    background-color: darkblue;
+}
+```
+
+Question:
+
+**Which property should be transitioned?**
+
+### Exercise 18: Compare `width` and `scale`
+
+Create two boxes.
+
+The first should become larger using:
+
+```css
+width
+```
+
+The second should become larger using:
+
+```css
+transform: scale()
+```
+
+Compare the visual and layout behavior of both approaches.
+
+### Exercise 19: Build a Navigation Menu
+
+Create a navigation menu with several links.
+
+Each link should:
+
+- Change color on hover.
+- Transition smoothly.
+- Have a visible keyboard focus state.
+
+Example:
+
+```text
+Home
+About
+Services
+Contact
+```
+
+### Exercise 20: Mini Project
+
+Build a small interactive product card using the concepts from this chapter.
+
+The card should include:
+
+```text
+Product image
+Product name
+Description
+Price
+Button
+```
+
+Add suitable transitions for:
+
+- Card movement.
+- Card shadow.
+- Image scaling.
+- Button color.
+- Button scaling.
+
+Also include support for:
+
+```css
+@media (prefers-reduced-motion: reduce)
+```
+
+### Practice Checklist
+
+```text
+⬜ Basic color transition
+⬜ Text color transition
+⬜ Card movement
+⬜ Scale effect
+⬜ Rotation effect
+⬜ Width transition
+⬜ Multiple transitions
+⬜ Focus transition
+⬜ Image zoom
+⬜ Transition delay
+⬜ Timing functions
+⬜ Transition shorthand
+⬜ Debug a transition
+⬜ Avoid transition: all
+⬜ Reduced-motion support
+⬜ Complete interactive card
+⬜ Navigation menu
+⬜ Mini project
+```
+
+> 💡 **Tip:** Try to solve the exercises without immediately looking at existing examples. Writing the CSS yourself will help reinforce how `transition`, pseudo-classes, and changed property values work together.
+
+> 💡 **Remember:** The goal is not just to memorize the syntax. Practice identifying **what changes**, **which property changes**, and **how that change should happen**.
