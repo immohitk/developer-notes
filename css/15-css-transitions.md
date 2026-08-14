@@ -1588,3 +1588,196 @@ This allows each property to have its own transition behavior.
 > 💡 **Tip:** Use multiple transitions when different properties need different durations, timing functions, or delays.
 
 > 💡 **Remember:** Multiple transitions are separated by commas, and each transition describes how one property should change.
+
+---
+
+## Transitions with Hover
+
+The `:hover` pseudo-class is commonly used with CSS transitions to create smooth interactive effects when the user moves the pointer over an element.
+
+A transition defines how the property changes, while `:hover` defines the state in which the property changes.
+
+### Basic Example
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+When the pointer moves over the button, the `background-color` changes smoothly.
+
+When the pointer leaves the button, the color smoothly returns to its original value.
+
+### Button Hover Effect
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    padding: 12px 24px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+    transform: scale(1.05);
+}
+```
+
+This example combines a color transition with a transform transition.
+
+### Changing Text Color
+
+Transitions can be used to smoothly change the color of links.
+
+```css
+.link {
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: steelblue;
+}
+```
+
+### Changing Opacity
+
+A hover transition can also change an element's opacity.
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+The image gradually becomes more transparent when the pointer moves over it.
+
+### Moving an Element
+
+Transitions can be combined with transforms to create movement.
+
+```css
+.card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+```
+
+The card smoothly moves upward when hovered.
+
+### Combining Multiple Hover Effects
+
+Several properties can transition at the same time.
+
+```css
+.card {
+    background-color: white;
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    background-color: lightgray;
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+```
+
+The card changes multiple properties smoothly during the hover state.
+
+### Hovering Over Images
+
+Transitions are frequently used to create image zoom effects.
+
+```css
+.image-container {
+    overflow: hidden;
+}
+
+.image {
+    transition: transform 0.4s ease;
+}
+
+.image:hover {
+    transform: scale(1.05);
+}
+```
+
+The image gradually becomes larger when hovered.
+
+### Hover Effects on Navigation Links
+
+```css
+.nav-link {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: steelblue;
+}
+```
+
+This provides smooth visual feedback when the user moves the pointer over a navigation link.
+
+### Important Point
+
+The transition should normally be placed on the element's normal state rather than only on the `:hover` state.
+
+Recommended:
+
+```css
+.button {
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+Avoid:
+
+```css
+.button:hover {
+    transition: background-color 0.3s ease;
+    background-color: darkblue;
+}
+```
+
+Putting the transition only on `:hover` can cause the transition to behave differently when the pointer leaves the element.
+
+> 💡 **Tip:** Put the `transition` declaration on the base element and use `:hover` only to define the changed values.
+
+> 💡 **Remember:** `:hover` defines the interactive state, while `transition` controls how smoothly the element moves from one state to another.
