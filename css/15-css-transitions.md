@@ -1042,3 +1042,163 @@ The transition progresses through five distinct steps.
 > 💡 **Tip:** `ease`, `ease-in`, `ease-out`, and `ease-in-out` are useful for common interface effects, while `cubic-bezier()` and `steps()` provide more specialized control.
 
 > 💡 **Remember:** `transition-duration` controls **how long** the transition takes, while `transition-timing-function` controls **how the speed changes during that time**.
+
+---
+
+## Transition Delay
+
+The `transition-delay` property specifies how long the browser should wait before starting a transition.
+
+It is useful when you want a transition to begin after a short pause.
+
+### Syntax
+
+The basic syntax is:
+
+```css
+selector {
+    transition-delay: time;
+}
+```
+
+For example:
+
+```css
+.box {
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    transition-delay: 0.2s;
+}
+```
+
+Here:
+
+```text
+0.5s → Transition duration
+0.2s → Delay before the transition starts
+```
+
+### Using Seconds
+
+The delay can be specified in seconds:
+
+```css
+.box {
+    transition-delay: 0.5s;
+}
+```
+
+The transition waits for `0.5` seconds before starting.
+
+### Using Milliseconds
+
+The delay can also be specified in milliseconds:
+
+```css
+.box {
+    transition-delay: 200ms;
+}
+```
+
+`200ms` is equivalent to `0.2s`.
+
+```text
+1s    = 1000ms
+0.5s  = 500ms
+0.2s  = 200ms
+0.1s  = 100ms
+```
+
+### Example
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.5s ease;
+    transition-delay: 0.3s;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+When the user hovers over the button:
+
+1. The browser waits `0.3s`.
+2. The background color transition begins.
+3. The color change takes `0.5s`.
+
+### Delay with the Transition Shorthand
+
+The delay can be included in the `transition` shorthand:
+
+```css
+.button {
+    transition: background-color 0.5s ease 0.3s;
+}
+```
+
+The values represent:
+
+```text
+background-color → Property
+0.5s             → Duration
+ease             → Timing function
+0.3s             → Delay
+```
+
+### Multiple Transition Delays
+
+When multiple properties are transitioned, multiple delay values can be provided.
+
+```css
+.box {
+    transition-property: width, background-color;
+    transition-duration: 0.5s, 1s;
+    transition-delay: 0s, 0.3s;
+}
+```
+
+Here:
+
+```text
+width            → Duration: 0.5s → Delay: 0s
+background-color → Duration: 1s   → Delay: 0.3s
+```
+
+The values correspond to the properties in the same order.
+
+### Zero Delay
+
+A delay of `0s` means the transition starts immediately:
+
+```css
+.box {
+    transition-delay: 0s;
+}
+```
+
+This is the default behavior when no delay is specified.
+
+### Negative Delay
+
+A negative delay can be used:
+
+```css
+.box {
+    transition-delay: -0.2s;
+}
+```
+
+A negative delay causes the transition to behave as though it had already been running for the specified amount of time when it begins.
+
+This can create advanced transition effects, but it is less commonly needed in basic interface design.
+
+> 💡 **Tip:** Small positive delays can be useful for creating sequential or staggered interface effects.
+
+> 💡 **Remember:** `transition-delay` controls **when the transition starts**, while `transition-duration` controls **how long the transition takes**.
