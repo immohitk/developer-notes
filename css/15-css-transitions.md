@@ -710,3 +710,174 @@ This can be useful when transitions need to be disabled.
 > 💡 **Tip:** When you know exactly which properties need a transition, specifying them explicitly can make your CSS clearer and easier to maintain.
 
 > 💡 **Remember:** `transition-property` decides **what changes smoothly**, while `transition-duration` decides **how long the change takes**.
+
+---
+
+## Transition Duration
+
+The `transition-duration` property specifies how long a transition should take to complete.
+
+It controls the amount of time the browser takes to change a property from its starting value to its new value.
+
+### Syntax
+
+The basic syntax is:
+
+```css
+selector {
+    transition-duration: time;
+}
+```
+
+For example:
+
+```css
+.box {
+    transition-duration: 0.5s;
+}
+```
+
+Here, `0.5s` means the transition takes half a second to complete.
+
+### Using Seconds
+
+The duration can be specified using seconds (`s`):
+
+```css
+.box {
+    transition-duration: 1s;
+}
+```
+
+This creates a transition lasting one second.
+
+Another example:
+
+```css
+.box {
+    transition-duration: 0.3s;
+}
+```
+
+This creates a transition lasting `0.3` seconds.
+
+### Using Milliseconds
+
+The duration can also be specified using milliseconds (`ms`):
+
+```css
+.box {
+    transition-duration: 300ms;
+}
+```
+
+`300ms` is equivalent to `0.3s`.
+
+```text
+1s    = 1000ms
+0.5s  = 500ms
+0.3s  = 300ms
+0.1s  = 100ms
+```
+
+### Example
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    background-color: steelblue;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+When the button is hovered, the background color gradually changes over `0.5` seconds.
+
+### Different Durations
+
+Different transition durations create different visual effects.
+
+```css
+.box {
+    transition-duration: 0.1s;
+}
+```
+
+A very short duration creates a fast change.
+
+```css
+.box {
+    transition-duration: 1s;
+}
+```
+
+A longer duration creates a slower change.
+
+```css
+.box {
+    transition-duration: 2s;
+}
+```
+
+A very long duration makes the change noticeably slow.
+
+### Transition Duration with Shorthand
+
+The duration can be included directly in the `transition` shorthand:
+
+```css
+.box {
+    transition: background-color 0.5s ease;
+}
+```
+
+Here:
+
+```text
+background-color → Property
+0.5s             → Duration
+ease             → Timing function
+```
+
+### Multiple Transition Durations
+
+When multiple properties are transitioned, multiple durations can be provided:
+
+```css
+.box {
+    transition-property: width, background-color;
+    transition-duration: 0.5s, 1s;
+}
+```
+
+Here:
+
+```text
+width            → 0.5s
+background-color → 1s
+```
+
+The values correspond to the properties in the same order.
+
+### Duration of `0s`
+
+A duration of `0s` means that the transition has no visible duration:
+
+```css
+.box {
+    transition-duration: 0s;
+}
+```
+
+The property change occurs immediately rather than gradually.
+
+> 💡 **Tip:** Use shorter durations for small interface interactions and longer durations only when a slower visual effect is appropriate.
+
+> 💡 **Remember:** `transition-duration` controls **how long the transition takes**, while `transition-property` controls **which property changes smoothly**.
