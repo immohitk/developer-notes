@@ -3919,3 +3919,325 @@ This example follows several good practices:
 > 💡 **Tip:** Good transitions should feel natural enough that users notice the interaction, but not so much that the animation becomes the focus.
 
 > 💡 **Remember:** Use transitions intentionally, keep them consistent, prefer efficient visual transforms for movement, and consider reduced-motion preferences.
+
+---
+
+## Common Mistakes
+
+Understanding common mistakes helps avoid unexpected transition behavior and makes CSS easier to maintain.
+
+### 1. Putting `transition` Only on `:hover`
+
+A common mistake is defining the transition only inside the hover state.
+
+Incorrect:
+
+```css
+.button:hover {
+    transition: background-color 0.3s ease;
+    background-color: darkblue;
+}
+```
+
+Better:
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+The transition should generally be placed on the normal state.
+
+### 2. Using `transition: all` Unnecessarily
+
+Using `all` transitions every property that can transition.
+
+```css
+.card {
+    transition: all 0.3s ease;
+}
+```
+
+Although this can work, it is often better to specify the required properties.
+
+```css
+.card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+This makes the intended behavior clearer.
+
+### 3. Forgetting the Duration
+
+A transition needs a duration greater than zero to produce a visible time-based effect.
+
+For example:
+
+```css
+.box {
+    transition-property: transform;
+}
+```
+
+This does not specify how long the transition should take.
+
+Instead:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+```
+
+### 4. Using an Incorrect Property Name
+
+The property in the transition must correspond to the property that actually changes.
+
+Incorrect:
+
+```css
+.box {
+    transition: color 0.3s ease;
+}
+
+.box:hover {
+    background-color: blue;
+}
+```
+
+Here, `color` is not changing.
+
+Correct:
+
+```css
+.box {
+    transition: background-color 0.3s ease;
+}
+
+.box:hover {
+    background-color: blue;
+}
+```
+
+### 5. Expecting Every CSS Property to Transition
+
+Not every CSS property behaves the same way during transitions.
+
+For example, properties that represent discrete states may not produce a gradual visual change.
+
+A common example is:
+
+```css
+.box {
+    transition: display 0.3s ease;
+}
+```
+
+Changing `display` does not work like smoothly transitioning a numeric or color value.
+
+For effects such as fading an element, `opacity` is often more appropriate:
+
+```css
+.box {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.box:hover {
+    opacity: 0;
+}
+```
+
+### 6. Using `width` or `height` When `transform` Is More Appropriate
+
+For a simple visual zoom effect, changing dimensions may be unnecessary.
+
+Instead of:
+
+```css
+.card {
+    width: 250px;
+    transition: width 0.3s ease;
+}
+
+.card:hover {
+    width: 260px;
+}
+```
+
+A visual scaling effect can use:
+
+```css
+.card {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.04);
+}
+```
+
+The two approaches have different layout behavior, so choose based on the intended effect.
+
+### 7. Using Very Long Durations
+
+A transition that is too slow can make an interface feel unresponsive.
+
+For example:
+
+```css
+.button {
+    transition: background-color 5s ease;
+}
+```
+
+A shorter duration is usually more appropriate for a simple interaction:
+
+```css
+.button {
+    transition: background-color 0.3s ease;
+}
+```
+
+The ideal duration depends on the design and interaction.
+
+### 8. Using Excessive Delays
+
+A delay can make an interaction feel slow if it is not necessary.
+
+```css
+.button {
+    transition: transform 0.3s ease 2s;
+}
+```
+
+For most simple hover interactions, an unnecessary delay should be avoided.
+
+### 9. Forgetting Other Interaction States
+
+A transition may be designed only for `:hover` while keyboard users interact with the element through focus.
+
+For example:
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+For interactive controls, also consider an appropriate `:focus-visible` state:
+
+```css
+.button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+```
+
+Transitions should support interaction without removing useful focus indicators.
+
+### 10. Ignoring Reduced Motion
+
+Some users prefer less motion.
+
+A transition can be disabled when the user has enabled a reduced-motion preference.
+
+```css
+.button {
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}
+```
+
+### 11. Making Transitions Too Dramatic
+
+Large rotations, extreme scaling, or excessive movement can distract users.
+
+Avoid unnecessary effects such as:
+
+```css
+.card:hover {
+    transform: rotate(20deg) scale(1.5);
+}
+```
+
+A smaller effect is often more appropriate:
+
+```css
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+```
+
+### 12. Forgetting That Transitions Need a State Change
+
+A transition does not automatically create an animation.
+
+This alone does not produce a visible effect:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+```
+
+There must be a different value in another state:
+
+```css
+.box:hover {
+    transform: translateX(30px);
+}
+```
+
+The transition then controls the change between the two values.
+
+### 13. Overusing Transitions
+
+Adding transitions to every interactive element can make a page feel unnecessarily animated.
+
+Use transitions where they provide useful feedback or improve the experience.
+
+### Quick Mistake Checklist
+
+```text
+❌ Transition only inside :hover
+❌ Use transition: all without a reason
+❌ Forget the duration
+❌ Transition the wrong property
+❌ Expect every property to transition smoothly
+❌ Use unnecessarily long durations
+❌ Add unnecessary delays
+❌ Ignore keyboard focus
+❌ Ignore reduced-motion preferences
+❌ Use excessive movement or scaling
+❌ Forget to create an actual state change
+❌ Add transitions everywhere
+```
+
+> 💡 **Tip:** When a transition does not work, first check three things: **the property being changed, the transition declaration, and whether the element actually changes state.**
+
+> 💡 **Remember:** A transition only controls the change between values. It does not create the changed state by itself.
