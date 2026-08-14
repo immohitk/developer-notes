@@ -3584,3 +3584,338 @@ Shorthand for the transition properties
 > 💡 **Remember:** The most important idea is that a transition controls the change between two states. It does not create the state itself.
 
 > 💡 **Quick Formula:** `transition = property + duration + timing function + delay`
+
+---
+
+## Best Practices
+
+Following good practices when using CSS transitions helps create interfaces that are smooth, consistent, accessible, and easy to maintain.
+
+### 1. Keep Transitions Subtle
+
+Transitions should improve the user experience without becoming distracting.
+
+A short transition is often enough for small interface interactions:
+
+```css
+.button {
+    transition: background-color 0.3s ease;
+}
+```
+
+Avoid unnecessarily long transitions for simple interactions:
+
+```css
+.button {
+    transition: background-color 3s ease;
+}
+```
+
+The appropriate duration depends on the type of interaction and the amount of visual change.
+
+### 2. Put the Transition on the Base State
+
+Define the transition on the normal state rather than only on the `:hover` state.
+
+Recommended:
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+Avoid:
+
+```css
+.button:hover {
+    transition: background-color 0.3s ease;
+    background-color: darkblue;
+}
+```
+
+Putting the transition on the base element allows the transition to work when entering and leaving the hover state.
+
+### 3. Transition Only the Properties You Need
+
+When possible, specify the properties that should transition.
+
+```css
+.card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+This is often clearer than:
+
+```css
+.card {
+    transition: all 0.3s ease;
+}
+```
+
+Using explicit properties makes the intended behavior easier to understand and maintain.
+
+### 4. Use `transform` for Visual Movement
+
+For simple visual movement, `transform` is commonly preferred.
+
+```css
+.card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+```
+
+This is commonly useful for:
+
+- Moving elements
+- Scaling elements
+- Rotating elements
+- Creating hover effects
+
+### 5. Choose an Appropriate Timing Function
+
+Different timing functions create different visual effects.
+
+```css
+.button {
+    transition: transform 0.3s ease;
+}
+```
+
+Common choices include:
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+For many ordinary interface interactions, `ease` or `ease-out` can be a good starting point.
+
+### 6. Use Consistent Durations
+
+Using similar durations for similar interactions can make an interface feel more consistent.
+
+For example:
+
+```css
+.button {
+    transition: background-color 0.3s ease;
+}
+
+.link {
+    transition: color 0.3s ease;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+```
+
+This creates a consistent interaction pattern across the interface.
+
+### 7. Avoid Excessive Transitions
+
+Not every property needs a transition.
+
+For example, adding transitions to too many properties can make an interface feel unnecessarily animated:
+
+```css
+.element {
+    transition: all 0.5s ease;
+}
+```
+
+Instead, identify the properties that actually need a visual transition.
+
+```css
+.element {
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+```
+
+### 8. Use Transitions for User Feedback
+
+Transitions are particularly useful when they communicate a change of state.
+
+Examples include:
+
+```text
+Hover
+Focus
+Active
+Selected
+Expanded
+```
+
+For example:
+
+```css
+.input {
+    border-color: gray;
+    transition: border-color 0.2s ease;
+}
+
+.input:focus {
+    border-color: steelblue;
+}
+```
+
+The transition provides visual feedback when the input receives focus.
+
+### 9. Consider Accessibility
+
+Some users may prefer reduced motion.
+
+CSS provides the `prefers-reduced-motion` media feature to allow reduced-motion preferences to be respected.
+
+For example:
+
+```css
+.button {
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}
+```
+
+This allows the transition to be disabled for users who have requested reduced motion.
+
+### 10. Avoid Unnecessary Movement
+
+Transitions should not make important content difficult to follow.
+
+Avoid excessive:
+
+- Movement
+- Rotation
+- Scaling
+- Long delays
+- Large visual changes
+
+Use motion to support the interface rather than distract from its content.
+
+### 11. Use Delays Carefully
+
+A delay can be useful in specific situations:
+
+```css
+.menu {
+    transition: opacity 0.3s ease 0.1s;
+}
+```
+
+However, unnecessary delays can make an interface feel slow.
+
+Use delays when they have a clear purpose.
+
+### 12. Keep CSS Maintainable
+
+Use clear transition declarations:
+
+```css
+.card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+This makes it easier to understand which properties are being transitioned.
+
+### 13. Test Different States
+
+When creating a transition, test the element in different states.
+
+For example:
+
+```text
+Normal
+   ↓
+Hover
+   ↓
+Normal
+```
+
+Also consider:
+
+```text
+Normal
+   ↓
+Focus
+   ↓
+Normal
+```
+
+The transition should feel natural in both directions.
+
+### 14. Do Not Use Transitions Everywhere
+
+Transitions are useful, but they are not required for every CSS property or component.
+
+Use them when they provide meaningful visual feedback or improve the interaction.
+
+### Practical Example
+
+```css
+.card {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+    transform: translateY(0);
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background-color: lightgray;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+}
+```
+
+This example follows several good practices:
+
+- Uses specific transition properties.
+- Uses a short duration.
+- Uses `transform` for movement.
+- Keeps the transition on the base state.
+- Provides a reduced-motion alternative.
+
+> 💡 **Tip:** Good transitions should feel natural enough that users notice the interaction, but not so much that the animation becomes the focus.
+
+> 💡 **Remember:** Use transitions intentionally, keep them consistent, prefer efficient visual transforms for movement, and consider reduced-motion preferences.
