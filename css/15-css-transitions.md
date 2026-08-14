@@ -2189,3 +2189,220 @@ The card changes its background color while smoothly moving upward.
 > 💡 **Tip:** Color transitions are useful for providing visual feedback without requiring complicated animations.
 
 > 💡 **Remember:** Transition the specific color property that changes, such as `color`, `background-color`, or `border-color`.
+
+---
+
+## Transitions with Size
+
+CSS transitions can be used to smoothly change the size of an element.
+
+Common properties used for size transitions include:
+
+- `width`
+- `height`
+- `max-width`
+- `max-height`
+
+The transition controls how smoothly the element changes from its original size to its new size.
+
+### Changing Width
+
+The `width` property can be transitioned to create a smooth horizontal size change.
+
+```css
+.box {
+    width: 150px;
+    transition: width 0.5s ease;
+}
+
+.box:hover {
+    width: 250px;
+}
+```
+
+When the user hovers over the box, its width gradually changes from `150px` to `250px`.
+
+### Changing Height
+
+The `height` property can also be transitioned.
+
+```css
+.box {
+    height: 100px;
+    transition: height 0.5s ease;
+}
+
+.box:hover {
+    height: 200px;
+}
+```
+
+The element smoothly grows vertically when hovered.
+
+### Changing Width and Height Together
+
+Both dimensions can be transitioned at the same time.
+
+```css
+.box {
+    width: 150px;
+    height: 100px;
+
+    transition:
+        width 0.5s ease,
+        height 0.5s ease;
+}
+
+.box:hover {
+    width: 250px;
+    height: 200px;
+}
+```
+
+When hovered, the element smoothly becomes both wider and taller.
+
+### Using the Transition Shorthand
+
+When the same duration and timing function are used, the shorthand can make the code shorter.
+
+```css
+.box {
+    width: 150px;
+    height: 100px;
+
+    transition:
+        width 0.5s ease,
+        height 0.5s ease;
+}
+```
+
+### Expanding a Button
+
+A common use of size transitions is creating an expanding button.
+
+```html
+<button class="button">Learn More</button>
+```
+
+```css
+.button {
+    width: 120px;
+    padding: 12px;
+    transition: width 0.3s ease;
+}
+
+.button:hover {
+    width: 180px;
+}
+```
+
+The button smoothly becomes wider when the user hovers over it.
+
+### Expanding a Card
+
+Size transitions can also be used with cards.
+
+```css
+.card {
+    width: 250px;
+    padding: 20px;
+    transition: width 0.4s ease;
+}
+
+.card:hover {
+    width: 300px;
+}
+```
+
+The card gradually expands when hovered.
+
+### Size Transitions with Transform
+
+For many visual scaling effects, `transform: scale()` is often preferable to changing `width` or `height`.
+
+For example:
+
+```css
+.card {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+```
+
+This visually enlarges the card without changing its layout dimensions in the same way as changing `width` or `height`.
+
+### Width vs Scale
+
+Changing `width`:
+
+```css
+.box {
+    width: 150px;
+    transition: width 0.3s ease;
+}
+
+.box:hover {
+    width: 200px;
+}
+```
+
+Using `scale()`:
+
+```css
+.box {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+```
+
+These approaches produce different results.
+
+```text
+width / height
+    ↓
+Changes the element's dimensions
+
+transform: scale()
+    ↓
+Visually scales the element
+```
+
+### Practical Example
+
+```html
+<div class="card">
+    <h2>CSS</h2>
+    <p>Hover over this card.</p>
+</div>
+```
+
+```css
+.card {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+
+    transition:
+        width 0.4s ease,
+        background-color 0.3s ease;
+}
+
+.card:hover {
+    width: 300px;
+    background-color: lightgray;
+}
+```
+
+The card smoothly expands while its background color changes.
+
+> 💡 **Tip:** Use size transitions when the actual dimensions of an element need to change. For simple visual zoom effects, `transform: scale()` is often a better choice.
+
+> 💡 **Remember:** `width` and `height` transitions change an element's dimensions, while `transform: scale()` creates a visual scaling effect.
