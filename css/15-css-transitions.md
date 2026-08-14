@@ -1202,3 +1202,205 @@ This can create advanced transition effects, but it is less commonly needed in b
 > 💡 **Tip:** Small positive delays can be useful for creating sequential or staggered interface effects.
 
 > 💡 **Remember:** `transition-delay` controls **when the transition starts**, while `transition-duration` controls **how long the transition takes**.
+
+---
+
+## Transition Shorthand
+
+The `transition` property is a shorthand property that allows you to define multiple transition properties in a single declaration.
+
+Instead of writing each transition property separately:
+
+```css
+.box {
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0.2s;
+}
+```
+
+You can combine them using the `transition` shorthand:
+
+```css
+.box {
+    transition: background-color 0.5s ease 0.2s;
+}
+```
+
+### Shorthand Syntax
+
+The general syntax is:
+
+```css
+selector {
+    transition: property duration timing-function delay;
+}
+```
+
+For example:
+
+```css
+.box {
+    transition: background-color 0.5s ease 0.2s;
+}
+```
+
+The values represent:
+
+```text
+background-color → Transition property
+0.5s             → Transition duration
+ease             → Timing function
+0.2s             → Transition delay
+```
+
+### Basic Shorthand
+
+Only the property and duration are required for a simple transition:
+
+```css
+.box {
+    transition: background-color 0.5s;
+}
+```
+
+Here:
+
+```text
+background-color → Property
+0.5s             → Duration
+```
+
+The timing function uses its default value when it is not specified.
+
+### Adding a Timing Function
+
+You can add a timing function:
+
+```css
+.box {
+    transition: background-color 0.5s ease;
+}
+```
+
+Here:
+
+```text
+background-color → Property
+0.5s             → Duration
+ease             → Timing function
+```
+
+### Adding a Delay
+
+You can also specify a delay:
+
+```css
+.box {
+    transition: background-color 0.5s ease 0.2s;
+}
+```
+
+Here:
+
+```text
+background-color → Property
+0.5s             → Duration
+ease             → Timing function
+0.2s             → Delay
+```
+
+### Example
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    background-color: steelblue;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+The shorthand makes the CSS shorter while still providing the same transition behavior.
+
+### Multiple Properties
+
+Multiple transitions can be specified by separating them with commas:
+
+```css
+.box {
+    transition:
+        background-color 0.3s ease,
+        transform 0.5s ease,
+        width 0.4s ease;
+}
+```
+
+Each transition controls a different property.
+
+For example:
+
+```css
+.box:hover {
+    background-color: darkblue;
+    transform: scale(1.05);
+    width: 200px;
+}
+```
+
+The three properties transition according to their respective transition definitions.
+
+### `all` with Shorthand
+
+The `all` keyword can also be used:
+
+```css
+.box {
+    transition: all 0.3s ease;
+}
+```
+
+This allows all applicable transitioning properties to change smoothly.
+
+However, explicitly specifying properties can make the intended behavior clearer:
+
+```css
+.box {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+```
+
+### Comparing Longhand and Shorthand
+
+Longhand:
+
+```css
+.box {
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+```
+
+Shorthand:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+```
+
+Both describe the same basic transition behavior.
+
+> 💡 **Tip:** The shorthand form is commonly preferred when you want to keep transition declarations concise.
+
+> 💡 **Remember:** The `transition` shorthand combines `transition-property`, `transition-duration`, `transition-timing-function`, and `transition-delay` into one declaration.
