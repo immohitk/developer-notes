@@ -78,3 +78,163 @@ CSS transitions are commonly used for interactive effects such as:
 > 💡 **Tip:** A transition does not create a new state by itself. It controls how smoothly a property changes from one value to another.
 
 > 💡 **Remember:** CSS transitions are mainly used to make changes between CSS states appear smooth rather than immediate.
+
+---
+
+## What Are CSS Transitions?
+
+CSS transitions are a CSS feature that allows a property to change smoothly from one value to another over a specified period of time.
+
+Without a transition, a CSS property usually changes immediately when a new state is applied.
+
+For example:
+
+```css
+.button {
+    background-color: steelblue;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+The background color changes immediately when the user hovers over the button.
+
+By adding a transition:
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+The browser gradually changes the background color from `steelblue` to `darkblue` over `0.3` seconds.
+
+### How CSS Transitions Work
+
+A transition generally involves three things:
+
+```text
+Initial value
+     ↓
+Transition
+     ↓
+New value
+```
+
+For example:
+
+```css
+.box {
+    width: 100px;
+    transition: width 0.5s ease;
+}
+
+.box:hover {
+    width: 200px;
+}
+```
+
+The element starts with a width of `100px`.
+
+When the user hovers over it, the width changes to `200px`.
+
+The transition makes this change happen gradually over `0.5` seconds.
+
+### Transitions and States
+
+Transitions are commonly used when an element changes between different states.
+
+For example:
+
+```css
+button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+```
+
+Here:
+
+```text
+Normal State
+    ↓
+steelblue
+    ↓
+Hover
+    ↓
+darkblue
+```
+
+The transition controls how the browser moves from the normal state to the hover state.
+
+### Common Properties Used with Transitions
+
+Transitions can be used with many CSS properties, including:
+
+- `background-color`
+- `color`
+- `opacity`
+- `width`
+- `height`
+- `margin`
+- `padding`
+- `border-color`
+- `transform`
+
+For example:
+
+```css
+.box {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.box:hover {
+    opacity: 0.5;
+}
+```
+
+### Transition Does Not Create the Change
+
+A transition does not define the new property value.
+
+The property value is changed by another rule, while the transition controls how that change happens.
+
+For example:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+```
+
+Here:
+
+```text
+transform: scale(1.05)
+        ↓
+Creates the change
+
+transition: transform 0.3s ease
+        ↓
+Controls how the change happens
+```
+
+> 💡 **Remember:** A CSS transition controls the smoothness and timing of a change; it does not create the changed state itself.
+
+> 💡 **Tip:** Transitions are especially useful for interactive states such as `:hover`, `:focus`, and `:active`.
