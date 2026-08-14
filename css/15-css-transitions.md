@@ -4241,3 +4241,432 @@ Use transitions where they provide useful feedback or improve the experience.
 > 💡 **Tip:** When a transition does not work, first check three things: **the property being changed, the transition declaration, and whether the element actually changes state.**
 
 > 💡 **Remember:** A transition only controls the change between values. It does not create the changed state by itself.
+
+---
+
+## Interview Questions
+
+### 1. What are CSS transitions?
+
+CSS transitions allow a CSS property to change smoothly from one value to another over a specified period of time.
+
+```css
+.button {
+    transition: background-color 0.3s ease;
+}
+```
+
+### 2. What is the purpose of the `transition` property?
+
+The `transition` property controls how smoothly a CSS property changes between two states.
+
+For example:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+```
+
+### 3. What are the four main transition properties?
+
+The four main transition properties are:
+
+```text
+transition-property
+transition-duration
+transition-timing-function
+transition-delay
+```
+
+### 4. What does `transition-property` do?
+
+`transition-property` specifies which CSS property should transition.
+
+```css
+.box {
+    transition-property: transform;
+}
+```
+
+### 5. What does `transition-duration` do?
+
+`transition-duration` specifies how long the transition takes to complete.
+
+```css
+.box {
+    transition-duration: 0.5s;
+}
+```
+
+### 6. What does `transition-timing-function` do?
+
+It controls how the speed of the transition changes during its duration.
+
+Common values include:
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+Example:
+
+```css
+.box {
+    transition-timing-function: ease-out;
+}
+```
+
+### 7. What does `transition-delay` do?
+
+`transition-delay` specifies how long the browser waits before starting the transition.
+
+```css
+.box {
+    transition-delay: 0.2s;
+}
+```
+
+### 8. What is the shorthand syntax for transitions?
+
+The `transition` shorthand can combine the main transition properties.
+
+```css
+.box {
+    transition: transform 0.3s ease 0.1s;
+}
+```
+
+General form:
+
+```css
+transition: property duration timing-function delay;
+```
+
+### 9. Can multiple properties be transitioned?
+
+Yes. Multiple transitions can be separated using commas.
+
+```css
+.card {
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+### 10. How are transitions commonly used with `:hover`?
+
+A transition can be defined on the normal state and the changed value can be defined in `:hover`.
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+### 11. Where should the `transition` property normally be placed?
+
+It is generally placed on the base or normal state.
+
+```css
+.button {
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+This allows the transition to work when entering and leaving the hover state.
+
+### 12. Can `transform` be used with transitions?
+
+Yes. Transitions are commonly combined with `transform` for movement, scaling, and rotation.
+
+```css
+.card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+```
+
+### 13. What is the difference between `transform` and `transition`?
+
+`transform` defines the visual transformation.
+
+`transition` controls how smoothly the transformation occurs.
+
+```css
+.card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+```
+
+Here:
+
+```text
+transform
+    ↓
+Defines the movement
+
+transition
+    ↓
+Controls the smoothness of the movement
+```
+
+### 14. Can colors be transitioned?
+
+Yes. Common color properties such as `color`, `background-color`, and `border-color` can be transitioned.
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+### 15. Can width and height be transitioned?
+
+Yes.
+
+```css
+.box {
+    width: 150px;
+    transition: width 0.4s ease;
+}
+
+.box:hover {
+    width: 250px;
+}
+```
+
+For visual scaling, `transform: scale()` can also be used.
+
+### 16. What is the difference between `width` transition and `transform: scale()`?
+
+A `width` transition changes the element's width.
+
+```css
+.box {
+    width: 150px;
+    transition: width 0.3s ease;
+}
+
+.box:hover {
+    width: 200px;
+}
+```
+
+A scale transform visually enlarges the element.
+
+```css
+.box {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+```
+
+They can produce different layout behavior.
+
+### 17. Can position changes be transitioned?
+
+Yes. Position-related effects can be created using `transform` or positioned properties such as `top` and `left`.
+
+Example using `transform`:
+
+```css
+.box {
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateX(50px);
+}
+```
+
+### 18. What is the difference between CSS transitions and animations?
+
+Transitions are generally used for changes between states.
+
+```text
+Normal → Hover
+Normal → Focus
+Normal → Active
+```
+
+Animations are better suited to more complex sequences involving multiple stages.
+
+### 19. Does a transition create an animation by itself?
+
+No.
+
+A transition controls how a property changes between values. There must be a state change or another change in the property's value.
+
+For example:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+```
+
+The `:hover` state creates the changed value, while the transition controls the change.
+
+### 20. What does `transition: all` mean?
+
+It tells the browser to transition all properties that support transitions when their values change.
+
+```css
+.box {
+    transition: all 0.3s ease;
+}
+```
+
+However, explicitly listing the required properties can make the CSS clearer and more predictable.
+
+### 21. Why can `transition: all` be discouraged?
+
+Using `all` can cause properties to transition that were not intended to animate.
+
+Instead:
+
+```css
+.card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+This clearly specifies the intended properties.
+
+### 22. What happens if the transition duration is `0s`?
+
+The property change happens without a visible time-based transition.
+
+```css
+.box {
+    transition: transform 0s ease;
+}
+```
+
+There is effectively no gradual transition.
+
+### 23. Can transitions be combined with multiple CSS properties?
+
+Yes.
+
+```css
+.card {
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+Each property can have its own transition settings.
+
+### 24. How can transitions support accessibility?
+
+Users who prefer reduced motion can be supported using `prefers-reduced-motion`.
+
+```css
+.button {
+    transition: transform 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}
+```
+
+### 25. What are some best practices for CSS transitions?
+
+Important practices include:
+
+- Keep transitions subtle.
+- Use appropriate durations.
+- Specify the properties that should transition.
+- Prefer `transform` for simple visual movement.
+- Avoid unnecessary delays.
+- Consider keyboard focus.
+- Support reduced-motion preferences.
+- Avoid excessive animation.
+- Keep transition behavior consistent.
+
+### Quick Interview Revision
+
+```text
+CSS Transition
+    ↓
+Smoothly changes a property between states
+
+transition-property
+    ↓
+What changes?
+
+transition-duration
+    ↓
+How long does it take?
+
+transition-timing-function
+    ↓
+How does the speed change?
+
+transition-delay
+    ↓
+When does it start?
+
+transition
+    ↓
+Shorthand for transition properties
+
+transform
+    ↓
+Defines visual transformation
+
+:hover / :focus
+    ↓
+Can define the changed state
+```
+
+> 💡 **Interview Tip:** If asked about CSS transitions, remember the four main components: **property, duration, timing function, and delay**.
+
+> 💡 **Key distinction:** `transition` controls **how a change happens**, while the CSS state or rule defines **what changes**.
