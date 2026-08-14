@@ -1781,3 +1781,221 @@ Putting the transition only on `:hover` can cause the transition to behave diffe
 > 💡 **Tip:** Put the `transition` declaration on the base element and use `:hover` only to define the changed values.
 
 > 💡 **Remember:** `:hover` defines the interactive state, while `transition` controls how smoothly the element moves from one state to another.
+
+---
+
+## Transitions with Transform
+
+CSS transitions can be combined with the `transform` property to create smooth movement, scaling, rotation, and other visual effects.
+
+The `transform` property defines the transformation, while the `transition` property controls how smoothly that transformation happens.
+
+### Basic Example
+
+```css
+.box {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+```
+
+When the user hovers over the box, it smoothly grows to `110%` of its original size.
+
+### Translate with Transition
+
+The `translate()` function can be combined with a transition to create smooth movement.
+
+```css
+.card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+```
+
+The card smoothly moves upward by `10px` when hovered.
+
+### Scale with Transition
+
+The `scale()` function can create a smooth zoom effect.
+
+```css
+.image {
+    transform: scale(1);
+    transition: transform 0.4s ease;
+}
+
+.image:hover {
+    transform: scale(1.05);
+}
+```
+
+The image gradually becomes slightly larger when hovered.
+
+### Rotate with Transition
+
+The `rotate()` function can create a smooth rotation effect.
+
+```css
+.icon {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: rotate(45deg);
+}
+```
+
+The element smoothly rotates by `45deg`.
+
+### Combining Transform Functions
+
+Multiple transform functions can be used together.
+
+```css
+.card {
+    transform: translateY(0) scale(1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.05);
+}
+```
+
+When hovered, the card:
+
+1. Moves upward.
+2. Becomes slightly larger.
+
+Both changes happen smoothly because the `transform` property is transitioned.
+
+### Transform with Multiple Properties
+
+A transform transition can also be combined with other CSS property transitions.
+
+```css
+.card {
+    background-color: white;
+    transform: translateY(0);
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.card:hover {
+    background-color: lightgray;
+    transform: translateY(-8px);
+}
+```
+
+The card moves upward while its background color changes smoothly.
+
+### Scale and Shadow Effect
+
+A common card hover effect combines `scale()` with `box-shadow`.
+
+```css
+.card {
+    transform: scale(1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+```
+
+This creates a subtle lifting effect.
+
+### Transform Origin
+
+The `transform-origin` property can be used to control the point around which a transformation occurs.
+
+```css
+.box {
+    transform-origin: top left;
+    transform: rotate(0deg);
+    transition: transform 0.4s ease;
+}
+
+.box:hover {
+    transform: rotate(15deg);
+}
+```
+
+The box rotates around its top-left corner.
+
+### Transitioning Transform Instead of Individual Transform Functions
+
+The transition should target the `transform` property:
+
+```css
+.box {
+    transition: transform 0.3s ease;
+}
+```
+
+It should not be written as:
+
+```css
+.box {
+    transition: scale 0.3s ease;
+}
+```
+
+when the transformation is being defined through:
+
+```css
+.box:hover {
+    transform: scale(1.1);
+}
+```
+
+The transition is applied to the CSS property whose value changes.
+
+### Practical Example
+
+```html
+<div class="card">
+    <h2>CSS Transitions</h2>
+    <p>Hover over this card.</p>
+</div>
+```
+
+```css
+.card {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+    transform: translateY(0) scale(1);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+```
+
+This creates a smooth card interaction using both `translateY()` and `scale()`.
+
+> 💡 **Tip:** `transform` and `transition` are commonly used together because transforms are efficient for creating smooth visual movement and interaction effects.
+
+> 💡 **Remember:** `transform` defines **what visual transformation happens**, while `transition` defines **how smoothly the transformation happens**.
