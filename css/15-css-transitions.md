@@ -3277,3 +3277,310 @@ The following topics are closely related to CSS transitions:
 > 💡 **Tip:** Use the references to verify syntax, browser behavior, supported values, and advanced transition features.
 
 > 💡 **Remember:** The examples in this chapter are intended to build a practical understanding of CSS transitions. For complete and up-to-date specifications, refer to the official CSS documentation.
+
+---
+
+## Quick Revision
+
+This section provides a quick revision of the main concepts covered in the CSS Transitions chapter.
+
+### What Is a CSS Transition?
+
+A CSS transition allows a CSS property to change smoothly from one value to another over a specified period of time.
+
+```css
+.box {
+    transition: background-color 0.3s ease;
+}
+```
+
+### Main Transition Properties
+
+CSS provides four main transition properties:
+
+```text
+transition-property
+transition-duration
+transition-timing-function
+transition-delay
+```
+
+They control different parts of a transition.
+
+| Property | Purpose |
+| --- | --- |
+| `transition-property` | Specifies which property should transition |
+| `transition-duration` | Specifies how long the transition takes |
+| `transition-timing-function` | Controls the speed pattern |
+| `transition-delay` | Specifies when the transition starts |
+
+### Transition Shorthand
+
+The four properties can be combined using the `transition` shorthand.
+
+```css
+.box {
+    transition: transform 0.3s ease 0.1s;
+}
+```
+
+General form:
+
+```css
+transition: property duration timing-function delay;
+```
+
+### Common Timing Functions
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+Example:
+
+```css
+.box {
+    transition: transform 0.3s ease-out;
+}
+```
+
+### Multiple Transitions
+
+Multiple properties can be transitioned by separating them with commas.
+
+```css
+.box {
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        opacity 0.3s ease;
+}
+```
+
+### Transitions with `:hover`
+
+Transitions are commonly used with the `:hover` pseudo-class.
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+The transition should generally be placed on the normal state.
+
+### Transitions with `transform`
+
+Transforms can be used to create smooth movement, scaling, and rotation effects.
+
+```css
+.card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+```
+
+Common transform functions include:
+
+```text
+translate()
+translateX()
+translateY()
+scale()
+rotate()
+```
+
+### Transitions with Colors
+
+Color properties can be transitioned smoothly.
+
+```css
+.button {
+    background-color: steelblue;
+    color: white;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+```
+
+Common examples include:
+
+```text
+color
+background-color
+border-color
+```
+
+### Transitions with Size
+
+Size-related properties can also be transitioned.
+
+```css
+.box {
+    width: 150px;
+    transition: width 0.5s ease;
+}
+
+.box:hover {
+    width: 250px;
+}
+```
+
+For visual scaling effects, `transform: scale()` is often another useful approach.
+
+### Transitions with Position
+
+Movement can be created using `transform` or positioned properties.
+
+```css
+.box {
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateX(50px);
+}
+```
+
+### Transition vs Animation
+
+Transitions are generally used when an element moves between states.
+
+```text
+Normal → Hover
+Normal → Focus
+Normal → Active
+```
+
+CSS animations are better suited to more complex sequences involving multiple stages.
+
+### Important Relationship
+
+Remember the roles of the different CSS features:
+
+```text
+:hover
+   ↓
+Defines the changed state
+
+CSS property
+   ↓
+Defines what changes
+
+transition
+   ↓
+Defines how smoothly it changes
+```
+
+For example:
+
+```css
+.button {
+    background-color: steelblue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+```
+
+### Quick Syntax Reference
+
+```css
+/* Property */
+transition-property: transform;
+
+/* Duration */
+transition-duration: 0.3s;
+
+/* Timing function */
+transition-timing-function: ease;
+
+/* Delay */
+transition-delay: 0.1s;
+
+/* Shorthand */
+transition: transform 0.3s ease 0.1s;
+```
+
+### Complete Example
+
+```css
+.card {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+    transform: translateY(0);
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background-color: lightgray;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+```
+
+This example combines:
+
+- `transition-property`
+- `transition-duration`
+- `transition-timing-function`
+- Multiple transitions
+- `:hover`
+- `transform`
+- `background-color`
+- `box-shadow`
+
+### Final Revision Points
+
+```text
+CSS Transition
+    ↓
+Smoothly changes a property between states
+
+transition-property
+    ↓
+What changes?
+
+transition-duration
+    ↓
+How long does it take?
+
+transition-timing-function
+    ↓
+How does the speed change?
+
+transition-delay
+    ↓
+When does it start?
+
+transition
+    ↓
+Shorthand for the transition properties
+```
+
+> 💡 **Remember:** The most important idea is that a transition controls the change between two states. It does not create the state itself.
+
+> 💡 **Quick Formula:** `transition = property + duration + timing function + delay`
