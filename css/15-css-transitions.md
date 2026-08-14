@@ -881,3 +881,164 @@ The property change occurs immediately rather than gradually.
 > 💡 **Tip:** Use shorter durations for small interface interactions and longer durations only when a slower visual effect is appropriate.
 
 > 💡 **Remember:** `transition-duration` controls **how long the transition takes**, while `transition-property` controls **which property changes smoothly**.
+
+---
+
+## Transition Timing Function
+
+The `transition-timing-function` property controls the **speed pattern** of a transition during its duration.
+
+It determines how quickly the transition progresses at different points between the starting value and the ending value.
+
+### Syntax
+
+The basic syntax is:
+
+```css
+selector {
+    transition-timing-function: value;
+}
+```
+
+For example:
+
+```css
+.box {
+    transition-property: width;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+}
+```
+
+The transition still takes `1s`, but the timing function controls how the change progresses during that time.
+
+### `ease`
+
+The `ease` value starts relatively slowly, speeds up, and then slows down toward the end.
+
+```css
+.box {
+    transition: width 1s ease;
+}
+```
+
+`ease` is commonly used for general interface interactions.
+
+### `linear`
+
+The `linear` value changes at a constant speed throughout the transition.
+
+```css
+.box {
+    transition: width 1s linear;
+}
+```
+
+The transition progresses evenly from start to finish.
+
+### `ease-in`
+
+The `ease-in` value starts slowly and becomes faster toward the end.
+
+```css
+.box {
+    transition: width 1s ease-in;
+}
+```
+
+### `ease-out`
+
+The `ease-out` value starts faster and slows down toward the end.
+
+```css
+.box {
+    transition: width 1s ease-out;
+}
+```
+
+### `ease-in-out`
+
+The `ease-in-out` value starts slowly, speeds up in the middle, and slows down again toward the end.
+
+```css
+.box {
+    transition: width 1s ease-in-out;
+}
+```
+
+### Timing Function Comparison
+
+```text
+linear       → Constant speed
+ease         → Slow → Fast → Slow
+ease-in      → Slow → Fast
+ease-out     → Fast → Slow
+ease-in-out  → Slow → Fast → Slow
+```
+
+### Example
+
+```html
+<button class="button">Hover Me</button>
+```
+
+```css
+.button {
+    width: 120px;
+    transition-property: width;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+}
+
+.button:hover {
+    width: 250px;
+}
+```
+
+When the button is hovered, its width changes over one second using the `ease-out` speed pattern.
+
+### Using the Shorthand
+
+The timing function can be included in the `transition` shorthand:
+
+```css
+.button {
+    transition: width 1s ease-out;
+}
+```
+
+Here:
+
+```text
+width    → Property
+1s       → Duration
+ease-out → Timing function
+```
+
+### `cubic-bezier()`
+
+CSS also provides the `cubic-bezier()` function for creating custom timing functions.
+
+```css
+.box {
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
+
+This allows more precise control over the transition's speed pattern.
+
+### `steps()`
+
+The `steps()` function divides the transition into a specified number of discrete steps instead of producing a continuously smooth change.
+
+```css
+.box {
+    transition: width 1s steps(5);
+}
+```
+
+The transition progresses through five distinct steps.
+
+> 💡 **Tip:** `ease`, `ease-in`, `ease-out`, and `ease-in-out` are useful for common interface effects, while `cubic-bezier()` and `steps()` provide more specialized control.
+
+> 💡 **Remember:** `transition-duration` controls **how long** the transition takes, while `transition-timing-function` controls **how the speed changes during that time**.
