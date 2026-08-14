@@ -5219,10 +5219,12 @@ Optional challenge:
 - [CSS Colors](04-css-colors.md)
 - [CSS Text and Fonts](05-css-text-and-fonts.md)
 - [CSS Box Model](06-css-box-model.md)
-- [CSS Positioning](07-css-positioning.md)
+- [CSS Display](07-css-display.md)
 - [CSS Units](08-css-units.md)
-- [CSS Z-Index](09-css-z-index.md)
+- [CSS Position](09-css-position.md)
+- [CSS Z-Index](10-css-z-index.md)
 - [CSS Backgrounds](11-css-backgrounds.md)
+- [CSS Flexbox](12-css-flexbox.md)
 - [CSS Media Queries](13-css-media-queries.md)
 
 ### Next Topics

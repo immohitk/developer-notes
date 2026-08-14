@@ -18809,7 +18809,8 @@ Then answer:
 - [CSS Box Model](06-css-box-model.md)
 - [CSS Positioning](07-css-positioning.md)
 - [CSS Units](08-css-units.md)
-- [CSS Z-Index](09-css-z-index.md)
+- [CSS Position](09-css-position.md)
+- [CSS Z-Index](10-css-z-index.md)
 - [CSS Backgrounds](11-css-backgrounds.md)
 
 
