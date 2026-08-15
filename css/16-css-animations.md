@@ -1566,3 +1566,256 @@ Controls how long the animation takes
 > 💡 **Tip:** Use percentage keyframes when an animation needs more than a simple beginning and ending state.
 
 > 💡 **Remember:** `@keyframes` defines **what changes during an animation**, while the `animation` property determines **how that animation is played**.
+
+---
+
+## Animation Name
+
+The `animation-name` property specifies the name of the `@keyframes` rule that should be applied to an element.
+
+The name connects the element with the animation stages defined using `@keyframes`.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-name: animation-name;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation-name: move;
+}
+```
+
+The corresponding `@keyframes` rule is:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+The name `move` connects the two declarations.
+
+```text
+animation-name: move
+        ↓
+@keyframes move
+```
+
+### Animation Name with Duration
+
+The animation name alone does not specify how long the animation should run.
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+}
+```
+
+Here:
+
+```text
+animation-name
+    ↓
+Which animation?
+
+animation-duration
+    ↓
+How long does it run?
+```
+
+### Using the Shorthand
+
+The same animation can be written using the `animation` shorthand.
+
+```css
+.box {
+    animation: move 2s ease;
+}
+```
+
+This combines the animation name with other animation properties.
+
+### Naming an Animation
+
+Choose a descriptive name that indicates what the animation does.
+
+Good examples:
+
+```text
+fadeIn
+slideIn
+slideOut
+rotate
+bounce
+scaleUp
+fadeOut
+```
+
+For example:
+
+```css
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+Then:
+
+```css
+.box {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+}
+```
+
+### Animation Name Must Match the Keyframes
+
+The value of `animation-name` should correspond to the intended `@keyframes` name.
+
+Correct:
+
+```css
+.box {
+    animation-name: slideIn;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+```
+
+If the names do not match, the intended keyframes will not be applied.
+
+For example:
+
+```css
+.box {
+    animation-name: slideIn;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(-50px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+```
+
+Here, `animation-name` refers to `slideIn`, but the defined keyframes are named `slide`.
+
+### No Animation Name
+
+The `animation-name` property can be set to `none`.
+
+```css
+.box {
+    animation-name: none;
+}
+```
+
+This means that no keyframe animation is applied.
+
+### Multiple Animation Names
+
+Multiple animations can be assigned to the same element by separating their names with commas.
+
+```css
+.box {
+    animation-name: move, fade;
+}
+```
+
+The corresponding keyframes are:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+When using multiple animations, the related animation properties can also be provided as comma-separated values.
+
+```css
+.box {
+    animation-name: move, fade;
+    animation-duration: 1s, 2s;
+}
+```
+
+### Practical Example
+
+```html
+<div class="box">
+    CSS Animation
+</div>
+```
+
+```css
+.box {
+    animation-name: slideIn;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+
+The `animation-name` property tells the browser to use the `slideIn` keyframes.
+
+> 💡 **Tip:** Use descriptive animation names such as `fadeIn`, `slideIn`, or `rotate` so the purpose of the animation is easy to understand.
+
+> 💡 **Remember:** `animation-name` connects an element to a specific `@keyframes` rule. The names must correspond for the intended animation to run.
