@@ -1193,3 +1193,376 @@ Controls the playback
 > 💡 **Tip:** Start with the basic syntax `animation: name duration;` and add other values only when the animation requires additional control.
 
 > 💡 **Remember:** The animation name connects the `animation` property to the corresponding `@keyframes` rule.
+
+---
+
+## @keyframes Rule
+
+The `@keyframes` rule defines the stages of a CSS animation.
+
+It specifies how CSS properties should change at different points during the animation.
+
+The `animation` property controls how the animation runs, while `@keyframes` defines what happens during the animation.
+
+### Basic Syntax
+
+The basic syntax is:
+
+```css
+@keyframes animation-name {
+    from {
+        property: value;
+    }
+
+    to {
+        property: value;
+    }
+}
+```
+
+For example:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+The animation starts at the `from` state and ends at the `to` state.
+
+### Applying the Keyframes
+
+The `@keyframes` rule only defines the animation. It must be applied to an element using the `animation` property.
+
+```css
+.box {
+    animation: move 2s ease;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+Here:
+
+```text
+@keyframes move
+       ↓
+Defines the animation
+
+animation: move
+       ↓
+Applies the animation
+```
+
+### Using `from` and `to`
+
+The `from` and `to` keywords represent the beginning and ending states.
+
+```css
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+This creates a fade-in effect.
+
+### Using Percentages
+
+Instead of `from` and `to`, percentage values can be used to define specific stages.
+
+```css
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        transform: translateX(200px);
+    }
+}
+```
+
+The percentages represent the progress of the animation:
+
+```text
+0%
+ ↓
+Beginning
+
+50%
+ ↓
+Middle
+
+100%
+ ↓
+End
+```
+
+### Multiple Keyframes
+
+An animation can contain multiple stages.
+
+```css
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+```
+
+This creates a simple bouncing effect.
+
+### Animating Multiple Properties
+
+Multiple CSS properties can be changed inside the same keyframe.
+
+```css
+@keyframes fadeMove {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+The element simultaneously:
+
+- Changes its opacity.
+- Moves vertically.
+
+### Changing Colors
+
+Keyframes can animate color properties.
+
+```css
+@keyframes colorChange {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+The animation can then be applied:
+
+```css
+.box {
+    animation: colorChange 2s ease;
+}
+```
+
+### Rotating an Element
+
+The `transform` property can be used to create rotation animations.
+
+```css
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+Apply it with:
+
+```css
+.icon {
+    animation: rotate 2s linear;
+}
+```
+
+### Scaling an Element
+
+Keyframes can also change the scale of an element.
+
+```css
+@keyframes grow {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+```
+
+Apply the animation:
+
+```css
+.box {
+    animation: grow 1s ease;
+}
+```
+
+### Combining Different Effects
+
+Several properties can be changed at different stages.
+
+```css
+@keyframes entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+```
+
+This creates an entrance effect by combining:
+
+```text
+Opacity
+   +
+Movement
+   +
+Scaling
+```
+
+### Keyframe Names
+
+The name after `@keyframes` identifies the animation.
+
+```css
+@keyframes slideIn {
+    /* animation stages */
+}
+```
+
+The same name is then used with the `animation` property:
+
+```css
+.box {
+    animation: slideIn 1s ease;
+}
+```
+
+The names must correspond:
+
+```text
+@keyframes slideIn
+        ↕
+animation: slideIn
+```
+
+### Keyframes Do Not Start an Animation by Themselves
+
+Defining keyframes does not automatically apply them to an element.
+
+For example:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+This only defines the animation.
+
+An element must use:
+
+```css
+.box {
+    animation: move 1s ease;
+}
+```
+
+### Practical Example
+
+```html
+<div class="box">Animate Me</div>
+```
+
+```css
+.box {
+    animation: slideIn 1s ease;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+
+When the page loads, the box starts with reduced opacity and a shifted position, then smoothly moves into its final position while becoming visible.
+
+### Important Relationship
+
+```text
+@keyframes
+    ↓
+Defines animation stages
+
+animation-name
+    ↓
+Identifies the keyframes
+
+animation-duration
+    ↓
+Controls how long the animation takes
+```
+
+> 💡 **Tip:** Use percentage keyframes when an animation needs more than a simple beginning and ending state.
+
+> 💡 **Remember:** `@keyframes` defines **what changes during an animation**, while the `animation` property determines **how that animation is played**.
