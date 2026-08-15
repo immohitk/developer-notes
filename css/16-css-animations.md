@@ -7503,3 +7503,546 @@ animation-fill-mode: forwards;
 > 💡 **Tip:** When an animation does not behave as expected, first check the animation name, `@keyframes`, duration, iteration count, and fill mode.
 
 > 💡 **Remember:** Most CSS animation problems can be avoided by keeping animations purposeful, simple, accessible, and easy to understand.
+
+---
+
+## Interview Questions
+
+### Basic Questions
+
+#### 1. What are CSS animations?
+
+CSS animations allow CSS properties to change automatically over time using `@keyframes` and animation properties.
+
+Example:
+
+```css
+.box {
+    animation: move 2s ease;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+#### 2. What is the purpose of `@keyframes`?
+
+The `@keyframes` rule defines the stages of a CSS animation.
+
+```css
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+It describes how CSS properties change during the animation.
+
+#### 3. What is `animation-name`?
+
+`animation-name` specifies the name of the `@keyframes` animation that should be applied.
+
+```css
+.box {
+    animation-name: fadeIn;
+}
+```
+
+The corresponding rule is:
+
+```css
+@keyframes fadeIn {
+    /* animation stages */
+}
+```
+
+#### 4. What does `animation-duration` do?
+
+`animation-duration` specifies how long one animation cycle takes.
+
+```css
+.box {
+    animation-duration: 2s;
+}
+```
+
+#### 5. What is `animation-timing-function`?
+
+It controls the speed pattern of an animation.
+
+Common values include:
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+#### 6. What does `animation-delay` do?
+
+It specifies how long the browser waits before starting an animation.
+
+```css
+.box {
+    animation-delay: 1s;
+}
+```
+
+#### 7. What is `animation-iteration-count`?
+
+It specifies how many times an animation should run.
+
+```css
+.box {
+    animation-iteration-count: 3;
+}
+```
+
+For continuous repetition:
+
+```css
+.box {
+    animation-iteration-count: infinite;
+}
+```
+
+#### 8. What is `animation-direction`?
+
+It controls the direction in which animation iterations are played.
+
+The main values are:
+
+```text
+normal
+reverse
+alternate
+alternate-reverse
+```
+
+#### 9. What does `animation-fill-mode` do?
+
+It controls which animation keyframe styles are applied before and after the animation.
+
+Common values include:
+
+```text
+none
+forwards
+backwards
+both
+```
+
+#### 10. What is `animation-play-state`?
+
+It controls whether an animation is running or paused.
+
+```css
+.box {
+    animation-play-state: paused;
+}
+```
+
+To resume:
+
+```css
+.box {
+    animation-play-state: running;
+}
+```
+
+### Intermediate Questions
+
+#### 11. What is the difference between `animation` and `@keyframes`?
+
+`@keyframes` defines the animation stages.
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+The `animation` property applies and controls those keyframes.
+
+```css
+.box {
+    animation: move 2s ease;
+}
+```
+
+In short:
+
+```text
+@keyframes
+    ↓
+What happens?
+
+animation
+    ↓
+How it runs?
+```
+
+#### 12. What is the difference between `animation-duration` and `animation-delay`?
+
+`animation-duration` controls how long the animation runs.
+
+`animation-delay` controls how long the browser waits before starting it.
+
+```css
+.box {
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+```
+
+```text
+1s
+ ↓
+Wait
+
+2s
+ ↓
+Animation runs
+```
+
+#### 13. What is the difference between `animation-iteration-count` and `animation-duration`?
+
+`animation-duration` controls the length of one cycle.
+
+`animation-iteration-count` controls how many cycles are played.
+
+```css
+.box {
+    animation-duration: 2s;
+    animation-iteration-count: 3;
+}
+```
+
+The animation has three cycles, with each cycle taking two seconds.
+
+#### 14. What does `animation-direction: alternate` do?
+
+It makes successive animation iterations alternate between forward and reverse directions.
+
+```css
+.box {
+    animation: move 1s ease infinite alternate;
+}
+```
+
+The sequence is:
+
+```text
+Forward
+   ↓
+Backward
+   ↓
+Forward
+   ↓
+Backward
+```
+
+#### 15. What is `animation-fill-mode: forwards`?
+
+It causes the element to retain the styles from the final keyframe after the animation finishes.
+
+```css
+.box {
+    animation: move 1s ease forwards;
+}
+```
+
+#### 16. What does `animation-play-state: paused` do?
+
+It pauses an animation at its current position.
+
+```css
+.box {
+    animation-play-state: paused;
+}
+```
+
+When changed to:
+
+```css
+animation-play-state: running;
+```
+
+the animation continues from its paused position.
+
+#### 17. Can multiple animations run on one element?
+
+Yes.
+
+They can be separated using commas.
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 1s linear;
+}
+```
+
+#### 18. Can CSS animations use `transform`?
+
+Yes.
+
+Common transform functions include:
+
+```css
+translate()
+translateX()
+translateY()
+scale()
+rotate()
+```
+
+Example:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+#### 19. Can colors be animated with CSS?
+
+Yes.
+
+Common properties include:
+
+```css
+color
+background-color
+border-color
+```
+
+Example:
+
+```css
+@keyframes colorChange {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+#### 20. Can opacity be animated?
+
+Yes.
+
+For example:
+
+```css
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+This creates a fade-in effect.
+
+### Common Interview Comparison Questions
+
+#### 21. CSS Animation vs CSS Transition
+
+| CSS Animation | CSS Transition |
+| --- | --- |
+| Uses `@keyframes` | Usually works between two states |
+| Can have multiple stages | Usually handles a state change |
+| Can start automatically | Usually triggered by a property change |
+| Can repeat | Does not repeat automatically |
+| Supports animation direction | Does not have animation direction |
+| Supports iteration count | Does not have iteration count |
+
+Example transition:
+
+```css
+.button {
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+```
+
+Example animation:
+
+```css
+.box {
+    animation: move 2s ease infinite;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+#### 22. Why is `transform` commonly used for animations?
+
+`transform` is commonly used for visual movement, scaling, and rotation without changing the normal layout position of surrounding elements.
+
+Example:
+
+```css
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+#### 23. How can you create a continuously rotating loader?
+
+Use `rotate()` together with `animation-iteration-count: infinite`.
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+#### 24. How can you pause an animation on hover?
+
+Use `animation-play-state`.
+
+```css
+.box {
+    animation: move 2s ease infinite alternate;
+}
+
+.box:hover {
+    animation-play-state: paused;
+}
+```
+
+#### 25. How can you create a staggered animation?
+
+Use different `animation-delay` values.
+
+```css
+.item:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+```
+
+Each element starts at a different time.
+
+### Accessibility Question
+
+#### 26. How can CSS animations respect reduced-motion preferences?
+
+Use the `prefers-reduced-motion` media feature.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    .box {
+        animation: none;
+    }
+}
+```
+
+This allows animations to be reduced or disabled for users who prefer less motion.
+
+### Quick Interview Revision
+
+```text
+@keyframes
+    → Defines animation stages
+
+animation-name
+    → Selects the keyframes
+
+animation-duration
+    → Controls cycle duration
+
+animation-timing-function
+    → Controls speed pattern
+
+animation-delay
+    → Delays the start
+
+animation-iteration-count
+    → Controls repetitions
+
+animation-direction
+    → Controls playback direction
+
+animation-fill-mode
+    → Controls styles before/after animation
+
+animation-play-state
+    → Pauses/resumes animation
+
+animation
+    → Shorthand property
+```
+
+> 💡 **Interview Tip:** When explaining CSS animations, start with the relationship between `@keyframes` and `animation`, then explain the individual animation properties.
+
+> 💡 **Remember:** A strong answer should explain not only what a property does, but also when and why you would use it.
