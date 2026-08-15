@@ -5632,3 +5632,486 @@ Entrance effects
 > 💡 **Tip:** Combining `opacity` with `transform` is a common way to create subtle entrance and exit effects.
 
 > 💡 **Remember:** `opacity` controls transparency, while the animation determines how that value changes over time.
+
+---
+
+## Practical Examples
+
+The following examples demonstrate how CSS animations can be used to create common interface effects.
+
+### 1. Fade-In Effect
+
+A fade-in animation gradually makes an element visible.
+
+```css
+.card {
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+### 2. Slide-In Effect
+
+An element can enter from the side using `transform`.
+
+```css
+.card {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+
+### 3. Slide-Up Effect
+
+This effect is commonly used for cards, messages, and sections.
+
+```css
+.card {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+### 4. Rotating Loader
+
+A continuously rotating element can be created using `rotate()` and `infinite`.
+
+```css
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid lightgray;
+    border-top-color: steelblue;
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+### 5. Pulsing Effect
+
+A pulsing effect can repeatedly change the scale of an element.
+
+```css
+.notification {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+```
+
+This can be used to draw attention to notifications or status indicators.
+
+### 6. Bounce Effect
+
+A bounce can be created using multiple keyframe stages.
+
+```css
+.box {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+```
+
+### 7. Color Change
+
+An element can gradually change its background color.
+
+```css
+.box {
+    animation: colorChange 2s ease-in-out infinite alternate;
+}
+
+@keyframes colorChange {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+### 8. Fade and Scale
+
+Opacity and transform can be combined for a subtle entrance effect.
+
+```css
+.card {
+    animation: fadeScale 0.6s ease-out;
+}
+
+@keyframes fadeScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+```
+
+### 9. Staggered Card Animation
+
+Different delays can make several elements appear one after another.
+
+```html
+<div class="card">Card 1</div>
+<div class="card">Card 2</div>
+<div class="card">Card 3</div>
+```
+
+```css
+.card {
+    opacity: 0;
+    animation: cardIn 0.5s ease forwards;
+}
+
+.card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+The cards appear one after another.
+
+```text
+Card 1
+   ↓
+Card 2
+   ↓
+Card 3
+```
+
+### 10. Back-and-Forth Movement
+
+The `alternate` direction can create continuous movement between two positions.
+
+```css
+.box {
+    animation: move 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+The element moves forward and then backward repeatedly.
+
+### 11. Attention-Wave Effect
+
+An element can combine rotation and translation to create a small attention effect.
+
+```css
+.button {
+    animation: attention 0.6s ease;
+}
+
+@keyframes attention {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+```
+
+This type of effect should be used sparingly.
+
+### 12. Complete Animated Card
+
+A card can combine several animation concepts.
+
+```html
+<div class="product-card">
+    <h2>Product</h2>
+    <p>Animated product card.</p>
+    <button>View Product</button>
+</div>
+```
+
+```css
+.product-card {
+    width: 250px;
+    padding: 24px;
+    background-color: white;
+    border: 1px solid lightgray;
+
+    animation: cardEntrance 0.7s ease-out;
+}
+
+.product-card button {
+    animation: buttonPulse 1.5s ease-in-out 0.7s infinite alternate;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes buttonPulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.04);
+    }
+}
+```
+
+This example combines:
+
+```text
+Opacity
+   +
+Transform
+   +
+Animation duration
+   +
+Animation delay
+   +
+Repeated animation
+```
+
+### 13. Pausable Animation
+
+An animation can be paused using `animation-play-state`.
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+.loader:hover {
+    animation-play-state: paused;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+The animation stops while the user hovers over the loader.
+
+### 14. Entrance Animation with Fill Mode
+
+`forwards` can keep an element in its final animated state.
+
+```css
+.message {
+    animation: messageIn 0.6s ease forwards;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+### 15. Combining Multiple Animations
+
+Multiple animations can run on the same element.
+
+```css
+.box {
+    animation:
+        move 2s ease-in-out infinite alternate,
+        colorChange 2s ease-in-out infinite alternate;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+@keyframes colorChange {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+The element moves while its background color changes.
+
+### Accessibility Example
+
+Animations should consider users who prefer reduced motion.
+
+```css
+.card {
+    animation: slideIn 0.6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        animation: none;
+    }
+}
+```
+
+This allows the animation to be disabled for users who have requested reduced motion.
+
+### Practical Example Checklist
+
+```text
+⬜ Fade-in effect
+⬜ Slide-in effect
+⬜ Slide-up effect
+⬜ Rotating loader
+⬜ Pulsing effect
+⬜ Bounce effect
+⬜ Color change
+⬜ Fade and scale
+⬜ Staggered animation
+⬜ Back-and-forth movement
+⬜ Attention effect
+⬜ Complete animated card
+⬜ Pausable animation
+⬜ Fill-mode example
+⬜ Multiple animations
+⬜ Reduced-motion support
+```
+
+> 💡 **Tip:** Start with simple effects such as fade, slide, scale, and rotate before combining several animation properties.
+
+> 💡 **Remember:** Practical animation design is about combining the animation properties appropriately rather than using as many effects as possible.
