@@ -4602,3 +4602,409 @@ However, care should be taken when multiple animations modify the same CSS prope
 > 💡 **Tip:** Use multiple animations when separate effects need to run together, such as movement combined with opacity.
 
 > 💡 **Remember:** Separate animations are separated with commas, and when individual animation properties contain multiple values, those values correspond to the animations by position.
+
+---
+
+## Animations with Transform
+
+The `transform` property can be used with CSS animations to create movement, rotation, scaling, and other visual transformations.
+
+Because `transform` changes the visual appearance of an element without changing the normal document flow, it is commonly used for smooth animation effects.
+
+### Basic Example
+
+```css
+.box {
+    animation: move 2s ease;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+The element moves horizontally from its original position to a position `200px` to the right.
+
+### Moving with `translateX()`
+
+`translateX()` moves an element horizontally.
+
+```css
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(150px);
+    }
+}
+```
+
+Apply the animation:
+
+```css
+.box {
+    animation: slide 1s ease;
+}
+```
+
+### Moving with `translateY()`
+
+`translateY()` moves an element vertically.
+
+```css
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+```
+
+This is useful for entrance effects.
+
+```css
+.card {
+    animation: slideUp 0.6s ease-out;
+}
+```
+
+### Moving in Both Directions
+
+`translate()` can change both horizontal and vertical position.
+
+```css
+@keyframes move {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(100px, 50px);
+    }
+}
+```
+
+### Scaling with `scale()`
+
+The `scale()` function changes the visual size of an element.
+
+```css
+@keyframes grow {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+```
+
+Apply the animation:
+
+```css
+.box {
+    animation: grow 0.8s ease;
+}
+```
+
+The element grows from its original scale to `1.2` times its original size.
+
+### Shrinking with `scale()`
+
+The same function can be used to create a shrinking effect.
+
+```css
+@keyframes shrink {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.8);
+    }
+}
+```
+
+### Rotating with `rotate()`
+
+The `rotate()` function rotates an element.
+
+```css
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+Apply it:
+
+```css
+.icon {
+    animation: rotate 2s linear;
+}
+```
+
+### Continuous Rotation
+
+A rotation can be repeated indefinitely.
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+This is commonly used for loading indicators.
+
+### Combining Transform Functions
+
+Multiple transform functions can be used in the same keyframe.
+
+```css
+@keyframes entrance {
+    from {
+        transform: translateY(30px) scale(0.9);
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+    }
+}
+```
+
+The element:
+
+```text
+Moves upward
+    +
+Grows to its normal size
+```
+
+### Combining Transform with Opacity
+
+Transform animations can be combined with other properties.
+
+```css
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+Apply it:
+
+```css
+.card {
+    animation: fadeSlide 0.6s ease-out;
+}
+```
+
+This creates a common entrance effect.
+
+### Using Multiple Transform Stages
+
+Transform values can change at multiple points in an animation.
+
+```css
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-40px);
+    }
+
+    75% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+```
+
+This allows more complex movement than a simple `from` and `to` animation.
+
+### Combining Rotation and Scaling
+
+Different transform functions can be combined.
+
+```css
+@keyframes effect {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.2);
+    }
+}
+```
+
+Apply the animation:
+
+```css
+.box {
+    animation: effect 2s ease;
+}
+```
+
+### Using `transform-origin`
+
+The `transform-origin` property determines the point around which a transformation occurs.
+
+For example:
+
+```css
+.box {
+    transform-origin: center;
+    animation: rotate 2s linear;
+}
+```
+
+Another example:
+
+```css
+.box {
+    transform-origin: left center;
+}
+```
+
+This can change the visual behavior of rotation and scaling.
+
+### Practical Example
+
+```html
+<div class="card">
+    CSS Animation
+</div>
+```
+
+```css
+.card {
+    width: 200px;
+    padding: 30px;
+    background-color: steelblue;
+    color: white;
+
+    animation: cardEntrance 0.8s ease-out;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+```
+
+The card starts slightly lower and smaller, then moves into position while becoming visible.
+
+### Transform Animation and Layout
+
+Transformations are visual transformations and generally do not change the normal layout position of surrounding elements.
+
+For example:
+
+```css
+.box {
+    animation: move 1s ease;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+The box visually moves, but the space it occupies in the normal layout remains based on its original position.
+
+This makes transforms useful for many movement effects.
+
+### Important Point
+
+The `transform` property defines the visual transformation:
+
+```css
+transform: translateX(100px);
+```
+
+The animation defines how that transformation changes over time:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+Together:
+
+```text
+transform
+    ↓
+Defines the visual change
+
+@keyframes
+    ↓
+Defines how the value changes over time
+
+animation
+    ↓
+Controls playback
+```
+
+> 💡 **Tip:** `transform` is especially useful for movement, scaling, and rotation effects because these transformations can often be animated without changing the normal document flow.
+
+> 💡 **Remember:** Common transform functions used in animations include `translate()`, `scale()`, and `rotate()`.
