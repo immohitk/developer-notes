@@ -3650,3 +3650,281 @@ The `both` value combines the before-animation and after-animation behavior.
 > 💡 **Tip:** `forwards` is commonly useful for entrance animations when the element should remain in its final state after the animation finishes.
 
 > 💡 **Remember:** `animation-fill-mode` controls what styles are retained **before and after an animation**, while `@keyframes` defines the actual animation stages.
+
+---
+
+## Animation Play State
+
+The `animation-play-state` property controls whether a CSS animation is currently running or paused.
+
+It is useful when an animation needs to be temporarily stopped and then continued without restarting it from the beginning.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-play-state: value;
+}
+```
+
+The two main values are:
+
+```text
+running
+paused
+```
+
+### `running`
+
+The `running` value means that the animation is playing.
+
+```css
+.box {
+    animation-play-state: running;
+}
+```
+
+This is the default state.
+
+For example:
+
+```css
+.box {
+    animation: move 2s ease infinite;
+    animation-play-state: running;
+}
+```
+
+The animation continues to play normally.
+
+### `paused`
+
+The `paused` value stops the animation.
+
+```css
+.box {
+    animation: move 2s ease infinite;
+    animation-play-state: paused;
+}
+```
+
+When the animation is paused, its current position is retained.
+
+It does not restart from the beginning when it is paused.
+
+### Pausing an Animation on Hover
+
+A common use is to pause an animation when the user moves the pointer over an element.
+
+```css
+.box {
+    animation: move 2s ease infinite alternate;
+}
+
+.box:hover {
+    animation-play-state: paused;
+}
+```
+
+The animation plays normally until the user hovers over the element.
+
+```text
+Animation running
+       ↓
+     Hover
+       ↓
+Animation paused
+       ↓
+Leave hover
+       ↓
+Animation continues
+```
+
+### Resuming an Animation
+
+The animation can be started again by changing the value back to `running`.
+
+```css
+.box {
+    animation: move 2s ease infinite;
+    animation-play-state: paused;
+}
+
+.box.active {
+    animation-play-state: running;
+}
+```
+
+When the `.active` class is applied, the animation continues.
+
+### Play State Does Not Restart the Animation
+
+Consider:
+
+```css
+.box {
+    animation: move 5s linear;
+}
+
+.box:hover {
+    animation-play-state: paused;
+}
+```
+
+If the animation is paused halfway through, it remains at that point.
+
+When the state changes back to:
+
+```css
+animation-play-state: running;
+```
+
+the animation continues from the paused position.
+
+```text
+Start
+  ↓
+Animation runs
+  ↓
+50%
+  ↓
+Pause
+  ↓
+Remains at 50%
+  ↓
+Resume
+  ↓
+Continues from 50%
+```
+
+### Play State with Infinite Animations
+
+`animation-play-state` is particularly useful with animations that repeat continuously.
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+.loader:hover {
+    animation-play-state: paused;
+}
+```
+
+The spinner stops rotating while it is hovered.
+
+### Practical Example
+
+```html
+<div class="box">
+    Hover to Pause
+</div>
+```
+
+```css
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: steelblue;
+
+    animation:
+        move 2s ease-in-out infinite alternate;
+}
+
+.box:hover {
+    animation-play-state: paused;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+The box continuously moves between two positions. Hovering over it pauses the animation, and moving the pointer away allows it to continue.
+
+### Play State with JavaScript
+
+The `animation-play-state` property can also be changed through JavaScript when animation control needs to depend on application logic.
+
+For example:
+
+```javascript
+element.style.animationPlayState = "paused";
+```
+
+The animation can be resumed with:
+
+```javascript
+element.style.animationPlayState = "running";
+```
+
+CSS is still responsible for defining the animation itself.
+
+### Using Play State with Multiple Animations
+
+When multiple animations are applied, play states can also be specified as comma-separated values.
+
+```css
+.box {
+    animation-name: move, fade;
+    animation-duration: 2s, 1s;
+    animation-play-state: running, paused;
+}
+```
+
+Here:
+
+```text
+move → running
+fade → paused
+```
+
+The values correspond by position.
+
+### Play State with the Animation Shorthand
+
+`animation-play-state` is an important animation property, but it is generally written separately when controlling the current running or paused state.
+
+For example:
+
+```css
+.box {
+    animation: move 2s ease infinite;
+    animation-play-state: paused;
+}
+```
+
+This makes the current playback state explicit.
+
+### Important Point
+
+`animation-play-state` controls whether an animation is running or paused.
+
+```text
+running
+   ↓
+Animation continues
+
+paused
+   ↓
+Animation stops at its current position
+```
+
+It does not change:
+
+- The animation duration.
+- The animation timing function.
+- The number of iterations.
+- The keyframes themselves.
+
+Those are controlled by other animation properties.
+
+> 💡 **Tip:** `animation-play-state: paused` is useful for interactive animations such as loaders, decorative movement, and hover-controlled effects.
+
+> 💡 **Remember:** Pausing an animation does not reset it. When it is changed back to `running`, the animation continues from its current position.
