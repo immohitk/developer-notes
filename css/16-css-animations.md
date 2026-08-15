@@ -2407,3 +2407,349 @@ animation-timing-function: ease-out;
 > 💡 **Tip:** Use `linear` for constant-speed effects such as spinners and consider `ease-out` for elements that should settle naturally into their final position.
 
 > 💡 **Remember:** `animation-timing-function` controls **the speed pattern of an animation**, not the animation's duration or keyframe values.
+
+---
+
+## Animation Delay
+
+The `animation-delay` property specifies how long the browser should wait before starting a CSS animation.
+
+It is useful when an animation should begin after a short pause or when several elements should start their animations at different times.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-delay: time;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation-delay: 1s;
+}
+```
+
+The animation waits for `1` second before starting.
+
+### Using Seconds
+
+Seconds (`s`) are commonly used for animation delays.
+
+```css
+.box {
+    animation-delay: 0.5s;
+}
+```
+
+Other examples:
+
+```css
+animation-delay: 0s;
+animation-delay: 1s;
+animation-delay: 2s;
+```
+
+### Using Milliseconds
+
+Milliseconds (`ms`) can also be used.
+
+```css
+.box {
+    animation-delay: 500ms;
+}
+```
+
+Since:
+
+```text
+1s = 1000ms
+```
+
+these values represent the same delay:
+
+```css
+animation-delay: 1s;
+```
+
+```css
+animation-delay: 1000ms;
+```
+
+### Animation Delay with Keyframes
+
+The delay controls when the animation begins, while `@keyframes` defines what happens during the animation.
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+Here:
+
+```text
+1s
+ ↓
+Wait before starting
+
+2s
+ ↓
+Time taken by the animation
+```
+
+### Delay Does Not Change the Duration
+
+Consider:
+
+```css
+.box {
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+```
+
+The animation still takes `2s` to complete.
+
+The browser simply waits `1s` before starting it.
+
+```text
+Page loads
+    ↓
+Wait 1 second
+    ↓
+Animation starts
+    ↓
+Animation runs for 2 seconds
+```
+
+### Zero Delay
+
+The default delay is effectively zero.
+
+```css
+.box {
+    animation-delay: 0s;
+}
+```
+
+The animation starts without an intentional delay.
+
+### Negative Delay
+
+CSS also allows a negative animation delay.
+
+```css
+.box {
+    animation-delay: -1s;
+}
+```
+
+A negative delay causes the animation to begin as if it had already been running for that amount of time.
+
+For example:
+
+```css
+.box {
+    animation: move 4s linear -2s;
+}
+```
+
+The animation begins at a point corresponding to approximately two seconds into its timeline rather than waiting for two seconds.
+
+This can be useful when multiple animated elements need to appear at different points in the same animation.
+
+### Delay with the Shorthand
+
+The delay can be included in the `animation` shorthand.
+
+```css
+.box {
+    animation: move 2s ease 1s;
+}
+```
+
+Here:
+
+```text
+move
+ ↓
+Animation name
+
+2s
+ ↓
+Duration
+
+ease
+ ↓
+Timing function
+
+1s
+ ↓
+Delay
+```
+
+### Multiple Animations
+
+Different animations can have different delays.
+
+```css
+.box {
+    animation-name: move, fade;
+    animation-duration: 2s, 1s;
+    animation-delay: 0s, 0.5s;
+}
+```
+
+Here:
+
+```text
+move → starts immediately
+fade → starts after 0.5s
+```
+
+The values correspond by position.
+
+### Staggered Animations
+
+Animation delays can be used to create a staggered effect.
+
+For example:
+
+```css
+.item:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+```
+
+Each item starts slightly after the previous one.
+
+This can create effects such as:
+
+```text
+Item 1
+   ↓
+Item 2
+   ↓
+Item 3
+```
+
+### Practical Example
+
+```html
+<div class="container">
+    <div class="item">One</div>
+    <div class="item">Two</div>
+    <div class="item">Three</div>
+</div>
+```
+
+```css
+.item {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.item:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+The items appear one after another because each one has a different delay.
+
+### Delay and `animation-fill-mode`
+
+When an animation has a delay, `animation-fill-mode` can affect the styles displayed during the delay period.
+
+For example:
+
+```css
+.item {
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.5s forwards;
+}
+```
+
+The `forwards` value controls the styles retained after the animation completes.
+
+The `backwards` value can apply the styles from the first relevant keyframe during the delay.
+
+```css
+.item {
+    animation: fadeIn 0.5s ease 0.5s backwards;
+}
+```
+
+### Important Point
+
+`animation-delay` controls **when an animation starts**. It does not control:
+
+- How long the animation runs.
+- How many times it repeats.
+- The animation's speed pattern.
+
+Those are controlled by other animation properties.
+
+```text
+animation-delay
+    ↓
+When does it start?
+
+animation-duration
+    ↓
+How long does it run?
+
+animation-iteration-count
+    ↓
+How many times does it run?
+
+animation-timing-function
+    ↓
+How does its speed change?
+```
+
+> 💡 **Tip:** Animation delays are particularly useful for creating staggered entrance effects where multiple elements appear one after another.
+
+> 💡 **Remember:** A positive delay waits before the animation starts, while a negative delay can make the animation behave as though it has already progressed along its timeline.
