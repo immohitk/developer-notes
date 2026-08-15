@@ -6263,3 +6263,419 @@ CSS Accessibility
 > 💡 **Tip:** MDN is a useful practical reference for checking CSS animation syntax, browser behavior, and individual animation properties.
 
 > 💡 **Remember:** Use official specifications and documentation when you need precise details about CSS animation behavior.
+
+---
+
+## Quick Revision
+
+### What Are CSS Animations?
+
+CSS animations allow CSS properties to change automatically over time using defined animation stages.
+
+```css
+.box {
+    animation: move 2s ease;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+### Core Structure
+
+```text
+@keyframes
+    ↓
+Defines animation stages
+
+animation
+    ↓
+Controls how the animation runs
+```
+
+### Main Animation Properties
+
+| Property | Purpose |
+| --- | --- |
+| `animation-name` | Specifies the `@keyframes` animation |
+| `animation-duration` | Defines the duration of one cycle |
+| `animation-timing-function` | Controls the speed pattern |
+| `animation-delay` | Delays the start |
+| `animation-iteration-count` | Defines how many times it runs |
+| `animation-direction` | Controls playback direction |
+| `animation-fill-mode` | Controls styles before/after animation |
+| `animation-play-state` | Pauses or resumes the animation |
+| `animation` | Shorthand for animation properties |
+
+### `@keyframes`
+
+`@keyframes` defines the stages of an animation.
+
+```css
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+Multiple stages can be created with percentages:
+
+```css
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        transform: translateX(200px);
+    }
+}
+```
+
+### Animation Duration
+
+```css
+animation-duration: 2s;
+```
+
+Controls how long one animation cycle takes.
+
+```text
+1s = 1000ms
+```
+
+### Timing Functions
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+```text
+linear
+    ↓
+Constant speed
+
+ease-in
+    ↓
+Slow → Fast
+
+ease-out
+    ↓
+Fast → Slow
+
+ease-in-out
+    ↓
+Slow → Fast → Slow
+```
+
+### Animation Delay
+
+```css
+animation-delay: 0.5s;
+```
+
+Controls how long the browser waits before starting the animation.
+
+A negative delay can make an animation behave as if it has already progressed along its timeline.
+
+### Iteration Count
+
+```css
+animation-iteration-count: 3;
+```
+
+Runs the animation three times.
+
+For continuous repetition:
+
+```css
+animation-iteration-count: infinite;
+```
+
+### Animation Direction
+
+```text
+normal
+    ↓
+Forward every iteration
+
+reverse
+    ↓
+Backward every iteration
+
+alternate
+    ↓
+Forward → Backward
+
+alternate-reverse
+    ↓
+Backward → Forward
+```
+
+### Animation Fill Mode
+
+```text
+none
+    ↓
+No keyframe styles before/after
+
+forwards
+    ↓
+Keep final keyframe
+
+backwards
+    ↓
+Apply starting keyframe during delay
+
+both
+    ↓
+Backwards + Forwards
+```
+
+### Animation Play State
+
+```css
+animation-play-state: running;
+```
+
+Animation continues to run.
+
+```css
+animation-play-state: paused;
+```
+
+Animation pauses at its current position.
+
+### Animation Shorthand
+
+Instead of:
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+}
+```
+
+Use:
+
+```css
+.box {
+    animation: move 2s ease;
+}
+```
+
+A more complete example:
+
+```css
+.box {
+    animation: move 2s ease 0s infinite alternate;
+}
+```
+
+### Multiple Animations
+
+Multiple animations are separated by commas.
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 1s linear;
+}
+```
+
+Each animation can have its own duration, timing function, delay, and iteration count.
+
+### Animations with Transform
+
+Common transform functions include:
+
+```text
+translate()
+translateX()
+translateY()
+scale()
+rotate()
+```
+
+Example:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+### Animations with Colors
+
+Common color properties include:
+
+```text
+color
+background-color
+border-color
+```
+
+Example:
+
+```css
+@keyframes colorChange {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+### Animations with Opacity
+
+```css
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+```text
+opacity: 0
+    ↓
+Transparent
+
+opacity: 1
+    ↓
+Fully visible
+```
+
+### Common Animation Patterns
+
+```text
+Fade In
+    ↓
+opacity: 0 → 1
+
+Fade Out
+    ↓
+opacity: 1 → 0
+
+Slide
+    ↓
+translateX() / translateY()
+
+Scale
+    ↓
+scale()
+
+Rotation
+    ↓
+rotate()
+
+Pulse
+    ↓
+Repeated scale/opacity change
+
+Loader
+    ↓
+rotate() + infinite
+```
+
+### CSS Animation vs CSS Transition
+
+```text
+Transition
+    ↓
+Usually handles a change between states
+    ↓
+Example: Normal → Hover
+
+Animation
+    ↓
+Uses @keyframes
+    ↓
+Can have multiple stages
+    ↓
+Can start automatically
+    ↓
+Can repeat
+    ↓
+Can change direction
+```
+
+### Accessibility
+
+Animations should consider users who prefer reduced motion.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    .box {
+        animation: none;
+    }
+}
+```
+
+### Final Revision
+
+```text
+CSS Animations
+    ↓
+@keyframes
+    ↓
+Animation stages
+    ↓
+animation-name
+    ↓
+animation-duration
+    ↓
+animation-timing-function
+    ↓
+animation-delay
+    ↓
+animation-iteration-count
+    ↓
+animation-direction
+    ↓
+animation-fill-mode
+    ↓
+animation-play-state
+    ↓
+animation shorthand
+```
+
+> 💡 **Remember:** `@keyframes` defines **what happens**, while the animation properties control **how it happens**.
+
+> 💡 **Quick Interview Point:** CSS animations are especially useful for multi-stage, automatic, or repeating visual effects, while transitions are generally used for smooth changes between states.
