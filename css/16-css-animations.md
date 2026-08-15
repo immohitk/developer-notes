@@ -6115,3 +6115,109 @@ This allows the animation to be disabled for users who have requested reduced mo
 > 💡 **Tip:** Start with simple effects such as fade, slide, scale, and rotate before combining several animation properties.
 
 > 💡 **Remember:** Practical animation design is about combining the animation properties appropriately rather than using as many effects as possible.
+
+---
+
+## Key Takeaways
+
+- CSS animations allow CSS properties to change automatically over time.
+- The `@keyframes` rule defines the stages of an animation.
+- The `animation` property applies and controls an animation.
+- `animation-name` specifies which `@keyframes` rule to use.
+- `animation-duration` defines how long one animation cycle takes.
+- `animation-timing-function` controls the speed pattern of the animation.
+- `animation-delay` specifies how long to wait before the animation starts.
+- `animation-iteration-count` controls how many times the animation runs.
+- `animation-direction` controls the playback direction of repeated animations.
+- `animation-fill-mode` controls the styles applied before and after an animation.
+- `animation-play-state` allows an animation to be paused or resumed.
+- The `animation` shorthand combines multiple animation properties into one declaration.
+- Multiple animations can be applied to the same element using comma-separated declarations.
+- `transform` is commonly used with animations for movement, scaling, and rotation.
+- Color properties such as `color`, `background-color`, and `border-color` can be animated.
+- `opacity` can be animated to create fade and visibility effects.
+- CSS animations can create entrance effects, loaders, pulses, rotations, and other visual effects.
+- `animation-iteration-count: infinite` can be used for continuously repeating effects.
+- `animation-direction: alternate` can create back-and-forth movement.
+- `animation-fill-mode: forwards` can keep the final keyframe styles after an animation finishes.
+- `animation-play-state: paused` pauses an animation at its current position.
+- Multiple animation stages can be created using percentage-based keyframes such as `0%`, `50%`, and `100%`.
+- CSS animations can often create visual effects without JavaScript.
+- Animations should have a clear purpose and should not unnecessarily distract users.
+- The `prefers-reduced-motion` media feature can be used to reduce or disable animations for users who prefer less motion.
+
+### Core Animation Structure
+
+```text
+@keyframes
+    ↓
+Defines animation stages
+    ↓
+animation-name
+    ↓
+Identifies the animation
+    ↓
+animation-duration
+    ↓
+Defines the cycle duration
+    ↓
+Other animation properties
+    ↓
+Control playback behavior
+```
+
+### Important Properties
+
+```text
+animation-name
+animation-duration
+animation-timing-function
+animation-delay
+animation-iteration-count
+animation-direction
+animation-fill-mode
+animation-play-state
+animation
+```
+
+### Common Animation Pattern
+
+```css
+.box {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+### CSS Animation vs Transition
+
+```text
+CSS Transition
+    ↓
+Usually handles a change between states
+
+CSS Animation
+    ↓
+Can define multiple stages
+    ↓
+Can start automatically
+    ↓
+Can repeat
+    ↓
+Can control direction and playback
+```
+
+> 💡 **Remember:** `@keyframes` defines **what happens**, while the `animation` properties control **how the animation runs**.
+
+> 💡 **Key idea:** Good CSS animations should improve visual feedback, communication, or user experience rather than simply adding movement.
