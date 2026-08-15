@@ -8046,3 +8046,446 @@ animation
 > 💡 **Interview Tip:** When explaining CSS animations, start with the relationship between `@keyframes` and `animation`, then explain the individual animation properties.
 
 > 💡 **Remember:** A strong answer should explain not only what a property does, but also when and why you would use it.
+
+---
+
+## Practice Exercises
+
+The following exercises are designed to practice the CSS animation concepts covered in this chapter.
+
+### Exercise 1: Fade-In Animation
+
+Create a `<div>` element and make it fade in when the page loads.
+
+Requirements:
+
+- Start with `opacity: 0`.
+- End with `opacity: 1`.
+- Use `@keyframes`.
+- Set the animation duration to `1s`.
+
+Expected concepts:
+
+```text
+@keyframes
+animation-name
+animation-duration
+opacity
+```
+
+---
+
+### Exercise 2: Slide-In Animation
+
+Create a card that slides in from the left.
+
+Requirements:
+
+- Start `50px` to the left.
+- End at its normal position.
+- Start with `opacity: 0`.
+- End with `opacity: 1`.
+- Use `transform: translateX()`.
+
+Expected concepts:
+
+```text
+@keyframes
+transform
+translateX()
+opacity
+```
+
+---
+
+### Exercise 3: Rotating Loader
+
+Create a circular loading indicator.
+
+Requirements:
+
+- Create a circular element.
+- Use `transform: rotate()`.
+- Make it rotate continuously.
+- Use `linear`.
+- Use `infinite`.
+
+Expected concepts:
+
+```text
+animation-duration
+animation-timing-function
+animation-iteration-count
+transform
+rotate()
+```
+
+---
+
+### Exercise 4: Bouncing Box
+
+Create a box that repeatedly moves up and down.
+
+Requirements:
+
+- Use `translateY()`.
+- Use at least three keyframe stages.
+- Make the animation repeat continuously.
+- Use `ease-in-out`.
+
+Example structure:
+
+```css
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-40px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+```
+
+---
+
+### Exercise 5: Color Animation
+
+Create an element whose background color changes over time.
+
+Requirements:
+
+- Start with one color.
+- Change to another color.
+- Use at least three keyframe stages.
+- Repeat the animation.
+
+Expected concepts:
+
+```text
+background-color
+@keyframes
+percentage keyframes
+animation-iteration-count
+```
+
+---
+
+### Exercise 6: Scale Animation
+
+Create a button that continuously grows and shrinks.
+
+Requirements:
+
+- Use `transform: scale()`.
+- Use `animation-direction: alternate`.
+- Use `animation-iteration-count: infinite`.
+
+Example:
+
+```css
+.button {
+    animation: scaleButton 1s ease-in-out infinite alternate;
+}
+
+@keyframes scaleButton {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+```
+
+---
+
+### Exercise 7: Staggered Cards
+
+Create three cards that appear one after another.
+
+Requirements:
+
+- Use the same animation for all cards.
+- Give each card a different `animation-delay`.
+- Use `opacity`.
+- Use `translateY()`.
+
+Expected behavior:
+
+```text
+Card 1
+   ↓
+Card 2
+   ↓
+Card 3
+```
+
+---
+
+### Exercise 8: Pause Animation on Hover
+
+Create a continuously moving element.
+
+Requirements:
+
+- Use `animation-iteration-count: infinite`.
+- Use `animation-play-state`.
+- Pause the animation when the user hovers over the element.
+- Resume the animation when the pointer leaves.
+
+Example:
+
+```css
+.box {
+    animation: move 2s ease-in-out infinite alternate;
+}
+
+.box:hover {
+    animation-play-state: paused;
+}
+```
+
+---
+
+### Exercise 9: Multiple Animations
+
+Create an element that:
+
+- Moves horizontally.
+- Changes its opacity.
+- Changes its background color.
+
+Use separate animations for the different effects.
+
+Example structure:
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 2s ease,
+        colorChange 2s ease;
+}
+```
+
+Create separate `@keyframes` rules for each animation.
+
+---
+
+### Exercise 10: Entrance Animation
+
+Create a complete card entrance effect.
+
+Requirements:
+
+- Start transparent.
+- Start slightly below its final position.
+- Start slightly smaller.
+- End fully visible.
+- End at its normal position.
+- End at its normal scale.
+- Use `animation-fill-mode: forwards`.
+
+Expected concepts:
+
+```text
+opacity
+transform
+translateY()
+scale()
+animation-fill-mode
+forwards
+```
+
+---
+
+### Exercise 11: Delayed Animation
+
+Create three elements that start their animations at different times.
+
+Use:
+
+```css
+animation-delay
+```
+
+Suggested delays:
+
+```text
+Element 1 → 0s
+Element 2 → 0.3s
+Element 3 → 0.6s
+```
+
+---
+
+### Exercise 12: Reverse Animation
+
+Create an animation and play it in reverse.
+
+Use:
+
+```css
+animation-direction: reverse;
+```
+
+Then experiment with:
+
+```css
+animation-direction: alternate;
+```
+
+and:
+
+```css
+animation-direction: alternate-reverse;
+```
+
+Observe the difference between the three values.
+
+---
+
+### Exercise 13: Animation Fill Mode
+
+Create an element that moves from left to right.
+
+Requirements:
+
+- Give the animation a duration of `1s`.
+- Use `animation-fill-mode: forwards`.
+- Check the element's position after the animation finishes.
+- Remove `forwards` and compare the result.
+
+---
+
+### Exercise 14: Animation Timing Functions
+
+Create the same animation several times and compare:
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+For example:
+
+```css
+.box {
+    animation: move 2s ease;
+}
+```
+
+Change only the timing function and observe how the movement changes.
+
+---
+
+### Exercise 15: Reduced Motion
+
+Create an animated card and add support for users who prefer reduced motion.
+
+Use:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        animation: none;
+    }
+}
+```
+
+Verify that the animation is disabled when reduced motion is requested.
+
+---
+
+### Mini Project: Animated Notification
+
+Create a notification component using several CSS animation concepts.
+
+Requirements:
+
+```text
+Notification
+    ↓
+Fade in
+    +
+Slide up
+    +
+Remain in final position
+    +
+Button pulse
+```
+
+Suggested structure:
+
+```html
+<div class="notification">
+    <h2>Success!</h2>
+    <p>Your changes were saved.</p>
+    <button>Continue</button>
+</div>
+```
+
+Suggested concepts:
+
+```text
+@keyframes
+animation
+animation-duration
+animation-timing-function
+animation-fill-mode
+opacity
+transform
+animation-delay
+multiple animations
+```
+
+### Challenge
+
+Create a loading screen that contains:
+
+```text
+Loading...
+    +
+Rotating loader
+    +
+Animated dots
+    +
+Fade-in message
+```
+
+Try to implement the complete effect using CSS animations without JavaScript.
+
+### Practice Checklist
+
+```text
+⬜ Fade-in animation
+⬜ Slide-in animation
+⬜ Rotating loader
+⬜ Bouncing box
+⬜ Color animation
+⬜ Scale animation
+⬜ Staggered cards
+⬜ Pause on hover
+⬜ Multiple animations
+⬜ Entrance animation
+⬜ Delayed animations
+⬜ Reverse animation
+⬜ Fill-mode exercise
+⬜ Timing-function comparison
+⬜ Reduced-motion support
+⬜ Animated notification mini project
+⬜ Loading-screen challenge
+```
+
+> 💡 **Tip:** Try to solve these exercises without looking at the previous examples first. After completing an exercise, compare your solution with the concepts covered in this chapter.
+
+> 💡 **Remember:** The goal of these exercises is not just to memorize animation properties, but to understand how the properties work together.
