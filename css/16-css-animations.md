@@ -2095,3 +2095,315 @@ The `slideIn` animation takes one second to complete.
 > 💡 **Tip:** Choose a duration based on how much visual change occurs. Small effects generally need less time, while larger effects may need more time.
 
 > 💡 **Remember:** `animation-duration` controls **how long one animation cycle takes**. It does not determine how many times the animation repeats.
+
+---
+
+## Animation Timing Function
+
+The `animation-timing-function` property controls the speed pattern of a CSS animation during its execution.
+
+It determines how quickly or slowly the animation progresses between its keyframes.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-timing-function: value;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation-timing-function: ease;
+}
+```
+
+### Common Timing Functions
+
+CSS provides several commonly used timing functions:
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+### `ease`
+
+The `ease` value starts relatively slowly, speeds up, and then slows down toward the end.
+
+```css
+.box {
+    animation: move 2s ease;
+}
+```
+
+It is a common general-purpose timing function.
+
+### `linear`
+
+The `linear` value keeps the animation moving at a constant rate.
+
+```css
+.box {
+    animation: move 2s linear;
+}
+```
+
+There is no acceleration or deceleration.
+
+This is particularly useful for continuously rotating elements such as loading indicators.
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+### `ease-in`
+
+The `ease-in` value starts slowly and becomes faster toward the end.
+
+```css
+.box {
+    animation: move 2s ease-in;
+}
+```
+
+### `ease-out`
+
+The `ease-out` value starts quickly and slows down toward the end.
+
+```css
+.box {
+    animation: move 2s ease-out;
+}
+```
+
+This can work well for elements entering or settling into their final position.
+
+### `ease-in-out`
+
+The `ease-in-out` value starts slowly, becomes faster in the middle, and slows down again toward the end.
+
+```css
+.box {
+    animation: move 2s ease-in-out;
+}
+```
+
+### Comparing Common Timing Functions
+
+```text
+ease
+    ↓
+Slow → Fast → Slow
+
+linear
+    ↓
+Constant speed
+
+ease-in
+    ↓
+Slow → Fast
+
+ease-out
+    ↓
+Fast → Slow
+
+ease-in-out
+    ↓
+Slow → Fast → Slow
+```
+
+### Timing Function with `@keyframes`
+
+The timing function can be applied to the entire animation.
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+### Timing Function with Shorthand
+
+The timing function can also be included in the `animation` shorthand.
+
+```css
+.box {
+    animation: move 2s ease-out;
+}
+```
+
+Here:
+
+```text
+move
+    ↓
+Animation name
+
+2s
+    ↓
+Duration
+
+ease-out
+    ↓
+Timing function
+```
+
+### Timing Functions and Multiple Animations
+
+Different animations can have different timing functions.
+
+```css
+.box {
+    animation-name: move, fade;
+    animation-duration: 2s, 1s;
+    animation-timing-function: ease-out, linear;
+}
+```
+
+Here:
+
+```text
+move → ease-out
+fade → linear
+```
+
+The values correspond by position.
+
+### Custom Timing Functions
+
+CSS also supports custom timing functions using `cubic-bezier()`.
+
+```css
+.box {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
+
+This provides more control over the acceleration and deceleration of the animation.
+
+### `steps()` Timing Function
+
+The `steps()` function creates a stepped animation rather than a continuously smooth one.
+
+```css
+.box {
+    animation-timing-function: steps(4);
+}
+```
+
+This can be useful for effects that should change in distinct steps.
+
+### Choosing a Timing Function
+
+The timing function should match the type of effect.
+
+```text
+Continuous rotation
+    ↓
+linear
+
+Element entering
+    ↓
+ease-out
+
+Element leaving
+    ↓
+ease-in
+
+General movement
+    ↓
+ease
+
+Smooth movement in both directions
+    ↓
+ease-in-out
+```
+
+These are useful starting points rather than strict rules.
+
+### Practical Example
+
+```html
+<div class="box">
+    CSS Animation
+</div>
+```
+
+```css
+.box {
+    animation:
+        slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+
+The animation starts quickly and gradually slows as the element reaches its final position.
+
+### Important Point
+
+The timing function does not define the animation's stages.
+
+The `@keyframes` rule defines the stages:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+The timing function controls how the animation progresses between those stages:
+
+```css
+animation-timing-function: ease-out;
+```
+
+> 💡 **Tip:** Use `linear` for constant-speed effects such as spinners and consider `ease-out` for elements that should settle naturally into their final position.
+
+> 💡 **Remember:** `animation-timing-function` controls **the speed pattern of an animation**, not the animation's duration or keyframe values.
