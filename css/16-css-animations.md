@@ -3928,3 +3928,329 @@ Those are controlled by other animation properties.
 > 💡 **Tip:** `animation-play-state: paused` is useful for interactive animations such as loaders, decorative movement, and hover-controlled effects.
 
 > 💡 **Remember:** Pausing an animation does not reset it. When it is changed back to `running`, the animation continues from its current position.
+
+---
+
+## Animation Shorthand
+
+The `animation` property is a shorthand property that allows multiple animation properties to be written in a single declaration.
+
+Instead of writing each animation property separately, the shorthand can combine them into one line.
+
+### Individual Animation Properties
+
+For example:
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+}
+```
+
+The same basic configuration can be written using the shorthand:
+
+```css
+.box {
+    animation: move 2s ease 0s 1 normal none running;
+}
+```
+
+### Basic Syntax
+
+The general shorthand syntax is:
+
+```css
+animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+```
+
+For example:
+
+```css
+.box {
+    animation: move 2s ease 0s 1 normal forwards running;
+}
+```
+
+The values represent:
+
+```text
+move
+    ↓
+Animation name
+
+2s
+    ↓
+Animation duration
+
+ease
+    ↓
+Timing function
+
+0s
+    ↓
+Delay
+
+1
+    ↓
+Iteration count
+
+normal
+    ↓
+Direction
+
+forwards
+    ↓
+Fill mode
+
+running
+    ↓
+Play state
+```
+
+### Basic Shorthand
+
+You do not have to specify every value.
+
+For example:
+
+```css
+.box {
+    animation: move 2s;
+}
+```
+
+This specifies:
+
+```text
+Animation name → move
+Duration       → 2s
+```
+
+The remaining animation properties use their default values unless specified elsewhere.
+
+### Shorthand with Timing Function
+
+```css
+.box {
+    animation: move 2s ease;
+}
+```
+
+Here:
+
+```text
+move → Name
+2s   → Duration
+ease → Timing function
+```
+
+### Shorthand with Delay
+
+```css
+.box {
+    animation: move 2s ease 0.5s;
+}
+```
+
+Here:
+
+```text
+move → Name
+2s   → Duration
+ease → Timing function
+0.5s → Delay
+```
+
+### Shorthand with Iteration Count
+
+```css
+.box {
+    animation: move 2s ease 0s 3;
+}
+```
+
+The animation runs three times.
+
+```text
+move → Name
+2s   → Duration
+ease → Timing function
+0s   → Delay
+3    → Iteration count
+```
+
+### Infinite Animation
+
+For a continuously repeating animation:
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+```
+
+Here:
+
+```text
+spin     → Animation name
+1s       → Duration
+linear   → Timing function
+infinite → Iteration count
+```
+
+### Shorthand with Direction
+
+```css
+.box {
+    animation: move 1s ease 0s infinite alternate;
+}
+```
+
+The animation continuously moves forward and backward.
+
+### Shorthand with Fill Mode
+
+```css
+.box {
+    animation: slideIn 0.6s ease 0s 1 normal forwards;
+}
+```
+
+The `forwards` value causes the element to retain the final keyframe styles after the animation completes.
+
+### Multiple Animations
+
+Multiple animations can also be specified using commas.
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 1s linear;
+}
+```
+
+The first animation is:
+
+```text
+move
+2s
+ease
+```
+
+The second animation is:
+
+```text
+fade
+1s
+linear
+```
+
+### Multiple Animations with More Properties
+
+Each animation can have its own settings.
+
+```css
+.box {
+    animation:
+        move 2s ease 0s 1,
+        fade 1s linear 0.5s 2;
+}
+```
+
+Here:
+
+```text
+move → 2s, ease, 0s delay, 1 iteration
+
+fade → 1s, linear, 0.5s delay, 2 iterations
+```
+
+### Shorthand and Individual Properties
+
+The shorthand can be used together with individual animation properties when appropriate.
+
+For example:
+
+```css
+.box {
+    animation: move 2s ease;
+    animation-iteration-count: infinite;
+}
+```
+
+However, when using the shorthand, remember that omitted values can reset corresponding animation properties to their initial values.
+
+### Practical Example
+
+```html
+<div class="box">
+    CSS Animation
+</div>
+```
+
+```css
+.box {
+    animation: slideIn 1s ease-out 0.2s 1 normal forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+
+This single declaration specifies:
+
+```text
+Animation name      → slideIn
+Duration            → 1s
+Timing function     → ease-out
+Delay               → 0.2s
+Iteration count     → 1
+Direction           → normal
+Fill mode           → forwards
+```
+
+### Important Point
+
+The `animation` shorthand is useful because it keeps related animation settings together.
+
+```text
+animation
+    ↓
+name
+duration
+timing function
+delay
+iteration count
+direction
+fill mode
+play state
+```
+
+You can start with a simple declaration:
+
+```css
+animation: move 2s;
+```
+
+and add additional values when more control is required.
+
+> 💡 **Tip:** Use the shorthand for concise CSS, but use individual properties when separating the animation settings makes the code easier to understand or maintain.
+
+> 💡 **Remember:** The `animation` shorthand combines multiple animation properties into one declaration. You do not need to specify every value.
