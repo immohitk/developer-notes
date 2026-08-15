@@ -1819,3 +1819,279 @@ The `animation-name` property tells the browser to use the `slideIn` keyframes.
 > 💡 **Tip:** Use descriptive animation names such as `fadeIn`, `slideIn`, or `rotate` so the purpose of the animation is easy to understand.
 
 > 💡 **Remember:** `animation-name` connects an element to a specific `@keyframes` rule. The names must correspond for the intended animation to run.
+
+---
+
+## Animation Duration
+
+The `animation-duration` property specifies how long one cycle of a CSS animation should take to complete.
+
+It determines the amount of time required for the animation to move from its starting keyframe to its ending keyframe.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-duration: time;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation-duration: 2s;
+}
+```
+
+The animation takes `2` seconds to complete one cycle.
+
+### Using Seconds
+
+Seconds (`s`) are commonly used for animation durations.
+
+```css
+.box {
+    animation-duration: 2s;
+}
+```
+
+Other examples:
+
+```css
+animation-duration: 0.5s;
+animation-duration: 1s;
+animation-duration: 3s;
+```
+
+### Using Milliseconds
+
+Milliseconds (`ms`) can also be used.
+
+```css
+.box {
+    animation-duration: 500ms;
+}
+```
+
+Since:
+
+```text
+1s = 1000ms
+```
+
+the following values are equivalent:
+
+```css
+animation-duration: 1s;
+```
+
+```css
+animation-duration: 1000ms;
+```
+
+### Duration with `@keyframes`
+
+The duration controls how quickly the keyframes are played.
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+The complete movement takes `2` seconds.
+
+### Short Duration
+
+A short duration makes the animation happen quickly.
+
+```css
+.box {
+    animation-duration: 0.3s;
+}
+```
+
+This can be useful for small interface effects.
+
+### Long Duration
+
+A longer duration makes the animation happen more slowly.
+
+```css
+.box {
+    animation-duration: 3s;
+}
+```
+
+The same keyframes now take three seconds to complete.
+
+### Comparing Durations
+
+The same animation can feel very different depending on its duration.
+
+```text
+0.2s
+ ↓
+Very fast
+
+0.5s
+ ↓
+Fast
+
+1s
+ ↓
+Moderate
+
+2s
+ ↓
+Slow
+
+5s
+ ↓
+Very slow
+```
+
+These are only general examples. The appropriate duration depends on the type of animation and the interface.
+
+### Duration and Repeated Animations
+
+When an animation repeats, `animation-duration` determines how long each cycle takes.
+
+```css
+.loader {
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+Here, each complete rotation takes `1` second.
+
+### Duration with the Shorthand
+
+The duration can also be specified using the `animation` shorthand.
+
+```css
+.box {
+    animation: move 2s ease;
+}
+```
+
+Here:
+
+```text
+move
+ ↓
+Animation name
+
+2s
+ ↓
+Animation duration
+
+ease
+ ↓
+Timing function
+```
+
+### Multiple Animations
+
+When multiple animations are used, each animation can have its own duration.
+
+```css
+.box {
+    animation-name: move, fade;
+    animation-duration: 2s, 1s;
+}
+```
+
+Here:
+
+```text
+move → 2 seconds
+fade → 1 second
+```
+
+The values correspond by position.
+
+### Duration Must Be Appropriate
+
+The duration should match the purpose of the animation.
+
+For example, a small interface feedback effect might use:
+
+```css
+.button {
+    animation-duration: 0.2s;
+}
+```
+
+A larger entrance effect might use:
+
+```css
+.card {
+    animation-duration: 0.6s;
+}
+```
+
+A continuously rotating loading indicator might use:
+
+```css
+.loader {
+    animation-duration: 1s;
+}
+```
+
+### Practical Example
+
+```html
+<div class="box">
+    CSS Animation
+</div>
+```
+
+```css
+.box {
+    animation-name: slideIn;
+    animation-duration: 1s;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+
+The `slideIn` animation takes one second to complete.
+
+> 💡 **Tip:** Choose a duration based on how much visual change occurs. Small effects generally need less time, while larger effects may need more time.
+
+> 💡 **Remember:** `animation-duration` controls **how long one animation cycle takes**. It does not determine how many times the animation repeats.
