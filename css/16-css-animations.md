@@ -2753,3 +2753,328 @@ How does its speed change?
 > 💡 **Tip:** Animation delays are particularly useful for creating staggered entrance effects where multiple elements appear one after another.
 
 > 💡 **Remember:** A positive delay waits before the animation starts, while a negative delay can make the animation behave as though it has already progressed along its timeline.
+
+---
+
+## Animation Iteration Count
+
+The `animation-iteration-count` property specifies how many times a CSS animation should run.
+
+By default, an animation runs **once**. The iteration count can be changed to make an animation repeat a specific number of times or continue indefinitely.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-iteration-count: number;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation-iteration-count: 3;
+}
+```
+
+The animation runs three times.
+
+### Default Value
+
+The default value is:
+
+```css
+animation-iteration-count: 1;
+```
+
+This means the animation runs once.
+
+For example:
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+```
+
+### Repeating an Animation
+
+A number greater than `1` repeats the animation.
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+}
+```
+
+The animation runs:
+
+```text
+Cycle 1
+   ↓
+Cycle 2
+   ↓
+Cycle 3
+   ↓
+Complete
+```
+
+### Using `infinite`
+
+The `infinite` value makes the animation repeat continuously.
+
+```css
+.loader {
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+```
+
+The animation continues until it is stopped or the element is no longer animated.
+
+### Loading Spinner Example
+
+A common use of `infinite` is a loading spinner.
+
+```css
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid lightgray;
+    border-top-color: steelblue;
+    border-radius: 50%;
+
+    animation:
+        spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+```
+
+The spinner continuously rotates because the animation iteration count is `infinite`.
+
+### Fractional Iteration Counts
+
+The iteration count can also be a fractional number.
+
+For example:
+
+```css
+.box {
+    animation-iteration-count: 2.5;
+}
+```
+
+This runs two complete cycles and then half of the next cycle.
+
+For example:
+
+```text
+Cycle 1
+   ↓
+Cycle 2
+   ↓
+Half of Cycle 3
+   ↓
+Complete
+```
+
+Fractional iteration counts can be useful when an animation needs to stop partway through a cycle.
+
+### Multiple Animations
+
+Different iteration counts can be specified for multiple animations.
+
+```css
+.box {
+    animation-name: move, fade;
+    animation-duration: 2s, 1s;
+    animation-iteration-count: 3, 2;
+}
+```
+
+Here:
+
+```text
+move → 3 times
+fade → 2 times
+```
+
+The values correspond by position.
+
+### Iteration Count with Shorthand
+
+The iteration count can also be included in the `animation` shorthand.
+
+```css
+.box {
+    animation: move 2s ease 0s 3;
+}
+```
+
+Here:
+
+```text
+move
+ ↓
+Animation name
+
+2s
+ ↓
+Duration
+
+ease
+ ↓
+Timing function
+
+0s
+ ↓
+Delay
+
+3
+ ↓
+Iteration count
+```
+
+For an infinite animation:
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+```
+
+### Iteration Count and Animation Direction
+
+When an animation repeats, `animation-direction` can determine how successive iterations are played.
+
+For example:
+
+```css
+.box {
+    animation:
+        move 1s ease infinite alternate;
+}
+```
+
+With `alternate`, the animation plays forward during one cycle and backward during the next.
+
+```text
+Forward
+   ↓
+Backward
+   ↓
+Forward
+   ↓
+Backward
+```
+
+This can create a continuous back-and-forth effect.
+
+### Practical Example
+
+```html
+<div class="box">
+    Animate Me
+</div>
+```
+
+```css
+.box {
+    animation:
+        bounce 1s ease 0s 3;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+```
+
+The animation runs three times and then stops.
+
+### Choosing an Iteration Count
+
+The appropriate iteration count depends on the purpose of the animation.
+
+```text
+1
+↓
+One-time entrance or exit effect
+
+2–3
+↓
+Short repeated effect
+
+Several times
+↓
+Attention or feedback effect
+
+infinite
+↓
+Continuous effects such as loading indicators
+```
+
+These are practical examples rather than strict rules.
+
+### Important Point
+
+`animation-iteration-count` controls **how many times the animation runs**.
+
+It does not control:
+
+- How long each cycle takes.
+- How quickly the animation progresses.
+- When the animation starts.
+- The direction of the animation.
+
+Those are controlled by other animation properties.
+
+```text
+animation-duration
+    ↓
+How long is one cycle?
+
+animation-timing-function
+    ↓
+How does the speed change?
+
+animation-delay
+    ↓
+When does it start?
+
+animation-iteration-count
+    ↓
+How many cycles?
+
+animation-direction
+    ↓
+Which direction does each cycle play?
+```
+
+> 💡 **Tip:** Use a finite iteration count for effects that should happen a specific number of times and `infinite` for effects that should continue until stopped.
+
+> 💡 **Remember:** `animation-iteration-count` determines **how many times an animation cycle is played**.
