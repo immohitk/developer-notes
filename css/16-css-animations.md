@@ -4254,3 +4254,351 @@ and add additional values when more control is required.
 > 💡 **Tip:** Use the shorthand for concise CSS, but use individual properties when separating the animation settings makes the code easier to understand or maintain.
 
 > 💡 **Remember:** The `animation` shorthand combines multiple animation properties into one declaration. You do not need to specify every value.
+
+---
+
+## Multiple Animations
+
+CSS allows multiple animations to run on the same element at the same time.
+
+Multiple animations are specified by separating individual animation declarations with commas.
+
+### Basic Syntax
+
+```css
+selector {
+    animation:
+        animation-one duration,
+        animation-two duration;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 2s ease;
+}
+```
+
+Here, both animations are applied to the `.box` element.
+
+### Defining Multiple Keyframes
+
+Each animation should have its own `@keyframes` rule.
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 2s ease;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+The two animations work together:
+
+```text
+move
+ ↓
+Changes position
+
+fade
+ ↓
+Changes opacity
+```
+
+### Different Durations
+
+Each animation can have a different duration.
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 1s ease;
+}
+```
+
+Here:
+
+```text
+move → 2 seconds
+fade → 1 second
+```
+
+The animations can therefore complete at different times.
+
+### Different Timing Functions
+
+Each animation can use its own timing function.
+
+```css
+.box {
+    animation:
+        move 2s ease-out,
+        fade 1s linear;
+}
+```
+
+Here:
+
+```text
+move → ease-out
+fade → linear
+```
+
+### Different Delays
+
+Animations can also have different delays.
+
+```css
+.box {
+    animation:
+        move 2s ease 0s,
+        fade 1s ease 0.5s;
+}
+```
+
+Here:
+
+```text
+move → starts immediately
+fade → starts after 0.5 seconds
+```
+
+### Different Iteration Counts
+
+Each animation can repeat a different number of times.
+
+```css
+.box {
+    animation:
+        move 2s ease 0s 1,
+        fade 1s ease 0s 3;
+}
+```
+
+Here:
+
+```text
+move → runs once
+fade → runs three times
+```
+
+### Combining Multiple Animation Properties
+
+When multiple animations are used, the values of individual animation properties correspond by position.
+
+For example:
+
+```css
+.box {
+    animation-name: move, fade;
+    animation-duration: 2s, 1s;
+    animation-timing-function: ease-out, linear;
+    animation-delay: 0s, 0.5s;
+    animation-iteration-count: 1, 3;
+}
+```
+
+The first values belong to `move`:
+
+```text
+move
+ ↓
+2s
+ ↓
+ease-out
+ ↓
+0s
+ ↓
+1 iteration
+```
+
+The second values belong to `fade`:
+
+```text
+fade
+ ↓
+1s
+ ↓
+linear
+ ↓
+0.5s
+ ↓
+3 iterations
+```
+
+### Multiple Animations with Shorthand
+
+Multiple animations can be written using the `animation` shorthand.
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        fade 1s linear;
+}
+```
+
+Each animation is separated by a comma.
+
+### Combining Transform and Opacity
+
+A common use of multiple animations is combining movement and opacity.
+
+```css
+.card {
+    animation:
+        slideIn 0.6s ease-out,
+        fadeIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+The card moves into position while becoming visible.
+
+### Multiple Animations with Different Keyframes
+
+Different animations can affect different properties.
+
+```css
+.box {
+    animation:
+        move 2s ease-in-out infinite alternate,
+        pulse 1s ease-in-out infinite;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.6;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+This creates two simultaneous effects:
+
+```text
+Movement
+    +
+Opacity change
+```
+
+### Practical Example
+
+```html
+<div class="box">
+    CSS Animation
+</div>
+```
+
+```css
+.box {
+    width: 120px;
+    padding: 20px;
+    background-color: steelblue;
+    color: white;
+
+    animation:
+        slideIn 1s ease-out,
+        fadeIn 1s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+The element simultaneously:
+
+- Moves into position.
+- Changes from transparent to visible.
+
+### Important Point
+
+Multiple animations provide a way to combine independent animation effects on the same element.
+
+```text
+Element
+   ↓
+Animation 1 → Movement
+Animation 2 → Opacity
+Animation 3 → Color
+```
+
+However, care should be taken when multiple animations modify the same CSS property, because their effects can interact or conflict.
+
+> 💡 **Tip:** Use multiple animations when separate effects need to run together, such as movement combined with opacity.
+
+> 💡 **Remember:** Separate animations are separated with commas, and when individual animation properties contain multiple values, those values correspond to the animations by position.
