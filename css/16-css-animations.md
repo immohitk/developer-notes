@@ -6221,3 +6221,45 @@ Can control direction and playback
 > 💡 **Remember:** `@keyframes` defines **what happens**, while the `animation` properties control **how the animation runs**.
 
 > 💡 **Key idea:** Good CSS animations should improve visual feedback, communication, or user experience rather than simply adding movement.
+
+---
+
+## References
+
+The following references provide reliable information about CSS animations and related animation properties.
+
+### MDN Web Docs
+
+- [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations)
+- [animation](https://developer.mozilla.org/en-US/docs/Web/CSS/animation)
+- [animation-name](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name)
+- [animation-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration)
+- [animation-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function)
+- [animation-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay)
+- [animation-iteration-count](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count)
+- [animation-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction)
+- [animation-fill-mode](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode)
+- [animation-play-state](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state)
+- [@keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)
+
+### W3C / CSS Specifications
+
+- [CSS Animations](https://drafts.csswg.org/css-animations/)
+- [CSS Transforms](https://drafts.csswg.org/css-transforms/)
+
+### Reference Topics
+
+The following concepts are closely related to CSS animations:
+
+```text
+CSS Transitions
+CSS Transforms
+CSS Timing Functions
+CSS Pseudo-Classes
+CSS Opacity
+CSS Accessibility
+```
+
+> 💡 **Tip:** MDN is a useful practical reference for checking CSS animation syntax, browser behavior, and individual animation properties.
+
+> 💡 **Remember:** Use official specifications and documentation when you need precise details about CSS animation behavior.
