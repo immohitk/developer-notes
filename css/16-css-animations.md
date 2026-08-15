@@ -5332,3 +5332,303 @@ border-color
 > 💡 **Tip:** Color animations are useful for visual feedback, status indicators, attention effects, and decorative effects. Keep the changes readable and avoid excessive color movement.
 
 > 💡 **Remember:** Color properties can be animated just like transform and opacity values by defining their different values inside `@keyframes`.
+
+---
+
+## Animations with Opacity
+
+The `opacity` property can be used with CSS animations to control the visibility of an element over time.
+
+The value of `opacity` ranges from `0` to `1`:
+
+```text
+0
+↓
+Completely transparent
+
+0.5
+↓
+Partially transparent
+
+1
+↓
+Completely visible
+```
+
+### Basic Example
+
+```css
+.box {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+The element starts transparent and gradually becomes fully visible.
+
+### Fade-In Animation
+
+A fade-in effect can be created by changing opacity from `0` to `1`.
+
+```css
+.card {
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+```
+
+### Fade-Out Animation
+
+A fade-out effect can be created by changing opacity from `1` to `0`.
+
+```css
+.card {
+    animation: fadeOut 0.6s ease;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+```
+
+The element gradually becomes transparent.
+
+### Partial Opacity
+
+An animation does not have to use only `0` and `1`.
+
+For example:
+
+```css
+.box {
+    animation: fade 2s ease;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+The element starts partially transparent and becomes fully visible.
+
+### Multiple Opacity Stages
+
+Percentage keyframes can be used to create multiple opacity stages.
+
+```css
+.box {
+    animation: pulse 2s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+```
+
+The element becomes partially transparent and then returns to full visibility.
+
+### Repeating Opacity Animation
+
+Opacity animations can be repeated.
+
+```css
+.notification {
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.3;
+    }
+}
+```
+
+The element repeatedly changes between full and partial visibility.
+
+### Opacity with Transform
+
+Opacity is often combined with `transform` to create entrance effects.
+
+```css
+.card {
+    animation: slideFadeIn 0.6s ease-out;
+}
+
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+The card:
+
+```text
+Starts lower
+    +
+Starts transparent
+    ↓
+Moves upward
+    +
+Becomes visible
+```
+
+### Opacity with Scale
+
+Opacity can also be combined with scaling.
+
+```css
+.box {
+    animation: scaleFade 0.5s ease;
+}
+
+@keyframes scaleFade {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+```
+
+This creates a subtle appearance effect.
+
+### Using `animation-fill-mode`
+
+When an animation changes opacity, `animation-fill-mode` can be useful for keeping the final opacity after the animation finishes.
+
+```css
+.card {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+The `forwards` value keeps the final keyframe styles after the animation completes.
+
+### Practical Example
+
+```html
+<div class="message">
+    Welcome!
+</div>
+```
+
+```css
+.message {
+    padding: 20px;
+    background-color: steelblue;
+    color: white;
+
+    animation: messageIn 0.8s ease-out;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+The message smoothly appears while moving into its final position.
+
+### Important Point
+
+The `opacity` property controls the transparency of an element:
+
+```text
+opacity: 0
+    ↓
+Invisible
+
+opacity: 0.5
+    ↓
+Partially transparent
+
+opacity: 1
+    ↓
+Fully visible
+```
+
+When used inside `@keyframes`, it can create effects such as:
+
+```text
+Fade in
+Fade out
+Pulse
+Blink
+Entrance effects
+```
+
+> 💡 **Tip:** Combining `opacity` with `transform` is a common way to create subtle entrance and exit effects.
+
+> 💡 **Remember:** `opacity` controls transparency, while the animation determines how that value changes over time.
