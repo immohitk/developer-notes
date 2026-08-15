@@ -3078,3 +3078,272 @@ Which direction does each cycle play?
 > 💡 **Tip:** Use a finite iteration count for effects that should happen a specific number of times and `infinite` for effects that should continue until stopped.
 
 > 💡 **Remember:** `animation-iteration-count` determines **how many times an animation cycle is played**.
+
+---
+
+## Animation Direction
+
+The `animation-direction` property specifies the direction in which an animation's keyframes are played.
+
+It controls whether the animation plays normally, in reverse, or alternates between forward and reverse directions when it repeats.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-direction: value;
+}
+```
+
+The default value is:
+
+```css
+animation-direction: normal;
+```
+
+### `normal`
+
+The `normal` value plays the animation forward during every iteration.
+
+```css
+.box {
+    animation:
+        move 1s ease 0s 3 normal;
+}
+```
+
+The animation follows the keyframes from the beginning to the end on every iteration.
+
+```text
+Forward
+   ↓
+Forward
+   ↓
+Forward
+```
+
+### `reverse`
+
+The `reverse` value plays the animation backward.
+
+```css
+.box {
+    animation:
+        move 1s ease 0s 3 reverse;
+}
+```
+
+The keyframes are played in the opposite direction.
+
+```text
+End
+ ↓
+Middle
+ ↓
+Start
+```
+
+### `alternate`
+
+The `alternate` value switches direction on each iteration.
+
+```css
+.box {
+    animation:
+        move 1s ease 0s infinite alternate;
+}
+```
+
+The animation plays:
+
+```text
+Forward
+   ↓
+Backward
+   ↓
+Forward
+   ↓
+Backward
+```
+
+This is useful for creating back-and-forth movement.
+
+### `alternate-reverse`
+
+The `alternate-reverse` value also alternates between directions, but the first iteration plays in reverse.
+
+```css
+.box {
+    animation:
+        move 1s ease 0s infinite alternate-reverse;
+}
+```
+
+The sequence begins with a reverse iteration:
+
+```text
+Backward
+   ↓
+Forward
+   ↓
+Backward
+   ↓
+Forward
+```
+
+### Comparing Direction Values
+
+| Value | Behavior |
+| --- | --- |
+| `normal` | Plays forward on every iteration |
+| `reverse` | Plays backward on every iteration |
+| `alternate` | Alternates forward and backward |
+| `alternate-reverse` | Starts backward, then alternates |
+
+### Direction with `animation-iteration-count`
+
+The effect of `animation-direction` becomes especially useful when an animation repeats.
+
+For example:
+
+```css
+.box {
+    animation:
+        move 1s ease 0s 4 alternate;
+}
+```
+
+The four iterations behave like:
+
+```text
+Iteration 1 → Forward
+Iteration 2 → Backward
+Iteration 3 → Forward
+Iteration 4 → Backward
+```
+
+### Direction with `infinite`
+
+`alternate` is commonly combined with `infinite` for continuous back-and-forth effects.
+
+```css
+.box {
+    animation:
+        move 1s ease 0s infinite alternate;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+The element repeatedly moves between the two positions.
+
+### Practical Example
+
+```html
+<div class="box">
+    Move Me
+</div>
+```
+
+```css
+.box {
+    width: 80px;
+    height: 80px;
+    background-color: steelblue;
+
+    animation:
+        move 1s ease-in-out infinite alternate;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(150px);
+    }
+}
+```
+
+The box moves to the right and then returns to its original position repeatedly.
+
+### Direction with Shorthand
+
+The direction can be included in the `animation` shorthand.
+
+```css
+.box {
+    animation: move 1s ease 0s infinite alternate;
+}
+```
+
+Here:
+
+```text
+move
+ ↓
+Animation name
+
+1s
+ ↓
+Duration
+
+ease
+ ↓
+Timing function
+
+0s
+ ↓
+Delay
+
+infinite
+ ↓
+Iteration count
+
+alternate
+ ↓
+Direction
+```
+
+### Important Point
+
+`animation-direction` does not define the animation stages.
+
+The `@keyframes` rule defines the stages:
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+The `animation-direction` property determines how those stages are played.
+
+```text
+@keyframes
+    ↓
+Defines the stages
+
+animation-direction
+    ↓
+Controls their playback direction
+```
+
+> 💡 **Tip:** Use `alternate` when an element needs to move back and forth without having to create separate forward and reverse keyframes.
+
+> 💡 **Remember:** `normal` plays forward, `reverse` plays backward, `alternate` switches direction after each iteration, and `alternate-reverse` starts in reverse and then alternates.
