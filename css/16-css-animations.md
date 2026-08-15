@@ -6679,3 +6679,407 @@ animation shorthand
 > 💡 **Remember:** `@keyframes` defines **what happens**, while the animation properties control **how it happens**.
 
 > 💡 **Quick Interview Point:** CSS animations are especially useful for multi-stage, automatic, or repeating visual effects, while transitions are generally used for smooth changes between states.
+
+---
+
+## Best Practices
+
+Following good practices makes CSS animations easier to understand, maintain, and use effectively.
+
+### 1. Keep Animations Purposeful
+
+Animations should have a clear purpose.
+
+Good uses include:
+
+- Providing visual feedback
+- Showing changes in state
+- Indicating loading activity
+- Guiding user attention
+- Improving the understanding of interface changes
+
+Avoid adding animations simply because movement is possible.
+
+```css
+.button {
+    animation: pulse 1s ease-in-out infinite;
+}
+```
+
+If the animation does not provide useful information or improve the interface, it may be unnecessary.
+
+### 2. Prefer Simple Animations
+
+Simple animations are usually easier to maintain and understand.
+
+For example:
+
+```css
+.card {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+Start with simple effects before combining multiple properties.
+
+### 3. Use Descriptive Animation Names
+
+Use names that clearly describe the purpose of an animation.
+
+Good:
+
+```css
+@keyframes fadeIn {
+    /* ... */
+}
+
+@keyframes slideUp {
+    /* ... */
+}
+
+@keyframes spin {
+    /* ... */
+}
+```
+
+Avoid unclear names:
+
+```css
+@keyframes animation1 {
+    /* ... */
+}
+
+@keyframes test {
+    /* ... */
+}
+```
+
+Descriptive names make the CSS easier to understand.
+
+### 4. Choose Appropriate Durations
+
+Animation duration should match the purpose and size of the effect.
+
+For example:
+
+```css
+.button {
+    animation-duration: 0.2s;
+}
+```
+
+A larger entrance effect might use:
+
+```css
+.card {
+    animation-duration: 0.6s;
+}
+```
+
+Avoid making small interface interactions unnecessarily slow.
+
+### 5. Choose the Right Timing Function
+
+Select a timing function based on the desired movement.
+
+```text
+linear
+    ↓
+Constant speed
+
+ease-out
+    ↓
+Fast → Slow
+
+ease-in
+    ↓
+Slow → Fast
+
+ease-in-out
+    ↓
+Slow → Fast → Slow
+```
+
+For example:
+
+```css
+.card {
+    animation: slideIn 0.6s ease-out;
+}
+```
+
+### 6. Prefer `transform` for Movement
+
+For many movement effects, use `transform` rather than changing layout-related properties.
+
+For example:
+
+```css
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+Common transform functions include:
+
+```css
+translate()
+translateX()
+translateY()
+scale()
+rotate()
+```
+
+### 7. Combine Transform and Opacity Carefully
+
+A common and effective entrance pattern is:
+
+```css
+.card {
+    animation: entrance 0.6s ease-out;
+}
+
+@keyframes entrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+This creates movement and visibility changes together without requiring excessive effects.
+
+### 8. Avoid Excessive Animation
+
+Too much movement can make an interface distracting.
+
+Avoid unnecessarily animating many elements simultaneously:
+
+```text
+Everything moves
+      ↓
+Visual noise
+      ↓
+Difficult to focus
+```
+
+Instead, animate the elements that need attention or feedback.
+
+### 9. Use `animation-iteration-count` Carefully
+
+Use finite iterations when an effect should happen a specific number of times.
+
+```css
+.notification {
+    animation: pulse 1s ease 0s 2;
+}
+```
+
+Use `infinite` only when continuous animation is actually necessary.
+
+```css
+.loader {
+    animation: spin 1s linear infinite;
+}
+```
+
+### 10. Use `animation-delay` Carefully
+
+Delays can create useful staggered effects:
+
+```css
+.card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+```
+
+However, excessive delays can make an interface feel slow.
+
+### 11. Use `animation-fill-mode` When Needed
+
+If an element should remain in its final animated state, use:
+
+```css
+animation-fill-mode: forwards;
+```
+
+For example:
+
+```css
+.card {
+    animation: fadeIn 0.6s ease forwards;
+}
+```
+
+Do not use fill modes unnecessarily when the default behavior is sufficient.
+
+### 12. Consider Reduced Motion
+
+Some users prefer reduced motion.
+
+Use the `prefers-reduced-motion` media feature to reduce or disable non-essential animations.
+
+```css
+.card {
+    animation: slideIn 0.6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        animation: none;
+    }
+}
+```
+
+This can make animated interfaces more comfortable and accessible.
+
+### 13. Keep Animation Code Readable
+
+For simple animations, a concise declaration can be useful:
+
+```css
+.box {
+    animation: move 1s ease-out;
+}
+```
+
+For more complex animations, individual properties may be easier to understand:
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 2;
+}
+```
+
+Choose the style that makes the code easiest to maintain.
+
+### 14. Avoid Conflicting Animations
+
+Be careful when multiple animations modify the same property.
+
+For example:
+
+```css
+.box {
+    animation:
+        move 2s ease,
+        anotherMove 2s ease;
+}
+```
+
+If both animations control the same property, their effects can conflict.
+
+Prefer assigning different responsibilities to different animations when possible.
+
+### 15. Test Animations at Different Speeds
+
+An animation that looks good at one speed may not work well at another.
+
+Test:
+
+```text
+Fast
+ ↓
+Normal
+ ↓
+Slow
+```
+
+Check whether the animation remains understandable and comfortable.
+
+### 16. Test Different Screen Sizes
+
+Animations should work correctly across different screen sizes and layouts.
+
+Pay attention to:
+
+- Movement distance
+- Element visibility
+- Overflow
+- Responsive layouts
+- Mobile interactions
+
+### 17. Use Animations to Communicate State
+
+Animation can provide useful feedback when something changes.
+
+For example:
+
+```text
+Action
+  ↓
+Animation
+  ↓
+Visual feedback
+  ↓
+User understands the change
+```
+
+The animation should support the interaction rather than distract from it.
+
+### 18. Avoid Animating Everything
+
+Not every CSS property needs animation.
+
+For example, an interface does not need every heading, paragraph, button, and card to animate simultaneously.
+
+Use animation selectively.
+
+### Best Practice Checklist
+
+```text
+⬜ Give animations a clear purpose
+⬜ Keep animations simple
+⬜ Use descriptive animation names
+⬜ Choose appropriate durations
+⬜ Choose suitable timing functions
+⬜ Prefer transform for movement
+⬜ Combine transform and opacity carefully
+⬜ Avoid excessive movement
+⬜ Use infinite animations only when necessary
+⬜ Use delays carefully
+⬜ Use fill modes when needed
+⬜ Support reduced motion
+⬜ Keep animation code readable
+⬜ Avoid conflicting animations
+⬜ Test different animation speeds
+⬜ Test different screen sizes
+⬜ Use animation to communicate state
+⬜ Avoid animating everything
+```
+
+> 💡 **Tip:** The best animation is usually the one that improves the interface without making the user consciously think about the animation itself.
+
+> 💡 **Remember:** Good CSS animation is not about using more effects. It is about using the right effect at the right time for the right purpose.
