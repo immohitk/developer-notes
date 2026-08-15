@@ -5008,3 +5008,327 @@ Controls playback
 > 💡 **Tip:** `transform` is especially useful for movement, scaling, and rotation effects because these transformations can often be animated without changing the normal document flow.
 
 > 💡 **Remember:** Common transform functions used in animations include `translate()`, `scale()`, and `rotate()`.
+
+---
+
+## Animations with Colors
+
+CSS animations can be used to smoothly change color-related properties over time.
+
+Colors can be changed using `@keyframes` in the same way as other CSS properties.
+
+### Basic Example
+
+```css
+.box {
+    animation: colorChange 2s ease;
+}
+
+@keyframes colorChange {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+The background color gradually changes from `steelblue` to `darkblue`.
+
+### Animating `background-color`
+
+The `background-color` property is commonly used with animations.
+
+```css
+.box {
+    animation: backgroundChange 2s ease;
+}
+
+@keyframes backgroundChange {
+    from {
+        background-color: lightblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+### Animating `color`
+
+The `color` property can be animated to change text color.
+
+```css
+.text {
+    animation: textColor 2s ease;
+}
+
+@keyframes textColor {
+    from {
+        color: black;
+    }
+
+    to {
+        color: white;
+    }
+}
+```
+
+### Animating `border-color`
+
+Border colors can also be animated.
+
+```css
+.box {
+    border: 3px solid gray;
+    animation: borderChange 2s ease;
+}
+
+@keyframes borderChange {
+    from {
+        border-color: gray;
+    }
+
+    to {
+        border-color: steelblue;
+    }
+}
+```
+
+### Multiple Color Properties
+
+Multiple color properties can be changed within the same animation.
+
+```css
+.card {
+    animation: colorShift 2s ease;
+}
+
+@keyframes colorShift {
+    from {
+        background-color: white;
+        color: black;
+        border-color: gray;
+    }
+
+    to {
+        background-color: steelblue;
+        color: white;
+        border-color: darkblue;
+    }
+}
+```
+
+The animation changes:
+
+```text
+Background color
+       +
+Text color
+       +
+Border color
+```
+
+### Using Percentage Keyframes
+
+Percentage keyframes allow several color stages.
+
+```css
+.box {
+    animation: colors 3s ease;
+}
+
+@keyframes colors {
+    0% {
+        background-color: steelblue;
+    }
+
+    50% {
+        background-color: purple;
+    }
+
+    100% {
+        background-color: darkblue;
+    }
+}
+```
+
+The animation passes through three color stages.
+
+```text
+0%
+ ↓
+Steel Blue
+
+50%
+ ↓
+Purple
+
+100%
+ ↓
+Dark Blue
+```
+
+### Repeating Color Animations
+
+Color animations can repeat using `animation-iteration-count`.
+
+```css
+.box {
+    animation: colorPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes colorPulse {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: lightblue;
+    }
+}
+```
+
+The element repeatedly changes between the two colors.
+
+### Color Animation with Transform
+
+Color changes can be combined with transformations.
+
+```css
+.box {
+    animation: colorMove 2s ease-in-out;
+}
+
+@keyframes colorMove {
+    from {
+        background-color: steelblue;
+        transform: translateX(0);
+    }
+
+    to {
+        background-color: darkblue;
+        transform: translateX(100px);
+    }
+}
+```
+
+The element changes color while moving horizontally.
+
+### Color Animation with Opacity
+
+Colors can also be combined with opacity.
+
+```css
+.box {
+    animation: fadeColor 2s ease;
+}
+
+@keyframes fadeColor {
+    from {
+        background-color: steelblue;
+        opacity: 0;
+    }
+
+    to {
+        background-color: darkblue;
+        opacity: 1;
+    }
+}
+```
+
+The element becomes visible while its background color changes.
+
+### Practical Example
+
+```html
+<div class="status">
+    Processing
+</div>
+```
+
+```css
+.status {
+    padding: 15px 20px;
+    color: white;
+
+    animation: statusChange 2s ease-in-out infinite alternate;
+}
+
+@keyframes statusChange {
+    from {
+        background-color: steelblue;
+    }
+
+    to {
+        background-color: darkblue;
+    }
+}
+```
+
+The status element continuously changes between two background colors.
+
+### Color Animations with Multiple Stages
+
+More complex effects can use several stages.
+
+```css
+.notification {
+    animation: alertColors 3s ease;
+}
+
+@keyframes alertColors {
+    0% {
+        background-color: steelblue;
+    }
+
+    25% {
+        background-color: lightblue;
+    }
+
+    50% {
+        background-color: orange;
+    }
+
+    75% {
+        background-color: gold;
+    }
+
+    100% {
+        background-color: steelblue;
+    }
+}
+```
+
+This creates a sequence of color changes throughout the animation.
+
+### Important Point
+
+Color animations work by changing color properties inside `@keyframes`.
+
+```text
+@keyframes
+    ↓
+Color at beginning
+    ↓
+Color at intermediate stages
+    ↓
+Color at end
+```
+
+The animation controls how those values change over time.
+
+Common color properties used in animations include:
+
+```text
+color
+background-color
+border-color
+```
+
+> 💡 **Tip:** Color animations are useful for visual feedback, status indicators, attention effects, and decorative effects. Keep the changes readable and avoid excessive color movement.
+
+> 💡 **Remember:** Color properties can be animated just like transform and opacity values by defining their different values inside `@keyframes`.
