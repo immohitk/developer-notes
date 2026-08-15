@@ -865,3 +865,331 @@ This can make animated interfaces more comfortable for users who have requested 
 > 💡 **Tip:** Use animations when they communicate something useful, improve feedback, or support the structure of the interface.
 
 > 💡 **Remember:** Good animation has a purpose. It should improve understanding and interaction rather than distract the user.
+
+---
+
+## Animation Syntax
+
+The `animation` property is used to apply a CSS animation to an element.
+
+A CSS animation generally requires:
+
+1. An animation name.
+2. A set of `@keyframes` that defines what happens during the animation.
+
+### Basic Syntax
+
+The basic syntax is:
+
+```css
+selector {
+    animation: animation-name duration;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation: move 2s;
+}
+```
+
+Here:
+
+```text
+move
+    ↓
+Animation name
+
+2s
+    ↓
+Animation duration
+```
+
+The animation named `move` must be defined using `@keyframes`.
+
+```css
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+### Complete Animation Syntax
+
+The `animation` shorthand can include several values:
+
+```css
+selector {
+    animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+}
+```
+
+For example:
+
+```css
+.box {
+    animation: move 2s ease 0s 1 normal forwards running;
+}
+```
+
+The values represent:
+
+```text
+move     → Animation name
+2s       → Duration
+ease     → Timing function
+0s       → Delay
+1        → Iteration count
+normal   → Direction
+forwards → Fill mode
+running  → Play state
+```
+
+### Using Individual Animation Properties
+
+Instead of using the shorthand, each animation property can be written separately.
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+```
+
+This is more verbose but can make individual settings easier to understand.
+
+### Basic Example
+
+```css
+.box {
+    animation: slide 1s ease;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+The `.box` element runs the `slide` animation for one second using the `ease` timing function.
+
+### Animation Name
+
+The first value identifies the `@keyframes` animation.
+
+```css
+.box {
+    animation: slide 2s;
+}
+```
+
+The corresponding keyframes are:
+
+```css
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+The names must match:
+
+```text
+animation: slide
+           ↓
+@keyframes slide
+```
+
+### Animation Duration
+
+The duration specifies how long one animation cycle takes.
+
+```css
+.box {
+    animation: move 2s;
+}
+```
+
+The animation takes `2` seconds to complete one cycle.
+
+It can also be written using milliseconds:
+
+```css
+.box {
+    animation: move 500ms;
+}
+```
+
+### Timing Function
+
+The timing function controls the speed pattern of the animation.
+
+```css
+.box {
+    animation: move 2s ease-in-out;
+}
+```
+
+Common values include:
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+### Delay
+
+A delay specifies how long the browser waits before starting the animation.
+
+```css
+.box {
+    animation: move 2s ease 0.5s;
+}
+```
+
+Here:
+
+```text
+2s   → Duration
+0.5s → Delay
+```
+
+### Iteration Count
+
+The iteration count specifies how many times the animation should run.
+
+```css
+.box {
+    animation: move 2s ease 0s 3;
+}
+```
+
+The animation runs three times.
+
+To repeat continuously:
+
+```css
+.box {
+    animation: move 2s ease infinite;
+}
+```
+
+### Direction
+
+The animation direction controls the direction in which animation cycles are played.
+
+```css
+.box {
+    animation: move 2s ease infinite alternate;
+}
+```
+
+The `alternate` value causes the animation to play forward and then backward on successive cycles.
+
+### Fill Mode
+
+The fill mode controls how an element is styled before and after the animation.
+
+For example:
+
+```css
+.box {
+    animation: move 2s ease forwards;
+}
+```
+
+The `forwards` value causes the element to retain the styles from the final keyframe after the animation finishes.
+
+### Play State
+
+The play state controls whether an animation is running or paused.
+
+```css
+.box {
+    animation: move 2s ease infinite;
+    animation-play-state: paused;
+}
+```
+
+The animation can be started again by changing the value:
+
+```css
+.box:hover {
+    animation-play-state: running;
+}
+```
+
+### Shorthand Example
+
+A more complete example can combine several animation settings:
+
+```css
+.box {
+    animation: move 2s ease-in-out 0.5s infinite alternate;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+Here:
+
+```text
+move       → Animation name
+2s         → Duration
+ease-in-out → Timing function
+0.5s       → Delay
+infinite   → Iteration count
+alternate  → Direction
+```
+
+### Important Point
+
+The `animation` property controls how an animation is played, while `@keyframes` defines the actual stages.
+
+```text
+@keyframes
+    ↓
+Defines the changes
+
+animation
+    ↓
+Controls the playback
+```
+
+> 💡 **Tip:** Start with the basic syntax `animation: name duration;` and add other values only when the animation requires additional control.
+
+> 💡 **Remember:** The animation name connects the `animation` property to the corresponding `@keyframes` rule.
