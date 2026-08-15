@@ -7083,3 +7083,423 @@ Use animation selectively.
 > 💡 **Tip:** The best animation is usually the one that improves the interface without making the user consciously think about the animation itself.
 
 > 💡 **Remember:** Good CSS animation is not about using more effects. It is about using the right effect at the right time for the right purpose.
+
+---
+
+## Common Mistakes
+
+Avoiding common mistakes helps make CSS animations more predictable, readable, accessible, and easier to maintain.
+
+### 1. Forgetting `@keyframes`
+
+Defining an animation name without defining the corresponding `@keyframes` rule will not create the intended animation.
+
+Incorrect:
+
+```css
+.box {
+    animation: move 2s;
+}
+```
+
+Correct:
+
+```css
+.box {
+    animation: move 2s;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+```
+
+### 2. Using a Different Animation Name
+
+The name used in `animation-name` must match the intended `@keyframes` name.
+
+Incorrect:
+
+```css
+.box {
+    animation-name: slideIn;
+}
+
+@keyframes slide {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+Correct:
+
+```css
+.box {
+    animation-name: slideIn;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+### 3. Forgetting the Animation Duration
+
+If no duration is specified, the animation does not have a useful time interval in which to run.
+
+Incorrect:
+
+```css
+.box {
+    animation-name: move;
+}
+```
+
+Correct:
+
+```css
+.box {
+    animation-name: move;
+    animation-duration: 1s;
+}
+```
+
+Or:
+
+```css
+.box {
+    animation: move 1s;
+}
+```
+
+### 4. Using an Excessive Duration
+
+Animations that take too long can make an interface feel slow.
+
+For example:
+
+```css
+.button {
+    animation: effect 10s;
+}
+```
+
+A small interface effect usually does not need such a long duration.
+
+Choose a duration appropriate for the purpose of the animation.
+
+### 5. Using `infinite` Unnecessarily
+
+Not every animation should repeat forever.
+
+Avoid:
+
+```css
+.card {
+    animation: bounce 1s ease infinite;
+}
+```
+
+if the effect only needs to happen when the card appears.
+
+Use a finite iteration count when appropriate:
+
+```css
+.card {
+    animation: bounce 1s ease 0s 2;
+}
+```
+
+### 6. Overusing Animations
+
+Animating every element can make a page distracting.
+
+Avoid creating unnecessary movement on:
+
+```text
+Headings
+Paragraphs
+Buttons
+Cards
+Images
+Navigation
+Backgrounds
+```
+
+at the same time.
+
+Use animation where it provides useful feedback or communication.
+
+### 7. Forgetting `animation-fill-mode`
+
+An entrance animation may appear to work and then return to its original styles after completing.
+
+For example:
+
+```css
+.card {
+    animation: fadeIn 0.6s ease;
+}
+```
+
+If the final animated state needs to remain, use:
+
+```css
+.card {
+    animation: fadeIn 0.6s ease forwards;
+}
+```
+
+### 8. Confusing Delay with Duration
+
+These properties have different purposes.
+
+```css
+.box {
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+```
+
+Here:
+
+```text
+2s
+ ↓
+How long the animation runs
+
+1s
+ ↓
+How long it waits before starting
+```
+
+Changing the delay does not change the duration of the animation itself.
+
+### 9. Confusing Iteration Count with Duration
+
+These properties also control different things.
+
+```css
+.box {
+    animation-duration: 2s;
+    animation-iteration-count: 3;
+}
+```
+
+Here:
+
+```text
+2s
+ ↓
+One cycle takes 2 seconds
+
+3
+ ↓
+The cycle runs 3 times
+```
+
+The total active animation time is therefore based on both values.
+
+### 10. Using the Wrong Timing Function
+
+Using `linear` for every animation can make some interface movements feel unnatural.
+
+For example:
+
+```css
+.card {
+    animation: slideIn 0.6s linear;
+}
+```
+
+A different timing function may be more appropriate:
+
+```css
+.card {
+    animation: slideIn 0.6s ease-out;
+}
+```
+
+Choose timing functions according to the desired movement.
+
+### 11. Forgetting `animation-direction`
+
+When an animation should move back and forth, repeatedly playing it in the normal direction may not produce the intended effect.
+
+For example:
+
+```css
+.box {
+    animation: move 1s ease infinite alternate;
+}
+```
+
+The `alternate` direction allows the animation to move forward and backward.
+
+### 12. Conflicting Multiple Animations
+
+Multiple animations can conflict when they modify the same property.
+
+For example:
+
+```css
+.box {
+    animation:
+        moveLeft 2s,
+        moveRight 2s;
+}
+```
+
+If both animations attempt to control the same `transform` property, the result may not be what you expect.
+
+Prefer separating responsibilities when possible.
+
+### 13. Overusing Transform Functions
+
+Combining too many transformations can make an animation difficult to understand.
+
+For example:
+
+```css
+transform:
+    translateX(100px)
+    translateY(50px)
+    rotate(180deg)
+    scale(1.5);
+```
+
+Complex transformations are sometimes useful, but simpler animations are generally easier to maintain.
+
+### 14. Forgetting Reduced Motion
+
+Some users prefer reduced motion.
+
+Avoid providing animations without considering accessibility.
+
+A reduced-motion preference can be handled using:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    .box {
+        animation: none;
+    }
+}
+```
+
+### 15. Using Animation for Essential Information Only
+
+Important information should not depend entirely on animation.
+
+For example, do not communicate an important status only through movement or color changes.
+
+Provide understandable content as well:
+
+```html
+<p>Upload complete</p>
+```
+
+The animation can provide additional feedback rather than being the only source of information.
+
+### 16. Ignoring Mobile Devices
+
+Animations should also be tested on smaller screens and touch devices.
+
+Check for:
+
+```text
+Unexpected movement
+Overflow
+Performance issues
+Difficult interactions
+Excessive motion
+```
+
+### 17. Using Too Many Simultaneous Effects
+
+Combining:
+
+```text
+Movement
++
+Rotation
++
+Scaling
++
+Color changes
++
+Opacity changes
+```
+
+can sometimes make an animation unnecessarily complicated.
+
+Use only the effects that support the intended result.
+
+### 18. Forgetting to Test the Final State
+
+Always check what happens after the animation finishes.
+
+For example:
+
+```css
+.box {
+    animation: slideIn 1s ease;
+}
+```
+
+Ask:
+
+```text
+What does the element look like before animation?
+What happens during animation?
+What does it look like after animation?
+```
+
+If the final state should remain, consider:
+
+```css
+animation-fill-mode: forwards;
+```
+
+### Common Mistakes Checklist
+
+```text
+⬜ Forgetting @keyframes
+⬜ Using the wrong animation name
+⬜ Forgetting animation duration
+⬜ Using excessive duration
+⬜ Using infinite unnecessarily
+⬜ Overusing animations
+⬜ Forgetting animation-fill-mode
+⬜ Confusing delay with duration
+⬜ Confusing iteration count with duration
+⬜ Using the wrong timing function
+⬜ Forgetting animation direction
+⬜ Creating conflicting animations
+⬜ Overcomplicating transforms
+⬜ Ignoring reduced-motion preferences
+⬜ Making animation the only source of important information
+⬜ Ignoring mobile devices
+⬜ Using too many simultaneous effects
+⬜ Forgetting to test the final state
+```
+
+> 💡 **Tip:** When an animation does not behave as expected, first check the animation name, `@keyframes`, duration, iteration count, and fill mode.
+
+> 💡 **Remember:** Most CSS animation problems can be avoided by keeping animations purposeful, simple, accessible, and easy to understand.
