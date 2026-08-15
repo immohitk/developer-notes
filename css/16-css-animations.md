@@ -3347,3 +3347,306 @@ Controls their playback direction
 > 💡 **Tip:** Use `alternate` when an element needs to move back and forth without having to create separate forward and reverse keyframes.
 
 > 💡 **Remember:** `normal` plays forward, `reverse` plays backward, `alternate` switches direction after each iteration, and `alternate-reverse` starts in reverse and then alternates.
+
+---
+
+## Animation Fill Mode
+
+The `animation-fill-mode` property specifies how an element should be styled before an animation starts and after an animation finishes.
+
+It is especially useful when an animation has a delay or when the final keyframe styles should remain after the animation completes.
+
+### Basic Syntax
+
+```css
+selector {
+    animation-fill-mode: value;
+}
+```
+
+The main values are:
+
+```text
+none
+forwards
+backwards
+both
+```
+
+### `none`
+
+The `none` value is the default.
+
+```css
+.box {
+    animation-fill-mode: none;
+}
+```
+
+The element does not retain the styles from the animation's keyframes before or after the animation.
+
+### `forwards`
+
+The `forwards` value causes the element to retain the styles from the final keyframe after the animation finishes.
+
+```css
+.box {
+    animation: move 2s ease forwards;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+```
+
+After the animation finishes, the element remains at the position defined by the final keyframe.
+
+```text
+Animation starts
+      ↓
+Animation runs
+      ↓
+Final keyframe
+      ↓
+Final styles remain
+```
+
+### `backwards`
+
+The `backwards` value applies the styles from the first relevant keyframe during the animation's delay period.
+
+```css
+.box {
+    animation: move 2s ease 1s backwards;
+}
+```
+
+The animation waits for `1s`, and during that delay the element can use the styles from the starting keyframe.
+
+### `both`
+
+The `both` value combines the behavior of `forwards` and `backwards`.
+
+```css
+.box {
+    animation: move 2s ease 1s both;
+}
+```
+
+This means:
+
+```text
+Before animation
+      ↓
+Use starting keyframe styles
+
+Animation runs
+      ↓
+Animation stages
+
+After animation
+      ↓
+Keep final keyframe styles
+```
+
+### Comparing Fill Modes
+
+| Value | Before Animation | After Animation |
+| --- | --- | --- |
+| `none` | No keyframe styles | No keyframe styles |
+| `forwards` | No keyframe styles | Keeps final keyframe |
+| `backwards` | Uses starting keyframe during delay | No final keyframe retention |
+| `both` | Uses starting keyframe during delay | Keeps final keyframe |
+
+### Fill Mode with a Delay
+
+`animation-fill-mode` becomes particularly useful when an animation has a delay.
+
+```css
+.box {
+    animation:
+        fadeIn 1s ease 1s backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+```
+
+Here:
+
+```text
+0s – 1s
+    ↓
+Delay
+    ↓
+Starting keyframe styles
+
+1s – 2s
+    ↓
+Animation runs
+
+After 2s
+    ↓
+Animation completes
+```
+
+### Fill Mode with `forwards`
+
+A common use is keeping an element in its final animated state.
+
+```css
+.card {
+    animation: slideIn 0.6s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+Without `forwards`, the element may return to its pre-animation styles after the animation finishes.
+
+### Fill Mode with `both`
+
+`both` is useful when an animation has both a delay and a final state that should be retained.
+
+```css
+.card {
+    animation: slideIn 0.6s ease 0.3s both;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+```
+
+The card uses the starting keyframe during the delay and keeps the final keyframe after the animation completes.
+
+### Fill Mode with Shorthand
+
+The fill mode can be included in the `animation` shorthand.
+
+```css
+.box {
+    animation: move 2s ease 0s 1 normal forwards;
+}
+```
+
+Here:
+
+```text
+move
+    ↓
+Animation name
+
+2s
+    ↓
+Duration
+
+ease
+    ↓
+Timing function
+
+0s
+    ↓
+Delay
+
+1
+    ↓
+Iteration count
+
+normal
+    ↓
+Direction
+
+forwards
+    ↓
+Fill mode
+```
+
+### Practical Example
+
+```html
+<div class="box">
+    CSS Animation
+</div>
+```
+
+```css
+.box {
+    width: 150px;
+    padding: 20px;
+    background-color: steelblue;
+    color: white;
+
+    animation:
+        slideIn 0.8s ease 0.5s both;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+
+The `both` value ensures that the starting keyframe is applied during the delay and the final keyframe remains after the animation finishes.
+
+### Important Point
+
+`animation-fill-mode` controls the styles applied outside the active animation period.
+
+```text
+Before animation
+      ↓
+backwards
+
+During animation
+      ↓
+@keyframes
+
+After animation
+      ↓
+forwards
+```
+
+The `both` value combines the before-animation and after-animation behavior.
+
+> 💡 **Tip:** `forwards` is commonly useful for entrance animations when the element should remain in its final state after the animation finishes.
+
+> 💡 **Remember:** `animation-fill-mode` controls what styles are retained **before and after an animation**, while `@keyframes` defines the actual animation stages.
