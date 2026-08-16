@@ -1304,3 +1304,191 @@ Interactive controls
 > 💡 **Tip:** Use `:hover` to provide clear visual feedback, but do not rely on hover alone for essential functionality because hover interactions are not available in the same way on touch devices.
 
 > 💡 **Remember:** `:hover` changes the styling of an element while the pointer is over it. For smooth changes, combine it with `transition`.
+
+---
+
+## :active
+
+The `:active` pseudo-class applies styles to an element while it is being activated by the user.
+
+For a typical mouse interaction, this usually means the short period while the mouse button is being pressed on the element.
+
+### Basic Syntax
+
+```css
+selector:active {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+button:active {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+When the button is being pressed, the `:active` styles are applied.
+
+```text
+Normal
+   ↓
+User presses the button
+   ↓
+:active becomes active
+   ↓
+User releases the button
+   ↓
+Normal state returns
+```
+
+### Active State on Links
+
+The `:active` pseudo-class can be used with links.
+
+```css
+a:active {
+    color: red;
+}
+```
+
+The style applies while the link is being activated.
+
+### Active State on Buttons
+
+```css
+button {
+    background-color: gray;
+}
+
+button:active {
+    background-color: darkgray;
+}
+```
+
+The button changes appearance while it is being pressed.
+
+### Active with Transform
+
+A common use is creating a pressed effect with `transform`.
+
+```css
+button {
+    transition: transform 0.1s ease;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+```
+
+The button becomes slightly smaller while being pressed.
+
+### Active with Multiple Properties
+
+Multiple properties can be changed together.
+
+```css
+.button {
+    background-color: steelblue;
+    color: white;
+}
+
+.button:active {
+    background-color: darkblue;
+    transform: scale(0.98);
+}
+```
+
+The active state can provide immediate visual feedback that the interaction has been triggered.
+
+### `:active` vs `:hover`
+
+These pseudo-classes represent different states.
+
+```text
+:hover
+   ↓
+Pointer is over the element
+
+:active
+   ↓
+Element is being activated
+```
+
+Example:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+
+button:active {
+    background-color: darkblue;
+}
+```
+
+The first style applies while hovering, while the second applies during activation.
+
+### `:active` vs `:focus`
+
+`:active` and `:focus` are also different.
+
+```text
+:active
+   ↓
+Element is currently being activated
+
+:focus
+   ↓
+Element currently has focus
+```
+
+For example:
+
+```css
+button:active {
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: 2px solid steelblue;
+}
+```
+
+A button can be focused without being active.
+
+### Using `:active` with Links and Buttons
+
+```css
+a:active,
+button:active {
+    transform: scale(0.98);
+}
+```
+
+This gives both links and buttons a temporary pressed effect.
+
+### Important Point
+
+The `:active` pseudo-class represents an element while it is being activated.
+
+```text
+:hover
+    ↓
+Pointer is over element
+
+:active
+    ↓
+Element is being activated
+
+:focus
+    ↓
+Element has focus
+```
+
+> 💡 **Tip:** `:active` is useful for giving users immediate feedback when they press or activate an interactive element.
+
+> 💡 **Remember:** `:active` is a temporary state. The styles normally stop applying when the activation ends.
