@@ -2592,3 +2592,362 @@ For that purpose, use:
 > 💡 **Tip:** When using `:last-child`, check all of the parent's children, including elements of different types.
 
 > 💡 **Remember:** `:last-child` selects an element only when it is the last child of its parent.
+
+---
+
+## :nth-child()
+
+The `:nth-child()` pseudo-class selects an element based on its position among the children of its parent.
+
+It is useful when you need to select a specific child or create repeating patterns without adding separate classes to the HTML.
+
+### Basic Syntax
+
+```css
+selector:nth-child(value) {
+    property: value;
+}
+```
+
+### Selecting a Specific Child
+
+For example:
+
+```css
+li:nth-child(2) {
+    color: red;
+}
+```
+
+This selects the second child of its parent when that child is an `<li>`.
+
+HTML:
+
+```html
+<ul>
+    <li>First</li>
+    <li>Second</li>
+    <li>Third</li>
+</ul>
+```
+
+The result is:
+
+```text
+<ul>
+ ├── First
+ ├── Second    ← :nth-child(2)
+ └── Third
+</ul>
+```
+
+### Selecting the First Child
+
+The first child can be selected with:
+
+```css
+li:nth-child(1) {
+    font-weight: bold;
+}
+```
+
+This is equivalent in this situation to:
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+### Selecting the Third Child
+
+```css
+li:nth-child(3) {
+    color: steelblue;
+}
+```
+
+This selects the third child if it is an `<li>`.
+
+### Using `even`
+
+The `even` keyword selects even-numbered children.
+
+```css
+li:nth-child(even) {
+    background-color: lightgray;
+}
+```
+
+For example:
+
+```text
+1 → Normal
+2 → Styled
+3 → Normal
+4 → Styled
+5 → Normal
+6 → Styled
+```
+
+This is commonly used for alternating rows.
+
+### Using `odd`
+
+The `odd` keyword selects odd-numbered children.
+
+```css
+li:nth-child(odd) {
+    background-color: lightblue;
+}
+```
+
+The pattern is:
+
+```text
+1 → Styled
+2 → Normal
+3 → Styled
+4 → Normal
+5 → Styled
+```
+
+### Using `2n`
+
+`2n` selects every second child.
+
+```css
+li:nth-child(2n) {
+    background-color: lightgray;
+}
+```
+
+This produces an even-child pattern.
+
+### Using `2n + 1`
+
+```css
+li:nth-child(2n + 1) {
+    background-color: lightblue;
+}
+```
+
+This selects odd-numbered children.
+
+```text
+2n + 1
+
+1 → Styled
+2 → Normal
+3 → Styled
+4 → Normal
+5 → Styled
+```
+
+### Using Other Formulas
+
+The `:nth-child()` function can use formulas.
+
+For example:
+
+```css
+li:nth-child(3n) {
+    color: red;
+}
+```
+
+This selects:
+
+```text
+3
+6
+9
+12
+...
+```
+
+Another example:
+
+```css
+li:nth-child(3n + 1) {
+    color: blue;
+}
+```
+
+This selects:
+
+```text
+1
+4
+7
+10
+...
+```
+
+### Selecting the First Few Children
+
+A formula can be used to select an initial range.
+
+For example:
+
+```css
+li:nth-child(-n + 3) {
+    font-weight: bold;
+}
+```
+
+This selects the first three children.
+
+```text
+1 → Styled
+2 → Styled
+3 → Styled
+4 → Normal
+5 → Normal
+```
+
+### Important Detail
+
+Like `:first-child`, `:nth-child()` counts **all children**, not only elements of the same type.
+
+Consider:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+The children are:
+
+```text
+1 → h2
+2 → p
+3 → p
+```
+
+Therefore:
+
+```css
+p:nth-child(2) {
+    color: red;
+}
+```
+
+matches the first paragraph because it is the second child overall.
+
+### `:nth-child()` vs `:nth-of-type()`
+
+These selectors work differently.
+
+`:nth-child()` counts all child elements.
+
+`:nth-of-type()` counts only elements of the same type.
+
+Example:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+For:
+
+```css
+p:nth-child(2) {
+    color: red;
+}
+```
+
+the first paragraph matches because it is the second child.
+
+For:
+
+```css
+p:nth-of-type(2) {
+    color: blue;
+}
+```
+
+the second paragraph matches because it is the second `<p>` element.
+
+### Practical Example: Zebra Striping
+
+A table can use `:nth-child()` to create alternating row colors.
+
+```css
+tr:nth-child(even) {
+    background-color: lightgray;
+}
+```
+
+HTML:
+
+```html
+<table>
+    <tr>
+        <td>Mohit</td>
+        <td>85</td>
+    </tr>
+    <tr>
+        <td>Rahul</td>
+        <td>90</td>
+    </tr>
+    <tr>
+        <td>Aman</td>
+        <td>88</td>
+    </tr>
+    <tr>
+        <td>Ravi</td>
+        <td>92</td>
+    </tr>
+</table>
+```
+
+The second and fourth rows receive the style.
+
+### Practical Example: Grid Items
+
+```css
+.card:nth-child(3n) {
+    margin-right: 0;
+}
+```
+
+This can be useful when styling repeating groups of cards.
+
+### Important Point
+
+The basic idea is:
+
+```text
+:nth-child()
+      ↓
+Count the children
+      ↓
+Find the requested position or pattern
+      ↓
+Apply the style
+```
+
+Common values include:
+
+```css
+:nth-child(1)
+:nth-child(2)
+:nth-child(3)
+:nth-child(even)
+:nth-child(odd)
+:nth-child(2n)
+:nth-child(2n + 1)
+:nth-child(3n)
+```
+
+> 💡 **Tip:** When using `:nth-child()`, always count all child elements of the parent before deciding which number to use.
+
+> 💡 **Remember:** `:nth-child()` is based on the element's position among all siblings, while `:nth-of-type()` counts elements of the same type.
