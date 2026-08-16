@@ -8511,7 +8511,6 @@ Try to implement the complete effect using CSS animations without JavaScript.
 - [CSS Media Queries](13-css-media-queries.md)
 - [CSS Transforms](14-css-transforms.md)
 - [CSS Transitions](15-css-transitions.md)
-- [CSS Animations](16-css-animations.md)
 
 ### Next Topics
 
