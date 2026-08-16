@@ -5266,3 +5266,269 @@ It does not mean that the field currently contains an empty value. An optional f
 > 💡 **Tip:** Remember that `:optional` describes the validation requirement of the control, not whether the user has left the field empty.
 
 > 💡 **Remember:** `:required` selects required form controls, while `:optional` selects controls that are not required.
+
+---
+
+## :valid
+
+The `:valid` pseudo-class selects form controls whose current value satisfies the validation rules applied to them.
+
+It is commonly used with form controls such as:
+
+- Text inputs
+- Email inputs
+- URL inputs
+- Number inputs
+- Other controls with validation constraints
+
+### Basic Syntax
+
+```css
+selector:valid {
+    property: value;
+}
+```
+
+### Basic Example
+
+```html
+<input type="email" required>
+```
+
+CSS:
+
+```css
+input:valid {
+    border-color: green;
+}
+```
+
+When the value satisfies the input's validation requirements, the `:valid` styles can apply.
+
+```text
+Input value
+    ↓
+Validation rules checked
+    ↓
+Value satisfies rules
+    ↓
+:valid matches
+```
+
+### Valid Email Input
+
+```html
+<input type="email" required>
+```
+
+CSS:
+
+```css
+input:valid {
+    border-color: green;
+}
+```
+
+A valid email value such as:
+
+```text
+mohit@example.com
+```
+
+can satisfy the email validation requirement.
+
+### Invalid Email Input
+
+Compare:
+
+```css
+input:valid {
+    border-color: green;
+}
+
+input:invalid {
+    border-color: red;
+}
+```
+
+The browser can apply different styles depending on whether the current value satisfies the validation constraints.
+
+### Using `:valid` with `:required`
+
+These pseudo-classes can be combined.
+
+```css
+input:required:valid {
+    border-color: green;
+}
+```
+
+This selects a required input whose current value is valid.
+
+For example:
+
+```html
+<input type="email" required>
+```
+
+### Using `:valid` with `:optional`
+
+An optional field can also be valid.
+
+```css
+input:optional:valid {
+    border-color: green;
+}
+```
+
+Remember:
+
+```text
+:required
+    ↓
+Describes whether the field is required
+
+:valid
+    ↓
+Describes whether its current value satisfies validation
+```
+
+These are different concepts.
+
+### Pattern Validation
+
+The `pattern` attribute can define a validation pattern.
+
+```html
+<input
+    type="text"
+    pattern="[A-Za-z]+"
+    required
+>
+```
+
+CSS:
+
+```css
+input:valid {
+    border-color: green;
+}
+
+input:invalid {
+    border-color: red;
+}
+```
+
+The input can match `:valid` when its value satisfies the specified pattern and other applicable constraints.
+
+### Minimum and Maximum Values
+
+Number inputs can also use validation constraints.
+
+```html
+<input
+    type="number"
+    min="1"
+    max="100"
+>
+```
+
+CSS:
+
+```css
+input:valid {
+    border-color: green;
+}
+```
+
+A value within the specified range can satisfy the validation constraint.
+
+### Minimum Length
+
+Text inputs can use `minlength`.
+
+```html
+<input
+    type="text"
+    minlength="5"
+    required
+>
+```
+
+CSS:
+
+```css
+input:valid {
+    border-color: green;
+}
+```
+
+The value can match `:valid` when it satisfies the applicable requirements.
+
+### Practical Form Example
+
+HTML:
+
+```html
+<form>
+    <label>
+        Email:
+        <input type="email" required>
+    </label>
+
+    <label>
+        Username:
+        <input type="text" minlength="3" required>
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+```
+
+CSS:
+
+```css
+input:valid {
+    border: 2px solid green;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+```
+
+The border changes according to the current validity state.
+
+### `:valid` vs `:invalid`
+
+These pseudo-classes represent opposite validation states.
+
+```text
+:valid
+    ↓
+Current value satisfies
+the applicable constraints
+
+:invalid
+    ↓
+Current value does not satisfy
+the applicable constraints
+```
+
+### Important Point
+
+`:valid` does not simply mean that a field contains text.
+
+It means the current value satisfies the validation constraints that apply to that form control.
+
+For example:
+
+```html
+<input type="email">
+```
+
+The browser can evaluate whether the entered value satisfies the email input's validity requirements.
+
+> 💡 **Tip:** Use `:valid` together with `:invalid` when providing visual feedback for form validation.
+
+> 💡 **Remember:** `:valid` describes the current validation state of a form control, while `:required` describes whether the control is required.
