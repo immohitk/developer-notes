@@ -20,6 +20,10 @@ The notes are organized in a step-by-step manner and include explanations, examp
 - [CSS Z-Index](10-css-z-index.md)
 - [CSS Backgrounds](11-css-backgrounds.md)
 - [CSS Flexbox](12-css-flexbox.md)
+- [CSS Media Queries](13-css-media-queries.md)
+- [CSS Transforms](14-css-transforms.md)
+- [CSS Transitions](15-css-transitions.md)
+- [CSS Animations](16-css-animations.md)
 
 More topics will be added as I continue learning CSS.
 
