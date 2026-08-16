@@ -5050,3 +5050,219 @@ Apply styles
 > 💡 **Tip:** Combine `:required` with validation pseudo-classes such as `:valid` and `:invalid` when you need more specific form-state styling.
 
 > 💡 **Remember:** `:required` selects form controls that are required, while `:optional` selects controls that are not required.
+
+---
+
+## :optional
+
+The `:optional` pseudo-class selects form controls that do not have the `required` constraint.
+
+It is commonly used to style fields that users are not required to complete.
+
+### Basic Syntax
+
+```css
+selector:optional {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<input type="text">
+```
+
+CSS:
+
+```css
+input:optional {
+    border-color: gray;
+}
+```
+
+The input matches `:optional` because it is not marked as required.
+
+```text
+No required constraint
+        ↓
+     :optional
+        ↓
+Apply styles
+```
+
+### Required vs Optional
+
+Consider:
+
+```html
+<input type="text" required>
+<input type="text">
+```
+
+CSS:
+
+```css
+input:required {
+    border-color: steelblue;
+}
+
+input:optional {
+    border-color: gray;
+}
+```
+
+The first input matches `:required`.
+
+The second input matches `:optional`.
+
+```text
+required attribute
+        ↓
+     :required
+
+No required attribute
+        ↓
+     :optional
+```
+
+### Optional Email Field
+
+```html
+<label>
+    Website:
+    <input type="url">
+</label>
+```
+
+CSS:
+
+```css
+input:optional {
+    background-color: #f5f5f5;
+}
+```
+
+The field can be left empty because it does not have the `required` constraint.
+
+### Optional Textarea
+
+```html
+<textarea></textarea>
+```
+
+CSS:
+
+```css
+textarea:optional {
+    border-color: gray;
+}
+```
+
+### Optional Select
+
+```html
+<select>
+    <option>Choose an option</option>
+    <option>Option 1</option>
+</select>
+```
+
+CSS:
+
+```css
+select:optional {
+    border-color: gray;
+}
+```
+
+### Combining `:optional` with `:valid`
+
+`:optional` can be combined with other pseudo-classes.
+
+```css
+input:optional:valid {
+    border-color: green;
+}
+```
+
+This selects an optional input whose current value satisfies its validation constraints.
+
+### Combining `:optional` with `:invalid`
+
+```css
+input:optional:invalid {
+    border-color: orange;
+}
+```
+
+This can be useful when an optional field has been filled in but its value does not satisfy its validation constraints.
+
+### Practical Example
+
+HTML:
+
+```html
+<form>
+    <label>
+        Name:
+        <input type="text" required>
+    </label>
+
+    <label>
+        Phone:
+        <input type="tel">
+    </label>
+
+    <label>
+        Website:
+        <input type="url">
+    </label>
+</form>
+```
+
+CSS:
+
+```css
+input:required {
+    border: 2px solid steelblue;
+}
+
+input:optional {
+    border: 1px solid gray;
+}
+```
+
+The name field is required, while the phone and website fields are optional.
+
+### `:optional` vs `:required`
+
+These pseudo-classes represent opposite requiredness states.
+
+```text
+:required
+    ↓
+Control has a required constraint
+
+:optional
+    ↓
+Control does not have a required constraint
+```
+
+### Important Point
+
+The `:optional` pseudo-class is based on whether a form control has a required constraint.
+
+```css
+input:optional {
+    /* styles */
+}
+```
+
+It does not mean that the field currently contains an empty value. An optional field can still contain a value.
+
+> 💡 **Tip:** Remember that `:optional` describes the validation requirement of the control, not whether the user has left the field empty.
+
+> 💡 **Remember:** `:required` selects required form controls, while `:optional` selects controls that are not required.
