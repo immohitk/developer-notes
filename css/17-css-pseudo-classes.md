@@ -7159,3 +7159,167 @@ Conditional selection
 > 💡 **Tip:** Start with simple pseudo-classes such as `:hover`, `:focus`, `:first-child`, and `:checked`, then combine them when more specific conditions are needed.
 
 > 💡 **Remember:** Pseudo-classes let CSS respond to element state, position, interaction, and validation without requiring a separate class for every condition.
+## Key Takeaways
+
+- CSS pseudo-classes are keywords added to selectors to style elements based on their state, condition, or position.
+
+- Pseudo-classes use a single colon (`:`).
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+- Common interaction pseudo-classes include:
+
+```css
+:hover
+:active
+:focus
+:focus-visible
+:focus-within
+```
+
+- Link-related pseudo-classes include:
+
+```css
+:link
+:visited
+```
+
+- Structural pseudo-classes include:
+
+```css
+:first-child
+:last-child
+:nth-child()
+:nth-of-type()
+:first-of-type
+:last-of-type
+:only-child
+```
+
+- The `:not()` pseudo-class is used to exclude elements matching a specified selector.
+
+```css
+li:not(:first-child) {
+    border-top: 1px solid gray;
+}
+```
+
+- Form-related pseudo-classes allow CSS to respond to form-control states:
+
+```css
+:checked
+:disabled
+:enabled
+:required
+:optional
+:valid
+:invalid
+```
+
+- `:first-child` selects an element only when it is the first child of its parent.
+
+- `:last-child` selects an element only when it is the last child of its parent.
+
+- `:nth-child()` selects elements based on their position among all children.
+
+- `:nth-of-type()` selects elements based on their position among siblings of the same type.
+
+- `:first-of-type` selects the first element of a particular type.
+
+- `:last-of-type` selects the last element of a particular type.
+
+- `:only-child` selects an element when it is the only child of its parent.
+
+- `:hover` represents a pointer-hover state.
+
+- `:active` represents an element while it is being activated.
+
+- `:focus` represents an element that currently has focus.
+
+- `:focus-visible` is useful for providing visible focus indicators when appropriate, especially for keyboard navigation.
+
+- `:focus-within` allows a parent or container to be styled when it or one of its descendants has focus.
+
+- `:checked` is commonly used with selected checkboxes and radio buttons.
+
+- `:disabled` selects disabled form controls.
+
+- `:enabled` selects enabled form controls.
+
+- `:required` selects form controls with a required constraint.
+
+- `:optional` selects form controls that are not required.
+
+- `:valid` selects controls whose current value satisfies their applicable validation constraints.
+
+- `:invalid` selects controls whose current value does not satisfy their applicable validation constraints.
+
+- Multiple pseudo-classes can be combined to create more specific selectors.
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+- Pseudo-classes can reduce the need for additional HTML classes when styling based on states or positions.
+
+- Pseudo-classes do not create new HTML elements. They add conditions to selectors.
+
+### Quick Comparison
+
+```text
+:hover
+    ↓
+Pointer is over the element
+
+:active
+    ↓
+Element is being activated
+
+:focus
+    ↓
+Element has focus
+
+:visited
+    ↓
+Link has been visited
+
+:first-child
+    ↓
+First child overall
+
+:last-child
+    ↓
+Last child overall
+
+:nth-child()
+    ↓
+Specific position among all children
+
+:nth-of-type()
+    ↓
+Specific position among the same element type
+
+:checked
+    ↓
+Checkbox/radio is selected
+
+:disabled
+    ↓
+Form control is disabled
+
+:valid
+    ↓
+Value satisfies validation constraints
+
+:invalid
+    ↓
+Value does not satisfy validation constraints
+```
+
+> 💡 **Remember:** CSS pseudo-classes allow selectors to respond to user interaction, element position, form state, and other conditions without requiring a separate class for every state.
