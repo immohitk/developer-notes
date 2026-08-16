@@ -8910,3 +8910,509 @@ Remember these common comparisons:
 ```
 
 > 💡 **Interview Tip:** When explaining pseudo-classes, do not only give their definitions. Show a small HTML and CSS example and explain exactly which element matches the selector and why.
+
+---
+
+## Practice Exercises
+
+The following exercises are designed to practice CSS pseudo-classes through selectors, element states, structural conditions, and form validation.
+
+### Exercise 1: Hover Effect
+
+Create a button:
+
+```html
+<button>Hover Me</button>
+```
+
+Use `:hover` to change its background color when the pointer moves over it.
+
+**Goal:**
+
+```text
+Normal → Default style
+Hover  → Different background
+```
+
+---
+
+### Exercise 2: Active State
+
+Create a button and use `:active` to make it slightly smaller while it is being activated.
+
+**Requirement:**
+
+```css
+button:active {
+    /* your styles */
+}
+```
+
+---
+
+### Exercise 3: Focus Indicator
+
+Create a text input and use `:focus` to change its border when it receives focus.
+
+**Bonus:** Add a `:focus-visible` style for keyboard navigation.
+
+---
+
+### Exercise 4: First and Last Child
+
+Create a list:
+
+```html
+<ul>
+    <li>Home</li>
+    <li>About</li>
+    <li>Services</li>
+    <li>Contact</li>
+</ul>
+```
+
+Use:
+
+```css
+:first-child
+:last-child
+```
+
+to give the first and last items different styles.
+
+---
+
+### Exercise 5: Even and Odd Children
+
+Create a list containing at least six items.
+
+Use:
+
+```css
+:nth-child(even)
+:nth-child(odd)
+```
+
+to create alternating styles.
+
+Expected pattern:
+
+```text
+1 → Style A
+2 → Style B
+3 → Style A
+4 → Style B
+5 → Style A
+6 → Style B
+```
+
+---
+
+### Exercise 6: Specific Child
+
+Create a list containing at least five items.
+
+Use:
+
+```css
+:nth-child(3)
+```
+
+to style only the third item.
+
+---
+
+### Exercise 7: `:nth-of-type()`
+
+Create a container containing different element types:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First</p>
+    <p>Second</p>
+    <p>Third</p>
+</div>
+```
+
+Use:
+
+```css
+p:nth-of-type(2)
+```
+
+to style only the second `<p>`.
+
+---
+
+### Exercise 8: `:first-of-type`
+
+Using a mixture of headings and paragraphs, use:
+
+```css
+p:first-of-type
+```
+
+to style only the first paragraph.
+
+---
+
+### Exercise 9: `:last-of-type`
+
+Using multiple paragraphs and another element after them, use:
+
+```css
+p:last-of-type
+```
+
+to style the final paragraph.
+
+---
+
+### Exercise 10: `:only-child`
+
+Create two containers:
+
+```html
+<div class="box">
+    <p>Only child</p>
+</div>
+
+<div class="box">
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+Use:
+
+```css
+p:only-child
+```
+
+so that only the paragraph in the first container is styled.
+
+---
+
+### Exercise 11: `:not()`
+
+Create a list and style every item except the first one.
+
+Use:
+
+```css
+li:not(:first-child)
+```
+
+---
+
+### Exercise 12: Checked Checkbox
+
+Create a checkbox:
+
+```html
+<label>
+    <input type="checkbox">
+    Accept terms
+</label>
+```
+
+Use:
+
+```css
+input:checked
+```
+
+to change its appearance when checked.
+
+---
+
+### Exercise 13: Enabled and Disabled Controls
+
+Create two buttons:
+
+```html
+<button>Enabled</button>
+<button disabled>Disabled</button>
+```
+
+Use:
+
+```css
+button:enabled
+button:disabled
+```
+
+to give them different styles.
+
+---
+
+### Exercise 14: Required and Optional Fields
+
+Create a form with:
+
+- One required text field
+- One required email field
+- One optional phone field
+
+Use:
+
+```css
+:required
+:optional
+```
+
+to visually distinguish them.
+
+---
+
+### Exercise 15: Valid and Invalid Input
+
+Create:
+
+```html
+<input type="email" required>
+```
+
+Use:
+
+```css
+:valid
+:invalid
+```
+
+to give the input different styles depending on its validation state.
+
+---
+
+### Exercise 16: Combine Pseudo-Classes
+
+Create a required email field.
+
+Use:
+
+```css
+input:required:invalid
+```
+
+for its invalid state and:
+
+```css
+input:required:valid
+```
+
+for its valid state.
+
+Expected behavior:
+
+```text
+Empty/invalid → Invalid style
+Valid email   → Valid style
+```
+
+---
+
+### Exercise 17: Focus Within
+
+Create a form group:
+
+```html
+<div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" type="text">
+</div>
+```
+
+Use:
+
+```css
+.form-group:focus-within
+```
+
+to change the appearance of the entire group when the input receives focus.
+
+---
+
+### Exercise 18: Navigation Menu
+
+Create a navigation menu with at least four links.
+
+Use:
+
+```css
+:hover
+:focus-visible
+```
+
+to provide pointer and keyboard interaction styles.
+
+---
+
+### Exercise 19: Remove the Last Separator
+
+Create a vertical list of items.
+
+Use:
+
+```css
+li:not(:last-child)
+```
+
+to add a separator to every item except the last one.
+
+Expected result:
+
+```text
+Item 1
+──────
+Item 2
+──────
+Item 3
+──────
+Item 4
+```
+
+There should be no separator after the final item.
+
+---
+
+### Exercise 20: Interactive Button
+
+Create a button with all of the following states:
+
+```css
+button:hover
+button:active
+button:focus-visible
+button:disabled
+```
+
+Give each state a meaningful visual style.
+
+---
+
+### Exercise 21: Form Validation
+
+Create a form containing:
+
+```text
+Name       → required
+Email      → required + email
+Website    → optional + URL
+Age        → number between 18 and 100
+```
+
+Use appropriate pseudo-classes to style:
+
+```css
+:required
+:optional
+:valid
+:invalid
+```
+
+---
+
+### Exercise 22: Combine Structural and Interaction Pseudo-Classes
+
+Create a list and style the first item differently when it is hovered.
+
+Use:
+
+```css
+li:first-child:hover
+```
+
+---
+
+### Exercise 23: Exclude Disabled Buttons
+
+Create several buttons, including at least one disabled button.
+
+Use:
+
+```css
+button:not(:disabled):hover
+```
+
+so that the hover style applies only to enabled buttons.
+
+---
+
+### Exercise 24: Card Focus State
+
+Create several cards containing links.
+
+Use:
+
+```css
+.card:hover
+.card:focus-within
+```
+
+to give cards different visual states for pointer and keyboard interaction.
+
+---
+
+### Exercise 25: Mini Project
+
+Build a small interactive form using the pseudo-classes covered in this chapter.
+
+Your form should include:
+
+```text
+Name
+Email
+Password
+Country
+Terms checkbox
+Submit button
+```
+
+Use at least these pseudo-classes:
+
+```css
+:focus-visible
+:focus-within
+:required
+:optional
+:valid
+:invalid
+:checked
+:enabled
+:disabled
+```
+
+### Challenge
+
+Create the form without adding separate classes such as:
+
+```html
+<input class="valid">
+<input class="invalid">
+<button class="disabled">
+```
+
+Instead, allow CSS pseudo-classes to respond to the actual state of the controls.
+
+### Self-Check
+
+After completing the exercises, verify that you can explain:
+
+```text
+□ What is a pseudo-class?
+□ How does :hover work?
+□ How does :focus differ from :focus-visible?
+□ What does :focus-within select?
+□ How does :nth-child() count elements?
+□ How is :nth-of-type() different?
+□ What does :not() do?
+□ What does :only-child mean?
+□ How does :checked work?
+□ What is the difference between :enabled and :disabled?
+□ What is the difference between :required and :optional?
+□ What is the difference between :valid and :invalid?
+□ How can pseudo-classes be combined?
+```
+
+> 💡 **Tip:** Try to solve the exercises without looking at the previous examples first. Use the earlier sections only when you need to verify your solution.
