@@ -5923,3 +5923,253 @@ Apply visible focus styles
 > 💡 **Tip:** Prefer `:focus-visible` when you want a strong visible focus indicator that is especially helpful for keyboard navigation.
 
 > 💡 **Remember:** `:focus` represents an element having focus, while `:focus-visible` is intended for focus states where a visible focus indicator should be presented.
+
+---
+
+## :focus-within
+
+The `:focus-within` pseudo-class selects an element when that element itself has focus or when one of its descendants has focus.
+
+It is especially useful when you want to style a parent element based on the focus state of an input, button, link, or another focusable element inside it.
+
+### Basic Syntax
+
+```css
+selector:focus-within {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" type="text">
+</div>
+```
+
+CSS:
+
+```css
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+When the input receives focus, the `.form-group` parent also matches `:focus-within`.
+
+```text
+.form-group
+    ↓
+    input receives focus
+    ↓
+:focus-within matches the parent
+```
+
+### `:focus` vs `:focus-within`
+
+These pseudo-classes have different purposes.
+
+`:focus` selects the element that currently has focus.
+
+```css
+input:focus {
+    border-color: steelblue;
+}
+```
+
+`:focus-within` can select a parent when it or one of its descendants has focus.
+
+```css
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+The difference is:
+
+```text
+:focus
+   ↓
+This element has focus
+
+:focus-within
+   ↓
+This element or a descendant has focus
+```
+
+### Styling a Form Group
+
+HTML:
+
+```html
+<div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email">
+</div>
+```
+
+CSS:
+
+```css
+.form-group {
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+When the input receives focus, the border of the entire form group changes.
+
+### Styling a Parent Based on a Link
+
+HTML:
+
+```html
+<nav class="menu">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+```
+
+CSS:
+
+```css
+.menu:focus-within {
+    background-color: lightgray;
+}
+```
+
+When one of the links inside `.menu` receives focus, the `.menu` element matches `:focus-within`.
+
+### Styling a Card
+
+HTML:
+
+```html
+<div class="card">
+    <h2>Product</h2>
+    <a href="#">View Product</a>
+</div>
+```
+
+CSS:
+
+```css
+.card:focus-within {
+    border-color: steelblue;
+}
+```
+
+The card can receive a visual focus state when its link receives focus.
+
+### Using `:focus-within` with Form Controls
+
+It can be useful when several controls belong to the same container.
+
+```css
+.form-row:focus-within {
+    background-color: lightblue;
+}
+```
+
+HTML:
+
+```html
+<div class="form-row">
+    <input type="text" placeholder="First name">
+    <input type="text" placeholder="Last name">
+</div>
+```
+
+When either input receives focus, the `.form-row` matches `:focus-within`.
+
+```text
+.form-row
+ ├── input → focus
+ └── input
+      ↓
+:focus-within matches .form-row
+```
+
+### `:focus-within` and Accessibility
+
+`:focus-within` can help create clear visual grouping for keyboard users.
+
+For example:
+
+```css
+.form-group:focus-within {
+    outline: 2px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+When a user navigates through the controls using the keyboard, the surrounding group can visually indicate where the focus is located.
+
+### Combining `:focus-within` with Other Selectors
+
+`:focus-within` can be combined with classes and descendant selectors.
+
+```css
+.card:focus-within .title {
+    color: steelblue;
+}
+```
+
+When any focusable descendant inside `.card` receives focus, the `.title` inside that card is styled.
+
+### `:focus-within` vs `:focus-visible`
+
+These pseudo-classes solve different problems.
+
+```text
+:focus-visible
+      ↓
+Focus state where a visible focus indicator
+should be shown
+
+:focus-within
+      ↓
+Element contains the focused element
+or is itself focused
+```
+
+They can also be used together:
+
+```css
+.form-group:focus-within {
+    border-color: steelblue;
+}
+
+.form-group input:focus-visible {
+    outline: 2px solid steelblue;
+}
+```
+
+Here, the parent responds to focus within the group, while the input receives its own visible focus indicator.
+
+### Important Point
+
+The key idea is:
+
+```text
+Element
+   ↓
+Itself or a descendant receives focus
+   ↓
+:focus-within matches
+   ↓
+Parent/container styles can change
+```
+
+> 💡 **Tip:** Use `:focus-within` when the visual state of a container should depend on focus inside that container.
+
+> 💡 **Remember:** `:focus` targets the element that has focus, while `:focus-within` can target an element when it or any descendant has focus.
