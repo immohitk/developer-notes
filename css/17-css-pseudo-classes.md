@@ -1035,3 +1035,272 @@ input:not(.special)
 > 💡 **Tip:** Read a pseudo-class selector from left to right: first identify the element or class being selected, then identify the condition added by the pseudo-class.
 
 > 💡 **Remember:** Pseudo-classes use a single colon (`:`), while pseudo-elements generally use two colons (`::`).
+
+---
+
+## :hover
+
+The `:hover` pseudo-class applies styles to an element when the user's pointer is positioned over that element.
+
+It is commonly used to provide visual feedback for interactive elements such as links, buttons, cards, and navigation items.
+
+### Basic Syntax
+
+```css
+selector:hover {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+button:hover {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+When the pointer moves over the button, the specified styles are applied.
+
+```text
+Normal
+  ↓
+Pointer moves over element
+  ↓
+:hover becomes active
+  ↓
+Hover styles are applied
+```
+
+### Hover on Links
+
+The `:hover` pseudo-class is commonly used with links.
+
+```css
+a:hover {
+    color: red;
+}
+```
+
+HTML:
+
+```html
+<a href="#">Visit Page</a>
+```
+
+When the pointer moves over the link, its text color changes.
+
+### Hover on Buttons
+
+```css
+button {
+    background-color: gray;
+    color: white;
+}
+
+button:hover {
+    background-color: steelblue;
+}
+```
+
+The normal button has one appearance, while the hovered button has another.
+
+### Hover with Background Color
+
+```css
+.card:hover {
+    background-color: lightblue;
+}
+```
+
+This changes the card's background when the pointer is over it.
+
+### Hover with Text Color
+
+```css
+.title:hover {
+    color: steelblue;
+}
+```
+
+The text color changes while the pointer is over the element.
+
+### Hover with Border
+
+```css
+.box:hover {
+    border-color: steelblue;
+}
+```
+
+The border color changes when the element is hovered.
+
+### Hover with Transform
+
+The `:hover` pseudo-class can be combined with `transform`.
+
+```css
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+```
+
+The card moves slightly upward when hovered.
+
+### Hover with Scale
+
+```css
+.button {
+    transition: transform 0.2s ease;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+```
+
+The button becomes slightly larger while hovered.
+
+### Hover with Multiple Properties
+
+Multiple properties can be changed together.
+
+```css
+.card {
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+.card:hover {
+    background-color: lightblue;
+    border-color: steelblue;
+    transform: translateY(-5px);
+}
+```
+
+The hover state changes:
+
+```text
+Background
+    +
+Border
+    +
+Position
+```
+
+### Hover with a Class Selector
+
+```css
+.button:hover {
+    background-color: blue;
+}
+```
+
+This applies only to elements that have the `button` class.
+
+### Hover with a Descendant Selector
+
+`:hover` can also be used to style elements inside a hovered element.
+
+```css
+.card:hover .title {
+    color: steelblue;
+}
+```
+
+Here:
+
+```text
+.card:hover
+     ↓
+Card is hovered
+     ↓
+.title
+     ↓
+Title receives the style
+```
+
+HTML:
+
+```html
+<div class="card">
+    <h2 class="title">Product</h2>
+</div>
+```
+
+### Hover and Transition
+
+`:hover` itself does not create a smooth animation.
+
+For a smooth change, `transition` can be used.
+
+```css
+.button {
+    background-color: gray;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: steelblue;
+}
+```
+
+Without `transition`, the property changes immediately.
+
+With `transition`, the change happens smoothly.
+
+### Hover on Images
+
+```css
+img:hover {
+    transform: scale(1.05);
+}
+```
+
+This can create a zoom effect when the pointer moves over an image.
+
+### Hover on Navigation Items
+
+```css
+nav a {
+    color: black;
+}
+
+nav a:hover {
+    color: steelblue;
+}
+```
+
+This provides visual feedback when the user moves the pointer over navigation links.
+
+### Important Point
+
+The `:hover` pseudo-class represents a pointer-hover state.
+
+```text
+selector
+   +
+:hover
+   ↓
+Element while pointer is over it
+```
+
+It is commonly used for:
+
+```text
+Links
+Buttons
+Cards
+Images
+Navigation
+Interactive controls
+```
+
+> 💡 **Tip:** Use `:hover` to provide clear visual feedback, but do not rely on hover alone for essential functionality because hover interactions are not available in the same way on touch devices.
+
+> 💡 **Remember:** `:hover` changes the styling of an element while the pointer is over it. For smooth changes, combine it with `transition`.
