@@ -1733,3 +1733,203 @@ Other focusable controls
 > 💡 **Tip:** Always make sure interactive elements have a clear visible focus state, especially when designing for keyboard users.
 
 > 💡 **Remember:** `:focus` is about the element having focus, while `:hover` is about the pointer being over the element and `:active` is about the element being activated.
+
+---
+
+## :visited
+
+The `:visited` pseudo-class applies styles to links that the user has already visited.
+
+It is mainly used with `<a>` elements that have a valid `href` attribute.
+
+### Basic Syntax
+
+```css
+a:visited {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+a:visited {
+    color: purple;
+}
+```
+
+After a user visits a link, the link can be displayed with the specified visited style.
+
+```text
+Unvisited link
+      ↓
+User opens the link
+      ↓
+Link becomes visited
+      ↓
+:visited styles can apply
+```
+
+### Using `:link` and `:visited`
+
+`:link` represents an unvisited link, while `:visited` represents a visited link.
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+```
+
+This creates a visual difference between links that have not been visited and links that have been visited.
+
+### Example
+
+HTML:
+
+```html
+<a href="https://example.com">Example</a>
+```
+
+CSS:
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+```
+
+Before visiting the link:
+
+```text
+Blue
+ ↓
+Unvisited
+```
+
+After visiting the link:
+
+```text
+Purple
+ ↓
+Visited
+```
+
+### `:visited` with Other Link Styles
+
+Link pseudo-classes are often used together.
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: orange;
+}
+```
+
+These represent different link states:
+
+```text
+:link
+   ↓
+Unvisited
+
+:visited
+   ↓
+Visited
+
+:hover
+   ↓
+Pointer over link
+
+:active
+   ↓
+Link is being activated
+```
+
+### `:visited` and Privacy Restrictions
+
+Browsers place restrictions on what CSS can do with visited links for privacy reasons.
+
+For example, CSS cannot freely use `:visited` to reveal a user's browsing history.
+
+The browser restricts which properties can produce observable differences for visited links.
+
+Therefore, use `:visited` primarily for simple visual styling.
+
+### `:visited` Does Not Apply to Every Element
+
+The `:visited` pseudo-class is specifically related to visited links.
+
+For example:
+
+```css
+a:visited {
+    color: purple;
+}
+```
+
+It should not be treated as a general state selector for arbitrary elements such as:
+
+```css
+div:visited
+```
+
+### `:visited` vs `:link`
+
+These two pseudo-classes represent opposite link states.
+
+```text
+:link
+   ↓
+Link has not been visited
+
+:visited
+   ↓
+Link has been visited
+```
+
+Example:
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+```
+
+### Important Point
+
+The `:visited` pseudo-class is used to style links that the browser considers visited.
+
+```css
+a:visited {
+    color: purple;
+}
+```
+
+It is useful for helping users distinguish previously visited links from unvisited links.
+
+> 💡 **Tip:** Use `:visited` for simple visual differences, such as changing link color, and remember that browsers restrict visited-link styling for privacy.
+
+> 💡 **Remember:** `:link` represents an unvisited link, while `:visited` represents a visited link.
