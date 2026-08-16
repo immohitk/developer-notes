@@ -7584,3 +7584,341 @@ CSS Pseudo-Classes
 ```
 
 > 💡 **Remember:** Pseudo-classes add conditions to CSS selectors. They do not create new HTML elements.
+
+---
+
+## Best Practices
+
+Following good practices when using CSS pseudo-classes makes styles easier to understand, maintain, and use.
+
+### 1. Use Pseudo-Classes for States and Conditions
+
+Use pseudo-classes when styling depends on an element's state or condition.
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+Avoid adding unnecessary classes for simple interactive states.
+
+### 2. Keep Selectors Simple
+
+Prefer simple selectors when possible.
+
+Good:
+
+```css
+button:hover {
+    color: white;
+}
+```
+
+Avoid unnecessarily complicated selectors:
+
+```css
+div.container ul li button.primary:hover {
+    color: white;
+}
+```
+
+Simple selectors are easier to maintain.
+
+### 3. Use `:focus-visible` for Visible Focus Indicators
+
+Provide clear focus indicators for keyboard users.
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+Do not remove focus indicators without providing an accessible replacement.
+
+### 4. Use `:focus-within` for Focused Containers
+
+When a container should respond to focus inside it, use `:focus-within`.
+
+```css
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+This avoids adding extra classes just to track focus inside a group.
+
+### 5. Use Structural Pseudo-Classes Instead of Extra Classes
+
+For simple positional styling, structural pseudo-classes can avoid unnecessary HTML classes.
+
+Instead of:
+
+```html
+<li class="first">Home</li>
+<li>About</li>
+<li>Contact</li>
+```
+
+you can use:
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+### 6. Understand the Difference Between `:nth-child()` and `:nth-of-type()`
+
+Use `:nth-child()` when the position among all children matters.
+
+```css
+li:nth-child(2) {
+    color: red;
+}
+```
+
+Use `:nth-of-type()` when the position among elements of the same type matters.
+
+```css
+p:nth-of-type(2) {
+    color: blue;
+}
+```
+
+Understanding this difference prevents unexpected selections.
+
+### 7. Use `:not()` Carefully
+
+`:not()` is useful for excluding elements.
+
+```css
+li:not(:last-child) {
+    border-bottom: 1px solid gray;
+}
+```
+
+Avoid creating overly complicated `:not()` conditions that make selectors difficult to understand.
+
+### 8. Combine Pseudo-Classes When Necessary
+
+Multiple pseudo-classes can describe a specific state.
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+Use combinations when each condition is meaningful.
+
+### 9. Use Form Pseudo-Classes for Visual Feedback
+
+Pseudo-classes such as:
+
+```css
+:valid
+:invalid
+:required
+:optional
+:disabled
+:enabled
+```
+
+can provide useful visual feedback.
+
+Example:
+
+```css
+input:valid {
+    border-color: green;
+}
+
+input:invalid {
+    border-color: red;
+}
+```
+
+Make sure the visual feedback is clear and does not rely only on color.
+
+### 10. Do Not Rely Only on Color
+
+Avoid communicating important states using color alone.
+
+Instead of:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+consider combining the styling with other visual cues when appropriate.
+
+```css
+input:invalid {
+    border: 2px solid red;
+    outline: 1px solid red;
+}
+```
+
+For production forms, also provide meaningful text or other accessible feedback.
+
+### 11. Preserve Keyboard Accessibility
+
+Interactive elements should remain usable with the keyboard.
+
+For example:
+
+```css
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+Do not remove focus styles simply because they are visually inconvenient.
+
+### 12. Use Appropriate Specificity
+
+Avoid unnecessarily high-specificity selectors.
+
+Prefer:
+
+```css
+button:hover {
+    color: white;
+}
+```
+
+over unnecessarily long selectors.
+
+Lower specificity makes styles easier to override and maintain.
+
+### 13. Use Semantic HTML
+
+Pseudo-classes work best when used with meaningful HTML elements.
+
+For example:
+
+```html
+<button>Submit</button>
+```
+
+is preferable to using a generic element for button behavior.
+
+Then CSS can naturally style its states:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+### 14. Test Different States
+
+When using pseudo-classes, test the relevant states.
+
+For interactive elements, check:
+
+```text
+Normal
+  ↓
+:hover
+  ↓
+:active
+  ↓
+:focus
+  ↓
+:focus-visible
+```
+
+For forms, check:
+
+```text
+Enabled
+Disabled
+Required
+Optional
+Valid
+Invalid
+Checked
+```
+
+### 15. Consider Different Input Methods
+
+Interactive styles should work for:
+
+- Mouse users
+- Keyboard users
+- Touch users
+- Assistive technology users
+
+Do not design an interaction that depends only on `:hover`.
+
+### 16. Avoid Unnecessary Pseudo-Class Combinations
+
+This selector may be valid:
+
+```css
+button:hover:focus:active {
+    color: white;
+}
+```
+
+but combining many states unnecessarily can make the stylesheet harder to understand.
+
+Use only the conditions that are actually required.
+
+### 17. Keep Related Styles Together
+
+Group related pseudo-class styles when it improves readability.
+
+```css
+.button {
+    background-color: gray;
+}
+
+.button:hover {
+    background-color: steelblue;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.button:focus-visible {
+    outline: 2px solid steelblue;
+}
+```
+
+This makes the component's states easy to understand.
+
+### 18. Remember Browser Behavior
+
+Some pseudo-classes depend on browser interaction and form-validation behavior.
+
+Test important interactive styles in the browsers that your project supports.
+
+### Important Point
+
+Good pseudo-class usage should aim for:
+
+```text
+Simple selectors
+      +
+Clear states
+      +
+Good accessibility
+      +
+Appropriate specificity
+      +
+Maintainable CSS
+```
+
+> 💡 **Tip:** Use pseudo-classes to describe states and conditions rather than creating unnecessary classes for every possible state.
+
+> 💡 **Remember:** Good CSS is not only about making elements look different. Interactive and form-related states should remain clear, accessible, and easy to maintain.
