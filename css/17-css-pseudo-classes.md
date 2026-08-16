@@ -8456,3 +8456,457 @@ Conditional
 > 💡 **Tip:** Before using a pseudo-class, identify exactly what condition it represents. Then check whether that condition is based on position, element type, interaction, or form state.
 
 > 💡 **Remember:** Understanding the difference between similar pseudo-classes—such as `:nth-child()` vs `:nth-of-type()` and `:focus` vs `:focus-within`—prevents many common CSS bugs.
+
+---
+
+## Interview Questions
+
+The following questions cover the important concepts of CSS pseudo-classes, including interaction, structural selection, form states, validation, and accessibility.
+
+### Basic Questions
+
+#### 1. What is a CSS pseudo-class?
+
+A CSS pseudo-class is a keyword added to a selector to style an element based on a particular state, condition, or position.
+
+Example:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+#### 2. What is the syntax of a pseudo-class?
+
+Pseudo-classes use a single colon (`:`).
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+#### 3. What is the difference between a pseudo-class and a CSS class?
+
+A CSS class is explicitly assigned in HTML:
+
+```html
+<p class="special">Text</p>
+```
+
+A pseudo-class represents a condition or state:
+
+```css
+p:hover {
+    color: blue;
+}
+```
+
+#### 4. What does `:hover` do?
+
+`:hover` selects an element when the pointer is positioned over it.
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+#### 5. What does `:active` do?
+
+`:active` selects an element while it is being activated.
+
+```css
+button:active {
+    transform: scale(0.98);
+}
+```
+
+#### 6. What does `:focus` do?
+
+`:focus` selects an element that currently has focus.
+
+```css
+input:focus {
+    border-color: steelblue;
+}
+```
+
+---
+
+### Structural Pseudo-Class Questions
+
+#### 7. What does `:first-child` select?
+
+It selects an element when it is the first child of its parent.
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+#### 8. What does `:last-child` select?
+
+It selects an element when it is the last child of its parent.
+
+```css
+li:last-child {
+    font-weight: bold;
+}
+```
+
+#### 9. What is the difference between `:first-child` and `:first-of-type`?
+
+`:first-child` checks the first child overall.
+
+`:first-of-type` checks the first element of a particular type.
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>Paragraph</p>
+</div>
+```
+
+```css
+p:first-child {
+    color: red;
+}
+```
+
+does not match the `<p>`.
+
+```css
+p:first-of-type {
+    color: blue;
+}
+```
+
+does match it.
+
+#### 10. What is the difference between `:last-child` and `:last-of-type`?
+
+`:last-child` selects the last child overall.
+
+`:last-of-type` selects the last element of its type.
+
+#### 11. What does `:nth-child()` do?
+
+It selects elements based on their position among all children.
+
+```css
+li:nth-child(2) {
+    color: red;
+}
+```
+
+#### 12. What does `:nth-of-type()` do?
+
+It selects an element based on its position among siblings of the same element type.
+
+```css
+p:nth-of-type(2) {
+    color: blue;
+}
+```
+
+#### 13. What is the main difference between `:nth-child()` and `:nth-of-type()`?
+
+```text
+:nth-child()
+    ↓
+Counts all child elements
+
+:nth-of-type()
+    ↓
+Counts only elements of the same type
+```
+
+#### 14. What does `:only-child` select?
+
+It selects an element when it is the only child of its parent.
+
+```css
+p:only-child {
+    color: steelblue;
+}
+```
+
+---
+
+### Conditional Selection Questions
+
+#### 15. What does `:not()` do?
+
+`:not()` selects elements that do not match the selector inside its parentheses.
+
+```css
+li:not(:first-child) {
+    margin-top: 10px;
+}
+```
+
+#### 16. Can pseudo-classes be combined?
+
+Yes.
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+The element must satisfy both conditions.
+
+#### 17. Give an example of combining `:not()` with another pseudo-class.
+
+```css
+button:not(:disabled):hover {
+    background-color: steelblue;
+}
+```
+
+This targets buttons that are not disabled and are being hovered.
+
+---
+
+### Form-Related Questions
+
+#### 18. What does `:checked` do?
+
+`:checked` selects checked or selected form controls such as checkboxes and radio buttons.
+
+```css
+input:checked {
+    accent-color: green;
+}
+```
+
+#### 19. What is the difference between `:enabled` and `:disabled`?
+
+```text
+:enabled
+    ↓
+Control is enabled
+
+:disabled
+    ↓
+Control is disabled
+```
+
+#### 20. What does `:required` do?
+
+It selects form controls that have a required constraint.
+
+```css
+input:required {
+    border-color: steelblue;
+}
+```
+
+#### 21. What does `:optional` do?
+
+It selects form controls that are not required.
+
+```css
+input:optional {
+    border-color: gray;
+}
+```
+
+#### 22. What does `:valid` do?
+
+It selects form controls whose current value satisfies their applicable validation constraints.
+
+```css
+input:valid {
+    border-color: green;
+}
+```
+
+#### 23. What does `:invalid` do?
+
+It selects form controls whose current value does not satisfy their applicable validation constraints.
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+#### 24. What is the difference between `:required` and `:valid`?
+
+They describe different conditions.
+
+```text
+:required
+    ↓
+The control has a required constraint
+
+:valid
+    ↓
+The current value satisfies applicable constraints
+```
+
+A control can be required and either valid or invalid depending on its current state.
+
+---
+
+### Focus and Accessibility Questions
+
+#### 25. What is `:focus-visible`?
+
+`:focus-visible` is used to provide a visible focus indicator when the browser determines that such an indicator should be shown.
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+}
+```
+
+#### 26. What is `:focus-within`?
+
+`:focus-within` selects an element when it or one of its descendants has focus.
+
+```css
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+#### 27. What is the difference between `:focus` and `:focus-within`?
+
+```text
+:focus
+    ↓
+The element itself has focus
+
+:focus-within
+    ↓
+The element or a descendant has focus
+```
+
+#### 28. Why are visible focus indicators important?
+
+They help users, especially keyboard users, identify which interactive element currently has focus.
+
+Example:
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+---
+
+### Practical Questions
+
+#### 29. How would you style every list item except the last one?
+
+```css
+li:not(:last-child) {
+    border-bottom: 1px solid gray;
+}
+```
+
+#### 30. How would you style every even list item?
+
+```css
+li:nth-child(even) {
+    background-color: lightgray;
+}
+```
+
+#### 31. How would you style every odd list item?
+
+```css
+li:nth-child(odd) {
+    background-color: lightblue;
+}
+```
+
+#### 32. How would you style a required invalid input?
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+#### 33. How would you style a required valid input?
+
+```css
+input:required:valid {
+    border-color: green;
+}
+```
+
+#### 34. How would you style an enabled button when it is hovered?
+
+```css
+button:enabled:hover {
+    background-color: steelblue;
+}
+```
+
+#### 35. How would you style a parent when an input inside it receives focus?
+
+```css
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+### Important Interview Points
+
+Remember these common comparisons:
+
+```text
+:first-child
+    vs
+:first-of-type
+```
+
+```text
+:last-child
+    vs
+:last-of-type
+```
+
+```text
+:nth-child()
+    vs
+:nth-of-type()
+```
+
+```text
+:focus
+    vs
+:focus-visible
+    vs
+:focus-within
+```
+
+```text
+:required
+    vs
+:optional
+```
+
+```text
+:valid
+    vs
+:invalid
+```
+
+```text
+:enabled
+    vs
+:disabled
+```
+
+> 💡 **Interview Tip:** When explaining pseudo-classes, do not only give their definitions. Show a small HTML and CSS example and explain exactly which element matches the selector and why.
