@@ -6173,3 +6173,305 @@ Parent/container styles can change
 > 💡 **Tip:** Use `:focus-within` when the visual state of a container should depend on focus inside that container.
 
 > 💡 **Remember:** `:focus` targets the element that has focus, while `:focus-within` can target an element when it or any descendant has focus.
+
+---
+
+## Form-Related Pseudo-Classes
+
+CSS provides several pseudo-classes specifically useful for styling form controls according to their state or validation requirements.
+
+These pseudo-classes allow forms to respond visually to conditions such as whether a field is required, valid, invalid, enabled, disabled, checked, or focused.
+
+### Common Form-Related Pseudo-Classes
+
+Some commonly used form-related pseudo-classes are:
+
+```css
+:checked
+:disabled
+:enabled
+:required
+:optional
+:valid
+:invalid
+:focus
+:focus-visible
+```
+
+They can be grouped by purpose.
+
+### Selection State
+
+The `:checked` pseudo-class applies to selected checkboxes and radio buttons.
+
+```css
+input:checked {
+    accent-color: steelblue;
+}
+```
+
+Example:
+
+```html
+<input type="checkbox" checked>
+```
+
+The checkbox matches `:checked`.
+
+### Enabled and Disabled State
+
+`:enabled` selects controls that are enabled.
+
+```css
+input:enabled {
+    background-color: white;
+}
+```
+
+`:disabled` selects controls that are disabled.
+
+```css
+input:disabled {
+    background-color: lightgray;
+}
+```
+
+Example:
+
+```html
+<input type="text">
+<input type="text" disabled>
+```
+
+The first control is enabled and the second is disabled.
+
+### Required and Optional Fields
+
+`:required` selects controls that have a required constraint.
+
+```css
+input:required {
+    border-color: steelblue;
+}
+```
+
+`:optional` selects controls that are not required.
+
+```css
+input:optional {
+    border-color: gray;
+}
+```
+
+Example:
+
+```html
+<input type="text" required>
+<input type="text">
+```
+
+The first field is required, while the second is optional.
+
+### Valid and Invalid Fields
+
+`:valid` selects controls whose current value satisfies their applicable validation constraints.
+
+```css
+input:valid {
+    border-color: green;
+}
+```
+
+`:invalid` selects controls whose current value does not satisfy their applicable validation constraints.
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+Example:
+
+```html
+<input type="email" required>
+```
+
+The browser can determine whether the current value satisfies the email and required constraints.
+
+### Focused Form Controls
+
+`:focus` can style a form control while it has focus.
+
+```css
+input:focus {
+    border-color: steelblue;
+}
+```
+
+For a visible focus indicator:
+
+```css
+input:focus-visible {
+    outline: 2px solid steelblue;
+}
+```
+
+### Combining Form Pseudo-Classes
+
+Multiple pseudo-classes can be combined to describe more specific states.
+
+For example:
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+This targets a required input that is currently invalid.
+
+Another example:
+
+```css
+input:required:valid {
+    border-color: green;
+}
+```
+
+This targets a required input whose current value satisfies its validation constraints.
+
+An enabled and focused input can be selected with:
+
+```css
+input:enabled:focus {
+    border-color: steelblue;
+}
+```
+
+### Practical Form Example
+
+HTML:
+
+```html
+<form>
+    <label>
+        Name:
+        <input type="text" required>
+    </label>
+
+    <label>
+        Email:
+        <input type="email" required>
+    </label>
+
+    <label>
+        Phone:
+        <input type="tel">
+    </label>
+
+    <label>
+        Country:
+        <select>
+            <option>India</option>
+            <option>USA</option>
+        </select>
+    </label>
+
+    <label>
+        <input type="checkbox">
+        Subscribe
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+```
+
+CSS:
+
+```css
+input:required,
+select:required {
+    border-color: steelblue;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid steelblue;
+}
+
+input:valid {
+    border-color: green;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input:disabled {
+    opacity: 0.5;
+}
+
+input:checked {
+    accent-color: steelblue;
+}
+```
+
+Each pseudo-class responds to a different state of the form controls.
+
+### Form State Overview
+
+```text
+:checked
+    ↓
+Selected checkbox/radio
+
+:enabled
+    ↓
+Control is enabled
+
+:disabled
+    ↓
+Control is disabled
+
+:required
+    ↓
+Control is required
+
+:optional
+    ↓
+Control is not required
+
+:valid
+    ↓
+Value satisfies validation constraints
+
+:invalid
+    ↓
+Value does not satisfy validation constraints
+
+:focus
+    ↓
+Control currently has focus
+
+:focus-visible
+    ↓
+Visible focus indication is appropriate
+```
+
+### Important Point
+
+Form-related pseudo-classes allow CSS to reflect the current state of form controls without requiring separate classes for every state.
+
+```text
+Form control
+     ↓
+Browser determines its state
+     ↓
+Pseudo-class matches
+     ↓
+CSS applies the corresponding style
+```
+
+> 💡 **Tip:** Combine form pseudo-classes when you need to represent a specific state, such as `:required:invalid` or `:enabled:focus`.
+
+> 💡 **Remember:** Each pseudo-class represents a different condition. `:required` describes a requirement, while `:valid` and `:invalid` describe the current validation state.
