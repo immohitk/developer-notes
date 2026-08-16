@@ -2153,3 +2153,217 @@ It is useful when you want to style links differently depending on whether they 
 > 💡 **Tip:** `:link` and `:visited` are specifically related to link history, while `:hover`, `:active`, and `:focus` represent interaction states.
 
 > 💡 **Remember:** `:link` selects unvisited links, while `:visited` selects links that have been visited.
+
+---
+
+## :first-child
+
+The `:first-child` pseudo-class selects an element when it is the first child of its parent.
+
+It is useful when you want to style the first element in a group without adding a separate class to the HTML.
+
+### Basic Syntax
+
+```css
+selector:first-child {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+HTML:
+
+```html
+<ul>
+    <li>First item</li>
+    <li>Second item</li>
+    <li>Third item</li>
+</ul>
+```
+
+The first `<li>` is selected because it is the first child of the `<ul>`.
+
+```text
+<ul>
+ ├── First item    ← :first-child
+ ├── Second item
+ └── Third item
+</ul>
+```
+
+### Styling the First Paragraph
+
+```css
+p:first-child {
+    color: steelblue;
+}
+```
+
+This selects a `<p>` only when that paragraph is the first child of its parent.
+
+For example:
+
+```html
+<div>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+The first paragraph matches:
+
+```css
+p:first-child
+```
+
+### Important Detail
+
+`:first-child` is based on the element's position among **all of its siblings**, not simply the first element of the same type.
+
+For example:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>Paragraph</p>
+</div>
+```
+
+This selector:
+
+```css
+p:first-child {
+    color: red;
+}
+```
+
+does **not** match the paragraph because the `<h2>` is the first child.
+
+The structure is:
+
+```text
+<div>
+ ├── h2       ← First child
+ └── p        ← Second child
+</div>
+```
+
+Therefore, the paragraph is not the `:first-child`.
+
+### `:first-child` with Classes
+
+It can be combined with a class selector.
+
+```css
+.item:first-child {
+    background-color: lightblue;
+}
+```
+
+HTML:
+
+```html
+<div class="item">First</div>
+<div class="item">Second</div>
+<div class="item">Third</div>
+```
+
+The first `.item` is selected.
+
+### `:first-child` with Descendant Selectors
+
+```css
+ul li:first-child {
+    color: blue;
+}
+```
+
+This selects an `<li>` when it is the first child of its parent `<ul>`.
+
+### Common Use: Lists
+
+```css
+.menu li:first-child {
+    border-top: none;
+}
+```
+
+This can be useful for removing a top border from the first menu item.
+
+### Common Use: Cards
+
+```css
+.card:first-child {
+    margin-top: 0;
+}
+```
+
+This can be used when the first card needs different spacing from the other cards.
+
+### `:first-child` vs `:first-of-type`
+
+These selectors are different.
+
+`:first-child` checks whether the element is the first child of its parent.
+
+`:first-of-type` checks whether the element is the first element of its specific type among its siblings.
+
+Example:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+This does not match:
+
+```css
+p:first-child {
+    color: red;
+}
+```
+
+because the `<p>` is not the first child.
+
+But this does match:
+
+```css
+p:first-of-type {
+    color: red;
+}
+```
+
+because it is the first `<p>` among its sibling `<p>` elements.
+
+### Important Point
+
+The key idea is:
+
+```text
+:first-child
+      ↓
+Is this element the first child
+of its parent?
+```
+
+It does not mean:
+
+```text
+Is this the first element of this type?
+```
+
+That is what `:first-of-type` is used for.
+
+> 💡 **Tip:** When using `:first-child`, check the complete order of the parent's children, including elements of different types.
+
+> 💡 **Remember:** `:first-child` selects an element only when it is the first child of its parent.
