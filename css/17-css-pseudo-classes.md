@@ -1492,3 +1492,244 @@ Element has focus
 > 💡 **Tip:** `:active` is useful for giving users immediate feedback when they press or activate an interactive element.
 
 > 💡 **Remember:** `:active` is a temporary state. The styles normally stop applying when the activation ends.
+
+---
+
+## :focus
+
+The `:focus` pseudo-class applies styles to an element when it has focus.
+
+An element can receive focus when the user interacts with it, for example by clicking a form control or navigating through interactive elements with the keyboard.
+
+### Basic Syntax
+
+```css
+selector:focus {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+input:focus {
+    border-color: steelblue;
+}
+```
+
+When the input receives focus, its border changes.
+
+```text
+Normal
+   ↓
+Element receives focus
+   ↓
+:focus becomes active
+   ↓
+Focus moves away
+   ↓
+Normal state returns
+```
+
+### Focus on Input Fields
+
+`:focus` is commonly used with form controls.
+
+```css
+input {
+    border: 1px solid gray;
+}
+
+input:focus {
+    border-color: steelblue;
+}
+```
+
+HTML:
+
+```html
+<input type="text" placeholder="Enter your name">
+```
+
+When the user clicks inside the input, it receives focus and the focus styles are applied.
+
+### Focus on Buttons
+
+Buttons can also receive focus.
+
+```css
+button:focus {
+    outline: 2px solid steelblue;
+}
+```
+
+This makes the focused button visually identifiable.
+
+### Focus on Links
+
+Links can receive focus as well.
+
+```css
+a:focus {
+    color: steelblue;
+}
+```
+
+This is particularly useful when navigating links with the keyboard.
+
+### Focus and Keyboard Navigation
+
+Keyboard users can move focus between interactive elements using the `Tab` key.
+
+For example:
+
+```html
+<a href="#">Home</a>
+<a href="#">About</a>
+<button>Contact</button>
+```
+
+When the user presses `Tab`, focus moves between the interactive elements.
+
+A visible focus style helps the user know which element is currently focused.
+
+### Focus vs Hover
+
+`:focus` and `:hover` represent different states.
+
+```text
+:hover
+   ↓
+Pointer is over the element
+
+:focus
+   ↓
+Element has focus
+```
+
+For example:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+
+button:focus {
+    outline: 2px solid blue;
+}
+```
+
+An element can be focused without being hovered.
+
+### Focus vs Active
+
+`:focus` and `:active` also represent different states.
+
+```text
+:focus
+   ↓
+Element has focus
+
+:active
+   ↓
+Element is currently being activated
+```
+
+For example:
+
+```css
+button:focus {
+    outline: 2px solid steelblue;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+```
+
+A button may remain focused after the user releases the mouse button, while `:active` is only active during the activation.
+
+### Focus with Multiple Properties
+
+Multiple properties can be changed when an element receives focus.
+
+```css
+input:focus {
+    border-color: steelblue;
+    background-color: lightblue;
+    outline: none;
+}
+```
+
+However, removing the default focus outline should only be done when a clear replacement focus indicator is provided.
+
+### Focus on Form Controls
+
+`:focus` can be used with different form controls.
+
+```css
+input:focus {
+    border-color: steelblue;
+}
+
+textarea:focus {
+    border-color: steelblue;
+}
+
+select:focus {
+    border-color: steelblue;
+}
+```
+
+### Focus and Accessibility
+
+A visible focus indicator is important for keyboard accessibility.
+
+For example:
+
+```css
+button:focus {
+    outline: 3px solid steelblue;
+}
+```
+
+This allows keyboard users to see which interactive element currently has focus.
+
+A better approach for many interfaces is to use `:focus-visible` when the visual indicator should specifically respond to focus that needs to be shown to the user.
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+}
+```
+
+### Important Point
+
+The `:focus` pseudo-class represents an element that currently has focus.
+
+```text
+Element
+   ↓
+Receives focus
+   ↓
+:focus becomes active
+   ↓
+Focus moves away
+   ↓
+:focus no longer applies
+```
+
+Common elements that can receive focus include:
+
+```text
+Inputs
+Buttons
+Links
+Select elements
+Textareas
+Other focusable controls
+```
+
+> 💡 **Tip:** Always make sure interactive elements have a clear visible focus state, especially when designing for keyboard users.
+
+> 💡 **Remember:** `:focus` is about the element having focus, while `:hover` is about the pointer being over the element and `:active` is about the element being activated.
