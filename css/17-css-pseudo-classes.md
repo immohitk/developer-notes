@@ -5757,3 +5757,169 @@ can be invalid when the required value is missing or when the entered value does
 > 💡 **Tip:** Use `:invalid` together with `:valid` when providing visual feedback for form validation.
 
 > 💡 **Remember:** `:invalid` describes the current validation state of a form control, while `:required` describes whether the control is required.
+
+---
+
+## :focus-visible
+
+The `:focus-visible` pseudo-class applies styles when an element has focus and the browser determines that a visible focus indicator should be shown.
+
+It is especially useful for improving keyboard accessibility while avoiding unnecessary focus styling in situations where the browser does not consider a visible indicator necessary.
+
+### Basic Syntax
+
+```css
+selector:focus-visible {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+}
+```
+
+When the button receives focus in a context where a visible focus indicator is appropriate, the specified styles are applied.
+
+### `:focus` vs `:focus-visible`
+
+Both pseudo-classes are related to focus, but they have different purposes.
+
+```text
+:focus
+   ↓
+Element currently has focus
+
+:focus-visible
+   ↓
+Element has focus and the browser determines
+that a visible focus indicator should be shown
+```
+
+For example:
+
+```css
+button:focus {
+    outline: 2px solid steelblue;
+}
+```
+
+styles every matching focused button.
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+}
+```
+
+provides a visible focus style when appropriate according to the browser's focus indication behavior.
+
+### Keyboard Navigation
+
+`:focus-visible` is particularly useful for keyboard navigation.
+
+Consider:
+
+```html
+<button>Home</button>
+<button>About</button>
+<button>Contact</button>
+```
+
+CSS:
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+}
+```
+
+When a user navigates through the buttons using the keyboard, the focus indicator can make the currently focused button easy to identify.
+
+```text
+Tab
+ ↓
+Button receives focus
+ ↓
+:focus-visible
+ ↓
+Visible focus indicator
+```
+
+### Accessibility
+
+A visible focus indicator is important for users who navigate a page using a keyboard.
+
+For example:
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+This provides a clear visual indication of which interactive element currently has focus.
+
+### Using `:focus-visible` with Links
+
+```css
+a:focus-visible {
+    outline: 2px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+This can provide a visible focus indicator for keyboard users navigating links.
+
+### Using `:focus-visible` with Form Controls
+
+```css
+input:focus-visible {
+    border-color: steelblue;
+    outline: 2px solid steelblue;
+}
+```
+
+The focus styling can be applied to form controls when visible focus indication is appropriate.
+
+### `:focus` and `:focus-visible` Together
+
+A common approach is to use general focus behavior while providing a stronger visible indicator through `:focus-visible`.
+
+```css
+button:focus {
+    outline: none;
+}
+
+button:focus-visible {
+    outline: 3px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+However, removing the default focus indicator should be done carefully. The `:focus-visible` rule should provide a clear and accessible replacement.
+
+### Important Point
+
+The key idea is:
+
+```text
+Element receives focus
+        ↓
+Browser determines whether
+visible focus indication is appropriate
+        ↓
+:focus-visible
+        ↓
+Apply visible focus styles
+```
+
+`:focus-visible` is designed to help developers provide accessible focus indicators without necessarily showing the same focus styling in every interaction scenario.
+
+> 💡 **Tip:** Prefer `:focus-visible` when you want a strong visible focus indicator that is especially helpful for keyboard navigation.
+
+> 💡 **Remember:** `:focus` represents an element having focus, while `:focus-visible` is intended for focus states where a visible focus indicator should be presented.
