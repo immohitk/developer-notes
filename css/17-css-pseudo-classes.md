@@ -775,3 +775,263 @@ Document structure
 > 💡 **Tip:** Use pseudo-classes when the styling depends on a condition or state that CSS can already determine.
 
 > 💡 **Remember:** Pseudo-classes can reduce unnecessary HTML classes while making interactive, structural, and form-related styling easier to manage.
+
+---
+
+## Pseudo-Class Syntax
+
+CSS pseudo-classes are written by adding a single colon (`:`) followed by the pseudo-class name to a selector.
+
+### Basic Syntax
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+For example:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+Here:
+
+```text
+button
+   ↓
+CSS selector
+
+:
+   ↓
+Pseudo-class separator
+
+hover
+   ↓
+Pseudo-class name
+```
+
+Together:
+
+```css
+button:hover
+```
+
+means that the styles apply to a `button` when the `:hover` condition is active.
+
+### Simple Examples
+
+```css
+a:hover {
+    color: red;
+}
+```
+
+```css
+input:focus {
+    border-color: blue;
+}
+```
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+```css
+input:checked {
+    accent-color: blue;
+}
+```
+
+Each selector contains:
+
+```text
+Element selector
+      +
+Pseudo-class
+      ↓
+Conditional selector
+```
+
+### Pseudo-Class with a Class Selector
+
+A pseudo-class can be combined with a normal class selector.
+
+```css
+.button:hover {
+    background-color: blue;
+}
+```
+
+Here:
+
+```text
+.button
+   ↓
+Class selector
+
+:hover
+   ↓
+Pseudo-class
+```
+
+The selector matches elements with the `button` class when they are hovered.
+
+### Pseudo-Class with an ID Selector
+
+A pseudo-class can also be used with an ID selector.
+
+```css
+#submit:focus {
+    outline: 2px solid blue;
+}
+```
+
+This targets the element with the `submit` ID when it has focus.
+
+### Pseudo-Class with an Element Selector
+
+```css
+input:disabled {
+    opacity: 0.5;
+}
+```
+
+This targets disabled `<input>` elements.
+
+### Multiple Pseudo-Classes
+
+Multiple pseudo-classes can be combined when their conditions need to apply to the same element.
+
+For example:
+
+```css
+button:hover:focus {
+    background-color: steelblue;
+}
+```
+
+The selector applies when the button is both hovered and focused.
+
+Another example:
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+This targets required inputs that are currently invalid.
+
+### Pseudo-Class with Descendant Selectors
+
+Pseudo-classes can be used as part of larger selectors.
+
+```css
+nav a:hover {
+    color: red;
+}
+```
+
+This selects links inside `nav` when they are hovered.
+
+Another example:
+
+```css
+ul li:first-child {
+    font-weight: bold;
+}
+```
+
+This selects the first `li` child inside the `ul`.
+
+### Functional Pseudo-Classes
+
+Some pseudo-classes accept arguments inside parentheses.
+
+Examples:
+
+```css
+:nth-child(2)
+:nth-of-type(odd)
+:not(.special)
+```
+
+For example:
+
+```css
+li:nth-child(2) {
+    color: red;
+}
+```
+
+The `2` is an argument passed to `:nth-child()`.
+
+### Pseudo-Class vs Pseudo-Element Syntax
+
+A pseudo-class generally uses one colon:
+
+```css
+:hover
+:focus
+:first-child
+```
+
+A pseudo-element generally uses two colons:
+
+```css
+::before
+::after
+::first-letter
+```
+
+For example:
+
+```css
+button:hover {
+    color: white;
+}
+```
+
+is a pseudo-class selector.
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+is a pseudo-element selector.
+
+### Important Point
+
+The general structure of a pseudo-class selector is:
+
+```css
+selector:pseudo-class
+```
+
+For functional pseudo-classes:
+
+```css
+selector:pseudo-class(argument)
+```
+
+Examples:
+
+```css
+button:hover
+input:focus
+li:first-child
+li:nth-child(2)
+input:not(.special)
+```
+
+> 💡 **Tip:** Read a pseudo-class selector from left to right: first identify the element or class being selected, then identify the condition added by the pseudo-class.
+
+> 💡 **Remember:** Pseudo-classes use a single colon (`:`), while pseudo-elements generally use two colons (`::`).
