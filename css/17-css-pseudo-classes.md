@@ -37,3 +37,176 @@
 35. [Interview Questions](#interview-questions)
 36. [Practice Exercises](#practice-exercises)
 37. [Related Topics](#related-topics)
+
+---
+
+## Introduction
+
+CSS pseudo-classes are special keywords used with CSS selectors to style an element based on a particular state, condition, or position.
+
+A pseudo-class is written with a single colon (`:`) followed by its name.
+
+For example:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+Here:
+
+```text
+button
+   ↓
+Element selector
+
+:hover
+   ↓
+Pseudo-class
+```
+
+The style is applied when the user hovers over the button.
+
+### What Pseudo-Classes Can Represent
+
+Pseudo-classes can represent different situations, such as:
+
+- An element being hovered.
+- An element being clicked or activated.
+- An element receiving focus.
+- A link that has already been visited.
+- The first or last element in a group.
+- An element at a particular position.
+- A checked form control.
+- A disabled form control.
+- A valid or invalid form input.
+
+### Common Examples
+
+```css
+:hover
+:active
+:focus
+:visited
+:link
+:first-child
+:last-child
+:nth-child()
+:not()
+:checked
+:disabled
+:enabled
+:valid
+:invalid
+```
+
+For example:
+
+```css
+a:hover {
+    color: red;
+}
+```
+
+```css
+input:focus {
+    border-color: steelblue;
+}
+```
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+Each selector applies styles under a particular condition.
+
+### Pseudo-Classes Do Not Create New Elements
+
+A pseudo-class does not create an additional HTML element.
+
+For example:
+
+```css
+button:hover {
+    color: white;
+}
+```
+
+The `:hover` pseudo-class simply adds a condition to the `button` selector.
+
+```text
+button
+   +
+:hover condition
+   ↓
+button:hover
+```
+
+### Pseudo-Class vs Normal Selector
+
+A normal selector can select an element directly:
+
+```css
+button {
+    background-color: gray;
+}
+```
+
+A pseudo-class can select the same element under a specific condition:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+Therefore:
+
+```text
+button
+   ↓
+All matching buttons
+
+button:hover
+   ↓
+Matching buttons currently being hovered
+```
+
+### Why Pseudo-Classes Are Useful
+
+Pseudo-classes allow CSS to respond to user interaction and document structure without requiring additional classes in many situations.
+
+For example, instead of adding a special class to the first list item:
+
+```html
+<li class="first">One</li>
+```
+
+CSS can use:
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+This allows the browser to determine which element matches the condition.
+
+### Important Point
+
+Pseudo-classes are an important part of CSS selectors because they allow styles to depend on an element's state, condition, or position.
+
+The basic pattern is:
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+> 💡 **Tip:** Think of a pseudo-class as an additional condition attached to a selector.
+
+> 💡 **Remember:** CSS pseudo-classes use a single colon (`:`), such as `:hover`, `:focus`, and `:first-child`.
