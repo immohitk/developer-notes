@@ -4626,3 +4626,221 @@ Common elements that support disabled states include:
 > 💡 **Tip:** Use `:disabled` to make disabled controls visually distinguishable from controls that users can interact with.
 
 > 💡 **Remember:** `:disabled` selects controls that are actually disabled; `:enabled` represents controls that are enabled.
+
+---
+
+## :enabled
+
+The `:enabled` pseudo-class selects form controls that are currently enabled and can normally be interacted with by the user.
+
+It is the opposite state of `:disabled`.
+
+### Basic Syntax
+
+```css
+selector:enabled {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<input type="text" placeholder="Username">
+<input type="text" placeholder="Disabled" disabled>
+```
+
+CSS:
+
+```css
+input:enabled {
+    border-color: steelblue;
+}
+
+input:disabled {
+    border-color: gray;
+}
+```
+
+The first input matches `:enabled`, while the second matches `:disabled`.
+
+```text
+Enabled
+   ↓
+Can normally be interacted with
+   ↓
+:enabled
+
+Disabled
+   ↓
+Cannot normally be interacted with
+   ↓
+:disabled
+```
+
+### Enabled Buttons
+
+```html
+<button>Submit</button>
+<button disabled>Disabled</button>
+```
+
+CSS:
+
+```css
+button:enabled {
+    background-color: steelblue;
+    color: white;
+}
+
+button:disabled {
+    background-color: gray;
+}
+```
+
+The first button is enabled, while the second button is disabled.
+
+### Enabled Form Controls
+
+`:enabled` can be used with form controls such as:
+
+```text
+<input>
+<button>
+<select>
+<textarea>
+<option>
+<optgroup>
+```
+
+For example:
+
+```css
+input:enabled {
+    background-color: white;
+}
+```
+
+### `:enabled` vs `:disabled`
+
+These pseudo-classes represent opposite states.
+
+```text
+:enabled
+    ↓
+Form control is enabled
+
+:disabled
+    ↓
+Form control is disabled
+```
+
+Example:
+
+```css
+input:enabled {
+    opacity: 1;
+}
+
+input:disabled {
+    opacity: 0.5;
+}
+```
+
+### Combining `:enabled` with Other Selectors
+
+`:enabled` can be combined with classes and other selectors.
+
+```css
+.form-control:enabled {
+    border-color: steelblue;
+}
+```
+
+This selects enabled elements with the `form-control` class.
+
+### Combining `:enabled` with `:focus`
+
+Pseudo-classes can also be combined.
+
+```css
+input:enabled:focus {
+    border-color: green;
+}
+```
+
+This selects an input when it is both enabled and focused.
+
+This can be useful when you want focused styles to apply only to controls that users can interact with.
+
+### Attribute Selector Comparison
+
+You may see:
+
+```css
+input:not([disabled]) {
+    border-color: steelblue;
+}
+```
+
+But:
+
+```css
+input:enabled {
+    border-color: steelblue;
+}
+```
+
+directly expresses the enabled state of the form control.
+
+### Practical Example
+
+HTML:
+
+```html
+<form>
+    <input type="text" placeholder="Name">
+
+    <input type="email" placeholder="Email">
+
+    <input type="text" placeholder="Disabled field" disabled>
+</form>
+```
+
+CSS:
+
+```css
+input:enabled {
+    background-color: white;
+    border: 1px solid steelblue;
+}
+
+input:disabled {
+    background-color: lightgray;
+    border: 1px solid gray;
+}
+```
+
+The enabled inputs receive the interactive styling, while the disabled input receives the disabled styling.
+
+### Important Point
+
+The key idea is:
+
+```text
+Form control
+      ↓
+Enabled state
+      ↓
+:enabled
+      ↓
+Apply styles
+```
+
+`:enabled` is useful when the styling should specifically apply to controls that users can interact with.
+
+> 💡 **Tip:** Use `:enabled` when you need to distinguish usable form controls from disabled ones.
+
+> 💡 **Remember:** `:enabled` selects enabled form controls, while `:disabled` selects controls that are disabled.
