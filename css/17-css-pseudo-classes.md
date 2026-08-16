@@ -4844,3 +4844,209 @@ Apply styles
 > 💡 **Tip:** Use `:enabled` when you need to distinguish usable form controls from disabled ones.
 
 > 💡 **Remember:** `:enabled` selects enabled form controls, while `:disabled` selects controls that are disabled.
+
+---
+
+## :required
+
+The `:required` pseudo-class selects form controls that have the `required` attribute.
+
+It is commonly used to style fields that users must complete before submitting a form.
+
+### Basic Syntax
+
+```css
+selector:required {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<input type="text" required>
+```
+
+CSS:
+
+```css
+input:required {
+    border-color: steelblue;
+}
+```
+
+The input matches `:required` because it has the `required` attribute.
+
+```text
+required attribute
+       ↓
+Field must be completed
+       ↓
+:required matches
+```
+
+### Required Input
+
+```html
+<label>
+    Name:
+    <input type="text" required>
+</label>
+```
+
+CSS:
+
+```css
+input:required {
+    background-color: lightyellow;
+}
+```
+
+This can visually indicate that the field is required.
+
+### Required Email Field
+
+```html
+<input type="email" required>
+```
+
+CSS:
+
+```css
+input:required {
+    border: 2px solid steelblue;
+}
+```
+
+The same pseudo-class can be used with different form-control types.
+
+### `:required` vs `:optional`
+
+These pseudo-classes represent opposite states.
+
+```text
+:required
+    ↓
+Control is required
+
+:optional
+    ↓
+Control is not required
+```
+
+Example:
+
+```css
+input:required {
+    border-color: steelblue;
+}
+
+input:optional {
+    border-color: gray;
+}
+```
+
+### Combining `:required` with `:invalid`
+
+`:required` can be combined with other pseudo-classes.
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+This targets a required input that is currently invalid.
+
+For example:
+
+```html
+<input type="email" required>
+```
+
+If the field is empty or contains an invalid email value, the selector can match.
+
+### Combining `:required` with `:valid`
+
+```css
+input:required:valid {
+    border-color: green;
+}
+```
+
+This can style a required input when its current value satisfies its validation constraints.
+
+### Practical Example
+
+HTML:
+
+```html
+<form>
+    <label>
+        Name:
+        <input type="text" required>
+    </label>
+
+    <label>
+        Email:
+        <input type="email" required>
+    </label>
+
+    <label>
+        Phone:
+        <input type="tel">
+    </label>
+</form>
+```
+
+CSS:
+
+```css
+input:required {
+    background-color: lightyellow;
+}
+```
+
+The name and email fields match `:required`, while the phone field does not.
+
+### `:required` vs Attribute Selector
+
+You can also select an element using:
+
+```css
+input[required] {
+    border-color: steelblue;
+}
+```
+
+But:
+
+```css
+input:required {
+    border-color: steelblue;
+}
+```
+
+directly represents the required state of the form control.
+
+### Important Point
+
+The key idea is:
+
+```text
+Form control
+      ↓
+Has required constraint
+      ↓
+:required
+      ↓
+Apply styles
+```
+
+`:required` is useful when you want to visually distinguish fields that users must complete.
+
+> 💡 **Tip:** Combine `:required` with validation pseudo-classes such as `:valid` and `:invalid` when you need more specific form-state styling.
+
+> 💡 **Remember:** `:required` selects form controls that are required, while `:optional` selects controls that are not required.
