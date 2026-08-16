@@ -7323,3 +7323,50 @@ Value does not satisfy validation constraints
 ```
 
 > 💡 **Remember:** CSS pseudo-classes allow selectors to respond to user interaction, element position, form state, and other conditions without requiring a separate class for every state.
+
+---
+
+## References
+
+The following references can be used to learn more about CSS pseudo-classes, selectors, and related CSS concepts.
+
+### MDN Web Docs
+
+- [CSS Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
+- [CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors)
+- [`:hover`](https://developer.mozilla.org/en-US/docs/Web/CSS/:hover)
+- [`:active`](https://developer.mozilla.org/en-US/docs/Web/CSS/:active)
+- [`:focus`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus)
+- [`:visited`](https://developer.mozilla.org/en-US/docs/Web/CSS/:visited)
+- [`:first-child`](https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child)
+- [`:last-child`](https://developer.mozilla.org/en-US/docs/Web/CSS/:last-child)
+- [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)
+- [`:nth-of-type()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type)
+- [`:not()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:not)
+- [`:checked`](https://developer.mozilla.org/en-US/docs/Web/CSS/:checked)
+- [`:disabled`](https://developer.mozilla.org/en-US/docs/Web/CSS/:disabled)
+- [`:enabled`](https://developer.mozilla.org/en-US/docs/Web/CSS/:enabled)
+- [`:required`](https://developer.mozilla.org/en-US/docs/Web/CSS/:required)
+- [`:optional`](https://developer.mozilla.org/en-US/docs/Web/CSS/:optional)
+- [`:valid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:valid)
+- [`:invalid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid)
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible)
+- [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within)
+
+### W3C CSS Specifications
+
+- [Selectors Level 4](https://www.w3.org/TR/selectors-4/)
+- [CSS Basic User Interface Module](https://www.w3.org/TR/css-ui-4/)
+
+### Reference Purpose
+
+These resources can be used to:
+
+- Verify CSS pseudo-class syntax.
+- Understand pseudo-class behavior.
+- Explore browser compatibility.
+- Learn about selector combinations.
+- Study form validation states.
+- Understand focus and accessibility-related pseudo-classes.
+
+> 💡 **Tip:** MDN is a useful practical reference for examples and browser behavior, while W3C specifications provide the formal standards behind CSS selectors.
