@@ -2367,3 +2367,228 @@ That is what `:first-of-type` is used for.
 > 💡 **Tip:** When using `:first-child`, check the complete order of the parent's children, including elements of different types.
 
 > 💡 **Remember:** `:first-child` selects an element only when it is the first child of its parent.
+
+---
+
+## :last-child
+
+The `:last-child` pseudo-class selects an element when it is the last child of its parent.
+
+It is useful when the final element in a group needs different styling.
+
+### Basic Syntax
+
+```css
+selector:last-child {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+li:last-child {
+    font-weight: bold;
+}
+```
+
+HTML:
+
+```html
+<ul>
+    <li>First item</li>
+    <li>Second item</li>
+    <li>Third item</li>
+</ul>
+```
+
+The last `<li>` is selected.
+
+```text
+<ul>
+ ├── First item
+ ├── Second item
+ └── Third item    ← :last-child
+</ul>
+```
+
+### Styling the Last Paragraph
+
+```css
+p:last-child {
+    margin-bottom: 0;
+}
+```
+
+This can be useful for removing unnecessary bottom spacing from the final paragraph.
+
+### Important Detail
+
+Like `:first-child`, `:last-child` considers **all children** of the parent.
+
+For example:
+
+```html
+<div>
+    <p>Paragraph</p>
+    <button>Submit</button>
+</div>
+```
+
+This selector:
+
+```css
+p:last-child {
+    color: red;
+}
+```
+
+does not match the paragraph because the `<button>` is the last child.
+
+The structure is:
+
+```text
+<div>
+ ├── p
+ └── button     ← Last child
+</div>
+```
+
+### `:last-child` with Classes
+
+```css
+.item:last-child {
+    background-color: lightblue;
+}
+```
+
+HTML:
+
+```html
+<div class="item">First</div>
+<div class="item">Second</div>
+<div class="item">Third</div>
+```
+
+Only the final `.item` is selected.
+
+### `:last-child` with Descendant Selectors
+
+```css
+ul li:last-child {
+    border-bottom: none;
+}
+```
+
+This selects the last `<li>` child of the list.
+
+### Common Use: Navigation
+
+```css
+nav li:last-child {
+    margin-right: 0;
+}
+```
+
+This can remove the right margin from the final navigation item.
+
+### Common Use: Lists
+
+```css
+.menu li:last-child {
+    border-bottom: none;
+}
+```
+
+This is useful when list items have separators and the final item should not have one.
+
+### `:last-child` vs `:last-of-type`
+
+These selectors are different.
+
+`:last-child` checks whether the element is the last child of its parent.
+
+`:last-of-type` checks whether the element is the last element of its specific type among its siblings.
+
+Example:
+
+```html
+<div>
+    <p>First paragraph</p>
+    <p>Last paragraph</p>
+    <button>Submit</button>
+</div>
+```
+
+This does not match:
+
+```css
+p:last-child {
+    color: red;
+}
+```
+
+because the `<button>` is the last child.
+
+But this matches:
+
+```css
+p:last-of-type {
+    color: red;
+}
+```
+
+because it is the last `<p>` among the `<p>` elements.
+
+### Comparing `:first-child` and `:last-child`
+
+```text
+:first-child
+      ↓
+First child of parent
+
+:last-child
+      ↓
+Last child of parent
+```
+
+Example:
+
+```css
+li:first-child {
+    color: blue;
+}
+
+li:last-child {
+    color: red;
+}
+```
+
+The first and final list items receive different styles.
+
+### Important Point
+
+The key idea is:
+
+```text
+:last-child
+      ↓
+Is this element the last child
+of its parent?
+```
+
+It does not mean:
+
+```text
+Is this the last element of this type?
+```
+
+For that purpose, use:
+
+```css
+:last-of-type
+```
+
+> 💡 **Tip:** When using `:last-child`, check all of the parent's children, including elements of different types.
+
+> 💡 **Remember:** `:last-child` selects an element only when it is the last child of its parent.
