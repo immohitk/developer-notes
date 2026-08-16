@@ -3680,3 +3680,247 @@ among its siblings
 > 💡 **Tip:** Use `:last-of-type` when other element types may appear after the element you want to select.
 
 > 💡 **Remember:** `:last-child` looks at the final child overall, while `:last-of-type` looks at the final element of a particular type.
+
+---
+
+## :only-child
+
+The `:only-child` pseudo-class selects an element when it is the only child of its parent.
+
+It matches an element that has no siblings.
+
+### Basic Syntax
+
+```css
+selector:only-child {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+p:only-child {
+    color: steelblue;
+}
+```
+
+HTML:
+
+```html
+<div>
+    <p>Only paragraph</p>
+</div>
+```
+
+The `<p>` is selected because it is the only child of the `<div>`.
+
+```text
+<div>
+ └── p    ← :only-child
+</div>
+```
+
+### Element with Multiple Children
+
+Consider:
+
+```html
+<div>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+This selector:
+
+```css
+p:only-child {
+    color: red;
+}
+```
+
+does not match either paragraph because each paragraph has a sibling.
+
+```text
+<div>
+ ├── p
+ └── p
+```
+
+Neither `<p>` is the only child.
+
+### Different Element Types
+
+`:only-child` does not require the parent to contain only one element of the same type.
+
+It requires the parent to have only **one child overall**.
+
+For example:
+
+```html
+<div>
+    <p>Only child</p>
+</div>
+```
+
+This matches:
+
+```css
+p:only-child {
+    font-weight: bold;
+}
+```
+
+But:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>Paragraph</p>
+</div>
+```
+
+does not match:
+
+```css
+p:only-child {
+    font-weight: bold;
+}
+```
+
+because the `<p>` has an `<h2>` sibling.
+
+### `:only-child` vs `:first-child`
+
+These pseudo-classes are different.
+
+`:first-child` selects an element when it is the first child.
+
+```css
+p:first-child {
+    color: blue;
+}
+```
+
+`:only-child` selects an element when it is the only child.
+
+```css
+p:only-child {
+    color: red;
+}
+```
+
+For example:
+
+```html
+<div>
+    <p>Paragraph</p>
+    <p>Another paragraph</p>
+</div>
+```
+
+The first paragraph matches:
+
+```css
+p:first-child
+```
+
+but neither paragraph matches:
+
+```css
+p:only-child
+```
+
+### `:only-child` vs `:first-of-type`
+
+`:first-of-type` selects the first element of a particular type among its siblings.
+
+```css
+p:first-of-type {
+    color: blue;
+}
+```
+
+`:only-child` requires there to be only one child overall.
+
+Example:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>Paragraph</p>
+</div>
+```
+
+The `<p>` can match:
+
+```css
+p:first-of-type {
+    color: blue;
+}
+```
+
+because it is the first `<p>`.
+
+But it does not match:
+
+```css
+p:only-child {
+    color: red;
+}
+```
+
+because the `<h2>` is another child.
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="message">
+    <p>No messages available.</p>
+</div>
+```
+
+CSS:
+
+```css
+.message p:only-child {
+    text-align: center;
+    font-style: italic;
+}
+```
+
+The paragraph receives the styles because it is the only child inside `.message`.
+
+### Another Example
+
+```css
+.card:only-child {
+    width: 100%;
+}
+```
+
+This can be useful when a container contains only one card and that card needs different styling.
+
+### Important Point
+
+The key idea is:
+
+```text
+:only-child
+      ↓
+Does this element have
+any siblings?
+      ↓
+No
+      ↓
+Match
+```
+
+It is based on the number of children of the parent, not on the element's type.
+
+> 💡 **Tip:** Remember that `:only-child` means exactly one child exists under the parent.
+
+> 💡 **Remember:** `:only-child` is stricter than `:first-child`. An element can be the first child without being the only child.
