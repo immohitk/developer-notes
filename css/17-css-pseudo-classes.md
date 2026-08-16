@@ -3924,3 +3924,243 @@ It is based on the number of children of the parent, not on the element's type.
 > 💡 **Tip:** Remember that `:only-child` means exactly one child exists under the parent.
 
 > 💡 **Remember:** `:only-child` is stricter than `:first-child`. An element can be the first child without being the only child.
+
+---
+
+## :not()
+
+The `:not()` pseudo-class selects elements that do **not** match a specified selector.
+
+It is useful when you want to apply a style to most elements while excluding specific elements.
+
+### Basic Syntax
+
+```css
+selector:not(selector) {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+p:not(.special) {
+    color: gray;
+}
+```
+
+This selects `<p>` elements that do not have the `special` class.
+
+HTML:
+
+```html
+<p>Normal paragraph</p>
+<p class="special">Special paragraph</p>
+<p>Another paragraph</p>
+```
+
+The result is:
+
+```text
+Normal paragraph       ← Styled
+Special paragraph      ← Not styled
+Another paragraph      ← Styled
+```
+
+### Excluding a Class
+
+A common use of `:not()` is excluding elements with a particular class.
+
+```css
+.button:not(.primary) {
+    background-color: gray;
+}
+```
+
+This selects `.button` elements that do not have the `.primary` class.
+
+### Excluding an ID
+
+```css
+div:not(#main) {
+    padding: 10px;
+}
+```
+
+This selects `<div>` elements except the one with the `main` ID.
+
+### Excluding an Element Type
+
+`:not()` can also be used with different selectors.
+
+```css
+.container > *:not(p) {
+    margin-bottom: 10px;
+}
+```
+
+This selects direct children of `.container` that are not `<p>` elements.
+
+### Using `:not()` with `:first-child`
+
+Pseudo-classes can be combined.
+
+```css
+li:not(:first-child) {
+    border-top: 1px solid gray;
+}
+```
+
+This selects every list item except the first one.
+
+```text
+First item
+    ↓
+Not selected
+
+Second item
+    ↓
+Selected
+
+Third item
+    ↓
+Selected
+```
+
+This can be useful for adding separators between items without adding a separator before the first item.
+
+### Using `:not()` with `:last-child`
+
+```css
+li:not(:last-child) {
+    margin-bottom: 10px;
+}
+```
+
+This applies the margin to every list item except the last one.
+
+### Multiple Conditions
+
+Modern CSS allows `:not()` to contain a selector list.
+
+For example:
+
+```css
+button:not(.primary, .secondary) {
+    background-color: gray;
+}
+```
+
+This selects buttons that are neither `.primary` nor `.secondary`.
+
+### `:not()` Does Not Select the Excluded Element
+
+Consider:
+
+```css
+p:not(.special) {
+    color: blue;
+}
+```
+
+The logic is:
+
+```text
+Find <p>
+   ↓
+Does it have .special?
+   ↓
+Yes → Do not select
+No  → Select
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<ul>
+    <li>Home</li>
+    <li class="active">Products</li>
+    <li>About</li>
+    <li>Contact</li>
+</ul>
+```
+
+CSS:
+
+```css
+li:not(.active) {
+    color: gray;
+}
+```
+
+Only the non-active list items receive the style.
+
+```text
+Home       → Styled
+Products   → Not styled
+About      → Styled
+Contact    → Styled
+```
+
+### Practical Example: Form Controls
+
+```css
+input:not([type="submit"]) {
+    border: 1px solid gray;
+}
+```
+
+This selects inputs whose type is not `submit`.
+
+### `:not()` vs Normal Selector
+
+Normal selector:
+
+```css
+p {
+    color: blue;
+}
+```
+
+selects all matching paragraphs.
+
+Using `:not()`:
+
+```css
+p:not(.special) {
+    color: blue;
+}
+```
+
+selects only paragraphs that do not have the `special` class.
+
+### Important Point
+
+The key idea is:
+
+```text
+:not()
+   ↓
+Exclude elements matching
+the specified selector
+```
+
+For example:
+
+```css
+li:not(:first-child)
+```
+
+means:
+
+```text
+Select li elements
++
+Exclude the first child
+```
+
+> 💡 **Tip:** `:not()` is useful when it is simpler to describe what should be excluded than to list every element that should be included.
+
+> 💡 **Remember:** `:not()` selects elements that do not match the selector inside its parentheses.
