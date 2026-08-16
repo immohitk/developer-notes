@@ -4164,3 +4164,245 @@ Exclude the first child
 > 💡 **Tip:** `:not()` is useful when it is simpler to describe what should be excluded than to list every element that should be included.
 
 > 💡 **Remember:** `:not()` selects elements that do not match the selector inside its parentheses.
+
+---
+
+## :checked
+
+The `:checked` pseudo-class selects form controls that are currently selected or checked.
+
+It is commonly used with:
+
+- Checkboxes
+- Radio buttons
+- Other checkable form controls
+
+### Basic Syntax
+
+```css
+selector:checked {
+    property: value;
+}
+```
+
+### Basic Checkbox Example
+
+HTML:
+
+```html
+<label>
+    <input type="checkbox">
+    Accept the terms
+</label>
+```
+
+CSS:
+
+```css
+input:checked {
+    accent-color: steelblue;
+}
+```
+
+The style applies when the checkbox is checked.
+
+```text
+Unchecked
+    ↓
+:checked does not match
+
+Checked
+    ↓
+:checked matches
+```
+
+### Styling a Checked Checkbox
+
+```css
+input[type="checkbox"]:checked {
+    accent-color: green;
+}
+```
+
+This specifically targets checked checkboxes.
+
+### Radio Button Example
+
+`:checked` also works with radio buttons.
+
+HTML:
+
+```html
+<label>
+    <input type="radio" name="plan" value="basic">
+    Basic
+</label>
+
+<label>
+    <input type="radio" name="plan" value="pro">
+    Pro
+</label>
+```
+
+CSS:
+
+```css
+input[type="radio"]:checked {
+    accent-color: steelblue;
+}
+```
+
+The pseudo-class applies to whichever radio button is currently selected.
+
+### Styling a Related Element
+
+`:checked` can be combined with the sibling combinator to style another element when a checkbox is checked.
+
+HTML:
+
+```html
+<input type="checkbox" id="toggle">
+<label for="toggle">Show details</label>
+
+<p class="details">Additional information</p>
+```
+
+CSS:
+
+```css
+#toggle:checked + label {
+    color: steelblue;
+}
+```
+
+Here:
+
+```text
+#toggle
+   ↓
+:checked
+   ↓
++
+   ↓
+Adjacent sibling
+   ↓
+label is styled
+```
+
+### Checkbox and `~` Sibling Combinator
+
+The general sibling combinator can also be used.
+
+HTML:
+
+```html
+<input type="checkbox" id="menu">
+<div class="content">Menu content</div>
+```
+
+CSS:
+
+```css
+#menu:checked ~ .content {
+    display: block;
+}
+```
+
+When the checkbox is checked, the `.content` element is selected.
+
+### `:checked` vs `:enabled` and `:disabled`
+
+These pseudo-classes represent different form states.
+
+```text
+:checked
+    ↓
+Checkbox/radio is selected
+
+:enabled
+    ↓
+Form control can be used
+
+:disabled
+    ↓
+Form control cannot be used
+```
+
+For example:
+
+```css
+input:checked {
+    accent-color: green;
+}
+
+input:disabled {
+    opacity: 0.5;
+}
+```
+
+### `:checked` vs `:focus`
+
+A checked control does not necessarily have focus.
+
+```text
+:checked
+    ↓
+Control is selected
+
+:focus
+    ↓
+Control currently has focus
+```
+
+For example:
+
+```css
+input:checked {
+    accent-color: green;
+}
+
+input:focus {
+    outline: 2px solid steelblue;
+}
+```
+
+A checkbox can remain checked after focus moves to another element.
+
+### Practical Example
+
+HTML:
+
+```html
+<label>
+    <input type="checkbox" class="task">
+    Complete task
+</label>
+```
+
+CSS:
+
+```css
+.task:checked {
+    accent-color: green;
+}
+```
+
+The checkbox changes its appearance when selected.
+
+### Important Point
+
+The key idea is:
+
+```text
+Form control
+      ↓
+Checked / selected
+      ↓
+:checked
+      ↓
+Apply CSS styles
+```
+
+> 💡 **Tip:** `:checked` is especially useful for styling checkboxes and radio buttons based on their current selected state.
+
+> 💡 **Remember:** `:checked` represents a selected or checked state; it is different from `:focus`, which represents the element currently having focus.
