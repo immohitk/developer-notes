@@ -3260,3 +3260,206 @@ Counts siblings of the same type
 > 💡 **Tip:** Use `:nth-of-type()` when the position you care about is specifically among elements of the same HTML type.
 
 > 💡 **Remember:** `:nth-of-type()` ignores other element types when calculating the position.
+
+---
+
+## :first-of-type
+
+The `:first-of-type` pseudo-class selects an element when it is the first element of its type among its siblings.
+
+Unlike `:first-child`, it does not require the element to be the first child overall.
+
+### Basic Syntax
+
+```css
+selector:first-of-type {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+p:first-of-type {
+    color: steelblue;
+}
+```
+
+HTML:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+The first `<p>` is selected because it is the first `<p>` among its siblings.
+
+```text
+<div>
+ ├── h2
+ ├── p    ← :first-of-type
+ └── p
+</div>
+```
+
+### `:first-of-type` vs `:first-child`
+
+These pseudo-classes are different.
+
+```css
+p:first-child {
+    color: red;
+}
+```
+
+checks whether the `<p>` is the **first child overall**.
+
+```css
+p:first-of-type {
+    color: blue;
+}
+```
+
+checks whether the `<p>` is the **first `<p>` element among its siblings**.
+
+Consider:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+```
+
+The structure is:
+
+```text
+1 → h2
+2 → p
+3 → p
+```
+
+This does not match:
+
+```css
+p:first-child {
+    color: red;
+}
+```
+
+because the `<h2>` is the first child.
+
+But this does match:
+
+```css
+p:first-of-type {
+    color: blue;
+}
+```
+
+because it is the first `<p>`.
+
+### Another Example
+
+```html
+<div>
+    <p>First paragraph</p>
+    <span>Some text</span>
+    <p>Second paragraph</p>
+</div>
+```
+
+The first `<p>` matches:
+
+```css
+p:first-of-type {
+    font-weight: bold;
+}
+```
+
+The `<span>` does not affect the `<p>` count.
+
+```text
+p 1       ← First <p>
+span      ← Different type
+p 2
+```
+
+### Using `:first-of-type` with Different Elements
+
+The pseudo-class can be used with different element types.
+
+```css
+h2:first-of-type {
+    color: blue;
+}
+
+p:first-of-type {
+    color: green;
+}
+
+li:first-of-type {
+    font-weight: bold;
+}
+```
+
+Each selector finds the first element of its specified type.
+
+### Practical Example
+
+HTML:
+
+```html
+<article>
+    <h2>Introduction</h2>
+    <p>First paragraph.</p>
+    <p>Second paragraph.</p>
+    <p>Third paragraph.</p>
+</article>
+```
+
+CSS:
+
+```css
+article p:first-of-type {
+    font-weight: bold;
+}
+```
+
+Only the first paragraph is styled.
+
+### Common Use
+
+`:first-of-type` is useful when different types of elements are mixed together and you want to select the first element of a particular type.
+
+For example:
+
+```css
+article p:first-of-type {
+    margin-top: 0;
+}
+```
+
+This can remove the top margin from the first paragraph without requiring an additional class.
+
+### Important Point
+
+The key difference is:
+
+```text
+:first-child
+      ↓
+First child overall
+
+:first-of-type
+      ↓
+First element of its type
+```
+
+> 💡 **Tip:** Use `:first-of-type` when the element's position matters only among siblings of the same HTML element type.
+
+> 💡 **Remember:** Other element types do not affect the position calculated by `:first-of-type`.
