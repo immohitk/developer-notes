@@ -3463,3 +3463,220 @@ First element of its type
 > 💡 **Tip:** Use `:first-of-type` when the element's position matters only among siblings of the same HTML element type.
 
 > 💡 **Remember:** Other element types do not affect the position calculated by `:first-of-type`.
+
+---
+
+## :last-of-type
+
+The `:last-of-type` pseudo-class selects an element when it is the last element of its type among its siblings.
+
+Unlike `:last-child`, it does not require the element to be the final child overall.
+
+### Basic Syntax
+
+```css
+selector:last-of-type {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+p:last-of-type {
+    color: steelblue;
+}
+```
+
+HTML:
+
+```html
+<div>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+    <button>Submit</button>
+</div>
+```
+
+The second `<p>` is selected because it is the last `<p>` among its siblings.
+
+```text
+<div>
+ ├── p
+ ├── p          ← :last-of-type
+ └── button
+</div>
+```
+
+### `:last-of-type` vs `:last-child`
+
+These pseudo-classes work differently.
+
+```css
+p:last-child {
+    color: red;
+}
+```
+
+checks whether the `<p>` is the **last child overall**.
+
+```css
+p:last-of-type {
+    color: blue;
+}
+```
+
+checks whether the `<p>` is the **last `<p>` element among its siblings**.
+
+Consider:
+
+```html
+<div>
+    <p>First paragraph</p>
+    <p>Last paragraph</p>
+    <button>Submit</button>
+</div>
+```
+
+The structure is:
+
+```text
+1 → p
+2 → p
+3 → button
+```
+
+This does not match:
+
+```css
+p:last-child {
+    color: red;
+}
+```
+
+because the `<button>` is the last child.
+
+But this matches:
+
+```css
+p:last-of-type {
+    color: blue;
+}
+```
+
+because the second `<p>` is the last `<p>`.
+
+### Different Element Types
+
+Other element types do not affect the `:last-of-type` count.
+
+For example:
+
+```html
+<div>
+    <p>First paragraph</p>
+    <span>Some text</span>
+    <p>Last paragraph</p>
+    <button>Submit</button>
+</div>
+```
+
+This selector:
+
+```css
+p:last-of-type {
+    font-weight: bold;
+}
+```
+
+selects the second `<p>`.
+
+The `<span>` and `<button>` do not affect which `<p>` is the last `<p>`.
+
+### Using `:last-of-type` with Classes
+
+```css
+.card p:last-of-type {
+    margin-bottom: 0;
+}
+```
+
+This can remove the bottom margin from the final paragraph inside a card.
+
+### Practical Example
+
+HTML:
+
+```html
+<article>
+    <h2>Article Title</h2>
+
+    <p>First paragraph.</p>
+    <p>Second paragraph.</p>
+    <p>Final paragraph.</p>
+
+    <button>Read More</button>
+</article>
+```
+
+CSS:
+
+```css
+article p:last-of-type {
+    margin-bottom: 0;
+}
+```
+
+The final paragraph is selected even though the button comes after it.
+
+### Comparing Related Pseudo-Classes
+
+```text
+:first-child
+    ↓
+First child overall
+
+:last-child
+    ↓
+Last child overall
+
+:first-of-type
+    ↓
+First element of a specific type
+
+:last-of-type
+    ↓
+Last element of a specific type
+```
+
+### Important Point
+
+The key idea is:
+
+```text
+:last-of-type
+      ↓
+Find the last element
+of the specified type
+      ↓
+Apply the style
+```
+
+For example:
+
+```css
+p:last-of-type {
+    color: blue;
+}
+```
+
+means:
+
+```text
+Find the last <p>
+among its siblings
+```
+
+> 💡 **Tip:** Use `:last-of-type` when other element types may appear after the element you want to select.
+
+> 💡 **Remember:** `:last-child` looks at the final child overall, while `:last-of-type` looks at the final element of a particular type.
