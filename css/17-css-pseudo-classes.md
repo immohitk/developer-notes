@@ -2951,3 +2951,312 @@ Common values include:
 > 💡 **Tip:** When using `:nth-child()`, always count all child elements of the parent before deciding which number to use.
 
 > 💡 **Remember:** `:nth-child()` is based on the element's position among all siblings, while `:nth-of-type()` counts elements of the same type.
+
+---
+
+## :nth-of-type()
+
+The `:nth-of-type()` pseudo-class selects an element based on its position among its siblings of the same element type.
+
+Unlike `:nth-child()`, which counts all child elements, `:nth-of-type()` counts only elements of the same type.
+
+### Basic Syntax
+
+```css
+selector:nth-of-type(value) {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+p:nth-of-type(2) {
+    color: red;
+}
+```
+
+This selects the second `<p>` element among its sibling `<p>` elements.
+
+### `:nth-child()` vs `:nth-of-type()`
+
+Consider:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+    <p>Third paragraph</p>
+</div>
+```
+
+The child positions are:
+
+```text
+1 → h2
+2 → p
+3 → p
+4 → p
+```
+
+Using:
+
+```css
+p:nth-child(2) {
+    color: red;
+}
+```
+
+selects the first paragraph because it is the second child overall.
+
+Using:
+
+```css
+p:nth-of-type(2) {
+    color: blue;
+}
+```
+
+selects the second paragraph because it is the second `<p>` element.
+
+### Selecting the First Element of a Type
+
+```css
+p:nth-of-type(1) {
+    font-weight: bold;
+}
+```
+
+This is equivalent to:
+
+```css
+p:first-of-type {
+    font-weight: bold;
+}
+```
+
+### Selecting the Third Element of a Type
+
+```css
+p:nth-of-type(3) {
+    color: steelblue;
+}
+```
+
+This selects the third `<p>` among its sibling `<p>` elements.
+
+### Using `even`
+
+The `even` keyword selects even-numbered elements of the same type.
+
+```css
+p:nth-of-type(even) {
+    background-color: lightgray;
+}
+```
+
+The pattern is:
+
+```text
+1 → Normal
+2 → Styled
+3 → Normal
+4 → Styled
+5 → Normal
+```
+
+### Using `odd`
+
+The `odd` keyword selects odd-numbered elements of the same type.
+
+```css
+p:nth-of-type(odd) {
+    background-color: lightblue;
+}
+```
+
+The pattern is:
+
+```text
+1 → Styled
+2 → Normal
+3 → Styled
+4 → Normal
+5 → Styled
+```
+
+### Using Formulas
+
+`:nth-of-type()` also supports formulas.
+
+For example:
+
+```css
+p:nth-of-type(2n) {
+    color: red;
+}
+```
+
+This selects:
+
+```text
+2nd
+4th
+6th
+8th
+...
+```
+
+Another example:
+
+```css
+p:nth-of-type(3n) {
+    color: blue;
+}
+```
+
+This selects:
+
+```text
+3rd
+6th
+9th
+12th
+...
+```
+
+### Using `2n + 1`
+
+```css
+p:nth-of-type(2n + 1) {
+    font-weight: bold;
+}
+```
+
+This selects odd-numbered `<p>` elements:
+
+```text
+1st → Styled
+2nd → Normal
+3rd → Styled
+4th → Normal
+5th → Styled
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="content">
+    <h2>Introduction</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+    <p>Third paragraph</p>
+    <p>Fourth paragraph</p>
+</div>
+```
+
+CSS:
+
+```css
+.content p:nth-of-type(even) {
+    background-color: lightgray;
+}
+```
+
+Only the second and fourth paragraphs are styled.
+
+```text
+h2
+
+p 1 → Normal
+p 2 → Styled
+p 3 → Normal
+p 4 → Styled
+```
+
+### Another Example
+
+Different element types can exist together:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>Paragraph 1</p>
+    <span>Span</span>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+</div>
+```
+
+For:
+
+```css
+p:nth-of-type(2) {
+    color: red;
+}
+```
+
+the second `<p>` is selected.
+
+The `<span>` does not affect the `<p>` count.
+
+```text
+p 1 → Counted
+span → Not counted
+p 2 → Counted and selected
+p 3 → Counted
+```
+
+### `:nth-of-type()` vs `:nth-child()`
+
+| Selector | What It Counts |
+| --- | --- |
+| `:nth-child()` | All child elements |
+| `:nth-of-type()` | Siblings of the same element type |
+
+Example:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First</p>
+    <p>Second</p>
+</div>
+```
+
+```css
+p:nth-child(2) {
+    color: red;
+}
+```
+
+The first paragraph matches because it is child number `2`.
+
+```css
+p:nth-of-type(2) {
+    color: blue;
+}
+```
+
+The second paragraph matches because it is the second `<p>`.
+
+### Important Point
+
+The key difference is:
+
+```text
+:nth-child()
+      ↓
+Counts all siblings
+
+:nth-of-type()
+      ↓
+Counts siblings of the same type
+```
+
+> 💡 **Tip:** Use `:nth-of-type()` when the position you care about is specifically among elements of the same HTML type.
+
+> 💡 **Remember:** `:nth-of-type()` ignores other element types when calculating the position.
