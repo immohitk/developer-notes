@@ -210,3 +210,340 @@ selector:pseudo-class {
 > 💡 **Tip:** Think of a pseudo-class as an additional condition attached to a selector.
 
 > 💡 **Remember:** CSS pseudo-classes use a single colon (`:`), such as `:hover`, `:focus`, and `:first-child`.
+
+---
+
+## What Are CSS Pseudo-Classes?
+
+CSS pseudo-classes are keywords added to selectors to select elements based on a specific state, condition, or position in the document.
+
+They are written using a single colon (`:`) followed by the pseudo-class name.
+
+### Basic Syntax
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+For example:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+Here:
+
+```text
+button
+   ↓
+Normal selector
+
+:hover
+   ↓
+Pseudo-class
+
+button:hover
+   ↓
+Button when it is hovered
+```
+
+### Pseudo-Classes Represent States
+
+Some pseudo-classes represent the current state of an element.
+
+For example:
+
+```css
+input:focus {
+    border-color: blue;
+}
+```
+
+The styles apply when the input has focus.
+
+Another example:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+The styles apply when the button is disabled.
+
+### Pseudo-Classes Represent Positions
+
+Pseudo-classes can also select elements based on their position among their siblings.
+
+For example:
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+This selects a list item when it is the first child of its parent.
+
+Another example:
+
+```css
+li:last-child {
+    border-bottom: none;
+}
+```
+
+This selects the last list item.
+
+### Pseudo-Classes and User Interaction
+
+Pseudo-classes are commonly used for interactive states.
+
+```css
+button:hover {
+    background-color: blue;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:focus {
+    outline: 2px solid blue;
+}
+```
+
+These selectors respond to different interaction states.
+
+```text
+:hover
+   ↓
+Pointer is over the element
+
+:active
+   ↓
+Element is being activated
+
+:focus
+   ↓
+Element has focus
+```
+
+### Pseudo-Classes and Forms
+
+Pseudo-classes can represent form-control states.
+
+For example:
+
+```css
+input:valid {
+    border-color: green;
+}
+
+input:invalid {
+    border-color: red;
+}
+```
+
+They can also select checked or disabled controls:
+
+```css
+input:checked {
+    accent-color: blue;
+}
+
+input:disabled {
+    background-color: lightgray;
+}
+```
+
+### Pseudo-Classes Do Not Add HTML Elements
+
+A pseudo-class does not create a new element.
+
+For example:
+
+```css
+p:first-child {
+    color: red;
+}
+```
+
+The `:first-child` part simply adds a condition to the selector.
+
+The HTML remains:
+
+```html
+<p>First paragraph</p>
+```
+
+There is no additional HTML element created by `:first-child`.
+
+### Pseudo-Class vs Class Selector
+
+A normal class selector uses a period (`.`):
+
+```css
+.button {
+    color: white;
+}
+```
+
+A pseudo-class uses a colon (`:`):
+
+```css
+.button:hover {
+    color: yellow;
+}
+```
+
+The difference is:
+
+```text
+.button
+   ↓
+Class selector
+
+.button:hover
+   ↓
+Class selector + pseudo-class
+```
+
+### Pseudo-Class vs Pseudo-Element
+
+Pseudo-classes and pseudo-elements are different.
+
+A pseudo-class uses one colon:
+
+```css
+:hover
+:focus
+:first-child
+```
+
+A pseudo-element generally uses two colons:
+
+```css
+::before
+::after
+::first-letter
+::first-line
+```
+
+In general:
+
+```text
+Pseudo-class
+    ↓
+Selects an element based on a state,
+condition, or position
+
+Pseudo-element
+    ↓
+Targets a particular part of an element
+```
+
+### Common Categories
+
+Pseudo-classes can be grouped into several categories.
+
+#### User Interaction
+
+```css
+:hover
+:active
+:focus
+:focus-visible
+:focus-within
+```
+
+#### Links
+
+```css
+:link
+:visited
+```
+
+#### Structural
+
+```css
+:first-child
+:last-child
+:nth-child()
+:nth-of-type()
+:first-of-type
+:last-of-type
+:only-child
+```
+
+#### Form States
+
+```css
+:checked
+:disabled
+:enabled
+:required
+:optional
+:valid
+:invalid
+```
+
+#### Logical Selection
+
+```css
+:not()
+```
+
+### Simple Example
+
+HTML:
+
+```html
+<ul>
+    <li>First</li>
+    <li>Second</li>
+    <li>Third</li>
+</ul>
+```
+
+CSS:
+
+```css
+li:first-child {
+    color: blue;
+}
+
+li:last-child {
+    color: red;
+}
+```
+
+The first list item receives the first style, while the last list item receives the second style.
+
+### Important Point
+
+A pseudo-class adds a condition to a selector.
+
+```text
+Normal selector
+      +
+Condition
+      ↓
+Pseudo-class selector
+```
+
+For example:
+
+```css
+a:hover
+```
+
+means that the `a` element is selected when the `:hover` condition applies.
+
+> 💡 **Tip:** When learning pseudo-classes, first understand the condition represented by the pseudo-class, then look at which elements the selector can match.
+
+> 💡 **Remember:** Pseudo-classes do not create elements. They provide additional conditions for selecting existing elements.
