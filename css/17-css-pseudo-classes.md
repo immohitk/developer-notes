@@ -7370,3 +7370,217 @@ These resources can be used to:
 - Understand focus and accessibility-related pseudo-classes.
 
 > 💡 **Tip:** MDN is a useful practical reference for examples and browser behavior, while W3C specifications provide the formal standards behind CSS selectors.
+
+---
+
+## Quick Revision
+
+### What Are CSS Pseudo-Classes?
+
+Pseudo-classes are keywords added to CSS selectors to style elements based on their state, condition, or position.
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+### Interaction Pseudo-Classes
+
+```css
+:hover
+:active
+:focus
+:focus-visible
+:focus-within
+```
+
+- `:hover` — applies when the pointer is over an element.
+- `:active` — applies while an element is being activated.
+- `:focus` — applies when an element has focus.
+- `:focus-visible` — provides a visible focus state when appropriate.
+- `:focus-within` — applies when an element or one of its descendants has focus.
+
+### Link Pseudo-Classes
+
+```css
+:link
+:visited
+```
+
+- `:link` — selects unvisited links.
+- `:visited` — selects visited links.
+
+### Structural Pseudo-Classes
+
+```css
+:first-child
+:last-child
+:nth-child()
+:nth-of-type()
+:first-of-type
+:last-of-type
+:only-child
+```
+
+- `:first-child` — selects the first child of a parent.
+- `:last-child` — selects the last child of a parent.
+- `:nth-child()` — selects children according to their position.
+- `:nth-of-type()` — selects elements according to their position among elements of the same type.
+- `:first-of-type` — selects the first element of its type.
+- `:last-of-type` — selects the last element of its type.
+- `:only-child` — selects an element when it is the only child of its parent.
+
+### Conditional Selection
+
+```css
+:not()
+```
+
+`:not()` selects elements that do not match the selector inside its parentheses.
+
+Example:
+
+```css
+li:not(:first-child) {
+    border-top: 1px solid gray;
+}
+```
+
+### Form Pseudo-Classes
+
+```css
+:checked
+:disabled
+:enabled
+:required
+:optional
+:valid
+:invalid
+```
+
+- `:checked` — selects checked or selected controls.
+- `:disabled` — selects disabled controls.
+- `:enabled` — selects enabled controls.
+- `:required` — selects controls with a required constraint.
+- `:optional` — selects controls without a required constraint.
+- `:valid` — selects controls whose current value satisfies applicable validation constraints.
+- `:invalid` — selects controls whose current value does not satisfy applicable validation constraints.
+
+### Common Combinations
+
+Pseudo-classes can be combined:
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+```css
+input:required:valid {
+    border-color: green;
+}
+```
+
+```css
+button:not(:disabled):hover {
+    background-color: steelblue;
+}
+```
+
+### Key Differences
+
+```text
+:first-child
+    ↓
+First child overall
+
+:first-of-type
+    ↓
+First element of its type
+```
+
+```text
+:last-child
+    ↓
+Last child overall
+
+:last-of-type
+    ↓
+Last element of its type
+```
+
+```text
+:nth-child()
+    ↓
+Counts all children
+
+:nth-of-type()
+    ↓
+Counts elements of the same type
+```
+
+```text
+:focus
+    ↓
+Element has focus
+
+:focus-within
+    ↓
+Element or a descendant has focus
+```
+
+```text
+:required
+    ↓
+Control is required
+
+:valid
+    ↓
+Current value satisfies validation constraints
+```
+
+### Basic Pattern
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+Multiple pseudo-classes:
+
+```css
+selector:pseudo-class:pseudo-class {
+    property: value;
+}
+```
+
+Functional pseudo-class:
+
+```css
+selector:nth-child(value) {
+    property: value;
+}
+```
+
+### Final Revision
+
+Remember the main purpose of pseudo-classes:
+
+```text
+User interaction
+        +
+Element state
+        +
+Element position
+        +
+Form validation
+        +
+Conditional selection
+        ↓
+CSS Pseudo-Classes
+```
+
+> 💡 **Remember:** Pseudo-classes add conditions to CSS selectors. They do not create new HTML elements.
