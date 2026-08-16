@@ -1933,3 +1933,223 @@ It is useful for helping users distinguish previously visited links from unvisit
 > 💡 **Tip:** Use `:visited` for simple visual differences, such as changing link color, and remember that browsers restrict visited-link styling for privacy.
 
 > 💡 **Remember:** `:link` represents an unvisited link, while `:visited` represents a visited link.
+
+---
+
+## :link
+
+The `:link` pseudo-class applies styles to links that have not yet been visited.
+
+It is mainly used with `<a>` elements that have an `href` attribute.
+
+### Basic Syntax
+
+```css
+a:link {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+a:link {
+    color: blue;
+}
+```
+
+This styles unvisited links.
+
+```text
+Link
+ ↓
+Not visited
+ ↓
+:link applies
+```
+
+### `:link` vs `:visited`
+
+The two pseudo-classes represent different link states.
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+```
+
+Here:
+
+```text
+:link
+   ↓
+Unvisited link
+
+:visited
+   ↓
+Visited link
+```
+
+### Example
+
+HTML:
+
+```html
+<a href="https://example.com">Example</a>
+```
+
+CSS:
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+```
+
+Before visiting the link, the `:link` styles can apply.
+
+After visiting the link, the browser can apply the `:visited` styles instead.
+
+### Using `:link` with Other Link States
+
+Link pseudo-classes can be combined to style different interaction states.
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: orange;
+}
+```
+
+The states represent:
+
+```text
+:link
+   ↓
+Unvisited
+
+:visited
+   ↓
+Visited
+
+:hover
+   ↓
+Pointer is over the link
+
+:active
+   ↓
+Link is being activated
+```
+
+### `:link` Applies to Unvisited Links
+
+The `:link` pseudo-class is specifically for links that have not been visited.
+
+For example:
+
+```css
+a:link {
+    text-decoration: none;
+}
+```
+
+This applies to unvisited links.
+
+### `:link` and Normal `a` Selector
+
+A normal selector:
+
+```css
+a {
+    color: blue;
+}
+```
+
+selects matching links generally.
+
+A `:link` selector:
+
+```css
+a:link {
+    color: blue;
+}
+```
+
+specifically targets unvisited links.
+
+This allows different styles to be defined for different link states.
+
+### Link State Example
+
+```css
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: orange;
+}
+```
+
+This provides four different visual states:
+
+```text
+Unvisited
+    ↓
+:link
+
+Visited
+    ↓
+:visited
+
+Hovered
+    ↓
+:hover
+
+Activated
+    ↓
+:active
+```
+
+### Important Point
+
+The `:link` pseudo-class represents an unvisited link.
+
+```css
+a:link {
+    color: blue;
+}
+```
+
+It is useful when you want to style links differently depending on whether they have already been visited.
+
+> 💡 **Tip:** `:link` and `:visited` are specifically related to link history, while `:hover`, `:active`, and `:focus` represent interaction states.
+
+> 💡 **Remember:** `:link` selects unvisited links, while `:visited` selects links that have been visited.
