@@ -6475,3 +6475,276 @@ CSS applies the corresponding style
 > 💡 **Tip:** Combine form pseudo-classes when you need to represent a specific state, such as `:required:invalid` or `:enabled:focus`.
 
 > 💡 **Remember:** Each pseudo-class represents a different condition. `:required` describes a requirement, while `:valid` and `:invalid` describe the current validation state.
+
+---
+
+## Combining Pseudo-Classes
+
+CSS pseudo-classes can be combined to create more specific selectors.
+
+Combining pseudo-classes is useful when an element needs to match more than one condition before a style is applied.
+
+### Basic Syntax
+
+Multiple pseudo-classes can be placed one after another:
+
+```css
+selector:pseudo-class:pseudo-class {
+    property: value;
+}
+```
+
+For example:
+
+```css
+button:hover:focus {
+    background-color: steelblue;
+}
+```
+
+This targets a button when it is both hovered and focused.
+
+### Combining `:hover` and `:focus`
+
+```css
+button:hover:focus {
+    outline: 2px solid blue;
+}
+```
+
+Both conditions must apply:
+
+```text
+button
+  ↓
+:hover
+  +
+:focus
+  ↓
+Selector matches
+```
+
+### Combining `:required` and `:invalid`
+
+This is useful for form validation.
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+The selector targets an input that is:
+
+```text
+Required
+   +
+Invalid
+   ↓
+Apply red border
+```
+
+### Combining `:required` and `:valid`
+
+```css
+input:required:valid {
+    border-color: green;
+}
+```
+
+This targets required inputs whose current values satisfy their validation constraints.
+
+### Combining `:enabled` and `:focus`
+
+```css
+input:enabled:focus {
+    border-color: steelblue;
+}
+```
+
+The input must be both enabled and focused.
+
+### Combining `:checked` and `:disabled`
+
+```css
+input:checked:disabled {
+    opacity: 0.5;
+}
+```
+
+This targets a control that is both checked and disabled.
+
+### Combining `:not()` with Other Pseudo-Classes
+
+`:not()` can also be combined with other pseudo-classes.
+
+For example:
+
+```css
+li:not(:first-child) {
+    border-top: 1px solid gray;
+}
+```
+
+This selects list items except the first child.
+
+Another example:
+
+```css
+button:not(:disabled):hover {
+    background-color: steelblue;
+}
+```
+
+This targets buttons that are not disabled and are currently hovered.
+
+### Combining Structural Pseudo-Classes
+
+Structural pseudo-classes can also be combined.
+
+```css
+li:first-child:hover {
+    color: red;
+}
+```
+
+This targets the first list item while it is being hovered.
+
+Another example:
+
+```css
+li:last-child:hover {
+    color: blue;
+}
+```
+
+This targets the last list item while it is being hovered.
+
+### Combining Pseudo-Classes with Classes
+
+Pseudo-classes can be combined with normal class selectors.
+
+```css
+.button.primary:hover {
+    background-color: steelblue;
+}
+```
+
+This selects an element that has both:
+
+```text
+.button
+   +
+.primary
+   +
+:hover
+```
+
+### Combining Pseudo-Classes with Descendant Selectors
+
+Pseudo-classes can also be used inside larger selectors.
+
+```css
+.card:hover .title {
+    color: steelblue;
+}
+```
+
+Here, the `.title` is styled when its parent `.card` is hovered.
+
+Another example:
+
+```css
+.form-group:focus-within input:focus {
+    border-color: steelblue;
+}
+```
+
+This combines focus-related conditions within a larger selector.
+
+### Conditions Must Be Satisfied
+
+When pseudo-classes are placed together on the same element:
+
+```css
+button:hover:focus {
+    color: white;
+}
+```
+
+the element must satisfy both conditions.
+
+```text
+Hovered?
+   ↓
+Yes
+   ↓
+Focused?
+   ↓
+Yes
+   ↓
+Apply style
+```
+
+If either condition is not satisfied, the selector does not match.
+
+### Practical Example
+
+HTML:
+
+```html
+<button class="button">Save</button>
+<button class="button" disabled>Delete</button>
+```
+
+CSS:
+
+```css
+.button:not(:disabled):hover {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+The hover style applies to enabled buttons but excludes disabled buttons.
+
+```text
+Enabled + Hovered
+       ↓
+Styled
+
+Disabled + Hovered
+       ↓
+Not selected
+```
+
+### Important Point
+
+Combining pseudo-classes allows CSS to describe more specific states.
+
+```text
+Element
+   +
+Condition 1
+   +
+Condition 2
+   +
+Condition 3
+   ↓
+More specific selector
+```
+
+Examples:
+
+```css
+button:hover:focus
+input:required:invalid
+input:required:valid
+input:enabled:focus
+button:not(:disabled):hover
+li:not(:first-child)
+```
+
+> 💡 **Tip:** Combine pseudo-classes when a style should apply only when multiple conditions are true.
+
+> 💡 **Remember:** Multiple pseudo-classes written on the same element create combined conditions. The element must satisfy all of those conditions for the selector to match.
