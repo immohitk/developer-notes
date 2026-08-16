@@ -7922,3 +7922,537 @@ Maintainable CSS
 > 💡 **Tip:** Use pseudo-classes to describe states and conditions rather than creating unnecessary classes for every possible state.
 
 > 💡 **Remember:** Good CSS is not only about making elements look different. Interactive and form-related states should remain clear, accessible, and easy to maintain.
+
+---
+
+## Common Mistakes
+
+Avoiding common mistakes helps make CSS pseudo-class selectors more predictable, accessible, and maintainable.
+
+### 1. Confusing `:first-child` with `:first-of-type`
+
+These pseudo-classes do not work the same way.
+
+```css
+p:first-child {
+    color: red;
+}
+```
+
+checks whether the `<p>` is the first child overall.
+
+```css
+p:first-of-type {
+    color: blue;
+}
+```
+
+checks whether the `<p>` is the first `<p>` among its siblings.
+
+Example:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+</div>
+```
+
+Here:
+
+```css
+p:first-child
+```
+
+does not match, but:
+
+```css
+p:first-of-type
+```
+
+does match.
+
+---
+
+### 2. Confusing `:last-child` with `:last-of-type`
+
+The same distinction applies to the last element.
+
+```css
+p:last-child {
+    color: red;
+}
+```
+
+requires the `<p>` to be the last child overall.
+
+```css
+p:last-of-type {
+    color: blue;
+}
+```
+
+selects the last `<p>` among its siblings.
+
+---
+
+### 3. Misunderstanding `:nth-child()`
+
+`:nth-child()` counts all child elements.
+
+Consider:
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>First</p>
+    <p>Second</p>
+</div>
+```
+
+This:
+
+```css
+p:nth-child(2) {
+    color: red;
+}
+```
+
+selects the first `<p>` because it is the second child overall.
+
+It does not mean "the second `<p>`".
+
+For the second `<p>`, use:
+
+```css
+p:nth-of-type(2) {
+    color: blue;
+}
+```
+
+---
+
+### 4. Forgetting That `:only-child` Counts All Children
+
+`:only-child` means the element is the only child of its parent.
+
+It does not mean the element is the only child of its own type.
+
+```html
+<div>
+    <h2>Title</h2>
+    <p>Paragraph</p>
+</div>
+```
+
+This does not match:
+
+```css
+p:only-child {
+    color: red;
+}
+```
+
+because the `<p>` has an `<h2>` sibling.
+
+---
+
+### 5. Using `:not()` Incorrectly
+
+`:not()` excludes elements matching the selector inside it.
+
+```css
+li:not(:first-child) {
+    margin-top: 10px;
+}
+```
+
+This selects every `<li>` except the first one.
+
+A common mistake is expecting `:not()` to select only the element inside its parentheses. It does the opposite.
+
+```text
+:not(X)
+    ↓
+Select elements that do NOT match X
+```
+
+---
+
+### 6. Removing Focus Indicators
+
+A common accessibility mistake is:
+
+```css
+button:focus {
+    outline: none;
+}
+```
+
+without providing another visible focus indicator.
+
+Keyboard users need to be able to identify the currently focused element.
+
+If you remove the default indicator, provide a suitable replacement:
+
+```css
+button:focus-visible {
+    outline: 3px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+---
+
+### 7. Relying Only on `:hover`
+
+Hover is primarily associated with pointer interaction.
+
+Do not use `:hover` as the only way to communicate important information or interaction states.
+
+For interactive controls, also consider keyboard focus:
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+
+button:focus-visible {
+    outline: 3px solid steelblue;
+}
+```
+
+---
+
+### 8. Confusing `:focus` with `:focus-within`
+
+`:focus` applies to the element that has focus.
+
+```css
+input:focus {
+    border-color: steelblue;
+}
+```
+
+`:focus-within` can apply to a parent when it or a descendant has focus.
+
+```css
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+These pseudo-classes have different purposes.
+
+---
+
+### 9. Confusing `:required` with `:valid`
+
+These represent different conditions.
+
+```css
+input:required {
+    border-color: steelblue;
+}
+```
+
+means the control has a required constraint.
+
+```css
+input:valid {
+    border-color: green;
+}
+```
+
+means its current state/value satisfies its applicable validation constraints.
+
+A field can be:
+
+```text
+Required + Valid
+Required + Invalid
+Optional + Valid
+Optional + Invalid
+```
+
+depending on its constraints and current value.
+
+---
+
+### 10. Styling `:invalid` Without Considering User Experience
+
+This can immediately show an invalid style:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+For forms, consider when and how validation feedback should appear so users are not presented with confusing error states before they meaningfully interact with the form.
+
+---
+
+### 11. Confusing `:disabled` with `:not(:disabled)`
+
+These represent different states.
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+selects disabled buttons.
+
+```css
+button:not(:disabled) {
+    opacity: 1;
+}
+```
+
+selects buttons that are not disabled.
+
+Use the selector that clearly communicates the intended state.
+
+---
+
+### 12. Creating Overly Complex Selectors
+
+This selector may be difficult to maintain:
+
+```css
+.container ul li:not(:first-child):not(:last-child):hover:focus {
+    color: red;
+}
+```
+
+Complex selectors can make styles harder to understand and debug.
+
+Prefer simpler selectors when possible.
+
+---
+
+### 13. Using Too Many Pseudo-Classes
+
+Combining pseudo-classes is useful, but unnecessary combinations can make CSS harder to maintain.
+
+For example:
+
+```css
+button:hover:focus:active:enabled:not(:disabled) {
+    color: white;
+}
+```
+
+Some of these conditions may be redundant.
+
+Use only the conditions that are actually needed.
+
+---
+
+### 14. Assuming `:nth-child()` Starts at Zero
+
+CSS child positions start at `1`, not `0`.
+
+```css
+li:nth-child(1) {
+    /* First child */
+}
+```
+
+The sequence is:
+
+```text
+1 → First
+2 → Second
+3 → Third
+4 → Fourth
+```
+
+There is no `0th` child.
+
+---
+
+### 15. Using the Wrong `:nth-child()` Formula
+
+For example:
+
+```css
+li:nth-child(2n) {
+    background-color: lightgray;
+}
+```
+
+selects:
+
+```text
+2
+4
+6
+8
+...
+```
+
+while:
+
+```css
+li:nth-child(2n + 1) {
+    background-color: lightblue;
+}
+```
+
+selects:
+
+```text
+1
+3
+5
+7
+...
+```
+
+Understand the formula before using it.
+
+---
+
+### 16. Forgetting That `:checked` Represents State
+
+`:checked` is a state-based pseudo-class.
+
+```css
+input:checked {
+    accent-color: green;
+}
+```
+
+It does not mean that the HTML originally contained:
+
+```html
+checked
+```
+
+as a permanent CSS class. The selector responds to the control's current checked state.
+
+---
+
+### 17. Relying Only on Color for Form States
+
+Avoid communicating validation or status using color alone.
+
+For example:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+can provide useful visual feedback, but important error information should also be communicated through appropriate text or other accessible mechanisms.
+
+---
+
+### 18. Using Pseudo-Classes Instead of Semantic HTML
+
+Pseudo-classes do not replace appropriate HTML elements.
+
+Prefer:
+
+```html
+<button>Save</button>
+```
+
+for a button instead of using a generic element only because it can be styled with:
+
+```css
+.element:hover {
+    /* styles */
+}
+```
+
+Use semantic HTML first, then use pseudo-classes to style its states.
+
+---
+
+### 19. Ignoring Keyboard Navigation
+
+Always consider how interactive elements behave when users navigate using the keyboard.
+
+For example:
+
+```css
+a:focus-visible {
+    outline: 2px solid steelblue;
+}
+```
+
+This helps provide a visible focus indicator.
+
+---
+
+### 20. Not Testing Different States
+
+A pseudo-class can represent a changing state, so test the relevant states.
+
+For interactive elements:
+
+```text
+Normal
+:hover
+:active
+:focus
+:focus-visible
+```
+
+For form controls:
+
+```text
+:enabled
+:disabled
+:required
+:optional
+:valid
+:invalid
+:checked
+```
+
+Testing these states helps identify unexpected styling behavior.
+
+### Important Point
+
+Most pseudo-class mistakes come from misunderstanding what the pseudo-class actually represents.
+
+```text
+Structural
+    ↓
+:first-child
+:last-child
+:nth-child()
+:nth-of-type()
+
+Interaction
+    ↓
+:hover
+:active
+:focus
+:focus-visible
+:focus-within
+
+Form state
+    ↓
+:checked
+:enabled
+:disabled
+:required
+:optional
+:valid
+:invalid
+
+Conditional
+    ↓
+:not()
+```
+
+> 💡 **Tip:** Before using a pseudo-class, identify exactly what condition it represents. Then check whether that condition is based on position, element type, interaction, or form state.
+
+> 💡 **Remember:** Understanding the difference between similar pseudo-classes—such as `:nth-child()` vs `:nth-of-type()` and `:focus` vs `:focus-within`—prevents many common CSS bugs.
