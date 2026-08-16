@@ -4406,3 +4406,223 @@ Apply CSS styles
 > 💡 **Tip:** `:checked` is especially useful for styling checkboxes and radio buttons based on their current selected state.
 
 > 💡 **Remember:** `:checked` represents a selected or checked state; it is different from `:focus`, which represents the element currently having focus.
+
+---
+
+## :disabled
+
+The `:disabled` pseudo-class selects form controls that are currently disabled.
+
+A disabled form control cannot normally be interacted with or edited by the user.
+
+### Basic Syntax
+
+```css
+selector:disabled {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<button disabled>Submit</button>
+```
+
+CSS:
+
+```css
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+```
+
+The styles apply because the button has the `disabled` attribute.
+
+```text
+Enabled
+   ↓
+User can interact with control
+
+Disabled
+   ↓
+User cannot normally interact with control
+```
+
+### Disabled Input
+
+```html
+<input type="text" disabled>
+```
+
+CSS:
+
+```css
+input:disabled {
+    background-color: lightgray;
+}
+```
+
+The input receives the disabled styles.
+
+### Disabled Button
+
+```css
+button:disabled {
+    background-color: gray;
+    color: white;
+}
+```
+
+This can make a disabled button visually different from an enabled button.
+
+### Disabled Select
+
+The pseudo-class also works with `<select>` elements.
+
+```html
+<select disabled>
+    <option>Choose an option</option>
+</select>
+```
+
+CSS:
+
+```css
+select:disabled {
+    opacity: 0.6;
+}
+```
+
+### Disabled Textarea
+
+```html
+<textarea disabled></textarea>
+```
+
+CSS:
+
+```css
+textarea:disabled {
+    background-color: lightgray;
+}
+```
+
+### `:disabled` vs `:enabled`
+
+These pseudo-classes represent opposite states.
+
+```text
+:enabled
+    ↓
+Control can normally be used
+
+:disabled
+    ↓
+Control is disabled
+```
+
+Example:
+
+```css
+input:enabled {
+    background-color: white;
+}
+
+input:disabled {
+    background-color: lightgray;
+}
+```
+
+### Using `:disabled` with Other Pseudo-Classes
+
+Pseudo-classes can be combined.
+
+For example:
+
+```css
+button:disabled:hover {
+    cursor: not-allowed;
+}
+```
+
+However, disabled controls generally do not behave like normal interactive controls, so hover behavior can vary depending on the browser and element.
+
+### `:disabled` vs Attribute Selector
+
+You can also select an element using the attribute selector:
+
+```css
+button[disabled] {
+    opacity: 0.5;
+}
+```
+
+But `:disabled` specifically represents the disabled state of a form control.
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+This makes the intent clearer when you want to style disabled controls.
+
+### Practical Example
+
+HTML:
+
+```html
+<form>
+    <input type="text" placeholder="Username">
+
+    <input type="email" placeholder="Email">
+
+    <button disabled>Submit</button>
+</form>
+```
+
+CSS:
+
+```css
+button:disabled {
+    background-color: gray;
+    color: white;
+    opacity: 0.6;
+}
+```
+
+The submit button is visually shown as disabled.
+
+### Important Point
+
+The key idea is:
+
+```text
+Form control
+      ↓
+Disabled state
+      ↓
+:disabled
+      ↓
+Apply disabled styles
+```
+
+Common elements that support disabled states include:
+
+```text
+<button>
+<input>
+<select>
+<textarea>
+<option>
+<optgroup>
+<fieldset>
+```
+
+> 💡 **Tip:** Use `:disabled` to make disabled controls visually distinguishable from controls that users can interact with.
+
+> 💡 **Remember:** `:disabled` selects controls that are actually disabled; `:enabled` represents controls that are enabled.
