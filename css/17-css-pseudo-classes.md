@@ -6748,3 +6748,414 @@ li:not(:first-child)
 > 💡 **Tip:** Combine pseudo-classes when a style should apply only when multiple conditions are true.
 
 > 💡 **Remember:** Multiple pseudo-classes written on the same element create combined conditions. The element must satisfy all of those conditions for the selector to match.
+
+---
+
+## Practical Examples
+
+CSS pseudo-classes become especially useful when they are combined with normal selectors to create interactive, structural, and form-related styles.
+
+### Example 1: Button Hover Effect
+
+HTML:
+
+```html
+<button class="button">Click Me</button>
+```
+
+CSS:
+
+```css
+.button {
+    background-color: gray;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+}
+
+.button:hover {
+    background-color: steelblue;
+}
+```
+
+The button changes its background color when the pointer moves over it.
+
+---
+
+### Example 2: Button Pressed Effect
+
+```css
+.button:active {
+    transform: scale(0.98);
+}
+```
+
+The button becomes slightly smaller while it is being activated.
+
+---
+
+### Example 3: Keyboard Focus
+
+```css
+.button:focus-visible {
+    outline: 3px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+This provides a visible focus indicator when appropriate, especially during keyboard navigation.
+
+---
+
+### Example 4: Styling the First and Last List Items
+
+HTML:
+
+```html
+<ul class="menu">
+    <li>Home</li>
+    <li>About</li>
+    <li>Services</li>
+    <li>Contact</li>
+</ul>
+```
+
+CSS:
+
+```css
+.menu li:first-child {
+    font-weight: bold;
+}
+
+.menu li:last-child {
+    color: steelblue;
+}
+```
+
+The first and last list items receive different styles.
+
+---
+
+### Example 5: Alternating List Items
+
+```css
+.menu li:nth-child(even) {
+    background-color: lightgray;
+}
+```
+
+This styles every even-numbered list item.
+
+```text
+1 → Normal
+2 → Styled
+3 → Normal
+4 → Styled
+```
+
+---
+
+### Example 6: Excluding an Element
+
+```css
+.menu li:not(:last-child) {
+    border-bottom: 1px solid gray;
+}
+```
+
+Every list item except the last one receives a bottom border.
+
+This is useful for creating separators without adding a separator after the final item.
+
+---
+
+### Example 7: Styling a Checked Checkbox
+
+HTML:
+
+```html
+<label>
+    <input type="checkbox" class="task">
+    Complete task
+</label>
+```
+
+CSS:
+
+```css
+.task:checked {
+    accent-color: green;
+}
+```
+
+The checkbox receives the style when it is checked.
+
+---
+
+### Example 8: Styling Required Fields
+
+HTML:
+
+```html
+<input type="text" required>
+<input type="text">
+```
+
+CSS:
+
+```css
+input:required {
+    border: 2px solid steelblue;
+}
+
+input:optional {
+    border: 1px solid gray;
+}
+```
+
+The first field is required, while the second is optional.
+
+---
+
+### Example 9: Valid and Invalid Form Fields
+
+HTML:
+
+```html
+<input type="email" required>
+```
+
+CSS:
+
+```css
+input:valid {
+    border-color: green;
+}
+
+input:invalid {
+    border-color: red;
+}
+```
+
+The border changes according to the current validation state.
+
+---
+
+### Example 10: Disabled Form Control
+
+HTML:
+
+```html
+<button>Enabled</button>
+<button disabled>Disabled</button>
+```
+
+CSS:
+
+```css
+button:enabled {
+    opacity: 1;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+```
+
+The enabled and disabled buttons receive different styles.
+
+---
+
+### Example 11: Focus Within a Form Group
+
+HTML:
+
+```html
+<div class="form-group">
+    <label for="username">Username</label>
+    <input id="username" type="text">
+</div>
+```
+
+CSS:
+
+```css
+.form-group {
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+.form-group:focus-within {
+    border-color: steelblue;
+}
+```
+
+When the input receives focus, the parent `.form-group` also receives the `:focus-within` styling.
+
+---
+
+### Example 12: Combining Pseudo-Classes
+
+A button can be styled only when it is enabled and hovered.
+
+```css
+button:not(:disabled):hover {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+The selector means:
+
+```text
+button
+   ↓
+:not(:disabled)
+   ↓
+Button is enabled
+   ↓
+:hover
+   ↓
+Pointer is over the button
+   ↓
+Apply styles
+```
+
+---
+
+### Example 13: Required and Invalid
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+This targets inputs that are both required and currently invalid.
+
+A valid required input can be styled separately:
+
+```css
+input:required:valid {
+    border-color: green;
+}
+```
+
+---
+
+### Example 14: Navigation Links
+
+HTML:
+
+```html
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+```
+
+CSS:
+
+```css
+nav a:hover {
+    color: steelblue;
+}
+
+nav a:focus-visible {
+    outline: 2px solid steelblue;
+}
+```
+
+The navigation links respond to pointer and keyboard interaction.
+
+---
+
+### Example 15: Complete Interactive Card
+
+HTML:
+
+```html
+<div class="card">
+    <h2>CSS</h2>
+    <p>Learn CSS pseudo-classes.</p>
+    <a href="#">Read More</a>
+</div>
+```
+
+CSS:
+
+```css
+.card {
+    padding: 20px;
+    border: 1px solid gray;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card:focus-within {
+    border-color: steelblue;
+}
+
+.card a:focus-visible {
+    outline: 2px solid steelblue;
+}
+```
+
+Here, several pseudo-classes work together:
+
+```text
+.card:hover
+      ↓
+Card responds to pointer interaction
+
+.card:focus-within
+      ↓
+Card responds when its link receives focus
+
+a:focus-visible
+      ↓
+Link receives a visible focus indicator
+```
+
+### Important Point
+
+Pseudo-classes can be used for many common CSS tasks:
+
+```text
+User interaction
+      ↓
+:hover
+:active
+:focus
+:focus-visible
+
+Document structure
+      ↓
+:first-child
+:last-child
+:nth-child()
+:nth-of-type()
+
+Form states
+      ↓
+:checked
+:disabled
+:enabled
+:required
+:optional
+:valid
+:invalid
+
+Conditional selection
+      ↓
+:not()
+:focus-within
+```
+
+> 💡 **Tip:** Start with simple pseudo-classes such as `:hover`, `:focus`, `:first-child`, and `:checked`, then combine them when more specific conditions are needed.
+
+> 💡 **Remember:** Pseudo-classes let CSS respond to element state, position, interaction, and validation without requiring a separate class for every condition.
