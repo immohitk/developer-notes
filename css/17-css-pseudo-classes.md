@@ -5532,3 +5532,228 @@ The browser can evaluate whether the entered value satisfies the email input's v
 > 💡 **Tip:** Use `:valid` together with `:invalid` when providing visual feedback for form validation.
 
 > 💡 **Remember:** `:valid` describes the current validation state of a form control, while `:required` describes whether the control is required.
+
+---
+
+## :invalid
+
+The `:invalid` pseudo-class selects form controls whose current value does not satisfy the validation rules that apply to them.
+
+It is commonly used to provide visual feedback when a form value is invalid.
+
+### Basic Syntax
+
+```css
+selector:invalid {
+    property: value;
+}
+```
+
+### Basic Example
+
+```html
+<input type="email" required>
+```
+
+CSS:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+When the current value does not satisfy the input's validation constraints, the `:invalid` styles can apply.
+
+```text
+Input value
+    ↓
+Validation rules checked
+    ↓
+Value does not satisfy rules
+    ↓
+:invalid matches
+```
+
+### Invalid Email Input
+
+```html
+<input type="email" required>
+```
+
+CSS:
+
+```css
+input:valid {
+    border-color: green;
+}
+
+input:invalid {
+    border-color: red;
+}
+```
+
+An invalid email value can receive the `:invalid` styling.
+
+### Using `:invalid` with `:required`
+
+These pseudo-classes can be combined:
+
+```css
+input:required:invalid {
+    border-color: red;
+}
+```
+
+This targets a required input whose current value does not satisfy its validation constraints.
+
+### Using `:invalid` with `:optional`
+
+Optional controls can also become invalid when a value has been entered that violates their constraints.
+
+```css
+input:optional:invalid {
+    border-color: orange;
+}
+```
+
+For example:
+
+```html
+<input type="email">
+```
+
+The field is optional, but if a value is entered, that value can still be invalid.
+
+### Pattern Validation
+
+The `pattern` attribute can define a validation pattern.
+
+```html
+<input
+    type="text"
+    pattern="[A-Za-z]+"
+>
+```
+
+CSS:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+If the value does not satisfy the specified pattern, the input can match `:invalid`.
+
+### Minimum and Maximum Values
+
+Number inputs can have range constraints.
+
+```html
+<input
+    type="number"
+    min="1"
+    max="100"
+>
+```
+
+CSS:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+A value outside the specified range can cause the control to match `:invalid`.
+
+### Minimum Length
+
+Text inputs can use `minlength`.
+
+```html
+<input
+    type="text"
+    minlength="5"
+    required
+>
+```
+
+CSS:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+A value that does not satisfy the applicable length requirement can match `:invalid`.
+
+### Practical Form Example
+
+HTML:
+
+```html
+<form>
+    <label>
+        Email:
+        <input type="email" required>
+    </label>
+
+    <label>
+        Username:
+        <input type="text" minlength="3" required>
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+```
+
+CSS:
+
+```css
+input:valid {
+    border: 2px solid green;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+```
+
+The input border can change according to its current validation state.
+
+### `:invalid` vs `:valid`
+
+These pseudo-classes represent opposite validation states.
+
+```text
+:valid
+    ↓
+Current value satisfies
+the applicable constraints
+
+:invalid
+    ↓
+Current value does not satisfy
+the applicable constraints
+```
+
+### Important Point
+
+`:invalid` does not simply mean that a field is empty.
+
+It means that the current state or value of the form control does not satisfy the validation constraints that apply to it.
+
+For example:
+
+```html
+<input type="email" required>
+```
+
+can be invalid when the required value is missing or when the entered value does not satisfy the email constraint.
+
+> 💡 **Tip:** Use `:invalid` together with `:valid` when providing visual feedback for form validation.
+
+> 💡 **Remember:** `:invalid` describes the current validation state of a form control, while `:required` describes whether the control is required.
