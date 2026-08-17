@@ -3414,3 +3414,339 @@ It does not provide general access to arbitrary light-DOM descendants.
 > 💡 **Tip:** Think of `::slotted()` as the styling mechanism for content entering a Web Component through a `<slot>`.
 
 > 💡 **Remember:** `::slotted()` styles directly slotted elements from inside the Shadow DOM, while `::part()` allows outside CSS to style explicitly exposed elements inside the Shadow DOM.
+
+---
+
+## Pseudo-Elements vs Pseudo-Classes
+
+Pseudo-elements and pseudo-classes are both used with CSS selectors, but they serve different purposes.
+
+The main difference is:
+
+```text
+Pseudo-class
+     ↓
+Selects an element based on
+a state, condition, or position
+
+Pseudo-element
+     ↓
+Targets a specific part of an element
+or creates generated content
+```
+
+### Syntax Difference
+
+Pseudo-classes normally use a single colon:
+
+```css
+selector:pseudo-class {
+    property: value;
+}
+```
+
+Examples:
+
+```css
+:hover
+:focus
+:checked
+:first-child
+```
+
+Pseudo-elements normally use a double colon:
+
+```css
+selector::pseudo-element {
+    property: value;
+}
+```
+
+Examples:
+
+```css
+::before
+::after
+::first-letter
+::first-line
+```
+
+### Example of a Pseudo-Class
+
+```css
+button:hover {
+    background-color: steelblue;
+}
+```
+
+Here, `:hover` describes a **state** of the button.
+
+```text
+Button
+  ↓
+Pointer is over it
+  ↓
+:hover
+```
+
+### Example of a Pseudo-Element
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+Here, `::first-letter` targets a **specific part** of the paragraph.
+
+```text
+Paragraph
+   ↓
+First letter
+   ↓
+::first-letter
+```
+
+### Common Pseudo-Classes
+
+Examples include:
+
+```css
+:hover
+:active
+:focus
+:focus-visible
+:focus-within
+:first-child
+:last-child
+:nth-child()
+:nth-of-type()
+:not()
+:checked
+:disabled
+:enabled
+:required
+:optional
+:valid
+:invalid
+```
+
+They describe conditions such as:
+
+- User interaction
+- Focus
+- Element position
+- Form state
+- Validation state
+
+### Common Pseudo-Elements
+
+Examples include:
+
+```css
+::before
+::after
+::first-letter
+::first-line
+::selection
+::marker
+::placeholder
+::file-selector-button
+::backdrop
+::cue
+::part()
+::slotted()
+```
+
+They can be used to:
+
+- Generate decorative content
+- Style specific text portions
+- Style list markers
+- Style placeholder text
+- Style selected text
+- Style special parts of browser or Web Component interfaces
+
+### Side-by-Side Example
+
+HTML:
+
+```html
+<button class="button">Save</button>
+
+<p class="text">
+    CSS provides powerful styling features.
+</p>
+```
+
+Pseudo-class:
+
+```css
+.button:hover {
+    background-color: steelblue;
+}
+```
+
+Pseudo-element:
+
+```css
+.text::first-letter {
+    font-size: 2rem;
+}
+```
+
+The first selector responds to an interaction state.
+
+The second selector targets part of the text.
+
+### Combining Both
+
+Pseudo-classes and pseudo-elements can be used together.
+
+```css
+.button:hover::after {
+    content: " →";
+}
+```
+
+This can be understood as:
+
+```text
+.button
+   ↓
+:hover
+   ↓
+Button is hovered
+   ↓
+::after
+   ↓
+Generated content after the button content
+```
+
+### Structural Pseudo-Class vs Pseudo-Element
+
+Consider:
+
+```css
+li:first-child {
+    font-weight: bold;
+}
+```
+
+`:first-child` selects an element based on its position.
+
+Compare:
+
+```css
+li::marker {
+    font-weight: bold;
+}
+```
+
+`::marker` targets the marker portion of the list item.
+
+```text
+:first-child
+     ↓
+Condition / position
+
+::marker
+     ↓
+Specific part
+```
+
+### Form Example
+
+Pseudo-class:
+
+```css
+input:invalid {
+    border-color: red;
+}
+```
+
+This responds to the validation state of the input.
+
+Pseudo-element:
+
+```css
+input::placeholder {
+    color: gray;
+}
+```
+
+This targets the placeholder text.
+
+```text
+:invalid
+    ↓
+Form state
+
+::placeholder
+    ↓
+Part of form-control content
+```
+
+### Colon Comparison
+
+A useful way to remember the syntax is:
+
+```text
+:
+↓
+Pseudo-class
+State / condition / position
+```
+
+```text
+::
+↓↓
+Pseudo-element
+Part / generated content
+```
+
+### Important Note About Legacy Syntax
+
+Some older pseudo-elements were historically written with a single colon:
+
+```css
+p:first-letter
+p:first-line
+```
+
+Modern CSS uses the double-colon form:
+
+```css
+p::first-letter
+p::first-line
+```
+
+The double-colon syntax makes the distinction clearer.
+
+### Quick Comparison
+
+| Feature | Pseudo-Class | Pseudo-Element |
+|---|---|---|
+| Main purpose | State, condition, or position | Specific part or generated content |
+| Modern syntax | `:` | `::` |
+| Example | `:hover` | `::before` |
+| Example | `:focus` | `::first-letter` |
+| Example | `:checked` | `::placeholder` |
+| Example | `:nth-child()` | `::marker` |
+| Example | `:invalid` | `::selection` |
+
+### Simple Mental Model
+
+```text
+"WHEN does this element have a condition?"
+              ↓
+         Pseudo-class
+
+"WHICH PART of this element do I want?"
+              ↓
+         Pseudo-element
+```
+
+> 💡 **Tip:** When deciding between the two, ask whether you are describing an element's **state/condition** or targeting a **specific part/generated portion** of it.
+
+> 💡 **Remember:** `:hover` describes a state, while `::before` creates or targets a pseudo-element.
