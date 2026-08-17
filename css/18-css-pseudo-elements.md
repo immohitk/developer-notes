@@ -2020,3 +2020,203 @@ The pseudo-element represents the selected portion of the document rather than t
 > 💡 **Tip:** Use `::selection` to create a selection highlight that fits your website's visual design while keeping the selected text easy to read.
 
 > 💡 **Remember:** `::selection` styles text only while it is selected by the user.
+
+---
+
+## ::marker
+
+The `::marker` pseudo-element styles the marker box of list items.
+
+It can be used with ordered lists, unordered lists, and other elements that generate list-item markers.
+
+### Basic Syntax
+
+```css
+selector::marker {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+```
+
+CSS:
+
+```css
+li::marker {
+    color: steelblue;
+}
+```
+
+The list markers receive the specified styling.
+
+```text
+• HTML
+• CSS
+• JavaScript
+↑
+::marker
+```
+
+### Styling an Ordered List
+
+HTML:
+
+```html
+<ol>
+    <li>First step</li>
+    <li>Second step</li>
+    <li>Third step</li>
+</ol>
+```
+
+CSS:
+
+```css
+li::marker {
+    font-weight: bold;
+}
+```
+
+The numbers used as list markers become bold.
+
+### Changing Marker Color
+
+```css
+li::marker {
+    color: steelblue;
+}
+```
+
+This changes the color of the list markers.
+
+### Changing Marker Content
+
+The `content` property can be used with `::marker` to customize the marker.
+
+```css
+li::marker {
+    content: "✓ ";
+}
+```
+
+HTML:
+
+```html
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+```
+
+The list can display check marks instead of the default bullet markers.
+
+### Styling an Ordered List Marker
+
+You can also customize the marker of an ordered list.
+
+```css
+ol li::marker {
+    color: steelblue;
+    font-weight: bold;
+}
+```
+
+The selector targets the marker of each `<li>` inside the ordered list.
+
+### Using `::marker` with Classes
+
+HTML:
+
+```html
+<ul class="features">
+    <li>Fast</li>
+    <li>Simple</li>
+    <li>Responsive</li>
+</ul>
+```
+
+CSS:
+
+```css
+.features li::marker {
+    color: steelblue;
+}
+```
+
+Only markers belonging to the `.features` list are affected.
+
+### `::marker` vs `list-style`
+
+CSS also provides the `list-style` properties for controlling list markers.
+
+For example:
+
+```css
+ul {
+    list-style-type: square;
+}
+```
+
+`::marker` is useful when you want to style the marker itself.
+
+```css
+li::marker {
+    color: steelblue;
+    font-weight: bold;
+}
+```
+
+These approaches can be used together.
+
+### Combining `::marker` with Pseudo-Classes
+
+Pseudo-classes can be used before `::marker`.
+
+```css
+li:hover::marker {
+    color: steelblue;
+}
+```
+
+When the list item is hovered, its marker can receive the specified style.
+
+Another example:
+
+```css
+li:first-child::marker {
+    color: green;
+}
+```
+
+This targets the marker of the first list item.
+
+### Important Point
+
+The key idea is:
+
+```text
+List item
+    ↓
+::marker
+    ↓
+List marker
+    ↓
+Apply marker styles
+```
+
+The pseudo-element targets the marker rather than the text content of the list item.
+
+> 💡 **Tip:** Use `::marker` when you need to customize list bullets or numbers while keeping the semantic list structure.
+
+> 💡 **Remember:** `::marker` styles the marker of a list item, while the list item's text is styled using the normal element selector.
