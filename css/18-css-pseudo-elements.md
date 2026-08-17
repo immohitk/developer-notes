@@ -686,3 +686,265 @@ Better CSS control
 > 💡 **Tip:** Use pseudo-elements mainly for presentation and decoration. If content is meaningful or important to the document, it should generally be represented in the HTML.
 
 > 💡 **Remember:** Pseudo-elements are powerful because they let CSS work with parts of elements and generated content without unnecessarily changing the HTML structure.
+
+---
+
+## Pseudo-Element Syntax
+
+CSS pseudo-elements use the double-colon (`::`) syntax to target a specific part of an element or create generated content.
+
+### Basic Syntax
+
+```css
+selector::pseudo-element {
+    property: value;
+}
+```
+
+For example:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+Here:
+
+```text
+p
+ ↓
+Element selector
+
+::
+ ↓
+Pseudo-element separator
+
+first-letter
+ ↓
+Pseudo-element
+```
+
+### `::before` and `::after` Syntax
+
+The `::before` and `::after` pseudo-elements are commonly used to generate content.
+
+```css
+selector::before {
+    content: "Text";
+}
+```
+
+```css
+selector::after {
+    content: "Text";
+}
+```
+
+Example:
+
+```css
+.title::before {
+    content: "★ ";
+}
+```
+
+```html
+<h2 class="title">CSS</h2>
+```
+
+The rendered result can appear as:
+
+```text
+★ CSS
+```
+
+### The `content` Property
+
+`::before` and `::after` generally require the `content` property for generated content.
+
+```css
+.title::before {
+    content: "★";
+}
+```
+
+For a decorative pseudo-element, an empty value can be used:
+
+```css
+.title::after {
+    content: "";
+}
+```
+
+Example:
+
+```css
+.title::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+}
+```
+
+### Pseudo-Elements Without Generated Text
+
+Not every pseudo-element is used to generate text.
+
+For example:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+The `::first-letter` pseudo-element targets the first letter of the element's text.
+
+Similarly:
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+targets the first formatted line.
+
+### Common Syntax Examples
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+```css
+::selection {
+    background: steelblue;
+    color: white;
+}
+```
+
+```css
+li::marker {
+    font-weight: bold;
+}
+```
+
+```css
+input::placeholder {
+    color: gray;
+}
+```
+
+### Combining a Class with a Pseudo-Element
+
+A pseudo-element can be used with a class selector.
+
+```css
+.card::before {
+    content: "";
+}
+```
+
+Here:
+
+```text
+.card
+  +
+::before
+  ↓
+Pseudo-element of .card
+```
+
+### Combining a Pseudo-Class with a Pseudo-Element
+
+Pseudo-classes and pseudo-elements can be used together.
+
+```css
+button:hover::after {
+    content: " →";
+}
+```
+
+This means:
+
+```text
+button
+  ↓
+:hover
+  ↓
+Button is hovered
+  ↓
+::after
+  ↓
+Style the generated after-content
+```
+
+### One Pseudo-Element per Selector
+
+A selector can target a pseudo-element at the end of the selector.
+
+For example:
+
+```css
+.card:hover::before {
+    content: "";
+}
+```
+
+The pseudo-class appears before the pseudo-element:
+
+```text
+.card
+  ↓
+:hover
+  ↓
+::before
+```
+
+### Legacy Single-Colon Syntax
+
+Older CSS also allowed some pseudo-elements to be written with a single colon:
+
+```css
+p:first-letter {
+    font-size: 2rem;
+}
+```
+
+Modern CSS uses the double-colon syntax:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+The double-colon notation clearly distinguishes pseudo-elements from pseudo-classes.
+
+> 💡 **Tip:** Use the modern `::` syntax for pseudo-elements in new CSS.
+
+> 💡 **Remember:** Pseudo-elements use `::`, while pseudo-classes use `:`.
+
+### Quick Comparison
+
+```text
+Pseudo-class:
+:hover
+:focus
+:checked
+
+Pseudo-element:
+::before
+::after
+::first-letter
+```
