@@ -2220,3 +2220,240 @@ The pseudo-element targets the marker rather than the text content of the list i
 > 💡 **Tip:** Use `::marker` when you need to customize list bullets or numbers while keeping the semantic list structure.
 
 > 💡 **Remember:** `::marker` styles the marker of a list item, while the list item's text is styled using the normal element selector.
+
+---
+
+## ::placeholder
+
+The `::placeholder` pseudo-element styles the placeholder text of form controls.
+
+Placeholder text is temporary hint text displayed inside an input or another supported form control before the user enters a value.
+
+### Basic Syntax
+
+```css
+selector::placeholder {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<input type="text" placeholder="Enter your name">
+```
+
+CSS:
+
+```css
+input::placeholder {
+    color: gray;
+}
+```
+
+The placeholder text receives the specified style.
+
+```text
+┌─────────────────────────────┐
+│ Enter your name             │
+└─────────────────────────────┘
+        ↑
+    ::placeholder
+```
+
+### Changing Placeholder Color
+
+```css
+input::placeholder {
+    color: steelblue;
+}
+```
+
+This changes the color of the placeholder text.
+
+### Changing Placeholder Opacity
+
+```css
+input::placeholder {
+    opacity: 0.7;
+}
+```
+
+This can make the placeholder appear less prominent.
+
+### Changing Font Properties
+
+You can apply typography-related properties to placeholder text.
+
+```css
+input::placeholder {
+    font-style: italic;
+    font-size: 0.9rem;
+}
+```
+
+### Styling Different Form Controls
+
+The pseudo-element can be used with different supported form controls.
+
+```css
+input::placeholder {
+    color: gray;
+}
+
+textarea::placeholder {
+    color: gray;
+}
+```
+
+HTML:
+
+```html
+<input type="text" placeholder="Enter your name">
+
+<textarea placeholder="Enter your message"></textarea>
+```
+
+### Using a Class Selector
+
+HTML:
+
+```html
+<input
+    class="search"
+    type="search"
+    placeholder="Search..."
+>
+```
+
+CSS:
+
+```css
+.search::placeholder {
+    color: steelblue;
+}
+```
+
+Only the placeholder of the `.search` input receives the styling.
+
+### Combining `::placeholder` with a Pseudo-Class
+
+Pseudo-classes can be combined with `::placeholder`.
+
+For example:
+
+```css
+input:focus::placeholder {
+    color: gray;
+}
+```
+
+This targets the placeholder when the input is focused.
+
+You can also hide or reduce the visual prominence of the placeholder on focus:
+
+```css
+input:focus::placeholder {
+    opacity: 0.4;
+}
+```
+
+### Placeholder vs Value
+
+Placeholder text is not the same as the actual value of a form control.
+
+```html
+<input
+    type="text"
+    placeholder="Enter your name"
+>
+```
+
+The placeholder is only a hint.
+
+```text
+Empty input
+    ↓
+Placeholder is displayed
+
+User enters a value
+    ↓
+Placeholder disappears
+```
+
+### Placeholder Should Not Replace Labels
+
+Placeholder text should generally not be used as the only label for an important form field.
+
+Prefer:
+
+```html
+<label for="email">Email</label>
+<input
+    id="email"
+    type="email"
+    placeholder="you@example.com"
+>
+```
+
+Here:
+
+- The `<label>` identifies the field.
+- The placeholder provides an example or hint.
+
+### Practical Example
+
+HTML:
+
+```html
+<form>
+    <label for="name">Name</label>
+    <input
+        id="name"
+        type="text"
+        placeholder="Enter your name"
+    >
+
+    <label for="email">Email</label>
+    <input
+        id="email"
+        type="email"
+        placeholder="you@example.com"
+    >
+</form>
+```
+
+CSS:
+
+```css
+input::placeholder {
+    color: gray;
+    font-style: italic;
+}
+
+input:focus::placeholder {
+    opacity: 0.5;
+}
+```
+
+### Important Point
+
+The key idea is:
+
+```text
+Form control
+     ↓
+Placeholder text
+     ↓
+::placeholder
+     ↓
+Apply placeholder styles
+```
+
+`::placeholder` styles the hint text displayed inside a form control; it does not style the actual value entered by the user.
+
+> 💡 **Tip:** Use `::placeholder` to make hint text visually consistent with your form design, but keep important field identification in a proper `<label>`.
+
+> 💡 **Remember:** Placeholder text is temporary hint text, not a replacement for a form label.
