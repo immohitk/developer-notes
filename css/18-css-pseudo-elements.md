@@ -4999,3 +4999,286 @@ These resources can be used to:
 - Check browser support and compatibility details.
 
 > 💡 **Tip:** MDN is useful for practical explanations and examples, while the W3C and WHATWG specifications provide the formal standards and platform definitions.
+
+---
+
+## Quick Revision
+
+### What Are CSS Pseudo-Elements?
+
+Pseudo-elements allow CSS to style a specific part of an element or create generated content.
+
+They normally use the double-colon syntax:
+
+```css
+selector::pseudo-element {
+    property: value;
+}
+```
+
+### `::before`
+
+Creates a generated pseudo-element before the originating element's content.
+
+```css
+.title::before {
+    content: "★ ";
+}
+```
+
+### `::after`
+
+Creates a generated pseudo-element after the originating element's content.
+
+```css
+.title::after {
+    content: " ✓";
+}
+```
+
+### `::first-letter`
+
+Targets the first letter of the first formatted line.
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+### `::first-line`
+
+Targets the first formatted line of text.
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+The exact first line depends on the layout and available width.
+
+### `::selection`
+
+Styles text while it is selected by the user.
+
+```css
+::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+### `::marker`
+
+Styles the marker of a list item.
+
+```css
+li::marker {
+    color: steelblue;
+}
+```
+
+### `::placeholder`
+
+Styles placeholder text in supported form controls.
+
+```css
+input::placeholder {
+    color: gray;
+}
+```
+
+Remember that placeholder text should not replace a proper form label.
+
+### `::file-selector-button`
+
+Styles the button portion of a file input.
+
+```css
+input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+}
+```
+
+### `::backdrop`
+
+Styles the backdrop associated with an element displayed in the top layer, such as a dialog.
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+```
+
+### `::cue`
+
+Styles WebVTT cue text associated with media.
+
+```css
+::cue {
+    color: white;
+}
+```
+
+### `::part()`
+
+Allows external CSS to style an explicitly exposed part of a Shadow DOM component.
+
+Shadow DOM:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+External CSS:
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+### `::slotted()`
+
+Allows CSS inside a Shadow DOM to style elements assigned to a `<slot>`.
+
+```css
+::slotted(p) {
+    color: steelblue;
+}
+```
+
+It targets directly slotted elements rather than arbitrary descendants.
+
+### Pseudo-Elements vs Pseudo-Classes
+
+```text
+Pseudo-class
+    ↓
+State / condition / position
+
+Examples:
+:hover
+:focus
+:checked
+:nth-child()
+```
+
+```text
+Pseudo-element
+    ↓
+Specific part / generated content
+
+Examples:
+::before
+::after
+::first-letter
+::marker
+```
+
+### Combining Them
+
+Pseudo-classes can be combined with pseudo-elements:
+
+```css
+button:hover::after {
+    content: " →";
+}
+```
+
+The general pattern is:
+
+```css
+selector:pseudo-class::pseudo-element {
+    property: value;
+}
+```
+
+### Most Important Differences
+
+```text
+::before
+    ↓
+Before content
+
+::after
+    ↓
+After content
+```
+
+```text
+::first-letter
+    ↓
+First letter
+
+::first-line
+    ↓
+First formatted line
+```
+
+```text
+::part()
+    ↓
+External CSS → exposed Shadow DOM part
+
+::slotted()
+    ↓
+Shadow DOM CSS → slotted external content
+```
+
+### Main Uses
+
+```text
+Decorative content
+      ↓
+::before / ::after
+
+Text portions
+      ↓
+::first-letter / ::first-line
+
+Selected text
+      ↓
+::selection
+
+List markers
+      ↓
+::marker
+
+Placeholder text
+      ↓
+::placeholder
+
+File input button
+      ↓
+::file-selector-button
+
+Top-layer backdrop
+      ↓
+::backdrop
+
+Media captions
+      ↓
+::cue
+
+Web Components
+      ↓
+::part() / ::slotted()
+```
+
+### Final Revision
+
+Remember:
+
+```text
+Pseudo-class
+    =
+"When is the element in a particular state?"
+
+Pseudo-element
+    =
+"Which part of the element should be styled?"
+```
+
+> 💡 **Remember:** Pseudo-elements are mainly used for styling parts of elements and presentation. Important semantic content should generally remain in the HTML.
