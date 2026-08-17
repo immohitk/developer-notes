@@ -6766,3 +6766,738 @@ while avoiding unnecessary changes to the HTML structure.
 | `::slotted()`? | Styles directly slotted content internally |
 | Pseudo-class? | Describes state, condition, or position |
 | Can they combine? | Yes, e.g. `:hover::after` |
+
+---
+
+## Practice Exercises
+
+The following exercises help reinforce the concepts covered in this chapter.
+
+### Exercise 1 — Add Content Before a Heading
+
+Create a heading:
+
+```html
+<h2 class="title">CSS</h2>
+```
+
+Use `::before` to display:
+
+```text
+★ CSS
+```
+
+**Requirements:**
+
+- Do not add the star to the HTML.
+- Use `::before`.
+- Use the `content` property.
+
+---
+
+### Exercise 2 — Add an Arrow After a Link
+
+Create:
+
+```html
+<a href="#" class="link">Read More</a>
+```
+
+Use `::after` to display an arrow:
+
+```text
+Read More →
+```
+
+---
+
+### Exercise 3 — Create a Heading Underline
+
+Create:
+
+```html
+<h2 class="heading">Web Development</h2>
+```
+
+Use `::after` to create a decorative line below the heading.
+
+**Requirements:**
+
+```text
+Width: 60px
+Height: 3px
+```
+
+Do not add another HTML element for the line.
+
+---
+
+### Exercise 4 — Create a Drop Cap
+
+Create a paragraph:
+
+```html
+<p class="article">
+    CSS provides powerful tools for designing modern websites.
+</p>
+```
+
+Use `::first-letter` to:
+
+- Increase the first letter's size.
+- Make it bold.
+- Make it visually distinct from the rest of the paragraph.
+
+---
+
+### Exercise 5 — Style the First Line
+
+Create a paragraph containing enough text to wrap onto multiple lines.
+
+Use:
+
+```css
+::first-line
+```
+
+to make the first formatted line bold.
+
+Resize the browser window and observe how the affected text changes.
+
+**Question:**
+
+Why does the amount of text affected by `::first-line` change?
+
+---
+
+### Exercise 6 — Customize Text Selection
+
+Create a page containing several paragraphs.
+
+Use:
+
+```css
+::selection
+```
+
+to change:
+
+- Selection background
+- Selection text color
+
+Example target:
+
+```css
+::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+Select different portions of text and observe the result.
+
+---
+
+### Exercise 7 — Customize List Markers
+
+Create:
+
+```html
+<ul class="features">
+    <li>Fast</li>
+    <li>Simple</li>
+    <li>Responsive</li>
+</ul>
+```
+
+Use:
+
+```css
+::marker
+```
+
+to:
+
+- Change the marker color.
+- Make the marker bold.
+
+---
+
+### Exercise 8 — Create Checkmark Markers
+
+Create an unordered list and replace its normal bullet marker with a check mark.
+
+Target result:
+
+```text
+✓ HTML
+✓ CSS
+✓ JavaScript
+```
+
+Use:
+
+```css
+li::marker {
+    content: "✓ ";
+}
+```
+
+---
+
+### Exercise 9 — Style Placeholder Text
+
+Create:
+
+```html
+<input
+    type="text"
+    placeholder="Enter your name"
+>
+```
+
+Use `::placeholder` to:
+
+- Change the placeholder color.
+- Make the placeholder italic.
+- Reduce its opacity.
+
+---
+
+### Exercise 10 — Style a File Input Button
+
+Create:
+
+```html
+<input type="file">
+```
+
+Use:
+
+```css
+::file-selector-button
+```
+
+to customize the file-selection button.
+
+Try changing:
+
+- Padding
+- Border
+- Border radius
+- Background
+- Text color
+
+---
+
+### Exercise 11 — Style a Dialog Backdrop
+
+Create a dialog:
+
+```html
+<dialog open>
+    <h2>Welcome</h2>
+    <p>This is a modal dialog.</p>
+</dialog>
+```
+
+Use:
+
+```css
+dialog::backdrop
+```
+
+to create a dark transparent backdrop.
+
+Target:
+
+```text
+Page
+   ↓
+Dark backdrop
+   ↓
+Dialog
+```
+
+---
+
+### Exercise 12 — Create a Hover Arrow
+
+Create:
+
+```html
+<button class="button">Learn More</button>
+```
+
+The arrow should not appear initially.
+
+On hover:
+
+```text
+Learn More →
+```
+
+Use:
+
+```css
+.button:hover::after {
+    content: " →";
+}
+```
+
+Also add a visible `:focus-visible` style for keyboard users.
+
+---
+
+### Exercise 13 — Create Navigation Separators
+
+Create:
+
+```html
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+</nav>
+```
+
+Use `::after` and a structural pseudo-class to create:
+
+```text
+Home | About | Services | Contact
+```
+
+**Requirement:**
+
+The final item must not have a separator.
+
+**Hint:**
+
+```css
+:not(:last-child)
+```
+
+---
+
+### Exercise 14 — Create a Card Decoration
+
+Create:
+
+```html
+<article class="card">
+    <h2>CSS</h2>
+    <p>Learn CSS pseudo-elements.</p>
+</article>
+```
+
+Use `::before` to create a decorative vertical bar along the left side of the card.
+
+Use positioning:
+
+```css
+.card {
+    position: relative;
+}
+```
+
+---
+
+### Exercise 15 — Create a New Badge
+
+Create:
+
+```html
+<div class="product">
+    <h2>Premium Plan</h2>
+</div>
+```
+
+Use `::after` to generate:
+
+```text
+NEW
+```
+
+as a small badge in the upper-right corner.
+
+Do not add a separate badge element to the HTML.
+
+---
+
+### Exercise 16 — Combine `:hover` and `::after`
+
+Create a link:
+
+```html
+<a href="#" class="animated-link">
+    Read More
+</a>
+```
+
+Create an underline using `::after`.
+
+The underline should:
+
+```text
+Normal:
+No visible underline
+
+Hover:
+────────────
+```
+
+Use a transition to animate the width.
+
+---
+
+### Exercise 17 — Combine `:first-child` and `::before`
+
+Create:
+
+```html
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+```
+
+Use:
+
+```css
+:first-child
+```
+
+and:
+
+```css
+::before
+```
+
+to add:
+
+```text
+★ HTML
+```
+
+Only the first list item should receive the generated star.
+
+---
+
+### Exercise 18 — Combine `:last-child` and `::after`
+
+Using the same list, add:
+
+```text
+JavaScript ✓
+```
+
+only to the last item.
+
+Use:
+
+```css
+:last-child
+```
+
+with:
+
+```css
+::after
+```
+
+---
+
+### Exercise 19 — Compare Pseudo-Class and Pseudo-Element
+
+Create a button and implement both:
+
+```css
+button:hover {
+    /* State styling */
+}
+
+button::after {
+    /* Generated content */
+}
+```
+
+Explain in your own words:
+
+1. What does `:hover` represent?
+2. What does `::after` represent?
+3. Why are they different?
+
+---
+
+### Exercise 20 — Shadow DOM `::part()`
+
+Create a simple Web Component with:
+
+```html
+<h2 part="title">CSS Card</h2>
+```
+
+Expose the title using the `part` attribute.
+
+From outside the component, use:
+
+```css
+my-card::part(title) {
+    /* styles */
+}
+```
+
+Change the title's appearance.
+
+**Question:**
+
+Why can external CSS style this element through `::part()`?
+
+---
+
+### Exercise 21 — Shadow DOM `::slotted()`
+
+Create a Web Component containing:
+
+```html
+<slot></slot>
+```
+
+Use it like:
+
+```html
+<my-card>
+    <p>Hello from outside!</p>
+</my-card>
+```
+
+Inside the Shadow DOM, use:
+
+```css
+::slotted(p) {
+    /* styles */
+}
+```
+
+Observe how the slotted paragraph is styled.
+
+---
+
+### Exercise 22 — Identify the Pseudo-Element
+
+Identify which pseudo-element should be used for each requirement.
+
+| Requirement | Pseudo-element |
+|---|---|
+| Add an icon before text | `________` |
+| Add an icon after text | `________` |
+| Style the first letter | `________` |
+| Style the first formatted line | `________` |
+| Style selected text | `________` |
+| Style list bullets/numbers | `________` |
+| Style placeholder text | `________` |
+| Style a file input button | `________` |
+| Style a dialog backdrop | `________` |
+| Style media cue text | `________` |
+
+---
+
+### Exercise 23 — Identify the Correct Selector
+
+Determine whether each selector uses a pseudo-class or pseudo-element.
+
+```css
+button:hover
+```
+
+```css
+p::first-letter
+```
+
+```css
+input:focus
+```
+
+```css
+li::marker
+```
+
+```css
+input:checked
+```
+
+```css
+button::after
+```
+
+Classify each one as:
+
+```text
+Pseudo-class
+or
+Pseudo-element
+```
+
+---
+
+### Exercise 24 — Fix the Mistakes
+
+The following CSS contains mistakes:
+
+```css
+button::hover {
+    background: steelblue;
+}
+
+.title::before {
+    width: 20px;
+    height: 20px;
+}
+
+button::after:hover {
+    content: "→";
+}
+```
+
+Identify and fix all mistakes.
+
+---
+
+### Exercise 25 — Accessibility Review
+
+Consider:
+
+```css
+.required::after {
+    content: " Required";
+}
+```
+
+Answer:
+
+1. Is generated content a good place for important form information?
+2. What semantic HTML should be used for the form field?
+3. How could CSS be used only as an additional visual indicator?
+
+---
+
+### Exercise 26 — Build a Complete Card
+
+Create a card containing:
+
+```text
+★ CSS
+
+Learn modern CSS.
+
+Read More →
+```
+
+Requirements:
+
+- Use `::before` for the star.
+- Use `::after` for the arrow.
+- Use `:hover::after` for the hover behavior.
+- Use a real `<h2>` for the heading.
+- Use a real `<p>` for the description.
+- Use a real `<a>` or `<button>` for the action.
+
+---
+
+### Exercise 27 — Build a Styled Article
+
+Create an article containing:
+
+- A heading
+- Several paragraphs
+- A list
+- A link
+
+Apply:
+
+```text
+::first-letter
+::first-line
+::marker
+::selection
+::after
+```
+
+Use each pseudo-element for a different purpose.
+
+---
+
+### Exercise 28 — Build a Modal
+
+Create a dialog interface using:
+
+```text
+<dialog>
+::backdrop
+```
+
+Requirements:
+
+- Style the dialog.
+- Style the backdrop.
+- Provide a visible focus state for interactive controls.
+- Keep meaningful text in HTML.
+- Use pseudo-elements only for decoration.
+
+---
+
+### Exercise 29 — Debug a Pseudo-Element
+
+Given:
+
+```css
+.card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+}
+```
+
+The decorative bar is not appearing.
+
+Identify what is missing and provide a corrected version.
+
+---
+
+### Exercise 30 — Mini Project
+
+Build a small **CSS Features Card** containing:
+
+```text
+★ Modern CSS
+────────────────
+
+✓ Pseudo-elements
+✓ Pseudo-classes
+✓ Responsive design
+
+Learn More →
+```
+
+Requirements:
+
+- `::before` for the heading icon.
+- `::after` for the heading decoration.
+- `::marker` for the feature list.
+- `::after` for the link arrow.
+- `:hover::after` for the interactive arrow.
+- `:focus-visible` for keyboard focus.
+- Semantic HTML for meaningful content.
+- Responsive layout.
+
+### Challenge
+
+Try to build the complete component **without adding extra HTML elements solely for decoration**.
+
+The goal is to decide carefully which content belongs in HTML and which visual details are appropriate for CSS pseudo-elements.
+
+> 💡 **Tip:** Start with semantic HTML first. Then add pseudo-elements only where they improve presentation without replacing meaningful content.
