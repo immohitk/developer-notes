@@ -3171,3 +3171,246 @@ Only elements explicitly exposed with the `part` attribute can be targeted throu
 > 💡 **Tip:** Think of `::part()` as a controlled styling API for Web Components.
 
 > 💡 **Remember:** `::part(name)` styles an element inside a shadow tree only when that element has exposed the corresponding `part="name"`.
+
+---
+
+## ::slotted()
+
+The `::slotted()` pseudo-element allows CSS inside a Web Component's shadow tree to style elements that have been assigned to a `<slot>`.
+
+It is used with **Shadow DOM** and **Web Components**.
+
+### Basic Syntax
+
+```css
+::slotted(selector) {
+    property: value;
+}
+```
+
+The selector inside `::slotted()` matches elements that are assigned to a slot.
+
+### Basic Example
+
+HTML:
+
+```html
+<my-card>
+    <p>Hello from the light DOM.</p>
+</my-card>
+```
+
+Inside the Web Component's shadow tree:
+
+```html
+<slot></slot>
+```
+
+CSS inside the shadow tree:
+
+```css
+::slotted(p) {
+    color: steelblue;
+}
+```
+
+The `<p>` assigned to the slot can receive the specified styling.
+
+```text
+Light DOM
+    ↓
+<p>
+    ↓
+Assigned to <slot>
+    ↓
+::slotted(p)
+    ↓
+Styled from the Shadow DOM
+```
+
+### Using a Named Slot
+
+HTML:
+
+```html
+<my-card>
+    <h2 slot="title">CSS</h2>
+    <p>Learn CSS pseudo-elements.</p>
+</my-card>
+```
+
+Shadow DOM:
+
+```html
+<h2>
+    <slot name="title"></slot>
+</h2>
+
+<slot></slot>
+```
+
+CSS:
+
+```css
+::slotted([slot="title"]) {
+    color: steelblue;
+}
+```
+
+The element assigned to the `title` slot can be styled.
+
+### Using a Class Selector
+
+HTML:
+
+```html
+<my-card>
+    <p class="description">
+        Learn CSS.
+    </p>
+</my-card>
+```
+
+CSS inside the shadow tree:
+
+```css
+::slotted(.description) {
+    color: gray;
+}
+```
+
+The slotted element with the matching class can be styled.
+
+### Using the Universal Selector
+
+You can target all elements assigned to a slot:
+
+```css
+::slotted(*) {
+    margin: 0;
+}
+```
+
+This matches elements assigned to the slot.
+
+### Important Limitation
+
+`::slotted()` targets elements that are **directly assigned to a slot**.
+
+For example:
+
+```html
+<my-card>
+    <div>
+        <p>Nested paragraph</p>
+    </div>
+</my-card>
+```
+
+If the `<div>` is assigned to a slot, then:
+
+```css
+::slotted(div) {
+    /* Matches the div */
+}
+```
+
+but:
+
+```css
+::slotted(p) {
+    /* Does not reach the nested p through the div */
+}
+```
+
+`::slotted()` does not work as a general descendant selector.
+
+### `::slotted()` vs `::part()`
+
+These pseudo-elements work in opposite directions.
+
+```text
+::slotted()
+     ↓
+Shadow DOM styles
+     ↓
+Style elements supplied from outside
+through a <slot>
+```
+
+```text
+::part()
+     ↓
+Outside styles
+     ↓
+Style explicitly exposed elements
+inside a Shadow DOM
+```
+
+### Example Comparison
+
+A component can contain:
+
+```html
+<slot></slot>
+```
+
+and receive external content:
+
+```html
+<my-card>
+    <p>Hello</p>
+</my-card>
+```
+
+Inside the shadow tree:
+
+```css
+::slotted(p) {
+    color: steelblue;
+}
+```
+
+The shadow component styles the externally supplied `<p>`.
+
+For the opposite direction, the shadow tree can expose an internal element:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+and outside CSS can use:
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+### Why `::slotted()` Is Useful
+
+`::slotted()` provides controlled styling for content supplied to a Web Component.
+
+```text
+External content
+       ↓
+      <slot>
+       ↓
+Shadow DOM
+       ↓
+::slotted()
+       ↓
+Style assigned content
+```
+
+This is useful when building reusable Web Components that accept custom content from their users.
+
+### Important Point
+
+`::slotted()` can only be used from within a shadow tree to target elements assigned to a `<slot>`.
+
+It does not provide general access to arbitrary light-DOM descendants.
+
+> 💡 **Tip:** Think of `::slotted()` as the styling mechanism for content entering a Web Component through a `<slot>`.
+
+> 💡 **Remember:** `::slotted()` styles directly slotted elements from inside the Shadow DOM, while `::part()` allows outside CSS to style explicitly exposed elements inside the Shadow DOM.
