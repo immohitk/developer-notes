@@ -1827,3 +1827,196 @@ The first line can change when the element's width or text layout changes.
 > 💡 **Tip:** Use `::first-line` when you want the opening line of a block of text to have a different visual appearance.
 
 > 💡 **Remember:** `::first-line` targets the first **formatted line**, so the amount of text it affects can change depending on the layout.
+
+---
+
+## ::selection
+
+The `::selection` pseudo-element styles the portion of text that a user has selected.
+
+It is commonly used to customize the appearance of highlighted text on a webpage.
+
+### Basic Syntax
+
+```css
+::selection {
+    property: value;
+}
+```
+
+### Basic Example
+
+```css
+::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+When the user selects text on the page, the selected text can receive the specified styles.
+
+```text
+Normal text:
+Hello, CSS!
+
+Selected text:
+[Hello, CSS!]
+     ↑
+  ::selection
+```
+
+### Styling Selected Text
+
+You can change the background and text color of selected content.
+
+```css
+p::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+This targets selected text within matching paragraphs.
+
+### Global Selection Styling
+
+You can use `::selection` without an element selector:
+
+```css
+::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+This can apply the selection styling broadly across the document.
+
+### Selection Styling on Specific Elements
+
+You can target a particular element.
+
+```css
+.article::selection {
+    background-color: lightgray;
+    color: black;
+}
+```
+
+HTML:
+
+```html
+<p class="article">
+    CSS provides powerful tools for styling web pages.
+</p>
+```
+
+The selected text within the matching element can receive the specified selection styles.
+
+### Supported Properties
+
+The `::selection` pseudo-element has restrictions on which CSS properties can affect the selection highlight.
+
+Commonly used properties include:
+
+```css
+::selection {
+    color: white;
+    background-color: steelblue;
+}
+```
+
+Do not assume that every CSS property can be applied to a selection pseudo-element.
+
+### Combining `::selection` with Other Selectors
+
+You can use a normal selector before `::selection`.
+
+```css
+.article::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+The structure is:
+
+```text
+.article
+    ↓
+::selection
+    ↓
+Selected text inside .article
+```
+
+### `::selection` vs Normal Text Styling
+
+Normal text styling affects text continuously:
+
+```css
+p {
+    color: black;
+}
+```
+
+`::selection` applies specifically while the user has selected the text:
+
+```css
+p::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+```text
+Normal state
+    ↓
+Normal text styles
+
+User selects text
+    ↓
+::selection styles
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<article>
+    <h2>CSS Pseudo-Elements</h2>
+
+    <p>
+        Pseudo-elements allow CSS to style specific parts
+        of an element.
+    </p>
+</article>
+```
+
+CSS:
+
+```css
+article::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+When text inside the article is selected, the selection can use the specified colors.
+
+### Important Point
+
+The key idea is:
+
+```text
+User selects text
+       ↓
+::selection
+       ↓
+Style the selected portion
+```
+
+The pseudo-element represents the selected portion of the document rather than the entire element.
+
+> 💡 **Tip:** Use `::selection` to create a selection highlight that fits your website's visual design while keeping the selected text easy to read.
+
+> 💡 **Remember:** `::selection` styles text only while it is selected by the user.
