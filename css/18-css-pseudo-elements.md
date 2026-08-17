@@ -1612,3 +1612,218 @@ Apply typography styles
 > 💡 **Tip:** `::first-letter` is especially useful for headings, articles, introductions, and other text where a decorative first letter improves the visual design.
 
 > 💡 **Remember:** `::first-letter` targets the first letter, while `::first-line` targets the first formatted line of text.
+
+---
+
+## ::first-line
+
+The `::first-line` pseudo-element targets the first formatted line of text inside an element.
+
+It is commonly used to style the beginning of paragraphs, articles, and other blocks of text.
+
+### Basic Syntax
+
+```css
+selector::first-line {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<p>
+    CSS allows you to style the appearance of content on a webpage.
+</p>
+```
+
+CSS:
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+The first formatted line of the paragraph becomes bold.
+
+```text
+CSS allows you to style the appearance
+of content on a webpage.
+↑
+First formatted line
+```
+
+The exact text included in the first line depends on the available width, font, font size, and other layout conditions.
+
+### Changing the First Line Color
+
+```css
+p::first-line {
+    color: steelblue;
+}
+```
+
+Only the first formatted line receives the specified color.
+
+### Changing Font Properties
+
+You can apply typography-related styles to the first line.
+
+```css
+p::first-line {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+```
+
+This can be useful for giving the opening line of an article or paragraph a distinct appearance.
+
+### Combining Multiple Properties
+
+```css
+.article::first-line {
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+```
+
+### `::first-line` Is Affected by Layout
+
+The first formatted line is not a fixed number of characters.
+
+For example:
+
+```text
+Wide container:
+CSS allows you to style the appearance of content
+on a webpage.
+
+Narrow container:
+CSS allows you to style
+the appearance of content
+on a webpage.
+```
+
+The first formatted line changes according to the layout.
+
+Therefore, `::first-line` should be understood as a **layout-dependent line**, not a fixed portion of text.
+
+### `::first-line` vs `::first-letter`
+
+These pseudo-elements target different parts of text.
+
+```text
+::first-letter
+      ↓
+First letter
+
+::first-line
+      ↓
+First formatted line
+```
+
+Example:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+### Combining `::first-line` with a Class
+
+```css
+.article::first-line {
+    font-weight: bold;
+}
+```
+
+HTML:
+
+```html
+<p class="article">
+    Learning CSS helps you control the appearance and layout of web pages.
+</p>
+```
+
+### Combining with a Pseudo-Class
+
+Pseudo-classes and pseudo-elements can be combined.
+
+```css
+.article:hover::first-line {
+    color: steelblue;
+}
+```
+
+The selector means:
+
+```text
+.article
+    ↓
+:hover
+    ↓
+Element is hovered
+    ↓
+::first-line
+    ↓
+Style the first formatted line
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<article>
+    <p>
+        CSS provides powerful tools for controlling the appearance
+        and layout of web pages.
+    </p>
+
+    <p>
+        Pseudo-elements can style specific parts of an element.
+    </p>
+</article>
+```
+
+CSS:
+
+```css
+article p::first-line {
+    font-weight: bold;
+    color: steelblue;
+}
+```
+
+Each paragraph receives the styling on its own first formatted line.
+
+### Important Point
+
+The key idea is:
+
+```text
+HTML element
+     ↓
+::first-line
+     ↓
+First formatted line
+     ↓
+Apply supported styles
+```
+
+The first line can change when the element's width or text layout changes.
+
+> 💡 **Tip:** Use `::first-line` when you want the opening line of a block of text to have a different visual appearance.
+
+> 💡 **Remember:** `::first-line` targets the first **formatted line**, so the amount of text it affects can change depending on the layout.
