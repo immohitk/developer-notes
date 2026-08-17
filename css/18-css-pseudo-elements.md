@@ -2457,3 +2457,180 @@ Apply placeholder styles
 > 💡 **Tip:** Use `::placeholder` to make hint text visually consistent with your form design, but keep important field identification in a proper `<label>`.
 
 > 💡 **Remember:** Placeholder text is temporary hint text, not a replacement for a form label.
+
+---
+
+## ::file-selector-button
+
+The `::file-selector-button` pseudo-element styles the button portion of an `<input type="file">` control.
+
+It is useful when you want to customize the appearance of the file-selection button while keeping the native file input control.
+
+### Basic Syntax
+
+```css
+input[type="file"]::file-selector-button {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<input type="file">
+```
+
+CSS:
+
+```css
+input[type="file"]::file-selector-button {
+    background-color: steelblue;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+}
+```
+
+The file-selection button receives the specified styling.
+
+```text
+┌────────────────────────────────────┐
+│ Choose File  No file chosen        │
+└────────────────────────────────────┘
+      ↑
+::file-selector-button
+```
+
+### Changing the Button Background
+
+```css
+input[type="file"]::file-selector-button {
+    background-color: steelblue;
+}
+```
+
+This changes the button's background.
+
+### Changing Text Color
+
+```css
+input[type="file"]::file-selector-button {
+    color: white;
+}
+```
+
+### Adding Padding
+
+```css
+input[type="file"]::file-selector-button {
+    padding: 10px 16px;
+}
+```
+
+This can make the button easier to interact with.
+
+### Removing the Default Border
+
+```css
+input[type="file"]::file-selector-button {
+    border: none;
+}
+```
+
+You can then add your own border or other styling if needed.
+
+### Using Border Radius
+
+```css
+input[type="file"]::file-selector-button {
+    border-radius: 6px;
+}
+```
+
+This can give the file-selection button rounded corners.
+
+### Combining with a Pseudo-Class
+
+Pseudo-classes can be used with `::file-selector-button`.
+
+```css
+input[type="file"]::file-selector-button:hover {
+    background-color: darkgray;
+}
+```
+
+This changes the button's appearance when the pointer is over it.
+
+A focus-related style can also be applied to the file input itself:
+
+```css
+input[type="file"]:focus-visible {
+    outline: 2px solid steelblue;
+}
+```
+
+### Complete Example
+
+HTML:
+
+```html
+<label for="resume">Upload Resume</label>
+
+<input
+    id="resume"
+    type="file"
+>
+```
+
+CSS:
+
+```css
+input[type="file"]::file-selector-button {
+    padding: 10px 16px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: darkgray;
+}
+
+input[type="file"]:focus-visible {
+    outline: 2px solid steelblue;
+    outline-offset: 2px;
+}
+```
+
+### Why Use `::file-selector-button`?
+
+Without replacing the native file input, you can customize the button portion:
+
+```text
+Native file input
+       ↓
+::file-selector-button
+       ↓
+Customize the button
+       ↓
+Keep the native file-control behavior
+```
+
+This can be preferable to completely replacing the native file input with custom JavaScript behavior.
+
+### Important Point
+
+`::file-selector-button` targets the **button portion** of a file input, not the entire file input control.
+
+```css
+input[type="file"]::file-selector-button {
+    /* button styles */
+}
+```
+
+> 💡 **Tip:** Use `::file-selector-button` when you want to improve the visual appearance of file-upload controls while keeping the native file-selection functionality.
+
+> 💡 **Remember:** `::file-selector-button` styles the button inside an `<input type="file">`; it does not represent the entire file input.
