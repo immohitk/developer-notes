@@ -1408,3 +1408,207 @@ Appears after the element's content
 > 💡 **Tip:** Use `::after` for decorative or presentational content that should appear after the element's existing content.
 
 > 💡 **Remember:** `::before` generates a pseudo-element before the originating element's content, while `::after` generates one after it.
+
+---
+
+## ::first-letter
+
+The `::first-letter` pseudo-element targets the first letter of the first formatted line of text in an element.
+
+It is commonly used for decorative typography, such as creating a drop-cap effect at the beginning of a paragraph.
+
+### Basic Syntax
+
+```css
+selector::first-letter {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<p>Hello, CSS!</p>
+```
+
+CSS:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+    font-weight: bold;
+}
+```
+
+Only the first letter is styled:
+
+```text
+H ello, CSS!
+↑
+Styled
+```
+
+### Drop-Cap Effect
+
+A common use of `::first-letter` is creating a large first letter.
+
+```css
+.article p::first-letter {
+    font-size: 3rem;
+    font-weight: bold;
+}
+```
+
+HTML:
+
+```html
+<p>CSS makes it possible to create many different visual effects.</p>
+```
+
+This creates a drop-cap-like appearance.
+
+### Changing the First Letter's Color
+
+```css
+p::first-letter {
+    color: steelblue;
+}
+```
+
+Only the first letter receives the color.
+
+### Combining Multiple Properties
+
+You can apply several styles to the first letter.
+
+```css
+p::first-letter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: steelblue;
+}
+```
+
+### Using `float`
+
+`::first-letter` can also be used with `float` to create a traditional drop-cap effect.
+
+```css
+p::first-letter {
+    float: left;
+    font-size: 3rem;
+    line-height: 0.8;
+    margin-right: 6px;
+}
+```
+
+This allows the following text to flow around the enlarged first letter.
+
+### `::first-letter` Does Not Mean the First Character in Every Situation
+
+The pseudo-element targets the first letter of the first formatted line, subject to the CSS rules that define what can be considered a first letter.
+
+For example, leading content such as certain punctuation or other characters can affect what is considered part of the first-letter sequence.
+
+The important idea is:
+
+```text
+Element text
+    ↓
+First formatted line
+    ↓
+First-letter styling
+```
+
+### Combining `::first-letter` with a Class
+
+```css
+.article::first-letter {
+    font-size: 3rem;
+}
+```
+
+HTML:
+
+```html
+<p class="article">
+    Learning CSS is an important part of web development.
+</p>
+```
+
+The pseudo-element can be applied to any matching element.
+
+### Combining `::first-letter` with a Pseudo-Class
+
+Pseudo-classes and pseudo-elements can be combined when appropriate.
+
+For example:
+
+```css
+.article:hover::first-letter {
+    color: steelblue;
+}
+```
+
+Here:
+
+```text
+.article
+    ↓
+:hover
+    ↓
+Element is hovered
+    ↓
+::first-letter
+    ↓
+Style the first letter
+```
+
+### `::first-letter` vs `::first-line`
+
+These pseudo-elements target different parts of text.
+
+```text
+::first-letter
+      ↓
+First letter
+
+::first-line
+      ↓
+First formatted line
+```
+
+Example:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+### Important Point
+
+The key idea is:
+
+```text
+HTML element
+     ↓
+::first-letter
+     ↓
+Target the first letter
+of the first formatted line
+     ↓
+Apply typography styles
+```
+
+> 💡 **Tip:** `::first-letter` is especially useful for headings, articles, introductions, and other text where a decorative first letter improves the visual design.
+
+> 💡 **Remember:** `::first-letter` targets the first letter, while `::first-line` targets the first formatted line of text.
