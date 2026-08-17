@@ -2985,3 +2985,189 @@ Style subtitle or caption text
 > 💡 **Tip:** Use `::cue` when you need to customize the appearance of captions or subtitles associated with media.
 
 > 💡 **Remember:** `::cue` is specifically associated with WebVTT cue text; it does not style ordinary HTML text.
+
+---
+
+## ::part()
+
+The `::part()` pseudo-element allows CSS outside a Web Component's shadow tree to style an element that has been explicitly exposed through the `part` attribute.
+
+It is mainly used with **Shadow DOM** and **Web Components**.
+
+### Basic Syntax
+
+```css
+custom-element::part(part-name) {
+    property: value;
+}
+```
+
+The `part-name` must match a name exposed by the component using the `part` attribute.
+
+### Basic Example
+
+Inside a Web Component's shadow tree:
+
+```html
+<button part="button">Click Me</button>
+```
+
+Outside the component:
+
+```css
+my-button::part(button) {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+The external CSS can style the exposed `button` part.
+
+```text
+Web Component
+      ↓
+Shadow DOM
+      ↓
+part="button"
+      ↓
+::part(button)
+      ↓
+External CSS styles the exposed part
+```
+
+### Using a Custom Element
+
+HTML:
+
+```html
+<my-card></my-card>
+```
+
+Suppose the component's shadow tree contains:
+
+```html
+<div part="card">
+    <h2 part="title">CSS</h2>
+</div>
+```
+
+External CSS can target those exposed parts:
+
+```css
+my-card::part(card) {
+    border: 1px solid gray;
+}
+
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+### The `part` Attribute
+
+The `part` attribute exposes an element from a shadow tree for external styling.
+
+Example:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+The exposed name is:
+
+```text
+title
+```
+
+External CSS can then use:
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+### Multiple Part Names
+
+An element can expose multiple part names.
+
+```html
+<button part="button primary">Save</button>
+```
+
+The component exposes two part names:
+
+```text
+button
+primary
+```
+
+They can be targeted separately:
+
+```css
+my-button::part(button) {
+    padding: 10px;
+}
+
+my-button::part(primary) {
+    font-weight: bold;
+}
+```
+
+### Why `::part()` Is Useful
+
+Shadow DOM provides encapsulation, so styles from outside a component do not normally target arbitrary internal elements.
+
+`::part()` provides a controlled styling interface.
+
+```text
+Shadow DOM
+     ↓
+Internal element
+     ↓
+part="title"
+     ↓
+Explicitly exposed
+     ↓
+::part(title)
+     ↓
+External styling
+```
+
+This allows component authors to decide which internal elements can be customized.
+
+### `::part()` vs Normal Descendant Selectors
+
+A normal selector such as:
+
+```css
+my-card h2 {
+    color: steelblue;
+}
+```
+
+cannot generally reach an `<h2>` inside the component's shadow tree.
+
+Instead, the component can explicitly expose the element:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+and external CSS can use:
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+### Important Point
+
+`::part()` does not provide unrestricted access to everything inside a Shadow DOM.
+
+Only elements explicitly exposed with the `part` attribute can be targeted through `::part()`.
+
+> 💡 **Tip:** Think of `::part()` as a controlled styling API for Web Components.
+
+> 💡 **Remember:** `::part(name)` styles an element inside a shadow tree only when that element has exposed the corresponding `part="name"`.
