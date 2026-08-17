@@ -5282,3 +5282,409 @@ Pseudo-element
 ```
 
 > 💡 **Remember:** Pseudo-elements are mainly used for styling parts of elements and presentation. Important semantic content should generally remain in the HTML.
+
+---
+
+## Best Practices
+
+Following good practices when using CSS pseudo-elements helps keep styles maintainable, accessible, and predictable.
+
+### 1. Use Pseudo-Elements Mainly for Presentation
+
+Pseudo-elements are well suited for:
+
+- Decorative shapes
+- Icons
+- Separators
+- Visual indicators
+- Typography effects
+- Other presentational details
+
+Example:
+
+```css
+.heading::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+}
+```
+
+### 2. Keep Important Content in HTML
+
+Do not use generated CSS content as the only source of important information.
+
+Prefer:
+
+```html
+<button>Delete</button>
+```
+
+rather than relying only on:
+
+```css
+button::before {
+    content: "Delete";
+}
+```
+
+Important text should generally be part of the document's HTML.
+
+### 3. Use `content` Correctly with `::before` and `::after`
+
+For generated content:
+
+```css
+.element::before {
+    content: "★";
+}
+```
+
+For a purely decorative pseudo-element:
+
+```css
+.element::before {
+    content: "";
+}
+```
+
+Do not forget the `content` declaration when using `::before` or `::after`.
+
+### 4. Prefer the Modern Double-Colon Syntax
+
+Use:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+rather than the older single-colon form:
+
+```css
+p:first-letter {
+    font-size: 2rem;
+}
+```
+
+The double-colon syntax clearly distinguishes pseudo-elements from pseudo-classes.
+
+### 5. Keep Pseudo-Element Selectors Readable
+
+Prefer:
+
+```css
+.card::before {
+    content: "";
+}
+```
+
+over unnecessarily complicated selectors.
+
+Readable selectors are easier to maintain and debug.
+
+### 6. Use `::before` and `::after` for Decoration
+
+They are particularly useful for visual elements that do not need to exist as independent HTML elements.
+
+```css
+.card::before {
+    content: "";
+    display: block;
+    height: 4px;
+}
+```
+
+This keeps purely decorative markup out of the HTML.
+
+### 7. Do Not Use Pseudo-Elements When Real HTML Is More Appropriate
+
+If an element has semantic meaning or needs to be independently interacted with, use an actual HTML element.
+
+For example, a real button should remain:
+
+```html
+<button>Save</button>
+```
+
+Do not create essential interactive content only through `::before` or `::after`.
+
+### 8. Preserve Accessibility
+
+Generated content should not be the only way users receive important information.
+
+For example:
+
+```css
+input::after {
+    content: "Required";
+}
+```
+
+should not be treated as the sole indication that a field is required.
+
+Use appropriate HTML:
+
+```html
+<label for="email">
+    Email
+</label>
+
+<input id="email" type="email" required>
+```
+
+### 9. Do Not Rely Only on Color
+
+Avoid communicating important states only through color.
+
+For example:
+
+```css
+input:invalid {
+    color: red;
+}
+```
+
+Color can be useful as an additional visual indicator, but important feedback should also be understandable through other means.
+
+### 10. Preserve Focus Visibility
+
+When pseudo-elements are used for interactive effects, make sure keyboard users can still identify focused elements.
+
+```css
+.link:focus-visible {
+    outline: 2px solid steelblue;
+    outline-offset: 3px;
+}
+```
+
+Do not remove focus indicators without providing an accessible replacement.
+
+### 11. Use Pseudo-Classes and Pseudo-Elements Together Carefully
+
+This is a useful pattern:
+
+```css
+.button:hover::after {
+    content: " →";
+}
+```
+
+However, avoid unnecessary combinations that make the selector difficult to understand.
+
+### 12. Use `::marker` Instead of Replacing List Structure
+
+For list-marker customization:
+
+```css
+li::marker {
+    color: steelblue;
+}
+```
+
+Keep the semantic list:
+
+```html
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+</ul>
+```
+
+Do not replace a semantic list with manually generated bullet characters simply for visual styling.
+
+### 13. Keep Placeholder Styling Subtle
+
+Placeholder text should remain distinguishable from actual user-entered values.
+
+```css
+input::placeholder {
+    opacity: 0.7;
+}
+```
+
+Also remember that placeholder text should not replace a proper label.
+
+### 14. Use `::file-selector-button` Instead of Rebuilding File Inputs Unnecessarily
+
+When only the button appearance needs customization:
+
+```css
+input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+}
+```
+
+This can preserve the native file-control behavior.
+
+### 15. Use `::backdrop` for Top-Layer Backdrops
+
+For dialogs and other supported top-layer features:
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+```
+
+Keep the dialog styles separate from the backdrop styles:
+
+```css
+dialog {
+    /* Dialog */
+}
+
+dialog::backdrop {
+    /* Backdrop */
+}
+```
+
+### 16. Understand Shadow DOM Boundaries
+
+When working with Web Components, understand the direction of styling.
+
+```text
+::part()
+    ↓
+Outside CSS
+    ↓
+Explicitly exposed shadow part
+```
+
+```text
+::slotted()
+    ↓
+Shadow DOM CSS
+    ↓
+Directly slotted external content
+```
+
+Do not assume either pseudo-element provides unrestricted access across Shadow DOM boundaries.
+
+### 17. Use `::part()` as a Controlled Styling API
+
+Component authors should explicitly expose parts:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+External CSS can then target:
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+This provides controlled customization instead of exposing the entire internal structure.
+
+### 18. Understand `::slotted()` Limitations
+
+`::slotted()` targets elements assigned directly to a slot.
+
+```css
+::slotted(p) {
+    color: steelblue;
+}
+```
+
+Do not treat it as a general descendant selector.
+
+### 19. Keep Decorative Pseudo-Elements From Interfering With Interaction
+
+When a pseudo-element is purely decorative and positioned over an interactive area, consider:
+
+```css
+.icon::before {
+    content: "";
+    pointer-events: none;
+}
+```
+
+This can prevent the decorative layer from interfering with pointer interaction.
+
+Use this only when appropriate for the design.
+
+### 20. Test Different States and Layouts
+
+Test pseudo-elements in:
+
+```text
+Normal state
+Hover
+Keyboard focus
+Active state
+Different viewport sizes
+Different text lengths
+Different content states
+```
+
+This is especially important for:
+
+```css
+::first-line
+::first-letter
+::before
+::after
+```
+
+because their visual behavior can depend on layout and content.
+
+### 21. Avoid Excessive Generated Content
+
+Do not use large amounts of generated text through CSS.
+
+Prefer:
+
+```html
+<p>Meaningful content belongs here.</p>
+```
+
+instead of placing important paragraphs inside:
+
+```css
+p::before {
+    content: "...";
+}
+```
+
+Generated content is best kept concise and presentational.
+
+### 22. Keep HTML and CSS Responsibilities Clear
+
+A useful guideline is:
+
+```text
+HTML
+ ↓
+Meaningful structure and content
+
+CSS
+ ↓
+Presentation and visual decoration
+```
+
+Pseudo-elements belong primarily on the CSS side of this separation.
+
+### Practical Checklist
+
+Before using a pseudo-element, ask:
+
+```text
+□ Is this mainly presentation or decoration?
+□ Does the content need to be in the HTML?
+□ Am I using the correct pseudo-element?
+□ Do I need content: for ::before or ::after?
+□ Is the selector readable?
+□ Will the design remain accessible?
+□ Does keyboard interaction still work?
+□ Does it work at different screen sizes?
+□ Am I respecting Shadow DOM boundaries?
+```
+
+> 💡 **Tip:** The best pseudo-element implementations enhance the presentation without hiding meaningful content or making the HTML structure harder to understand.
+
+> 💡 **Remember:** Use pseudo-elements to improve presentation, not to replace semantic HTML or essential content.
