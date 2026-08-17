@@ -4955,3 +4955,47 @@ Pseudo-element
 > 💡 **Remember:** Pseudo-elements extend CSS's ability to style parts of elements and create presentational content while keeping the HTML structure clean.
 
 > 💡 **Interview Tip:** Be prepared to explain `::before` vs `::after`, `::first-letter` vs `::first-line`, `::part()` vs `::slotted()`, and pseudo-elements vs pseudo-classes.
+
+---
+
+## References
+
+The following references can be used to study CSS pseudo-elements, selectors, generated content, form-control styling, and Web Components.
+
+### MDN Web Docs
+
+- [CSS Pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+- [`::before`](https://developer.mozilla.org/en-US/docs/Web/CSS/::before)
+- [`::after`](https://developer.mozilla.org/en-US/docs/Web/CSS/::after)
+- [`::first-letter`](https://developer.mozilla.org/en-US/docs/Web/CSS/::first-letter)
+- [`::first-line`](https://developer.mozilla.org/en-US/docs/Web/CSS/::first-line)
+- [`::selection`](https://developer.mozilla.org/en-US/docs/Web/CSS/::selection)
+- [`::marker`](https://developer.mozilla.org/en-US/docs/Web/CSS/::marker)
+- [`::placeholder`](https://developer.mozilla.org/en-US/docs/Web/CSS/::placeholder)
+- [`::file-selector-button`](https://developer.mozilla.org/en-US/docs/Web/CSS/::file-selector-button)
+- [`::backdrop`](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop)
+- [`::cue`](https://developer.mozilla.org/en-US/docs/Web/CSS/::cue)
+- [`::part()`](https://developer.mozilla.org/en-US/docs/Web/CSS/::part)
+- [`::slotted()`](https://developer.mozilla.org/en-US/docs/Web/CSS/::slotted)
+
+### W3C Specifications
+
+- [CSS Pseudo-Elements Module Level 4](https://www.w3.org/TR/css-pseudo-4/)
+- [CSS Selectors Level 4](https://www.w3.org/TR/selectors-4/)
+- [CSS Scoping Module Level 1](https://www.w3.org/TR/css-scoping-1/)
+- [HTML Standard — The `dialog` element and top layer](https://html.spec.whatwg.org/)
+
+### Reference Purpose
+
+These resources can be used to:
+
+- Verify pseudo-element syntax and behavior.
+- Understand generated content with `::before` and `::after`.
+- Study text-related pseudo-elements.
+- Learn how list markers and placeholders can be styled.
+- Understand `::backdrop` and top-layer elements.
+- Learn how `::cue` works with WebVTT media captions.
+- Understand `::part()` and `::slotted()` in Web Components.
+- Check browser support and compatibility details.
+
+> 💡 **Tip:** MDN is useful for practical explanations and examples, while the W3C and WHATWG specifications provide the formal standards and platform definitions.
