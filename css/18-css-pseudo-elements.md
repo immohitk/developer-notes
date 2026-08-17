@@ -3750,3 +3750,370 @@ The double-colon syntax makes the distinction clearer.
 > 💡 **Tip:** When deciding between the two, ask whether you are describing an element's **state/condition** or targeting a **specific part/generated portion** of it.
 
 > 💡 **Remember:** `:hover` describes a state, while `::before` creates or targets a pseudo-element.
+
+---
+
+## Combining Pseudo-Elements with Pseudo-Classes
+
+CSS pseudo-classes and pseudo-elements can be combined in the same selector.
+
+This is useful when a pseudo-element should change based on the state or condition of its originating element.
+
+### Basic Syntax
+
+```css
+selector:pseudo-class::pseudo-element {
+    property: value;
+}
+```
+
+For example:
+
+```css
+button:hover::after {
+    content: " →";
+}
+```
+
+This means:
+
+```text
+button
+   ↓
+:hover
+   ↓
+Button is hovered
+   ↓
+::after
+   ↓
+Style the after pseudo-element
+```
+
+### `:hover` with `::before`
+
+```css
+.button:hover::before {
+    content: "✓ ";
+}
+```
+
+HTML:
+
+```html
+<button class="button">Save</button>
+```
+
+When the button is hovered, the generated content appears before its content.
+
+### `:hover` with `::after`
+
+```css
+.button::after {
+    content: "";
+    display: inline-block;
+}
+
+.button:hover::after {
+    content: " →";
+}
+```
+
+This can be used to add an arrow when the user hovers over a button.
+
+### `:focus` with `::after`
+
+```css
+input:focus::after {
+    content: "";
+}
+```
+
+However, remember that generated `::before` and `::after` pseudo-elements are not generally useful on replaced form controls such as `<input>`.
+
+For form controls, use pseudo-elements that specifically target the feature you need, such as:
+
+```css
+input::placeholder {
+    color: gray;
+}
+```
+
+### `:checked` with `::before`
+
+A common pattern is to use a checkbox state together with a pseudo-element on a related label or wrapper.
+
+HTML:
+
+```html
+<label class="option">
+    <input type="checkbox">
+    <span>Accept terms</span>
+</label>
+```
+
+CSS:
+
+```css
+.option:has(input:checked)::before {
+    content: "✓";
+}
+```
+
+Here:
+
+```text
+input:checked
+      ↓
+Checkbox is checked
+      ↓
+:has()
+      ↓
+Parent matches
+      ↓
+::before
+      ↓
+Generate check mark
+```
+
+### `:disabled` with `::after`
+
+Pseudo-classes can also describe disabled states.
+
+```css
+button:disabled::after {
+    content: " Disabled";
+}
+```
+
+This demonstrates the combination of a form state with a pseudo-element.
+
+For actual user-facing interfaces, disabled state information should generally already be clear from the control itself rather than relying only on generated content.
+
+### Structural Pseudo-Class with `::before`
+
+Structural pseudo-classes can also be combined with pseudo-elements.
+
+```css
+li:first-child::before {
+    content: "★ ";
+}
+```
+
+Only the first list item receives the generated content.
+
+### `:last-child` with `::after`
+
+```css
+li:last-child::after {
+    content: " ✓";
+}
+```
+
+Only the final list item receives the generated content.
+
+### `:nth-child()` with `::before`
+
+```css
+li:nth-child(even)::before {
+    content: "→ ";
+}
+```
+
+The pseudo-element is generated for even-numbered list items.
+
+### `:not()` with `::after`
+
+```css
+li:not(:last-child)::after {
+    content: " | ";
+}
+```
+
+This is useful for separators.
+
+Example:
+
+```text
+Home | About | Services | Contact
+```
+
+The final item does not receive a separator.
+
+### Combining Multiple Conditions
+
+Multiple pseudo-classes can be used before a pseudo-element.
+
+```css
+button:not(:disabled):hover::after {
+    content: " →";
+}
+```
+
+This means:
+
+```text
+button
+   ↓
+:not(:disabled)
+   ↓
+Button is enabled
+   ↓
+:hover
+   ↓
+Button is hovered
+   ↓
+::after
+   ↓
+Generate content
+```
+
+### Combining `:focus-visible` with `::after`
+
+```css
+.link:focus-visible::after {
+    content: " ↗";
+}
+```
+
+This can provide a visual indication for a focused link.
+
+However, focus indicators should remain clear and should not rely only on generated content.
+
+### Combining `:focus-within` with a Pseudo-Element
+
+A container can respond when it or a descendant receives focus.
+
+```css
+.form-group:focus-within::before {
+    content: "";
+    display: block;
+    height: 3px;
+}
+```
+
+This allows the container to display a decorative indicator while something inside it has focus.
+
+### Important Ordering
+
+The common ordering is:
+
+```text
+element
+   ↓
+pseudo-class
+   ↓
+pseudo-element
+```
+
+Example:
+
+```css
+.card:hover::before {
+    content: "";
+}
+```
+
+Not:
+
+```css
+.card::before:hover
+```
+
+The pseudo-class describes the state of the originating element, while the pseudo-element is targeted afterward.
+
+### Pseudo-Class vs Pseudo-Element
+
+Consider:
+
+```css
+.card:hover {
+    /* Style the card while hovered */
+}
+```
+
+and:
+
+```css
+.card:hover::before {
+    /* Style the card's ::before pseudo-element while the card is hovered */
+}
+```
+
+The second selector combines both concepts.
+
+### Practical Example
+
+HTML:
+
+```html
+<a href="#" class="link">Read more</a>
+```
+
+CSS:
+
+```css
+.link::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    margin-left: 0;
+}
+
+.link:hover::after {
+    content: " →";
+    margin-left: 6px;
+}
+
+.link:focus-visible {
+    outline: 2px solid steelblue;
+    outline-offset: 3px;
+}
+```
+
+The link can have:
+
+```text
+Normal
+   ↓
+Read more
+
+Hovered
+   ↓
+Read more →
+
+Keyboard focused
+   ↓
+Visible focus indicator
+```
+
+### Important Point
+
+Combining pseudo-classes and pseudo-elements allows CSS to express both:
+
+```text
+WHEN
+  ↓
+Element state or condition
+
+WHAT
+  ↓
+Specific part or generated content
+```
+
+For example:
+
+```css
+button:hover::after
+```
+
+means:
+
+```text
+WHEN the button is hovered
+        ↓
+STYLE its ::after pseudo-element
+```
+
+> 💡 **Tip:** Put the pseudo-class before the pseudo-element when combining them.
+
+> 💡 **Remember:** A pseudo-class describes a state or condition, while the pseudo-element identifies the part or generated content to style.
