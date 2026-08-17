@@ -2822,3 +2822,166 @@ Apply backdrop styles
 > 💡 **Tip:** `::backdrop` is particularly useful for modal dialogs because it can visually separate the modal from the page behind it.
 
 > 💡 **Remember:** `::backdrop` styles the backdrop behind a top-layer element, not the element itself.
+
+---
+
+## ::cue
+
+The `::cue` pseudo-element styles the text of WebVTT cues used with media elements such as `<video>` and `<audio>`.
+
+It is mainly used to customize the appearance of subtitles and captions displayed over media.
+
+### Basic Syntax
+
+```css
+::cue {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<video controls>
+    <source src="video.mp4" type="video/mp4">
+    <track
+        src="captions.vtt"
+        kind="subtitles"
+        srclang="en"
+        label="English"
+    >
+</video>
+```
+
+CSS:
+
+```css
+::cue {
+    color: white;
+}
+```
+
+The cue text can receive the specified styling.
+
+### Changing Cue Background
+
+```css
+::cue {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+```
+
+This can make subtitle text easier to read against the video.
+
+### Changing Font Size
+
+```css
+::cue {
+    font-size: 1.2rem;
+}
+```
+
+This changes the size of the cue text.
+
+### Changing Text Color
+
+```css
+::cue {
+    color: white;
+}
+```
+
+This can improve contrast between the subtitle text and the video.
+
+### Using `::cue` with a Class
+
+WebVTT cues can contain voice or class information that can be targeted using `::cue()`.
+
+For example:
+
+```css
+::cue(.speaker) {
+    color: steelblue;
+}
+```
+
+This targets cues associated with the specified WebVTT class.
+
+### `::cue` vs Normal Text
+
+`::cue` does not style ordinary HTML text.
+
+```css
+p {
+    color: black;
+}
+```
+
+styles a normal paragraph.
+
+```css
+::cue {
+    color: white;
+}
+```
+
+styles cue text displayed by a media element.
+
+```text
+HTML paragraph
+     ↓
+Normal CSS selector
+
+Media caption/subtitle
+     ↓
+::cue
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<video controls>
+    <source src="lesson.mp4" type="video/mp4">
+
+    <track
+        src="lesson-en.vtt"
+        kind="subtitles"
+        srclang="en"
+        label="English"
+    >
+</video>
+```
+
+CSS:
+
+```css
+::cue {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 1.1rem;
+}
+```
+
+This can make subtitle text easier to read while the video is playing.
+
+### Important Point
+
+The key idea is:
+
+```text
+Video / Audio
+      ↓
+WebVTT cues
+      ↓
+::cue
+      ↓
+Style subtitle or caption text
+```
+
+> 💡 **Tip:** Use `::cue` when you need to customize the appearance of captions or subtitles associated with media.
+
+> 💡 **Remember:** `::cue` is specifically associated with WebVTT cue text; it does not style ordinary HTML text.
