@@ -24,6 +24,8 @@ The notes are organized in a step-by-step manner and include explanations, examp
 - [CSS Transforms](14-css-transforms.md)
 - [CSS Transitions](15-css-transitions.md)
 - [CSS Animations](16-css-animations.md)
+- [CSS Pseudo-Classes](17-css-pseudo-classes.md)
+- [CSS Pseudo-Elements](18-css-pseudo-elements.md)
 
 More topics will be added as I continue learning CSS.
 
