@@ -6187,3 +6187,582 @@ Generated content has different semantics and accessibility implications.
 > 💡 **Tip:** Most pseudo-element problems come from confusing presentation with semantic content, misunderstanding selector syntax, or forgetting accessibility and layout behavior.
 
 > 💡 **Remember:** A pseudo-element should make your CSS more expressive without making your HTML less semantic or your interface less accessible.
+
+---
+
+## Interview Questions
+
+### 1. What is a CSS pseudo-element?
+
+A CSS pseudo-element allows CSS to style a specific part of an element or create generated content.
+
+Example:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+---
+
+### 2. What is the difference between a pseudo-class and a pseudo-element?
+
+A pseudo-class describes an element's state, condition, or position.
+
+```css
+button:hover {
+    background: steelblue;
+}
+```
+
+A pseudo-element targets a specific part of an element or generated content.
+
+```css
+button::after {
+    content: " →";
+}
+```
+
+```text
+Pseudo-class
+    ↓
+State / condition / position
+
+Pseudo-element
+    ↓
+Part / generated content
+```
+
+---
+
+### 3. What is the syntax of a pseudo-element?
+
+The modern syntax uses a double colon:
+
+```css
+selector::pseudo-element {
+    property: value;
+}
+```
+
+Example:
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+---
+
+### 4. What is `::before`?
+
+`::before` creates a generated pseudo-element before the originating element's content.
+
+```css
+.title::before {
+    content: "★ ";
+}
+```
+
+---
+
+### 5. What is `::after`?
+
+`::after` creates a generated pseudo-element after the originating element's content.
+
+```css
+.title::after {
+    content: " ✓";
+}
+```
+
+---
+
+### 6. Why is the `content` property commonly used with `::before` and `::after`?
+
+The `content` property defines the generated content of these pseudo-elements.
+
+Example:
+
+```css
+.title::before {
+    content: "★";
+}
+```
+
+For a purely decorative box, an empty value can be used:
+
+```css
+.title::before {
+    content: "";
+}
+```
+
+---
+
+### 7. What is the difference between `::before` and `::after`?
+
+```text
+::before
+    ↓
+Before the originating element's content
+
+::after
+    ↓
+After the originating element's content
+```
+
+Example:
+
+```css
+.title::before {
+    content: "★ ";
+}
+
+.title::after {
+    content: " ✓";
+}
+```
+
+---
+
+### 8. What is `::first-letter`?
+
+`::first-letter` targets the first letter of the first formatted line.
+
+```css
+p::first-letter {
+    font-size: 3rem;
+    font-weight: bold;
+}
+```
+
+It is commonly used for drop-cap effects.
+
+---
+
+### 9. What is `::first-line`?
+
+`::first-line` targets the first formatted line of text.
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+The amount of text affected can change depending on the available layout width.
+
+---
+
+### 10. What is `::selection`?
+
+`::selection` styles text while the user has selected it.
+
+```css
+::selection {
+    background: steelblue;
+    color: white;
+}
+```
+
+---
+
+### 11. What is `::marker`?
+
+`::marker` styles the marker of a list item.
+
+```css
+li::marker {
+    color: steelblue;
+    font-weight: bold;
+}
+```
+
+It can be used with ordered and unordered lists.
+
+---
+
+### 12. What is `::placeholder`?
+
+`::placeholder` styles placeholder text in supported form controls.
+
+```css
+input::placeholder {
+    color: gray;
+}
+```
+
+Placeholder text should generally provide a hint rather than replace a proper form label.
+
+---
+
+### 13. What is `::file-selector-button`?
+
+`::file-selector-button` styles the button portion of an `<input type="file">`.
+
+```css
+input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+}
+```
+
+---
+
+### 14. What is `::backdrop`?
+
+`::backdrop` styles the backdrop associated with an element displayed in the top layer, such as a dialog.
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+```
+
+---
+
+### 15. What is `::cue`?
+
+`::cue` styles WebVTT cue text associated with media such as video and audio.
+
+```css
+::cue {
+    color: white;
+}
+```
+
+It is commonly used when styling subtitles or captions.
+
+---
+
+### 16. What is `::part()`?
+
+`::part()` allows CSS outside a Web Component's Shadow DOM to style an element that the component has explicitly exposed using the `part` attribute.
+
+Shadow DOM:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+External CSS:
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+---
+
+### 17. What is `::slotted()`?
+
+`::slotted()` allows CSS inside a Shadow DOM to style elements assigned to a `<slot>`.
+
+```css
+::slotted(p) {
+    color: steelblue;
+}
+```
+
+It targets directly slotted elements and is not a general descendant selector.
+
+---
+
+### 18. What is the difference between `::part()` and `::slotted()`?
+
+They work in opposite directions.
+
+```text
+::part()
+    ↓
+Outside CSS
+    ↓
+Explicitly exposed element
+inside Shadow DOM
+```
+
+```text
+::slotted()
+    ↓
+CSS inside Shadow DOM
+    ↓
+Content assigned through <slot>
+```
+
+---
+
+### 19. Can pseudo-elements be combined with pseudo-classes?
+
+Yes.
+
+Example:
+
+```css
+button:hover::after {
+    content: " →";
+}
+```
+
+The pseudo-class describes the state, and the pseudo-element identifies the generated content.
+
+---
+
+### 20. What is the correct order when combining a pseudo-class and pseudo-element?
+
+The pseudo-class normally comes before the pseudo-element.
+
+Correct:
+
+```css
+button:hover::after {
+    content: " →";
+}
+```
+
+Not:
+
+```css
+button::after:hover {
+    content: " →";
+}
+```
+
+---
+
+### 21. Why are `::before` and `::after` useful?
+
+They can create decorative content without requiring additional HTML elements.
+
+For example:
+
+```css
+.card::before {
+    content: "";
+    display: block;
+    height: 4px;
+}
+```
+
+Common uses include:
+
+- Icons
+- Decorative lines
+- Badges
+- Separators
+- Shapes
+- Hover effects
+
+---
+
+### 22. Should important information be placed in `::before` or `::after`?
+
+Generally, no.
+
+Important semantic content should normally be represented in HTML.
+
+Prefer:
+
+```html
+<p>Your account is locked.</p>
+```
+
+rather than relying only on:
+
+```css
+.warning::before {
+    content: "Your account is locked";
+}
+```
+
+Pseudo-elements are primarily intended for presentation.
+
+---
+
+### 23. What is the difference between `::first-letter` and `::first-line`?
+
+```text
+::first-letter
+      ↓
+First letter
+
+::first-line
+      ↓
+First formatted line
+```
+
+Example:
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+---
+
+### 24. Can pseudo-elements be positioned?
+
+Yes.
+
+For example:
+
+```css
+.card {
+    position: relative;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+}
+```
+
+The pseudo-element can be positioned like a generated box.
+
+---
+
+### 25. Why might `position: relative` be used on the parent?
+
+If the pseudo-element is absolutely positioned, setting the parent to:
+
+```css
+.card {
+    position: relative;
+}
+```
+
+provides the intended positioning context for the pseudo-element.
+
+---
+
+### 26. Can pseudo-elements be used for hover effects?
+
+Yes.
+
+Example:
+
+```css
+.link::after {
+    content: "";
+    width: 0;
+}
+
+.link:hover::after {
+    width: 100%;
+}
+```
+
+Pseudo-elements are commonly used for hover underlines, arrows, and decorative transitions.
+
+---
+
+### 27. Can pseudo-elements improve accessibility?
+
+They can support accessible presentation, but they should not replace semantic HTML or important information.
+
+For example, a decorative icon can be generated with:
+
+```css
+.external-link::after {
+    content: " ↗";
+}
+```
+
+But essential instructions, labels, and status information should have appropriate semantic HTML.
+
+---
+
+### 28. What is a common mistake when using `::before` and `::after`?
+
+Forgetting the `content` property.
+
+Incorrect:
+
+```css
+.box::before {
+    width: 20px;
+    height: 20px;
+}
+```
+
+Better:
+
+```css
+.box::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+}
+```
+
+---
+
+### 29. Can `::slotted()` target nested descendants?
+
+Not as a general descendant selector.
+
+For example:
+
+```css
+::slotted(div) {
+    color: steelblue;
+}
+```
+
+targets a directly slotted `<div>`.
+
+It does not mean that arbitrary descendants inside that `<div>` can be reached through:
+
+```css
+::slotted(div p)
+```
+
+---
+
+### 30. What is the main purpose of CSS pseudo-elements?
+
+The main purpose is to give CSS more control over:
+
+```text
+Specific parts of elements
+          +
+Generated presentation
+          +
+Special browser-rendered parts
+          +
+Web Component styling
+```
+
+while avoiding unnecessary changes to the HTML structure.
+
+### Quick Interview Summary
+
+| Question | Short Answer |
+|---|---|
+| Pseudo-element? | Styles a part of an element or generated content |
+| Syntax? | `::pseudo-element` |
+| `::before`? | Generated content before element content |
+| `::after`? | Generated content after element content |
+| `::first-letter`? | Styles first letter |
+| `::first-line`? | Styles first formatted line |
+| `::selection`? | Styles selected text |
+| `::marker`? | Styles list marker |
+| `::placeholder`? | Styles placeholder text |
+| `::backdrop`? | Styles a top-layer backdrop |
+| `::part()`? | Styles an exposed Shadow DOM part externally |
+| `::slotted()`? | Styles directly slotted content internally |
+| Pseudo-class? | Describes state, condition, or position |
+| Can they combine? | Yes, e.g. `:hover::after` |
