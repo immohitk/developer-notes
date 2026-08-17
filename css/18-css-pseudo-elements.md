@@ -5688,3 +5688,502 @@ Before using a pseudo-element, ask:
 > 💡 **Tip:** The best pseudo-element implementations enhance the presentation without hiding meaningful content or making the HTML structure harder to understand.
 
 > 💡 **Remember:** Use pseudo-elements to improve presentation, not to replace semantic HTML or essential content.
+
+---
+
+## Common Mistakes
+
+Avoiding common mistakes makes pseudo-element code more predictable, accessible, and easier to maintain.
+
+### 1. Forgetting `content` with `::before` and `::after`
+
+A common mistake is:
+
+```css
+.title::before {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+```
+
+For generated `::before` and `::after` content, use:
+
+```css
+.title::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+```
+
+### 2. Using a Pseudo-Element for Important Content
+
+Avoid placing essential information only in generated CSS content.
+
+Bad approach:
+
+```css
+.warning::before {
+    content: "Your account is locked";
+}
+```
+
+Prefer meaningful HTML:
+
+```html
+<p class="warning">
+    Your account is locked.
+</p>
+```
+
+CSS can then be used for decoration:
+
+```css
+.warning::before {
+    content: "⚠ ";
+}
+```
+
+### 3. Confusing Pseudo-Classes and Pseudo-Elements
+
+Incorrect:
+
+```css
+button::hover {
+    background: steelblue;
+}
+```
+
+Correct:
+
+```css
+button:hover {
+    background: steelblue;
+}
+```
+
+`::hover` is not the correct syntax because `:hover` is a pseudo-class.
+
+For a pseudo-element:
+
+```css
+button::after {
+    content: " →";
+}
+```
+
+Remember:
+
+```text
+:hover
+   ↓
+Pseudo-class
+
+::after
+   ↓
+Pseudo-element
+```
+
+### 4. Using the Wrong Order
+
+When combining a pseudo-class with a pseudo-element, use:
+
+```css
+button:hover::after {
+    content: " →";
+}
+```
+
+Avoid:
+
+```css
+button::after:hover {
+    content: " →";
+}
+```
+
+The pseudo-class normally appears before the pseudo-element.
+
+### 5. Treating `::first-line` as a Fixed String
+
+This is a misunderstanding:
+
+```text
+::first-line = first 50 characters
+```
+
+It does not work that way.
+
+The first formatted line depends on layout.
+
+```text
+Wide container
+    ↓
+More words fit on the first line
+
+Narrow container
+    ↓
+Fewer words fit on the first line
+```
+
+Therefore, the text affected by `::first-line` can change when the viewport or element width changes.
+
+### 6. Assuming `::first-letter` Means Any First Character
+
+`::first-letter` targets the first letter according to the CSS rules for the first-letter sequence.
+
+Do not assume it simply means:
+
+```text
+character #1
+```
+
+Punctuation and other leading content can affect the first-letter sequence.
+
+### 7. Overusing `::before` and `::after`
+
+Avoid creating complicated interfaces entirely from pseudo-elements.
+
+For example, using multiple pseudo-elements and generated strings to represent an entire component can make the structure difficult to understand.
+
+Prefer semantic HTML:
+
+```html
+<button>Save</button>
+```
+
+and use pseudo-elements for decoration:
+
+```css
+button::after {
+    content: " →";
+}
+```
+
+### 8. Replacing Semantic HTML With Generated Content
+
+Do not use CSS-generated content as a replacement for semantic elements.
+
+Avoid:
+
+```css
+div::before {
+    content: "Heading";
+}
+```
+
+when the content is actually a heading.
+
+Prefer:
+
+```html
+<h2>Heading</h2>
+```
+
+### 9. Using Placeholder Text as a Label
+
+Avoid:
+
+```html
+<input
+    type="email"
+    placeholder="Email"
+>
+```
+
+as the only identification of the field.
+
+Prefer:
+
+```html
+<label for="email">Email</label>
+
+<input
+    id="email"
+    type="email"
+    placeholder="you@example.com"
+>
+```
+
+`::placeholder` should style the hint, not replace the label.
+
+### 10. Relying Only on Color
+
+For example:
+
+```css
+input:invalid::placeholder {
+    color: red;
+}
+```
+
+Color alone may not provide enough information.
+
+Important states should have appropriate semantic or visual indicators in addition to color.
+
+### 11. Removing Focus Indicators
+
+Avoid:
+
+```css
+button:focus {
+    outline: none;
+}
+```
+
+unless you provide an equally visible accessible replacement.
+
+Prefer:
+
+```css
+button:focus-visible {
+    outline: 2px solid steelblue;
+    outline-offset: 3px;
+}
+```
+
+### 12. Forgetting Keyboard Users
+
+A hover-only pseudo-element effect can exclude keyboard users.
+
+Avoid relying only on:
+
+```css
+.button:hover::after {
+    content: " →";
+}
+```
+
+Consider the focus state too:
+
+```css
+.button:hover::after,
+.button:focus-visible::after {
+    content: " →";
+}
+```
+
+The generated content should still be treated as decorative if it is not exposed semantically.
+
+### 13. Treating `::slotted()` as a Descendant Selector
+
+This is a common Shadow DOM mistake.
+
+```css
+::slotted(p) {
+    color: steelblue;
+}
+```
+
+does not mean:
+
+```text
+Find every <p> anywhere inside the slotted element.
+```
+
+It targets elements directly assigned to a slot.
+
+### 14. Confusing `::part()` and `::slotted()`
+
+Remember the direction:
+
+```text
+::part()
+    ↓
+Outside CSS
+    ↓
+Exposed element inside Shadow DOM
+```
+
+```text
+::slotted()
+    ↓
+CSS inside Shadow DOM
+    ↓
+Element supplied through a slot
+```
+
+### 15. Assuming `::part()` Exposes the Entire Shadow DOM
+
+If a component contains:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+then external CSS can use:
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+But this does not mean that all internal elements automatically become accessible to external selectors.
+
+Only explicitly exposed parts are available through `::part()`.
+
+### 16. Forgetting Positioning Context
+
+A positioned pseudo-element often depends on its originating element being positioned.
+
+For example:
+
+```css
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+```
+
+Usually pair this with:
+
+```css
+.card {
+    position: relative;
+}
+```
+
+so the pseudo-element is positioned relative to the intended element.
+
+### 17. Forgetting `display` for Decorative Boxes
+
+When creating a box-like pseudo-element, explicitly setting its display can make the layout behavior clearer.
+
+```css
+.card::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+}
+```
+
+For inline decorative elements, `inline-block` may be appropriate:
+
+```css
+.title::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 20px;
+}
+```
+
+### 18. Ignoring Pseudo-Element Layering
+
+Positioned pseudo-elements can overlap content.
+
+For example:
+
+```css
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+```
+
+If the pseudo-element creates an overlay, consider stacking order and interaction behavior.
+
+For a purely decorative overlay:
+
+```css
+.card::before {
+    pointer-events: none;
+}
+```
+
+may be appropriate.
+
+### 19. Using Excessive Generated Text
+
+Avoid generating large amounts of meaningful text through CSS:
+
+```css
+.article::before {
+    content: "A very long paragraph...";
+}
+```
+
+Generated content is better suited to small presentational additions such as:
+
+```css
+.external-link::after {
+    content: " ↗";
+}
+```
+
+### 20. Ignoring Browser Support
+
+Some pseudo-elements are broadly supported, while others are associated with specific platform features such as Shadow DOM, media cues, or top-layer elements.
+
+Before using a specialized pseudo-element, verify its browser compatibility when browser support matters.
+
+### 21. Making Selectors Too Complex
+
+Avoid unnecessarily complicated selectors such as:
+
+```css
+main section article div.card:hover > h2::first-letter {
+    /* ... */
+}
+```
+
+Prefer meaningful classes:
+
+```css
+.card:hover::before {
+    content: "";
+}
+```
+
+Simpler selectors are easier to understand and maintain.
+
+### 22. Forgetting That Generated Content Is Not Normal HTML Content
+
+For example:
+
+```css
+.badge::after {
+    content: "NEW";
+}
+```
+
+The `"NEW"` text is generated by CSS.
+
+It should not automatically be treated as equivalent to:
+
+```html
+<span>NEW</span>
+```
+
+Generated content has different semantics and accessibility implications.
+
+### Quick Mistake Checklist
+
+```text
+□ Forgot content: with ::before / ::after
+□ Used ::hover instead of :hover
+□ Put pseudo-class after pseudo-element
+□ Used generated CSS for important content
+□ Used placeholder instead of a label
+□ Removed keyboard focus indicators
+□ Created hover-only interactions
+□ Misunderstood ::first-line
+□ Misunderstood ::first-letter
+□ Treated ::slotted() as a descendant selector
+□ Confused ::part() with ::slotted()
+□ Forgot positioning context
+□ Ignored pseudo-element layering
+□ Used overly complex selectors
+□ Ignored browser compatibility
+```
+
+> 💡 **Tip:** Most pseudo-element problems come from confusing presentation with semantic content, misunderstanding selector syntax, or forgetting accessibility and layout behavior.
+
+> 💡 **Remember:** A pseudo-element should make your CSS more expressive without making your HTML less semantic or your interface less accessible.
