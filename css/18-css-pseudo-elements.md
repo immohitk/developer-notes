@@ -4680,3 +4680,278 @@ Preserve keyboard accessibility
 > 💡 **Tip:** `::before` and `::after` are particularly powerful for decorative UI patterns because they can create shapes, icons, lines, badges, and indicators without adding extra markup.
 
 > 💡 **Remember:** Pseudo-elements are best suited to presentation. Important information should not depend solely on generated CSS content.
+
+---
+
+## Key Takeaways
+
+- CSS pseudo-elements allow you to style a specific part of an element or create generated content without adding an additional HTML element.
+
+- Pseudo-elements normally use the double-colon (`::`) syntax.
+
+```css
+selector::pseudo-element {
+    property: value;
+}
+```
+
+- `::before` creates a generated pseudo-element before the originating element's content.
+
+```css
+.title::before {
+    content: "★ ";
+}
+```
+
+- `::after` creates a generated pseudo-element after the originating element's content.
+
+```css
+.title::after {
+    content: " ✓";
+}
+```
+
+- `::before` and `::after` commonly use the `content` property.
+
+```css
+.element::before {
+    content: "";
+}
+```
+
+- An empty `content` value is useful when the pseudo-element is purely decorative.
+
+- `::first-letter` targets the first letter of the first formatted line.
+
+```css
+p::first-letter {
+    font-size: 2rem;
+}
+```
+
+- `::first-line` targets the first formatted line of text.
+
+```css
+p::first-line {
+    font-weight: bold;
+}
+```
+
+- The first formatted line is affected by the layout, so the amount of text included can change with the available width.
+
+- `::selection` styles text while it is selected by the user.
+
+```css
+::selection {
+    background-color: steelblue;
+    color: white;
+}
+```
+
+- `::marker` styles the marker of a list item.
+
+```css
+li::marker {
+    color: steelblue;
+}
+```
+
+- `::placeholder` styles placeholder text in supported form controls.
+
+```css
+input::placeholder {
+    color: gray;
+}
+```
+
+- Placeholder text is a hint and should not normally replace a proper form label.
+
+- `::file-selector-button` styles the button portion of an `<input type="file">`.
+
+```css
+input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+}
+```
+
+- `::backdrop` styles the backdrop associated with an element presented in the top layer, such as a dialog.
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+```
+
+- `::cue` styles WebVTT cue text associated with media such as video and audio.
+
+```css
+::cue {
+    color: white;
+}
+```
+
+- `::part()` allows external CSS to style elements inside a Shadow DOM that have explicitly exposed a `part` name.
+
+```css
+my-card::part(title) {
+    color: steelblue;
+}
+```
+
+- The corresponding shadow-tree element must expose the part:
+
+```html
+<h2 part="title">CSS</h2>
+```
+
+- `::slotted()` allows CSS inside a Shadow DOM to style elements assigned to a `<slot>`.
+
+```css
+::slotted(p) {
+    color: steelblue;
+}
+```
+
+- `::slotted()` targets directly slotted elements and is not a general descendant selector.
+
+### Pseudo-Elements vs Pseudo-Classes
+
+Pseudo-classes use a single colon:
+
+```css
+:hover
+:focus
+:checked
+:nth-child()
+```
+
+They describe a state, condition, or position.
+
+Pseudo-elements normally use a double colon:
+
+```css
+::before
+::after
+::first-letter
+::marker
+```
+
+They target a specific part of an element or generated content.
+
+```text
+Pseudo-class
+     ↓
+State / condition / position
+
+Pseudo-element
+     ↓
+Part / generated content
+```
+
+### Combining Them
+
+Pseudo-classes can be combined with pseudo-elements.
+
+```css
+button:hover::after {
+    content: " →";
+}
+```
+
+The general pattern is:
+
+```css
+selector:pseudo-class::pseudo-element {
+    property: value;
+}
+```
+
+For example:
+
+```css
+li:not(:last-child)::after {
+    content: " | ";
+}
+```
+
+### Main Uses
+
+Pseudo-elements are commonly useful for:
+
+```text
+Decorative content
+      ↓
+::before / ::after
+
+Text styling
+      ↓
+::first-letter / ::first-line
+
+Selected text
+      ↓
+::selection
+
+List markers
+      ↓
+::marker
+
+Form hints
+      ↓
+::placeholder
+
+File controls
+      ↓
+::file-selector-button
+
+Modal backdrop
+      ↓
+::backdrop
+
+Media captions
+      ↓
+::cue
+
+Web Components
+      ↓
+::part() / ::slotted()
+```
+
+### Accessibility Reminder
+
+Pseudo-elements are primarily a presentation mechanism.
+
+Do not rely on generated CSS content as the only source of important information.
+
+Prefer:
+
+```html
+<label>Email</label>
+```
+
+over using only:
+
+```css
+input::before {
+    content: "Email";
+}
+```
+
+Important semantic information should be represented by appropriate HTML.
+
+### Final Revision
+
+Remember the core distinction:
+
+```text
+Pseudo-class
+    ↓
+"When is this element in a particular state?"
+
+Pseudo-element
+    ↓
+"Which part of this element should CSS target?"
+```
+
+> 💡 **Remember:** Pseudo-elements extend CSS's ability to style parts of elements and create presentational content while keeping the HTML structure clean.
+
+> 💡 **Interview Tip:** Be prepared to explain `::before` vs `::after`, `::first-letter` vs `::first-line`, `::part()` vs `::slotted()`, and pseudo-elements vs pseudo-classes.
