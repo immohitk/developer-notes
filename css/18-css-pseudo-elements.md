@@ -1,34 +1,32 @@
-# CSS Pseudo-Elements
-
 ## Table of Contents
 
-1. Introduction
-2. What Are CSS Pseudo-Elements?
-3. Why Are CSS Pseudo-Elements Important?
-4. Pseudo-Element Syntax
-5. `::before`
-6. `::after`
-7. `::first-letter`
-8. `::first-line`
-9. `::selection`
-10. `::marker`
-11. `::placeholder`
-12. `::file-selector-button`
-13. `::backdrop`
-14. `::cue`
-15. `::part()`
-16. `::slotted()`
-17. Pseudo-Elements vs Pseudo-Classes
-18. Combining Pseudo-Elements with Pseudo-Classes
-19. Practical Examples
-20. Key Takeaways
-21. References
-22. Quick Revision
-23. Best Practices
-24. Common Mistakes
-25. Interview Questions
-26. Practice Exercises
-27. Related Topics
+- [Introduction](#introduction)
+- [What Are CSS Pseudo-Elements?](#what-are-css-pseudo-elements)
+- [Why Are CSS Pseudo-Elements Important?](#why-are-css-pseudo-elements-important)
+- [Pseudo-Element Syntax](#pseudo-element-syntax)
+- [`::before`](#before)
+- [`::after`](#after)
+- [`::first-letter`](#first-letter)
+- [`::first-line`](#first-line)
+- [`::selection`](#selection)
+- [`::marker`](#marker)
+- [`::placeholder`](#placeholder)
+- [`::file-selector-button`](#file-selector-button)
+- [`::backdrop`](#backdrop)
+- [`::cue`](#cue)
+- [`::part()`](#part)
+- [`::slotted()`](#slotted)
+- [Pseudo-Elements vs Pseudo-Classes](#pseudo-elements-vs-pseudo-classes)
+- [Combining Pseudo-Elements with Pseudo-Classes](#combining-pseudo-elements-with-pseudo-classes)
+- [Practical Examples](#practical-examples)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Quick Revision](#quick-revision)
+- [Best Practices](#best-practices)
+- [Common Mistakes](#common-mistakes)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Related Topics](#related-topics)
 
 ---
 
