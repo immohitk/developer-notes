@@ -2634,3 +2634,191 @@ input[type="file"]::file-selector-button {
 > 💡 **Tip:** Use `::file-selector-button` when you want to improve the visual appearance of file-upload controls while keeping the native file-selection functionality.
 
 > 💡 **Remember:** `::file-selector-button` styles the button inside an `<input type="file">`; it does not represent the entire file input.
+
+---
+
+## ::backdrop
+
+The `::backdrop` pseudo-element styles the backdrop of an element that is displayed in a top-layer state.
+
+It is commonly associated with elements such as modal dialogs and other top-layer features.
+
+### Basic Syntax
+
+```css
+selector::backdrop {
+    property: value;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<dialog open>
+    <h2>Welcome</h2>
+    <p>This is a dialog.</p>
+</dialog>
+```
+
+CSS:
+
+```css
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+```
+
+The backdrop behind the dialog can be styled while the dialog is displayed.
+
+```text
+┌─────────────────────────────────────┐
+│                                     │
+│       Backdrop                      │
+│                                     │
+│          ┌───────────────┐          │
+│          │    Dialog     │          │
+│          │               │          │
+│          └───────────────┘          │
+│                                     │
+│       Backdrop                      │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+### Darkening the Background
+
+A common use is to make the page behind a dialog darker.
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+```
+
+This helps visually separate the dialog from the rest of the page.
+
+### Using Transparency
+
+The backdrop can use a transparent background.
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+```
+
+The page behind the dialog remains visible while appearing dimmed.
+
+### Styling the Backdrop with Other Properties
+
+The backdrop can be styled with appropriate CSS properties.
+
+For example:
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+```
+
+The important distinction is that these styles apply to the **backdrop**, not the dialog itself.
+
+```css
+dialog {
+    /* Dialog styles */
+}
+
+dialog::backdrop {
+    /* Backdrop styles */
+}
+```
+
+### `::backdrop` vs the Dialog
+
+Consider:
+
+```css
+dialog {
+    background: white;
+    padding: 20px;
+}
+```
+
+This styles the dialog.
+
+While:
+
+```css
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+```
+
+styles the area behind the dialog.
+
+```text
+dialog
+   ↓
+The actual dialog element
+
+dialog::backdrop
+   ↓
+The backdrop behind it
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<dialog id="login-dialog" open>
+    <h2>Login</h2>
+
+    <form>
+        <label>
+            Email:
+            <input type="email">
+        </label>
+
+        <button type="submit">Login</button>
+    </form>
+</dialog>
+```
+
+CSS:
+
+```css
+dialog {
+    padding: 24px;
+    border: none;
+    border-radius: 8px;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+```
+
+The dialog receives its own styles, while the area behind it receives the backdrop styling.
+
+### Important Point
+
+The key idea is:
+
+```text
+Top-layer element
+       ↓
+::backdrop
+       ↓
+Area behind the element
+       ↓
+Apply backdrop styles
+```
+
+`::backdrop` is not a normal child element that you add to the HTML. It represents the backdrop associated with an element that is presented in the top layer.
+
+> 💡 **Tip:** `::backdrop` is particularly useful for modal dialogs because it can visually separate the modal from the page behind it.
+
+> 💡 **Remember:** `::backdrop` styles the backdrop behind a top-layer element, not the element itself.
