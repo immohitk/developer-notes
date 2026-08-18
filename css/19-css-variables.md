@@ -1307,3 +1307,291 @@ var(--name)
 uses its value.
 
 > 💡 **Remember:** The first argument of `var()` is the custom property name. The optional second argument is a fallback value used when the custom property cannot provide a usable value.
+
+---
+
+## Global CSS Variables
+
+Global CSS Variables are custom properties that are defined in a scope where they can be accessed throughout the document.
+
+A common way to create globally available custom properties is to define them on `:root`.
+
+### Defining Variables on `:root`
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --text-color: #222;
+    --spacing: 16px;
+}
+```
+
+These variables can then be used by elements throughout the document:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+
+p {
+    color: var(--text-color);
+}
+
+.card {
+    padding: var(--spacing);
+}
+```
+
+The basic pattern is:
+
+```text
+:root
+  ↓
+Global custom properties
+  ↓
+var(--property-name)
+  ↓
+Different elements
+```
+
+### Why Use `:root`?
+
+`:root` represents the root element of the document.
+
+In an HTML document, this is normally the `<html>` element.
+
+For example:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+Using `:root` is a common pattern for defining design values that should be available throughout the page.
+
+### Global Color Variables
+
+A common use is to define a color palette:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+    --success-color: #16a34a;
+    --danger-color: #dc2626;
+    --text-color: #1e293b;
+    --background-color: #ffffff;
+}
+```
+
+These values can then be reused:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.button-primary {
+    background-color: var(--primary-color);
+}
+
+.button-danger {
+    background-color: var(--danger-color);
+}
+```
+
+### Global Spacing Variables
+
+You can also create a reusable spacing system:
+
+```css
+:root {
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+}
+```
+
+Then:
+
+```css
+.card {
+    padding: var(--spacing-medium);
+}
+
+.section {
+    margin-bottom: var(--spacing-large);
+}
+
+.badge {
+    padding: var(--spacing-small);
+}
+```
+
+### Global Typography Variables
+
+Global variables can store typography values:
+
+```css
+:root {
+    --font-family: Arial, sans-serif;
+    --font-size-base: 16px;
+    --heading-size: 2rem;
+}
+```
+
+They can then be reused:
+
+```css
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+}
+
+h1 {
+    font-size: var(--heading-size);
+}
+```
+
+### Global Border Variables
+
+For consistent borders:
+
+```css
+:root {
+    --border-color: #d1d5db;
+    --border-radius: 8px;
+}
+```
+
+Then:
+
+```css
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.button {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+```
+
+### Creating a Design Token System
+
+Global CSS Variables can act as design tokens.
+
+```css
+:root {
+    --color-primary: #2563eb;
+    --color-secondary: #64748b;
+    --color-success: #16a34a;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --space-4: 24px;
+
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 12px;
+}
+```
+
+Components can then use these shared values:
+
+```css
+.card {
+    padding: var(--space-3);
+    border-radius: var(--radius-medium);
+}
+
+.button {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-small);
+    background-color: var(--color-primary);
+}
+```
+
+This creates a consistent visual system.
+
+### Overriding a Global Variable
+
+A globally declared variable can be overridden in a more specific scope.
+
+For example:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+
+.dark-theme {
+    --primary-color: #60a5fa;
+}
+```
+
+An element inside `.dark-theme` can use the overridden value:
+
+```css
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+The value of `--primary-color` depends on the element's applicable scope.
+
+This is one of the features that makes CSS Variables useful for themes and component customization.
+
+### Global Does Not Mean Immutable
+
+A variable declared on `:root` can still be overridden.
+
+For example:
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    --spacing: 24px;
+}
+```
+
+Inside `.card`, descendants that inherit `--spacing` can receive the overridden value.
+
+Therefore, a global variable provides a default value; it does not mean that the value can never change.
+
+### Practical Structure
+
+A stylesheet might organize global variables like this:
+
+```css
+:root {
+    /* Colors */
+    --color-primary: #2563eb;
+    --color-text: #1e293b;
+    --color-background: #ffffff;
+
+    /* Spacing */
+    --space-small: 8px;
+    --space-medium: 16px;
+    --space-large: 24px;
+
+    /* Typography */
+    --font-size-base: 16px;
+    --font-size-heading: 2rem;
+
+    /* Borders */
+    --border-radius: 8px;
+    --border-color: #d1d5db;
+}
+```
+
+Components can then consume these values without redefining them.
+
+> 💡 **Remember:** A common pattern for global CSS Variables is to declare custom properties on `:root` and reuse them throughout the document with `var()`.
