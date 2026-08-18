@@ -1595,3 +1595,334 @@ A stylesheet might organize global variables like this:
 Components can then consume these values without redefining them.
 
 > 💡 **Remember:** A common pattern for global CSS Variables is to declare custom properties on `:root` and reuse them throughout the document with `var()`.
+
+---
+
+## Local CSS Variables
+
+Local CSS Variables are custom properties defined within a specific element or component rather than at the root level.
+
+They are useful when a value should apply only to a particular part of the page.
+
+For example:
+
+```css
+.card {
+    --card-padding: 20px;
+}
+```
+
+The variable is available to the `.card` element and, through inheritance, to its descendants.
+
+```css
+.card {
+    --card-padding: 20px;
+}
+
+.card-content {
+    padding: var(--card-padding);
+}
+```
+
+### Global vs Local Variables
+
+A global variable is commonly defined on `:root`:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+A local variable can be defined on a specific component:
+
+```css
+.card {
+    --card-padding: 20px;
+}
+```
+
+The difference can be visualized as:
+
+```text
+Global Variable
+      ↓
+:root
+      ↓
+Available throughout the document
+
+Local Variable
+      ↓
+Specific element
+      ↓
+Available to that element and applicable descendants
+```
+
+### Component-Specific Variables
+
+Local variables are useful for component-specific values.
+
+```css
+.card {
+    --card-background: white;
+    --card-padding: 20px;
+    --card-radius: 8px;
+
+    background-color: var(--card-background);
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+}
+```
+
+The variables belong to the `.card` scope.
+
+### Local Variables for Variants
+
+Local variables are especially useful for creating component variants.
+
+For example:
+
+```css
+.button {
+    --button-color: #2563eb;
+
+    background-color: var(--button-color);
+}
+
+.button-danger {
+    --button-color: #dc2626;
+}
+```
+
+HTML:
+
+```html
+<button class="button">
+    Save
+</button>
+
+<button class="button button-danger">
+    Delete
+</button>
+```
+
+The base component uses the default value:
+
+```text
+.button
+   ↓
+--button-color: #2563eb
+```
+
+The danger variant overrides it:
+
+```text
+.button-danger
+   ↓
+--button-color: #dc2626
+```
+
+The actual `background-color` declaration does not need to change.
+
+### Local Variables and Descendants
+
+Custom properties normally inherit.
+
+For example:
+
+```css
+.card {
+    --text-color: blue;
+}
+
+.card p {
+    color: var(--text-color);
+}
+```
+
+The paragraph can use the variable because it is a descendant of `.card`.
+
+HTML:
+
+```html
+<div class="card">
+    <p>Hello CSS</p>
+</div>
+```
+
+The paragraph receives:
+
+```text
+--text-color
+     ↓
+blue
+     ↓
+color: blue
+```
+
+### Different Values for Different Components
+
+Local variables allow the same CSS rule to behave differently for different elements.
+
+```css
+.card {
+    --card-color: blue;
+}
+
+.card.warning {
+    --card-color: orange;
+}
+
+.card.error {
+    --card-color: red;
+}
+
+.card-title {
+    color: var(--card-color);
+}
+```
+
+HTML:
+
+```html
+<div class="card">
+    <h2 class="card-title">Normal</h2>
+</div>
+
+<div class="card warning">
+    <h2 class="card-title">Warning</h2>
+</div>
+
+<div class="card error">
+    <h2 class="card-title">Error</h2>
+</div>
+```
+
+The same `.card-title` rule can produce different colors depending on the variable inherited from its parent.
+
+### Local Variables Without Immediate Usage
+
+A custom property can be declared for descendants even if the element itself does not directly use it.
+
+```css
+.card {
+    --accent-color: blue;
+}
+
+.card-title {
+    color: var(--accent-color);
+}
+
+.card-link {
+    border-color: var(--accent-color);
+}
+```
+
+Both descendants can access the locally defined variable.
+
+### Local Variables for Theming Components
+
+A component can define its own defaults:
+
+```css
+.card {
+    --card-background: white;
+    --card-text: #222;
+    --card-border: #ddd;
+
+    background: var(--card-background);
+    color: var(--card-text);
+    border: 1px solid var(--card-border);
+}
+```
+
+Another class can override those values:
+
+```css
+.card.dark {
+    --card-background: #222;
+    --card-text: white;
+    --card-border: #444;
+}
+```
+
+The component structure remains the same.
+
+### Local Variables Can Override Global Variables
+
+Suppose a global variable exists:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+A component can override it:
+
+```css
+.card {
+    --primary-color: red;
+}
+```
+
+Then:
+
+```css
+.card-title {
+    color: var(--primary-color);
+}
+```
+
+Inside `.card`, the local value is used.
+
+Conceptually:
+
+```text
+:root
+--primary-color: blue
+       ↓
+     .card
+--primary-color: red
+       ↓
+  .card-title
+       ↓
+      red
+```
+
+### Why Local Variables Are Useful
+
+Local CSS Variables are useful when:
+
+- A value belongs to one component
+- Components need different variants
+- A component needs configurable values
+- Descendants should share a value
+- You want to avoid creating many globally named variables
+- A component should have its own styling defaults
+
+### Practical Example
+
+```css
+.button {
+    --button-background: #2563eb;
+    --button-text: white;
+    --button-radius: 8px;
+
+    background-color: var(--button-background);
+    color: var(--button-text);
+    border-radius: var(--button-radius);
+}
+
+.button.success {
+    --button-background: #16a34a;
+}
+
+.button.danger {
+    --button-background: #dc2626;
+}
+```
+
+The component's main CSS remains unchanged while variants override only the variables they need.
+
+> 💡 **Remember:** Local CSS Variables are useful for component-level customization. Define the variable where the value belongs, then let the element and its descendants use the inherited custom property.
