@@ -5106,3 +5106,19 @@ Apply the value to CSS properties
 ```
 
 > 💡 **Remember:** CSS Variables make styles more reusable, maintainable, customizable, and consistent by allowing values to be defined once and reused throughout a stylesheet.
+
+---
+
+## References
+
+- [MDN Web Docs — CSS Custom Properties for Cascading Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties)
+- [MDN Web Docs — `var()` CSS Function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/var)
+- [MDN Web Docs — CSS `:root` Pseudo-Class](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:root)
+- [MDN Web Docs — CSS `@media` Rule](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media)
+- [MDN Web Docs — `prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme)
+- [MDN Web Docs — CSS Cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade)
+- [MDN Web Docs — CSS Inheritance](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Inheritance)
+- [MDN Web Docs — CSSOM](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model)
+- [MDN Web Docs — `getComputedStyle()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle)
+- [MDN Web Docs — `CSSStyleDeclaration.setProperty()`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/setProperty)
+- [W3C — CSS Custom Properties for Cascading Variables Module](https://www.w3.org/TR/css-variables-1/)
