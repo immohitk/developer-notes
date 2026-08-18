@@ -1,0 +1,28 @@
+# CSS Variables
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What Are CSS Variables?](#what-are-css-variables)
+- [Why Use CSS Variables?](#why-use-css-variables)
+- [Declaring CSS Variables](#declaring-css-variables)
+- [Using CSS Variables](#using-css-variables)
+- [The `var()` Function](#the-var-function)
+- [Global CSS Variables](#global-css-variables)
+- [Local CSS Variables](#local-css-variables)
+- [Fallback Values](#fallback-values)
+- [Inheritance](#inheritance)
+- [CSS Variables and the Cascade](#css-variables-and-the-cascade)
+- [Changing Variables with Pseudo-Classes](#changing-variables-with-pseudo-classes)
+- [CSS Variables with Media Queries](#css-variables-with-media-queries)
+- [CSS Variables with JavaScript](#css-variables-with-javascript)
+- [CSS Variables for Themes](#css-variables-for-themes)
+- [Practical Examples](#practical-examples)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Quick Revision](#quick-revision)
+- [Best Practices](#best-practices)
+- [Common Mistakes](#common-mistakes)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Related Topics](#related-topics)
