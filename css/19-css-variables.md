@@ -2656,3 +2656,402 @@ you can define one variable:
 A parent-level override can then change the value for all applicable descendants.
 
 > 💡 **Remember:** CSS custom properties normally inherit. A value defined on a parent can therefore be used by descendants unless a descendant overrides the custom property or the value cannot provide a usable result.
+
+---
+
+## CSS Variables and the Cascade
+
+CSS Variables, or custom properties, participate in the **CSS cascade**.
+
+This means that when the same custom property is declared in multiple places, the browser determines which value applies to an element based on the normal cascade rules.
+
+### Basic Example
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.card {
+    --primary-color: green;
+}
+
+.card-title {
+    color: var(--primary-color);
+}
+```
+
+If `.card-title` is inside `.card`:
+
+```text
+:root
+--primary-color: blue
+       ↓
+.card
+--primary-color: green
+       ↓
+.card-title
+var(--primary-color)
+       ↓
+green
+```
+
+The value defined on `.card` applies because it is the custom property inherited by the descendants of that element.
+
+### Cascade Determines Which Declaration Applies
+
+Consider:
+
+```css
+.card {
+    --color: blue;
+}
+
+.card {
+    --color: red;
+}
+```
+
+Both rules have the same selector and therefore the same specificity.
+
+The second declaration wins because it appears later in the stylesheet.
+
+```text
+--color: blue
+       ↓
+--color: red
+       ↓
+Winner: red
+```
+
+This is the same source-order principle that applies to other CSS declarations.
+
+### Specificity Can Affect Custom Properties
+
+Consider:
+
+```css
+.card {
+    --color: blue;
+}
+
+.card.featured {
+    --color: red;
+}
+```
+
+The second selector is more specific:
+
+```text
+.card
+        ↓
+1 class
+
+.card.featured
+        ↓
+2 classes
+```
+
+Therefore, for an element matching both selectors:
+
+```css
+--color: red;
+```
+
+wins.
+
+### Custom Properties Can Be Overridden
+
+A custom property can be redefined in a more specific or more local context.
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.card {
+    --primary-color: green;
+}
+
+.card.danger {
+    --primary-color: red;
+}
+```
+
+The applicable value depends on where the element exists in the document and which declaration wins through the cascade.
+
+```text
+Global default
+     ↓
+blue
+
+.card
+     ↓
+green
+
+.card.danger
+     ↓
+red
+```
+
+### Cascade and Inheritance Work Together
+
+The cascade determines which custom-property declaration applies to an element.
+
+The resulting custom property can then be inherited by descendants.
+
+For example:
+
+```css
+:root {
+    --color: blue;
+}
+
+.card {
+    --color: green;
+}
+
+.card-title {
+    color: var(--color);
+}
+```
+
+If `.card-title` is inside `.card`:
+
+```text
+Cascade
+   ↓
+.card gets --color: green
+   ↓
+Inheritance
+   ↓
+.card-title receives --color: green
+   ↓
+var(--color)
+   ↓
+green
+```
+
+This distinction is important.
+
+```text
+Cascade
+   ↓
+Chooses the applicable declaration
+
+Inheritance
+   ↓
+Passes the custom property to descendants
+```
+
+### Custom Properties and Source Order
+
+When competing declarations have the same relevant cascade priority and specificity, source order can determine the winner.
+
+Example:
+
+```css
+.theme {
+    --color: blue;
+}
+
+.theme {
+    --color: green;
+}
+```
+
+The later declaration wins:
+
+```css
+--color: green;
+```
+
+### Custom Properties and `!important`
+
+Custom-property declarations can also use `!important`.
+
+```css
+.card {
+    --color: blue !important;
+}
+
+.card.special {
+    --color: red;
+}
+```
+
+The important declaration has higher cascade priority than the normal declaration.
+
+However, `!important` should not be used unnecessarily.
+
+### Cascade Layers
+
+Custom properties also participate in cascade layers.
+
+For example:
+
+```css
+@layer base {
+    :root {
+        --primary-color: blue;
+    }
+}
+
+@layer theme {
+    :root {
+        --primary-color: purple;
+    }
+}
+```
+
+The ordering of the cascade layers affects which declaration wins.
+
+This can be useful when organizing large stylesheets.
+
+### Custom Property Values Are Not Simply Text Replacements
+
+Consider:
+
+```css
+:root {
+    --size: 20px;
+}
+
+.box {
+    width: calc(var(--size) * 2);
+}
+```
+
+The custom property participates in CSS value processing.
+
+The browser evaluates:
+
+```text
+var(--size)
+     ↓
+20px
+
+calc(20px * 2)
+     ↓
+40px
+```
+
+Therefore, custom properties should be understood as CSS values that participate in the cascade and are substituted when used.
+
+### Changing a Variable Changes Dependent Styles
+
+Suppose:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+button {
+    background-color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+```
+
+If the applicable value changes:
+
+```css
+:root {
+    --primary-color: purple;
+}
+```
+
+both declarations using the variable now use the new value.
+
+```text
+--primary-color
+       ↓
+     purple
+       ↓
+ ┌─────┴─────┐
+ ↓           ↓
+button       a
+ ↓           ↓
+purple      purple
+```
+
+### Practical Example
+
+```css
+:root {
+    --color: blue;
+}
+
+.card {
+    color: var(--color);
+}
+
+.card.warning {
+    --color: orange;
+}
+
+.card.error {
+    --color: red;
+}
+```
+
+HTML:
+
+```html
+<div class="card">
+    Normal card
+</div>
+
+<div class="card warning">
+    Warning card
+</div>
+
+<div class="card error">
+    Error card
+</div>
+```
+
+The same:
+
+```css
+color: var(--color);
+```
+
+can produce different results because the custom property is changed by the cascade and inheritance rules.
+
+```text
+Normal
+    ↓
+blue
+
+Warning
+    ↓
+orange
+
+Error
+    ↓
+red
+```
+
+### Important Mental Model
+
+When working with CSS Variables, think about these steps:
+
+```text
+Custom property declarations
+          ↓
+CSS Cascade
+          ↓
+Winning custom-property value
+          ↓
+Inheritance to descendants
+          ↓
+var(--custom-property)
+          ↓
+Used CSS value
+```
+
+> 💡 **Remember:** CSS Variables are part of the CSS cascade. When a custom property is declared in multiple places, cascade rules determine the applicable value, and that value can then be inherited by descendants.
