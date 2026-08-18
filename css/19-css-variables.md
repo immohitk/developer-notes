@@ -5313,3 +5313,404 @@ CSS Variables
 ```
 
 > 💡 **One-line revision:** CSS Variables let you define reusable custom properties once and use, override, and dynamically change those values throughout a stylesheet.
+
+---
+
+## Best Practices
+
+### 1. Use Meaningful Variable Names
+
+Choose names that describe the purpose of the value.
+
+Good:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --text-color: #222;
+    --card-radius: 8px;
+}
+```
+
+Avoid unclear names:
+
+```css
+:root {
+    --x: #2563eb;
+    --value1: #222;
+    --thing: 8px;
+}
+```
+
+Meaningful names make CSS easier to understand and maintain.
+
+### 2. Use a Consistent Naming Convention
+
+Keep variable names consistent throughout the project.
+
+For example:
+
+```css
+:root {
+    --color-primary: #2563eb;
+    --color-success: #16a34a;
+    --color-danger: #dc2626;
+
+    --space-small: 8px;
+    --space-medium: 16px;
+    --space-large: 24px;
+
+    --radius-small: 4px;
+    --radius-medium: 8px;
+}
+```
+
+A consistent naming system makes variables easier to find and reuse.
+
+### 3. Define Global Design Values in `:root`
+
+Values that are shared throughout the application can be defined on `:root`.
+
+```css
+:root {
+    --color-primary: #2563eb;
+    --color-text: #222;
+    --color-background: #fff;
+    --spacing-medium: 16px;
+    --radius-medium: 8px;
+}
+```
+
+This provides a central location for common design values.
+
+### 4. Keep Component-Specific Variables Local
+
+Not every variable needs to be global.
+
+If a value belongs only to one component, define it locally.
+
+```css
+.card {
+    --card-padding: 20px;
+    --card-radius: 8px;
+
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+}
+```
+
+This keeps the global variable namespace smaller and makes the component easier to customize.
+
+### 5. Use Variables for Repeated Values
+
+If the same design value appears repeatedly, consider creating a variable.
+
+Instead of:
+
+```css
+.button {
+    border-radius: 8px;
+}
+
+.card {
+    border-radius: 8px;
+}
+
+.input {
+    border-radius: 8px;
+}
+```
+
+use:
+
+```css
+:root {
+    --radius-medium: 8px;
+}
+
+.button {
+    border-radius: var(--radius-medium);
+}
+
+.card {
+    border-radius: var(--radius-medium);
+}
+
+.input {
+    border-radius: var(--radius-medium);
+}
+```
+
+### 6. Use Fallback Values When Appropriate
+
+Reusable components can provide sensible defaults:
+
+```css
+.button {
+    color: var(--button-text, white);
+    background-color: var(--button-color, #2563eb);
+}
+```
+
+This allows customization while maintaining a default appearance.
+
+### 7. Avoid Excessive Variables
+
+CSS Variables are useful, but not every value needs to become a variable.
+
+For example, creating variables for values that are used only once can add unnecessary complexity:
+
+```css
+:root {
+    --button-width: 137px;
+}
+```
+
+If the value has no meaningful reuse or customization purpose, a normal CSS value may be clearer:
+
+```css
+.button {
+    width: 137px;
+}
+```
+
+Use variables where they provide real value.
+
+### 8. Use Variables to Build Design Tokens
+
+For larger projects, group reusable values into categories.
+
+```css
+:root {
+    /* Colors */
+    --color-primary: #2563eb;
+    --color-success: #16a34a;
+    --color-danger: #dc2626;
+
+    /* Spacing */
+    --space-small: 8px;
+    --space-medium: 16px;
+    --space-large: 24px;
+
+    /* Radius */
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 12px;
+}
+```
+
+This creates a simple design-token system.
+
+### 9. Use Variables for Theme Values
+
+Keep theme-dependent values in variables.
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+.dark-theme {
+    --background-color: #111827;
+    --text-color: white;
+}
+```
+
+Components can then remain unchanged:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+### 10. Use Variables for Component Variants
+
+Instead of duplicating entire component styles, override the variables that change.
+
+```css
+.button {
+    --button-color: #2563eb;
+
+    background-color: var(--button-color);
+}
+
+.button.success {
+    --button-color: #16a34a;
+}
+
+.button.danger {
+    --button-color: #dc2626;
+}
+```
+
+This keeps variants concise.
+
+### 11. Keep Variable Definitions Organized
+
+Group related variables together.
+
+```css
+:root {
+    /* Colors */
+    --color-primary: #2563eb;
+    --color-text: #222;
+
+    /* Spacing */
+    --space-small: 8px;
+    --space-medium: 16px;
+
+    /* Typography */
+    --font-size-base: 16px;
+    --font-size-heading: 2rem;
+
+    /* Borders */
+    --radius-medium: 8px;
+    --border-color: #ddd;
+}
+```
+
+Good organization makes large stylesheets easier to navigate.
+
+### 12. Prefer Variables Over Repeated Magic Values
+
+A magic value is a value whose purpose is not obvious.
+
+For example:
+
+```css
+.card {
+    padding: 23px;
+}
+
+.button {
+    margin: 17px;
+}
+```
+
+If these values represent a design system, define meaningful variables:
+
+```css
+:root {
+    --space-medium: 16px;
+    --space-large: 24px;
+}
+```
+
+Then use the appropriate design values:
+
+```css
+.card {
+    padding: var(--space-medium);
+}
+
+.button {
+    margin: var(--space-large);
+}
+```
+
+Do not create variables simply to hide arbitrary numbers; give variables meaningful design purposes.
+
+### 13. Be Careful With `!important`
+
+Avoid using `!important` with custom properties unless there is a specific reason.
+
+Prefer organizing the cascade and variable scopes clearly:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.card {
+    --primary-color: green;
+}
+```
+
+Use `!important` only when it is genuinely necessary.
+
+### 14. Use Comments for Complex Variable Systems
+
+If a variable's purpose is not obvious, a comment can help.
+
+```css
+:root {
+    /* Main brand color used by primary actions */
+    --color-primary: #2563eb;
+
+    /* Spacing unit used to build component spacing */
+    --space-unit: 4px;
+}
+```
+
+Avoid comments that merely repeat the variable name.
+
+### 15. Keep the Variable System Simple
+
+A good CSS Variable system should make the stylesheet easier to understand, not harder.
+
+Prefer:
+
+```css
+.button {
+    background-color: var(--color-primary);
+}
+```
+
+over unnecessarily complicated chains when they do not provide meaningful benefits.
+
+### 16. Use CSS Variables to Separate Design From Components
+
+A useful structure is:
+
+```text
+Design values
+      ↓
+CSS Variables
+      ↓
+Components
+      ↓
+Rendered interface
+```
+
+For example:
+
+```css
+:root {
+    --color-primary: #2563eb;
+    --radius-medium: 8px;
+    --space-medium: 16px;
+}
+
+.button {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-medium);
+    padding: var(--space-medium);
+}
+```
+
+The component describes how the values are used, while the variables define the reusable design values.
+
+### Best-Practice Checklist
+
+```text
+CSS Variables
+│
+├── Use meaningful names
+├── Follow a consistent naming convention
+├── Use :root for shared values
+├── Keep component values local when appropriate
+├── Reuse repeated design values
+├── Provide fallbacks when useful
+├── Avoid unnecessary variables
+├── Organize design tokens
+├── Use variables for themes
+├── Use variables for component variants
+├── Keep definitions organized
+├── Avoid unnecessary !important
+└── Keep the overall system simple
+```
+
+> 💡 **Remember:** Good CSS Variable usage is not about creating the maximum number of variables. It is about creating a clear, reusable, and maintainable system of values that makes the CSS easier to manage.
