@@ -5122,3 +5122,194 @@ Apply the value to CSS properties
 - [MDN Web Docs — `getComputedStyle()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle)
 - [MDN Web Docs — `CSSStyleDeclaration.setProperty()`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/setProperty)
 - [W3C — CSS Custom Properties for Cascading Variables Module](https://www.w3.org/TR/css-variables-1/)
+
+---
+
+## Quick Revision
+
+### What Are CSS Variables?
+
+CSS Variables, officially called **CSS Custom Properties**, are reusable CSS values defined with names beginning with two hyphens.
+
+```css
+--primary-color: #2563eb;
+```
+
+### How Are CSS Variables Used?
+
+Use the `var()` function:
+
+```css
+color: var(--primary-color);
+```
+
+### Where Can Variables Be Declared?
+
+They can be declared globally:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+or locally:
+
+```css
+.card {
+    --card-color: #2563eb;
+}
+```
+
+### Do CSS Variables Inherit?
+
+Yes. Custom properties normally inherit from parent elements to descendants.
+
+```css
+.card {
+    --text-color: blue;
+}
+
+.card p {
+    color: var(--text-color);
+}
+```
+
+### What Is a Fallback Value?
+
+A fallback is used when a custom property cannot provide a usable value.
+
+```css
+color: var(--text-color, black);
+```
+
+Here, `black` is the fallback.
+
+### Do CSS Variables Participate in the Cascade?
+
+Yes. Custom properties participate in the CSS cascade.
+
+```css
+.card {
+    --color: blue;
+}
+
+.card.special {
+    --color: red;
+}
+```
+
+The applicable declaration is determined by the cascade.
+
+### Can Variables Change on Interaction?
+
+Yes. Variables can be changed with pseudo-classes.
+
+```css
+.button {
+    --button-color: blue;
+}
+
+.button:hover {
+    --button-color: darkblue;
+}
+```
+
+### Can Variables Be Used With Media Queries?
+
+Yes.
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+```
+
+### Can JavaScript Change CSS Variables?
+
+Yes.
+
+```javascript
+document.documentElement.style.setProperty(
+    "--primary-color",
+    "red"
+);
+```
+
+A variable can also be read with:
+
+```javascript
+const styles = getComputedStyle(document.documentElement);
+
+const color = styles
+    .getPropertyValue("--primary-color")
+    .trim();
+```
+
+### Can CSS Variables Be Used for Themes?
+
+Yes. Theme-specific values can override the same variables.
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+.dark-theme {
+    --background-color: #111827;
+    --text-color: white;
+}
+```
+
+### Important Syntax
+
+```css
+/* Declaration */
+--name: value;
+
+/* Usage */
+var(--name);
+
+/* Usage with fallback */
+var(--name, fallback);
+```
+
+### Quick Mental Model
+
+```text
+CSS Custom Property
+        ↓
+--property: value
+        ↓
+var(--property)
+        ↓
+CSS declaration
+        ↓
+Rendered result
+```
+
+### Remember These Points
+
+```text
+CSS Variables
+│
+├── Start with --
+├── Use var() to access values
+├── Can be global or local
+├── Normally inherit
+├── Participate in the cascade
+├── Support fallback values
+├── Work with pseudo-classes
+├── Work with media queries
+├── Can be controlled by JavaScript
+└── Are useful for themes and design systems
+```
+
+> 💡 **One-line revision:** CSS Variables let you define reusable custom properties once and use, override, and dynamically change those values throughout a stylesheet.
