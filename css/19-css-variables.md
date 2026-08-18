@@ -703,3 +703,305 @@ var(--primary-color)
 ```
 
 > 💡 **Remember:** A CSS custom property is declared with `--name: value;`. The `var()` function is used later when you want to use that value.
+
+---
+
+## Using CSS Variables
+
+After declaring a CSS Variable, you can use its value in CSS declarations with the `var()` function.
+
+For example, declare a variable:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+Then use it:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+```
+
+The browser replaces:
+
+```css
+var(--primary-color)
+```
+
+with the value stored in:
+
+```css
+--primary-color
+```
+
+So conceptually:
+
+```text
+--primary-color: #2563eb
+          ↓
+var(--primary-color)
+          ↓
+#2563eb
+```
+
+### Using a Variable Multiple Times
+
+A single CSS Variable can be used in multiple declarations:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+
+button {
+    background-color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+
+.card {
+    border-color: var(--primary-color);
+}
+```
+
+This allows one value to control multiple parts of a design.
+
+### Using Variables for Different Properties
+
+A CSS Variable can be used as the value of different CSS properties when the stored value is valid for those properties.
+
+For example:
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: var(--spacing);
+    margin: var(--spacing);
+}
+```
+
+Another example:
+
+```css
+:root {
+    --radius: 8px;
+}
+
+.card {
+    border-radius: var(--radius);
+}
+
+.button {
+    border-radius: var(--radius);
+}
+```
+
+### Using Variables in Shorthand Properties
+
+CSS Variables can also be used in shorthand declarations.
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: var(--spacing);
+}
+```
+
+You can also use a variable as part of a larger declaration:
+
+```css
+:root {
+    --border-color: #ccc;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+}
+```
+
+Here, the variable supplies only the color value.
+
+### Using Variables in Calculations
+
+CSS Variables can be combined with CSS functions such as `calc()`.
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: calc(var(--spacing) * 2);
+}
+```
+
+The value becomes:
+
+```text
+16px × 2
+   ↓
+32px
+```
+
+Another example:
+
+```css
+:root {
+    --base-size: 20px;
+}
+
+.title {
+    font-size: calc(var(--base-size) * 1.5);
+}
+```
+
+### Using Variables in Multiple Components
+
+Variables are especially useful when several components share the same design values.
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --border-radius: 8px;
+    --spacing: 16px;
+}
+
+.button {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing);
+}
+
+.card {
+    border-radius: var(--border-radius);
+    padding: var(--spacing);
+}
+
+.badge {
+    background-color: var(--primary-color);
+}
+```
+
+Changing the variable can update all components that use it.
+
+### Variable Names Are Case-Sensitive
+
+Custom property names are case-sensitive.
+
+These are different variables:
+
+```css
+--primary-color: blue;
+--Primary-Color: red;
+```
+
+Therefore:
+
+```css
+color: var(--primary-color);
+```
+
+and:
+
+```css
+color: var(--Primary-Color);
+```
+
+can produce different results.
+
+It is good practice to use a consistent naming convention.
+
+### Using Variables in Media Queries
+
+Variables can be used inside media-query declarations and declarations affected by media queries.
+
+For example:
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+.card {
+    padding: var(--spacing);
+}
+
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+```
+
+The same `.card` rule can then use the appropriate value depending on the active media-query rules.
+
+### Using Variables in Pseudo-Classes
+
+Variables can also be used in states such as `:hover`.
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --hover-color: #1d4ed8;
+}
+
+button {
+    background-color: var(--primary-color);
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+```
+
+### Using Variables with Pseudo-Elements
+
+CSS Variables can also be used with pseudo-elements.
+
+```css
+:root {
+    --icon: "→";
+}
+
+.link::after {
+    content: var(--icon);
+}
+```
+
+This allows the generated content to be controlled by a custom property.
+
+### Important Point
+
+Declaring a variable does not automatically apply its value to an element.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+does not make all text blue.
+
+You must explicitly use the variable:
+
+```css
+p {
+    color: var(--primary-color);
+}
+```
+
+> 💡 **Remember:** Declaring a CSS Variable stores a value; using `var(--name)` retrieves that value and applies it to a CSS declaration.
