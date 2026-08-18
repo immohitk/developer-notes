@@ -2231,3 +2231,428 @@ A useful component pattern is:
 The component provides defaults while still allowing customization.
 
 > 💡 **Remember:** The second argument of `var()` is a fallback value. It is used when the custom property cannot provide a usable value for the declaration.
+
+---
+
+## Inheritance
+
+CSS custom properties normally **inherit** from their parent element to their descendants.
+
+This is an important feature of CSS Variables because a value defined on a parent can be used by child elements without redefining the variable on every child.
+
+### Basic Example
+
+```css
+.card {
+    --text-color: #2563eb;
+}
+
+.card p {
+    color: var(--text-color);
+}
+```
+
+HTML:
+
+```html
+<div class="card">
+    <p>Hello CSS</p>
+</div>
+```
+
+The custom property is defined on:
+
+```text
+.card
+   ↓
+--text-color: #2563eb
+```
+
+The `<p>` is a descendant of `.card`, so it inherits the custom property:
+
+```text
+.card
+   ↓
+--text-color
+   ↓
+<p>
+   ↓
+var(--text-color)
+   ↓
+#2563eb
+```
+
+### Inheritance From `:root`
+
+A common pattern is to define variables on `:root`:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --text-color: #222;
+}
+```
+
+Then descendants can use them:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+
+p {
+    color: var(--text-color);
+}
+```
+
+The variables are inherited through the document tree.
+
+### Parent and Child Variables
+
+A child can override an inherited custom property.
+
+```css
+.parent {
+    --color: blue;
+}
+
+.child {
+    --color: red;
+}
+```
+
+HTML:
+
+```html
+<div class="parent">
+    <p>Parent content</p>
+
+    <div class="child">
+        <p>Child content</p>
+    </div>
+</div>
+```
+
+The first paragraph can inherit:
+
+```text
+blue
+```
+
+while the descendants of `.child` can inherit:
+
+```text
+red
+```
+
+### Inheritance Follows the DOM Tree
+
+Custom properties are inherited according to the document tree.
+
+For example:
+
+```html
+<div class="parent">
+    <div class="child">
+        <p>Text</p>
+    </div>
+</div>
+```
+
+If:
+
+```css
+.parent {
+    --color: blue;
+}
+```
+
+then the value can flow down:
+
+```text
+.parent
+   ↓
+.child
+   ↓
+<p>
+```
+
+and the paragraph can use:
+
+```css
+color: var(--color);
+```
+
+### Local Override
+
+A descendant can provide its own value instead of inheriting the parent's value.
+
+```css
+.card {
+    --accent-color: blue;
+}
+
+.card.warning {
+    --accent-color: orange;
+}
+```
+
+Then:
+
+```css
+.card-title {
+    color: var(--accent-color);
+}
+```
+
+A normal card can use blue, while a warning card can use orange.
+
+### Inheritance Is Different From Declaration
+
+Consider:
+
+```css
+.parent {
+    --color: blue;
+}
+```
+
+and:
+
+```css
+.child {
+    color: var(--color);
+}
+```
+
+The child does not declare:
+
+```css
+--color: blue;
+```
+
+Instead, it **inherits** the custom property from its parent and then uses it.
+
+```text
+Parent
+  │
+  └── --color: blue
+          │
+          ↓
+       Child
+          │
+          └── var(--color)
+```
+
+### What Happens When a Variable Is Not Defined?
+
+Suppose:
+
+```css
+.child {
+    color: var(--color);
+}
+```
+
+and neither the child nor its ancestors provide a usable `--color`.
+
+Then the custom property cannot provide a value for that declaration.
+
+A fallback can be provided:
+
+```css
+.child {
+    color: var(--color, black);
+}
+```
+
+If the variable is unavailable, the fallback is used.
+
+### Inheritance With Multiple Levels
+
+Custom properties can be inherited through several levels.
+
+```css
+:root {
+    --main-color: blue;
+}
+
+.container {
+    /* inherits --main-color */
+}
+
+.card {
+    /* inherits --main-color */
+}
+
+.title {
+    color: var(--main-color);
+}
+```
+
+The value can flow through:
+
+```text
+:root
+  ↓
+.container
+  ↓
+.card
+  ↓
+.title
+```
+
+The `.title` can therefore use the value defined on `:root`.
+
+### Overriding at Different Levels
+
+Different components can override the same variable.
+
+```css
+:root {
+    --main-color: blue;
+}
+
+.card {
+    --main-color: green;
+}
+
+.card.danger {
+    --main-color: red;
+}
+```
+
+This creates a hierarchy:
+
+```text
+:root
+--main-color: blue
+       ↓
+.card
+--main-color: green
+       ↓
+.card.danger
+--main-color: red
+```
+
+Elements inside each scope use the applicable value.
+
+### Custom Properties and Normal CSS Properties
+
+CSS custom properties inherit by default.
+
+However, not every normal CSS property inherits.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+The custom property can be inherited by descendants.
+
+Then:
+
+```css
+button {
+    color: var(--primary-color);
+}
+```
+
+uses the inherited custom property to set the normal `color` property.
+
+This distinction is important:
+
+```text
+Custom property
+      ↓
+Inherited through the element tree
+
+Normal CSS property
+      ↓
+May or may not inherit depending on the property
+```
+
+### Practical Component Example
+
+```css
+.card {
+    --card-color: #2563eb;
+    --card-padding: 16px;
+
+    padding: var(--card-padding);
+}
+
+.card-title {
+    color: var(--card-color);
+}
+
+.card-text {
+    color: var(--card-color);
+}
+```
+
+Both descendants can use the variables defined on `.card`.
+
+A variant can override them:
+
+```css
+.card.warning {
+    --card-color: #d97706;
+}
+```
+
+Now both:
+
+```text
+.card-title
+.card-text
+```
+
+inside the warning card can use the new color.
+
+### Important Point
+
+Inheritance makes CSS Variables especially useful for component-level configuration.
+
+Instead of writing separate values for every descendant:
+
+```css
+.card-title {
+    color: blue;
+}
+
+.card-text {
+    color: blue;
+}
+
+.card-link {
+    color: blue;
+}
+```
+
+you can define one variable:
+
+```css
+.card {
+    --card-color: blue;
+}
+
+.card-title {
+    color: var(--card-color);
+}
+
+.card-text {
+    color: var(--card-color);
+}
+
+.card-link {
+    color: var(--card-color);
+}
+```
+
+A parent-level override can then change the value for all applicable descendants.
+
+> 💡 **Remember:** CSS custom properties normally inherit. A value defined on a parent can therefore be used by descendants unless a descendant overrides the custom property or the value cannot provide a usable result.
