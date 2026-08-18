@@ -4994,3 +4994,115 @@ Consistent design
 ```
 
 > 💡 **Remember:** The real power of CSS Variables comes from combining them with inheritance, the cascade, media queries, pseudo-classes, themes, and reusable components.
+
+---
+
+## Key Takeaways
+
+- **CSS Variables** are officially called **CSS Custom Properties**.
+- Custom property names begin with two hyphens, such as `--primary-color`.
+- CSS Variables are commonly used with the `var()` function.
+- A custom property is declared using:
+  ```css
+  --property-name: value;
+  ```
+- A custom property is used with:
+  ```css
+  var(--property-name);
+  ```
+- CSS Variables help reduce repetition and make CSS easier to maintain.
+- Variables can store colors, sizes, spacing, fonts, borders, shadows, and other CSS values.
+- Variables declared on `:root` are commonly used as global design values.
+- Variables can also be declared locally on specific components.
+- CSS custom properties normally **inherit** from parent elements to descendants.
+- Custom properties participate in the **CSS cascade**.
+- A local declaration can override an inherited custom property.
+- The `var()` function supports fallback values:
+  ```css
+  var(--primary-color, blue);
+  ```
+- CSS Variables can be changed inside pseudo-classes such as `:hover`, `:focus`, and `:active`.
+- CSS Variables work well with media queries for responsive designs.
+- JavaScript can read custom properties with `getComputedStyle()`.
+- JavaScript can modify custom properties with `style.setProperty()`.
+- CSS Variables are useful for implementing light and dark themes.
+- Variables can simplify reusable and customizable components.
+- CSS Variables can be combined with functions such as `calc()`.
+- CSS Variables are useful for creating consistent design systems and design tokens.
+
+### Core Syntax
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --spacing: 16px;
+}
+
+.button {
+    background-color: var(--primary-color);
+    padding: var(--spacing);
+}
+```
+
+### Fallback Syntax
+
+```css
+.button {
+    color: var(--text-color, black);
+}
+```
+
+### Responsive Example
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+
+.card {
+    padding: var(--spacing);
+}
+```
+
+### Theme Example
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+.dark-theme {
+    --background-color: #111827;
+    --text-color: white;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+### Overall Mental Model
+
+```text
+Define
+  ↓
+--custom-property: value
+  ↓
+Store a reusable CSS value
+  ↓
+Use
+  ↓
+var(--custom-property)
+  ↓
+Apply the value to CSS properties
+```
+
+> 💡 **Remember:** CSS Variables make styles more reusable, maintainable, customizable, and consistent by allowing values to be defined once and reused throughout a stylesheet.
