@@ -1926,3 +1926,308 @@ Local CSS Variables are useful when:
 The component's main CSS remains unchanged while variants override only the variables they need.
 
 > 💡 **Remember:** Local CSS Variables are useful for component-level customization. Define the variable where the value belongs, then let the element and its descendants use the inherited custom property.
+
+---
+
+## Fallback Values
+
+CSS custom properties can use a **fallback value** when the requested custom property is not available or does not provide a usable value for the declaration.
+
+The fallback value is written as the second argument of the `var()` function.
+
+The syntax is:
+
+```css
+var(--custom-property, fallback-value)
+```
+
+For example:
+
+```css
+.button {
+    color: var(--button-text-color, white);
+}
+```
+
+Here:
+
+```text
+--button-text-color
+        ↓
+Try to use this value
+        ↓
+If unavailable or unusable
+        ↓
+Use white
+```
+
+### Basic Fallback Example
+
+Suppose the variable is not defined:
+
+```css
+.button {
+    background-color: var(--button-color, blue);
+}
+```
+
+Because `--button-color` does not provide a usable value, the fallback is used:
+
+```css
+background-color: blue;
+```
+
+### Fallback When a Variable Is Not Defined
+
+Consider:
+
+```css
+.card {
+    color: var(--text-color, black);
+}
+```
+
+If `--text-color` is not available for the element, the browser uses:
+
+```css
+black
+```
+
+The fallback makes the declaration more robust.
+
+### Fallback With a Defined Variable
+
+If the variable is defined:
+
+```css
+:root {
+    --text-color: darkblue;
+}
+
+.card {
+    color: var(--text-color, black);
+}
+```
+
+the defined value is used:
+
+```text
+--text-color
+     ↓
+darkblue
+     ↓
+color: darkblue
+```
+
+The fallback:
+
+```css
+black
+```
+
+is not used.
+
+### Fallback Values Can Be Different CSS Values
+
+The fallback does not have to be a simple color.
+
+For example:
+
+```css
+.card {
+    padding: var(--card-padding, 16px);
+}
+```
+
+Or:
+
+```css
+.card {
+    border-radius: var(--card-radius, 8px);
+}
+```
+
+Or:
+
+```css
+body {
+    font-family: var(--font-family, Arial, sans-serif);
+}
+```
+
+### Multiple Fallbacks
+
+A fallback can itself use another custom property.
+
+```css
+.card {
+    color: var(
+        --primary-text,
+        var(--secondary-text, black)
+    );
+}
+```
+
+The browser tries the values in order:
+
+```text
+--primary-text
+      ↓
+if unavailable
+      ↓
+--secondary-text
+      ↓
+if unavailable
+      ↓
+black
+```
+
+This creates a fallback chain.
+
+### Fallbacks With Local Variables
+
+Fallbacks are particularly useful when working with reusable components.
+
+```css
+.button {
+    background-color: var(--button-color, blue);
+}
+```
+
+A component can override the variable:
+
+```css
+.button.danger {
+    --button-color: red;
+}
+```
+
+Now:
+
+```text
+Normal button
+    ↓
+--button-color unavailable
+    ↓
+blue
+
+Danger button
+    ↓
+--button-color: red
+    ↓
+red
+```
+
+### Fallbacks and Empty Custom Properties
+
+An important detail is that a custom property can exist but still not provide a usable value for a particular declaration.
+
+For example:
+
+```css
+:root {
+    --primary-color: ;
+}
+```
+
+and:
+
+```css
+.button {
+    color: var(--primary-color, blue);
+}
+```
+
+The fallback behavior depends on whether the custom property can provide a valid value for the declaration.
+
+Therefore, fallback values should not be treated as a general validation system for every possible custom-property value.
+
+### Fallbacks Are Not the Same as Default CSS Values
+
+Compare:
+
+```css
+.button {
+    color: blue;
+}
+```
+
+with:
+
+```css
+.button {
+    color: var(--button-color, blue);
+}
+```
+
+The first always specifies:
+
+```text
+blue
+```
+
+The second says:
+
+```text
+Use --button-color if it provides a usable value;
+otherwise use blue.
+```
+
+### Practical Example
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+
+.button {
+    background-color: var(--primary-color, blue);
+    color: var(--button-text, white);
+    border-radius: var(--button-radius, 8px);
+    padding: var(--button-padding, 10px 16px);
+}
+```
+
+Here:
+
+```text
+--primary-color
+    ↓
+#2563eb
+
+--button-text
+    ↓
+white fallback
+
+--button-radius
+    ↓
+8px fallback
+
+--button-padding
+    ↓
+10px 16px fallback
+```
+
+### Why Use Fallback Values?
+
+Fallback values are useful when:
+
+- A component may be customized
+- A variable may not be defined in every context
+- You want sensible defaults
+- You are building reusable components
+- You want a safer CSS declaration
+
+A useful component pattern is:
+
+```css
+.component {
+    color: var(--component-color, #222);
+    padding: var(--component-padding, 16px);
+    border-radius: var(--component-radius, 8px);
+}
+```
+
+The component provides defaults while still allowing customization.
+
+> 💡 **Remember:** The second argument of `var()` is a fallback value. It is used when the custom property cannot provide a usable value for the declaration.
