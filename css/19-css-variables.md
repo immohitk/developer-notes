@@ -3055,3 +3055,299 @@ Used CSS value
 ```
 
 > 💡 **Remember:** CSS Variables are part of the CSS cascade. When a custom property is declared in multiple places, cascade rules determine the applicable value, and that value can then be inherited by descendants.
+
+---
+
+## Changing Variables with Pseudo-Classes
+
+CSS Variables can be changed inside pseudo-class states such as `:hover`, `:focus`, `:active`, and `:checked`.
+
+This allows the same CSS declarations to use different values depending on the current state of an element.
+
+### Basic `:hover` Example
+
+Define a variable for a button:
+
+```css
+.button {
+    --button-color: #2563eb;
+
+    background-color: var(--button-color);
+}
+```
+
+Change the variable when the button is hovered:
+
+```css
+.button:hover {
+    --button-color: #1d4ed8;
+}
+```
+
+The button's existing declaration:
+
+```css
+background-color: var(--button-color);
+```
+
+automatically uses the new value.
+
+Conceptually:
+
+```text
+Normal
+    ↓
+--button-color: #2563eb
+    ↓
+background-color: #2563eb
+
+Hover
+    ↓
+--button-color: #1d4ed8
+    ↓
+background-color: #1d4ed8
+```
+
+### Using `:focus`
+
+Variables can also change when an element receives focus.
+
+```css
+.input {
+    --border-color: #ccc;
+
+    border: 2px solid var(--border-color);
+}
+
+.input:focus {
+    --border-color: #2563eb;
+}
+```
+
+When the input receives focus, the variable changes and the border becomes blue.
+
+For keyboard-friendly focus styling, `:focus-visible` can also be used:
+
+```css
+.button:focus-visible {
+    --button-color: #1d4ed8;
+}
+```
+
+### Using `:active`
+
+The `:active` pseudo-class represents an element while it is being activated.
+
+```css
+.button {
+    --button-color: #2563eb;
+
+    background-color: var(--button-color);
+}
+
+.button:active {
+    --button-color: #1e40af;
+}
+```
+
+While the button is active, the darker value is used.
+
+### Using `:checked`
+
+Variables can also be changed based on the checked state of form controls.
+
+```css
+.checkbox {
+    --check-color: gray;
+}
+
+.checkbox:checked {
+    --check-color: green;
+}
+```
+
+The variable can then be used by related styles:
+
+```css
+.checkbox {
+    accent-color: var(--check-color);
+}
+```
+
+### Using Variables With a Parent State
+
+A parent element can change a variable that is inherited by its descendants.
+
+```css
+.card {
+    --accent-color: blue;
+}
+
+.card:hover {
+    --accent-color: red;
+}
+
+.card-title {
+    color: var(--accent-color);
+}
+```
+
+When the card is hovered:
+
+```text
+.card
+    ↓
+--accent-color: red
+    ↓
+.card-title
+    ↓
+color: red
+```
+
+This is useful when several child elements should change together.
+
+### Changing Multiple Properties Through One Variable
+
+A single variable can control several declarations.
+
+```css
+.button {
+    --button-color: #2563eb;
+
+    background-color: var(--button-color);
+    border-color: var(--button-color);
+    color: white;
+}
+
+.button:hover {
+    --button-color: #1d4ed8;
+}
+```
+
+Only the variable changes:
+
+```css
+--button-color
+```
+
+but multiple properties respond to that change.
+
+### Creating Component States
+
+Variables are useful for defining different component states.
+
+```css
+.button {
+    --button-background: #2563eb;
+    --button-text: white;
+
+    background-color: var(--button-background);
+    color: var(--button-text);
+}
+
+.button:hover {
+    --button-background: #1d4ed8;
+}
+
+.button:disabled {
+    --button-background: #94a3b8;
+    --button-text: #e2e8f0;
+}
+```
+
+The main component styles remain unchanged.
+
+Only the variables change according to the state.
+
+### Combining Pseudo-Classes With Transitions
+
+Variables can also be used with transitions when the resulting property supports interpolation.
+
+For example:
+
+```css
+.button {
+    --button-color: #2563eb;
+
+    background-color: var(--button-color);
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    --button-color: #1d4ed8;
+}
+```
+
+The `background-color` transition can animate between the two resulting colors.
+
+### Important Distinction
+
+Changing a custom property does not automatically create an animation.
+
+For example:
+
+```css
+.button {
+    --button-color: blue;
+}
+
+.button:hover {
+    --button-color: red;
+}
+```
+
+The variable changes between states.
+
+A transition must be applied to the actual property whose computed value changes:
+
+```css
+.button {
+    background-color: var(--button-color);
+    transition: background-color 0.2s ease;
+}
+```
+
+### Practical Example
+
+```css
+.button {
+    --button-background: #2563eb;
+    --button-border: #2563eb;
+
+    background-color: var(--button-background);
+    border: 2px solid var(--button-border);
+    color: white;
+    padding: 10px 16px;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.button:hover {
+    --button-background: #1d4ed8;
+    --button-border: #1d4ed8;
+}
+
+.button:active {
+    --button-background: #1e40af;
+    --button-border: #1e40af;
+}
+```
+
+The same component can therefore have:
+
+```text
+Normal
+    ↓
+Primary color
+
+Hover
+    ↓
+Darker color
+
+Active
+    ↓
+Even darker color
+```
+
+> 💡 **Remember:** Pseudo-classes can change custom-property values. Because other declarations use those variables, changing one variable can update several visual properties at once.
