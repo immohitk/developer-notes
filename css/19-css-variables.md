@@ -5714,3 +5714,452 @@ CSS Variables
 ```
 
 > 💡 **Remember:** Good CSS Variable usage is not about creating the maximum number of variables. It is about creating a clear, reusable, and maintainable system of values that makes the CSS easier to manage.
+
+---
+
+## Common Mistakes
+
+### 1. Forgetting the Two Hyphens
+
+A CSS custom property must begin with two hyphens.
+
+Correct:
+
+```css
+--primary-color: blue;
+```
+
+Incorrect:
+
+```css
+primary-color: blue;
+```
+
+The `--` prefix is what makes the property a CSS custom property.
+
+### 2. Forgetting `var()`
+
+Declaring a variable does not automatically use its value.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+This does not automatically make text blue.
+
+You must use:
+
+```css
+p {
+    color: var(--primary-color);
+}
+```
+
+### 3. Using the Wrong Variable Name
+
+Custom property names must match exactly.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+This is different from:
+
+```css
+var(--Primary-color);
+```
+
+CSS custom property names are case-sensitive.
+
+Use the exact same name:
+
+```css
+color: var(--primary-color);
+```
+
+### 4. Defining a Variable Outside the Required Scope
+
+Consider:
+
+```css
+.card {
+    --card-color: blue;
+}
+
+.header {
+    color: var(--card-color);
+}
+```
+
+The `.header` element cannot automatically use the variable defined only on `.card` if it is not a descendant of that element.
+
+Make sure the variable is defined in an appropriate scope:
+
+```css
+:root {
+    --card-color: blue;
+}
+```
+
+or define it on the relevant component.
+
+### 5. Forgetting Inheritance
+
+Custom properties normally inherit.
+
+For example:
+
+```css
+.card {
+    --card-color: blue;
+}
+
+.card-title {
+    color: var(--card-color);
+}
+```
+
+This works when `.card-title` is a descendant of `.card`.
+
+But if the element is outside that scope, the variable may not be available.
+
+Always consider the document tree when using local variables.
+
+### 6. Assuming Every Variable Is Global
+
+A variable declared on one element is not automatically available everywhere.
+
+For example:
+
+```css
+.card {
+    --spacing: 20px;
+}
+```
+
+This does not make `--spacing` globally available.
+
+If many unrelated components need the value, consider defining it globally:
+
+```css
+:root {
+    --spacing: 20px;
+}
+```
+
+### 7. Forgetting a Fallback When a Variable May Be Missing
+
+This can be risky:
+
+```css
+.button {
+    color: var(--button-text);
+}
+```
+
+If `--button-text` cannot provide a usable value, the declaration can become invalid at computed-value time.
+
+A fallback can provide a sensible alternative:
+
+```css
+.button {
+    color: var(--button-text, white);
+}
+```
+
+### 8. Confusing Fallback Values With CSS Defaults
+
+Consider:
+
+```css
+color: var(--text-color, black);
+```
+
+The `black` value is not used simply because another CSS value is preferred.
+
+It is used when the custom property cannot provide a usable value for the declaration.
+
+### 9. Creating Too Many Variables
+
+Not every CSS value needs to become a variable.
+
+Avoid unnecessary systems such as:
+
+```css
+:root {
+    --button-width: 137px;
+    --single-margin: 13px;
+    --one-time-padding: 19px;
+}
+```
+
+If a value is not reused, customized, or part of a meaningful design system, a normal CSS value may be clearer.
+
+### 10. Using Unclear Variable Names
+
+Avoid:
+
+```css
+--x: blue;
+--a: 16px;
+--value: 8px;
+```
+
+Prefer names that describe the purpose:
+
+```css
+--color-primary: blue;
+--space-medium: 16px;
+--radius-medium: 8px;
+```
+
+### 11. Accidentally Overriding a Variable
+
+Because custom properties participate in the cascade, a later or more specific declaration can change the value.
+
+For example:
+
+```css
+:root {
+    --color: blue;
+}
+
+.card {
+    --color: red;
+}
+```
+
+Elements inside `.card` may receive `red` instead of the global `blue`.
+
+When a variable seems to have the wrong value, inspect its scope and the cascade.
+
+### 12. Ignoring Source Order
+
+When competing declarations have the same relevant cascade priority and specificity, the later declaration can win.
+
+For example:
+
+```css
+.card {
+    --color: blue;
+}
+
+.card {
+    --color: red;
+}
+```
+
+The resulting value is:
+
+```css
+--color: red;
+```
+
+### 13. Using `!important` as the First Solution
+
+Avoid immediately solving variable conflicts with:
+
+```css
+--color: red !important;
+```
+
+First check:
+
+- The variable's scope
+- Selector specificity
+- Source order
+- Cascade layers
+- Inheritance
+
+Use `!important` only when there is a specific reason.
+
+### 14. Forgetting That Variables Can Be Overridden
+
+A variable declared on `:root` is not necessarily permanent.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.card {
+    --primary-color: green;
+}
+```
+
+Inside `.card`, the applicable value can be `green`.
+
+This is often useful, but unexpected overrides can cause confusing results if the scope is not understood.
+
+### 15. Using an Invalid Value for the Property
+
+A custom property can store a value, but that value still needs to be usable by the property where it is substituted.
+
+For example:
+
+```css
+:root {
+    --button-size: red;
+}
+
+.button {
+    width: var(--button-size);
+}
+```
+
+The resulting value is not valid for `width`.
+
+A fallback can be provided:
+
+```css
+.button {
+    width: var(--button-size, 100px);
+}
+```
+
+However, the best solution is usually to store values appropriate for their intended use.
+
+### 16. Assuming `var()` Is Text Replacement
+
+CSS Variables are not simple string replacement.
+
+For example:
+
+```css
+:root {
+    --size: 20px;
+}
+
+.box {
+    width: calc(var(--size) * 2);
+}
+```
+
+The variable participates in CSS value processing.
+
+The result is:
+
+```text
+20px × 2
+   ↓
+40px
+```
+
+### 17. Forgetting That `var()` Can Have a Fallback
+
+Instead of:
+
+```css
+color: var(--text-color);
+```
+
+a reusable component may sometimes benefit from:
+
+```css
+color: var(--text-color, #222);
+```
+
+This provides a default when the custom property cannot provide a usable value.
+
+### 18. Duplicating Theme Styles
+
+Avoid creating completely separate copies of component styles for every theme.
+
+Instead of:
+
+```css
+.card {
+    background: white;
+    color: black;
+}
+
+.dark-theme .card {
+    background: #1e293b;
+    color: white;
+}
+```
+
+consider:
+
+```css
+:root {
+    --card-background: white;
+    --card-text: black;
+}
+
+.dark-theme {
+    --card-background: #1e293b;
+    --card-text: white;
+}
+
+.card {
+    background: var(--card-background);
+    color: var(--card-text);
+}
+```
+
+This keeps the component styles reusable.
+
+### 19. Making the Variable System Too Complicated
+
+CSS Variables should simplify the stylesheet.
+
+Avoid unnecessary chains of variables when they make the code harder to understand:
+
+```css
+--a: var(--b);
+--b: var(--c);
+--c: var(--d);
+```
+
+Use clear relationships where they provide a real benefit.
+
+### 20. Not Checking the Computed Value
+
+When a CSS Variable appears not to work, inspect the element in browser developer tools.
+
+Check:
+
+```text
+1. Is the variable declared?
+2. Is it inherited?
+3. Is another declaration overriding it?
+4. Is the value valid for the property?
+5. Is a fallback being used?
+6. Is the final declaration being overridden?
+```
+
+This is often faster than changing selectors randomly.
+
+### Common-Mistake Checklist
+
+```text
+CSS Variables
+│
+├── Use the -- prefix
+├── Use var() to consume values
+├── Match variable names exactly
+├── Understand variable scope
+├── Remember inheritance
+├── Use fallbacks when appropriate
+├── Avoid unnecessary variables
+├── Use meaningful names
+├── Check the cascade
+├── Check source order
+├── Avoid unnecessary !important
+├── Use valid values
+├── Do not treat var() as text replacement
+└── Inspect computed styles when debugging
+```
+
+> 💡 **Remember:** Most CSS Variable problems come from misunderstanding **scope, inheritance, the cascade, or the value being substituted**. Check those areas before changing the code blindly.
