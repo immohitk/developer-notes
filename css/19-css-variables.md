@@ -3351,3 +3351,362 @@ Even darker color
 ```
 
 > 💡 **Remember:** Pseudo-classes can change custom-property values. Because other declarations use those variables, changing one variable can update several visual properties at once.
+
+---
+
+## CSS Variables with Media Queries
+
+CSS Variables can be changed inside media queries.
+
+This makes it possible to use the same CSS declarations while changing values based on the screen size or other media conditions.
+
+### Basic Example
+
+Define a variable for spacing:
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+.card {
+    padding: var(--spacing);
+}
+```
+
+Change the variable for smaller screens:
+
+```css
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+```
+
+The `.card` declaration does not need to change:
+
+```css
+.card {
+    padding: var(--spacing);
+}
+```
+
+The value changes depending on the active media query.
+
+```text
+Large screen
+    ↓
+--spacing: 24px
+    ↓
+padding: 24px
+
+Small screen
+    ↓
+--spacing: 12px
+    ↓
+padding: 12px
+```
+
+### Responsive Typography
+
+CSS Variables can also control font sizes.
+
+```css
+:root {
+    --heading-size: 2.5rem;
+}
+
+h1 {
+    font-size: var(--heading-size);
+}
+```
+
+On smaller screens:
+
+```css
+@media (max-width: 600px) {
+    :root {
+        --heading-size: 2rem;
+    }
+}
+```
+
+The same `h1` rule uses the appropriate value.
+
+### Responsive Spacing
+
+You can create a small responsive spacing system:
+
+```css
+:root {
+    --space-small: 8px;
+    --space-medium: 16px;
+    --space-large: 32px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --space-medium: 12px;
+        --space-large: 20px;
+    }
+}
+```
+
+Components can continue using:
+
+```css
+.card {
+    padding: var(--space-medium);
+    margin-bottom: var(--space-large);
+}
+```
+
+### Responsive Container Width
+
+A variable can also control layout dimensions.
+
+```css
+:root {
+    --container-width: 1200px;
+}
+
+.container {
+    width: min(100% - 32px, var(--container-width));
+    margin-inline: auto;
+}
+```
+
+For smaller screens, the value can be changed if needed:
+
+```css
+@media (max-width: 768px) {
+    :root {
+        --container-width: 100%;
+    }
+}
+```
+
+### Changing Colors With Media Queries
+
+Media queries do not have to be used only for dimensions.
+
+You can change theme-related values as well.
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #111;
+        --text-color: white;
+    }
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+The variables provide different values depending on the user's preferred color scheme.
+
+### Responsive Component Variables
+
+Variables can also be changed at the component level.
+
+```css
+.card {
+    --card-padding: 24px;
+
+    padding: var(--card-padding);
+}
+
+@media (max-width: 600px) {
+    .card {
+        --card-padding: 16px;
+    }
+}
+```
+
+Only the component's variable changes.
+
+The main declaration remains:
+
+```css
+.card {
+    padding: var(--card-padding);
+}
+```
+
+### Multiple Breakpoints
+
+Different breakpoints can provide different values.
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+@media (max-width: 900px) {
+    :root {
+        --spacing: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+```
+
+Conceptually:
+
+```text
+> 900px
+    ↓
+24px
+
+601px – 900px
+    ↓
+20px
+
+≤ 600px
+    ↓
+12px
+```
+
+The applicable media-query rules participate in the cascade.
+
+### Combining Variables With `calc()`
+
+Variables can also be used with `calc()` for responsive values.
+
+```css
+:root {
+    --base-spacing: 16px;
+}
+
+.card {
+    padding: calc(var(--base-spacing) * 1.5);
+}
+```
+
+The variable can be changed at a breakpoint:
+
+```css
+@media (max-width: 600px) {
+    :root {
+        --base-spacing: 12px;
+    }
+}
+```
+
+The calculation automatically uses the new value.
+
+### Why Use Variables With Media Queries?
+
+This approach can reduce repeated responsive declarations.
+
+Instead of:
+
+```css
+.card {
+    padding: 24px;
+    font-size: 20px;
+}
+
+@media (max-width: 600px) {
+    .card {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+```
+
+you can use:
+
+```css
+:root {
+    --card-padding: 24px;
+    --card-font-size: 20px;
+}
+
+.card {
+    padding: var(--card-padding);
+    font-size: var(--card-font-size);
+}
+
+@media (max-width: 600px) {
+    :root {
+        --card-padding: 12px;
+        --card-font-size: 16px;
+    }
+}
+```
+
+The component declaration remains unchanged.
+
+### Practical Example
+
+```css
+:root {
+    --page-padding: 32px;
+    --heading-size: 2.5rem;
+    --card-gap: 24px;
+}
+
+.page {
+    padding: var(--page-padding);
+}
+
+h1 {
+    font-size: var(--heading-size);
+}
+
+.cards {
+    gap: var(--card-gap);
+}
+
+@media (max-width: 768px) {
+    :root {
+        --page-padding: 20px;
+        --heading-size: 2rem;
+        --card-gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --page-padding: 12px;
+        --heading-size: 1.75rem;
+        --card-gap: 12px;
+    }
+}
+```
+
+The same component rules automatically adapt to different screen sizes.
+
+### Important Point
+
+CSS Variables do not replace media queries.
+
+Instead, they work **with** media queries.
+
+```text
+Media Query
+     ↓
+Changes custom-property value
+     ↓
+Existing CSS declarations
+     ↓
+Use var(--property)
+     ↓
+Responsive result
+```
+
+> 💡 **Remember:** A powerful responsive pattern is to keep component declarations stable and change the custom-property values inside media queries.
