@@ -4542,3 +4542,455 @@ and only the variables change:
 This keeps theme logic centralized and reduces duplicated component styles.
 
 > 💡 **Remember:** A theme can be implemented by changing a set of CSS Variables while keeping the component declarations unchanged. This is one of the most practical uses of CSS Custom Properties.
+
+---
+
+## Practical Examples
+
+CSS Variables become especially useful when they are used to build reusable and maintainable components.
+
+The following examples demonstrate common real-world uses.
+
+### Example 1 — Reusable Color
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+
+button {
+    background-color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+
+.icon {
+    color: var(--primary-color);
+}
+```
+
+One variable controls the primary color used by multiple elements.
+
+Changing:
+
+```css
+--primary-color: #7c3aed;
+```
+
+updates all elements using the variable.
+
+### Example 2 — Reusable Spacing
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: var(--spacing);
+}
+
+.section {
+    margin-bottom: var(--spacing);
+}
+
+.button {
+    padding: var(--spacing);
+}
+```
+
+A single variable can provide consistent spacing throughout a design.
+
+### Example 3 — Button Variants
+
+CSS Variables can simplify component variants.
+
+```css
+.button {
+    --button-background: #2563eb;
+    --button-text: white;
+
+    background-color: var(--button-background);
+    color: var(--button-text);
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+}
+
+.button.success {
+    --button-background: #16a34a;
+}
+
+.button.danger {
+    --button-background: #dc2626;
+}
+```
+
+HTML:
+
+```html
+<button class="button">
+    Primary
+</button>
+
+<button class="button success">
+    Success
+</button>
+
+<button class="button danger">
+    Delete
+</button>
+```
+
+The main button styles remain unchanged.
+
+Only the custom-property values change.
+
+### Example 4 — Card Component
+
+```css
+.card {
+    --card-background: white;
+    --card-text: #222;
+    --card-border: #ddd;
+    --card-radius: 8px;
+    --card-padding: 20px;
+
+    background-color: var(--card-background);
+    color: var(--card-text);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
+    padding: var(--card-padding);
+}
+```
+
+A variant can override the variables:
+
+```css
+.card.featured {
+    --card-background: #eff6ff;
+    --card-border: #2563eb;
+}
+```
+
+This creates a different card appearance without duplicating the component's main styles.
+
+### Example 5 — Responsive Design
+
+```css
+:root {
+    --page-padding: 32px;
+    --card-gap: 24px;
+}
+
+.page {
+    padding: var(--page-padding);
+}
+
+.cards {
+    display: flex;
+    gap: var(--card-gap);
+}
+
+@media (max-width: 600px) {
+    :root {
+        --page-padding: 16px;
+        --card-gap: 12px;
+    }
+}
+```
+
+The same component declarations work at different screen sizes.
+
+### Example 6 — Dark Mode
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+    --surface-color: #f8fafc;
+}
+
+.dark-theme {
+    --background-color: #0f172a;
+    --text-color: #f8fafc;
+    --surface-color: #1e293b;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--surface-color);
+}
+```
+
+The theme changes the values while the component rules remain the same.
+
+### Example 7 — CSS Variable With `calc()`
+
+```css
+:root {
+    --base-spacing: 16px;
+}
+
+.card {
+    padding: calc(var(--base-spacing) * 2);
+}
+```
+
+The resulting padding is:
+
+```text
+16px × 2
+   ↓
+32px
+```
+
+This is useful when several values need to be derived from a common base value.
+
+### Example 8 — Customizing a Component
+
+A reusable component can expose variables for customization:
+
+```css
+.alert {
+    --alert-background: #eff6ff;
+    --alert-color: #1e40af;
+    --alert-border: #93c5fd;
+
+    background-color: var(--alert-background);
+    color: var(--alert-color);
+    border: 1px solid var(--alert-border);
+    padding: 16px;
+}
+```
+
+Variants can customize the component:
+
+```css
+.alert.warning {
+    --alert-background: #fffbeb;
+    --alert-color: #92400e;
+    --alert-border: #fcd34d;
+}
+
+.alert.error {
+    --alert-background: #fef2f2;
+    --alert-color: #991b1b;
+    --alert-border: #fca5a5;
+}
+```
+
+The component structure stays the same.
+
+### Example 9 — Navigation Theme
+
+```css
+.navbar {
+    --nav-background: #ffffff;
+    --nav-text: #222222;
+
+    background-color: var(--nav-background);
+    color: var(--nav-text);
+}
+
+.navbar.dark {
+    --nav-background: #111827;
+    --nav-text: #ffffff;
+}
+```
+
+The navigation component can switch appearance by changing its variables.
+
+### Example 10 — Form Controls
+
+```css
+.form-control {
+    --input-border: #cbd5e1;
+    --input-focus: #2563eb;
+
+    border: 2px solid var(--input-border);
+    padding: 10px;
+}
+
+.form-control:focus {
+    --input-border: var(--input-focus);
+    outline: none;
+}
+```
+
+The same variable controls the border in different states.
+
+### Example 11 — Theme With Data Attributes
+
+HTML:
+
+```html
+<html data-theme="light">
+```
+
+CSS:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+[data-theme="dark"] {
+    --background-color: #111827;
+    --text-color: white;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+JavaScript can switch the theme:
+
+```javascript
+document.documentElement.dataset.theme = "dark";
+```
+
+### Example 12 — JavaScript-Controlled Color
+
+CSS:
+
+```css
+:root {
+    --user-color: #2563eb;
+}
+
+.preview {
+    width: 200px;
+    height: 100px;
+    background-color: var(--user-color);
+}
+```
+
+JavaScript:
+
+```javascript
+document.documentElement.style.setProperty(
+    "--user-color",
+    "#16a34a"
+);
+```
+
+The preview automatically changes because it uses:
+
+```css
+background-color: var(--user-color);
+```
+
+### Example 13 — Reusable Design Tokens
+
+A small design system can be created with variables:
+
+```css
+:root {
+    /* Colors */
+    --color-primary: #2563eb;
+    --color-success: #16a34a;
+    --color-danger: #dc2626;
+
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --space-4: 24px;
+
+    /* Border Radius */
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 12px;
+}
+```
+
+Components can use these shared values:
+
+```css
+.button {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-medium);
+    background-color: var(--color-primary);
+}
+
+.card {
+    padding: var(--space-4);
+    border-radius: var(--radius-large);
+}
+```
+
+This creates consistency across the application.
+
+### Example 14 — Complete Mini Example
+
+HTML:
+
+```html
+<div class="card">
+    <h2 class="card-title">CSS Variables</h2>
+    <p class="card-text">
+        Reusable CSS values make styles easier to maintain.
+    </p>
+    <button class="button">Learn More</button>
+</div>
+```
+
+CSS:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --text-color: #1e293b;
+    --surface-color: #ffffff;
+    --border-color: #cbd5e1;
+    --spacing: 16px;
+    --radius: 8px;
+}
+
+.card {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: var(--spacing);
+}
+
+.card-title {
+    color: var(--primary-color);
+}
+
+.button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 16px;
+}
+```
+
+The design values are centralized:
+
+```text
+CSS Variables
+     ↓
+Colors
+Spacing
+Radius
+Borders
+     ↓
+Components
+     ↓
+Consistent design
+```
+
+> 💡 **Remember:** The real power of CSS Variables comes from combining them with inheritance, the cascade, media queries, pseudo-classes, themes, and reusable components.
