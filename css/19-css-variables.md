@@ -3710,3 +3710,384 @@ Responsive result
 ```
 
 > 💡 **Remember:** A powerful responsive pattern is to keep component declarations stable and change the custom-property values inside media queries.
+
+---
+
+## CSS Variables with JavaScript
+
+CSS Variables can be read and modified with JavaScript.
+
+This is useful when a web application needs to dynamically change colors, spacing, sizes, themes, or other CSS values.
+
+JavaScript can interact with CSS custom properties through the DOM.
+
+### Defining a CSS Variable
+
+Start with a custom property:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+Use it in CSS:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+```
+
+JavaScript can then access or modify the variable.
+
+### Setting a CSS Variable With JavaScript
+
+Use:
+
+```javascript
+document.documentElement.style.setProperty(
+    "--primary-color",
+    "#dc2626"
+);
+```
+
+Here:
+
+```text
+document.documentElement
+        ↓
+<html> element
+
+style.setProperty()
+        ↓
+Changes the custom property
+
+--primary-color
+        ↓
+#dc2626
+```
+
+The CSS:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+```
+
+automatically uses the new value.
+
+### Reading a CSS Variable
+
+JavaScript can read a custom property using `getComputedStyle()`.
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+JavaScript:
+
+```javascript
+const styles = getComputedStyle(document.documentElement);
+
+const primaryColor = styles
+    .getPropertyValue("--primary-color")
+    .trim();
+
+console.log(primaryColor);
+```
+
+The result is:
+
+```text
+#2563eb
+```
+
+### Changing a Variable Dynamically
+
+Consider:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+JavaScript can change the values:
+
+```javascript
+document.documentElement.style.setProperty(
+    "--background-color",
+    "#111"
+);
+
+document.documentElement.style.setProperty(
+    "--text-color",
+    "white"
+);
+```
+
+The page updates without changing the individual CSS declarations.
+
+### Theme Switching
+
+CSS Variables and JavaScript are commonly used together for theme switching.
+
+CSS:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+.dark-theme {
+    --background-color: #111;
+    --text-color: white;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+JavaScript can toggle the theme class:
+
+```javascript
+document.documentElement.classList.toggle("dark-theme");
+```
+
+This changes the variables inherited by the page.
+
+### Using JavaScript to Control Component Values
+
+Suppose a component uses:
+
+```css
+.card {
+    --card-radius: 8px;
+
+    border-radius: var(--card-radius);
+}
+```
+
+JavaScript can change the value:
+
+```javascript
+const card = document.querySelector(".card");
+
+card.style.setProperty("--card-radius", "20px");
+```
+
+The card now uses:
+
+```text
+--card-radius: 20px
+```
+
+without changing the main CSS rule.
+
+### Setting Multiple Variables
+
+JavaScript can update several custom properties:
+
+```javascript
+const root = document.documentElement;
+
+root.style.setProperty("--primary-color", "#2563eb");
+root.style.setProperty("--text-color", "#222");
+root.style.setProperty("--spacing", "16px");
+```
+
+This can be useful when dynamically updating a design system.
+
+### Removing a CSS Variable
+
+A custom property set through inline styles can be removed using:
+
+```javascript
+document.documentElement.style.removeProperty(
+    "--primary-color"
+);
+```
+
+After removal, the browser can fall back to another applicable declaration or inherited value.
+
+### Reading a Variable From a Specific Element
+
+Suppose:
+
+```css
+.card {
+    --card-color: blue;
+}
+```
+
+You can read the computed value from that element:
+
+```javascript
+const card = document.querySelector(".card");
+
+const styles = getComputedStyle(card);
+
+const color = styles
+    .getPropertyValue("--card-color")
+    .trim();
+
+console.log(color);
+```
+
+The result is:
+
+```text
+blue
+```
+
+### JavaScript and CSS Separation
+
+CSS Variables allow JavaScript to change values without requiring JavaScript to rewrite complete CSS rules.
+
+Instead of JavaScript doing something like:
+
+```javascript
+element.style.backgroundColor = "#2563eb";
+```
+
+you can use a CSS Variable:
+
+```css
+.element {
+    background-color: var(--primary-color);
+}
+```
+
+and let JavaScript change:
+
+```javascript
+document.documentElement.style.setProperty(
+    "--primary-color",
+    "#2563eb"
+);
+```
+
+This keeps the styling logic in CSS while JavaScript controls the dynamic value.
+
+### Practical Example — Color Picker
+
+CSS:
+
+```css
+:root {
+    --user-color: #2563eb;
+}
+
+.box {
+    width: 200px;
+    height: 100px;
+    background-color: var(--user-color);
+}
+```
+
+HTML:
+
+```html
+<input type="color" id="colorPicker">
+
+<div class="box"></div>
+```
+
+JavaScript:
+
+```javascript
+const colorPicker = document.querySelector("#colorPicker");
+
+colorPicker.addEventListener("input", () => {
+    document.documentElement.style.setProperty(
+        "--user-color",
+        colorPicker.value
+    );
+});
+```
+
+Now the selected color is stored in:
+
+```css
+--user-color
+```
+
+and the `.box` automatically updates.
+
+### Practical Example — Dynamic Spacing
+
+CSS:
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: var(--spacing);
+}
+```
+
+HTML:
+
+```html
+<button id="increase">Increase</button>
+<button id="decrease">Decrease</button>
+
+<div class="card">
+    Content
+</div>
+```
+
+JavaScript can change the variable:
+
+```javascript
+const root = document.documentElement;
+
+document.querySelector("#increase").addEventListener("click", () => {
+    root.style.setProperty("--spacing", "32px");
+});
+
+document.querySelector("#decrease").addEventListener("click", () => {
+    root.style.setProperty("--spacing", "8px");
+});
+```
+
+The card responds because its padding uses:
+
+```css
+padding: var(--spacing);
+```
+
+### Important Point
+
+JavaScript does not need to know every CSS property that uses the variable.
+
+It only changes:
+
+```text
+CSS Variable
+     ↓
+--spacing
+     ↓
+CSS declarations using var(--spacing)
+     ↓
+Updated appearance
+```
+
+This makes CSS Variables a useful bridge between JavaScript behavior and CSS presentation.
+
+> 💡 **Remember:** JavaScript can read custom properties with `getComputedStyle()` and modify them with `style.setProperty()`. This allows dynamic styling while keeping reusable presentation rules in CSS.
