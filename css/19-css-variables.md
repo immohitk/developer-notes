@@ -6723,3 +6723,460 @@ Browser developer tools can help inspect the computed value and cascade.
 ### 30. Explain CSS Variables in one sentence.
 
 **CSS Variables are reusable CSS Custom Properties that allow values to be defined once and reused, overridden, and dynamically changed throughout a stylesheet.**
+
+---
+
+## Practice Exercises
+
+### Exercise 1 — Declare and Use a CSS Variable
+
+Create a CSS Variable named `--primary-color` with the value `#2563eb`.
+
+Use it as the background color of a button.
+
+Expected structure:
+
+```css
+:root {
+    /* Define the variable */
+}
+
+button {
+    /* Use the variable */
+}
+```
+
+---
+
+### Exercise 2 — Create Multiple Variables
+
+Create the following CSS Variables:
+
+```text
+--primary-color
+--text-color
+--spacing
+--border-radius
+```
+
+Assign suitable values to each variable and use them in a `.card` component.
+
+The card should use:
+
+- A background color
+- A text color
+- Padding
+- Border radius
+
+---
+
+### Exercise 3 — Use a Fallback Value
+
+Create a button that uses:
+
+```css
+var(--button-color, blue)
+```
+
+The button should use `blue` when `--button-color` is not available.
+
+Then create another rule that defines:
+
+```css
+--button-color: green;
+```
+
+Observe how the button changes.
+
+---
+
+### Exercise 4 — Local CSS Variable
+
+Create a `.card` component with a local variable:
+
+```css
+--card-color
+```
+
+Use the variable to control the color of the card heading.
+
+Then create another card with a different value.
+
+Example goal:
+
+```text
+Card 1 → Blue heading
+Card 2 → Red heading
+```
+
+---
+
+### Exercise 5 — CSS Variable Inheritance
+
+Create a parent element with:
+
+```css
+--text-color: blue;
+```
+
+Create several child elements that use:
+
+```css
+color: var(--text-color);
+```
+
+Verify that the custom property is inherited by the descendants.
+
+Then override the variable on one child and observe the result.
+
+---
+
+### Exercise 6 — Button Variants
+
+Create a reusable `.button` component.
+
+Define:
+
+```css
+--button-color
+```
+
+Use it for the button background.
+
+Create three variants:
+
+```text
+Primary
+Success
+Danger
+```
+
+Each variant should override the same custom property.
+
+Expected result:
+
+```text
+Primary → Blue
+Success → Green
+Danger  → Red
+```
+
+---
+
+### Exercise 7 — CSS Variables With `:hover`
+
+Create a button with:
+
+```css
+--button-color
+```
+
+Use the variable for its background color.
+
+Change the variable inside `:hover`.
+
+The button should have a different background color when the mouse is over it.
+
+---
+
+### Exercise 8 — CSS Variables With Media Queries
+
+Create:
+
+```css
+--spacing: 24px;
+```
+
+Use it for the padding of a `.card`.
+
+Inside a media query for screens smaller than `600px`, change the variable to:
+
+```css
+--spacing: 12px;
+```
+
+The card should automatically become more compact on smaller screens.
+
+---
+
+### Exercise 9 — Create a Dark Theme
+
+Create a light theme using:
+
+```css
+--background-color
+--text-color
+--surface-color
+```
+
+Then create a `.dark-theme` that overrides these variables.
+
+Apply the variables to:
+
+```text
+body
+card
+text
+```
+
+The same component CSS should work for both themes.
+
+---
+
+### Exercise 10 — Theme Switching With JavaScript
+
+Create a light and dark theme using CSS Variables.
+
+Add a button:
+
+```html
+<button id="theme-toggle">
+    Toggle Theme
+</button>
+```
+
+Use JavaScript to toggle the theme class on the root element.
+
+The page should switch between light and dark themes without rewriting individual CSS properties.
+
+---
+
+### Exercise 11 — Read a CSS Variable With JavaScript
+
+Define:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+Use JavaScript and `getComputedStyle()` to read the value.
+
+Display the value in the browser console.
+
+Expected result:
+
+```text
+#2563eb
+```
+
+---
+
+### Exercise 12 — Change a CSS Variable With JavaScript
+
+Create:
+
+```css
+:root {
+    --box-color: blue;
+}
+```
+
+Create a box that uses the variable as its background color.
+
+Use JavaScript to change:
+
+```text
+blue → red
+```
+
+when a button is clicked.
+
+---
+
+### Exercise 13 — Use CSS Variables With `calc()`
+
+Create:
+
+```css
+--base-spacing: 16px;
+```
+
+Use:
+
+```css
+calc(var(--base-spacing) * 2)
+```
+
+to create the padding of a component.
+
+Calculate the resulting value.
+
+Expected result:
+
+```text
+32px
+```
+
+---
+
+### Exercise 14 — Build a Small Design Token System
+
+Create a `:root` section containing variables for:
+
+```text
+Colors
+Spacing
+Border radius
+Typography
+```
+
+For example:
+
+```css
+:root {
+    /* Colors */
+    --color-primary: ...;
+
+    /* Spacing */
+    --space-small: ...;
+
+    /* Radius */
+    --radius-medium: ...;
+
+    /* Typography */
+    --font-size-base: ...;
+}
+```
+
+Use these variables in at least three different components.
+
+---
+
+### Exercise 15 — Debug a CSS Variable
+
+Find and fix the problem in this code:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+button {
+    background-color: var(--Primary-color);
+}
+```
+
+Question:
+
+**Why is the expected color not being applied?**
+
+---
+
+### Exercise 16 — Debug Variable Scope
+
+Find and fix the problem:
+
+```css
+.card {
+    --card-color: blue;
+}
+
+.header {
+    color: var(--card-color);
+}
+```
+
+Question:
+
+**Why might `.header` not receive the value of `--card-color`?**
+
+Modify the CSS so the variable is available where it is needed.
+
+---
+
+### Exercise 17 — Debug a Missing Fallback
+
+Consider:
+
+```css
+.button {
+    color: var(--button-text);
+}
+```
+
+Modify the rule so that the button uses `white` when the custom property cannot provide a usable value.
+
+Expected pattern:
+
+```css
+var(--button-text, white)
+```
+
+---
+
+### Exercise 18 — Build a Customizable Card
+
+Create a reusable card with these variables:
+
+```text
+--card-background
+--card-color
+--card-padding
+--card-radius
+--card-border
+```
+
+Use the variables throughout the component.
+
+Then create at least two card variants by overriding the variables.
+
+---
+
+### Exercise 19 — Build Responsive Cards
+
+Create a card layout using CSS Variables.
+
+Use variables for:
+
+```text
+Card gap
+Card padding
+Heading size
+```
+
+Change the values inside media queries for smaller screens.
+
+The card declarations themselves should continue using `var()`.
+
+---
+
+### Exercise 20 — Mini Project: CSS Variable Theme System
+
+Build a small webpage that demonstrates the major concepts from this chapter.
+
+Your project should include:
+
+- Global CSS Variables
+- Local CSS Variables
+- Variable inheritance
+- Fallback values
+- A button variant
+- A hover state
+- Responsive variables
+- Light and dark themes
+- JavaScript theme switching
+- At least one `calc()` example
+
+Suggested structure:
+
+```text
+Theme System
+│
+├── Global Variables
+├── Header
+├── Navigation
+├── Cards
+├── Buttons
+├── Responsive Layout
+└── Theme Toggle
+```
+
+### Challenge
+
+Try to build the project without repeatedly hard-coding the same colors, spacing values, or border-radius values.
+
+Instead, identify the reusable design values and convert them into CSS Variables.
+
+> 💡 **Practice goal:** Do not just memorize `--name: value` and `var(--name)`. Practice understanding **scope, inheritance, cascade, fallback values, responsive changes, themes, and JavaScript interaction**.
