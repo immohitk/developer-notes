@@ -6163,3 +6163,563 @@ CSS Variables
 ```
 
 > 💡 **Remember:** Most CSS Variable problems come from misunderstanding **scope, inheritance, the cascade, or the value being substituted**. Check those areas before changing the code blindly.
+
+---
+
+## Interview Questions
+
+### 1. What are CSS Variables?
+
+CSS Variables, officially called **CSS Custom Properties**, are reusable CSS values defined with names that begin with two hyphens.
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+They can be used with the `var()` function:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+```
+
+---
+
+### 2. What is the syntax for declaring a CSS Variable?
+
+The syntax is:
+
+```css
+--property-name: value;
+```
+
+For example:
+
+```css
+--font-size: 16px;
+```
+
+---
+
+### 3. How do you use a CSS Variable?
+
+Use the `var()` function:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+button {
+    color: var(--primary-color);
+}
+```
+
+---
+
+### 4. Why are CSS Variables useful?
+
+CSS Variables help:
+
+- Reduce repetition
+- Improve maintainability
+- Keep design values consistent
+- Create themes
+- Customize components
+- Manage responsive values
+- Build reusable design systems
+
+---
+
+### 5. Where are CSS Variables commonly declared globally?
+
+They are commonly declared on `:root`.
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --spacing: 16px;
+}
+```
+
+This makes the values available throughout the document through inheritance.
+
+---
+
+### 6. Can CSS Variables be declared locally?
+
+Yes.
+
+```css
+.card {
+    --card-color: blue;
+}
+```
+
+The variable can then be used by the element and applicable descendants.
+
+```css
+.card-title {
+    color: var(--card-color);
+}
+```
+
+---
+
+### 7. Do CSS Variables inherit?
+
+Yes. Custom properties normally inherit from a parent element to its descendants.
+
+```css
+.card {
+    --text-color: blue;
+}
+
+.card p {
+    color: var(--text-color);
+}
+```
+
+---
+
+### 8. What is the `var()` function?
+
+The `var()` function retrieves the value of a CSS custom property.
+
+```css
+var(--primary-color)
+```
+
+Example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+button {
+    background-color: var(--primary-color);
+}
+```
+
+---
+
+### 9. What is a fallback value in CSS Variables?
+
+A fallback is a value provided as the second argument of `var()`.
+
+```css
+color: var(--text-color, black);
+```
+
+If `--text-color` cannot provide a usable value, `black` is used.
+
+---
+
+### 10. Can CSS Variables store values other than colors?
+
+Yes.
+
+They can store values such as:
+
+```css
+:root {
+    --spacing: 16px;
+    --font-size: 18px;
+    --border-radius: 8px;
+    --font-family: Arial, sans-serif;
+}
+```
+
+They can also store more complex CSS value sequences.
+
+---
+
+### 11. Are CSS Variable names case-sensitive?
+
+Yes.
+
+These are different custom properties:
+
+```css
+--primary-color
+--Primary-Color
+```
+
+Therefore, the names should be used consistently.
+
+---
+
+### 12. Do CSS Variables participate in the cascade?
+
+Yes.
+
+Custom properties participate in the CSS cascade.
+
+```css
+.card {
+    --color: blue;
+}
+
+.card.special {
+    --color: red;
+}
+```
+
+The applicable value is determined by the cascade.
+
+---
+
+### 13. Can a CSS Variable be overridden?
+
+Yes.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.card {
+    --primary-color: red;
+}
+```
+
+The applicable value inside `.card` can be `red`.
+
+---
+
+### 14. Can CSS Variables be used with media queries?
+
+Yes.
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+```
+
+The same CSS declarations can then use:
+
+```css
+.card {
+    padding: var(--spacing);
+}
+```
+
+---
+
+### 15. Can CSS Variables be changed with pseudo-classes?
+
+Yes.
+
+```css
+.button {
+    --button-color: blue;
+}
+
+.button:hover {
+    --button-color: darkblue;
+}
+```
+
+The variable changes when the element is hovered.
+
+---
+
+### 16. Can JavaScript modify CSS Variables?
+
+Yes.
+
+Use `setProperty()`:
+
+```javascript
+document.documentElement.style.setProperty(
+    "--primary-color",
+    "red"
+);
+```
+
+---
+
+### 17. How can JavaScript read a CSS Variable?
+
+Use `getComputedStyle()`:
+
+```javascript
+const styles = getComputedStyle(document.documentElement);
+
+const color = styles
+    .getPropertyValue("--primary-color")
+    .trim();
+```
+
+---
+
+### 18. How can CSS Variables be used for dark mode?
+
+Define default variables:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+```
+
+Then override them for the dark theme:
+
+```css
+.dark-theme {
+    --background-color: #111827;
+    --text-color: white;
+}
+```
+
+Use the variables in the components:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+---
+
+### 19. Can CSS Variables be used with `calc()`?
+
+Yes.
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: calc(var(--spacing) * 2);
+}
+```
+
+The resulting value is:
+
+```text
+32px
+```
+
+---
+
+### 20. What happens if a CSS Variable is not defined?
+
+If the custom property cannot provide a usable value and there is no fallback, the declaration using it can become invalid at computed-value time.
+
+For example:
+
+```css
+button {
+    color: var(--button-color);
+}
+```
+
+A fallback can be provided:
+
+```css
+button {
+    color: var(--button-color, black);
+}
+```
+
+---
+
+### 21. What is the difference between a global and local CSS Variable?
+
+A global variable is commonly declared on `:root`:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+A local variable is declared on a specific element or component:
+
+```css
+.card {
+    --card-color: blue;
+}
+```
+
+Global variables are useful for shared design values, while local variables are useful for component-specific values.
+
+---
+
+### 22. Why are CSS Variables useful for component variants?
+
+A component can define a default variable and variants can override it.
+
+```css
+.button {
+    --button-color: blue;
+
+    background-color: var(--button-color);
+}
+
+.button.success {
+    --button-color: green;
+}
+
+.button.danger {
+    --button-color: red;
+}
+```
+
+This avoids duplicating the entire component style.
+
+---
+
+### 23. Are CSS Variables the same as variables in programming languages?
+
+Not exactly.
+
+CSS Variables are technically **CSS Custom Properties**. They participate in CSS features such as inheritance and the cascade and are consumed through CSS functions such as `var()`.
+
+---
+
+### 24. What is a good naming convention for CSS Variables?
+
+Use descriptive names that communicate the purpose of the value.
+
+For example:
+
+```css
+--color-primary
+--color-text
+--space-medium
+--radius-medium
+```
+
+Avoid unclear names such as:
+
+```css
+--x
+--value1
+--thing
+```
+
+---
+
+### 25. What are common mistakes when using CSS Variables?
+
+Common mistakes include:
+
+- Forgetting the `--` prefix
+- Forgetting to use `var()`
+- Misspelling a variable name
+- Misunderstanding inheritance
+- Defining a variable outside the required scope
+- Forgetting appropriate fallbacks
+- Accidentally overriding a variable
+- Creating unnecessary variables
+- Using invalid values for the target property
+- Using `!important` unnecessarily
+
+---
+
+### 26. What is the biggest advantage of CSS Variables?
+
+The main advantage is **reusability and maintainability**.
+
+A value can be defined once:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+and reused:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+```
+
+Changing the variable can update multiple parts of the design.
+
+---
+
+### 27. How do CSS Variables help with responsive design?
+
+A variable can be changed inside a media query while the component continues using the same declaration.
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+
+.card {
+    padding: var(--spacing);
+}
+```
+
+---
+
+### 28. How do CSS Variables help create design systems?
+
+Common design values can be stored as reusable design tokens:
+
+```css
+:root {
+    --color-primary: #2563eb;
+    --space-small: 8px;
+    --space-medium: 16px;
+    --radius-medium: 8px;
+}
+```
+
+Components can then use the same values, helping maintain visual consistency.
+
+---
+
+### 29. What should you check if a CSS Variable is not working?
+
+Check:
+
+```text
+1. Is the variable declared?
+2. Is the variable name correct?
+3. Is the variable available in the element's scope?
+4. Is it inherited correctly?
+5. Is another declaration overriding it?
+6. Is the value valid for the target property?
+7. Is a fallback being used?
+```
+
+Browser developer tools can help inspect the computed value and cascade.
+
+---
+
+### 30. Explain CSS Variables in one sentence.
+
+**CSS Variables are reusable CSS Custom Properties that allow values to be defined once and reused, overridden, and dynamically changed throughout a stylesheet.**
