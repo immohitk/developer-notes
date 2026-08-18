@@ -226,3 +226,288 @@ CSS Variables can contain many kinds of CSS values, including:
 They are useful because the value can be defined once and reused wherever needed.
 
 > 💡 **Remember:** CSS Variables are actually called **CSS Custom Properties**. Custom properties are defined with `--` and are commonly accessed using the `var()` function.
+
+---
+
+## Why Use CSS Variables?
+
+CSS Variables make CSS easier to reuse, maintain, and customize.
+
+Instead of repeating the same values throughout a stylesheet, you can define a value once and reuse it wherever needed.
+
+### 1. Reduce Repetition
+
+Without CSS Variables:
+
+```css
+button {
+    background-color: #2563eb;
+}
+
+a {
+    color: #2563eb;
+}
+
+.card {
+    border-color: #2563eb;
+}
+```
+
+The same color is repeated multiple times.
+
+With a CSS Variable:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+You can reuse it:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+
+.card {
+    border-color: var(--primary-color);
+}
+```
+
+Now the value is defined in one place.
+
+### 2. Easier Maintenance
+
+Suppose the primary color needs to change.
+
+Without a variable, you may need to find and replace several declarations:
+
+```css
+button {
+    background-color: #2563eb;
+}
+
+a {
+    color: #2563eb;
+}
+
+.card {
+    border-color: #2563eb;
+}
+```
+
+With a variable, change only:
+
+```css
+:root {
+    --primary-color: #7c3aed;
+}
+```
+
+All declarations using:
+
+```css
+var(--primary-color)
+```
+
+automatically use the new value.
+
+### 3. Maintain Consistent Design
+
+CSS Variables can store common design values.
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+    --text-color: #1e293b;
+    --border-radius: 8px;
+    --spacing: 16px;
+}
+```
+
+Components can then reuse the same values:
+
+```css
+button {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing);
+}
+
+.card {
+    border-radius: var(--border-radius);
+    padding: var(--spacing);
+}
+```
+
+This helps keep the design consistent.
+
+### 4. Create Themes
+
+CSS Variables make it easier to create different themes.
+
+For example:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+```
+
+A dark theme can override the variables:
+
+```css
+.dark-theme {
+    --background-color: #222;
+    --text-color: white;
+}
+```
+
+Elements can continue using the same variables:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+The component does not need completely different property declarations for each theme.
+
+### 5. Customize Components
+
+Variables can make components easier to customize.
+
+```css
+.button {
+    --button-color: #2563eb;
+
+    background-color: var(--button-color);
+}
+```
+
+A different component instance can override the variable:
+
+```css
+.button.danger {
+    --button-color: #dc2626;
+}
+```
+
+The same component styles can then produce different results.
+
+### 6. Improve Readability
+
+Compare:
+
+```css
+.card {
+    padding: 24px;
+    border-radius: 8px;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+}
+```
+
+with:
+
+```css
+.card {
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+```
+
+The variable names can communicate the purpose of the values.
+
+### 7. Useful for Responsive Designs
+
+CSS Variables can also be changed inside media queries.
+
+For example:
+
+```css
+:root {
+    --spacing: 24px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --spacing: 12px;
+    }
+}
+```
+
+The same variable can then be used throughout the stylesheet:
+
+```css
+.card {
+    padding: var(--spacing);
+}
+```
+
+The value changes automatically when the media query matches.
+
+### 8. Useful for Design Systems
+
+Larger projects can define reusable design values such as:
+
+```css
+:root {
+    --color-primary: #2563eb;
+    --color-success: #16a34a;
+    --color-danger: #dc2626;
+
+    --space-small: 8px;
+    --space-medium: 16px;
+    --space-large: 24px;
+
+    --radius-small: 4px;
+    --radius-medium: 8px;
+}
+```
+
+Components can then use these shared values.
+
+```text
+Design values
+      ↓
+CSS Variables
+      ↓
+Components
+      ↓
+Consistent interface
+```
+
+### Main Benefits
+
+```text
+CSS Variables
+      │
+      ├── Reduce repetition
+      │
+      ├── Easier maintenance
+      │
+      ├── Consistent design
+      │
+      ├── Theme support
+      │
+      ├── Component customization
+      │
+      ├── Better readability
+      │
+      ├── Responsive values
+      │
+      └── Design systems
+```
+
+> 💡 **Remember:** The biggest advantage of CSS Variables is that you can define reusable values once and change those values centrally when needed.
