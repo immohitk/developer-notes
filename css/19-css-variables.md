@@ -1005,3 +1005,305 @@ p {
 ```
 
 > 💡 **Remember:** Declaring a CSS Variable stores a value; using `var(--name)` retrieves that value and applies it to a CSS declaration.
+
+---
+
+## The `var()` Function
+
+The `var()` function is used to access the value stored in a CSS custom property.
+
+The basic syntax is:
+
+```css
+var(--custom-property)
+```
+
+For example:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+
+button {
+    background-color: var(--primary-color);
+}
+```
+
+Here:
+
+```text
+--primary-color
+       ↓
+CSS custom property
+
+var(--primary-color)
+       ↓
+Retrieves its value
+```
+
+### Basic Syntax
+
+The general syntax is:
+
+```css
+var(--name)
+```
+
+For example:
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: var(--spacing);
+}
+```
+
+The browser uses the value stored in `--spacing`:
+
+```text
+--spacing: 16px
+       ↓
+var(--spacing)
+       ↓
+16px
+```
+
+### Using `var()` with Different Properties
+
+A custom property can be used in different declarations when its value is valid for those declarations.
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --spacing: 16px;
+    --radius: 8px;
+}
+
+.button {
+    background-color: var(--primary-color);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+}
+```
+
+### Using `var()` Inside `calc()`
+
+The `var()` function can be combined with other CSS functions.
+
+For example:
+
+```css
+:root {
+    --spacing: 16px;
+}
+
+.card {
+    padding: calc(var(--spacing) * 2);
+}
+```
+
+The calculation becomes:
+
+```text
+var(--spacing)
+      ↓
+16px
+      ↓
+16px × 2
+      ↓
+32px
+```
+
+### Using `var()` as Part of a Larger Value
+
+A variable does not always have to represent an entire declaration value.
+
+For example:
+
+```css
+:root {
+    --border-color: #ccc;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+}
+```
+
+Here, the final value is effectively:
+
+```css
+border: 1px solid #ccc;
+```
+
+The variable supplies only the border color.
+
+### Fallback Values
+
+The `var()` function can optionally provide a fallback value.
+
+The syntax is:
+
+```css
+var(--custom-property, fallback-value)
+```
+
+Example:
+
+```css
+.button {
+    color: var(--button-text-color, white);
+}
+```
+
+If `--button-text-color` provides a usable value, that value is used.
+
+Otherwise, the fallback:
+
+```css
+white
+```
+
+is used.
+
+### Multiple Fallback Values
+
+Fallback values can also contain another `var()` function.
+
+```css
+color: var(--text-color, var(--fallback-color, black));
+```
+
+The browser first attempts to use:
+
+```css
+--text-color
+```
+
+If that is not usable, it tries:
+
+```css
+--fallback-color
+```
+
+and finally:
+
+```css
+black
+```
+
+### `var()` Does Not Mean String Replacement
+
+CSS custom properties are not simply text macros.
+
+For example:
+
+```css
+:root {
+    --size: 10px;
+}
+```
+
+and:
+
+```css
+.box {
+    width: calc(var(--size) * 2);
+}
+```
+
+allows the value to participate in CSS value processing.
+
+This is different from a simple textual find-and-replace operation.
+
+### Variables Are Resolved Where They Are Used
+
+Consider:
+
+```css
+:root {
+    --main-color: blue;
+}
+
+.card {
+    color: var(--main-color);
+}
+```
+
+The custom property is inherited and resolved according to the element where the variable is used.
+
+This becomes especially important when variables are overridden on different elements.
+
+### Undefined Custom Property
+
+Suppose:
+
+```css
+.button {
+    color: var(--button-color);
+}
+```
+
+but no usable `--button-color` is available for that element.
+
+The declaration can become invalid at computed-value time.
+
+A fallback can make the rule safer:
+
+```css
+.button {
+    color: var(--button-color, black);
+}
+```
+
+### Fallback Does Not Mean "If the Value Is Invalid in Every Situation"
+
+The fallback in:
+
+```css
+var(--color, black)
+```
+
+is used when the custom property cannot provide a usable value for that declaration.
+
+It is not simply a general-purpose validation mechanism for every possible CSS value.
+
+### Practical Example
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --text-color: #222;
+    --spacing: 16px;
+}
+
+.card {
+    color: var(--text-color, black);
+    padding: var(--spacing, 16px);
+    border: 1px solid var(--primary-color, blue);
+}
+```
+
+The variables provide the preferred values, while the second arguments provide fallbacks.
+
+### Important Point
+
+The `var()` function is the normal way to consume a CSS custom property:
+
+```css
+--name: value;
+```
+
+defines the custom property, while:
+
+```css
+var(--name)
+```
+
+uses its value.
+
+> 💡 **Remember:** The first argument of `var()` is the custom property name. The optional second argument is a fallback value used when the custom property cannot provide a usable value.
