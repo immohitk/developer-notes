@@ -511,3 +511,195 @@ CSS Variables
 ```
 
 > 💡 **Remember:** The biggest advantage of CSS Variables is that you can define reusable values once and change those values centrally when needed.
+
+---
+
+## Declaring CSS Variables
+
+CSS Variables are declared by creating a **custom property** whose name begins with two hyphens (`--`).
+
+The basic syntax is:
+
+```css
+--property-name: value;
+```
+
+For example:
+
+```css
+--primary-color: #2563eb;
+```
+
+A custom property can then be declared inside a CSS rule:
+
+```css
+.card {
+    --card-color: #2563eb;
+}
+```
+
+Here:
+
+```text
+--card-color
+     ↓
+Custom property name
+
+#2563eb
+     ↓
+Custom property value
+```
+
+### Naming CSS Variables
+
+Custom property names must begin with two hyphens:
+
+```css
+--primary-color
+--text-color
+--font-size
+--spacing
+--border-radius
+```
+
+Names can contain letters, numbers, hyphens, and underscores according to CSS custom-property naming rules.
+
+For example:
+
+```css
+:root {
+    --main-color: #2563eb;
+    --font-size: 16px;
+    --border-radius: 8px;
+}
+```
+
+### Declaring Multiple Variables
+
+Multiple custom properties can be declared in the same rule:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+    --text-color: #222;
+    --spacing: 16px;
+    --border-radius: 8px;
+}
+```
+
+Each declaration follows the same pattern:
+
+```text
+--name: value;
+```
+
+### Variables Can Store Different Values
+
+CSS Variables are not limited to colors.
+
+They can store values such as:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --font-size: 18px;
+    --spacing: 1rem;
+    --border-width: 2px;
+    --border-radius: 8px;
+    --font-family: Arial, sans-serif;
+}
+```
+
+They can also contain more complex CSS token sequences:
+
+```css
+:root {
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+```
+
+### Declaring a Variable on `:root`
+
+A common pattern is to declare reusable variables on `:root`:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --text-color: #222;
+}
+```
+
+The variables can then be used elsewhere:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+
+p {
+    color: var(--text-color);
+}
+```
+
+Using `:root` is common when the variables are intended to be available throughout the document.
+
+### Declaring a Variable on a Specific Element
+
+A custom property can also be declared on a specific element or component:
+
+```css
+.card {
+    --card-padding: 20px;
+}
+```
+
+The variable can then be used by that element and, where inheritance applies, by its descendants:
+
+```css
+.card {
+    --card-padding: 20px;
+}
+
+.card-content {
+    padding: var(--card-padding);
+}
+```
+
+This makes it possible to create component-specific values.
+
+### Declaration vs Usage
+
+It is important to distinguish between declaring and using a variable.
+
+Declaration:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+Usage:
+
+```css
+button {
+    background-color: var(--primary-color);
+}
+```
+
+The first statement creates the custom property.
+
+The second retrieves its value using `var()`.
+
+```text
+Declaration
+    ↓
+--primary-color: #2563eb;
+
+Usage
+    ↓
+var(--primary-color)
+```
+
+> 💡 **Remember:** A CSS custom property is declared with `--name: value;`. The `var()` function is used later when you want to use that value.
