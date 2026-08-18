@@ -112,3 +112,117 @@ Multiple CSS rules
 ```
 
 > 💡 **Remember:** CSS Variables are officially called **CSS Custom Properties**. Their values participate in the CSS cascade and inheritance system.
+
+---
+
+## What Are CSS Variables?
+
+CSS Variables are officially known as **CSS Custom Properties**.
+
+They allow you to define a reusable CSS value and reference that value in other CSS declarations.
+
+A custom property name begins with two hyphens:
+
+```css
+--primary-color: #2563eb;
+```
+
+The variable can then be used with the `var()` function:
+
+```css
+color: var(--primary-color);
+```
+
+For example:
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --text-color: #333;
+    --spacing: 16px;
+}
+```
+
+These values can be reused throughout the stylesheet:
+
+```css
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing);
+}
+
+p {
+    color: var(--text-color);
+}
+```
+
+In this example:
+
+```text
+--primary-color
+--text-color
+--spacing
+```
+
+are CSS custom properties.
+
+Their values are:
+
+```text
+#2563eb
+#333
+16px
+```
+
+The `var()` function retrieves those values:
+
+```css
+var(--primary-color)
+var(--text-color)
+var(--spacing)
+```
+
+### Basic Structure
+
+```css
+selector {
+    --custom-property: value;
+}
+```
+
+Then:
+
+```css
+selector {
+    property: var(--custom-property);
+}
+```
+
+For example:
+
+```css
+.card {
+    --card-padding: 20px;
+}
+
+.card-content {
+    padding: var(--card-padding);
+}
+```
+
+CSS Variables can contain many kinds of CSS values, including:
+
+```css
+:root {
+    --main-color: #2563eb;
+    --font-size: 18px;
+    --spacing: 1rem;
+    --border-radius: 8px;
+    --font-family: Arial, sans-serif;
+}
+```
+
+They are useful because the value can be defined once and reused wherever needed.
+
+> 💡 **Remember:** CSS Variables are actually called **CSS Custom Properties**. Custom properties are defined with `--` and are commonly accessed using the `var()` function.
