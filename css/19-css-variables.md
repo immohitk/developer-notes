@@ -4091,3 +4091,454 @@ Updated appearance
 This makes CSS Variables a useful bridge between JavaScript behavior and CSS presentation.
 
 > 💡 **Remember:** JavaScript can read custom properties with `getComputedStyle()` and modify them with `style.setProperty()`. This allows dynamic styling while keeping reusable presentation rules in CSS.
+
+---
+
+## CSS Variables for Themes
+
+CSS Variables are very useful for creating **light and dark themes** because the same CSS declarations can use different custom-property values depending on the active theme.
+
+Instead of creating completely separate styles for every theme, define the design values as variables and change those variables when the theme changes.
+
+### Basic Theme Structure
+
+A simple light theme can be defined on `:root`:
+
+```css
+:root {
+    --background-color: #ffffff;
+    --text-color: #222222;
+    --primary-color: #2563eb;
+}
+```
+
+Use the variables in the page:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--primary-color);
+}
+```
+
+Now the actual component styles do not need to know which theme is active.
+
+### Creating a Dark Theme
+
+A dark theme can override the same variables:
+
+```css
+.dark-theme {
+    --background-color: #111827;
+    --text-color: #f9fafb;
+    --primary-color: #60a5fa;
+}
+```
+
+The existing CSS remains unchanged:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--primary-color);
+}
+```
+
+When `.dark-theme` applies to an ancestor of these elements, the inherited variable values change.
+
+Conceptually:
+
+```text
+Light theme
+    ↓
+--background-color: white
+--text-color: #222
+--primary-color: #2563eb
+
+Dark theme
+    ↓
+--background-color: #111827
+--text-color: #f9fafb
+--primary-color: #60a5fa
+```
+
+### Theme Using a Class
+
+A common approach is to place the theme class on the root element:
+
+```html
+<html class="dark-theme">
+```
+
+Then:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+.dark-theme {
+    --background-color: #111827;
+    --text-color: white;
+}
+```
+
+The page automatically uses the values inherited from the active theme.
+
+### Theme Switching With JavaScript
+
+JavaScript can switch the theme by adding or removing the class.
+
+HTML:
+
+```html
+<button id="theme-toggle">
+    Toggle Theme
+</button>
+```
+
+CSS:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+.dark-theme {
+    --background-color: #111827;
+    --text-color: white;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+JavaScript:
+
+```javascript
+const button = document.querySelector("#theme-toggle");
+
+button.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark-theme");
+});
+```
+
+The JavaScript changes only the theme state.
+
+The actual colors remain controlled by CSS Variables.
+
+### Multiple Theme Variables
+
+A complete theme can define many design values:
+
+```css
+:root {
+    --background-color: #ffffff;
+    --surface-color: #f8fafc;
+    --text-color: #1e293b;
+    --muted-text-color: #64748b;
+    --border-color: #cbd5e1;
+    --primary-color: #2563eb;
+}
+
+.dark-theme {
+    --background-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-color: #f8fafc;
+    --muted-text-color: #94a3b8;
+    --border-color: #475569;
+    --primary-color: #60a5fa;
+}
+```
+
+Components can then use these variables:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+.card p {
+    color: var(--muted-text-color);
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+The same component rules work for both themes.
+
+### Using `prefers-color-scheme`
+
+CSS can also respond to the user's operating-system color-scheme preference.
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #111827;
+        --text-color: white;
+    }
+}
+```
+
+Then:
+
+```css
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+```
+
+If the user's system prefers dark mode, the dark values are used.
+
+### Automatic Theme vs Manual Theme
+
+There are two common approaches.
+
+#### Automatic Theme
+
+Use:
+
+```css
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #111827;
+        --text-color: white;
+    }
+}
+```
+
+The browser follows the user's system preference.
+
+#### Manual Theme
+
+Use a class or attribute:
+
+```html
+<html class="dark-theme">
+```
+
+or:
+
+```html
+<html data-theme="dark">
+```
+
+Then override the variables:
+
+```css
+[data-theme="dark"] {
+    --background-color: #111827;
+    --text-color: white;
+}
+```
+
+Manual themes allow the user to explicitly select a theme.
+
+### Using Data Attributes for Themes
+
+A data attribute is another clean approach:
+
+```html
+<html data-theme="dark">
+```
+
+CSS:
+
+```css
+:root {
+    --background-color: white;
+    --text-color: #222;
+}
+
+[data-theme="dark"] {
+    --background-color: #111827;
+    --text-color: white;
+}
+```
+
+JavaScript can change the attribute:
+
+```javascript
+document.documentElement.dataset.theme = "dark";
+```
+
+To switch back:
+
+```javascript
+document.documentElement.dataset.theme = "light";
+```
+
+### Theme-Specific Component Values
+
+Themes can also change component-specific variables.
+
+```css
+.card {
+    --card-background: white;
+    --card-border: #ddd;
+
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
+}
+
+.dark-theme {
+    --card-background: #1e293b;
+    --card-border: #475569;
+}
+```
+
+This allows the component to automatically adapt to the active theme.
+
+### Theme Variables and Inheritance
+
+The theme works particularly well because custom properties inherit.
+
+For example:
+
+```html
+<html class="dark-theme">
+    <body>
+        <div class="card">
+            <p>Hello</p>
+        </div>
+    </body>
+</html>
+```
+
+The theme variables defined on the root element can flow down:
+
+```text
+<html>
+   ↓
+<body>
+   ↓
+.card
+   ↓
+<p>
+```
+
+The descendants can use:
+
+```css
+var(--background-color)
+var(--text-color)
+```
+
+without defining the variables again.
+
+### Practical Theme Example
+
+```css
+:root {
+    --background-color: #ffffff;
+    --surface-color: #f8fafc;
+    --text-color: #1e293b;
+    --border-color: #cbd5e1;
+    --primary-color: #2563eb;
+}
+
+[data-theme="dark"] {
+    --background-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-color: #f8fafc;
+    --border-color: #475569;
+    --primary-color: #60a5fa;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+The component styles remain the same.
+
+Only the values change:
+
+```text
+Theme
+  ↓
+Custom Properties
+  ↓
+Components
+  ↓
+Different appearance
+```
+
+### Why CSS Variables Are Ideal for Themes
+
+Without CSS Variables, you might need to write separate declarations:
+
+```css
+.card {
+    background: white;
+    color: black;
+}
+
+.dark .card {
+    background: #1e293b;
+    color: white;
+}
+```
+
+With variables:
+
+```css
+.card {
+    background: var(--surface-color);
+    color: var(--text-color);
+}
+```
+
+and only the variables change:
+
+```css
+:root {
+    --surface-color: white;
+    --text-color: black;
+}
+
+.dark-theme {
+    --surface-color: #1e293b;
+    --text-color: white;
+}
+```
+
+This keeps theme logic centralized and reduces duplicated component styles.
+
+> 💡 **Remember:** A theme can be implemented by changing a set of CSS Variables while keeping the component declarations unchanged. This is one of the most practical uses of CSS Custom Properties.
