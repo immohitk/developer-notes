@@ -5046,3 +5046,441 @@ gap: 20px;
 ```
 
 > 💡 **Remember:** `gap` controls the space between grid rows and columns. It is the preferred way to create consistent spacing between Grid tracks instead of adding margins to individual grid items.
+
+---
+
+## Grid Column
+
+The `grid-column` property controls **where a grid item starts and ends across the column grid lines**.
+
+It can be used to position an item in specific columns or make it span multiple columns.
+
+### Basic Syntax
+
+```css
+.item {
+    grid-column: start / end;
+}
+```
+
+For example:
+
+```css
+.item {
+    grid-column: 1 / 3;
+}
+```
+
+This means:
+
+```text
+Start at column line 1
+End at column line 3
+```
+
+Since the space between line 1 and line 3 contains two column tracks, the item spans two columns.
+
+### Grid Column Lines
+
+Consider a three-column grid:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+There are four column lines:
+
+```text
+Line 1      Line 2      Line 3      Line 4
+   │           │           │           │
+   │    1fr    │    1fr    │    1fr    │
+   │           │           │           │
+```
+
+The columns are:
+
+```text
+Column 1 → Line 1 to Line 2
+Column 2 → Line 2 to Line 3
+Column 3 → Line 3 to Line 4
+```
+
+### Positioning an Item
+
+To place an item in the first column:
+
+```css
+.item {
+    grid-column: 1 / 2;
+}
+```
+
+Conceptually:
+
+```text
+Line 1       Line 2       Line 3       Line 4
+   ↓            ↓            ↓            ↓
+   ├────────────┼────────────┼────────────┤
+   │   Item     │            │            │
+   └────────────┴────────────┴────────────┘
+```
+
+The item occupies the first column track.
+
+### Spanning Two Columns
+
+```css
+.item {
+    grid-column: 1 / 3;
+}
+```
+
+The item spans:
+
+```text
+Line 1 → Line 3
+```
+
+Therefore it occupies two column tracks.
+
+```text
+┌──────────────────────┬──────────┐
+│       Item 1         │  Item 2  │
+│     2 columns        │          │
+└──────────────────────┴──────────┘
+```
+
+### Spanning Three Columns
+
+For a three-column grid:
+
+```css
+.item {
+    grid-column: 1 / 4;
+}
+```
+
+The item starts at line `1` and ends at line `4`.
+
+```text
+┌─────────────────────────────────┐
+│             Item                │
+│          3 columns              │
+└─────────────────────────────────┘
+```
+
+### Using `span`
+
+Instead of specifying the ending line, you can use `span`.
+
+```css
+.item {
+    grid-column: span 2;
+}
+```
+
+This tells the item to span two column tracks.
+
+For example:
+
+```text
+┌──────────────────────┬──────────┐
+│        Item 1        │  Item 2  │
+│       span 2         │          │
+└──────────────────────┴──────────┘
+```
+
+### Starting at a Specific Line and Spanning
+
+You can combine a starting line with `span`.
+
+```css
+.item {
+    grid-column: 2 / span 2;
+}
+```
+
+This means:
+
+```text
+Start at line 2
+    ↓
+Span 2 columns
+```
+
+Conceptually:
+
+```text
+Line 1      Line 2      Line 3      Line 4
+   │           │           │           │
+   │           ├───────────────────────┤
+   │           │        Item           │
+   │           └───────────────────────┘
+```
+
+### Using `grid-column-start`
+
+The `grid-column` property is a shorthand.
+
+You can specify the starting line separately:
+
+```css
+.item {
+    grid-column-start: 2;
+}
+```
+
+This tells the item to start at column line `2`.
+
+### Using `grid-column-end`
+
+You can also specify the ending line:
+
+```css
+.item {
+    grid-column-end: 4;
+}
+```
+
+This tells the item to end at column line `4`.
+
+Together:
+
+```css
+.item {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+```
+
+is equivalent to:
+
+```css
+.item {
+    grid-column: 2 / 4;
+}
+```
+
+### `grid-column` Shorthand
+
+The general form is:
+
+```css
+grid-column: start / end;
+```
+
+For example:
+
+```css
+grid-column: 1 / 3;
+```
+
+The two values represent:
+
+```text
+Start line
+    /
+End line
+```
+
+### Negative Line Numbers
+
+Grid column lines can also be referenced using negative numbers.
+
+The last column line is:
+
+```text
+-1
+```
+
+For example:
+
+```css
+.item {
+    grid-column: 1 / -1;
+}
+```
+
+This makes the item span from the first column line to the last column line.
+
+For a three-column grid:
+
+```text
+Line 1      Line 2      Line 3      Line 4
+   │           │           │           │
+   │                                   │
+   ├───────────────────────────────────┤
+   │               Item                │
+   └───────────────────────────────────┘
+                                       ↑
+                                      -1
+```
+
+### Full-Width Element
+
+A very common pattern is:
+
+```css
+.full-width {
+    grid-column: 1 / -1;
+}
+```
+
+This makes an item span across the entire explicit grid width.
+
+Example:
+
+```text
+┌──────────────────────────────────────┐
+│              Header                  │
+├──────────────┬──────────────┬────────┤
+│   Item 1     │   Item 2     │ Item 3 │
+└──────────────┴──────────────┴────────┘
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="layout">
+    <header>Header</header>
+    <main>Main Content</main>
+    <aside>Sidebar</aside>
+    <footer>Footer</footer>
+</div>
+```
+
+CSS:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+header {
+    grid-column: 1 / -1;
+}
+
+footer {
+    grid-column: 1 / -1;
+}
+```
+
+The layout can be structured as:
+
+```text
+┌───────────────────────────────┐
+│            Header             │
+├────────────────────┬──────────┤
+│                    │          │
+│     Main Content   │ Sidebar  │
+│                    │          │
+├────────────────────┴──────────┤
+│            Footer             │
+└───────────────────────────────┘
+```
+
+### `grid-column` With `repeat()`
+
+Consider:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+```
+
+You can make an item span two columns:
+
+```css
+.item {
+    grid-column: span 2;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────┬──────────┬──────────┐
+│        Item 1        │  Item 2  │  Item 3  │
+│       span 2         │          │          │
+└──────────────────────┴──────────┴──────────┘
+```
+
+### `grid-column` Does Not Change the Grid Definition
+
+This is an important distinction.
+
+The grid structure is defined by:
+
+```css
+grid-template-columns
+```
+
+For example:
+
+```css
+.container {
+    grid-template-columns: repeat(4, 1fr);
+}
+```
+
+The position or span of an individual item is controlled by:
+
+```css
+grid-column
+```
+
+So:
+
+```text
+grid-template-columns
+        ↓
+Defines the grid
+
+grid-column
+        ↓
+Positions an individual item
+```
+
+### Important Points
+
+```text
+grid-column
+│
+├── Positions a grid item horizontally
+├── Uses column grid lines
+├── Can define start and end lines
+├── Can use span
+├── Can use negative line numbers
+├── grid-column-start → starting line
+├── grid-column-end → ending line
+└── Commonly used to make items span columns
+```
+
+Common examples:
+
+```css
+grid-column: 1 / 3;
+```
+
+```css
+grid-column: span 2;
+```
+
+```css
+grid-column: 2 / span 2;
+```
+
+```css
+grid-column: 1 / -1;
+```
+
+> 💡 **Remember:** `grid-column` controls an individual grid item's horizontal placement by specifying the column grid lines where the item starts and ends.
