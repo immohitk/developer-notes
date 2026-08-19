@@ -12033,3 +12033,594 @@ auto-fit / auto-fill
 ```
 
 > 💡 **Interview Tip:** Do not only memorize property definitions. Be able to explain the difference between **tracks and lines**, **items and content alignment**, **explicit and implicit grids**, and **`auto-fit` vs `auto-fill`**. These distinctions commonly reveal whether you understand how CSS Grid actually works.
+
+---
+
+## Practice Exercises
+
+Use the following exercises to practice the CSS Grid concepts covered in this chapter.
+
+### Exercise 1: Basic Grid
+
+Create a grid with **three equal columns**.
+
+Requirements:
+
+```text
+3 columns
+Equal width
+20px gap
+```
+
+Expected CSS:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+---
+
+### Exercise 2: Two-Column Layout
+
+Create a layout with:
+
+```text
+Sidebar → 250px
+Main    → Remaining space
+```
+
+Requirements:
+
+```text
+Use CSS Grid
+Use 250px for the sidebar
+Use 1fr for the main content
+```
+
+Expected pattern:
+
+```css
+grid-template-columns: 250px 1fr;
+```
+
+---
+
+### Exercise 3: Grid With Rows
+
+Create a grid with:
+
+```text
+3 columns
+2 rows
+```
+
+Make each row `100px` high.
+
+Use:
+
+```css
+grid-template-columns
+grid-template-rows
+```
+
+---
+
+### Exercise 4: `repeat()`
+
+Rewrite:
+
+```css
+grid-template-columns:
+    1fr 1fr 1fr 1fr;
+```
+
+using `repeat()`.
+
+Expected pattern:
+
+```css
+grid-template-columns: repeat(4, 1fr);
+```
+
+---
+
+### Exercise 5: `minmax()`
+
+Create three columns where each column:
+
+```text
+Minimum → 200px
+Maximum → 1fr
+```
+
+Use:
+
+```css
+repeat()
+minmax()
+```
+
+Expected pattern:
+
+```css
+grid-template-columns:
+    repeat(3, minmax(200px, 1fr));
+```
+
+---
+
+### Exercise 6: Grid Gap
+
+Create a grid with:
+
+```text
+Row gap    → 10px
+Column gap → 30px
+```
+
+Use the `gap` shorthand.
+
+Expected pattern:
+
+```css
+gap: 10px 30px;
+```
+
+---
+
+### Exercise 7: Column Spanning
+
+Create a three-column grid.
+
+Make the first item span **two columns**.
+
+Expected pattern:
+
+```css
+.item:first-child {
+    grid-column: span 2;
+}
+```
+
+---
+
+### Exercise 8: Full-Width Item
+
+Create a four-column grid.
+
+Make the header span the entire grid width.
+
+Expected pattern:
+
+```css
+header {
+    grid-column: 1 / -1;
+}
+```
+
+---
+
+### Exercise 9: Row Spanning
+
+Create a grid with three rows.
+
+Make one item span two rows.
+
+Expected pattern:
+
+```css
+.item {
+    grid-row: span 2;
+}
+```
+
+---
+
+### Exercise 10: Full-Height Sidebar
+
+Create a layout with:
+
+```text
+2 columns
+3 rows
+```
+
+Make the sidebar span all rows.
+
+Expected pattern:
+
+```css
+.sidebar {
+    grid-row: 1 / -1;
+}
+```
+
+---
+
+### Exercise 11: Named Grid Areas
+
+Create the following layout:
+
+```text
+┌──────────────────────────────┐
+│            Header            │
+├──────────────┬───────────────┤
+│   Sidebar    │     Main      │
+├──────────────┴───────────────┤
+│            Footer            │
+└──────────────────────────────┘
+```
+
+Use:
+
+```css
+grid-template-areas
+grid-area
+```
+
+Do not use `grid-column` or `grid-row` for the main placement.
+
+---
+
+### Exercise 12: Empty Grid Area
+
+Create a two-column layout where the bottom-left cell remains empty:
+
+```text
+┌──────────────┬──────────────┐
+│    Header    │    Header    │
+├──────────────┼──────────────┤
+│   Sidebar    │     Main     │
+├──────────────┼──────────────┤
+│              │    Footer    │
+└──────────────┴──────────────┘
+```
+
+Use `.` inside `grid-template-areas`.
+
+---
+
+### Exercise 13: Center an Item
+
+Create a grid container and center an item both horizontally and vertically.
+
+Use:
+
+```css
+place-items
+```
+
+Expected pattern:
+
+```css
+.container {
+    display: grid;
+    place-items: center;
+}
+```
+
+---
+
+### Exercise 14: Individual Item Alignment
+
+Create a grid where all items are centered.
+
+Then make one specific item:
+
+```text
+Horizontal → end
+Vertical   → start
+```
+
+Use:
+
+```css
+justify-self
+align-self
+```
+
+---
+
+### Exercise 15: Responsive Card Grid
+
+Create a responsive card layout where each card has:
+
+```text
+Minimum width → 220px
+Maximum       → 1fr
+```
+
+The number of columns should automatically adapt to the available width.
+
+Use:
+
+```css
+auto-fit
+minmax()
+repeat()
+```
+
+Expected pattern:
+
+```css
+grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+```
+
+---
+
+### Exercise 16: `auto-fill`
+
+Create the same responsive card layout using:
+
+```css
+auto-fill
+```
+
+instead of:
+
+```css
+auto-fit
+```
+
+Then compare the behavior when there are fewer items than the number of tracks that can fit.
+
+---
+
+### Exercise 17: Implicit Rows
+
+Create:
+
+```text
+3 explicit columns
+```
+
+but do not explicitly define rows.
+
+Add enough items to require multiple rows.
+
+Then use:
+
+```css
+grid-auto-rows
+```
+
+to give automatically created rows a fixed height.
+
+---
+
+### Exercise 18: Auto Placement
+
+Create a grid with three columns and six items.
+
+Do not assign `grid-column` or `grid-row` to the items.
+
+Observe how Grid automatically places them.
+
+Then experiment with:
+
+```css
+grid-auto-flow: column;
+```
+
+---
+
+### Exercise 19: Dense Placement
+
+Create a grid containing items with different column spans.
+
+Use:
+
+```css
+grid-auto-flow: dense;
+```
+
+Observe how the browser attempts to fill available gaps.
+
+Then remove `dense` and compare the result.
+
+---
+
+### Exercise 20: Responsive Dashboard
+
+Create a dashboard containing:
+
+```text
+Header
+Sidebar
+Card 1
+Card 2
+Chart
+Footer
+```
+
+Desktop layout:
+
+```text
+┌──────────┬────────────┬────────────┐
+│ Sidebar  │   Header   │   Header   │
+├──────────┼────────────┼────────────┤
+│ Sidebar  │   Card 1   │   Card 2   │
+├──────────┼────────────┴────────────┤
+│ Sidebar  │          Chart          │
+├──────────┴─────────────────────────┤
+│              Footer                │
+└────────────────────────────────────┘
+```
+
+Use:
+
+```css
+grid-template-areas
+```
+
+Then create a mobile layout where the sections are stacked vertically.
+
+---
+
+### Exercise 21: Image Gallery
+
+Create a responsive image gallery using:
+
+```css
+repeat()
+auto-fit
+minmax()
+gap
+```
+
+Each image should have a minimum track width of `180px`.
+
+Expected pattern:
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+```
+
+---
+
+### Exercise 22: Featured Card
+
+Create a four-column card grid.
+
+Make one featured card span:
+
+```text
+2 columns
+2 rows
+```
+
+Use:
+
+```css
+grid-column
+grid-row
+```
+
+Expected pattern:
+
+```css
+.featured {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+```
+
+---
+
+### Exercise 23: Fixed Sidebar With Flexible Content
+
+Create:
+
+```text
+Sidebar → 240px
+Main    → Flexible
+```
+
+Use:
+
+```css
+minmax(0, 1fr)
+```
+
+for the main content.
+
+Expected pattern:
+
+```css
+grid-template-columns:
+    240px minmax(0, 1fr);
+```
+
+Add long content to the main area and observe the behavior.
+
+---
+
+### Exercise 24: Build a Complete Page
+
+Create a complete responsive page containing:
+
+```text
+Header
+Navigation
+Sidebar
+Main Content
+Cards
+Footer
+```
+
+Requirements:
+
+```text
+Use CSS Grid
+Use named grid areas
+Use gap
+Use responsive behavior
+Use repeat()
+Use minmax()
+```
+
+The page should work on both large and small screens.
+
+---
+
+### Exercise 25: Grid Challenge
+
+Build a responsive dashboard without copying the previous examples.
+
+Requirements:
+
+```text
+✓ CSS Grid
+✓ At least 3 columns on wide screens
+✓ Responsive layout
+✓ Named grid areas
+✓ At least one spanning item
+✓ gap
+✓ repeat()
+✓ minmax()
+✓ auto-fit or auto-fill
+✓ Grid alignment
+✓ Implicit or automatically placed content
+```
+
+Try to create the layout from scratch before checking previous examples.
+
+### Self-Check
+
+After completing the exercises, make sure you can explain:
+
+```text
+☐ What is a grid container?
+☐ What is a grid item?
+☐ What is a grid track?
+☐ What is a grid line?
+☐ What is a grid cell?
+☐ What does 1fr mean?
+☐ What does repeat() do?
+☐ What does minmax() do?
+☐ What does gap do?
+☐ How does grid-column work?
+☐ How does grid-row work?
+☐ What is grid-template-areas?
+☐ What is grid-area?
+☐ What is auto-placement?
+☐ What is grid-auto-flow?
+☐ What is an explicit grid?
+☐ What is an implicit grid?
+☐ What does auto-fit do?
+☐ What does auto-fill do?
+☐ How do you create a responsive Grid?
+☐ When might Grid be preferable to Flexbox?
+```
+
+> 💡 **Remember:** Practice by first building simple grids, then combine features such as `repeat()`, `minmax()`, spanning, named areas, alignment, and responsive auto-placement. The goal is to understand why each property is used, not just memorize its syntax.
