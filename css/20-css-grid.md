@@ -6406,3 +6406,649 @@ grid-area
 ```
 
 > 💡 **Remember:** `grid-template-areas` lets you describe a grid layout using readable names such as `header`, `sidebar`, `main`, and `footer`. The elements can then be assigned to those areas using `grid-area`.
+
+---
+
+## Grid Alignment
+
+CSS Grid provides several properties for controlling the **alignment and positioning of grid items and the grid itself**.
+
+Grid alignment can be understood in two levels:
+
+```text
+Grid Container
+      ↓
+Align the grid tracks
+      ↓
+Grid Items
+      ↓
+Align individual items
+```
+
+The main alignment properties are:
+
+```css
+justify-items
+align-items
+place-items
+
+justify-self
+align-self
+place-self
+
+justify-content
+align-content
+place-content
+```
+
+### Grid Alignment Directions
+
+Grid alignment uses two main axes:
+
+```text
+Horizontal → Inline axis
+Vertical   → Block axis
+```
+
+In a typical left-to-right layout:
+
+```text
+          Horizontal
+       ←──────────────→
+       Inline axis
+
+       ┌──────────────┐
+       │              │
+       │              │
+       │              │
+       └──────────────┘
+              ↑
+              │
+              ↓
+          Vertical
+          Block axis
+```
+
+The `justify-*` properties generally control the inline axis, while the `align-*` properties generally control the block axis.
+
+---
+
+### `justify-items`
+
+The `justify-items` property controls the horizontal alignment of **grid items inside their grid areas**.
+
+Example:
+
+```css
+.container {
+    display: grid;
+    justify-items: center;
+}
+```
+
+This centers the grid items within their cells.
+
+```text
+┌────────────────────┬────────────────────┐
+│                    │                    │
+│       Item         │        Item        │
+│        ↕           │         ↕          │
+│      center        │       center       │
+│                    │                    │
+└────────────────────┴────────────────────┘
+```
+
+Common values include:
+
+```css
+justify-items: start;
+justify-items: end;
+justify-items: center;
+justify-items: stretch;
+```
+
+### `justify-items: start`
+
+```css
+.container {
+    justify-items: start;
+}
+```
+
+Items are aligned toward the start of their grid areas.
+
+### `justify-items: end`
+
+```css
+.container {
+    justify-items: end;
+}
+```
+
+Items are aligned toward the end of their grid areas.
+
+### `justify-items: center`
+
+```css
+.container {
+    justify-items: center;
+}
+```
+
+Items are centered horizontally within their grid areas.
+
+### `justify-items: stretch`
+
+```css
+.container {
+    justify-items: stretch;
+}
+```
+
+Items stretch to fill the available inline space when their size allows it.
+
+---
+
+### `align-items`
+
+The `align-items` property controls the vertical alignment of **grid items inside their grid areas**.
+
+Example:
+
+```css
+.container {
+    display: grid;
+    align-items: center;
+}
+```
+
+This centers the items along the block axis.
+
+```text
+┌────────────────────┐
+│                    │
+│      Item          │
+│                    │
+└────────────────────┘
+          ↕
+        center
+```
+
+Common values include:
+
+```css
+align-items: start;
+align-items: end;
+align-items: center;
+align-items: stretch;
+```
+
+### `align-items: start`
+
+```css
+.container {
+    align-items: start;
+}
+```
+
+Items are aligned toward the start of their grid areas.
+
+### `align-items: end`
+
+```css
+.container {
+    align-items: end;
+}
+```
+
+Items are aligned toward the end of their grid areas.
+
+### `align-items: center`
+
+```css
+.container {
+    align-items: center;
+}
+```
+
+Items are centered vertically within their grid areas.
+
+### `align-items: stretch`
+
+```css
+.container {
+    align-items: stretch;
+}
+```
+
+Items stretch along the block axis when their size allows it.
+
+---
+
+### `place-items`
+
+`place-items` is a shorthand for:
+
+```css
+align-items
+justify-items
+```
+
+For example:
+
+```css
+.container {
+    place-items: center;
+}
+```
+
+This is equivalent to:
+
+```css
+.container {
+    align-items: center;
+    justify-items: center;
+}
+```
+
+You can also specify two values:
+
+```css
+.container {
+    place-items: center start;
+}
+```
+
+The first value applies to:
+
+```text
+align-items
+```
+
+The second value applies to:
+
+```text
+justify-items
+```
+
+---
+
+### `justify-self`
+
+The `justify-self` property controls the alignment of **one individual grid item** along the inline axis.
+
+Example:
+
+```css
+.item {
+    justify-self: center;
+}
+```
+
+Only that item is centered.
+
+```text
+┌──────────────┬──────────────┐
+│              │              │
+│              │    Item      │
+│              │    center    │
+│              │              │
+└──────────────┴──────────────┘
+```
+
+This overrides the container's `justify-items` behavior for that specific item.
+
+### `align-self`
+
+The `align-self` property controls the alignment of **one individual grid item** along the block axis.
+
+```css
+.item {
+    align-self: center;
+}
+```
+
+Only that item is vertically centered within its grid area.
+
+### `place-self`
+
+`place-self` is a shorthand for:
+
+```css
+align-self
+justify-self
+```
+
+For example:
+
+```css
+.item {
+    place-self: center;
+}
+```
+
+This is equivalent to:
+
+```css
+.item {
+    align-self: center;
+    justify-self: center;
+}
+```
+
+---
+
+### `justify-content`
+
+`justify-content` controls the alignment of the **grid tracks inside the grid container** along the inline axis.
+
+This is different from `justify-items`.
+
+```text
+justify-content
+      ↓
+Moves the grid tracks
+
+justify-items
+      ↓
+Moves items inside their grid areas
+```
+
+Example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    justify-content: center;
+}
+```
+
+If there is extra horizontal space, the grid tracks are centered inside the container.
+
+```text
+┌──────────────────────────────────────┐
+│       ┌───────┬───────┐              │
+│       │ 100px │ 100px │              │
+│       └───────┴───────┘              │
+└──────────────────────────────────────┘
+```
+
+Common values include:
+
+```css
+justify-content: start;
+justify-content: end;
+justify-content: center;
+justify-content: space-between;
+justify-content: space-around;
+justify-content: space-evenly;
+justify-content: stretch;
+```
+
+---
+
+### `align-content`
+
+The `align-content` property controls the alignment of the **grid tracks inside the grid container** along the block axis.
+
+Example:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 100px 100px;
+    align-content: center;
+}
+```
+
+If the container has extra vertical space, the grid tracks are centered.
+
+```text
+┌────────────────────────────┐
+│                            │
+│    ┌──────────────────┐    │
+│    │      100px       │    │
+│    ├──────────────────┤    │
+│    │      100px       │    │
+│    └──────────────────┘    │
+│                            │
+└────────────────────────────┘
+```
+
+---
+
+### `place-content`
+
+`place-content` is a shorthand for:
+
+```css
+align-content
+justify-content
+```
+
+For example:
+
+```css
+.container {
+    place-content: center;
+}
+```
+
+This centers the grid tracks along both axes when there is extra space.
+
+---
+
+### `justify-items` vs `justify-content`
+
+These properties are easy to confuse.
+
+#### `justify-items`
+
+Controls:
+
+```text
+Items inside their grid areas
+```
+
+Example:
+
+```css
+.container {
+    justify-items: center;
+}
+```
+
+#### `justify-content`
+
+Controls:
+
+```text
+The grid tracks inside the container
+```
+
+Example:
+
+```css
+.container {
+    justify-content: center;
+}
+```
+
+Think of it as:
+
+```text
+Container
+│
+├── Grid Tracks
+│      ↑
+│   justify-content
+│
+└── Grid Items
+       ↑
+    justify-items
+```
+
+---
+
+### `align-items` vs `align-content`
+
+Similarly:
+
+```text
+align-items
+    ↓
+Aligns items inside grid areas
+
+align-content
+    ↓
+Aligns the grid tracks inside the container
+```
+
+---
+
+### `justify-self` vs `justify-items`
+
+```text
+justify-items
+      ↓
+Affects all grid items
+
+justify-self
+      ↓
+Affects one grid item
+```
+
+For example:
+
+```css
+.container {
+    justify-items: center;
+}
+
+.special {
+    justify-self: end;
+}
+```
+
+Most items are centered, while `.special` is aligned to the end.
+
+---
+
+### `align-self` vs `align-items`
+
+```text
+align-items
+    ↓
+Affects all grid items
+
+align-self
+    ↓
+Affects one grid item
+```
+
+Example:
+
+```css
+.container {
+    align-items: center;
+}
+
+.special {
+    align-self: end;
+}
+```
+
+---
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="grid">
+    <div class="item">Item 1</div>
+    <div class="item special">Item 2</div>
+    <div class="item">Item 3</div>
+</div>
+```
+
+CSS:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 150px;
+    gap: 20px;
+
+    justify-items: center;
+    align-items: center;
+}
+
+.special {
+    justify-self: end;
+    align-self: start;
+}
+```
+
+The general grid items are centered within their cells, while the special item has its own alignment.
+
+---
+
+### Centering Grid Items
+
+A common pattern for centering items is:
+
+```css
+.container {
+    display: grid;
+    place-items: center;
+}
+```
+
+This is equivalent to:
+
+```css
+.container {
+    align-items: center;
+    justify-items: center;
+}
+```
+
+This is useful for simple cards, icons, buttons, and other centered content.
+
+### Important Points
+
+```text
+Grid Alignment
+│
+├── justify-items
+│     └── Aligns all items horizontally
+│
+├── align-items
+│     └── Aligns all items vertically
+│
+├── place-items
+│     └── Shorthand for both
+│
+├── justify-self
+│     └── Aligns one item horizontally
+│
+├── align-self
+│     └── Aligns one item vertically
+│
+├── place-self
+│     └── Shorthand for both
+│
+├── justify-content
+│     └── Aligns grid tracks horizontally
+│
+├── align-content
+│     └── Aligns grid tracks vertically
+│
+└── place-content
+      └── Shorthand for both
+```
+
+> 💡 **Remember:** `*-items` controls items within their grid areas, `*-self` controls an individual item, and `*-content` controls the grid tracks within the grid container.
