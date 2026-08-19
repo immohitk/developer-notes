@@ -3084,3 +3084,413 @@ This explicitly defines three column tracks.
 ```
 
 > 💡 **Remember:** `grid-template-columns` defines the column structure of a grid. Each value represents a column track, and values such as `px`, `%`, `auto`, `fr`, `repeat()`, and `minmax()` can be used to create flexible and responsive layouts.
+
+---
+
+## Grid Template Rows
+
+The `grid-template-rows` property defines the **number and size of row tracks** in a CSS Grid.
+
+It is the row equivalent of `grid-template-columns`.
+
+### Basic Syntax
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: value;
+}
+```
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 100px 200px;
+}
+```
+
+This creates two rows:
+
+```text
+┌────────────────────────────┐
+│          Row 1             │ 100px
+├────────────────────────────┤
+│          Row 2             │ 200px
+└────────────────────────────┘
+```
+
+### Multiple Row Values
+
+Each value represents one row track.
+
+```css
+.container {
+    grid-template-rows: 100px 150px 200px;
+}
+```
+
+This creates three rows:
+
+```text
+┌────────────────────────────┐
+│          Row 1             │ 100px
+├────────────────────────────┤
+│          Row 2             │ 150px
+├────────────────────────────┤
+│          Row 3             │ 200px
+└────────────────────────────┘
+```
+
+### Equal-Height Rows
+
+The `fr` unit can be used to divide available space equally.
+
+```css
+.container {
+    grid-template-rows: 1fr 1fr;
+}
+```
+
+The available flexible space is divided equally:
+
+```text
+┌────────────────────────────┐
+│            1fr             │
+├────────────────────────────┤
+│            1fr             │
+└────────────────────────────┘
+```
+
+Three equal rows:
+
+```css
+.container {
+    grid-template-rows: repeat(3, 1fr);
+}
+```
+
+### Fixed and Flexible Rows
+
+You can combine fixed and flexible row sizes.
+
+```css
+.container {
+    grid-template-rows: 80px 1fr;
+}
+```
+
+This is useful for layouts such as a header and main content:
+
+```text
+┌────────────────────────────┐
+│           Header           │ 80px
+├────────────────────────────┤
+│                            │
+│        Main Content        │ 1fr
+│                            │
+└────────────────────────────┘
+```
+
+### Header, Main, and Footer
+
+A common page structure can be created with:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 80px 1fr 60px;
+}
+```
+
+Result:
+
+```text
+┌────────────────────────────┐
+│           Header           │ 80px
+├────────────────────────────┤
+│                            │
+│           Main             │ 1fr
+│                            │
+├────────────────────────────┤
+│           Footer           │ 60px
+└────────────────────────────┘
+```
+
+### Different Flexible Sizes
+
+Different `fr` values can create proportional row sizes.
+
+```css
+.container {
+    grid-template-rows: 1fr 2fr;
+}
+```
+
+The available flexible space is divided into three parts:
+
+```text
+┌────────────────────────────┐
+│            1fr             │
+├────────────────────────────┤
+│                            │
+│            2fr             │
+│                            │
+└────────────────────────────┘
+```
+
+The second row receives twice the flexible share of the first.
+
+### Using `auto`
+
+Rows can use the `auto` keyword:
+
+```css
+.container {
+    grid-template-rows: auto 1fr;
+}
+```
+
+The `auto` track can size itself based on its contents and available space.
+
+This can be useful for content-dependent rows.
+
+### Using Percentages
+
+Percentage values can also define row tracks.
+
+```css
+.container {
+    grid-template-rows: 30% 70%;
+}
+```
+
+The row sizes are calculated relative to the relevant size of the grid container.
+
+When percentages are combined with gaps, the total layout should be considered carefully.
+
+### Combining Different Units
+
+Different sizing values can be combined:
+
+```css
+.container {
+    grid-template-rows: 80px 30% 1fr;
+}
+```
+
+For example:
+
+```text
+80px
+  +
+30%
+  +
+1fr
+```
+
+This allows different rows to use different sizing strategies.
+
+### Using `repeat()`
+
+The `repeat()` function can create multiple rows with the same size.
+
+Instead of:
+
+```css
+.container {
+    grid-template-rows: 100px 100px 100px;
+}
+```
+
+you can write:
+
+```css
+.container {
+    grid-template-rows: repeat(3, 100px);
+}
+```
+
+Both create three `100px` rows.
+
+### Repeating Flexible Rows
+
+```css
+.container {
+    grid-template-rows: repeat(3, 1fr);
+}
+```
+
+This creates three equal flexible row tracks.
+
+```text
+┌────────────────────────────┐
+│            1fr             │
+├────────────────────────────┤
+│            1fr             │
+├────────────────────────────┤
+│            1fr             │
+└────────────────────────────┘
+```
+
+### Using `minmax()`
+
+`minmax()` can define a minimum and maximum row size.
+
+```css
+.container {
+    grid-template-rows: minmax(100px, 1fr) 1fr;
+}
+```
+
+The first row can grow flexibly while respecting its minimum size.
+
+This is useful when row content needs a minimum amount of space.
+
+### Rows With `gap`
+
+The `gap` property creates space between rows.
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 100px 100px 100px;
+    gap: 20px;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────────────────┐
+│           Row 1            │
+└────────────────────────────┘
+             20px
+┌────────────────────────────┐
+│           Row 2            │
+└────────────────────────────┘
+             20px
+┌────────────────────────────┐
+│           Row 3            │
+└────────────────────────────┘
+```
+
+The gap is space between the tracks, not another row.
+
+### Rows and Columns Together
+
+`grid-template-rows` is commonly used together with `grid-template-columns`.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 200px;
+}
+```
+
+This creates:
+
+```text
+              Columns
+          1fr          1fr
+       ┌────────────┬────────────┐
+100px  │            │            │
+       ├────────────┼────────────┤
+200px  │            │            │
+       └────────────┴────────────┘
+          ↑
+         Rows
+```
+
+### Practical Page Layout
+
+A complete page structure can use:
+
+```css
+.page {
+    display: grid;
+    grid-template-rows: 70px 1fr 50px;
+}
+```
+
+HTML:
+
+```html
+<div class="page">
+    <header>Header</header>
+    <main>Main Content</main>
+    <footer>Footer</footer>
+</div>
+```
+
+The layout becomes:
+
+```text
+┌────────────────────────────┐
+│           Header           │
+├────────────────────────────┤
+│                            │
+│        Main Content        │
+│                            │
+├────────────────────────────┤
+│           Footer           │
+└────────────────────────────┘
+```
+
+### Important Property
+
+The main property for defining explicit row tracks is:
+
+```css
+grid-template-rows
+```
+
+Examples:
+
+```css
+grid-template-rows: 100px 200px;
+```
+
+```css
+grid-template-rows: 1fr 1fr;
+```
+
+```css
+grid-template-rows: repeat(3, 1fr);
+```
+
+```css
+grid-template-rows: 80px 1fr 60px;
+```
+
+### Columns vs Rows
+
+```text
+grid-template-columns
+        ↓
+Defines column tracks
+        ↓
+Horizontal structure
+
+grid-template-rows
+        ↓
+Defines row tracks
+        ↓
+Vertical structure
+```
+
+Together:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100px 1fr;
+}
+```
+
+create the two-dimensional grid structure.
+
+> 💡 **Remember:** `grid-template-rows` defines the size of explicit row tracks. It can use fixed values, flexible `fr` units, `auto`, percentages, `repeat()`, `minmax()`, and other supported sizing values.
