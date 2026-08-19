@@ -3494,3 +3494,403 @@ Together:
 create the two-dimensional grid structure.
 
 > 💡 **Remember:** `grid-template-rows` defines the size of explicit row tracks. It can use fixed values, flexible `fr` units, `auto`, percentages, `repeat()`, `minmax()`, and other supported sizing values.
+
+---
+
+## The `fr` Unit
+
+The `fr` unit stands for **fraction**.
+
+It represents a **fraction of the available space** in a CSS Grid container.
+
+The `fr` unit is one of the most useful sizing units in CSS Grid because it allows grid tracks to share available space proportionally.
+
+### Basic Syntax
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+This creates two columns that share the available flexible space equally.
+
+```text
+┌────────────────┬────────────────┐
+│      1fr       │      1fr       │
+└────────────────┴────────────────┘
+```
+
+Each column receives one fraction of the available space.
+
+### Two Equal Fractions
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+The available space is divided into:
+
+```text
+1 + 1 = 2 fractions
+```
+
+Each column receives:
+
+```text
+1 / 2
+```
+
+of the available flexible space.
+
+### Three Equal Fractions
+
+```css
+grid-template-columns: 1fr 1fr 1fr;
+```
+
+The available flexible space is divided into:
+
+```text
+1 + 1 + 1 = 3 fractions
+```
+
+Result:
+
+```text
+┌──────────┬──────────┬──────────┐
+│   1fr    │   1fr    │   1fr    │
+└──────────┴──────────┴──────────┘
+```
+
+Each column receives an equal share.
+
+### Unequal Fractions
+
+Different `fr` values create proportional tracks.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+```
+
+The total number of fractions is:
+
+```text
+1 + 2 = 3
+```
+
+Therefore:
+
+```text
+First column  → 1/3
+Second column → 2/3
+```
+
+Conceptually:
+
+```text
+┌──────────┬─────────────────────┐
+│   1fr    │        2fr          │
+└──────────┴─────────────────────┘
+```
+
+The second column receives twice the flexible share of the first.
+
+### Three Different Fractions
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+}
+```
+
+The total is:
+
+```text
+1 + 2 + 3 = 6
+```
+
+Therefore:
+
+```text
+Column 1 → 1/6
+Column 2 → 2/6
+Column 3 → 3/6
+```
+
+Conceptually:
+
+```text
+┌─────┬──────────┬───────────────┐
+│ 1fr │   2fr    │      3fr      │
+└─────┴──────────┴───────────────┘
+```
+
+### `fr` With Fixed Columns
+
+The `fr` unit is especially useful when combined with fixed sizes.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+```
+
+The `200px` track gets its defined size first.
+
+The `1fr` track uses the remaining available space.
+
+```text
+┌──────────────┬──────────────────────────┐
+│   200px      │           1fr            │
+│              │                          │
+└──────────────┴──────────────────────────┘
+```
+
+This pattern is commonly used for sidebars.
+
+### Multiple Flexible Tracks With a Fixed Track
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 2fr;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────┬──────────┬────────────────┐
+│    200px     │   1fr    │      2fr       │
+└──────────────┴──────────┴────────────────┘
+```
+
+The fixed track is allocated separately, and the remaining flexible space is distributed according to the `fr` values.
+
+### `fr` and `gap`
+
+Consider:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+```
+
+The gap occupies space between the tracks.
+
+Conceptually:
+
+```text
+┌──────────────┐ 20px ┌──────────────┐
+│     1fr      │      │     1fr      │
+└──────────────┘      └──────────────┘
+```
+
+The `fr` tracks share the space available after accounting for the gap.
+
+### `fr` Can Be Used for Rows
+
+The `fr` unit is not limited to columns.
+
+It can also be used with rows:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+```
+
+This divides the available grid height into two flexible portions.
+
+```text
+┌────────────────────────────┐
+│            1fr             │
+├────────────────────────────┤
+│            1fr             │
+└────────────────────────────┘
+```
+
+### Header and Main Content
+
+A common layout is:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 80px 1fr;
+}
+```
+
+The first row is fixed:
+
+```text
+80px
+```
+
+The second row takes the remaining flexible space:
+
+```text
+1fr
+```
+
+```text
+┌────────────────────────────┐
+│           Header           │ 80px
+├────────────────────────────┤
+│                            │
+│        Main Content        │ 1fr
+│                            │
+└────────────────────────────┘
+```
+
+### `fr` Is Different From `%`
+
+These two approaches are not always equivalent.
+
+For example:
+
+```css
+grid-template-columns: 50% 50%;
+```
+
+uses percentages based on the grid container's relevant size.
+
+While:
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+divides the available flexible space between the tracks.
+
+This distinction becomes especially important when gaps or other fixed-sized tracks are present.
+
+### `fr` With `auto`
+
+You can combine `fr` with `auto`:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+```
+
+The first column can size itself based on its content, while the second flexible column receives the remaining available space.
+
+### `fr` and Content
+
+The exact final size of an `fr` track can also depend on the grid's sizing rules and the minimum size requirements of its contents.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+does not simply mean that every possible piece of space is always split blindly in half.
+
+Grid's track-sizing algorithm also considers factors such as:
+
+- Available space
+- Track sizing functions
+- Minimum contributions from grid items
+- Gaps
+- Other fixed or intrinsic sizes
+
+For straightforward layouts, however, `1fr 1fr` can be understood as two equal flexible portions.
+
+### Common `fr` Patterns
+
+Two equal columns:
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+Three equal columns:
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+Sidebar and content:
+
+```css
+grid-template-columns: 250px 1fr;
+```
+
+Main content with a larger secondary area:
+
+```css
+grid-template-columns: 1fr 2fr;
+```
+
+Header and flexible content:
+
+```css
+grid-template-rows: 70px 1fr;
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="layout">
+    <aside>Sidebar</aside>
+    <main>Main Content</main>
+</div>
+```
+
+CSS:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+}
+```
+
+Result:
+
+```text
+┌──────────────┐ 20px ┌──────────────────────────┐
+│   Sidebar    │      │       Main Content       │
+│    200px     │      │           1fr            │
+└──────────────┘      └──────────────────────────┘
+```
+
+The sidebar keeps its fixed width while the main content expands into the remaining space.
+
+### Important Points
+
+```text
+fr
+│
+├── Means fraction
+├── Represents flexible space
+├── Can be used for columns
+├── Can be used for rows
+├── Multiple fr values create proportions
+├── Works with fixed-size tracks
+├── Works with gaps
+└── Is useful for responsive layouts
+```
+
+> 💡 **Remember:** The `fr` unit represents a flexible fraction of the available grid space. Values such as `1fr 2fr` distribute flexible space proportionally, while fixed tracks such as `200px` can be combined with `fr` tracks to create practical layouts.
