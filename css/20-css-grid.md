@@ -5484,3 +5484,444 @@ grid-column: 1 / -1;
 ```
 
 > 💡 **Remember:** `grid-column` controls an individual grid item's horizontal placement by specifying the column grid lines where the item starts and ends.
+
+---
+
+## Grid Row
+
+The `grid-row` property controls **where a grid item starts and ends across the row grid lines**.
+
+It is used to position an item vertically or make it span multiple rows.
+
+### Basic Syntax
+
+```css
+.item {
+    grid-row: start / end;
+}
+```
+
+For example:
+
+```css
+.item {
+    grid-row: 1 / 3;
+}
+```
+
+This means:
+
+```text
+Start at row line 1
+End at row line 3
+```
+
+The item therefore spans two row tracks.
+
+### Row Grid Lines
+
+Consider a grid with three rows:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 100px 100px 100px;
+}
+```
+
+There are four horizontal grid lines:
+
+```text
+Line 1
+───────────────
+    Row 1
+───────────────
+Line 2
+    Row 2
+───────────────
+Line 3
+    Row 3
+───────────────
+Line 4
+```
+
+The rows are:
+
+```text
+Row 1 → Line 1 to Line 2
+Row 2 → Line 2 to Line 3
+Row 3 → Line 3 to Line 4
+```
+
+### Positioning an Item
+
+To place an item in the first row:
+
+```css
+.item {
+    grid-row: 1 / 2;
+}
+```
+
+The item starts at row line `1` and ends at row line `2`.
+
+```text
+┌────────────────────────────┐
+│           Item             │
+├────────────────────────────┤
+│                            │
+├────────────────────────────┤
+│                            │
+└────────────────────────────┘
+```
+
+### Spanning Two Rows
+
+An item can span multiple rows:
+
+```css
+.item {
+    grid-row: 1 / 3;
+}
+```
+
+This makes the item span:
+
+```text
+Row 1
+Row 2
+```
+
+Conceptually:
+
+```text
+┌────────────────┬───────────┐
+│                │   Item 2  │
+│    Item 1      ├───────────┤
+│                │   Item 3  │
+└────────────────┴───────────┘
+```
+
+### Using `span`
+
+Instead of specifying the ending line, you can use `span`.
+
+```css
+.item {
+    grid-row: span 2;
+}
+```
+
+This tells the grid item to occupy two row tracks.
+
+```text
+┌────────────┬────────────┐
+│            │   Item 2   │
+│   Item 1   ├────────────┤
+│  span 2    │   Item 3   │
+└────────────┴────────────┘
+```
+
+### Starting at a Specific Line and Spanning
+
+You can combine a starting line with `span`.
+
+```css
+.item {
+    grid-row: 2 / span 2;
+}
+```
+
+This means:
+
+```text
+Start at row line 2
+        ↓
+Span 2 rows
+```
+
+### `grid-row-start`
+
+The `grid-row` property is a shorthand.
+
+You can specify the starting line separately:
+
+```css
+.item {
+    grid-row-start: 2;
+}
+```
+
+This places the item's starting position at row line `2`.
+
+### `grid-row-end`
+
+You can specify the ending line separately:
+
+```css
+.item {
+    grid-row-end: 4;
+}
+```
+
+This tells the item to end at row line `4`.
+
+Together:
+
+```css
+.item {
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+```
+
+is equivalent to:
+
+```css
+.item {
+    grid-row: 2 / 4;
+}
+```
+
+### `grid-row` Shorthand
+
+The general form is:
+
+```css
+grid-row: start / end;
+```
+
+For example:
+
+```css
+grid-row: 1 / 3;
+```
+
+means:
+
+```text
+Start → Row Line 1
+End   → Row Line 3
+```
+
+Therefore, the item spans two row tracks.
+
+### Negative Row Line Numbers
+
+Grid row lines can also be referenced using negative numbers.
+
+The last row line is:
+
+```text
+-1
+```
+
+For example:
+
+```css
+.item {
+    grid-row: 1 / -1;
+}
+```
+
+This makes the item span from the first row line to the last row line.
+
+For a three-row grid:
+
+```text
+Line 1
+───────────────
+    Row 1
+───────────────
+    Row 2
+───────────────
+    Row 3
+───────────────
+Line 4 = -1
+```
+
+The item can therefore occupy the complete height of the grid.
+
+### Full-Height Element
+
+A common pattern is:
+
+```css
+.sidebar {
+    grid-row: 1 / -1;
+}
+```
+
+This makes the sidebar span from the first row line to the last row line.
+
+Example:
+
+```text
+┌────────────┬─────────────────────┐
+│            │       Header        │
+│            ├─────────────────────┤
+│  Sidebar   │                     │
+│            │    Main Content     │
+│            ├─────────────────────┤
+│            │       Footer        │
+└────────────┴─────────────────────┘
+```
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="layout">
+    <header>Header</header>
+    <aside>Sidebar</aside>
+    <main>Main Content</main>
+    <footer>Footer</footer>
+</div>
+```
+
+CSS:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 80px 1fr 60px;
+    gap: 20px;
+}
+
+header {
+    grid-column: 1 / -1;
+}
+
+aside {
+    grid-row: 2 / 3;
+}
+
+main {
+    grid-row: 2 / 3;
+}
+
+footer {
+    grid-column: 1 / -1;
+}
+```
+
+The structure is:
+
+```text
+┌───────────────────────────────┐
+│            Header             │
+├──────────────┬────────────────┤
+│   Sidebar    │  Main Content  │
+├──────────────┴────────────────┤
+│            Footer             │
+└───────────────────────────────┘
+```
+
+### `grid-row` Does Not Define the Grid
+
+It is important to distinguish:
+
+```css
+grid-template-rows
+```
+
+from:
+
+```css
+grid-row
+```
+
+`grid-template-rows` defines the row tracks:
+
+```css
+.container {
+    grid-template-rows: 100px 1fr 100px;
+}
+```
+
+`grid-row` positions an individual grid item within those tracks:
+
+```css
+.item {
+    grid-row: 1 / 3;
+}
+```
+
+So:
+
+```text
+grid-template-rows
+        ↓
+Defines the grid rows
+
+grid-row
+        ↓
+Positions an individual item
+```
+
+### `grid-row` With `grid-column`
+
+Grid items can be positioned in both directions.
+
+```css
+.item {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+}
+```
+
+This makes the item span:
+
+```text
+2 columns
++
+2 rows
+```
+
+Conceptually:
+
+```text
+┌──────────────────────┬──────────┐
+│                      │          │
+│        Item          │  Item 2  │
+│                      ├──────────┤
+│                      │  Item 3  │
+└──────────────────────┴──────────┘
+```
+
+### Important Points
+
+```text
+grid-row
+│
+├── Positions a grid item vertically
+├── Uses row grid lines
+├── Can define start and end lines
+├── Can use span
+├── Can use negative line numbers
+├── grid-row-start → starting line
+├── grid-row-end → ending line
+└── Can be combined with grid-column
+```
+
+Common examples:
+
+```css
+grid-row: 1 / 3;
+```
+
+```css
+grid-row: span 2;
+```
+
+```css
+grid-row: 2 / span 2;
+```
+
+```css
+grid-row: 1 / -1;
+```
+
+> 💡 **Remember:** `grid-row` controls an individual grid item's vertical placement by specifying the row grid lines where the item starts and ends.
