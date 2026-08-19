@@ -281,3 +281,314 @@ Create Responsive Layout
 ```
 
 > 💡 **Remember:** CSS Grid is a two-dimensional CSS layout system designed to control both rows and columns. It is especially useful for structured layouts where horizontal and vertical placement need to work together.
+
+---
+
+## Grid Container
+
+A **grid container** is an element whose `display` property is set to `grid` or `inline-grid`.
+
+Example:
+
+```css
+.container {
+    display: grid;
+}
+```
+
+The element with `display: grid` becomes the grid container, and its direct children become grid items.
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: grid;
+}
+```
+
+The structure is:
+
+```text
+.container
+     ↓
+Grid Container
+     │
+     ├── Item 1 → Grid Item
+     ├── Item 2 → Grid Item
+     └── Item 3 → Grid Item
+```
+
+### `display: grid`
+
+The most common way to create a grid container is:
+
+```css
+.container {
+    display: grid;
+}
+```
+
+This creates a block-level grid container.
+
+For example:
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+</div>
+```
+
+```css
+.container {
+    display: grid;
+}
+```
+
+The `.container` participates in normal block layout, while its direct children participate in grid layout.
+
+### `display: inline-grid`
+
+CSS also provides:
+
+```css
+.container {
+    display: inline-grid;
+}
+```
+
+`inline-grid` creates an inline-level grid container.
+
+For example:
+
+```css
+.container {
+    display: inline-grid;
+}
+```
+
+The grid itself behaves like an inline-level element, while its direct children are still laid out using CSS Grid.
+
+### Grid Container vs Grid Items
+
+Consider:
+
+```html
+<div class="container">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+</div>
+```
+
+```css
+.container {
+    display: grid;
+}
+```
+
+Here:
+
+```text
+.container
+     ↓
+Grid Container
+
+.item
+.item
+     ↓
+Grid Items
+```
+
+Only the **direct children** automatically become grid items.
+
+### Defining Columns on the Container
+
+The grid structure is normally defined on the grid container.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+}
+```
+
+This creates two columns.
+
+```text
+┌────────────┬────────────┐
+│   Item     │   Item     │
+├────────────┼────────────┤
+│   Item     │   Item     │
+└────────────┴────────────┘
+```
+
+### Defining Rows on the Container
+
+Rows can also be defined:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 100px 100px;
+}
+```
+
+The container now has two explicitly defined columns and two explicitly defined rows.
+
+### Grid Container Controls the Layout
+
+Many Grid properties are applied to the grid container.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+```
+
+Here:
+
+```text
+display
+    ↓
+Creates the grid
+
+grid-template-columns
+    ↓
+Defines the columns
+
+gap
+    ↓
+Controls spacing between grid items
+```
+
+### Container With Four Items
+
+HTML:
+
+```html
+<div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+The browser can place the items into the available columns:
+
+```text
+┌──────────┬──────────┐
+│    1     │    2     │
+├──────────┼──────────┤
+│    3     │    4     │
+└──────────┴──────────┘
+```
+
+### Grid Container With Three Columns
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+This creates three flexible columns:
+
+```text
+┌────────┬────────┬────────┐
+│ Item 1 │ Item 2 │ Item 3 │
+├────────┼────────┼────────┤
+│ Item 4 │ Item 5 │ Item 6 │
+└────────┴────────┴────────┘
+```
+
+### Grid Container and Available Space
+
+The grid container provides the available space in which the grid tracks are created.
+
+For example:
+
+```css
+.container {
+    width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+The two `1fr` columns can divide the available grid space equally.
+
+Conceptually:
+
+```text
+600px
+  ↓
+┌──────────────────────────────┐
+│       300px      │   300px   │
+└──────────────────────────────┘
+```
+
+### Grid Container Can Be Responsive
+
+A grid container can use media queries:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The same container can therefore use three columns on larger screens and one column on smaller screens.
+
+### Important Point
+
+The grid container is where the overall grid structure is established.
+
+Common container properties include:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: ...;
+    grid-template-rows: ...;
+    gap: ...;
+}
+```
+
+Later sections will cover these properties individually.
+
+> 💡 **Remember:** A grid container is the element that establishes a CSS Grid formatting context. Its direct children become grid items and can then be arranged into rows and columns.
