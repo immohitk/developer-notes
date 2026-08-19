@@ -10506,3 +10506,683 @@ Before considering a Grid layout complete, check:
 ```
 
 > 💡 **Remember:** Good CSS Grid code is not about using the most Grid properties. It is about creating a layout that is **clear, flexible, responsive, maintainable, and appropriate for the design**.
+
+---
+
+## Common Mistakes
+
+Avoiding common CSS Grid mistakes helps prevent unexpected spacing, sizing, positioning, and responsive-layout problems.
+
+### 1. Forgetting `display: grid`
+
+Grid properties do not work as expected if the parent is not a grid container.
+
+Incorrect:
+
+```css
+.container {
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+Correct:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+### 2. Confusing `grid-column` With `grid-template-columns`
+
+These properties have different purposes.
+
+```css
+grid-template-columns
+```
+
+defines the grid columns:
+
+```css
+.container {
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+While:
+
+```css
+grid-column
+```
+
+positions an individual item:
+
+```css
+.item {
+    grid-column: 1 / 3;
+}
+```
+
+Think:
+
+```text
+grid-template-columns
+        ↓
+Defines the grid
+
+grid-column
+        ↓
+Positions an item
+```
+
+### 3. Confusing `grid-row` With `grid-template-rows`
+
+Similarly:
+
+```css
+grid-template-rows
+```
+
+defines row tracks:
+
+```css
+.container {
+    grid-template-rows: 100px 1fr;
+}
+```
+
+while:
+
+```css
+grid-row
+```
+
+positions an individual item:
+
+```css
+.item {
+    grid-row: 1 / 3;
+}
+```
+
+### 4. Forgetting That Grid Lines Are Not Grid Tracks
+
+For two columns, there are three vertical grid lines:
+
+```text
+Line 1       Line 2       Line 3
+   │            │            │
+   │  Column 1  │  Column 2  │
+```
+
+Therefore:
+
+```css
+grid-column: 1 / 3;
+```
+
+spans two columns, not three.
+
+The values refer to **grid lines**, not column numbers.
+
+### 5. Using the Wrong `gap` Order
+
+With two values:
+
+```css
+gap: 10px 20px;
+```
+
+the order is:
+
+```text
+row-gap    → 10px
+column-gap → 20px
+```
+
+Do not reverse the values accidentally.
+
+### 6. Expecting `gap` to Add Space Around the Container
+
+`gap` controls the space **between grid tracks**.
+
+```css
+.container {
+    gap: 20px;
+}
+```
+
+It does not create `20px` of outer padding around the grid container.
+
+If outer spacing is needed, use:
+
+```css
+padding: 20px;
+```
+
+### 7. Making Every Item Explicitly Positioned
+
+It is usually unnecessary to position every grid item manually.
+
+Instead of:
+
+```css
+.item1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.item2 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.item3 {
+    grid-column: 3;
+    grid-row: 1;
+}
+```
+
+a simple grid can often use:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+Grid's auto-placement can handle the normal items.
+
+### 8. Overusing `grid-auto-flow: dense`
+
+`dense` can fill available gaps:
+
+```css
+grid-auto-flow: dense;
+```
+
+However, it can cause later items to appear visually before earlier items.
+
+This can be undesirable when visual order is important.
+
+Use it only when dense packing is actually needed.
+
+### 9. Confusing `1fr` With `1px`
+
+These are completely different:
+
+```css
+1fr
+```
+
+means one fraction of available flexible space.
+
+```css
+1px
+```
+
+means one CSS pixel.
+
+For example:
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+creates two flexible columns.
+
+### 10. Assuming `1fr` Always Prevents Overflow
+
+Consider:
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+A grid item containing long or otherwise difficult-to-shrink content can still cause sizing or overflow issues.
+
+When appropriate, use:
+
+```css
+grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+```
+
+This allows the flexible tracks to shrink to zero rather than being forced by their minimum content contribution.
+
+### 11. Using `minmax()` Incorrectly
+
+The first value should represent the minimum and the second the maximum.
+
+Correct:
+
+```css
+minmax(200px, 1fr)
+```
+
+This means:
+
+```text
+Minimum → 200px
+Maximum → 1fr
+```
+
+The order matters.
+
+### 12. Forgetting the Minimum Size in Responsive Grids
+
+This:
+
+```css
+repeat(auto-fit, 1fr)
+```
+
+does not provide a useful minimum card size.
+
+A common responsive pattern is:
+
+```css
+repeat(auto-fit, minmax(200px, 1fr))
+```
+
+This gives each track a minimum size while allowing it to grow.
+
+### 13. Confusing `auto-fit` and `auto-fill`
+
+They are related but not identical.
+
+```css
+repeat(auto-fit, minmax(200px, 1fr))
+```
+
+and:
+
+```css
+repeat(auto-fill, minmax(200px, 1fr))
+```
+
+can behave differently when there are fewer items than the number of tracks that can fit.
+
+Do not assume they are always interchangeable.
+
+### 14. Creating Invalid `grid-template-areas`
+
+Named areas must form rectangular regions.
+
+Valid:
+
+```css
+grid-template-areas:
+    "header header"
+    "main main";
+```
+
+Invalid shapes should not be used for a single named area.
+
+For example, an L-shaped area is not valid:
+
+```text
+┌──────────┬──────────┐
+│   box    │   box    │
+├──────────┼──────────┤
+│   box    │          │
+└──────────┴──────────┘
+```
+
+A named area must form a rectangle.
+
+### 15. Forgetting `.` for Empty Grid-Area Cells
+
+A period represents an empty cell.
+
+```css
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    ".      footer";
+```
+
+The `.` is important because it explicitly represents an empty grid cell.
+
+### 16. Using Different Area Names Accidentally
+
+Each element's `grid-area` value must match a name defined in `grid-template-areas`.
+
+For example:
+
+```css
+grid-template-areas:
+    "header header"
+    "main main";
+```
+
+Then:
+
+```css
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+}
+```
+
+If the names do not match, the intended named-area placement will not work.
+
+### 17. Confusing `justify-items` With `justify-content`
+
+These properties operate at different levels.
+
+```text
+justify-items
+      ↓
+Aligns items inside their grid areas
+
+justify-content
+      ↓
+Aligns the grid tracks inside the container
+```
+
+For example:
+
+```css
+.container {
+    justify-items: center;
+}
+```
+
+is not equivalent to:
+
+```css
+.container {
+    justify-content: center;
+}
+```
+
+### 18. Confusing `align-items` With `align-content`
+
+Similarly:
+
+```text
+align-items
+      ↓
+Aligns items inside their grid areas
+
+align-content
+      ↓
+Aligns grid tracks inside the container
+```
+
+Understanding this distinction prevents many alignment problems.
+
+### 19. Using `justify-self` When You Need `justify-items`
+
+`justify-self` affects one item:
+
+```css
+.item {
+    justify-self: center;
+}
+```
+
+`justify-items` affects all grid items:
+
+```css
+.container {
+    justify-items: center;
+}
+```
+
+Choose the property according to the required scope.
+
+### 20. Using Fixed Sizes Everywhere
+
+A layout such as:
+
+```css
+grid-template-columns:
+    200px 300px 400px;
+```
+
+may work at one width but become difficult to adapt to smaller screens.
+
+Where appropriate, consider:
+
+```css
+grid-template-columns:
+    1fr 2fr 1fr;
+```
+
+or:
+
+```css
+grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+```
+
+The correct choice depends on the design.
+
+### 21. Ignoring Implicit Grid Tracks
+
+If you define:
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+but do not define rows, additional rows can be created automatically as items are added.
+
+If their size needs to be controlled, use:
+
+```css
+grid-auto-rows: 150px;
+```
+
+### 22. Forgetting About Implicit Track Sizing
+
+Explicitly defined tracks and automatically created tracks can have different sizing rules.
+
+For example:
+
+```css
+.container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+}
+```
+
+Here:
+
+```text
+Columns → explicitly defined
+Rows    → automatically created and sized at 150px
+```
+
+### 23. Using Too Many Media Queries
+
+A Grid layout can sometimes be made responsive without multiple breakpoints.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+```
+
+Before adding many media queries, consider whether Grid's intrinsic responsive features can solve the problem.
+
+### 24. Not Testing Long Content
+
+A layout that works with:
+
+```text
+Short title
+```
+
+may fail with:
+
+```text
+A very long title that takes much more space than expected
+```
+
+Test Grid layouts with realistic content.
+
+Also test:
+
+```text
+Long text
+Large images
+Small images
+Many items
+Few items
+```
+
+### 25. Ignoring Overflow
+
+If content is larger than the available grid area, it can cause unexpected overflow.
+
+Check:
+
+```css
+overflow
+```
+
+and consider track sizing such as:
+
+```css
+minmax(0, 1fr)
+```
+
+when appropriate.
+
+### 26. Using Grid When Flexbox Is Simpler
+
+Grid is designed for two-dimensional layouts.
+
+If the layout only needs a single direction, Flexbox may be simpler.
+
+Think:
+
+```text
+One dimension
+    ↓
+Flexbox may be suitable
+
+Two dimensions
+    ↓
+Grid may be suitable
+```
+
+This is a guideline, not a strict rule.
+
+### 27. Relying on Visual Order Without Considering Source Order
+
+CSS Grid can visually reposition items.
+
+However, the HTML source order still matters for accessibility and logical navigation.
+
+Prefer an HTML order that makes sense before using CSS to rearrange the visual presentation.
+
+### 28. Making Layouts Dependent on Arbitrary Line Numbers
+
+Complex rules such as:
+
+```css
+.item {
+    grid-column: 7 / 13;
+    grid-row: 5 / 10;
+}
+```
+
+can become difficult to maintain.
+
+For larger semantic layouts, named areas may be clearer:
+
+```css
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+```
+
+### 29. Forgetting to Test at Different Widths
+
+Always test:
+
+```text
+Large screen
+     ↓
+Medium screen
+     ↓
+Small screen
+```
+
+Check for:
+
+```text
+Overflow
+Tiny columns
+Unexpected gaps
+Broken areas
+Overlapping content
+```
+
+### 30. Overcomplicating the Grid
+
+CSS Grid has many features, but a simple layout does not need all of them.
+
+For example, this may be enough:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+Do not add:
+
+```text
+grid-auto-flow
+grid-template-areas
+multiple line placements
+many breakpoints
+```
+
+unless the design actually requires them.
+
+### Common Mistake Checklist
+
+```text
+☐ Forgot display: grid
+☐ Confused grid-template-columns with grid-column
+☐ Confused grid-template-rows with grid-row
+☐ Misunderstood grid lines
+☐ Used gap incorrectly
+☐ Added unnecessary item positioning
+☐ Overused dense placement
+☐ Confused fr with px
+☐ Used minmax() incorrectly
+☐ Forgot minimum sizes in responsive layouts
+☐ Confused auto-fit and auto-fill
+☐ Created invalid grid areas
+☐ Forgot "." for empty areas
+☐ Used incorrect area names
+☐ Confused items and content alignment
+☐ Ignored implicit tracks
+☐ Used too many fixed sizes
+☐ Added unnecessary media queries
+☐ Ignored overflow
+☐ Used Grid when a simpler layout method was appropriate
+☐ Failed to test different screen sizes
+```
+
+> 💡 **Remember:** Most CSS Grid problems come from confusing **grid definition, item placement, alignment, and automatic track creation**. Understand which level a property controls before changing the CSS.
