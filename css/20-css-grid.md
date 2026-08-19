@@ -11186,3 +11186,850 @@ unless the design actually requires them.
 ```
 
 > 💡 **Remember:** Most CSS Grid problems come from confusing **grid definition, item placement, alignment, and automatic track creation**. Understand which level a property controls before changing the CSS.
+
+---
+
+## Interview Questions
+
+### Basic Questions
+
+#### 1. What is CSS Grid?
+
+CSS Grid is a two-dimensional CSS layout system used to create layouts with rows and columns.
+
+```css
+.container {
+    display: grid;
+}
+```
+
+---
+
+#### 2. What is the difference between CSS Grid and Flexbox?
+
+The main distinction is:
+
+```text
+CSS Grid
+→ Two-dimensional layout
+→ Rows + Columns
+
+Flexbox
+→ One-dimensional layout
+→ Row OR Column
+```
+
+Grid is particularly useful when both dimensions need to be controlled.
+
+---
+
+#### 3. How do you create a Grid container?
+
+Use:
+
+```css
+display: grid;
+```
+
+Example:
+
+```css
+.container {
+    display: grid;
+}
+```
+
+The direct children become grid items.
+
+---
+
+#### 4. What is a grid track?
+
+A grid track is a **row or column** in a Grid layout.
+
+```text
+Column track
+     ↓
+┌──────────┬──────────┐
+│          │          │
+│          │          │
+└──────────┴──────────┘
+```
+
+---
+
+#### 5. What is a grid line?
+
+A grid line is a boundary between grid tracks.
+
+For two columns:
+
+```text
+Line 1       Line 2       Line 3
+   │            │            │
+   │  Column 1  │  Column 2  │
+```
+
+Grid lines are used by properties such as:
+
+```css
+grid-column
+grid-row
+```
+
+---
+
+#### 6. What is a grid cell?
+
+A grid cell is the individual space formed by the intersection of a row and a column.
+
+```text
+┌──────────┬──────────┐
+│ Cell 1   │ Cell 2   │
+├──────────┼──────────┤
+│ Cell 3   │ Cell 4   │
+└──────────┴──────────┘
+```
+
+---
+
+### Grid Sizing Questions
+
+#### 7. What does `grid-template-columns` do?
+
+It defines the columns of the explicit grid.
+
+```css
+.container {
+    grid-template-columns: 1fr 2fr;
+}
+```
+
+This creates two columns with a flexible `1 : 2` ratio.
+
+---
+
+#### 8. What does `grid-template-rows` do?
+
+It defines the rows of the explicit grid.
+
+```css
+.container {
+    grid-template-rows: 100px 1fr;
+}
+```
+
+---
+
+#### 9. What is the `fr` unit?
+
+`fr` represents a fraction of the available flexible space.
+
+```css
+grid-template-columns: 1fr 2fr;
+```
+
+The available flexible space is divided in a:
+
+```text
+1 : 2
+```
+
+ratio.
+
+---
+
+#### 10. What does `repeat()` do?
+
+`repeat()` allows a track pattern to be repeated.
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+is equivalent to:
+
+```css
+grid-template-columns: 1fr 1fr 1fr;
+```
+
+---
+
+#### 11. What does `minmax()` do?
+
+`minmax()` defines a minimum and maximum size for a grid track.
+
+```css
+grid-template-columns:
+    minmax(200px, 1fr);
+```
+
+The track can have a minimum of `200px` and a flexible maximum of `1fr`.
+
+---
+
+#### 12. What is the `gap` property used for in Grid?
+
+`gap` creates spacing between grid tracks.
+
+```css
+.container {
+    gap: 20px;
+}
+```
+
+It can also be separated into:
+
+```css
+row-gap: 20px;
+column-gap: 30px;
+```
+
+---
+
+### Placement Questions
+
+#### 13. What does `grid-column` do?
+
+It controls the horizontal placement of a grid item using column grid lines.
+
+```css
+.item {
+    grid-column: 1 / 3;
+}
+```
+
+The item spans from line 1 to line 3.
+
+---
+
+#### 14. What does `grid-row` do?
+
+It controls the vertical placement of a grid item using row grid lines.
+
+```css
+.item {
+    grid-row: 1 / 3;
+}
+```
+
+---
+
+#### 15. How do you make an item span multiple columns?
+
+Use `span`.
+
+```css
+.item {
+    grid-column: span 2;
+}
+```
+
+The item occupies two column tracks.
+
+---
+
+#### 16. How do you make an item span the entire grid width?
+
+A common pattern is:
+
+```css
+.item {
+    grid-column: 1 / -1;
+}
+```
+
+`-1` refers to the last grid line.
+
+---
+
+#### 17. How do you make an item span the entire grid height?
+
+Use:
+
+```css
+.item {
+    grid-row: 1 / -1;
+}
+```
+
+---
+
+### Grid Area Questions
+
+#### 18. What is `grid-template-areas`?
+
+It allows you to define named regions of a grid.
+
+Example:
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+```
+
+---
+
+#### 19. How do you assign an item to a named grid area?
+
+Use:
+
+```css
+.item {
+    grid-area: header;
+}
+```
+
+The name must match the name defined in:
+
+```css
+grid-template-areas
+```
+
+---
+
+#### 20. What does `.` mean in `grid-template-areas`?
+
+A period represents an empty grid cell.
+
+Example:
+
+```css
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    ".      footer";
+```
+
+The `.` leaves that cell empty.
+
+---
+
+#### 21. What is a restriction on named grid areas?
+
+A named grid area must form a **rectangle**.
+
+Irregular shapes such as L-shaped areas cannot be represented as one named grid area.
+
+---
+
+### Auto Placement Questions
+
+#### 22. What is Grid auto-placement?
+
+When grid items are not explicitly positioned, CSS Grid automatically places them into available cells.
+
+Example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+The browser automatically places the items into the available cells.
+
+---
+
+#### 23. What is `grid-auto-flow`?
+
+`grid-auto-flow` controls the direction and packing behavior of automatically placed grid items.
+
+Common values:
+
+```css
+grid-auto-flow: row;
+grid-auto-flow: column;
+grid-auto-flow: dense;
+```
+
+---
+
+#### 24. What is the default value of `grid-auto-flow`?
+
+The default is:
+
+```css
+grid-auto-flow: row;
+```
+
+Items are automatically placed in row order.
+
+---
+
+#### 25. What does `grid-auto-flow: column` do?
+
+It changes automatic placement to proceed by columns.
+
+```css
+.container {
+    grid-auto-flow: column;
+}
+```
+
+---
+
+#### 26. What does `dense` do?
+
+The `dense` keyword tells the auto-placement algorithm to try to fill earlier available gaps.
+
+```css
+grid-auto-flow: dense;
+```
+
+It can change the visual placement order, so it should be used carefully when order matters.
+
+---
+
+### Explicit and Implicit Grid Questions
+
+#### 27. What is an explicit grid?
+
+The explicit grid consists of tracks directly defined using:
+
+```css
+grid-template-columns
+grid-template-rows
+```
+
+---
+
+#### 28. What is an implicit grid?
+
+The implicit grid consists of tracks that Grid creates automatically when additional tracks are needed.
+
+---
+
+#### 29. How do you control automatically created rows?
+
+Use:
+
+```css
+grid-auto-rows
+```
+
+Example:
+
+```css
+.container {
+    grid-auto-rows: 150px;
+}
+```
+
+---
+
+#### 30. How do you control automatically created columns?
+
+Use:
+
+```css
+grid-auto-columns
+```
+
+Example:
+
+```css
+.container {
+    grid-auto-columns: 200px;
+}
+```
+
+---
+
+### Alignment Questions
+
+#### 31. What does `justify-items` do?
+
+It controls the alignment of grid items along the inline axis within their grid areas.
+
+Example:
+
+```css
+.container {
+    justify-items: center;
+}
+```
+
+---
+
+#### 32. What does `align-items` do?
+
+It controls the alignment of grid items along the block axis within their grid areas.
+
+```css
+.container {
+    align-items: center;
+}
+```
+
+---
+
+#### 33. What does `justify-self` do?
+
+It controls the inline-axis alignment of one individual grid item.
+
+```css
+.item {
+    justify-self: center;
+}
+```
+
+---
+
+#### 34. What does `align-self` do?
+
+It controls the block-axis alignment of one individual grid item.
+
+```css
+.item {
+    align-self: center;
+}
+```
+
+---
+
+#### 35. What does `place-items` do?
+
+`place-items` is a shorthand for:
+
+```css
+align-items
+justify-items
+```
+
+For example:
+
+```css
+.container {
+    place-items: center;
+}
+```
+
+---
+
+#### 36. What does `place-self` do?
+
+`place-self` is a shorthand for:
+
+```css
+align-self
+justify-self
+```
+
+Example:
+
+```css
+.item {
+    place-self: center;
+}
+```
+
+---
+
+#### 37. What does `justify-content` do?
+
+It controls the alignment of the grid tracks inside the grid container along the inline axis.
+
+This is different from `justify-items`, which controls items inside their grid areas.
+
+---
+
+#### 38. What does `align-content` do?
+
+It controls the alignment of the grid tracks inside the grid container along the block axis.
+
+---
+
+#### 39. How do you center Grid items in both directions?
+
+A common approach is:
+
+```css
+.container {
+    display: grid;
+    place-items: center;
+}
+```
+
+---
+
+### Responsive Grid Questions
+
+#### 40. How can CSS Grid be made responsive?
+
+Common techniques include:
+
+```css
+fr
+repeat()
+minmax()
+auto-fit
+auto-fill
+media queries
+```
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+}
+```
+
+---
+
+#### 41. What is `auto-fit`?
+
+`auto-fit` allows the browser to determine how many tracks can fit and can collapse empty tracks, allowing existing tracks to expand.
+
+Example:
+
+```css
+grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+```
+
+---
+
+#### 42. What is `auto-fill`?
+
+`auto-fill` allows Grid to create as many tracks as can fit according to the available space and track sizing.
+
+Example:
+
+```css
+grid-template-columns:
+    repeat(auto-fill, minmax(200px, 1fr));
+```
+
+---
+
+#### 43. What is the difference between `auto-fit` and `auto-fill`?
+
+A simplified distinction is:
+
+```text
+auto-fill
+→ Fits as many tracks as possible
+
+auto-fit
+→ Fits tracks and can collapse empty tracks
+```
+
+The difference is most noticeable when there are fewer items than the number of tracks that could fit.
+
+---
+
+### Scenario-Based Questions
+
+#### 44. How would you create a responsive card grid?
+
+A common solution is:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+```
+
+---
+
+#### 45. How would you create a layout with a sidebar and main content?
+
+For example:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+}
+```
+
+---
+
+#### 46. How would you make a header span the complete grid?
+
+Use:
+
+```css
+header {
+    grid-column: 1 / -1;
+}
+```
+
+---
+
+#### 47. How would you create a header, sidebar, main content, and footer using named areas?
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+```
+
+Then:
+
+```css
+header {
+    grid-area: header;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+```
+
+---
+
+#### 48. When would you use `minmax(0, 1fr)`?
+
+It can be useful for flexible content columns when you need the track to be able to shrink below its minimum content contribution.
+
+Example:
+
+```css
+.layout {
+    grid-template-columns:
+        240px minmax(0, 1fr);
+}
+```
+
+---
+
+#### 49. When should you consider using Grid instead of Flexbox?
+
+A useful guideline is:
+
+```text
+Need one-dimensional layout?
+→ Flexbox may be suitable
+
+Need two-dimensional layout?
+→ Grid may be suitable
+```
+
+The choice ultimately depends on the layout requirements.
+
+---
+
+#### 50. What are the most important CSS Grid properties to know?
+
+A strong foundation includes:
+
+```css
+display: grid;
+
+grid-template-columns;
+grid-template-rows;
+
+grid-template-areas;
+grid-area;
+
+grid-column;
+grid-row;
+
+grid-auto-flow;
+grid-auto-columns;
+grid-auto-rows;
+
+gap;
+row-gap;
+column-gap;
+
+justify-items;
+align-items;
+justify-self;
+align-self;
+
+justify-content;
+align-content;
+```
+
+For responsive layouts, also know:
+
+```css
+repeat()
+minmax()
+auto-fit
+auto-fill
+fr
+```
+
+### Quick Interview Summary
+
+```text
+CSS Grid
+→ Two-dimensional layout system
+
+fr
+→ Fraction of flexible space
+
+repeat()
+→ Repeats track patterns
+
+minmax()
+→ Defines minimum and maximum track sizes
+
+gap
+→ Space between tracks
+
+grid-column
+→ Horizontal item placement
+
+grid-row
+→ Vertical item placement
+
+grid-template-areas
+→ Defines named layout regions
+
+grid-area
+→ Assigns an item to a named region
+
+grid-auto-flow
+→ Controls automatic placement
+
+grid-auto-rows / columns
+→ Controls implicit track sizes
+
+justify-items / align-items
+→ Align all items
+
+justify-self / align-self
+→ Align one item
+
+justify-content / align-content
+→ Align grid tracks
+
+auto-fit / auto-fill
+→ Responsive track generation
+```
+
+> 💡 **Interview Tip:** Do not only memorize property definitions. Be able to explain the difference between **tracks and lines**, **items and content alignment**, **explicit and implicit grids**, and **`auto-fit` vs `auto-fill`**. These distinctions commonly reveal whether you understand how CSS Grid actually works.
