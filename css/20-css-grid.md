@@ -592,3 +592,342 @@ Common container properties include:
 Later sections will cover these properties individually.
 
 > 💡 **Remember:** A grid container is the element that establishes a CSS Grid formatting context. Its direct children become grid items and can then be arranged into rows and columns.
+
+---
+
+## Grid Items
+
+A **grid item** is an element that is a direct child of a grid container.
+
+A grid item participates in the CSS Grid layout created by its parent.
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    display: grid;
+}
+```
+
+The structure is:
+
+```text
+.container
+     ↓
+Grid Container
+     │
+     ├── Item 1 → Grid Item
+     ├── Item 2 → Grid Item
+     └── Item 3 → Grid Item
+```
+
+### Direct Children Become Grid Items
+
+Only the **direct children** of a grid container automatically become grid items.
+
+For example:
+
+```html
+<div class="container">
+    <div class="item">
+        <span>Text</span>
+    </div>
+</div>
+```
+
+Here:
+
+```text
+.container
+    ↓
+Grid Container
+    ↓
+.item
+    ↓
+Grid Item
+    ↓
+<span>
+    ↓
+Not a grid item
+```
+
+The `<span>` is a descendant of the grid container, but it is not a direct child.
+
+### Basic Grid Items
+
+Consider:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+HTML:
+
+```html
+<div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+```
+
+The four direct children become grid items:
+
+```text
+┌──────────┬──────────┐
+│    1     │    2     │
+├──────────┼──────────┤
+│    3     │    4     │
+└──────────┴──────────┘
+```
+
+### Grid Items Can Contain Other Elements
+
+A grid item can contain its own content.
+
+```html
+<div class="container">
+    <article class="card">
+        <h2>Title</h2>
+        <p>Description</p>
+    </article>
+</div>
+```
+
+Here:
+
+```text
+.container
+    ↓
+Grid Container
+
+.card
+    ↓
+Grid Item
+
+<h2>
+<p>
+    ↓
+Content inside the grid item
+```
+
+The internal elements do not automatically become items of the outer grid.
+
+### Grid Item Placement
+
+By default, Grid automatically places items into available grid cells.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+With four items:
+
+```text
+Item 1 → Cell 1
+Item 2 → Cell 2
+Item 3 → Cell 3
+Item 4 → Cell 4
+```
+
+Result:
+
+```text
+┌──────────┬──────────┐
+│ Item 1   │ Item 2   │
+├──────────┼──────────┤
+│ Item 3   │ Item 4   │
+└──────────┴──────────┘
+```
+
+This automatic behavior is called **auto-placement** and will be covered later.
+
+### Styling Individual Grid Items
+
+Grid items can have their own styles.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.item {
+    padding: 20px;
+    background-color: lightblue;
+}
+```
+
+The container controls the grid layout, while the item can control its own appearance.
+
+### Placing an Item Across Columns
+
+A grid item can span multiple columns.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.item:first-child {
+    grid-column: span 2;
+}
+```
+
+The first item occupies two columns:
+
+```text
+┌──────────────────────┬──────────┐
+│       Item 1         │  Item 2  │
+│      2 columns       │          │
+├──────────┬───────────┴──────────┤
+│ Item 3   │ Item 4                │
+└──────────┴───────────────────────┘
+```
+
+The `grid-column` property will be covered in detail later.
+
+### Placing an Item Across Rows
+
+Grid items can also span multiple rows.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+}
+
+.item:first-child {
+    grid-row: span 2;
+}
+```
+
+The first item occupies two rows.
+
+```text
+┌──────────┬──────────┐
+│          │  Item 2  │
+│  Item 1  ├──────────┤
+│          │  Item 3  │
+└──────────┴──────────┘
+```
+
+### Grid Items Can Be Repositioned
+
+Grid items can be explicitly positioned using properties such as:
+
+```css
+grid-column
+grid-row
+```
+
+For example:
+
+```css
+.item {
+    grid-column: 1 / 3;
+}
+```
+
+This tells the item to occupy the space between grid column lines 1 and 3.
+
+### Grid Items and Alignment
+
+Grid items can also be aligned within their grid areas.
+
+For example:
+
+```css
+.item {
+    justify-self: center;
+    align-self: center;
+}
+```
+
+These properties control the individual item's position within its grid area.
+
+### Grid Item Size
+
+A grid item's size is influenced by the grid tracks it occupies.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 300px;
+}
+```
+
+The first column is:
+
+```text
+200px
+```
+
+and the second is:
+
+```text
+300px
+```
+
+An item placed in the first column is therefore positioned within that 200px track.
+
+### Grid Items and `gap`
+
+The spacing between grid items is controlled by the grid container.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+```
+
+The grid items are separated by the specified gap.
+
+```text
+┌──────────┐ 20px ┌──────────┐
+│  Item 1  │      │  Item 2  │
+└──────────┘      └──────────┘
+```
+
+### Important Point
+
+A grid item is specifically a **direct child** of a grid container.
+
+```text
+Grid Container
+      │
+      ├── Direct Child → Grid Item
+      ├── Direct Child → Grid Item
+      └── Direct Child → Grid Item
+```
+
+A nested descendant does not automatically become an item of the outer grid.
+
+> 💡 **Remember:** A grid item is a direct child of a grid container. The grid container establishes the layout, while individual grid items can be styled, positioned, aligned, or made to span multiple rows and columns.
