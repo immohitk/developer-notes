@@ -4241,3 +4241,390 @@ repeat()
 ```
 
 > 💡 **Remember:** `repeat()` makes Grid declarations shorter by repeating a track size or pattern. For example, `repeat(3, 1fr)` creates three equal flexible tracks.
+
+---
+
+## `minmax()` Function
+
+The `minmax()` function is a CSS Grid function used to define a **minimum and maximum size for a grid track**.
+
+It is useful when you want a grid track to be flexible while preventing it from becoming too small or too large.
+
+### Basic Syntax
+
+```css
+minmax(minimum, maximum)
+```
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr);
+}
+```
+
+This means:
+
+```text
+Minimum size → 200px
+Maximum size → 1fr
+```
+
+The track can grow as needed, but it should not become smaller than its minimum size.
+
+### Basic Example
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: minmax(200px, 400px);
+}
+```
+
+The column can have a size between:
+
+```text
+200px → 400px
+```
+
+Conceptually:
+
+```text
+Minimum                 Maximum
+  200px                    400px
+    │                        │
+    ├────────────────────────┤
+             Track
+```
+
+### `minmax()` With `fr`
+
+A common pattern is:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr);
+}
+```
+
+Here:
+
+```text
+Minimum → 200px
+Maximum → 1fr
+```
+
+The column can grow to use available flexible space while maintaining a minimum size.
+
+### Multiple Columns
+
+You can use `minmax()` with multiple columns:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        minmax(200px, 1fr)
+        minmax(200px, 1fr);
+}
+```
+
+This creates two flexible columns, each with a minimum size of `200px`.
+
+```text
+┌────────────────┬────────────────┐
+│     1fr        │      1fr       │
+│ min 200px      │  min 200px     │
+└────────────────┴────────────────┘
+```
+
+### `minmax()` With `repeat()`
+
+`minmax()` becomes especially useful when combined with `repeat()`.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+}
+```
+
+This creates three columns.
+
+Each column has:
+
+```text
+Minimum → 200px
+Maximum → 1fr
+```
+
+Conceptually:
+
+```text
+┌──────────┬──────────┬──────────┐
+│  Column  │  Column  │  Column  │
+│ min 200  │ min 200  │ min 200  │
+└──────────┴──────────┴──────────┘
+```
+
+### Responsive Card Layout
+
+A common use of `minmax()` is a card grid:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+The columns can grow when more space is available while maintaining their minimum size.
+
+### `auto-fit` With `minmax()`
+
+For responsive layouts, `auto-fit` can be combined with `minmax()`:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+}
+```
+
+This allows the browser to determine how many columns can fit while using:
+
+```text
+Minimum column size → 200px
+Maximum column size → 1fr
+```
+
+For example, a wide screen might produce:
+
+```text
+┌────────┬────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │ Card 4 │
+└────────┴────────┴────────┴────────┘
+```
+
+A narrower screen might produce:
+
+```text
+┌────────┬────────┐
+│ Card 1 │ Card 2 │
+├────────┼────────┤
+│ Card 3 │ Card 4 │
+└────────┴────────┘
+```
+
+### `auto-fill` With `minmax()`
+
+Another common pattern is:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fill, minmax(200px, 1fr));
+}
+```
+
+`auto-fill` allows the grid to create as many tracks as can fit according to the minimum track size.
+
+### `auto-fit` vs `auto-fill`
+
+Both are commonly used with:
+
+```css
+repeat()
+```
+
+and:
+
+```css
+minmax()
+```
+
+For example:
+
+```css
+repeat(auto-fit, minmax(200px, 1fr))
+```
+
+and:
+
+```css
+repeat(auto-fill, minmax(200px, 1fr))
+```
+
+They are similar when the grid is filled with enough items, but they can behave differently when there is extra space and fewer items than available tracks.
+
+A useful simplified distinction is:
+
+```text
+auto-fill
+    ↓
+Keeps fitting tracks into the available space
+
+auto-fit
+    ↓
+Fits tracks and can collapse empty tracks
+    allowing existing items to expand
+```
+
+### `minmax()` With Fixed Maximum
+
+You can use fixed values for both arguments:
+
+```css
+grid-template-columns: minmax(200px, 400px);
+```
+
+The track is constrained between:
+
+```text
+200px minimum
+400px maximum
+```
+
+### `minmax()` With `auto`
+
+`auto` can also be used in supported track-sizing combinations.
+
+For example:
+
+```css
+grid-template-columns: minmax(200px, auto);
+```
+
+This allows the track to have a minimum of `200px` while its maximum sizing behavior is based on `auto`.
+
+### `minmax()` With Rows
+
+`minmax()` is not limited to columns.
+
+It can also be used for rows:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: minmax(100px, 1fr);
+}
+```
+
+The row has:
+
+```text
+Minimum → 100px
+Maximum → 1fr
+```
+
+### Preventing Very Small Columns
+
+Consider a responsive card layout:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+Depending on the available space, the columns can become too narrow for the intended design.
+
+Using:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(200px, 1fr));
+}
+```
+
+provides a minimum track size.
+
+### `minmax()` and `gap`
+
+`minmax()` can be combined with `gap`:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+The grid must account for both:
+
+```text
+Minimum track sizes
+        +
+Gaps
+        +
+Available container space
+```
+
+This makes the pattern useful for responsive card layouts.
+
+### Common Examples
+
+Minimum `200px`, flexible maximum:
+
+```css
+grid-template-columns: minmax(200px, 1fr);
+```
+
+Three flexible columns:
+
+```css
+grid-template-columns:
+    repeat(3, minmax(200px, 1fr));
+```
+
+Responsive columns:
+
+```css
+grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+```
+
+Fixed range:
+
+```css
+grid-template-columns:
+    minmax(200px, 400px);
+```
+
+Flexible rows:
+
+```css
+grid-template-rows:
+    minmax(100px, 1fr);
+```
+
+### Important Points
+
+```text
+minmax()
+│
+├── Defines a minimum size
+├── Defines a maximum size
+├── Used for grid tracks
+├── Works with columns
+├── Works with rows
+├── Commonly used with fr
+├── Commonly used with repeat()
+├── Useful for responsive layouts
+├── Works with auto-fit
+└── Works with auto-fill
+```
+
+> 💡 **Remember:** `minmax(minimum, maximum)` gives a grid track a size range. It is especially useful for responsive layouts where a track should remain usable at smaller sizes but still expand when more space is available.
