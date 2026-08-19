@@ -5925,3 +5925,484 @@ grid-row: 1 / -1;
 ```
 
 > 💡 **Remember:** `grid-row` controls an individual grid item's vertical placement by specifying the row grid lines where the item starts and ends.
+
+---
+
+## Grid Areas
+
+A **grid area** is one or more grid cells that form a rectangular region of a CSS Grid.
+
+Grid areas can be created and controlled using the `grid-area` property and, most commonly, the `grid-template-areas` property.
+
+They are especially useful for creating readable page layouts.
+
+### Basic Concept
+
+Consider a grid:
+
+```text
+┌──────────┬──────────┐
+│  Header  │  Header  │
+├──────────┼──────────┤
+│ Sidebar  │   Main   │
+├──────────┼──────────┤
+│  Footer  │  Footer  │
+└──────────┴──────────┘
+```
+
+Here:
+
+```text
+Header → spans two cells
+Sidebar → occupies one cell
+Main → occupies one cell
+Footer → spans two cells
+```
+
+Each named region is a **grid area**.
+
+### `grid-template-areas`
+
+The `grid-template-areas` property allows you to name areas of a grid.
+
+Example:
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-columns: 200px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+```
+
+This defines three rows and two columns:
+
+```text
+┌──────────┬──────────┐
+│  header  │  header  │
+├──────────┼──────────┤
+│ sidebar  │   main   │
+├──────────┼──────────┤
+│  footer  │  footer  │
+└──────────┴──────────┘
+```
+
+The repeated names indicate that an area spans multiple cells.
+
+### Assigning Elements to Areas
+
+After defining the areas, individual grid items can be assigned using `grid-area`.
+
+```css
+header {
+    grid-area: header;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+```
+
+HTML:
+
+```html
+<div class="layout">
+    <header>Header</header>
+
+    <aside>Sidebar</aside>
+
+    <main>Main Content</main>
+
+    <footer>Footer</footer>
+</div>
+```
+
+The complete layout becomes:
+
+```text
+┌───────────────────────────────┐
+│            Header             │
+├──────────────┬────────────────┤
+│   Sidebar    │  Main Content  │
+├──────────────┴────────────────┤
+│            Footer             │
+└───────────────────────────────┘
+```
+
+### Complete Example
+
+HTML:
+
+```html
+<div class="layout">
+    <header>Header</header>
+    <aside>Sidebar</aside>
+    <main>Main Content</main>
+    <footer>Footer</footer>
+</div>
+```
+
+CSS:
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-columns: 200px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+
+    gap: 20px;
+}
+
+header {
+    grid-area: header;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+```
+
+### Understanding the Area Definition
+
+This:
+
+```css
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+```
+
+can be read visually as:
+
+```text
+header  header
+sidebar main
+footer  footer
+```
+
+Each quoted string represents one **row**.
+
+Each name inside the string represents a **column**.
+
+Therefore:
+
+```text
+"header header"
+```
+
+means:
+
+```text
+Header occupies two columns
+```
+
+while:
+
+```text
+"sidebar main"
+```
+
+means:
+
+```text
+Sidebar → Column 1
+Main    → Column 2
+```
+
+### Area Names Must Form Rectangles
+
+A named grid area must form a rectangular region.
+
+Valid:
+
+```css
+grid-template-areas:
+    "header header"
+    "main main";
+```
+
+Visual representation:
+
+```text
+┌──────────┬──────────┐
+│  header  │  header  │
+├──────────┼──────────┤
+│   main   │   main   │
+└──────────┴──────────┘
+```
+
+Also valid:
+
+```css
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    "sidebar main";
+```
+
+Here `sidebar` forms a rectangle covering two rows.
+
+### Invalid Non-Rectangular Areas
+
+An area cannot form an irregular shape.
+
+For example, this is not a valid shape for a single named area:
+
+```text
+┌──────────┬──────────┐
+│   box    │   box    │
+├──────────┼──────────┤
+│   box    │          │
+└──────────┴──────────┘
+```
+
+The `box` area would be L-shaped rather than rectangular.
+
+Grid areas must form rectangular regions.
+
+### Empty Grid Cells
+
+A period (`.`) represents an empty grid cell.
+
+Example:
+
+```css
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    ".      footer";
+```
+
+Visual representation:
+
+```text
+┌──────────┬──────────┐
+│  header  │  header  │
+├──────────┼──────────┤
+│ sidebar  │   main   │
+├──────────┼──────────┤
+│          │  footer  │
+└──────────┴──────────┘
+```
+
+The `.` means that the cell is intentionally left empty.
+
+### `grid-area`
+
+The `grid-area` property can assign an item to a named grid area:
+
+```css
+.header {
+    grid-area: header;
+}
+```
+
+This is different from using `grid-area` with line numbers, which can also act as a shorthand for grid positioning.
+
+For named areas, the syntax is simply:
+
+```css
+grid-area: area-name;
+```
+
+### Grid Areas and `grid-column` / `grid-row`
+
+You can create layouts using either:
+
+```css
+grid-column
+grid-row
+```
+
+or:
+
+```css
+grid-template-areas
+grid-area
+```
+
+For example, using lines:
+
+```css
+header {
+    grid-column: 1 / -1;
+}
+```
+
+Using named areas:
+
+```css
+header {
+    grid-area: header;
+}
+```
+
+Named areas can make larger layouts easier to read.
+
+### Practical Website Layout
+
+A common website structure is:
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "sidebar footer";
+}
+```
+
+The structure is:
+
+```text
+┌───────────────────────────────┐
+│            Header             │
+├──────────────┬────────────────┤
+│              │                │
+│   Sidebar    │      Main      │
+│              │                │
+│              ├────────────────┤
+│              │     Footer     │
+└──────────────┴────────────────┘
+```
+
+### Responsive Grid Areas
+
+Grid areas can be changed inside media queries.
+
+For example:
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-columns: 200px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+
+@media (max-width: 600px) {
+    .layout {
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+    }
+}
+```
+
+Large screens:
+
+```text
+┌──────────────┬──────────────┐
+│    Header    │    Header    │
+├──────────────┼──────────────┤
+│   Sidebar    │     Main     │
+├──────────────┴──────────────┤
+│           Footer             │
+└──────────────────────────────┘
+```
+
+Small screens:
+
+```text
+┌──────────────────────────────┐
+│           Header             │
+├──────────────────────────────┤
+│            Main              │
+├──────────────────────────────┤
+│           Sidebar            │
+├──────────────────────────────┤
+│           Footer             │
+└──────────────────────────────┘
+```
+
+The same HTML can therefore use a different visual arrangement.
+
+### Advantages of Grid Areas
+
+Named grid areas can make layouts:
+
+- Easier to read
+- Easier to understand
+- Easier to modify
+- Easier to make responsive
+- More descriptive than relying only on line numbers
+
+Compare:
+
+```css
+header {
+    grid-column: 1 / -1;
+}
+```
+
+with:
+
+```css
+header {
+    grid-area: header;
+}
+```
+
+The second approach clearly communicates the semantic role of the element.
+
+### Important Points
+
+```text
+grid-template-areas
+│
+├── Defines named grid regions
+├── Each string represents a row
+├── Each name represents a cell
+├── Repeated names create larger areas
+├── "." represents an empty cell
+└── Areas must form rectangles
+```
+
+And:
+
+```text
+grid-area
+│
+└── Assigns a grid item to a named area
+```
+
+> 💡 **Remember:** `grid-template-areas` lets you describe a grid layout using readable names such as `header`, `sidebar`, `main`, and `footer`. The elements can then be assigned to those areas using `grid-area`.
