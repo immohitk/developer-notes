@@ -4628,3 +4628,421 @@ minmax()
 ```
 
 > 💡 **Remember:** `minmax(minimum, maximum)` gives a grid track a size range. It is especially useful for responsive layouts where a track should remain usable at smaller sizes but still expand when more space is available.
+
+---
+
+## `gap`
+
+The `gap` property controls the **space between rows and columns** in a CSS Grid.
+
+It is useful for creating consistent spacing between grid tracks without adding margins to individual grid items.
+
+### Basic Syntax
+
+```css
+.container {
+    display: grid;
+    gap: 20px;
+}
+```
+
+This creates a `20px` gap between both rows and columns.
+
+### Basic Example
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+```
+
+The result is conceptually:
+
+```text
+┌────────────┐  20px  ┌────────────┐
+│   Item 1   │        │   Item 2   │
+└────────────┘        └────────────┘
+
+             20px
+
+┌────────────┐  20px  ┌────────────┐
+│   Item 3   │        │   Item 4   │
+└────────────┘        └────────────┘
+```
+
+The `20px` spacing is applied between the grid tracks.
+
+### `gap` Between Columns and Rows
+
+When a single value is used:
+
+```css
+gap: 20px;
+```
+
+the same gap is applied to:
+
+```text
+Rows    → 20px
+Columns → 20px
+```
+
+### Different Row and Column Gaps
+
+You can specify separate values:
+
+```css
+.container {
+    gap: 10px 20px;
+}
+```
+
+The order is:
+
+```text
+gap: row-gap column-gap;
+```
+
+Therefore:
+
+```text
+Row gap    → 10px
+Column gap → 20px
+```
+
+Conceptually:
+
+```text
+┌────────────┐ 20px ┌────────────┐
+│            │      │            │
+└────────────┘      └────────────┘
+       ↑
+      10px
+       ↓
+┌────────────┐ 20px ┌────────────┐
+│            │      │            │
+└────────────┘      └────────────┘
+```
+
+### `row-gap`
+
+The `row-gap` property controls the spacing **between rows**.
+
+```css
+.container {
+    row-gap: 30px;
+}
+```
+
+Only the vertical spacing between row tracks is affected.
+
+Example:
+
+```text
+┌────────────┐
+│    Row 1   │
+└────────────┘
+      ↑
+    30px
+      ↓
+┌────────────┐
+│    Row 2   │
+└────────────┘
+```
+
+### `column-gap`
+
+The `column-gap` property controls the spacing **between columns**.
+
+```css
+.container {
+    column-gap: 20px;
+}
+```
+
+Only the horizontal spacing between column tracks is affected.
+
+Example:
+
+```text
+┌──────────┐ 20px ┌──────────┐
+│ Column 1 │      │ Column 2 │
+└──────────┘      └──────────┘
+```
+
+### `gap` vs `row-gap` and `column-gap`
+
+These are related properties:
+
+```css
+gap: 20px;
+```
+
+sets both row and column gaps.
+
+```css
+row-gap: 20px;
+column-gap: 30px;
+```
+
+sets them independently.
+
+The shorthand:
+
+```css
+gap: 20px 30px;
+```
+
+is equivalent to:
+
+```css
+row-gap: 20px;
+column-gap: 30px;
+```
+
+### `gap` With Multiple Columns
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+Result:
+
+```text
+┌──────────┐ 20px ┌──────────┐ 20px ┌──────────┐
+│  Item 1  │      │  Item 2  │      │  Item 3  │
+└──────────┘      └──────────┘      └──────────┘
+```
+
+The same `20px` spacing is used between the columns.
+
+### `gap` With Rows
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+}
+```
+
+This creates `30px` of vertical spacing between the rows.
+
+```text
+┌──────────┬──────────┐
+│  Item 1  │  Item 2  │
+└──────────┴──────────┘
+
+          30px
+
+┌──────────┬──────────┐
+│  Item 3  │  Item 4  │
+└──────────┴──────────┘
+```
+
+### `gap` With `fr`
+
+The `gap` is separate from flexible `fr` tracks.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────┐ 20px ┌──────────────┐
+│     1fr      │      │     1fr      │
+└──────────────┘      └──────────────┘
+```
+
+The available space is distributed to the flexible tracks after the fixed gap is accounted for.
+
+### `gap` With `minmax()`
+
+`gap` is commonly combined with responsive `minmax()` layouts.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+This creates:
+
+```text
+Responsive columns
+        +
+Consistent spacing
+```
+
+For example:
+
+```text
+┌──────────┐ 20px ┌──────────┐ 20px ┌──────────┐
+│  Card 1  │      │  Card 2  │      │  Card 3  │
+└──────────┘      └──────────┘      └──────────┘
+```
+
+### `gap` vs Margins
+
+Without `gap`, you might add margins to individual items:
+
+```css
+.item {
+    margin: 10px;
+}
+```
+
+With Grid, you can instead use:
+
+```css
+.container {
+    gap: 20px;
+}
+```
+
+This allows the container to control the spacing between grid tracks.
+
+### Why `gap` Is Useful
+
+Using `gap` provides several advantages:
+
+- Consistent spacing
+- Simpler CSS
+- No need to add margins to every grid item
+- Works for both rows and columns
+- Easy to change responsively
+- Useful for reusable components
+
+### Responsive Gap
+
+The gap can be changed using a media query.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+```
+
+Large screens:
+
+```text
+Gap → 24px
+```
+
+Small screens:
+
+```text
+Gap → 12px
+```
+
+### Practical Card Layout
+
+HTML:
+
+```html
+<div class="cards">
+    <article>Card 1</article>
+    <article>Card 2</article>
+    <article>Card 3</article>
+    <article>Card 4</article>
+</div>
+```
+
+CSS:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+```
+
+Result:
+
+```text
+┌────────────┐ 20px ┌────────────┐
+│   Card 1   │      │   Card 2   │
+└────────────┘      └────────────┘
+
+             20px
+
+┌────────────┐ 20px ┌────────────┐
+│   Card 3   │      │   Card 4   │
+└────────────┘      └────────────┘
+```
+
+### Important Points
+
+```text
+gap
+│
+├── Controls spacing between grid tracks
+├── Can control rows and columns
+├── One value → same row and column gap
+├── Two values → row gap and column gap
+├── row-gap → spacing between rows
+├── column-gap → spacing between columns
+└── Does not create an additional grid track
+```
+
+### Common Examples
+
+Same gap everywhere:
+
+```css
+gap: 20px;
+```
+
+Different row and column gaps:
+
+```css
+gap: 10px 20px;
+```
+
+Only row spacing:
+
+```css
+row-gap: 20px;
+```
+
+Only column spacing:
+
+```css
+column-gap: 30px;
+```
+
+Responsive card grid:
+
+```css
+grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+
+gap: 20px;
+```
+
+> 💡 **Remember:** `gap` controls the space between grid rows and columns. It is the preferred way to create consistent spacing between Grid tracks instead of adding margins to individual grid items.
