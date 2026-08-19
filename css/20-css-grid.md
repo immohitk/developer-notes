@@ -2677,3 +2677,410 @@ Grid Items
 ```
 
 > 💡 **Remember:** A grid cell is the smallest individual space in a CSS Grid, created by the intersection of one row track and one column track. Grid items are placed into these cells and can span multiple cells.
+
+---
+
+## Grid Template Columns
+
+The `grid-template-columns` property defines the **number and size of column tracks** in a CSS Grid.
+
+It is one of the main properties used to create the column structure of a grid.
+
+### Basic Syntax
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: value;
+}
+```
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 300px;
+}
+```
+
+This creates two columns:
+
+```text
+┌────────────┬────────────────┐
+│   200px    │     300px      │
+└────────────┴────────────────┘
+```
+
+### Multiple Column Values
+
+Each value represents a column track.
+
+```css
+.container {
+    grid-template-columns: 100px 200px 300px;
+}
+```
+
+This creates three columns:
+
+```text
+┌───────┬──────────────┬────────────────────┐
+│ 100px │    200px     │       300px        │
+└───────┴──────────────┴────────────────────┘
+```
+
+So:
+
+```text
+1st value → Column 1
+2nd value → Column 2
+3rd value → Column 3
+```
+
+### Equal Columns
+
+You can create equal-width columns using the `fr` unit:
+
+```css
+.container {
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+The available space is divided equally:
+
+```text
+┌────────────────┬────────────────┐
+│      1fr       │      1fr       │
+└────────────────┴────────────────┘
+```
+
+Three equal columns:
+
+```css
+.container {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+Or:
+
+```css
+.container {
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+### Fixed-Width Columns
+
+You can use fixed lengths:
+
+```css
+.container {
+    grid-template-columns: 200px 300px;
+}
+```
+
+The first column is `200px` and the second is `300px`.
+
+This is useful when a specific column width is required.
+
+### Fixed and Flexible Columns
+
+Fixed and flexible tracks can be combined:
+
+```css
+.container {
+    grid-template-columns: 200px 1fr;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────┬──────────────────────────┐
+│   Sidebar    │       Main Content       │
+│    200px     │           1fr            │
+└──────────────┴──────────────────────────┘
+```
+
+The `200px` column keeps its defined size, while `1fr` uses the remaining flexible space.
+
+### Different Flexible Sizes
+
+Different `fr` values create proportional columns:
+
+```css
+.container {
+    grid-template-columns: 1fr 2fr;
+}
+```
+
+The available flexible space is divided into three parts:
+
+```text
+┌──────────┬─────────────────────┐
+│   1fr    │        2fr          │
+└──────────┴─────────────────────┘
+```
+
+The second column receives twice the flexible share of the first.
+
+### Three Different Flexible Columns
+
+```css
+.container {
+    grid-template-columns: 1fr 2fr 1fr;
+}
+```
+
+The ratio is:
+
+```text
+1 : 2 : 1
+```
+
+Conceptually:
+
+```text
+┌──────────┬─────────────────────┬──────────┐
+│   1fr    │        2fr          │   1fr    │
+└──────────┴─────────────────────┴──────────┘
+```
+
+### Using `auto`
+
+The `auto` keyword can be used as a track size:
+
+```css
+.container {
+    grid-template-columns: auto 1fr;
+}
+```
+
+The `auto` track can size itself based on its content and available space.
+
+This can be useful for layouts where one column should adapt to its contents.
+
+### Using Percentages
+
+Percentages can also define columns:
+
+```css
+.container {
+    grid-template-columns: 50% 50%;
+}
+```
+
+This creates two columns based on the grid container's relevant size.
+
+When using percentages together with gaps, remember that the percentage track sizes and the gaps both contribute to the overall layout.
+
+### Combining Different Units
+
+Different sizing values can be combined:
+
+```css
+.container {
+    grid-template-columns: 150px 20% 1fr;
+}
+```
+
+A grid can therefore contain:
+
+```text
+Fixed column
+      +
+Percentage column
+      +
+Flexible column
+```
+
+### Using `repeat()`
+
+The `repeat()` function is useful when multiple columns use the same pattern.
+
+Instead of:
+
+```css
+.container {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+you can write:
+
+```css
+.container {
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+Both create three equal columns.
+
+Another example:
+
+```css
+.container {
+    grid-template-columns: repeat(4, 200px);
+}
+```
+
+This creates four `200px` columns.
+
+### Repeating Mixed Patterns
+
+`repeat()` can also repeat a more complex pattern.
+
+```css
+.container {
+    grid-template-columns: repeat(2, 100px 1fr);
+}
+```
+
+This repeats:
+
+```text
+100px 1fr
+```
+
+twice.
+
+Conceptually:
+
+```text
+100px | 1fr | 100px | 1fr
+```
+
+### Using `minmax()`
+
+`minmax()` can define a minimum and maximum size for a column.
+
+```css
+.container {
+    grid-template-columns: minmax(200px, 1fr) 1fr;
+}
+```
+
+The first column can grow as flexible space becomes available while respecting the specified minimum.
+
+`minmax()` is especially useful for responsive layouts.
+
+### Responsive Column Pattern
+
+A common responsive pattern is:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large screens:
+
+```text
+┌────────┬────────┬────────┐
+│        │        │        │
+└────────┴────────┴────────┘
+```
+
+Small screens:
+
+```text
+┌──────────────────────────┐
+│                          │
+├──────────────────────────┤
+│                          │
+├──────────────────────────┤
+│                          │
+└──────────────────────────┘
+```
+
+### Grid Columns With `gap`
+
+The `gap` property adds space between the columns:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────┐ 20px ┌──────────┐ 20px ┌──────────┐
+│ Column 1 │      │ Column 2 │      │ Column 3 │
+└──────────┘      └──────────┘      └──────────┘
+```
+
+The `gap` is separate from the column track sizes.
+
+### Common Examples
+
+Two equal columns:
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+Three equal columns:
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+Sidebar and content:
+
+```css
+grid-template-columns: 250px 1fr;
+```
+
+Three-column layout:
+
+```css
+grid-template-columns: 1fr 2fr 1fr;
+```
+
+Four fixed columns:
+
+```css
+grid-template-columns: repeat(4, 200px);
+```
+
+Responsive minimum-width columns:
+
+```css
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+```
+
+### Important Point
+
+`grid-template-columns` controls the **explicit column tracks** of the grid.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 2fr;
+}
+```
+
+This explicitly defines three column tracks.
+
+```text
+200px | 1fr | 2fr
+```
+
+> 💡 **Remember:** `grid-template-columns` defines the column structure of a grid. Each value represents a column track, and values such as `px`, `%`, `auto`, `fr`, `repeat()`, and `minmax()` can be used to create flexible and responsive layouts.
