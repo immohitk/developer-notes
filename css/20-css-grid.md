@@ -1600,3 +1600,359 @@ Rows │      │      │      │
 ```
 
 > 💡 **Remember:** `grid-template-rows` defines the size of grid row tracks. It can be combined with `grid-template-columns` to create a complete two-dimensional grid structure.
+
+---
+
+## Grid Tracks
+
+A **grid track** is the space between two adjacent grid lines.
+
+A grid track can be either:
+
+- A **column track**
+- A **row track**
+
+In simple terms:
+
+```text
+Grid
+│
+├── Column tracks → vertical
+└── Row tracks    → horizontal
+```
+
+### Column Tracks
+
+When you define columns:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 2fr;
+}
+```
+
+you create three column tracks:
+
+```text
+┌──────────┬──────────┬────────────────┐
+│ Track 1  │ Track 2  │    Track 3     │
+│  200px   │   1fr    │      2fr       │
+└──────────┴──────────┴────────────────┘
+```
+
+Each value in `grid-template-columns` defines the size of a column track.
+
+### Row Tracks
+
+Similarly, when you define rows:
+
+```css
+.container {
+    display: grid;
+    grid-template-rows: 100px 1fr 200px;
+}
+```
+
+you create three row tracks:
+
+```text
+┌──────────────────────────────┐
+│          Track 1             │ 100px
+├──────────────────────────────┤
+│          Track 2             │ 1fr
+├──────────────────────────────┤
+│          Track 3             │ 200px
+└──────────────────────────────┘
+```
+
+Each value in `grid-template-rows` defines the size of a row track.
+
+### Grid Lines Define Tracks
+
+Grid lines surround grid tracks.
+
+For example, two columns have three vertical grid lines:
+
+```text
+Line 1       Line 2       Line 3
+   ↓            ↓            ↓
+   │            │            │
+   ├────────────┼────────────┤
+   │  Column 1  │  Column 2  │
+   ├────────────┼────────────┤
+   │            │            │
+```
+
+The space between:
+
+```text
+Line 1 → Line 2
+```
+
+is the first column track.
+
+The space between:
+
+```text
+Line 2 → Line 3
+```
+
+is the second column track.
+
+### Tracks and Grid Cells
+
+A **grid cell** is created where a row track and a column track intersect.
+
+For example:
+
+```text
+             Column Tracks
+          ┌────────┬────────┐
+Row       │        │        │
+Track 1   │ Cell 1 │ Cell 2 │
+          ├────────┼────────┤
+Row       │        │        │
+Track 2   │ Cell 3 │ Cell 4 │
+          └────────┴────────┘
+```
+
+So:
+
+```text
+Column Track + Row Track
+          ↓
+      Grid Cell
+```
+
+### Fixed-Size Tracks
+
+A track can have a fixed size.
+
+```css
+.container {
+    grid-template-columns: 200px 300px;
+}
+```
+
+This creates:
+
+```text
+Track 1 → 200px
+Track 2 → 300px
+```
+
+### Flexible Tracks
+
+Tracks can use the `fr` unit.
+
+```css
+.container {
+    grid-template-columns: 1fr 2fr;
+}
+```
+
+The available flexible space is divided into three parts:
+
+```text
+┌──────────┬─────────────────────┐
+│   1fr    │        2fr          │
+└──────────┴─────────────────────┘
+```
+
+The second track receives twice the flexible share of the first.
+
+The `fr` unit will be covered in detail later.
+
+### `auto` Tracks
+
+Tracks can also use `auto`.
+
+```css
+.container {
+    grid-template-columns: auto 1fr;
+}
+```
+
+An `auto` track can size itself based on its contents and available space.
+
+### Track Sizing With `minmax()`
+
+Grid tracks can use `minmax()` to specify a minimum and maximum size.
+
+```css
+.container {
+    grid-template-columns: minmax(200px, 1fr) 1fr;
+}
+```
+
+The first track can grow flexibly while respecting the specified minimum.
+
+The `minmax()` function will be covered in detail later.
+
+### Repeating Tracks
+
+The `repeat()` function can create multiple tracks with the same pattern.
+
+```css
+.container {
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+This creates:
+
+```text
+1fr | 1fr | 1fr
+```
+
+or three equal column tracks.
+
+### Explicit Tracks
+
+Tracks directly defined using:
+
+```css
+grid-template-columns
+grid-template-rows
+```
+
+are called **explicit grid tracks**.
+
+Example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+}
+```
+
+This explicitly defines:
+
+```text
+2 column tracks
+2 row tracks
+```
+
+### Implicit Tracks
+
+Grid can also create additional tracks automatically when there are more items than the explicitly defined grid can accommodate.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+If there are five items:
+
+```text
+┌────────┬────────┐
+│ Item 1 │ Item 2 │
+├────────┼────────┤
+│ Item 3 │ Item 4 │
+├────────┼────────┤
+│ Item 5 │        │
+└────────┴────────┘
+```
+
+The additional row is created automatically.
+
+These automatically generated tracks are called **implicit tracks**.
+
+### Track Size vs Item Size
+
+A grid track is part of the grid structure.
+
+A grid item is placed inside one or more tracks.
+
+For example:
+
+```text
+Grid Track
+┌─────────────────────┐
+│                     │
+│      Grid Item      │
+│                     │
+└─────────────────────┘
+```
+
+The track determines the available grid space, while the item's own size and alignment determine how its content occupies that space.
+
+### Grid Tracks and `gap`
+
+A gap creates space between tracks.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────┐  20px  ┌────────────┐
+│ Track 1    │        │ Track 2    │
+│            │        │            │
+└────────────┘        └────────────┘
+```
+
+The gap is not itself a grid track.
+
+### Important Grid Track Properties
+
+Grid tracks are commonly created and sized using:
+
+```css
+grid-template-columns
+grid-template-rows
+```
+
+and can use sizing techniques such as:
+
+```css
+fr
+repeat()
+minmax()
+auto
+px
+%
+```
+
+### Track Mental Model
+
+```text
+Grid Lines
+    ↓
+┌────────┬────────┐
+│ Track  │ Track  │
+│   1    │   2    │
+├────────┼────────┤
+│ Track  │ Track  │
+│   3    │   4    │
+└────────┴────────┘
+    ↑
+Grid Cells
+```
+
+A more accurate conceptual model is:
+
+```text
+Grid Line
+    ↓
+┌──────────────┐
+│ Grid Track   │
+└──────────────┘
+    ↑
+Grid Line
+```
+
+> 💡 **Remember:** A grid track is a row or column of the grid. `grid-template-columns` creates column tracks, while `grid-template-rows` creates row tracks. Grid lines define the boundaries of those tracks.
