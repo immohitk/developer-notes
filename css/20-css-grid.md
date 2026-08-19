@@ -2333,3 +2333,347 @@ Grid Lines
 ```
 
 > 💡 **Remember:** Grid lines are the boundaries of a CSS Grid. They are automatically numbered, can optionally be named, and are commonly used with `grid-column` and `grid-row` to precisely position and span grid items.
+
+---
+
+## Grid Cells
+
+A **grid cell** is the smallest unit of space in a CSS Grid.
+
+A grid cell is created where **one row track and one column track intersect**.
+
+### Basic Example
+
+Consider a grid with two columns and two rows:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+}
+```
+
+This creates four grid cells:
+
+```text
+┌────────────┬────────────┐
+│   Cell 1   │   Cell 2   │
+├────────────┼────────────┤
+│   Cell 3   │   Cell 4   │
+└────────────┴────────────┘
+```
+
+Each cell is the intersection of:
+
+```text
+One column track
+       +
+One row track
+       ↓
+Grid Cell
+```
+
+### Grid Cell vs Grid Track
+
+A **grid track** is an entire row or column.
+
+A **grid cell** is one individual area inside the grid.
+
+For example:
+
+```text
+Column Track 1     Column Track 2
+      ↓                  ↓
+┌───────────────┬───────────────┐
+│    Cell 1     │    Cell 2     │ ← Row Track 1
+├───────────────┼───────────────┤
+│    Cell 3     │    Cell 4     │ ← Row Track 2
+└───────────────┴───────────────┘
+```
+
+Here:
+
+```text
+Column Track 1 → Cells 1 and 3
+Column Track 2 → Cells 2 and 4
+
+Row Track 1 → Cells 1 and 2
+Row Track 2 → Cells 3 and 4
+```
+
+### Grid Cell vs Grid Item
+
+A grid cell is a **location in the grid**.
+
+A grid item is an **element placed into that location**.
+
+For example:
+
+```html
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+</div>
+```
+
+With:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+The browser can place the items into cells:
+
+```text
+┌────────────┬────────────┐
+│   Item 1   │   Item 2   │
+│   Cell 1   │   Cell 2   │
+└────────────┴────────────┘
+```
+
+So:
+
+```text
+Grid Cell
+   ↓
+Available location
+
+Grid Item
+   ↓
+Element placed in that location
+```
+
+### Number of Grid Cells
+
+If a grid has:
+
+```text
+3 columns
+2 rows
+```
+
+the grid contains:
+
+```text
+3 × 2 = 6 cells
+```
+
+Example:
+
+```text
+┌────────┬────────┬────────┐
+│ Cell 1 │ Cell 2 │ Cell 3 │
+├────────┼────────┼────────┤
+│ Cell 4 │ Cell 5 │ Cell 6 │
+└────────┴────────┴────────┘
+```
+
+Similarly:
+
+```text
+4 columns × 3 rows = 12 cells
+```
+
+### Grid Cells and Grid Lines
+
+Grid lines form the boundaries of grid cells.
+
+For a two-column, two-row grid:
+
+```text
+        Line 1     Line 2     Line 3
+           ↓          ↓          ↓
+           │          │          │
+Line 1 ────┼──────────┼──────────┤
+           │  Cell 1  │  Cell 2  │
+Line 2 ────┼──────────┼──────────┤
+           │  Cell 3  │  Cell 4  │
+Line 3 ────┴──────────┴──────────┘
+```
+
+Each cell is bounded by:
+
+- Two vertical grid lines
+- Two horizontal grid lines
+
+### Positioning Items Using Cells
+
+Grid items are normally placed into cells automatically.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+With three items:
+
+```text
+┌──────────┬──────────┬──────────┐
+│  Item 1  │  Item 2  │  Item 3  │
+│  Cell 1  │  Cell 2  │  Cell 3  │
+└──────────┴──────────┴──────────┘
+```
+
+The first item occupies the first available cell, the second item occupies the next available cell, and so on.
+
+This automatic behavior is called **auto-placement**.
+
+### An Item Can Span Multiple Cells
+
+A grid item does not have to remain inside a single cell.
+
+It can span multiple columns or rows.
+
+For example:
+
+```css
+.item {
+    grid-column: span 2;
+}
+```
+
+An item can occupy two adjacent column tracks:
+
+```text
+┌────────────────────────────┬──────────┐
+│          Item 1            │  Item 2  │
+│        spans 2 cells       │          │
+└────────────────────────────┴──────────┘
+```
+
+The item covers the space that would otherwise contain two cells.
+
+### Spanning Rows
+
+An item can also span multiple rows:
+
+```css
+.item {
+    grid-row: span 2;
+}
+```
+
+Example:
+
+```text
+┌────────────┬────────────┐
+│            │   Item 2   │
+│   Item 1   ├────────────┤
+│            │   Item 3   │
+└────────────┴────────────┘
+```
+
+Here, `Item 1` spans two row tracks.
+
+### Grid Area
+
+When an item spans multiple cells, the combined space occupied by that item can be considered its **grid area**.
+
+For example:
+
+```css
+.item {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+```
+
+Conceptually:
+
+```text
+┌───────────────────────┬──────────┐
+│                       │          │
+│        Item 1         │  Item 2  │
+│                       ├──────────┤
+│                       │  Item 3  │
+└───────────────────────┴──────────┘
+```
+
+The item's grid area covers multiple cells.
+
+### Empty Grid Cells
+
+A grid can contain cells that do not currently contain a grid item.
+
+For example:
+
+```text
+┌──────────┬──────────┐
+│  Item 1  │          │
+├──────────┼──────────┤
+│  Item 2  │  Item 3  │
+└──────────┴──────────┘
+```
+
+The top-right cell is still part of the grid even though no item occupies it.
+
+### Grid Cells and `gap`
+
+When `gap` is used:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+```
+
+the cells remain part of the grid, while the gap creates space between the tracks.
+
+Conceptually:
+
+```text
+┌────────────┐      ┌────────────┐
+│   Cell 1   │ 20px │   Cell 2   │
+└────────────┘      └────────────┘
+```
+
+The gap itself is not a grid cell or grid track.
+
+### Grid Cell Mental Model
+
+```text
+Grid
+ │
+ ├── Grid Lines
+ │      ↓
+ │   Boundaries
+ │
+ ├── Grid Tracks
+ │      ↓
+ │   Rows / Columns
+ │
+ └── Grid Cells
+        ↓
+     Individual
+     grid spaces
+```
+
+A useful way to remember the relationship is:
+
+```text
+Grid Lines
+    ↓
+define
+    ↓
+Grid Tracks
+    ↓
+intersect
+    ↓
+Grid Cells
+    ↓
+contain
+    ↓
+Grid Items
+```
+
+> 💡 **Remember:** A grid cell is the smallest individual space in a CSS Grid, created by the intersection of one row track and one column track. Grid items are placed into these cells and can span multiple cells.
