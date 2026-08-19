@@ -8354,3 +8354,731 @@ Responsive Grid
 ```
 
 > 💡 **Remember:** Responsive CSS Grid layouts can be created with media queries or with flexible Grid features such as `fr`, `minmax()`, `repeat()`, `auto-fit`, and `auto-fill`. Combining these features makes it possible to build layouts that adapt to different screen sizes.
+
+---
+
+## Practical Examples
+
+The following examples combine the CSS Grid concepts covered so far into common real-world layouts.
+
+### Example 1: Basic Two-Column Layout
+
+HTML:
+
+```html
+<div class="layout">
+    <aside>Sidebar</aside>
+    <main>Main Content</main>
+</div>
+```
+
+CSS:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+}
+```
+
+Result:
+
+```text
+┌──────────────┬────────────────────────┐
+│   Sidebar    │      Main Content      │
+│    200px     │          1fr           │
+└──────────────┴────────────────────────┘
+```
+
+The sidebar has a fixed width while the main content uses the remaining space.
+
+---
+
+### Example 2: Three-Column Card Grid
+
+HTML:
+
+```html
+<div class="cards">
+    <div>Card 1</div>
+    <div>Card 2</div>
+    <div>Card 3</div>
+    <div>Card 4</div>
+    <div>Card 5</div>
+    <div>Card 6</div>
+</div>
+```
+
+CSS:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+Result:
+
+```text
+┌────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │
+├────────┼────────┼────────┤
+│ Card 4 │ Card 5 │ Card 6 │
+└────────┴────────┴────────┘
+```
+
+This example uses:
+
+```text
+display: grid
+repeat()
+fr
+gap
+```
+
+---
+
+### Example 3: Responsive Card Grid
+
+A responsive card grid can use `auto-fit` and `minmax()`.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+```
+
+The number of columns adapts to the available width.
+
+Wide screen:
+
+```text
+┌────────┬────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │ Card 4 │
+└────────┴────────┴────────┴────────┘
+```
+
+Medium screen:
+
+```text
+┌────────────┬────────────┐
+│   Card 1   │   Card 2   │
+├────────────┼────────────┤
+│   Card 3   │   Card 4   │
+└────────────┴────────────┘
+```
+
+Small screen:
+
+```text
+┌──────────────────────────┐
+│          Card 1          │
+├──────────────────────────┤
+│          Card 2          │
+├──────────────────────────┤
+│          Card 3          │
+└──────────────────────────┘
+```
+
+---
+
+### Example 4: Header, Sidebar, Main, Footer
+
+HTML:
+
+```html
+<div class="page">
+    <header>Header</header>
+    <aside>Sidebar</aside>
+    <main>Main Content</main>
+    <footer>Footer</footer>
+</div>
+```
+
+CSS:
+
+```css
+.page {
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+
+    gap: 20px;
+}
+
+header {
+    grid-area: header;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+```
+
+Result:
+
+```text
+┌───────────────────────────────┐
+│            Header             │
+├──────────────┬────────────────┤
+│   Sidebar    │  Main Content  │
+├──────────────┴────────────────┤
+│            Footer             │
+└───────────────────────────────┘
+```
+
+This example uses named grid areas to describe the page structure.
+
+---
+
+### Example 5: Full-Width Header
+
+A header can span all columns using `grid-column`.
+
+```css
+.page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+header {
+    grid-column: 1 / -1;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────────────┐
+│              Header              │
+├────────────┬────────────┬────────┤
+│   Item 1   │   Item 2   │ Item 3 │
+└────────────┴────────────┴────────┘
+```
+
+The value:
+
+```css
+grid-column: 1 / -1;
+```
+
+makes the header span from the first column line to the last column line.
+
+---
+
+### Example 6: Full-Height Sidebar
+
+A sidebar can span multiple rows using `grid-row`.
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 80px 1fr 60px;
+}
+
+.sidebar {
+    grid-row: 1 / -1;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────┬───────────────────┐
+│              │      Header       │
+│              ├───────────────────┤
+│   Sidebar    │                   │
+│              │   Main Content    │
+│              ├───────────────────┤
+│              │      Footer       │
+└──────────────┴───────────────────┘
+```
+
+The sidebar spans from the first row line to the last row line.
+
+---
+
+### Example 7: Featured Card
+
+One card can occupy more than one column.
+
+HTML:
+
+```html
+<div class="cards">
+    <article class="featured">Featured</article>
+    <article>Card 2</article>
+    <article>Card 3</article>
+    <article>Card 4</article>
+</div>
+```
+
+CSS:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.featured {
+    grid-column: span 2;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────┬──────────┐
+│      Featured        │  Card 2  │
+│       span 2         │          │
+├──────────┬───────────┼──────────┤
+│  Card 3  │  Card 4   │          │
+└──────────┴───────────┴──────────┘
+```
+
+The featured card occupies two column tracks.
+
+---
+
+### Example 8: Featured Card Spanning Rows
+
+An item can span both columns and rows.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 150px);
+    gap: 20px;
+}
+
+.featured {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────┬──────────┐
+│                      │  Card 2  │
+│      Featured        ├──────────┤
+│                      │  Card 3  │
+├──────────────────────┴──────────┤
+│          Other content          │
+└─────────────────────────────────┘
+```
+
+The exact automatic placement of remaining items depends on the available grid cells and auto-placement rules.
+
+---
+
+### Example 9: Dashboard Layout
+
+A dashboard can use multiple grid areas.
+
+```css
+.dashboard {
+    display: grid;
+
+    grid-template-columns: 220px 1fr 1fr;
+
+    grid-template-areas:
+        "sidebar header header"
+        "sidebar card1 card2"
+        "sidebar chart chart";
+
+    gap: 20px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.header {
+    grid-area: header;
+}
+
+.card1 {
+    grid-area: card1;
+}
+
+.card2 {
+    grid-area: card2;
+}
+
+.chart {
+    grid-area: chart;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────┬──────────────┬──────────────┐
+│          │    Header    │    Header    │
+│          ├──────────────┼──────────────┤
+│ Sidebar  │    Card 1    │    Card 2    │
+│          ├──────────────┴──────────────┤
+│          │            Chart            │
+└──────────┴─────────────────────────────┘
+```
+
+This demonstrates how named areas can describe a more complex layout.
+
+---
+
+### Example 10: Responsive Dashboard
+
+The dashboard can be changed for smaller screens.
+
+```css
+.dashboard {
+    display: grid;
+
+    grid-template-columns: 220px 1fr 1fr;
+
+    grid-template-areas:
+        "sidebar header header"
+        "sidebar card1 card2"
+        "sidebar chart chart";
+
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+            "header"
+            "card1"
+            "card2"
+            "chart"
+            "sidebar";
+    }
+}
+```
+
+Desktop:
+
+```text
+┌──────────┬────────────┬────────────┐
+│ Sidebar  │   Header   │   Header   │
+│          ├────────────┼────────────┤
+│          │   Card 1   │   Card 2   │
+│          ├────────────┴────────────┤
+│          │          Chart          │
+└──────────┴─────────────────────────┘
+```
+
+Mobile:
+
+```text
+┌──────────────────────────┐
+│          Header          │
+├──────────────────────────┤
+│          Card 1          │
+├──────────────────────────┤
+│          Card 2          │
+├──────────────────────────┤
+│           Chart          │
+├──────────────────────────┤
+│          Sidebar         │
+└──────────────────────────┘
+```
+
+---
+
+### Example 11: Centering Content
+
+Grid can be used to center an element in both directions.
+
+```css
+.container {
+    display: grid;
+    place-items: center;
+}
+```
+
+HTML:
+
+```html
+<div class="container">
+    <div>Centered Content</div>
+</div>
+```
+
+The item is centered inside its grid area.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│                              │
+│       Centered Content       │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+### Example 12: Fixed Sidebar With Flexible Content
+
+A practical page layout:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 24px;
+}
+```
+
+Conceptually:
+
+```text
+┌────────────────┬────────────────────────┐
+│                │                        │
+│    Sidebar     │      Main Content      │
+│     240px      │        flexible        │
+│                │                        │
+└────────────────┴────────────────────────┘
+```
+
+Using `minmax(0, 1fr)` can be useful when you need the flexible track to be able to shrink to zero rather than being forced by the minimum content contribution of a grid item.
+
+---
+
+### Example 13: Image Gallery
+
+HTML:
+
+```html
+<div class="gallery">
+    <img src="image1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+    <img src="image4.jpg" alt="Image 4">
+</div>
+```
+
+CSS:
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+```
+
+This creates a responsive image gallery:
+
+```text
+┌────────┬────────┬────────┐
+│ Image  │ Image  │ Image  │
+├────────┼────────┼────────┤
+│ Image  │ Image  │ Image  │
+└────────┴────────┴────────┘
+```
+
+The number of columns changes according to the available width.
+
+---
+
+### Example 14: Explicit Grid With Automatic Rows
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 120px;
+    gap: 20px;
+}
+```
+
+The three columns are explicitly defined.
+
+Additional rows are automatically created as needed, with each implicit row set to `120px`.
+
+```text
+┌────────┬────────┬────────┐
+│ Item 1 │ Item 2 │ Item 3 │
+├────────┼────────┼────────┤
+│ Item 4 │ Item 5 │ Item 6 │
+├────────┼────────┼────────┤
+│ Item 7 │ Item 8 │ Item 9 │
+└────────┴────────┴────────┘
+```
+
+---
+
+### Example 15: Combining Major Grid Features
+
+A practical responsive card layout can combine several Grid features:
+
+```css
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+.featured {
+    grid-column: span 2;
+}
+```
+
+This example combines:
+
+```text
+display: grid
+repeat()
+auto-fit
+minmax()
+1fr
+gap
+align-items
+grid-column
+```
+
+The browser handles the placement of most items automatically while the featured item can occupy more than one column.
+
+### Choosing the Right Technique
+
+Use:
+
+```css
+grid-template-columns
+```
+
+when you need to define column tracks.
+
+Use:
+
+```css
+grid-template-rows
+```
+
+when you need to define row tracks.
+
+Use:
+
+```css
+grid-column
+```
+
+when you need to position or span an item horizontally.
+
+Use:
+
+```css
+grid-row
+```
+
+when you need to position or span an item vertically.
+
+Use:
+
+```css
+grid-template-areas
+```
+
+when you want a named page structure.
+
+Use:
+
+```css
+repeat()
+```
+
+when a track pattern repeats.
+
+Use:
+
+```css
+minmax()
+```
+
+when a track needs a minimum and maximum size.
+
+Use:
+
+```css
+auto-fit
+auto-fill
+```
+
+when the number of responsive tracks should adapt automatically.
+
+Use:
+
+```css
+gap
+```
+
+for consistent spacing between tracks.
+
+### Practical Combination
+
+A reusable responsive card grid often looks like:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+```
+
+A typical page layout can look like:
+
+```css
+.page {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+
+    gap: 20px;
+}
+```
+
+These two patterns cover many common CSS Grid use cases.
+
+> 💡 **Remember:** CSS Grid becomes especially powerful when its features are combined. Use tracks to define structure, `grid-column` and `grid-row` to position items, named areas for page layouts, and `repeat()`, `minmax()`, `auto-fit`, and `fr` for responsive designs.
