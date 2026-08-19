@@ -7052,3 +7052,368 @@ Grid Alignment
 ```
 
 > 💡 **Remember:** `*-items` controls items within their grid areas, `*-self` controls an individual item, and `*-content` controls the grid tracks within the grid container.
+
+---
+
+## Grid Auto Placement
+
+CSS Grid can automatically place grid items into available grid cells.
+
+This behavior is called **auto-placement**.
+
+When you create a grid but do not explicitly position every item using properties such as `grid-column` or `grid-row`, the browser automatically determines where the items should go.
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="grid">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+    <div>Item 4</div>
+</div>
+```
+
+CSS:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+```
+
+The browser automatically places the items:
+
+```text
+┌──────────┬──────────┐
+│  Item 1  │  Item 2  │
+├──────────┼──────────┤
+│  Item 3  │  Item 4  │
+└──────────┴──────────┘
+```
+
+### Default Placement
+
+By default, Grid places items in **row order**.
+
+For example:
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+with six items produces:
+
+```text
+┌────────┬────────┬────────┐
+│ Item 1 │ Item 2 │ Item 3 │
+├────────┼────────┼────────┤
+│ Item 4 │ Item 5 │ Item 6 │
+└────────┴────────┴────────┘
+```
+
+The browser fills available cells from one row to the next.
+
+### `grid-auto-flow`
+
+The `grid-auto-flow` property controls how automatically placed items are inserted into the grid.
+
+Basic syntax:
+
+```css
+grid-auto-flow: value;
+```
+
+The main values are:
+
+```css
+row
+column
+dense
+row dense
+column dense
+```
+
+### `grid-auto-flow: row`
+
+This is the default behavior.
+
+```css
+.grid {
+    display: grid;
+    grid-auto-flow: row;
+}
+```
+
+Items are placed across rows.
+
+Example:
+
+```text
+┌────────┬────────┬────────┐
+│ Item 1 │ Item 2 │ Item 3 │
+├────────┼────────┼────────┤
+│ Item 4 │ Item 5 │ Item 6 │
+└────────┴────────┴────────┘
+```
+
+### `grid-auto-flow: column`
+
+With:
+
+```css
+.grid {
+    display: grid;
+    grid-auto-flow: column;
+}
+```
+
+the auto-placement direction changes to columns.
+
+For example, with an explicitly defined number of rows:
+
+```css
+.grid {
+    display: grid;
+    grid-template-rows: repeat(2, 100px);
+    grid-auto-flow: column;
+}
+```
+
+the items are placed down the first column before moving to the next:
+
+```text
+┌──────────┬──────────┬──────────┐
+│  Item 1  │  Item 3  │  Item 5  │
+├──────────┼──────────┼──────────┤
+│  Item 2  │  Item 4  │  Item 6  │
+└──────────┴──────────┴──────────┘
+```
+
+### `grid-auto-flow: dense`
+
+The `dense` keyword tells the auto-placement algorithm to try to fill earlier available spaces when possible.
+
+Example:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
+}
+```
+
+This can allow later items to fill gaps that would otherwise remain empty.
+
+### Why Gaps Can Appear
+
+Consider a grid with three columns:
+
+```text
+┌────────┬────────┬────────┐
+│ Item 1 │ Item 2 │ Item 3 │
+├────────┼────────┼────────┤
+│ Item 4 │        │ Item 5 │
+└────────┴────────┴────────┘
+```
+
+Suppose an item has been explicitly positioned or spans multiple tracks, leaving an earlier cell unavailable.
+
+The normal auto-placement algorithm generally preserves the order of items rather than moving later items backward to fill every possible gap.
+
+Using:
+
+```css
+grid-auto-flow: dense;
+```
+
+allows the browser to attempt to fill suitable earlier gaps.
+
+### `row dense`
+
+You can combine `row` with `dense`:
+
+```css
+grid-auto-flow: row dense;
+```
+
+This keeps row-based placement while enabling dense packing.
+
+### `column dense`
+
+Similarly:
+
+```css
+grid-auto-flow: column dense;
+```
+
+uses column-based placement with dense packing.
+
+### Auto Placement With Spanning Items
+
+Auto-placement becomes especially useful when some items span multiple tracks.
+
+Example:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.featured {
+    grid-column: span 2;
+}
+```
+
+The browser can automatically place the remaining items around the spanning item.
+
+Conceptually:
+
+```text
+┌──────────────────────┬──────────┐
+│      Featured        │  Item 2  │
+│       span 2         │          │
+├──────────┬───────────┼──────────┤
+│  Item 3  │  Item 4   │  Item 5  │
+└──────────┴───────────┴──────────┘
+```
+
+### Explicit Placement and Auto Placement Together
+
+You can explicitly position some items while allowing the browser to automatically place others.
+
+Example:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.header {
+    grid-column: 1 / -1;
+}
+```
+
+The header is explicitly positioned:
+
+```text
+┌──────────────────────────────┐
+│            Header            │
+└──────────────────────────────┘
+```
+
+The remaining items can still be automatically placed into available cells.
+
+### Auto Placement and Implicit Rows
+
+If there are more items than the explicitly defined rows can accommodate, Grid can create additional rows automatically.
+
+Example:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+```
+
+With five items:
+
+```text
+┌──────────┬──────────┐
+│  Item 1  │  Item 2  │
+├──────────┼──────────┤
+│  Item 3  │  Item 4  │
+├──────────┼──────────┤
+│  Item 5  │          │
+└──────────┴──────────┘
+```
+
+The additional row is an **implicit row**.
+
+The topic of explicit and implicit grids will be covered separately.
+
+### Auto Placement With Responsive Grids
+
+Auto-placement is commonly used with responsive card layouts.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+The browser determines the number of columns that can fit and automatically places the cards.
+
+Example:
+
+```text
+Wide screen:
+
+┌────────┬────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │ Card 4 │
+└────────┴────────┴────────┴────────┘
+```
+
+Narrower screen:
+
+```text
+┌────────┬────────┐
+│ Card 1 │ Card 2 │
+├────────┼────────┤
+│ Card 3 │ Card 4 │
+└────────┴────────┘
+```
+
+The HTML does not need to change.
+
+### Auto Placement vs Explicit Placement
+
+**Auto placement:**
+
+```css
+.grid {
+    display: grid;
+}
+```
+
+The browser determines item positions.
+
+**Explicit placement:**
+
+```css
+.item {
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+}
+```
+
+You specify where the item goes.
+
+Both approaches can be used in the same grid.
+
+### Important Points
+
+```text
+Auto Placement
+│
+├── Automatically places grid items
+├── Default flow is row
+├── grid-auto-flow controls the direction
+├── row → place across rows
+├── column → place down columns
+├── dense → tries to fill earlier gaps
+├── row dense → row flow + dense packing
+└── column dense → column flow + dense packing
+```
+
+> 💡 **Remember:** CSS Grid automatically places items into available cells when their positions are not explicitly specified. `grid-auto-flow` controls the direction and packing behavior of this automatic placement.
