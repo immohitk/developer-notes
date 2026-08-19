@@ -7876,3 +7876,481 @@ Implicit Grid
 ```
 
 > 💡 **Remember:** The explicit grid is the grid structure you define with `grid-template-columns` and `grid-template-rows`. The implicit grid consists of additional tracks that Grid creates automatically when they are needed.
+
+---
+
+## Responsive Grid
+
+A **responsive grid** is a CSS Grid layout that adapts its columns, rows, and spacing to different screen sizes.
+
+CSS Grid provides several features that make responsive layouts easier to create, including:
+
+```text
+fr
+repeat()
+minmax()
+auto-fit
+auto-fill
+media queries
+```
+
+### Basic Responsive Grid
+
+A simple responsive grid can use a media query:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+On larger screens:
+
+```text
+┌────────┬────────┬────────┐
+│ Item 1 │ Item 2 │ Item 3 │
+├────────┼────────┼────────┤
+│ Item 4 │ Item 5 │ Item 6 │
+└────────┴────────┴────────┘
+```
+
+On smaller screens:
+
+```text
+┌──────────────────────────┐
+│          Item 1          │
+├──────────────────────────┤
+│          Item 2          │
+├──────────────────────────┤
+│          Item 3          │
+└──────────────────────────┘
+```
+
+### Using `fr`
+
+The `fr` unit allows grid tracks to share available space.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+The two columns automatically divide the available flexible space.
+
+```text
+Wide screen:
+
+┌────────────────────┬────────────────────┐
+│       Item 1       │       Item 2       │
+└────────────────────┴────────────────────┘
+```
+
+The columns remain proportional as the container changes size.
+
+### Using `repeat()`
+
+`repeat()` makes repeated responsive track definitions easier to write.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+This creates:
+
+```text
+1fr | 1fr | 1fr
+```
+
+The same pattern can later be changed with a media query.
+
+### Using `minmax()`
+
+`minmax()` can prevent columns from becoming too narrow.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(200px, 1fr));
+}
+```
+
+Each column has:
+
+```text
+Minimum → 200px
+Maximum → 1fr
+```
+
+This is useful when grid items need a minimum amount of horizontal space.
+
+### `auto-fit`
+
+`auto-fit` allows the browser to determine how many columns can fit.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+The number of columns can change according to the available container width.
+
+For example, a wider layout might display:
+
+```text
+┌────────┬────────┬────────┬────────┐
+│ Item 1 │ Item 2 │ Item 3 │ Item 4 │
+└────────┴────────┴────────┴────────┘
+```
+
+A narrower layout might display:
+
+```text
+┌────────┬────────┐
+│ Item 1 │ Item 2 │
+├────────┼────────┤
+│ Item 3 │ Item 4 │
+└────────┴────────┘
+```
+
+### `auto-fill`
+
+`auto-fill` can also determine how many tracks can fit.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fill, minmax(200px, 1fr));
+}
+```
+
+It can create as many tracks as can fit according to the minimum track size.
+
+### `auto-fit` vs `auto-fill`
+
+Both are commonly used in responsive grids:
+
+```css
+repeat(auto-fit, minmax(200px, 1fr))
+```
+
+and:
+
+```css
+repeat(auto-fill, minmax(200px, 1fr))
+```
+
+A simplified way to think about them is:
+
+```text
+auto-fill
+    ↓
+Fits as many tracks as possible
+
+auto-fit
+    ↓
+Fits tracks and collapses empty tracks,
+allowing existing tracks to expand
+```
+
+Their differences become more noticeable when there are fewer items than the number of tracks that could fit.
+
+### Responsive Card Grid
+
+A common responsive card layout is:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+```
+
+HTML:
+
+```html
+<div class="cards">
+    <article>Card 1</article>
+    <article>Card 2</article>
+    <article>Card 3</article>
+    <article>Card 4</article>
+    <article>Card 5</article>
+</div>
+```
+
+The browser can automatically adjust the number of columns according to the available width.
+
+### Responsive Sidebar Layout
+
+A common desktop layout is:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────┬────────────────────────┐
+│   Sidebar    │       Main Content     │
+│    250px     │          1fr           │
+└──────────────┴────────────────────────┘
+```
+
+For smaller screens:
+
+```css
+@media (max-width: 700px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout becomes:
+
+```text
+┌──────────────────────────────┐
+│           Sidebar            │
+├──────────────────────────────┤
+│         Main Content         │
+└──────────────────────────────┘
+```
+
+### Responsive Grid Areas
+
+Grid areas can also be changed at different screen sizes.
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-columns: 200px 1fr;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+
+header {
+    grid-area: header;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+```
+
+For smaller screens:
+
+```css
+@media (max-width: 600px) {
+    .layout {
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+    }
+}
+```
+
+This changes the layout without changing the HTML structure.
+
+### Responsive Gaps
+
+The gap can also be adjusted:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+```
+
+Large screens:
+
+```text
+Gap → 24px
+```
+
+Small screens:
+
+```text
+Gap → 12px
+```
+
+### Responsive Grid Without Media Queries
+
+Some layouts can adapt without explicitly writing media queries.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+The grid can automatically change the number of columns as the available width changes.
+
+This is especially useful for:
+
+- Cards
+- Product grids
+- Image galleries
+- Article lists
+- Dashboard components
+
+### Choosing a Responsive Technique
+
+Use a media query when you need specific layout changes.
+
+```css
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Use `auto-fit` and `minmax()` when you want the grid to adapt automatically:
+
+```css
+grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+```
+
+A layout can also combine both approaches.
+
+### Practical Responsive Card Example
+
+HTML:
+
+```html
+<div class="cards">
+    <article>Card 1</article>
+    <article>Card 2</article>
+    <article>Card 3</article>
+    <article>Card 4</article>
+    <article>Card 5</article>
+    <article>Card 6</article>
+</div>
+```
+
+CSS:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.cards article {
+    padding: 20px;
+}
+```
+
+The grid automatically adapts to the available width:
+
+```text
+Large:
+
+┌────────┬────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │ Card 4 │
+├────────┼────────┼────────┼────────┤
+│ Card 5 │ Card 6 │        │        │
+└────────┴────────┴────────┴────────┘
+```
+
+Smaller:
+
+```text
+┌────────────┬────────────┐
+│   Card 1   │   Card 2   │
+├────────────┼────────────┤
+│   Card 3   │   Card 4   │
+├────────────┼────────────┤
+│   Card 5   │   Card 6   │
+└────────────┴────────────┘
+```
+
+Very small:
+
+```text
+┌──────────────────────────┐
+│          Card 1          │
+├──────────────────────────┤
+│          Card 2          │
+├──────────────────────────┤
+│          Card 3          │
+├──────────────────────────┤
+│          Card 4          │
+└──────────────────────────┘
+```
+
+### Important Points
+
+```text
+Responsive Grid
+│
+├── fr → flexible track sizing
+├── repeat() → repeated tracks
+├── minmax() → minimum and maximum track size
+├── auto-fit → adapts track count and collapses empty tracks
+├── auto-fill → fits as many tracks as possible
+├── gap → consistent spacing
+├── media queries → explicit breakpoint-based changes
+└── grid-template-areas → responsive page structures
+```
+
+> 💡 **Remember:** Responsive CSS Grid layouts can be created with media queries or with flexible Grid features such as `fr`, `minmax()`, `repeat()`, `auto-fit`, and `auto-fill`. Combining these features makes it possible to build layouts that adapt to different screen sizes.
