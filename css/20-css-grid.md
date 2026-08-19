@@ -9472,3 +9472,546 @@ These references are useful for:
 - Verifying browser-supported features
 
 > 💡 **Remember:** Use the official MDN and W3C documentation as the primary references when checking CSS Grid behavior and syntax.
+
+---
+
+## Quick Revision
+
+### 1. What is CSS Grid?
+
+CSS Grid is a **two-dimensional layout system** used to arrange elements into rows and columns.
+
+```css
+.container {
+    display: grid;
+}
+```
+
+---
+
+### 2. Grid Container
+
+An element becomes a grid container when:
+
+```css
+display: grid;
+```
+
+Its direct children become grid items.
+
+---
+
+### 3. Grid Columns
+
+Use:
+
+```css
+grid-template-columns
+```
+
+Example:
+
+```css
+grid-template-columns: 1fr 1fr 1fr;
+```
+
+Creates three columns.
+
+---
+
+### 4. Grid Rows
+
+Use:
+
+```css
+grid-template-rows
+```
+
+Example:
+
+```css
+grid-template-rows: 100px 1fr;
+```
+
+Creates two row tracks.
+
+---
+
+### 5. Grid Tracks
+
+A grid track is a row or column of the grid.
+
+```text
+Column Track
+     ↓
+┌──────────┬──────────┐
+│          │          │
+│          │          │
+└──────────┴──────────┘
+```
+
+---
+
+### 6. Grid Lines
+
+Grid lines define the boundaries of grid tracks.
+
+For two columns:
+
+```text
+Line 1       Line 2       Line 3
+   │            │            │
+   │   Column   │   Column   │
+```
+
+Two columns require three vertical grid lines.
+
+---
+
+### 7. Grid Cells
+
+A grid cell is the individual space created by the intersection of a row track and a column track.
+
+```text
+┌──────────┬──────────┐
+│ Cell 1   │ Cell 2   │
+├──────────┼──────────┤
+│ Cell 3   │ Cell 4   │
+└──────────┴──────────┘
+```
+
+---
+
+### 8. The `fr` Unit
+
+`fr` means **fraction**.
+
+```css
+grid-template-columns: 1fr 2fr;
+```
+
+creates a flexible ratio of:
+
+```text
+1 : 2
+```
+
+---
+
+### 9. `repeat()`
+
+`repeat()` creates repeated grid tracks.
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+is equivalent to:
+
+```css
+grid-template-columns: 1fr 1fr 1fr;
+```
+
+---
+
+### 10. `minmax()`
+
+`minmax()` defines a minimum and maximum track size.
+
+```css
+grid-template-columns: minmax(200px, 1fr);
+```
+
+The track has:
+
+```text
+Minimum → 200px
+Maximum → 1fr
+```
+
+---
+
+### 11. `gap`
+
+`gap` creates space between grid tracks.
+
+```css
+gap: 20px;
+```
+
+Different values can be used for rows and columns:
+
+```css
+gap: 10px 20px;
+```
+
+Meaning:
+
+```text
+Row gap    → 10px
+Column gap → 20px
+```
+
+---
+
+### 12. `grid-column`
+
+Controls an item's horizontal placement.
+
+```css
+.item {
+    grid-column: 1 / 3;
+}
+```
+
+The item spans from column line 1 to column line 3.
+
+A common full-width pattern:
+
+```css
+.item {
+    grid-column: 1 / -1;
+}
+```
+
+---
+
+### 13. `grid-row`
+
+Controls an item's vertical placement.
+
+```css
+.item {
+    grid-row: 1 / 3;
+}
+```
+
+The item spans from row line 1 to row line 3.
+
+Full-height pattern:
+
+```css
+.item {
+    grid-row: 1 / -1;
+}
+```
+
+---
+
+### 14. `grid-area`
+
+`grid-area` can assign an item to a named grid area.
+
+```css
+header {
+    grid-area: header;
+}
+```
+
+Named areas are created with:
+
+```css
+grid-template-areas
+```
+
+---
+
+### 15. `grid-template-areas`
+
+Example:
+
+```css
+.layout {
+    display: grid;
+
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+```
+
+Visual structure:
+
+```text
+┌──────────┬──────────┐
+│  header  │  header  │
+├──────────┼──────────┤
+│ sidebar  │   main   │
+├──────────┼──────────┤
+│  footer  │  footer  │
+└──────────┴──────────┘
+```
+
+A repeated area name creates an area spanning multiple cells.
+
+---
+
+### 16. Grid Alignment
+
+For all grid items:
+
+```css
+justify-items
+align-items
+place-items
+```
+
+For one grid item:
+
+```css
+justify-self
+align-self
+place-self
+```
+
+For grid tracks:
+
+```css
+justify-content
+align-content
+place-content
+```
+
+A common centering technique is:
+
+```css
+.container {
+    display: grid;
+    place-items: center;
+}
+```
+
+---
+
+### 17. Auto Placement
+
+Grid automatically places items when their positions are not explicitly defined.
+
+```css
+grid-auto-flow: row;
+```
+
+is the default flow.
+
+Other options include:
+
+```css
+grid-auto-flow: column;
+grid-auto-flow: dense;
+grid-auto-flow: row dense;
+grid-auto-flow: column dense;
+```
+
+---
+
+### 18. Explicit Grid
+
+Explicit tracks are directly defined with:
+
+```css
+grid-template-columns
+grid-template-rows
+```
+
+Example:
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+---
+
+### 19. Implicit Grid
+
+Implicit tracks are created automatically when Grid needs additional tracks.
+
+Their sizes can be controlled using:
+
+```css
+grid-auto-columns
+grid-auto-rows
+```
+
+---
+
+### 20. Responsive Grid
+
+Responsive Grid commonly uses:
+
+```css
+fr
+repeat()
+minmax()
+auto-fit
+auto-fill
+```
+
+A common pattern is:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+```
+
+---
+
+### 21. `auto-fit` vs `auto-fill`
+
+A simplified distinction:
+
+```text
+auto-fill
+    ↓
+Fits as many tracks as possible
+
+auto-fit
+    ↓
+Fits tracks and can collapse empty tracks
+```
+
+Both are commonly used with:
+
+```css
+minmax()
+```
+
+---
+
+### 22. Most Important Properties
+
+```text
+display: grid
+
+grid-template-columns
+grid-template-rows
+
+grid-template-areas
+grid-area
+
+grid-column
+grid-row
+
+grid-auto-flow
+grid-auto-columns
+grid-auto-rows
+
+gap
+row-gap
+column-gap
+
+justify-items
+align-items
+place-items
+
+justify-self
+align-self
+place-self
+
+justify-content
+align-content
+place-content
+```
+
+---
+
+### 23. Common Responsive Pattern
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+This combines:
+
+```text
+Grid
++
+repeat()
++
+auto-fit
++
+minmax()
++
+1fr
++
+gap
+```
+
+---
+
+### 24. Grid Mental Model
+
+```text
+CSS Grid
+   │
+   ├── Container
+   │
+   ├── Tracks
+   │     ├── Rows
+   │     └── Columns
+   │
+   ├── Lines
+   │
+   ├── Cells
+   │
+   └── Items
+         │
+         ├── Placement
+         ├── Spanning
+         └── Alignment
+```
+
+---
+
+### Quick Syntax Reference
+
+```css
+/* Create a grid */
+display: grid;
+
+/* Columns */
+grid-template-columns: repeat(3, 1fr);
+
+/* Rows */
+grid-template-rows: 100px 1fr;
+
+/* Flexible sizing */
+grid-template-columns: 1fr 2fr;
+
+/* Minimum / maximum */
+grid-template-columns: minmax(200px, 1fr);
+
+/* Spacing */
+gap: 20px;
+
+/* Column placement */
+grid-column: 1 / 3;
+
+/* Row placement */
+grid-row: 1 / 3;
+
+/* Named areas */
+grid-template-areas:
+    "header header"
+    "main main";
+
+/* Assign area */
+grid-area: header;
+
+/* Automatic placement */
+grid-auto-flow: row;
+
+/* Alignment */
+place-items: center;
+```
+
+> 💡 **Remember:** The most important CSS Grid concepts are **tracks, lines, cells, placement, sizing, alignment, and responsive behavior**. Once these concepts are clear, the individual Grid properties become much easier to understand.
