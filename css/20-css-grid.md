@@ -931,3 +931,365 @@ Grid Container
 A nested descendant does not automatically become an item of the outer grid.
 
 > 💡 **Remember:** A grid item is a direct child of a grid container. The grid container establishes the layout, while individual grid items can be styled, positioned, aligned, or made to span multiple rows and columns.
+
+---
+
+## Grid Columns
+
+Grid columns are the **vertical tracks** of a CSS Grid.
+
+They divide the grid container from left to right and determine how much horizontal space is available for grid items.
+
+### Basic Example
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+}
+```
+
+This creates two columns:
+
+```text
+┌────────────┬────────────┐
+│            │            │
+│  Column 1  │  Column 2  │
+│            │            │
+└────────────┴────────────┘
+```
+
+Each column has a width of:
+
+```text
+200px
+```
+
+### Creating Multiple Columns
+
+You can define several columns in `grid-template-columns`.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 100px 200px 300px;
+}
+```
+
+This creates:
+
+```text
+┌───────┬──────────────┬────────────────────┐
+│ 100px │    200px     │       300px        │
+└───────┴──────────────┴────────────────────┘
+```
+
+Each value represents one column.
+
+### Equal-Width Columns
+
+The `fr` unit can be used to create flexible columns.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+```
+
+The available space is divided equally:
+
+```text
+┌────────────────┬────────────────┐
+│    Column 1     │    Column 2    │
+│      1fr        │      1fr       │
+└────────────────┴────────────────┘
+```
+
+### Three Equal Columns
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+Result:
+
+```text
+┌──────────┬──────────┬──────────┐
+│    1fr   │    1fr   │    1fr   │
+└──────────┴──────────┴──────────┘
+```
+
+Each column receives an equal share of the available space.
+
+### Unequal Flexible Columns
+
+Different `fr` values create different proportions.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+```
+
+The available space is divided into three fractional parts:
+
+```text
+┌──────────┬─────────────────────┐
+│   1fr    │        2fr          │
+└──────────┴─────────────────────┘
+```
+
+The second column is twice the flexible size of the first.
+
+### Fixed and Flexible Columns
+
+You can combine fixed lengths with flexible columns.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+```
+
+This is useful for layouts such as a sidebar and main content:
+
+```text
+┌──────────────┬──────────────────────────┐
+│   Sidebar    │       Main Content       │
+│    200px     │           1fr            │
+└──────────────┴──────────────────────────┘
+```
+
+### Three Columns With Different Sizes
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 300px;
+}
+```
+
+The layout contains:
+
+```text
+200px       flexible        300px
+   ↓            ↓              ↓
+┌───────┬────────────────┬─────────┐
+│ Left  │     Center     │  Right  │
+└───────┴────────────────┴─────────┘
+```
+
+### Using Percentages
+
+Columns can also be defined using percentages.
+
+```css
+.container {
+    grid-template-columns: 50% 50%;
+}
+```
+
+This creates two columns, each taking 50% of the grid container's relevant size.
+
+However, when using percentages together with gaps, the total layout can require additional consideration.
+
+### Using `auto`
+
+The `auto` keyword can also be used.
+
+```css
+.container {
+    grid-template-columns: auto 1fr;
+}
+```
+
+The first column can size itself based on its contents and available space, while the second column uses the remaining flexible space.
+
+### Combining Different Units
+
+Grid columns can use different CSS units together.
+
+```css
+.container {
+    grid-template-columns: 150px 20% 1fr;
+}
+```
+
+You can combine:
+
+```text
+px
+%
+fr
+auto
+```
+
+and other appropriate CSS length values.
+
+### Using `repeat()`
+
+When several columns follow the same pattern, `repeat()` makes the declaration shorter.
+
+Instead of:
+
+```css
+.container {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+you can write:
+
+```css
+.container {
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+Both create three equal flexible columns.
+
+### Four Equal Columns
+
+```css
+.container {
+    grid-template-columns: repeat(4, 1fr);
+}
+```
+
+Result:
+
+```text
+┌──────┬──────┬──────┬──────┐
+│ 1fr  │ 1fr  │ 1fr  │ 1fr  │
+└──────┴──────┴──────┴──────┘
+```
+
+The `repeat()` function will be covered in more detail later.
+
+### Columns With a Gap
+
+The `gap` property can add space between columns.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+```
+
+The result is conceptually:
+
+```text
+┌──────────┐ 20px ┌──────────┐ 20px ┌──────────┐
+│ Column 1 │      │ Column 2 │      │ Column 3 │
+└──────────┘      └──────────┘      └──────────┘
+```
+
+The gap is separate from the column track sizes.
+
+### Responsive Columns
+
+Grid columns can be changed using media queries.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+Large screens:
+
+```text
+┌────────┬────────┬────────┐
+│        │        │        │
+└────────┴────────┴────────┘
+```
+
+Small screens:
+
+```text
+┌──────────────────────────┐
+│                          │
+├──────────────────────────┤
+│                          │
+├──────────────────────────┤
+│                          │
+└──────────────────────────┘
+```
+
+### Practical Card Grid
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+HTML:
+
+```html
+<div class="cards">
+    <article>Card 1</article>
+    <article>Card 2</article>
+    <article>Card 3</article>
+    <article>Card 4</article>
+    <article>Card 5</article>
+    <article>Card 6</article>
+</div>
+```
+
+The cards are automatically arranged into three columns:
+
+```text
+┌────────┬────────┬────────┐
+│ Card 1 │ Card 2 │ Card 3 │
+├────────┼────────┼────────┤
+│ Card 4 │ Card 5 │ Card 6 │
+└────────┴────────┴────────┘
+```
+
+### Important Property
+
+The main property for defining grid columns is:
+
+```css
+grid-template-columns
+```
+
+Its value defines the size of the column tracks.
+
+Examples:
+
+```css
+grid-template-columns: 200px 300px;
+```
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+```css
+grid-template-columns: 200px 1fr;
+```
+
+> 💡 **Remember:** `grid-template-columns` defines the columns of a grid. Each value represents a column track, and you can combine fixed sizes, flexible `fr` units, percentages, `auto`, and other supported sizing values.
