@@ -1956,3 +1956,380 @@ Grid Line
 ```
 
 > 💡 **Remember:** A grid track is a row or column of the grid. `grid-template-columns` creates column tracks, while `grid-template-rows` creates row tracks. Grid lines define the boundaries of those tracks.
+
+---
+
+## Grid Lines
+
+**Grid lines** are the horizontal and vertical dividing lines that form the structure of a CSS Grid.
+
+They define the boundaries of grid tracks and are used to position grid items.
+
+### Basic Grid
+
+Consider a grid with two columns and two rows:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+}
+```
+
+Conceptually:
+
+```text
+        Column Line
+        1       2       3
+        ↓       ↓       ↓
+        │       │       │
+     ┌──┼───────┼───────┐
+  1  │  │       │       │
+     ├──┼───────┼───────┤
+  2  │  │       │       │
+     └──┼───────┼───────┘
+        ↑       ↑       ↑
+        1       2       3
+```
+
+There are:
+
+- **3 vertical grid lines** for 2 columns
+- **3 horizontal grid lines** for 2 rows
+
+### Grid Lines and Columns
+
+If a grid has:
+
+```css
+grid-template-columns: 1fr 1fr;
+```
+
+there are two column tracks.
+
+Two tracks require three vertical grid lines:
+
+```text
+Line 1       Line 2       Line 3
+   │            │            │
+   │  Track 1   │  Track 2   │
+   │            │            │
+```
+
+The first column is between:
+
+```text
+Grid Line 1 → Grid Line 2
+```
+
+The second column is between:
+
+```text
+Grid Line 2 → Grid Line 3
+```
+
+### Grid Lines and Rows
+
+If a grid has:
+
+```css
+grid-template-rows: 100px 100px;
+```
+
+there are two row tracks.
+
+Two row tracks require three horizontal grid lines:
+
+```text
+Grid Line 1
+───────────────
+
+    Row Track 1
+
+Grid Line 2
+───────────────
+
+    Row Track 2
+
+Grid Line 3
+───────────────
+```
+
+### Grid Line Numbering
+
+Grid lines are automatically numbered.
+
+For a grid with three columns:
+
+```css
+.container {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+there are four vertical grid lines:
+
+```text
+Line 1     Line 2     Line 3     Line 4
+   │          │          │          │
+   │  1fr     │  1fr     │  1fr     │
+   │          │          │          │
+```
+
+The columns are therefore:
+
+```text
+Column 1 → Line 1 to Line 2
+Column 2 → Line 2 to Line 3
+Column 3 → Line 3 to Line 4
+```
+
+### Grid Lines Are Used to Position Items
+
+Grid items can be positioned using grid line numbers.
+
+For example:
+
+```css
+.item {
+    grid-column: 1 / 3;
+}
+```
+
+This means the item starts at column line `1` and ends at column line `3`.
+
+```text
+Line 1       Line 2       Line 3
+   ↓            ↓            ↓
+   │            │            │
+   ├────────────┼────────────┤
+   │                         │
+   │         Item            │
+   │                         │
+   └─────────────────────────┘
+```
+
+The item therefore spans two column tracks.
+
+### Grid Row Lines
+
+Rows can also be referenced by their line numbers.
+
+```css
+.item {
+    grid-row: 1 / 3;
+}
+```
+
+This starts the item at row line `1` and ends it at row line `3`.
+
+```text
+Row Line 1
+───────────────
+       │
+       │ Item
+       │
+Row Line 2
+───────────────
+       │
+       │ Item
+       │
+Row Line 3
+───────────────
+```
+
+The item spans two row tracks.
+
+### Grid Line Names
+
+Grid lines can also have custom names.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+        [sidebar-start] 200px
+        [sidebar-end content-start] 1fr
+        [content-end] 200px;
+}
+```
+
+The lines now have names such as:
+
+```text
+sidebar-start
+sidebar-end
+content-start
+content-end
+```
+
+These names can be used when positioning items.
+
+For example:
+
+```css
+.sidebar {
+    grid-column: sidebar-start / sidebar-end;
+}
+```
+
+Named lines can make complex layouts easier to understand.
+
+### Negative Grid Line Numbers
+
+Grid lines can also be referenced using negative numbers.
+
+The last grid line is:
+
+```text
+-1
+```
+
+For example, in a four-column grid:
+
+```text
+Line:    1    2    3    4    5
+         │    │    │    │    │
+         │    │    │    │    │
+Negative -5   -4   -3   -2   -1
+```
+
+This can be useful when you want to reference the end of the grid without knowing its exact positive line number.
+
+Example:
+
+```css
+.item {
+    grid-column: 1 / -1;
+}
+```
+
+This makes the item span from the first grid line to the last grid line.
+
+Conceptually:
+
+```text
+┌────────────────────────────────┐
+│             Item               │
+└────────────────────────────────┘
+```
+
+### Grid Lines vs Grid Tracks
+
+These terms are related but different.
+
+**Grid line:**
+
+```text
+Boundary
+```
+
+**Grid track:**
+
+```text
+Space between two adjacent grid lines
+```
+
+For example:
+
+```text
+Line 1        Line 2        Line 3
+  │             │             │
+  │   Track 1   │   Track 2   │
+  │             │             │
+```
+
+So:
+
+```text
+Grid Lines
+    ↓
+Define boundaries
+    ↓
+Grid Tracks
+    ↓
+Contain grid cells
+```
+
+### Grid Lines vs Grid Cells
+
+A grid cell is the space created by the intersection of one row track and one column track.
+
+```text
+          Column Lines
+       1       2       3
+       ↓       ↓       ↓
+       │       │       │
+  1 ───┼───────┼───────┤
+       │ Cell  │ Cell  │
+  2 ───┼───────┼───────┤
+       │ Cell  │ Cell  │
+  3 ───┴───────┴───────┘
+```
+
+The lines create the boundaries, while the cells occupy the spaces between those boundaries.
+
+### Important Rule
+
+If a grid contains:
+
+```text
+N columns
+```
+
+it normally has:
+
+```text
+N + 1 vertical grid lines
+```
+
+Similarly, if it contains:
+
+```text
+N rows
+```
+
+it normally has:
+
+```text
+N + 1 horizontal grid lines
+```
+
+For example:
+
+```text
+2 columns → 3 column lines
+3 columns → 4 column lines
+4 columns → 5 column lines
+```
+
+And:
+
+```text
+2 rows → 3 row lines
+3 rows → 4 row lines
+4 rows → 5 row lines
+```
+
+### Basic Mental Model
+
+```text
+Grid Lines
+    ↓
+┌───────┬───────┐
+│       │       │
+│ Cell  │ Cell  │
+│       │       │
+├───────┼───────┤
+│       │       │
+│ Cell  │ Cell  │
+│       │       │
+└───────┴───────┘
+    ↑
+Grid Lines
+```
+
+> 💡 **Remember:** Grid lines are the boundaries of a CSS Grid. They are automatically numbered, can optionally be named, and are commonly used with `grid-column` and `grid-row` to precisely position and span grid items.
