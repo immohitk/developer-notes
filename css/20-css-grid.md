@@ -9431,3 +9431,44 @@ Need track alignment?
 ```
 
 > 💡 **Remember:** CSS Grid provides a complete two-dimensional layout system. Learn the relationship between **tracks, lines, cells, and items** first, then use `fr`, `repeat()`, `minmax()`, placement, alignment, and responsive techniques to build more advanced layouts.
+
+---
+
+## References
+
+The following resources can be used to learn more about CSS Grid and verify the concepts covered in this chapter.
+
+### MDN Web Docs
+
+- [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout)
+- [Basic concepts of Grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout)
+- [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
+- [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)
+- [grid-column](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column)
+- [grid-row](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row)
+- [grid-template-areas](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas)
+- [grid-auto-flow](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow)
+- [gap](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
+- [CSS `fr` unit](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout#the_fr_unit)
+
+### W3C / CSS Specification
+
+- [CSS Grid Layout Module](https://www.w3.org/TR/css-grid-1/)
+- [CSS Grid Layout Module Level 2](https://www.w3.org/TR/css-grid-2/)
+
+### CSS-Tricks
+
+- [A Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+### Reference Usage
+
+These references are useful for:
+
+- Understanding CSS Grid terminology
+- Checking property syntax
+- Learning advanced Grid behavior
+- Understanding track sizing
+- Learning responsive Grid techniques
+- Verifying browser-supported features
+
+> 💡 **Remember:** Use the official MDN and W3C documentation as the primary references when checking CSS Grid behavior and syntax.
