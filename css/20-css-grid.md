@@ -3894,3 +3894,350 @@ fr
 ```
 
 > 💡 **Remember:** The `fr` unit represents a flexible fraction of the available grid space. Values such as `1fr 2fr` distribute flexible space proportionally, while fixed tracks such as `200px` can be combined with `fr` tracks to create practical layouts.
+
+---
+
+## `repeat()` Function
+
+The `repeat()` function is a CSS Grid function used to **repeat a pattern of grid tracks**.
+
+It is commonly used with `grid-template-columns` and `grid-template-rows` to avoid writing the same track size multiple times.
+
+### Basic Syntax
+
+```css
+repeat(count, track-size)
+```
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+This is equivalent to:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+Both create three equal columns.
+
+### Repeating Equal Columns
+
+```css
+.container {
+    grid-template-columns: repeat(4, 1fr);
+}
+```
+
+Result:
+
+```text
+┌────────┬────────┬────────┬────────┐
+│  1fr   │  1fr   │  1fr   │  1fr   │
+└────────┴────────┴────────┴────────┘
+```
+
+The first argument specifies how many times the track should be repeated.
+
+The second argument specifies the track size.
+
+```text
+repeat(4, 1fr)
+       │   │
+       │   └── Track size
+       └────── Number of repetitions
+```
+
+### Repeating Fixed-Size Columns
+
+`repeat()` is not limited to `fr`.
+
+```css
+.container {
+    grid-template-columns: repeat(3, 200px);
+}
+```
+
+This creates:
+
+```text
+200px | 200px | 200px
+```
+
+Equivalent to:
+
+```css
+grid-template-columns: 200px 200px 200px;
+```
+
+### Repeating Rows
+
+`repeat()` can also be used with rows.
+
+```css
+.container {
+    grid-template-rows: repeat(3, 100px);
+}
+```
+
+This creates three `100px` rows:
+
+```text
+┌──────────────────────┐
+│       100px           │
+├──────────────────────┤
+│       100px           │
+├──────────────────────┤
+│       100px           │
+└──────────────────────┘
+```
+
+### Repeating Different Flexible Sizes
+
+You can repeat a pattern containing different track sizes.
+
+```css
+.container {
+    grid-template-columns: repeat(2, 1fr 2fr);
+}
+```
+
+This produces:
+
+```text
+1fr | 2fr | 1fr | 2fr
+```
+
+Equivalent to:
+
+```css
+grid-template-columns: 1fr 2fr 1fr 2fr;
+```
+
+### Repeating Multiple Values
+
+The second argument can contain multiple track sizes.
+
+```css
+.container {
+    grid-template-columns: repeat(3, 100px 1fr);
+}
+```
+
+This produces:
+
+```text
+100px | 1fr | 100px | 1fr | 100px | 1fr
+```
+
+The pattern:
+
+```text
+100px 1fr
+```
+
+is repeated three times.
+
+### Combining `repeat()` With Other Tracks
+
+You can combine `repeat()` with tracks outside the function.
+
+```css
+.container {
+    grid-template-columns: 200px repeat(3, 1fr) 150px;
+}
+```
+
+This creates:
+
+```text
+200px | 1fr | 1fr | 1fr | 150px
+```
+
+This is useful when the beginning and end of a layout have fixed columns while the middle contains repeated flexible columns.
+
+### `repeat()` With `minmax()`
+
+`repeat()` can be combined with `minmax()`.
+
+```css
+.container {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+}
+```
+
+This creates three columns where each track has:
+
+```text
+Minimum → 200px
+Maximum → 1fr
+```
+
+This is particularly useful for responsive card layouts.
+
+### Responsive Card Layout
+
+A common Grid pattern is:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 20px;
+}
+```
+
+This creates three columns while giving each column a minimum size.
+
+Conceptually:
+
+```text
+┌──────────┬──────────┬──────────┐
+│  Card 1  │  Card 2  │  Card 3  │
+└──────────┴──────────┴──────────┘
+```
+
+If the available space becomes insufficient for the minimum track sizes, the layout may need another responsive strategy, such as media queries or the auto-repeat forms discussed later.
+
+### `repeat()` With `auto-fit`
+
+`repeat()` can use the `auto-fit` keyword:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(200px, 1fr)
+    );
+}
+```
+
+The browser determines how many tracks can fit based on the available space and the minimum track size.
+
+This can create responsive grids without specifying a fixed number of columns.
+
+### `repeat()` With `auto-fill`
+
+Similarly:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(200px, 1fr)
+    );
+}
+```
+
+`auto-fill` and `auto-fit` are useful for responsive Grid layouts.
+
+Their behavior differs when there is extra space and when empty tracks can be created, so they should not be treated as identical.
+
+### `repeat()` With Rows and Columns
+
+You can use `repeat()` independently for both dimensions.
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 100px);
+}
+```
+
+This creates:
+
+```text
+Columns → 3 equal tracks
+Rows    → 2 tracks of 100px
+```
+
+Result:
+
+```text
+┌────────┬────────┬────────┐
+│        │        │        │ 100px
+├────────┼────────┼────────┤
+│        │        │        │ 100px
+└────────┴────────┴────────┘
+```
+
+### `repeat()` vs Writing Values Manually
+
+Without `repeat()`:
+
+```css
+grid-template-columns:
+    1fr 1fr 1fr 1fr 1fr;
+```
+
+With `repeat()`:
+
+```css
+grid-template-columns: repeat(5, 1fr);
+```
+
+The second version is shorter and makes the repetition pattern more obvious.
+
+### Common Examples
+
+Three equal columns:
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+Four fixed columns:
+
+```css
+grid-template-columns: repeat(4, 200px);
+```
+
+Three equal rows:
+
+```css
+grid-template-rows: repeat(3, 1fr);
+```
+
+Repeated mixed pattern:
+
+```css
+grid-template-columns: repeat(2, 1fr 2fr);
+```
+
+Responsive columns:
+
+```css
+grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+);
+```
+
+### Important Points
+
+```text
+repeat()
+│
+├── Repeats grid tracks
+├── Used with columns and rows
+├── First argument → repetition count
+├── Second argument → track pattern
+├── Can repeat one track size
+├── Can repeat multiple track sizes
+├── Can be combined with minmax()
+├── Can be combined with auto-fit
+└── Can be combined with auto-fill
+```
+
+> 💡 **Remember:** `repeat()` makes Grid declarations shorter by repeating a track size or pattern. For example, `repeat(3, 1fr)` creates three equal flexible tracks.
