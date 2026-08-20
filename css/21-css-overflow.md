@@ -6736,3 +6736,424 @@ For a flexible Grid layout:
 ```
 
 > 💡 **Remember:** Good overflow management should solve the actual layout requirement rather than simply hide problems. Make important content accessible, make images and layouts responsive, and choose `visible`, `hidden`, `clip`, `auto`, or `scroll` intentionally.
+
+---
+
+## Common Mistakes
+
+### 1. Using `overflow: hidden` Without Understanding the Consequences
+
+A common mistake is using:
+
+```css
+.container {
+    overflow: hidden;
+}
+```
+
+just to remove unwanted scrolling.
+
+This may hide content that users need to see.
+
+Instead, find the element causing the overflow and determine whether the content should be:
+
+```text
+Visible
+Clipped
+Scrollable
+Wrapped
+```
+
+### 2. Using `overflow-x: hidden` to Hide a Layout Problem
+
+This is often used:
+
+```css
+body {
+    overflow-x: hidden;
+}
+```
+
+Although it can hide horizontal scrolling, it may only conceal the actual cause.
+
+Common causes include:
+
+- Oversized images
+- Fixed-width elements
+- Long unbroken text
+- Grid tracks
+- Flex items
+- Positioned elements
+- Transformed elements
+
+Fix the source of the overflow when possible.
+
+### 3. Using `text-overflow: ellipsis` Alone
+
+This usually does not create the expected single-line ellipsis:
+
+```css
+.title {
+    text-overflow: ellipsis;
+}
+```
+
+A common pattern is:
+
+```css
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+Each property has a different role.
+
+### 4. Forgetting `white-space: nowrap`
+
+For the common single-line ellipsis pattern, forgetting:
+
+```css
+white-space: nowrap;
+```
+
+can cause the text to wrap instead of overflowing horizontally.
+
+Use:
+
+```css
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+when the design requires a single line.
+
+### 5. Confusing `hidden` With `clip`
+
+These values are related but not identical:
+
+```css
+overflow: hidden;
+```
+
+and:
+
+```css
+overflow: clip;
+```
+
+Both can clip overflow, but `clip` is specifically intended for clipping without providing scrolling behavior.
+
+Choose the value based on the required behavior.
+
+### 6. Using `scroll` When `auto` Is More Appropriate
+
+Using:
+
+```css
+overflow: scroll;
+```
+
+when scrolling is only occasionally necessary can request scrolling mechanisms even when content fits.
+
+Often:
+
+```css
+overflow: auto;
+```
+
+is more appropriate when scrolling should be available only when needed.
+
+### 7. Forgetting Which Axis Comes First
+
+With two overflow values:
+
+```css
+overflow: hidden auto;
+```
+
+the first value controls horizontal overflow and the second controls vertical overflow.
+
+```text
+First  → overflow-x
+Second → overflow-y
+```
+
+Do not reverse the order.
+
+### 8. Forgetting That `overflow` Controls Both Axes
+
+This:
+
+```css
+overflow: auto;
+```
+
+controls both horizontal and vertical overflow.
+
+If only horizontal overflow needs special handling, use:
+
+```css
+overflow-x: auto;
+```
+
+instead.
+
+### 9. Making Images Larger Than Their Containers
+
+This can create unwanted horizontal overflow:
+
+```css
+img {
+    width: 800px;
+}
+```
+
+inside a smaller container.
+
+For responsive images, a common pattern is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+### 10. Using Fixed Heights Without Handling Extra Content
+
+This can create unexpected overflow:
+
+```css
+.card {
+    height: 100px;
+}
+```
+
+If the content becomes taller, consider whether the element should grow naturally or provide scrolling:
+
+```css
+.card {
+    max-height: 100px;
+    overflow-y: auto;
+}
+```
+
+### 11. Forgetting About Long Unbroken Strings
+
+Long URLs, identifiers, and other strings without normal breaking opportunities can cause horizontal overflow.
+
+For example:
+
+```text
+ThisIsAnExtremelyLongUnbrokenStringThatMayNotFit
+```
+
+Consider:
+
+```css
+.content {
+    overflow-wrap: break-word;
+}
+```
+
+when appropriate.
+
+### 12. Ignoring Grid Minimum Sizes
+
+A Grid layout such as:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+```
+
+can encounter overflow when the content of the flexible track has a large minimum size.
+
+A common solution is:
+
+```css
+.layout {
+    grid-template-columns: 200px minmax(0, 1fr);
+}
+```
+
+### 13. Forgetting `min-width: 0`
+
+A Grid or Flex item may need:
+
+```css
+.item {
+    min-width: 0;
+}
+```
+
+to allow it to shrink within the available space.
+
+This is especially important when the item contains wide content.
+
+### 14. Using Overflow to Hide Important Information
+
+Avoid:
+
+```css
+overflow: hidden;
+```
+
+when the clipped content contains information the user needs.
+
+For example:
+
+```text
+Important text
+        ↓
+overflow: hidden
+        ↓
+Text becomes inaccessible
+```
+
+Consider wrapping, resizing, scrolling, or another layout solution.
+
+### 15. Assuming `border-radius` Controls Child Overflow
+
+This:
+
+```css
+.card {
+    border-radius: 16px;
+}
+```
+
+does not by itself replace overflow control.
+
+When child content needs to be clipped to the rounded container, use an appropriate overflow value:
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+### 16. Forgetting That Transforms Can Cause Overflow
+
+A transformed element can become larger than its original box:
+
+```css
+.image {
+    transform: scale(1.2);
+}
+```
+
+If it should remain visually inside its container:
+
+```css
+.container {
+    overflow: hidden;
+}
+```
+
+### 17. Applying Overflow to the Wrong Element
+
+Make sure the element receiving the overflow rule is actually the element whose content needs to be controlled.
+
+For example:
+
+```css
+.code-container {
+    overflow-x: auto;
+}
+```
+
+is often more appropriate than applying a broad rule to an unrelated ancestor.
+
+### 18. Ignoring Mobile Layouts
+
+A layout may look correct on a desktop screen but overflow on mobile.
+
+Always test:
+
+```text
+Desktop
+Tablet
+Mobile
+Very narrow screens
+```
+
+Pay particular attention to:
+
+- Tables
+- Images
+- Long text
+- Code
+- Grid layouts
+- Fixed-width components
+
+### 19. Hiding Overflow Instead of Fixing the Layout
+
+Avoid treating:
+
+```css
+overflow: hidden;
+```
+
+as a universal solution.
+
+If an element is unexpectedly too wide, first determine why.
+
+For example:
+
+```text
+Unexpected page overflow
+        ↓
+Find the oversized element
+        ↓
+Fix its width / sizing / wrapping
+        ↓
+Use overflow only if appropriate
+```
+
+### 20. Forgetting Accessibility and Usability
+
+Scrollable content should remain understandable and usable.
+
+Do not hide essential information simply because it does not fit.
+
+When using scrolling:
+
+```css
+overflow: auto;
+```
+
+make sure users can reasonably discover and interact with the scrollable content.
+
+### Common Mistakes Checklist
+
+```text
+□ Using overflow: hidden to hide layout problems
+□ Hiding page overflow without finding the cause
+□ Using text-overflow: ellipsis alone
+□ Forgetting white-space: nowrap for single-line ellipsis
+□ Confusing hidden and clip
+□ Using scroll when auto is more appropriate
+□ Reversing two-value overflow order
+□ Forgetting that overflow controls both axes
+□ Using oversized fixed-width images
+□ Using fixed heights without overflow planning
+□ Ignoring long unbroken strings
+□ Ignoring Grid minimum sizes
+□ Forgetting min-width: 0
+□ Hiding important content
+□ Assuming border-radius controls child overflow
+□ Forgetting transformed elements can overflow
+□ Applying overflow to the wrong element
+□ Failing to test responsive layouts
+```
+
+> 💡 **Remember:** `overflow` should be used to intentionally control content that does not fit, not simply to hide layout problems. Always determine why overflow occurs before deciding how to handle it.
