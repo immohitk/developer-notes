@@ -7732,3 +7732,589 @@ minmax(0, 1fr)
 ```
 
 > 💡 **Interview Tip:** When explaining overflow, do not just list the property values. Explain the actual requirement: whether the overflowing content should remain visible, be clipped, or remain accessible through scrolling.
+
+---
+
+## Practice Exercises
+
+### Exercise 1 — Basic Overflow
+
+Create a `<div>` with:
+
+```text
+Width  → 200px
+Height → 100px
+```
+
+Add enough content to make it overflow.
+
+Try each value:
+
+```css
+overflow: visible;
+overflow: hidden;
+overflow: scroll;
+overflow: auto;
+overflow: clip;
+```
+
+Observe how the behavior changes.
+
+---
+
+### Exercise 2 — Horizontal Scrolling
+
+Create a container that is `300px` wide.
+
+Place content inside it that is `600px` wide.
+
+Make only the horizontal direction scrollable.
+
+Expected property:
+
+```css
+overflow-x: auto;
+```
+
+---
+
+### Exercise 3 — Vertical Scrolling
+
+Create a container with:
+
+```css
+height: 200px;
+```
+
+Add enough content to make it taller than `200px`.
+
+Make the container vertically scrollable.
+
+Expected property:
+
+```css
+overflow-y: auto;
+```
+
+---
+
+### Exercise 4 — Single-Line Ellipsis
+
+Create a heading with a long title.
+
+Make the title:
+
+- Stay on one line.
+- Hide overflowing content.
+- Display `...` when the text is too long.
+
+Use:
+
+```css
+white-space
+overflow
+text-overflow
+```
+
+Expected pattern:
+
+```css
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+---
+
+### Exercise 5 — Responsive Image
+
+Create an image inside a container.
+
+Make sure the image does not become wider than its container.
+
+Use:
+
+```css
+max-width
+height
+```
+
+Expected pattern:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+---
+
+### Exercise 6 — Image Cropping
+
+Create a fixed-size image container:
+
+```text
+Width  → 300px
+Height → 200px
+```
+
+Place an image inside it that is larger than the container.
+
+Clip the overflowing portion.
+
+Try:
+
+```css
+overflow: hidden;
+```
+
+Then compare it with:
+
+```css
+overflow: clip;
+```
+
+---
+
+### Exercise 7 — Rounded Image Card
+
+Create a card containing an image.
+
+Requirements:
+
+```text
+Width          → 300px
+Rounded corners → 16px
+Image          → fills the card
+Overflow       → clipped
+```
+
+Use:
+
+```css
+border-radius
+overflow
+object-fit
+```
+
+---
+
+### Exercise 8 — Image Zoom Effect
+
+Create an image card that scales the image when the user hovers over it.
+
+Requirements:
+
+```text
+Normal → Image fits inside card
+Hover  → Image scales to 1.1
+```
+
+Use:
+
+```css
+transform: scale(1.1);
+```
+
+and prevent the enlarged image from escaping the container.
+
+---
+
+### Exercise 9 — Scrollable Table
+
+Create a table with enough columns to make it wider than a small container.
+
+Wrap it inside:
+
+```html
+<div class="table-container">
+    <!-- table -->
+</div>
+```
+
+Make the table horizontally scrollable.
+
+Expected property:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+Test the result at a narrow viewport width.
+
+---
+
+### Exercise 10 — Scrollable Code Block
+
+Create a `<pre>` element containing a long line of code.
+
+Requirements:
+
+- Preserve the code formatting.
+- Do not force the code to wrap.
+- Allow horizontal scrolling.
+
+Consider:
+
+```css
+.code {
+    white-space: pre;
+    overflow-x: auto;
+}
+```
+
+---
+
+### Exercise 11 — Long URL
+
+Create a paragraph containing a very long URL or unbroken string.
+
+Observe how it affects the layout.
+
+Then try:
+
+```css
+overflow-wrap: break-word;
+```
+
+Compare the layout before and after applying the property.
+
+---
+
+### Exercise 12 — Positioned Element
+
+Create a parent container:
+
+```css
+.parent {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+```
+
+Place a child using:
+
+```css
+position: absolute;
+right: -50px;
+```
+
+Observe how the child extends outside the parent.
+
+Then test:
+
+```css
+overflow: visible;
+overflow: hidden;
+overflow: clip;
+```
+
+Compare the results.
+
+---
+
+### Exercise 13 — Two-Value Overflow
+
+Create a container where:
+
+```text
+Horizontal → auto
+Vertical   → hidden
+```
+
+Use the `overflow` shorthand.
+
+Expected:
+
+```css
+overflow: auto hidden;
+```
+
+Then rewrite it using the longhand properties:
+
+```css
+overflow-x: auto;
+overflow-y: hidden;
+```
+
+Verify that both versions produce the intended behavior.
+
+---
+
+### Exercise 14 — Grid Overflow
+
+Create a two-column Grid:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+```
+
+Place a very long unbroken string inside the second column.
+
+Observe whether the layout can become wider than expected.
+
+Then try:
+
+```css
+grid-template-columns: 200px minmax(0, 1fr);
+```
+
+Compare the result.
+
+---
+
+### Exercise 15 — Grid Item Minimum Width
+
+Create a Grid layout containing long content.
+
+Add:
+
+```css
+.main {
+    min-width: 0;
+}
+```
+
+Observe how allowing the Grid item to shrink affects the layout.
+
+---
+
+### Exercise 16 — Find the Source of Page Overflow
+
+Create a page that produces unwanted horizontal scrolling.
+
+Possible causes:
+
+```text
+Large image
+Fixed-width element
+Long unbroken text
+Grid item
+Positioned element
+Transformed element
+```
+
+Use browser developer tools to identify which element is causing the overflow.
+
+Fix the actual source instead of immediately applying:
+
+```css
+body {
+    overflow-x: hidden;
+}
+```
+
+---
+
+### Exercise 17 — Choose the Correct Overflow Value
+
+For each situation, choose the most appropriate value:
+
+#### A. Content should remain visible outside the box.
+
+```text
+Answer: __________
+```
+
+#### B. Content should be clipped.
+
+```text
+Answer: __________
+```
+
+#### C. Content should be scrollable when necessary.
+
+```text
+Answer: __________
+```
+
+#### D. Content should be clipped without scrolling.
+
+```text
+Answer: __________
+```
+
+#### E. Only horizontal overflow should scroll when necessary.
+
+```text
+Answer: __________
+```
+
+#### F. Only vertical overflow should scroll when necessary.
+
+```text
+Answer: __________
+```
+
+---
+
+### Exercise 18 — Debug the Ellipsis
+
+Given:
+
+```css
+.title {
+    width: 200px;
+    text-overflow: ellipsis;
+}
+```
+
+The ellipsis is not appearing.
+
+Identify what is missing and rewrite the CSS.
+
+Expected solution should consider:
+
+```css
+white-space
+overflow
+```
+
+---
+
+### Exercise 19 — Build a Complete Card
+
+Create a product card containing:
+
+```text
+Image
+Title
+Description
+Button
+```
+
+Requirements:
+
+- Rounded corners.
+- Image contained inside the card.
+- Image should not overflow.
+- Long title should display an ellipsis.
+- Description should remain readable.
+- Card should work at different viewport widths.
+
+Use appropriate combinations of:
+
+```css
+overflow
+border-radius
+object-fit
+white-space
+text-overflow
+max-width
+```
+
+---
+
+### Exercise 20 — Responsive Dashboard
+
+Create a dashboard using CSS Grid.
+
+Requirements:
+
+```text
+Sidebar
+Main content
+Wide table
+Long text
+Code block
+```
+
+The layout should:
+
+- Remain within the viewport.
+- Allow wide content to scroll horizontally where appropriate.
+- Prevent long text from unexpectedly expanding the Grid.
+- Keep images responsive.
+
+Consider using:
+
+```css
+grid-template-columns: 240px minmax(0, 1fr);
+
+min-width: 0;
+
+overflow-x: auto;
+
+max-width: 100%;
+```
+
+---
+
+### Exercise 21 — Explain the Difference
+
+Explain the difference between each pair in your own words:
+
+```text
+visible vs hidden
+
+hidden vs clip
+
+scroll vs auto
+
+overflow vs overflow-x
+
+overflow-x vs overflow-y
+
+overflow-wrap vs word-break
+
+width: 100% vs max-width: 100%
+```
+
+---
+
+### Exercise 22 — Mini Project
+
+Build a responsive article component.
+
+Include:
+
+```text
+Article image
+Article title
+Article description
+Code example
+Wide table
+```
+
+Requirements:
+
+```text
+✓ Responsive image
+✓ Long title handling
+✓ Scrollable code
+✓ Scrollable table
+✓ Rounded image container
+✓ No unexpected page overflow
+✓ Responsive Grid or Flex layout
+```
+
+Use the techniques learned throughout this topic rather than solving everything with global overflow rules.
+
+### Practice Goal
+
+After completing these exercises, you should be able to:
+
+```text
+✓ Identify why overflow occurs
+✓ Control horizontal overflow
+✓ Control vertical overflow
+✓ Choose between visible, hidden, scroll, auto, and clip
+✓ Create single-line ellipsis text
+✓ Handle overflowing images
+✓ Build scrollable tables and code blocks
+✓ Control overflow in positioned elements
+✓ Handle overflow in CSS Grid
+✓ Diagnose unexpected horizontal page overflow
+✓ Choose an appropriate overflow strategy
+```
+
+> 💡 **Practice Tip:** Do not just copy the solutions. First predict what will happen, test it in the browser, inspect the result, and then change the CSS to understand why the behavior changes.
