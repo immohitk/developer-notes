@@ -1996,3 +1996,312 @@ overflow: hidden
 ```
 
 > 💡 **Remember:** `overflow: hidden` keeps the element in the layout but clips content that extends beyond its box. It is especially useful for image containers, rounded cards, transforms, and visual effects where overflow should not be visible.
+
+---
+
+## `overflow: scroll`
+
+The `overflow: scroll` value provides a scrolling mechanism for content that overflows an element's box.
+
+Unlike `auto`, which provides scrolling when necessary, `scroll` explicitly requests scrolling mechanisms for the element.
+
+### Syntax
+
+```css
+.box {
+    overflow: scroll;
+}
+```
+
+### Basic Example
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: scroll;
+}
+```
+
+If the content is larger than the available space, the user can scroll through the overflowing content.
+
+```text
+┌──────────────────────┐
+│ Content              │
+│ Content              │
+│ Content              │
+│                  █   │
+├──────────────────────┤
+│◄──────────────────►  │
+└──────────────────────┘
+```
+
+The exact appearance of scrollbars depends on the browser and operating system.
+
+### Horizontal and Vertical Scrolling
+
+Because:
+
+```css
+overflow: scroll;
+```
+
+controls both axes, the element can provide scrolling in both directions when required.
+
+```text
+Horizontal
+←────────────────────→
+
+Vertical
+      ↓
+      ↓
+      ↓
+```
+
+For example:
+
+```css
+.box {
+    width: 300px;
+    height: 150px;
+    overflow: scroll;
+}
+```
+
+### `overflow-x: scroll`
+
+You can request horizontal scrolling specifically:
+
+```css
+.box {
+    overflow-x: scroll;
+}
+```
+
+This is useful for content that may be wider than its container.
+
+Example:
+
+```css
+.table-container {
+    overflow-x: scroll;
+}
+```
+
+### `overflow-y: scroll`
+
+You can request vertical scrolling specifically:
+
+```css
+.box {
+    overflow-y: scroll;
+}
+```
+
+This is useful for fixed-height containers containing potentially long content.
+
+Example:
+
+```css
+.list {
+    height: 300px;
+    overflow-y: scroll;
+}
+```
+
+### `scroll` vs `auto`
+
+The important difference is:
+
+```text
+scroll
+→ Provides scrolling mechanisms regardless of whether
+  content currently overflows
+
+auto
+→ Provides scrolling mechanisms when the browser
+  determines they are needed
+```
+
+Example:
+
+```css
+.box {
+    overflow: scroll;
+}
+```
+
+versus:
+
+```css
+.box {
+    overflow: auto;
+}
+```
+
+With `auto`, a small amount of content may require no scrolling mechanism.
+
+With `scroll`, the browser is instructed to provide a scrolling mechanism.
+
+The exact visual presence of scrollbars can still depend on browser and operating-system scrollbar behavior.
+
+### `scroll` vs `hidden`
+
+Compare:
+
+```css
+overflow: scroll;
+```
+
+with:
+
+```css
+overflow: hidden;
+```
+
+```text
+scroll
+→ Overflow can be accessed by scrolling
+
+hidden
+→ Overflow is clipped
+```
+
+For example:
+
+```css
+.scrollable {
+    overflow: scroll;
+}
+
+.clipped {
+    overflow: hidden;
+}
+```
+
+### `scroll` vs `visible`
+
+```css
+overflow: visible;
+```
+
+allows overflow to remain visible outside the box.
+
+```css
+overflow: scroll;
+```
+
+provides scrolling for the overflow.
+
+```text
+visible
+┌──────────────┐
+│ Content      │
+└──────────────┘──────────
+     overflow visible
+
+scroll
+┌──────────────┐
+│ Content      │
+│ Content      │
+└──────────────┘
+     scrollable
+```
+
+### Scrollable Code Block
+
+A code block may be wider than the available container.
+
+```css
+.code {
+    overflow-x: scroll;
+}
+```
+
+Example:
+
+```html
+<pre class="code">
+const veryLongVariableName = someVeryLongFunctionName();
+</pre>
+```
+
+The code remains on one line while the user can scroll horizontally.
+
+### Scrollable List
+
+A fixed-height list can use vertical scrolling:
+
+```css
+.list {
+    height: 250px;
+    overflow-y: scroll;
+}
+```
+
+HTML:
+
+```html
+<div class="list">
+    <p>Item 1</p>
+    <p>Item 2</p>
+    <p>Item 3</p>
+    <p>Item 4</p>
+    <p>Item 5</p>
+    <p>Item 6</p>
+</div>
+```
+
+The list remains within its defined height while additional content can be accessed through scrolling.
+
+### Scrollable Table
+
+A table can be placed inside a horizontally scrollable container:
+
+```css
+.table-container {
+    overflow-x: scroll;
+}
+```
+
+This can be useful when a table has many columns.
+
+```text
+┌──────────────────────────┐
+│ Column 1 | Column 2 | ...│
+├──────────────────────────┤
+│ Data     | Data     | ...│
+└──────────────────────────┘
+       ←──── scroll ────→
+```
+
+### When to Use `scroll`
+
+Use `scroll` when you explicitly want a scrolling mechanism for a container.
+
+Common situations include:
+
+```text
+Scrollable code blocks
+Wide tables
+Fixed-size panels
+Long lists
+Scrollable data areas
+```
+
+However, if scrolling should only appear when content actually overflows, `auto` is often more appropriate.
+
+### Important Points
+
+```text
+overflow: scroll
+│
+├── Provides a scrolling mechanism
+├── Controls horizontal and vertical overflow
+├── overflow-x: scroll → horizontal scrolling
+├── overflow-y: scroll → vertical scrolling
+├── Unlike hidden → overflow can be accessed
+└── Unlike auto → scrolling is explicitly requested
+```
+
+> 💡 **Remember:** `overflow: scroll` provides a scrolling mechanism for an element's overflow. Use `auto` when you want scrolling only when necessary, and use `scroll` when you explicitly want a scrolling mechanism.
