@@ -1002,3 +1002,330 @@ overflow-x
 ```
 
 > 💡 **Remember:** Use `overflow-x` when content can become wider than its container and you need to control horizontal overflow independently from vertical overflow. `auto` is particularly useful for responsive tables, code blocks, and other wide content.
+
+---
+
+## `overflow-y`
+
+The `overflow-y` property controls what happens when content overflows an element in the **vertical direction**.
+
+It is useful when content becomes taller than the available height of its container.
+
+### Syntax
+
+```css
+overflow-y: value;
+```
+
+Common values are:
+
+```css
+visible
+hidden
+scroll
+auto
+clip
+```
+
+### Basic Example
+
+```css
+.box {
+    height: 150px;
+    overflow-y: auto;
+}
+```
+
+If the content becomes taller than `150px`, vertical scrolling can be used.
+
+```text
+┌──────────────────────┐
+│ Content              │
+│ Content              │
+│ Content              │
+│              █       │
+│              █       │
+└──────────────────────┘
+        ↑
+     Vertical
+     scrolling
+```
+
+### `overflow-y: visible`
+
+```css
+.box {
+    overflow-y: visible;
+}
+```
+
+Vertical overflow remains visible outside the element's box.
+
+```text
+┌──────────────────────┐
+│ Content              │
+│ Content              │
+└──────────────────────┘
+│ More content         │
+│ More content         │
+```
+
+### `overflow-y: hidden`
+
+```css
+.box {
+    overflow-y: hidden;
+}
+```
+
+Vertical overflow is clipped.
+
+```text
+┌──────────────────────┐
+│ Content              │
+│ Content              │
+│ Content              │
+└──────────────────────┘
+```
+
+Content extending beyond the vertical boundary is not visible.
+
+### `overflow-y: scroll`
+
+```css
+.box {
+    overflow-y: scroll;
+}
+```
+
+A vertical scrolling mechanism is provided for the element.
+
+```text
+┌──────────────────────┐
+│ Content              │
+│ Content              │
+│ Content              │
+│ Content              │
+│                   █  │
+│                   █  │
+└──────────────────────┘
+```
+
+Depending on the browser and platform, a scrollbar may be shown even when the content does not currently overflow.
+
+### `overflow-y: auto`
+
+```css
+.box {
+    overflow-y: auto;
+}
+```
+
+The browser provides vertical scrolling when it is needed.
+
+This is commonly useful for:
+
+- Long lists
+- Chat panels
+- Sidebars
+- Modal content
+- Fixed-height containers
+- Scrollable sections
+
+### `overflow-y: clip`
+
+```css
+.box {
+    overflow-y: clip;
+}
+```
+
+Vertical overflow is clipped without providing a scrolling mechanism.
+
+This is useful when content should simply be prevented from extending beyond the vertical clipping area.
+
+### Vertical Overflow With Text
+
+A fixed-height text container can become vertically scrollable:
+
+```css
+.text {
+    height: 200px;
+    overflow-y: auto;
+}
+```
+
+If the text becomes longer than the available height, the user can scroll vertically.
+
+```text
+┌────────────────────────┐
+│ Line 1                 │
+│ Line 2                 │
+│ Line 3                 │
+│ Line 4                 │
+│ Line 5             █   │
+│ Line 6             █   │
+└────────────────────────┘
+```
+
+### Vertical Overflow With Lists
+
+A long list can be placed inside a fixed-height container:
+
+```css
+.list {
+    height: 250px;
+    overflow-y: auto;
+}
+```
+
+HTML:
+
+```html
+<div class="list">
+    <p>Item 1</p>
+    <p>Item 2</p>
+    <p>Item 3</p>
+    <p>Item 4</p>
+    <p>Item 5</p>
+    <p>Item 6</p>
+</div>
+```
+
+The container remains `250px` high while the list can continue beyond the visible area.
+
+### Vertical Overflow With a Sidebar
+
+A sidebar can use vertical scrolling when its content becomes too tall:
+
+```css
+.sidebar {
+    height: 100vh;
+    overflow-y: auto;
+}
+```
+
+This can be useful for navigation menus with many items.
+
+### Vertical Overflow With a Modal
+
+A modal may have a maximum height:
+
+```css
+.modal {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+```
+
+If the content is short, the modal remains within the available height.
+
+If the content becomes longer, the modal can scroll vertically.
+
+### `overflow-y` and `overflow-x`
+
+The two axes can be controlled independently.
+
+```css
+.box {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+```
+
+This means:
+
+```text
+Horizontal → clipped
+Vertical   → scroll when necessary
+```
+
+Another example:
+
+```css
+.box {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+```
+
+This means:
+
+```text
+Horizontal → scroll when necessary
+Vertical   → clipped
+```
+
+### Difference Between `overflow` and `overflow-y`
+
+```css
+overflow: auto;
+```
+
+controls both horizontal and vertical overflow.
+
+While:
+
+```css
+overflow-y: auto;
+```
+
+controls only the vertical overflow behavior.
+
+For example:
+
+```css
+.box {
+    overflow-y: auto;
+}
+```
+
+allows you to leave horizontal overflow behavior controlled separately.
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="content">
+    <p>Content 1</p>
+    <p>Content 2</p>
+    <p>Content 3</p>
+    <p>Content 4</p>
+    <p>Content 5</p>
+    <p>Content 6</p>
+</div>
+```
+
+CSS:
+
+```css
+.content {
+    height: 200px;
+    overflow-y: auto;
+}
+```
+
+The container has a fixed height:
+
+```text
+200px
+```
+
+When the content exceeds that height, vertical scrolling becomes available.
+
+### Important Points
+
+```text
+overflow-y
+│
+├── Controls vertical overflow
+│
+├── visible → overflow remains visible
+├── hidden  → overflow is clipped
+├── scroll  → scrolling mechanism is provided
+├── auto    → scrolling when necessary
+└── clip    → clips without scrolling
+```
+
+> 💡 **Remember:** Use `overflow-y` when you need to control content that becomes taller than its container. `auto` is particularly useful for scrollable lists, sidebars, modals, and fixed-height content areas.
