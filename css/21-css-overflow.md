@@ -2922,3 +2922,414 @@ overflow: clip
 ```
 
 > 💡 **Remember:** `overflow: clip` is specifically for clipping overflow without providing scrolling. It is similar to `hidden` visually, but its behavior and scrolling implications are different.
+
+---
+
+## Two-Value Overflow
+
+The `overflow` shorthand can accept **one or two values**.
+
+Using two values allows you to control horizontal and vertical overflow independently.
+
+### Syntax
+
+```css
+overflow: horizontal vertical;
+```
+
+The values correspond to:
+
+```text
+First value
+    ↓
+Horizontal overflow
+(overflow-x)
+
+Second value
+    ↓
+Vertical overflow
+(overflow-y)
+```
+
+### Basic Example
+
+```css
+.box {
+    overflow: hidden auto;
+}
+```
+
+This means:
+
+```text
+Horizontal → hidden
+Vertical   → auto
+```
+
+Conceptually:
+
+```text
+Horizontal
+→ clipped
+
+Vertical
+→ scroll when necessary
+```
+
+### One Value vs Two Values
+
+With one value:
+
+```css
+overflow: hidden;
+```
+
+the same behavior is applied to both axes.
+
+Conceptually:
+
+```css
+overflow-x: hidden;
+overflow-y: hidden;
+```
+
+With two values:
+
+```css
+overflow: hidden auto;
+```
+
+different behavior can be specified for each axis.
+
+Conceptually:
+
+```css
+overflow-x: hidden;
+overflow-y: auto;
+```
+
+### Example: Horizontal Hidden, Vertical Scroll
+
+```css
+.box {
+    width: 300px;
+    height: 200px;
+    overflow: hidden auto;
+}
+```
+
+This means:
+
+```text
+Horizontal → hidden
+Vertical   → auto
+```
+
+If content becomes too wide:
+
+```text
+Horizontal overflow
+→ clipped
+```
+
+If content becomes too tall:
+
+```text
+Vertical overflow
+→ scrolling when necessary
+```
+
+### Example: Horizontal Scroll, Vertical Hidden
+
+```css
+.box {
+    overflow: auto hidden;
+}
+```
+
+This means:
+
+```text
+Horizontal → auto
+Vertical   → hidden
+```
+
+Useful for content that should scroll horizontally but should not extend vertically.
+
+### Example: Both Axes Hidden
+
+```css
+.box {
+    overflow: hidden hidden;
+}
+```
+
+This explicitly sets:
+
+```css
+overflow-x: hidden;
+overflow-y: hidden;
+```
+
+Usually, however, the shorter form is preferred:
+
+```css
+overflow: hidden;
+```
+
+### Example: Both Axes Auto
+
+```css
+.box {
+    overflow: auto auto;
+}
+```
+
+This explicitly sets:
+
+```css
+overflow-x: auto;
+overflow-y: auto;
+```
+
+The simpler form is usually:
+
+```css
+overflow: auto;
+```
+
+### Example: Horizontal Scroll, Vertical Auto
+
+```css
+.box {
+    overflow: scroll auto;
+}
+```
+
+This means:
+
+```text
+Horizontal → scroll
+Vertical   → auto
+```
+
+### Example: Horizontal Auto, Vertical Scroll
+
+```css
+.box {
+    overflow: auto scroll;
+}
+```
+
+This means:
+
+```text
+Horizontal → auto
+Vertical   → scroll
+```
+
+### Two-Value Syntax Reference
+
+```text
+overflow: A B;
+
+A → overflow-x
+B → overflow-y
+```
+
+Examples:
+
+```css
+overflow: hidden auto;
+```
+
+means:
+
+```text
+x → hidden
+y → auto
+```
+
+```css
+overflow: auto hidden;
+```
+
+means:
+
+```text
+x → auto
+y → hidden
+```
+
+```css
+overflow: scroll auto;
+```
+
+means:
+
+```text
+x → scroll
+y → auto
+```
+
+```css
+overflow: auto scroll;
+```
+
+means:
+
+```text
+x → auto
+y → scroll
+```
+
+### Two-Value Overflow With a Table
+
+A responsive table commonly needs horizontal scrolling but does not need a special vertical scrolling area.
+
+```css
+.table-container {
+    overflow: auto hidden;
+}
+```
+
+Here:
+
+```text
+Horizontal → auto
+Vertical   → hidden
+```
+
+For a table specifically, a more common choice is simply:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+because it leaves the vertical behavior independent.
+
+### Two-Value Overflow With a Panel
+
+Suppose a panel should:
+
+```text
+Clip horizontal overflow
+Allow vertical scrolling
+```
+
+Use:
+
+```css
+.panel {
+    width: 300px;
+    height: 400px;
+    overflow: hidden auto;
+}
+```
+
+This is equivalent in intent to:
+
+```css
+.panel {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+```
+
+### Two-Value Overflow With a Code Area
+
+Suppose a code area should allow horizontal scrolling while vertical overflow is clipped:
+
+```css
+.code {
+    overflow: auto hidden;
+}
+```
+
+This means:
+
+```text
+Horizontal → auto
+Vertical   → hidden
+```
+
+For a normal code block, however, the more explicit approach is often:
+
+```css
+.code {
+    overflow-x: auto;
+}
+```
+
+### Important Rule
+
+Remember the order:
+
+```css
+overflow: X Y;
+```
+
+where:
+
+```text
+X → horizontal
+Y → vertical
+```
+
+Do not confuse the order.
+
+For example:
+
+```css
+overflow: hidden auto;
+```
+
+does **not** mean:
+
+```text
+Vertical → hidden
+Horizontal → auto
+```
+
+It means:
+
+```text
+Horizontal → hidden
+Vertical   → auto
+```
+
+### `overflow` and Its Longhand Properties
+
+The shorthand:
+
+```css
+overflow: hidden auto;
+```
+
+corresponds to:
+
+```css
+overflow-x: hidden;
+overflow-y: auto;
+```
+
+This makes it easier to understand what the shorthand is doing.
+
+### Important Points
+
+```text
+Two-value overflow
+│
+├── Syntax
+│   └── overflow: X Y;
+│
+├── X → overflow-x
+│   └── Horizontal
+│
+└── Y → overflow-y
+    └── Vertical
+```
+
+> 💡 **Remember:** With two `overflow` values, the **first controls horizontal overflow** and the **second controls vertical overflow**. For example, `overflow: hidden auto` means horizontal overflow is hidden while vertical overflow can scroll when necessary.
