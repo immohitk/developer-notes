@@ -211,3 +211,224 @@ For example, a code editor, table, or horizontally scrollable container may inte
 The important point is to choose the behavior that matches the design.
 
 > 💡 **Remember:** CSS Overflow controls what happens when content is larger than the available space inside an element. The main properties are `overflow`, `overflow-x`, and `overflow-y`, while values such as `visible`, `hidden`, `scroll`, `auto`, and `clip` determine how that overflow is handled.
+
+---
+
+## What Is Overflow?
+
+**Overflow** occurs when the content inside an element is larger than the space available within that element's box.
+
+For example:
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+}
+```
+
+If the content requires more than `200px` of width or `100px` of height, the content can extend beyond the element's available area.
+
+### Simple Example
+
+HTML:
+
+```html
+<div class="box">
+    This is a very long piece of content that may not fit inside the box.
+</div>
+```
+
+CSS:
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+}
+```
+
+Conceptually:
+
+```text
+┌──────────────────────┐
+│ Content that fits    │
+│ inside the box       │
+└──────────────────────┘
+        ↓
+   Extra content
+   may overflow
+```
+
+### Why Does Overflow Happen?
+
+Overflow commonly happens when:
+
+- Content is too wide.
+- Content is too tall.
+- An element has fixed dimensions.
+- An image is larger than its container.
+- Text does not wrap.
+- A child element extends outside its parent.
+- A layout contains content that cannot shrink enough.
+
+### Horizontal Overflow
+
+Horizontal overflow occurs when content is wider than the available width.
+
+```text
+Available width:
+
+┌──────────────────────┐
+│ Content               │
+└──────────────────────┘
+              ────────────────→
+              Extra width
+```
+
+For example:
+
+```css
+.box {
+    width: 200px;
+}
+```
+
+If the content needs `400px`, it can overflow horizontally.
+
+### Vertical Overflow
+
+Vertical overflow occurs when content is taller than the available height.
+
+```text
+┌──────────────────────┐
+│ Content              │
+│ Content              │
+│ Content              │
+└──────────────────────┘
+          ↓
+          ↓
+     Extra content
+```
+
+For example:
+
+```css
+.box {
+    height: 100px;
+}
+```
+
+If the content requires `300px` of height, it can overflow vertically.
+
+### Overflow Is Related to Available Space
+
+Think of an element as having a limited visible area:
+
+```text
+Element
+┌─────────────────────────┐
+│                         │
+│    Available Space      │
+│                         │
+└─────────────────────────┘
+            ↓
+      Content exceeds
+      available space
+            ↓
+         Overflow
+```
+
+The browser then applies the overflow behavior specified by CSS.
+
+### Controlling Overflow
+
+The main property used to control overflow is:
+
+```css
+overflow
+```
+
+For example:
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+}
+```
+
+Here, content that extends outside the box is clipped.
+
+Other related properties are:
+
+```css
+overflow-x
+overflow-y
+```
+
+These control horizontal and vertical overflow separately.
+
+### Overflow Is Not Necessarily an Error
+
+Overflow can be intentional.
+
+For example, a horizontally scrollable code block can use:
+
+```css
+.code {
+    overflow-x: auto;
+}
+```
+
+A large table can also require horizontal scrolling on smaller screens.
+
+```text
+Small screen
+
+┌──────────────────────┐
+│ Table                │
+│ ────────────────────→│
+└──────────────────────┘
+       scroll
+```
+
+In these situations, overflow is part of the intended design.
+
+### Overflow vs Normal Content Flow
+
+Normally, browsers try to lay out content inside the available space.
+
+When content cannot fit, the browser must determine what happens to the extra content.
+
+CSS gives you control over this behavior through:
+
+```css
+overflow
+overflow-x
+overflow-y
+```
+
+The specific value determines whether the content remains visible, is clipped, or becomes scrollable.
+
+### Important Points
+
+```text
+Overflow
+│
+├── Content is larger than available space
+│
+├── Horizontal overflow
+│   └── Content is too wide
+│
+├── Vertical overflow
+│   └── Content is too tall
+│
+└── Controlled using
+    ├── overflow
+    ├── overflow-x
+    └── overflow-y
+```
+
+> 💡 **Remember:** Overflow simply means that content does not fit within the available space of its element. It can happen horizontally, vertically, or in both directions, and CSS provides properties to control what happens to that extra content.
