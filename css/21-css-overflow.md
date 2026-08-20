@@ -1329,3 +1329,278 @@ overflow-y
 ```
 
 > 💡 **Remember:** Use `overflow-y` when you need to control content that becomes taller than its container. `auto` is particularly useful for scrollable lists, sidebars, modals, and fixed-height content areas.
+
+---
+
+## `overflow: visible`
+
+`overflow: visible` is the default overflow behavior.
+
+It allows content that extends beyond an element's box to remain visible.
+
+### Syntax
+
+```css
+.box {
+    overflow: visible;
+}
+```
+
+Because `visible` is the default value, the following is generally equivalent when no other overflow behavior has been set:
+
+```css
+.box {
+    overflow: visible;
+}
+```
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="box">
+    This content is larger than the available space.
+</div>
+```
+
+CSS:
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: visible;
+}
+```
+
+If the content does not fit inside the box, it can extend outside the element.
+
+```text
+┌──────────────────────┐
+│ Content that fits    │
+│ inside the box       │
+└──────────────────────┘
+        │
+        │ Extra content
+        │ remains visible
+        ↓
+        ───────────────────
+```
+
+### What `visible` Does
+
+With:
+
+```css
+overflow: visible;
+```
+
+the browser does not clip overflowing content.
+
+Conceptually:
+
+```text
+Content fits
+    ↓
+┌────────────────────┐
+│      Content       │
+└────────────────────┘
+
+Content overflows
+    ↓
+┌────────────────────┐
+│      Content       │
+└────────────────────┘──────────────
+             Extra content
+             remains visible
+```
+
+### Horizontal Overflow
+
+If content becomes wider than the element:
+
+```css
+.box {
+    width: 200px;
+    overflow-x: visible;
+}
+```
+
+the extra horizontal content can remain visible outside the box.
+
+```text
+┌────────────────────┐
+│ Content             │
+└────────────────────┘───────────────
+                  Extra content
+```
+
+### Vertical Overflow
+
+If content becomes taller than the element:
+
+```css
+.box {
+    height: 100px;
+    overflow-y: visible;
+}
+```
+
+the extra vertical content can remain visible outside the box.
+
+```text
+┌────────────────────┐
+│ Content            │
+│ Content            │
+└────────────────────┘
+│ More content       │
+│ More content       │
+```
+
+### `visible` Does Not Create Scrolling
+
+Unlike:
+
+```css
+overflow: auto;
+```
+
+or:
+
+```css
+overflow: scroll;
+```
+
+`visible` does not provide a scrolling mechanism for the overflowing content.
+
+The content simply remains visible outside the element's box.
+
+### `visible` vs `hidden`
+
+Compare:
+
+```css
+overflow: visible;
+```
+
+with:
+
+```css
+overflow: hidden;
+```
+
+`visible`:
+
+```text
+┌──────────────┐
+│ Content      │
+└──────────────┘──────────
+       Overflow remains visible
+```
+
+`hidden`:
+
+```text
+┌──────────────┐
+│ Content      │
+└──────────────┘
+       Overflow is clipped
+```
+
+### `visible` vs `auto`
+
+With:
+
+```css
+overflow: visible;
+```
+
+overflow remains visible.
+
+With:
+
+```css
+overflow: auto;
+```
+
+the browser can provide scrolling when necessary.
+
+```text
+visible
+→ Content remains visible outside the box
+
+auto
+→ Content can be scrolled when it overflows
+```
+
+### Overflowing Child Element
+
+`visible` is useful when a child element intentionally extends outside its parent.
+
+HTML:
+
+```html
+<div class="parent">
+    <div class="child">
+        Child
+    </div>
+</div>
+```
+
+CSS:
+
+```css
+.parent {
+    width: 200px;
+    height: 100px;
+    overflow: visible;
+}
+
+.child {
+    width: 300px;
+}
+```
+
+The child can extend beyond the parent's width.
+
+```text
+Parent
+┌────────────────────┐
+│ Child              │
+└────────────────────┘────────────
+                 Child continues
+                 outside parent
+```
+
+### Common Uses
+
+`overflow: visible` can be appropriate when:
+
+- Content should remain visible outside its container.
+- A decorative element extends beyond its parent.
+- A dropdown or popup needs to extend beyond a container.
+- Clipping is not desired.
+- Overflow is intentionally part of the design.
+
+However, whether a dropdown or popup can escape an ancestor also depends on other layout and rendering conditions.
+
+### Important Consideration
+
+`visible` does not mean the content is removed from the layout.
+
+The overflowing content still exists; it is simply allowed to be displayed outside the element's box.
+
+### Important Points
+
+```text
+overflow: visible
+│
+├── Default overflow value
+├── Overflow remains visible
+├── Content can extend outside the box
+├── Does not create scrolling
+└── Does not clip overflowing content
+```
+
+> 💡 **Remember:** `overflow: visible` allows overflowing content to remain visible outside the element's box. It is the default overflow behavior and does not create a scrolling mechanism.
