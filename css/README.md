@@ -28,6 +28,7 @@ The notes are organized in a step-by-step manner and include explanations, examp
 - [CSS Pseudo-Elements](18-css-pseudo-elements.md)
 - [CSS Variables](19-css-variables.md)
 - [CSS Grid](20-css-grid.md)
+- [CSS Overflow](21-css-overflow.md)
 
 More topics will be added as I continue learning CSS.
 
