@@ -7157,3 +7157,578 @@ make sure users can reasonably discover and interact with the scrollable content
 ```
 
 > 💡 **Remember:** `overflow` should be used to intentionally control content that does not fit, not simply to hide layout problems. Always determine why overflow occurs before deciding how to handle it.
+
+---
+
+## Interview Questions
+
+### Basic Questions
+
+#### 1. What is CSS overflow?
+
+CSS overflow controls what happens when content is larger than the available space inside an element's box.
+
+---
+
+#### 2. What is the default value of `overflow`?
+
+The default value is:
+
+```css
+overflow: visible;
+```
+
+---
+
+#### 3. What does `overflow: visible` do?
+
+It allows overflowing content to remain visible outside the element's box.
+
+```css
+.box {
+    overflow: visible;
+}
+```
+
+---
+
+#### 4. What does `overflow: hidden` do?
+
+It clips content that extends outside the element's box.
+
+```css
+.box {
+    overflow: hidden;
+}
+```
+
+The element remains in the layout; only the overflowing portion is clipped.
+
+---
+
+#### 5. What is the difference between `hidden` and `scroll`?
+
+```text
+hidden
+→ Overflow is clipped
+
+scroll
+→ A scrolling mechanism is provided
+```
+
+With `scroll`, overflowing content can be accessed through scrolling.
+
+---
+
+#### 6. What is the difference between `scroll` and `auto`?
+
+```text
+scroll
+→ Explicitly requests a scrolling mechanism
+
+auto
+→ Provides scrolling when necessary
+```
+
+The exact visual appearance of scrollbars can depend on the browser and operating system.
+
+---
+
+#### 7. What does `overflow-x` control?
+
+`overflow-x` controls overflow along the horizontal axis.
+
+```css
+.box {
+    overflow-x: auto;
+}
+```
+
+---
+
+#### 8. What does `overflow-y` control?
+
+`overflow-y` controls overflow along the vertical axis.
+
+```css
+.box {
+    overflow-y: auto;
+}
+```
+
+---
+
+#### 9. What does `overflow: clip` do?
+
+It clips overflowing content without providing a scrolling mechanism.
+
+```css
+.box {
+    overflow: clip;
+}
+```
+
+---
+
+### Intermediate Questions
+
+#### 10. What is the two-value syntax of `overflow`?
+
+The syntax is:
+
+```css
+overflow: horizontal vertical;
+```
+
+For example:
+
+```css
+overflow: hidden auto;
+```
+
+means:
+
+```text
+overflow-x → hidden
+overflow-y → auto
+```
+
+---
+
+#### 11. What is `text-overflow` used for?
+
+`text-overflow` controls how overflowing text is represented.
+
+Common values include:
+
+```css
+clip
+ellipsis
+```
+
+---
+
+#### 12. How do you create a single-line ellipsis?
+
+A common pattern is:
+
+```css
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+The properties work together:
+
+```text
+white-space: nowrap
+→ Keeps text on one line
+
+overflow: hidden
+→ Clips overflowing content
+
+text-overflow: ellipsis
+→ Represents the clipped portion with "..."
+```
+
+---
+
+#### 13. Does `text-overflow: ellipsis` work by itself?
+
+Not for the common single-line ellipsis pattern.
+
+It is normally combined with:
+
+```css
+white-space: nowrap;
+overflow: hidden;
+```
+
+---
+
+#### 14. How can you prevent a large image from overflowing its container?
+
+A common responsive image pattern is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+---
+
+#### 15. How can you create a horizontally scrollable table?
+
+Wrap the table in a container:
+
+```html
+<div class="table-container">
+    <table>
+        <!-- table -->
+    </table>
+</div>
+```
+
+Then:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+---
+
+#### 16. How can you create a vertically scrollable container?
+
+Give the container a constrained height and use:
+
+```css
+.container {
+    height: 300px;
+    overflow-y: auto;
+}
+```
+
+---
+
+#### 17. Why is `overflow: hidden` commonly used with `border-radius`?
+
+It can clip child content to the container so that images and other content remain visually inside the rounded shape.
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+---
+
+#### 18. Can positioned elements cause overflow?
+
+Yes.
+
+For example:
+
+```css
+.child {
+    position: absolute;
+    right: -50px;
+}
+```
+
+The child can extend outside its parent.
+
+The parent's overflow behavior determines how that extra portion is handled.
+
+---
+
+#### 19. How can you clip a positioned child?
+
+Use an appropriate overflow value on the parent:
+
+```css
+.parent {
+    position: relative;
+    overflow: hidden;
+}
+```
+
+The portion of the child extending outside the parent's overflow area can then be clipped.
+
+---
+
+#### 20. What is the difference between `overflow: hidden` and `overflow: clip`?
+
+Both can clip overflowing content.
+
+The important distinction is:
+
+```text
+hidden
+→ Clips overflow
+→ Can establish a scroll container
+
+clip
+→ Clips overflow
+→ Does not provide scrolling
+```
+
+---
+
+### Grid and Layout Questions
+
+#### 21. Why can CSS Grid cause unexpected horizontal overflow?
+
+Grid content can contribute a large minimum size to a grid track.
+
+This can happen with:
+
+- Long unbroken text
+- Large images
+- Fixed-width children
+- Long code
+- Other content with large minimum sizes
+
+---
+
+#### 22. How can `minmax(0, 1fr)` help prevent Grid overflow?
+
+Instead of:
+
+```css
+grid-template-columns: 200px 1fr;
+```
+
+you can use:
+
+```css
+grid-template-columns: 200px minmax(0, 1fr);
+```
+
+The `0` minimum allows the flexible track to shrink to zero instead of being forced wider by its minimum content contribution.
+
+---
+
+#### 23. Why might `min-width: 0` be needed on a Grid item?
+
+A Grid item can have a minimum size influenced by its content.
+
+Using:
+
+```css
+.item {
+    min-width: 0;
+}
+```
+
+can allow the item to shrink within its available grid area.
+
+---
+
+#### 24. How can you handle wide code inside a Grid layout?
+
+A common approach is:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.main {
+    min-width: 0;
+}
+
+.code {
+    overflow-x: auto;
+}
+```
+
+---
+
+### Practical Interview Questions
+
+#### 25. How would you make a card title display `...` when it is too long?
+
+```css
+.card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+---
+
+#### 26. How would you make a table responsive on a small screen?
+
+Use a container with horizontal scrolling:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+---
+
+#### 27. How would you prevent an image from causing horizontal page overflow?
+
+A common approach is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+---
+
+#### 28. How would you create a fixed-height scrollable list?
+
+```css
+.list {
+    height: 300px;
+    overflow-y: auto;
+}
+```
+
+---
+
+#### 29. How would you hide content that extends beyond a card?
+
+```css
+.card {
+    overflow: hidden;
+}
+```
+
+---
+
+#### 30. How would you allow content to remain visible outside a container?
+
+```css
+.container {
+    overflow: visible;
+}
+```
+
+---
+
+#### 31. How would you clip content without providing scrolling?
+
+```css
+.container {
+    overflow: clip;
+}
+```
+
+---
+
+#### 32. How would you allow horizontal scrolling but prevent vertical overflow?
+
+```css
+.container {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+```
+
+Or using the shorthand:
+
+```css
+.container {
+    overflow: auto hidden;
+}
+```
+
+---
+
+#### 33. What is a common mistake when you see horizontal scrolling on the entire page?
+
+Using:
+
+```css
+body {
+    overflow-x: hidden;
+}
+```
+
+immediately can hide the symptom without fixing the actual cause.
+
+First inspect for:
+
+```text
+Large fixed-width elements
+Large images
+Long unbroken strings
+Grid sizing problems
+Flex items
+Positioned elements
+Transforms
+```
+
+---
+
+#### 34. When should you use `overflow: auto` instead of `overflow: hidden`?
+
+Use:
+
+```css
+overflow: auto;
+```
+
+when users should be able to access content that does not fit.
+
+Use:
+
+```css
+overflow: hidden;
+```
+
+when the overflowing content is intentionally meant to be clipped.
+
+---
+
+#### 35. When should you use `overflow-x` instead of `overflow`?
+
+Use `overflow-x` when only horizontal overflow needs to be controlled independently.
+
+For example:
+
+```css
+.container {
+    overflow-x: auto;
+}
+```
+
+---
+
+### Quick Interview Revision
+
+```text
+overflow
+→ Controls overflow on both axes
+
+overflow-x
+→ Controls horizontal overflow
+
+overflow-y
+→ Controls vertical overflow
+
+visible
+→ Overflow remains visible
+
+hidden
+→ Overflow is clipped
+
+scroll
+→ Scrolling mechanism is provided
+
+auto
+→ Scrolling when necessary
+
+clip
+→ Clips without scrolling
+
+text-overflow
+→ Controls representation of overflowing text
+
+white-space: nowrap
+→ Keeps text on one line
+
+min-width: 0
+→ Allows a layout item to shrink
+
+minmax(0, 1fr)
+→ Allows a flexible Grid track to shrink
+```
+
+> 💡 **Interview Tip:** When explaining overflow, do not just list the property values. Explain the actual requirement: whether the overflowing content should remain visible, be clipped, or remain accessible through scrolling.
