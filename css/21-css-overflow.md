@@ -6109,3 +6109,212 @@ CSS Overflow
 - [MDN Web Docs — object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
 - [MDN Web Docs — border-radius](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)
 - [MDN Web Docs — position](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
+
+---
+
+## Quick Revision
+
+### What Is Overflow?
+
+Overflow occurs when an element's content is larger than the available space inside its box.
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+}
+```
+
+### Main Overflow Property
+
+```css
+overflow: value;
+```
+
+Common values:
+
+```text
+visible
+hidden
+scroll
+auto
+clip
+```
+
+### Overflow Values
+
+| Value | Behavior |
+|---|---|
+| `visible` | Overflow remains visible |
+| `hidden` | Overflow is clipped |
+| `scroll` | Provides scrolling mechanism |
+| `auto` | Provides scrolling when necessary |
+| `clip` | Clips overflow without scrolling |
+
+### Axis-Specific Overflow
+
+Horizontal:
+
+```css
+overflow-x: auto;
+```
+
+Vertical:
+
+```css
+overflow-y: auto;
+```
+
+### Two-Value Syntax
+
+```css
+overflow: X Y;
+```
+
+```text
+X → Horizontal / overflow-x
+Y → Vertical / overflow-y
+```
+
+Example:
+
+```css
+overflow: hidden auto;
+```
+
+means:
+
+```text
+Horizontal → hidden
+Vertical   → auto
+```
+
+### Text Overflow
+
+Common single-line ellipsis pattern:
+
+```css
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### Responsive Images
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+### Clipping Images
+
+```css
+.image-box {
+    overflow: hidden;
+}
+```
+
+Often combined with:
+
+```css
+border-radius: 16px;
+```
+
+### Scrollable Content
+
+Horizontal:
+
+```css
+.container {
+    overflow-x: auto;
+}
+```
+
+Vertical:
+
+```css
+.container {
+    overflow-y: auto;
+}
+```
+
+Both directions:
+
+```css
+.container {
+    overflow: auto;
+}
+```
+
+### Grid Overflow
+
+A flexible Grid track can be allowed to shrink with:
+
+```css
+grid-template-columns: 200px minmax(0, 1fr);
+```
+
+A Grid item may also need:
+
+```css
+min-width: 0;
+```
+
+### Quick Decision Guide
+
+```text
+Keep overflow visible
+→ overflow: visible
+
+Clip overflow
+→ overflow: hidden
+
+Scroll explicitly
+→ overflow: scroll
+
+Scroll when necessary
+→ overflow: auto
+
+Clip without scrolling
+→ overflow: clip
+
+Horizontal scrolling
+→ overflow-x: auto
+
+Vertical scrolling
+→ overflow-y: auto
+```
+
+### Important Reminders
+
+```text
+overflow
+    ↓
+Controls overflowing content
+
+overflow-x
+    ↓
+Horizontal overflow
+
+overflow-y
+    ↓
+Vertical overflow
+
+text-overflow
+    ↓
+Controls representation of overflowing text
+
+white-space: nowrap
+    ↓
+Keeps text on one line
+
+minmax(0, 1fr)
+    ↓
+Helps flexible Grid tracks shrink
+```
+
+> 💡 **Remember:** When content does not fit, decide whether it should remain visible, be clipped, or be made accessible through scrolling. Choose the overflow property that matches that requirement.
