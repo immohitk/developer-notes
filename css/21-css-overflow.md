@@ -5985,3 +5985,113 @@ overflow-y: auto
 ```
 
 > 💡 **Remember:** Choose the overflow behavior based on what should happen to content that does not fit: remain visible, be clipped, or remain accessible through scrolling.
+
+---
+
+## Key Takeaways
+
+- **Overflow** occurs when content is larger than the available space inside an element.
+
+- The `overflow` property controls overflow in both horizontal and vertical directions.
+
+- The main `overflow` values are:
+  - `visible`
+  - `hidden`
+  - `scroll`
+  - `auto`
+  - `clip`
+
+- `overflow-x` controls **horizontal overflow**.
+
+- `overflow-y` controls **vertical overflow**.
+
+- `overflow: visible` allows overflowing content to remain visible outside the element.
+
+- `overflow: hidden` clips overflowing content.
+
+- `overflow: scroll` provides a scrolling mechanism for overflowing content.
+
+- `overflow: auto` allows scrolling when the content requires it.
+
+- `overflow: clip` clips overflow without providing a scrolling mechanism.
+
+- The two-value syntax follows this order:
+
+```css
+overflow: horizontal vertical;
+```
+
+- `text-overflow` controls how overflowing text is represented.
+
+- A common single-line ellipsis pattern is:
+
+```css
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+```
+
+- Images can cause overflow when they are larger than their containers.
+
+- A common responsive image pattern is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+- `overflow: hidden` or `overflow: clip` can be used to contain visual effects such as image zooming.
+
+- `border-radius` and overflow control are commonly combined to keep child content inside rounded containers.
+
+- Positioned elements can extend outside their parents, and the parent's overflow behavior determines how that overflow is handled.
+
+- CSS Grid layouts can experience overflow when content imposes a large minimum size on a grid track.
+
+- `minmax(0, 1fr)` can allow a flexible Grid track to shrink:
+
+```css
+grid-template-columns: 200px minmax(0, 1fr);
+```
+
+- `min-width: 0` can allow a Grid item to shrink within its available track.
+
+- `overflow-x: auto` is useful for wide content such as tables and code blocks.
+
+- `overflow-y: auto` is useful for tall content such as lists, sidebars, and modal content.
+
+### Quick Summary
+
+```text
+CSS Overflow
+│
+├── overflow
+│   ├── visible
+│   ├── hidden
+│   ├── scroll
+│   ├── auto
+│   └── clip
+│
+├── overflow-x
+│   └── Horizontal overflow
+│
+├── overflow-y
+│   └── Vertical overflow
+│
+├── text-overflow
+│   ├── clip
+│   └── ellipsis
+│
+└── Common applications
+    ├── Text
+    ├── Images
+    ├── Cards
+    ├── Positioning
+    ├── Grid
+    ├── Tables
+    └── Scrollable containers
+```
+
+> 💡 **Remember:** Overflow is about deciding what should happen when content does not fit. Choose between keeping it visible, clipping it, or making it accessible through scrolling.
