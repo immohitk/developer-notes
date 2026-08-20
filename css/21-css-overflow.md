@@ -1604,3 +1604,395 @@ overflow: visible
 ```
 
 > 💡 **Remember:** `overflow: visible` allows overflowing content to remain visible outside the element's box. It is the default overflow behavior and does not create a scrolling mechanism.
+
+---
+
+## `overflow: hidden`
+
+`overflow: hidden` clips content that extends beyond an element's box.
+
+The overflowing content is not visible outside the element's boundaries.
+
+### Syntax
+
+```css
+.box {
+    overflow: hidden;
+}
+```
+
+### Basic Example
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+}
+```
+
+If the content is larger than the available space, the extra content is clipped.
+
+```text
+┌──────────────────────┐
+│ Content that fits    │
+│ inside the box       │
+│                      │
+└──────────────────────┘
+      Extra content
+        is hidden
+```
+
+### How It Works
+
+Consider a box with limited dimensions:
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+}
+```
+
+If its content requires more space:
+
+```text
+Required space
+┌───────────────────────────────┐
+│                               │
+│          Content              │
+│                               │
+│                               │
+│                               │
+└───────────────────────────────┘
+```
+
+but the container only provides:
+
+```text
+┌──────────────────────┐
+│ Available area       │
+│                      │
+│                      │
+└──────────────────────┘
+```
+
+then:
+
+```css
+overflow: hidden;
+```
+
+clips the portion outside the available area.
+
+### Horizontal Overflow
+
+You can control horizontal clipping specifically:
+
+```css
+.box {
+    overflow-x: hidden;
+}
+```
+
+Content extending beyond the left or right boundary is clipped.
+
+```text
+┌──────────────────────┐
+│ Visible content      │
+└──────────────────────┘
+        ↑
+   Extra horizontal
+   content clipped
+```
+
+### Vertical Overflow
+
+You can control vertical clipping specifically:
+
+```css
+.box {
+    overflow-y: hidden;
+}
+```
+
+Content extending beyond the top or bottom boundary is clipped.
+
+```text
+┌──────────────────────┐
+│ Visible content      │
+│ Visible content      │
+└──────────────────────┘
+       ↓
+   Extra content
+     clipped
+```
+
+### `hidden` Does Not Mean `display: none`
+
+This is an important distinction.
+
+```css
+overflow: hidden;
+```
+
+does **not** remove the content from the document.
+
+The content still exists, but the overflowing portion is clipped.
+
+Compare:
+
+```css
+display: none;
+```
+
+with:
+
+```css
+overflow: hidden;
+```
+
+```text
+display: none
+→ Element/content is not displayed
+
+overflow: hidden
+→ Element remains
+→ Overflowing portion is clipped
+```
+
+### `hidden` Does Not Create Normal Scrolling
+
+Unlike:
+
+```css
+overflow: auto;
+```
+
+`hidden` does not provide a normal scrolling mechanism for the clipped overflow.
+
+```text
+hidden
+→ Clip overflow
+
+auto
+→ Allow scrolling when needed
+```
+
+### Clipping an Image
+
+A common use is clipping a large image inside a fixed-size container.
+
+HTML:
+
+```html
+<div class="image-box">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+CSS:
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 500px;
+}
+```
+
+The image can extend beyond the container, but the container clips the excess.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│       Visible image          │
+│                              │
+└──────────────────────────────┘
+        Extra image clipped
+```
+
+### Clipping With `border-radius`
+
+A very common UI pattern is:
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+This can prevent child content such as an image from visually extending outside the rounded corners.
+
+```text
+     ╭────────────────────╮
+     │      Image         │
+     │                    │
+     │      Content       │
+     ╰────────────────────╯
+```
+
+### Preventing Positioned Content From Escaping
+
+`overflow: hidden` is often used with positioned or transformed children.
+
+```css
+.container {
+    position: relative;
+    overflow: hidden;
+}
+
+.child {
+    position: absolute;
+    right: -50px;
+}
+```
+
+The portion of the child extending outside the container can be clipped.
+
+### Clipping Transformed Elements
+
+For example:
+
+```css
+.container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.element {
+    transform: scale(1.5);
+}
+```
+
+The transformed element may become larger than the container, but the overflowing portion is clipped.
+
+This is commonly useful for image zoom effects.
+
+### Image Hover Effect
+
+HTML:
+
+```html
+<div class="image-box">
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+CSS:
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+```
+
+The image grows when hovered, but `overflow: hidden` keeps it visually inside the container.
+
+### Text Clipping
+
+`overflow: hidden` can clip text that exceeds a fixed area.
+
+```css
+.text {
+    width: 200px;
+    height: 50px;
+    overflow: hidden;
+}
+```
+
+However, if the goal is to display an ellipsis for a single line of text, a typical pattern also uses:
+
+```css
+white-space: nowrap;
+text-overflow: ellipsis;
+```
+
+### `overflow: hidden` vs `overflow: clip`
+
+Both can clip overflowing content, but they are not identical.
+
+```css
+overflow: hidden;
+```
+
+provides clipping and can establish a scroll container in ways that `clip` does not.
+
+```css
+overflow: clip;
+```
+
+is specifically intended for clipping without providing scrolling.
+
+Use `clip` when you specifically want clipping without scrolling behavior.
+
+### `overflow: hidden` vs `overflow: auto`
+
+```text
+hidden
+→ Overflow is clipped
+
+auto
+→ Overflow can be scrolled when necessary
+```
+
+Example:
+
+```css
+.hidden {
+    overflow: hidden;
+}
+
+.scrollable {
+    overflow: auto;
+}
+```
+
+### Common Uses
+
+`overflow: hidden` is commonly used for:
+
+```text
+Image containers
+Rounded cards
+Hover effects
+Zoom effects
+Clipping decorative elements
+Preventing visual overflow
+Fixed-size components
+```
+
+### Important Points
+
+```text
+overflow: hidden
+│
+├── Clips overflowing content
+├── Content outside the box is not visible
+├── Does not remove the element
+├── Does not behave like display: none
+├── Useful for image and hover effects
+├── Common with border-radius
+└── Can be applied independently with
+    ├── overflow-x: hidden
+    └── overflow-y: hidden
+```
+
+> 💡 **Remember:** `overflow: hidden` keeps the element in the layout but clips content that extends beyond its box. It is especially useful for image containers, rounded cards, transforms, and visual effects where overflow should not be visible.
