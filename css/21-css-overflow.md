@@ -682,3 +682,323 @@ overflow
 ```
 
 > 💡 **Remember:** `overflow` controls what happens when content exceeds an element's available space. With one value, the same behavior applies to both axes; with two values, the first controls horizontal overflow and the second controls vertical overflow.
+
+---
+
+## `overflow-x`
+
+The `overflow-x` property controls what happens when content overflows an element in the **horizontal direction**.
+
+It is useful when content becomes wider than the available width of its container.
+
+### Syntax
+
+```css
+overflow-x: value;
+```
+
+Common values are:
+
+```css
+visible
+hidden
+scroll
+auto
+clip
+```
+
+### Basic Example
+
+```css
+.box {
+    width: 200px;
+    overflow-x: auto;
+}
+```
+
+If the content becomes wider than `200px`, horizontal scrolling can be used.
+
+```text
+┌──────────────────────┐
+│ Wide content         │
+└──────────────────────┘
+←──── horizontal ─────→
+       scrolling
+```
+
+### `overflow-x: visible`
+
+```css
+.box {
+    overflow-x: visible;
+}
+```
+
+Horizontal overflow remains visible outside the element's box.
+
+```text
+┌──────────────────┐
+│ Content          │
+└──────────────────┘──────────────
+                  Extra content
+```
+
+This is the default behavior associated with visible overflow.
+
+### `overflow-x: hidden`
+
+```css
+.box {
+    overflow-x: hidden;
+}
+```
+
+Horizontal overflow is clipped.
+
+```text
+┌──────────────────────┐
+│ Content that fits    │
+└──────────────────────┘
+```
+
+Any content extending beyond the horizontal boundary is not visible.
+
+### `overflow-x: scroll`
+
+```css
+.box {
+    overflow-x: scroll;
+}
+```
+
+A horizontal scrolling mechanism is provided for overflowing content.
+
+```text
+┌──────────────────────────┐
+│ Wide content             │
+├──────────────────────────┤
+│◄───────────────►         │
+└──────────────────────────┘
+```
+
+Depending on the browser and platform, a scrollbar may be shown even when horizontal overflow is not currently present.
+
+### `overflow-x: auto`
+
+```css
+.box {
+    overflow-x: auto;
+}
+```
+
+The browser provides horizontal scrolling when it is needed.
+
+This is commonly useful for:
+
+- Wide tables
+- Code blocks
+- Long unbroken content
+- Large horizontal layouts
+- Responsive containers
+
+### `overflow-x: clip`
+
+```css
+.box {
+    overflow-x: clip;
+}
+```
+
+Horizontal overflow is clipped without providing a scrolling mechanism.
+
+It is useful when content should simply be prevented from extending beyond the horizontal clipping area.
+
+### Horizontal Overflow With Long Text
+
+Long text can cause horizontal overflow when wrapping is disabled.
+
+```css
+.text {
+    white-space: nowrap;
+    overflow-x: auto;
+}
+```
+
+If the text is wider than the container, the user can scroll horizontally.
+
+```text
+┌────────────────────────────┐
+│ This is a very long text → │
+└────────────────────────────┘
+```
+
+### Horizontal Overflow With Code
+
+Code is often wider than a small screen.
+
+```css
+.code {
+    overflow-x: auto;
+}
+```
+
+Example:
+
+```html
+<pre class="code">
+const result = someVeryLongFunctionName();
+</pre>
+```
+
+Instead of forcing the code to wrap, the container can allow horizontal scrolling.
+
+### Horizontal Overflow With Tables
+
+Wide tables can overflow on small screens.
+
+A common pattern is:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+HTML:
+
+```html
+<div class="table-container">
+    <table>
+        <!-- table content -->
+    </table>
+</div>
+```
+
+Conceptually:
+
+```text
+Small screen
+
+┌──────────────────────┐
+│ Column 1 | Column 2  │
+│ Column 3 | Column 4  │
+│ Column 5 | Column 6 →│
+└──────────────────────┘
+             scroll →
+```
+
+The table can remain wide while its surrounding container provides horizontal scrolling.
+
+### `overflow-x` and `overflow-y`
+
+These properties can be controlled independently.
+
+```css
+.box {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+```
+
+This means:
+
+```text
+Horizontal → scroll when necessary
+Vertical   → clipped
+```
+
+Another example:
+
+```css
+.box {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+```
+
+This means:
+
+```text
+Horizontal → clipped
+Vertical   → scroll when necessary
+```
+
+### Difference Between `overflow` and `overflow-x`
+
+```css
+overflow: auto;
+```
+
+controls both horizontal and vertical overflow.
+
+While:
+
+```css
+overflow-x: auto;
+```
+
+controls only the horizontal overflow behavior.
+
+For example:
+
+```css
+.box {
+    overflow: auto;
+}
+```
+
+versus:
+
+```css
+.box {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+```
+
+The second example explicitly gives different behavior to the two axes.
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="content">
+        This content is intentionally wider than the container.
+    </div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    width: 300px;
+    overflow-x: auto;
+}
+
+.content {
+    width: 600px;
+}
+```
+
+The container remains `300px` wide while the content is `600px` wide.
+
+The user can scroll horizontally to access the remaining content.
+
+### Important Points
+
+```text
+overflow-x
+│
+├── Controls horizontal overflow
+│
+├── visible → overflow remains visible
+├── hidden  → overflow is clipped
+├── scroll  → scrolling mechanism is provided
+├── auto    → scrolling when necessary
+└── clip    → clips without scrolling
+```
+
+> 💡 **Remember:** Use `overflow-x` when content can become wider than its container and you need to control horizontal overflow independently from vertical overflow. `auto` is particularly useful for responsive tables, code blocks, and other wide content.
