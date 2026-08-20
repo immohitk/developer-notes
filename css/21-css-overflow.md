@@ -2656,3 +2656,269 @@ overflow: auto
 ```
 
 > 💡 **Remember:** `overflow: auto` is useful when you want content to remain accessible without forcing a scrollbar when it is not needed. It is especially common for responsive tables, long lists, code blocks, modals, and scrollable content areas.
+
+---
+
+## `overflow: clip`
+
+`overflow: clip` clips content that extends beyond an element's overflow clip edge.
+
+Unlike `overflow: hidden`, `clip` does not provide a scrolling mechanism for the clipped content.
+
+### Syntax
+
+```css
+.box {
+    overflow: clip;
+}
+```
+
+### Basic Example
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: clip;
+}
+```
+
+If the content is larger than the available space, the overflowing portion is clipped.
+
+```text
+┌──────────────────────┐
+│ Content that fits    │
+│ inside the box       │
+│                      │
+└──────────────────────┘
+      Extra content
+         clipped
+```
+
+### `clip` vs `hidden`
+
+Both can prevent overflowing content from being visible:
+
+```css
+overflow: hidden;
+```
+
+and:
+
+```css
+overflow: clip;
+```
+
+However, they are not identical.
+
+```text
+hidden
+→ Clips overflow
+→ Can establish a scroll container
+
+clip
+→ Clips overflow
+→ Does not provide scrolling
+```
+
+When you specifically want clipping without scrolling behavior, `clip` expresses that intention clearly.
+
+### `overflow-x: clip`
+
+You can clip horizontal overflow:
+
+```css
+.box {
+    overflow-x: clip;
+}
+```
+
+Content extending beyond the horizontal boundaries is clipped.
+
+### `overflow-y: clip`
+
+You can clip vertical overflow:
+
+```css
+.box {
+    overflow-y: clip;
+}
+```
+
+Content extending beyond the vertical boundaries is clipped.
+
+### `clip` Does Not Create Scrolling
+
+For example:
+
+```css
+.box {
+    overflow: clip;
+}
+```
+
+does not provide a normal scrolling mechanism for accessing the clipped content.
+
+Compare:
+
+```css
+.clip {
+    overflow: clip;
+}
+
+.scroll {
+    overflow: auto;
+}
+```
+
+```text
+clip
+→ Content outside the clipping area is inaccessible through scrolling
+
+auto
+→ Content can be accessed by scrolling when necessary
+```
+
+### Clipping an Image
+
+A common use is preventing a large image from extending outside its container.
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    overflow: clip;
+}
+
+.image-box img {
+    width: 500px;
+}
+```
+
+The image can be larger than the container, but the excess is clipped.
+
+```text
+┌────────────────────────────┐
+│                            │
+│       Visible image        │
+│                            │
+└────────────────────────────┘
+       Extra image
+          clipped
+```
+
+### Clipping a Transformed Element
+
+```css
+.container {
+    width: 300px;
+    height: 200px;
+    overflow: clip;
+}
+
+.image {
+    transform: scale(1.2);
+}
+```
+
+The transformed element can extend beyond the container, but the overflowing portion is clipped.
+
+### `clip` and `border-radius`
+
+A component can combine clipping with rounded corners:
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: clip;
+}
+```
+
+This can keep child content visually contained within the card's clipping boundary.
+
+### `clip` vs `visible`
+
+Compare:
+
+```css
+overflow: visible;
+```
+
+with:
+
+```css
+overflow: clip;
+```
+
+```text
+visible
+→ Overflow remains visible
+
+clip
+→ Overflow is clipped
+```
+
+### `clip` vs `scroll`
+
+Compare:
+
+```css
+overflow: clip;
+```
+
+with:
+
+```css
+overflow: scroll;
+```
+
+```text
+clip
+→ Overflow is clipped
+
+scroll
+→ Overflow can be accessed through scrolling
+```
+
+### When to Use `clip`
+
+Use `overflow: clip` when:
+
+- Overflow should not be visible.
+- The content should not be scrollable.
+- You specifically want clipping behavior.
+- A container needs to clip visual effects.
+- A child element should remain visually contained.
+
+### When to Use `hidden` Instead
+
+Use:
+
+```css
+overflow: hidden;
+```
+
+when you need clipping but may also need the element's scroll-container behavior.
+
+Use:
+
+```css
+overflow: clip;
+```
+
+when you explicitly want clipping without scrolling.
+
+### Important Points
+
+```text
+overflow: clip
+│
+├── Clips overflowing content
+├── Does not provide scrolling
+├── Can be applied to both axes
+├── overflow-x: clip → horizontal clipping
+├── overflow-y: clip → vertical clipping
+└── Useful for intentional clipping
+```
+
+> 💡 **Remember:** `overflow: clip` is specifically for clipping overflow without providing scrolling. It is similar to `hidden` visually, but its behavior and scrolling implications are different.
