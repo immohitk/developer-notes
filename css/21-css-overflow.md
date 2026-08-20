@@ -5492,3 +5492,496 @@ CSS Grid Overflow
 ```
 
 > 💡 **Remember:** Grid overflow often comes from content imposing a large minimum size on a flexible track. `minmax(0, 1fr)`, `min-width: 0`, appropriate text wrapping, and controlled overflow can help keep Grid layouts within their available space.
+
+---
+
+## Practical Examples
+
+The `overflow` property is useful in many real-world layouts. The following examples combine the overflow properties covered in this topic.
+
+### Example 1: Scrollable Card
+
+```html
+<div class="card">
+    <p>
+        This card contains more content than can fit inside
+        its available height.
+    </p>
+    <p>
+        Additional content can be accessed by scrolling.
+    </p>
+</div>
+```
+
+```css
+.card {
+    width: 300px;
+    height: 150px;
+    overflow-y: auto;
+}
+```
+
+The card remains `150px` tall while additional content can be accessed vertically.
+
+### Example 2: Single-Line Text With Ellipsis
+
+```html
+<h2 class="title">
+    This is a very long title that does not fit inside the card.
+</h2>
+```
+
+```css
+.title {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+Result:
+
+```text
+This is a very long title...
+```
+
+### Example 3: Responsive Image
+
+```html
+<img src="image.jpg" alt="Example image">
+```
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+The image can shrink to fit its available container width.
+
+### Example 4: Image Cropping
+
+```html
+<div class="image-box">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+The image fills the container while portions outside the visible area are cropped.
+
+### Example 5: Rounded Image Card
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+```css
+.card {
+    width: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    display: block;
+}
+```
+
+The image remains visually contained within the rounded card.
+
+### Example 6: Image Zoom Effect
+
+```html
+<div class="image-box">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+```
+
+The image grows on hover while the container clips the overflowing portion.
+
+### Example 7: Horizontally Scrollable Table
+
+```html
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Phone</th>
+        </tr>
+        <tr>
+            <td>Mohit</td>
+            <td>example@email.com</td>
+            <td>Computer Science</td>
+            <td>Delhi</td>
+            <td>1234567890</td>
+        </tr>
+    </table>
+</div>
+```
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    min-width: 700px;
+}
+```
+
+On a narrow screen, the table can be accessed through horizontal scrolling.
+
+### Example 8: Scrollable Code Block
+
+```html
+<pre class="code">
+const result = someVeryLongFunctionName(firstArgument, secondArgument);
+</pre>
+```
+
+```css
+.code {
+    overflow-x: auto;
+    white-space: pre;
+}
+```
+
+Long code lines remain intact while the user can scroll horizontally.
+
+### Example 9: Preventing Long URLs From Overflowing
+
+```html
+<p class="url">
+    https://example.com/a/very/long/path/that/may/not/fit
+</p>
+```
+
+```css
+.url {
+    overflow-wrap: break-word;
+}
+```
+
+This allows long unbroken strings to wrap when necessary.
+
+### Example 10: Grid Layout With Scrollable Content
+
+```html
+<div class="layout">
+    <aside class="sidebar">
+        Sidebar
+    </aside>
+
+    <main class="main">
+        <pre class="code">
+const veryLongFunctionName = someVeryLongFunctionName(firstArgument, secondArgument);
+        </pre>
+    </main>
+</div>
+```
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 20px;
+}
+
+.main {
+    min-width: 0;
+}
+
+.code {
+    overflow-x: auto;
+}
+```
+
+The flexible Grid area can shrink while the wide code remains horizontally scrollable.
+
+### Example 11: Positioned Element Clipped by Its Parent
+
+```html
+<div class="container">
+    <div class="child"></div>
+</div>
+```
+
+```css
+.container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.child {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: -50px;
+}
+```
+
+The portion of the positioned child outside the container is clipped.
+
+### Example 12: Horizontal and Vertical Overflow Separately
+
+```css
+.panel {
+    width: 300px;
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+```
+
+This creates:
+
+```text
+Horizontal → scroll when necessary
+Vertical   → clipped
+```
+
+### Example 13: Two-Value Overflow
+
+The same behavior can be written using the shorthand:
+
+```css
+.panel {
+    overflow: auto hidden;
+}
+```
+
+The order is:
+
+```text
+First value  → horizontal
+Second value → vertical
+```
+
+Therefore:
+
+```css
+overflow: auto hidden;
+```
+
+means:
+
+```text
+overflow-x → auto
+overflow-y → hidden
+```
+
+### Example 14: Clipping Without Scrolling
+
+```css
+.container {
+    width: 300px;
+    height: 200px;
+    overflow: clip;
+}
+```
+
+This clips overflowing content without providing a scrolling mechanism.
+
+### Example 15: Complete Card Component
+
+HTML:
+
+```html
+<article class="card">
+    <div class="image-box">
+        <img src="image.jpg" alt="Example image">
+    </div>
+
+    <div class="card-content">
+        <h2 class="card-title">
+            A very long card title that may not fit
+        </h2>
+
+        <p>
+            This is some additional content inside the card.
+        </p>
+    </div>
+</article>
+```
+
+CSS:
+
+```css
+.card {
+    width: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image-box {
+    height: 180px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-content {
+    padding: 16px;
+}
+```
+
+This example combines:
+
+```text
+border-radius
+      +
+overflow: hidden
+      +
+object-fit
+      +
+text-overflow
+      +
+white-space
+```
+
+to create a controlled card layout.
+
+### Example 16: Choosing the Appropriate Overflow
+
+Use:
+
+```css
+overflow: visible;
+```
+
+when overflow should remain visible.
+
+Use:
+
+```css
+overflow: hidden;
+```
+
+when overflow should be clipped.
+
+Use:
+
+```css
+overflow: scroll;
+```
+
+when a scrolling mechanism should be explicitly provided.
+
+Use:
+
+```css
+overflow: auto;
+```
+
+when scrolling should be available when necessary.
+
+Use:
+
+```css
+overflow: clip;
+```
+
+when overflow should be clipped without scrolling.
+
+Use:
+
+```css
+overflow-x: auto;
+```
+
+when wide content should scroll horizontally.
+
+Use:
+
+```css
+overflow-y: auto;
+```
+
+when tall content should scroll vertically.
+
+### Quick Decision Guide
+
+```text
+Should overflow remain visible?
+        ↓
+overflow: visible
+
+Should overflow be clipped?
+        ↓
+overflow: hidden
+
+Should overflow be scrollable?
+        ↓
+overflow: auto
+
+Should a scrolling mechanism be explicitly requested?
+        ↓
+overflow: scroll
+
+Should overflow be clipped without scrolling?
+        ↓
+overflow: clip
+
+Only horizontal overflow needs scrolling?
+        ↓
+overflow-x: auto
+
+Only vertical overflow needs scrolling?
+        ↓
+overflow-y: auto
+```
+
+> 💡 **Remember:** Choose the overflow behavior based on what should happen to content that does not fit: remain visible, be clipped, or remain accessible through scrolling.
