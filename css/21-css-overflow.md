@@ -4420,3 +4420,293 @@ Image Overflow
 ```
 
 > 💡 **Remember:** Image overflow can be handled by making images responsive, clipping them, allowing scrolling, or controlling how they fit inside a container. Use `max-width: 100%` for responsive images and `overflow: hidden` or `clip` when intentional visual clipping is required.
+
+---
+
+## Overflow With Border Radius
+
+`overflow` and `border-radius` are commonly used together when content, especially images, should remain inside a rounded container.
+
+### Basic Example
+
+```css
+.card {
+    width: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+The rounded corners define the shape of the container, while `overflow: hidden` clips overflowing child content.
+
+```text
+      ╭────────────────────╮
+      │                    │
+      │      Content       │
+      │                    │
+      ╰────────────────────╯
+```
+
+### Why Use `overflow: hidden` With `border-radius`?
+
+Consider a card containing an image:
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+CSS:
+
+```css
+.card {
+    border-radius: 16px;
+}
+
+.card img {
+    width: 100%;
+}
+```
+
+Depending on the layout and child content, the child can visually extend beyond the rounded shape.
+
+Adding:
+
+```css
+overflow: hidden;
+```
+
+clips the child content to the container's overflow area.
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+### Image Card Example
+
+HTML:
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Mountain landscape">
+
+    <div class="content">
+        <h2>Mountain</h2>
+        <p>A simple card example.</p>
+    </div>
+</div>
+```
+
+CSS:
+
+```css
+.card {
+    width: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    display: block;
+}
+```
+
+The image stays visually contained within the rounded card.
+
+### Rounded Image Container
+
+You can also use the technique for a dedicated image container:
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+This is a common pattern for thumbnails and image cards.
+
+```text
+      ╭────────────────────────╮
+      │                        │
+      │        Image           │
+      │                        │
+      ╰────────────────────────╯
+```
+
+### Border Radius With Image Zoom
+
+This pattern is particularly useful for hover effects.
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+```
+
+The image becomes larger during the transform, but the container clips the transformed image.
+
+```text
+Normal:
+
+╭────────────────────────╮
+│        Image           │
+╰────────────────────────╯
+
+Hover:
+
+╭────────────────────────╮
+│    Enlarged image      │
+│      cropped           │
+╰────────────────────────╯
+```
+
+### `overflow: hidden` vs `overflow: clip`
+
+Both can be used to clip overflowing content:
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+or:
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: clip;
+}
+```
+
+The important distinction is that `clip` is specifically intended to clip overflow without providing a scrolling mechanism.
+
+```text
+hidden
+→ Clips overflow
+→ Has scroll-container behavior
+
+clip
+→ Clips overflow
+→ Does not provide scrolling
+```
+
+### Border Radius Does Not Replace Overflow Control
+
+A common misconception is:
+
+```css
+.card {
+    border-radius: 16px;
+}
+```
+
+automatically handling every type of child overflow.
+
+`border-radius` controls the rounded corners of the element itself. Overflow behavior is controlled separately.
+
+When child content needs to be clipped to the rounded container, use an appropriate overflow value.
+
+For example:
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+### Common Uses
+
+This combination is commonly used for:
+
+```text
+Image cards
+Profile pictures
+Thumbnails
+Hero images
+Gallery items
+Product cards
+Video previews
+Image hover effects
+```
+
+### Practical Example
+
+```css
+.product-card {
+    width: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-card .content {
+    padding: 16px;
+}
+```
+
+The card has:
+
+```text
+Rounded container
+        +
+Clipped child content
+        +
+Responsive image
+```
+
+### Important Points
+
+```text
+border-radius
+    ↓
+Creates rounded corners
+
+overflow: hidden / clip
+    ↓
+Controls child content extending
+outside the container
+
+Together
+    ↓
+Create clean rounded components
+with contained child content
+```
+
+> 💡 **Remember:** `border-radius` controls the rounded shape, while `overflow` controls content that extends beyond the element. Combining `border-radius` with `overflow: hidden` or `overflow: clip` is a common way to keep images and other child content visually inside rounded containers.
