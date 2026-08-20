@@ -3655,3 +3655,377 @@ Common single-line pattern:
 ```
 
 > 💡 **Remember:** `text-overflow` controls how overflowing text is represented. For the common single-line ellipsis effect, combine `text-overflow: ellipsis` with `overflow: hidden` and `white-space: nowrap`.
+
+---
+
+## Overflow With Text
+
+Text can overflow when it is larger than the available space of its container.
+
+This commonly happens with:
+
+- Long sentences
+- Long words
+- URLs
+- File names
+- Code
+- Non-wrapping text
+- Fixed-width containers
+
+### Basic Example
+
+```css
+.text {
+    width: 200px;
+}
+```
+
+If the text is longer than the available width, it may extend beyond the container.
+
+```text
+┌────────────────────┐
+│ This is some long  │
+│ text that may      │
+└────────────────────┘
+       ↓
+   Extra text
+   may overflow
+```
+
+### Controlling Text Overflow
+
+The `overflow` property can control what happens to overflowing text.
+
+```css
+.text {
+    width: 200px;
+    overflow: hidden;
+}
+```
+
+The overflowing portion is clipped.
+
+```text
+┌────────────────────┐
+│ This is some long  │
+│ text that may      │
+└────────────────────┘
+```
+
+### Horizontal Scrolling Text
+
+If the text should remain accessible, use horizontal scrolling:
+
+```css
+.text {
+    width: 200px;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+```
+
+The text remains on one line and can be scrolled horizontally when it is wider than the container.
+
+```text
+┌────────────────────┐
+│ This is some long →│
+└────────────────────┘
+       scroll →
+```
+
+### Preventing Text From Wrapping
+
+The `white-space` property controls how whitespace and line wrapping are handled.
+
+For example:
+
+```css
+.text {
+    white-space: nowrap;
+}
+```
+
+This keeps the text on a single line.
+
+Without `nowrap`, normal text can wrap:
+
+```text
+This is some long
+text that wraps
+onto another line.
+```
+
+With `nowrap`:
+
+```text
+This is some long text that stays on one line...
+```
+
+### Single-Line Ellipsis
+
+A common UI pattern is to replace clipped text with an ellipsis.
+
+```css
+.text {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+Result:
+
+```text
+This is some very...
+```
+
+The three properties work together:
+
+```text
+white-space: nowrap
+        ↓
+Keep text on one line
+
+overflow: hidden
+        ↓
+Clip overflowing text
+
+text-overflow: ellipsis
+        ↓
+Show "..."
+```
+
+### Long Words
+
+A single extremely long word can overflow even when normal text wrapping is enabled.
+
+For example:
+
+```text
+ThisIsAnExtremelyLongWordThatMayNotFit
+```
+
+Depending on the available width and CSS settings, such content may extend beyond its container.
+
+When necessary, consider text wrapping and breaking properties such as:
+
+```css
+overflow-wrap
+word-break
+```
+
+For example:
+
+```css
+.text {
+    overflow-wrap: break-word;
+}
+```
+
+This can allow an otherwise unbreakable string to wrap when needed.
+
+### `overflow-wrap`
+
+`overflow-wrap` controls whether the browser should break an otherwise unbreakable string when it would overflow its container.
+
+Example:
+
+```css
+.text {
+    overflow-wrap: break-word;
+}
+```
+
+This can be useful for:
+
+```text
+Long URLs
+Long identifiers
+Long file names
+Other unbroken strings
+```
+
+### `word-break`
+
+`word-break` controls how words should break when text reaches the edge of its container.
+
+Example:
+
+```css
+.text {
+    word-break: break-all;
+}
+```
+
+This can allow breaks between individual characters.
+
+Use this carefully because it can make normal text harder to read.
+
+### `overflow-wrap` vs `word-break`
+
+A useful distinction is:
+
+```text
+overflow-wrap
+→ Helps prevent long unbreakable strings
+  from overflowing
+
+word-break
+→ Controls where words can break
+```
+
+For normal text, prefer natural wrapping where possible.
+
+### Long URLs
+
+URLs can be difficult to wrap because they may contain long sequences without spaces.
+
+Example:
+
+```text
+https://example.com/a/very/long/path/without/breaks
+```
+
+A container can use:
+
+```css
+.url {
+    overflow-wrap: break-word;
+}
+```
+
+to help prevent the URL from creating unwanted horizontal overflow.
+
+### Code and Text Overflow
+
+Code often contains long lines.
+
+For a horizontally scrollable code block:
+
+```css
+.code {
+    overflow-x: auto;
+    white-space: pre;
+}
+```
+
+This keeps the formatting of the code while allowing horizontal scrolling.
+
+Example:
+
+```text
+┌──────────────────────────────┐
+│ const veryLongFunctionName( →│
+└──────────────────────────────┘
+             scroll →
+```
+
+### Multi-Line Text
+
+`text-overflow: ellipsis` is commonly associated with single-line text.
+
+For multiple lines, truncation requires additional techniques and should not be confused with the simple single-line pattern.
+
+The standard basic pattern remains:
+
+```css
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### Text Inside Grid or Flex Layouts
+
+Text can also overflow when it is inside Grid or Flex layouts.
+
+For example:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+}
+```
+
+Using:
+
+```css
+minmax(0, 1fr)
+```
+
+for the flexible Grid track can help the track shrink appropriately.
+
+For a Flexbox item, a common technique is:
+
+```css
+.item {
+    min-width: 0;
+}
+```
+
+The exact solution depends on the layout and the type of content causing the overflow.
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="card">
+    <h2 class="title">
+        This is a very long title that needs to fit inside the card.
+    </h2>
+</div>
+```
+
+CSS:
+
+```css
+.card {
+    width: 250px;
+}
+
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+Result:
+
+```text
+┌──────────────────────────┐
+│ This is a very long...   │
+└──────────────────────────┘
+```
+
+### Important Points
+
+```text
+Text Overflow
+│
+├── overflow
+│   ├── visible
+│   ├── hidden
+│   ├── auto
+│   ├── scroll
+│   └── clip
+│
+├── white-space
+│   └── Controls wrapping
+│
+├── text-overflow
+│   ├── clip
+│   └── ellipsis
+│
+├── overflow-wrap
+│   └── Helps break long strings
+│
+└── word-break
+    └── Controls word-breaking behavior
+```
+
+> 💡 **Remember:** Text overflow can be handled by allowing text to wrap, clipping it, scrolling it, or displaying an ellipsis. For the common single-line ellipsis pattern, use `white-space: nowrap`, `overflow: hidden`, and `text-overflow: ellipsis` together.
