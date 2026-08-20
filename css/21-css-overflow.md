@@ -6318,3 +6318,421 @@ Helps flexible Grid tracks shrink
 ```
 
 > 💡 **Remember:** When content does not fit, decide whether it should remain visible, be clipped, or be made accessible through scrolling. Choose the overflow property that matches that requirement.
+
+---
+
+## Best Practices
+
+Use CSS overflow intentionally. Avoid hiding or scrolling content without considering how users will access the overflowing information.
+
+### 1. Prefer `auto` When Scrolling Is Optional
+
+When content may or may not overflow, prefer:
+
+```css
+.container {
+    overflow: auto;
+}
+```
+
+This allows scrolling when necessary instead of always requesting a scrolling mechanism.
+
+For axis-specific control:
+
+```css
+.container {
+    overflow-x: auto;
+}
+```
+
+or:
+
+```css
+.container {
+    overflow-y: auto;
+}
+```
+
+### 2. Use `hidden` for Intentional Visual Clipping
+
+Use:
+
+```css
+overflow: hidden;
+```
+
+when content is intentionally meant to be clipped.
+
+Common examples include:
+
+```text
+Image zoom effects
+Rounded cards
+Clipped decorative elements
+Image containers
+```
+
+Example:
+
+```css
+.image-box {
+    overflow: hidden;
+}
+```
+
+### 3. Use `clip` When You Specifically Want Clipping
+
+When the requirement is specifically to clip overflow without providing scrolling behavior, use:
+
+```css
+overflow: clip;
+```
+
+This communicates the intended behavior more explicitly than using a scrolling value.
+
+### 4. Use `overflow-x: auto` for Wide Content
+
+For content that can become wider than its container, use horizontal scrolling when appropriate:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+This is particularly useful for:
+
+```text
+Wide tables
+Code blocks
+Large diagrams
+Other horizontally wide content
+```
+
+### 5. Make Images Responsive
+
+A common responsive image pattern is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This helps prevent images from becoming wider than their available container.
+
+### 6. Use Ellipsis Carefully
+
+For single-line text that should be shortened visually, use:
+
+```css
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+Do not rely on:
+
+```css
+text-overflow: ellipsis;
+```
+
+alone.
+
+The overflow and whitespace behavior must also support the intended truncation.
+
+### 7. Do Not Hide Important Content Accidentally
+
+Avoid using:
+
+```css
+overflow: hidden;
+```
+
+simply to make a layout look correct if the clipped content contains information the user needs.
+
+For example:
+
+```text
+Important information
+        ↓
+overflow: hidden
+        ↓
+Information becomes inaccessible
+```
+
+Instead, consider:
+
+```css
+overflow: auto;
+```
+
+or redesign the layout so the content fits naturally.
+
+### 8. Avoid Unnecessary Fixed Heights
+
+Fixed heights can create overflow unexpectedly.
+
+Instead of:
+
+```css
+.card {
+    height: 100px;
+}
+```
+
+consider allowing the content to determine the height when appropriate.
+
+If a fixed height is required, provide an appropriate overflow strategy:
+
+```css
+.card {
+    height: 100px;
+    overflow-y: auto;
+}
+```
+
+### 9. Handle Long Unbroken Content
+
+Long URLs, identifiers, and other unbroken strings can cause horizontal overflow.
+
+Consider:
+
+```css
+.content {
+    overflow-wrap: break-word;
+}
+```
+
+This can help prevent long strings from extending beyond their container.
+
+### 10. Be Careful With `white-space: nowrap`
+
+`white-space: nowrap` is useful when text must remain on one line:
+
+```css
+.title {
+    white-space: nowrap;
+}
+```
+
+However, it can create horizontal overflow when the text is too long.
+
+When using it, combine it with an intentional overflow strategy:
+
+```css
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### 11. Use `min-width: 0` in Flexible Layouts When Needed
+
+Grid and Flex layouts can sometimes prevent items from shrinking because of their minimum content size.
+
+For a Grid or Flex item, this can help:
+
+```css
+.item {
+    min-width: 0;
+}
+```
+
+This is especially useful when the item contains long text or other wide content.
+
+### 12. Use `minmax(0, 1fr)` in Grid When Appropriate
+
+For a Grid layout:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+}
+```
+
+This allows the flexible track to shrink down to `0` rather than being forced wider by its minimum content contribution.
+
+### 13. Keep Overflow Rules Close to the Problem
+
+Apply overflow to the element that actually needs to control the overflowing content.
+
+For example:
+
+```css
+.code-container {
+    overflow-x: auto;
+}
+```
+
+is often clearer than applying broad overflow rules to a distant ancestor.
+
+### 14. Use Axis-Specific Properties When Only One Axis Needs Control
+
+Instead of:
+
+```css
+overflow: auto;
+```
+
+when only horizontal overflow needs handling, prefer:
+
+```css
+overflow-x: auto;
+```
+
+This makes the intended behavior clearer.
+
+### 15. Test Overflow at Different Screen Sizes
+
+A layout that works on a large screen may overflow on a smaller screen.
+
+Test:
+
+```text
+Large desktop
+Tablet
+Mobile
+Very narrow viewport
+```
+
+Pay particular attention to:
+
+```text
+Long text
+Images
+Tables
+Code
+Grid layouts
+Flex layouts
+Fixed-width elements
+```
+
+### 16. Check for Accidental Horizontal Page Overflow
+
+Unexpected horizontal scrolling on the entire page is often a sign that some element is wider than the viewport.
+
+Common causes include:
+
+```text
+Large fixed-width elements
+Large images
+Long unbroken text
+Grid tracks
+Flex items
+Positioned elements
+Transforms
+```
+
+Identify the element causing the overflow rather than hiding the problem globally.
+
+### 17. Prefer Layout Solutions Over Overflow Hacks
+
+Do not use overflow simply to hide a layout problem.
+
+For example:
+
+```css
+body {
+    overflow-x: hidden;
+}
+```
+
+may hide unwanted horizontal scrolling, but it does not necessarily fix the element that is causing the overflow.
+
+First identify why the element is wider than expected.
+
+### 18. Choose Overflow Based on User Intent
+
+A useful decision process is:
+
+```text
+Should the content remain visible?
+        ↓
+visible
+
+Should the extra content be intentionally clipped?
+        ↓
+hidden / clip
+
+Should the user access extra content?
+        ↓
+auto / scroll
+
+Is only horizontal content too wide?
+        ↓
+overflow-x
+
+Is only vertical content too tall?
+        ↓
+overflow-y
+```
+
+### Best-Practice Pattern
+
+A common responsive content container might use:
+
+```css
+.container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+```
+
+For a responsive image:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+For a single-line title:
+
+```css
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+For a flexible Grid layout:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.main {
+    min-width: 0;
+}
+```
+
+### Best-Practice Checklist
+
+```text
+□ Use overflow intentionally
+□ Prefer auto when scrolling is conditional
+□ Use hidden/clip for intentional clipping
+□ Make images responsive
+□ Handle long strings
+□ Use ellipsis intentionally
+□ Avoid unnecessary fixed heights
+□ Check Grid and Flex minimum sizes
+□ Use min-width: 0 when appropriate
+□ Use minmax(0, 1fr) when appropriate
+□ Avoid hiding important content
+□ Test at different viewport sizes
+□ Fix the source of unexpected overflow
+□ Use axis-specific properties when appropriate
+```
+
+> 💡 **Remember:** Good overflow management should solve the actual layout requirement rather than simply hide problems. Make important content accessible, make images and layouts responsive, and choose `visible`, `hidden`, `clip`, `auto`, or `scroll` intentionally.
