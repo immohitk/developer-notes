@@ -4029,3 +4029,394 @@ Text Overflow
 ```
 
 > 💡 **Remember:** Text overflow can be handled by allowing text to wrap, clipping it, scrolling it, or displaying an ellipsis. For the common single-line ellipsis pattern, use `white-space: nowrap`, `overflow: hidden`, and `text-overflow: ellipsis` together.
+
+---
+
+## Overflow With Images
+
+Images can cause overflow when their dimensions are larger than the available space of their container.
+
+This commonly happens when:
+
+- An image has a fixed width larger than its parent.
+- An image has a fixed height larger than its parent.
+- An image is transformed using `scale()`.
+- An image is positioned outside its container.
+- The image does not adapt to the container size.
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="image-box">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+CSS:
+
+```css
+.image-box {
+    width: 300px;
+}
+
+.image-box img {
+    width: 500px;
+}
+```
+
+The image is wider than the container:
+
+```text
+Container
+┌──────────────────────────────┐
+│                              │
+│        Image                 │
+│                              │
+└──────────────────────────────┘
+────────────────────────────────────
+       Image extends outside
+       the container
+```
+
+This creates horizontal overflow.
+
+### Using `overflow: hidden`
+
+If the image should remain visually inside the container:
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+```
+
+The part of the image outside the container is clipped.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│       Visible image          │
+│                              │
+└──────────────────────────────┘
+        Extra image
+           clipped
+```
+
+### Responsive Images
+
+A common way to prevent an image from overflowing its container is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This allows the image to shrink when the container becomes narrower.
+
+```text
+Large screen
+
+┌───────────────────────────────┐
+│           Image               │
+└───────────────────────────────┘
+
+Small screen
+
+┌───────────────────┐
+│      Image        │
+└───────────────────┘
+```
+
+### Why `max-width: 100%` Helps
+
+Consider:
+
+```css
+img {
+    max-width: 100%;
+}
+```
+
+The image cannot become wider than its containing block's available width under normal sizing conditions.
+
+This helps prevent unwanted horizontal overflow.
+
+### `width: 100%` vs `max-width: 100%`
+
+These declarations have different intentions.
+
+```css
+img {
+    width: 100%;
+}
+```
+
+makes the image's width equal to the available width.
+
+While:
+
+```css
+img {
+    max-width: 100%;
+}
+```
+
+prevents the image from becoming wider than the available width while allowing a smaller intrinsic image to remain smaller.
+
+A common responsive image pattern is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+### Image With `overflow: auto`
+
+An image can also intentionally be placed inside a scrollable container.
+
+```css
+.image-container {
+    width: 300px;
+    overflow-x: auto;
+}
+
+.image-container img {
+    width: 600px;
+}
+```
+
+The container remains `300px` wide while the larger image can be accessed through horizontal scrolling.
+
+```text
+┌──────────────────────┐
+│      Large image →   │
+└──────────────────────┘
+       scroll →
+```
+
+This can be useful for diagrams, maps, screenshots, or other images that need to remain at a larger size.
+
+### Image With `object-fit`
+
+When an image must fit inside a fixed-size box, `object-fit` can often be more appropriate than simply allowing it to overflow.
+
+Example:
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+The image fills the container while maintaining its aspect ratio, with some portions potentially cropped.
+
+### Image Zoom Effect
+
+`overflow: hidden` is commonly used with transformed images.
+
+HTML:
+
+```html
+<div class="image-box">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+CSS:
+
+```css
+.image-box {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+```
+
+When the image is scaled:
+
+```text
+Normal
+
+┌──────────────────────────┐
+│        Image             │
+└──────────────────────────┘
+
+Scaled
+
+┌──────────────────────────┐
+│      Enlarged image      │
+│      cropped at edges    │
+└──────────────────────────┘
+```
+
+The container clips the enlarged image.
+
+### Image With `overflow: clip`
+
+The same visual clipping idea can use:
+
+```css
+.image-box {
+    overflow: clip;
+}
+```
+
+This clips the image without providing scrolling.
+
+### Image Positioned Outside the Container
+
+A positioned image can also extend outside its parent.
+
+```css
+.image-box {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    right: -50px;
+}
+```
+
+The portion outside the container is clipped.
+
+### Image Overflow and Border Radius
+
+A common card pattern is:
+
+```css
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+```
+
+For example:
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+The image is clipped to the card's visible shape.
+
+```text
+      ╭────────────────────╮
+      │                    │
+      │       Image        │
+      │                    │
+      ╰────────────────────╯
+```
+
+### Image Overflow in Responsive Layouts
+
+Images should generally adapt to their available space.
+
+A useful baseline is:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+For a fixed display area, you can use:
+
+```css
+.image-box {
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+The correct approach depends on whether the image should:
+
+```text
+Shrink
+Crop
+Scroll
+Clip
+```
+
+### Choosing the Right Approach
+
+```text
+Image should shrink
+        ↓
+max-width: 100%
+
+Image should fill a fixed box
+        ↓
+object-fit
+
+Image should be cropped
+        ↓
+overflow: hidden / clip
++
+appropriate image sizing
+
+Image should remain large
+        ↓
+overflow-x: auto
+
+Image should extend outside intentionally
+        ↓
+overflow: visible
+```
+
+### Important Points
+
+```text
+Image Overflow
+│
+├── max-width: 100%
+│   └── Helps prevent unwanted horizontal overflow
+│
+├── overflow: hidden
+│   └── Clips overflowing images
+│
+├── overflow: clip
+│   └── Clips without scrolling
+│
+├── overflow-x: auto
+│   └── Allows horizontal scrolling
+│
+└── object-fit
+    └── Controls how an image fits its box
+```
+
+> 💡 **Remember:** Image overflow can be handled by making images responsive, clipping them, allowing scrolling, or controlling how they fit inside a container. Use `max-width: 100%` for responsive images and `overflow: hidden` or `clip` when intentional visual clipping is required.
