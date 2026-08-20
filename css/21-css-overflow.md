@@ -4710,3 +4710,383 @@ with contained child content
 ```
 
 > 💡 **Remember:** `border-radius` controls the rounded shape, while `overflow` controls content that extends beyond the element. Combining `border-radius` with `overflow: hidden` or `overflow: clip` is a common way to keep images and other child content visually inside rounded containers.
+
+---
+
+## Overflow With Positioning
+
+Positioned elements can extend outside the boundaries of their parent element.
+
+CSS Overflow can be used to control whether that extra content remains visible, is clipped, or can be accessed through scrolling.
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="container">
+    <div class="child">Child</div>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+.child {
+    position: absolute;
+    right: -50px;
+}
+```
+
+The child is positioned `50px` outside the right side of the container.
+
+```text
+Container
+┌──────────────────────────────┐
+│                              │
+│                         Child│────────
+│                              │
+└──────────────────────────────┘
+                           ↑
+                     Outside parent
+```
+
+### Using `overflow: hidden`
+
+If the positioned child should not be visible outside the parent:
+
+```css
+.container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+```
+
+The overflowing portion of the child is clipped.
+
+```text
+┌──────────────────────────────┐
+│                              │
+│                         Chil │
+│                              │
+└──────────────────────────────┘
+```
+
+### Why `position: relative` Is Commonly Used
+
+A common pattern is:
+
+```css
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+}
+```
+
+The positioned parent establishes the containing block used by the absolutely positioned child.
+
+For example:
+
+```css
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+```
+
+This is frequently used for cards, image containers, badges, overlays, and decorative elements.
+
+### Positioned Element Extending Outside a Card
+
+HTML:
+
+```html
+<div class="card">
+    <div class="badge">NEW</div>
+    <h2>Product</h2>
+</div>
+```
+
+CSS:
+
+```css
+.card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: -20px;
+}
+```
+
+The badge extends beyond the right edge, but `overflow: hidden` clips the part outside the card.
+
+### Negative Positioning Values
+
+Negative values can intentionally move an element outside its parent.
+
+```css
+.child {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+}
+```
+
+The child extends beyond the top and left edges.
+
+With:
+
+```css
+.parent {
+    overflow: hidden;
+}
+```
+
+the overflowing portion is clipped.
+
+### Positioned Decorative Elements
+
+Overflow control is often useful for decorative elements.
+
+```css
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: -70px;
+    right: -70px;
+}
+```
+
+The pseudo-element extends beyond the card, but the card can clip it.
+
+```text
+      Decorative circle
+           ╭───────╮
+        ╭──╯       │
+┌───────┼──────────┤
+│       │  Card    │
+│       │          │
+└───────┴──────────┘
+```
+
+### Positioned Image
+
+An image can also be positioned outside its container.
+
+```css
+.image-box {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    width: 350px;
+    left: -25px;
+}
+```
+
+The image extends beyond the container, but the overflow is clipped.
+
+### `overflow: visible`
+
+If the parent uses:
+
+```css
+.parent {
+    overflow: visible;
+}
+```
+
+the positioned child can remain visible outside the parent's box.
+
+```text
+┌──────────────────────┐
+│ Parent               │
+└──────────────────────┘──────────
+                         Child
+```
+
+This can be useful when the child intentionally needs to appear outside the parent.
+
+### `overflow: hidden`
+
+With:
+
+```css
+.parent {
+    overflow: hidden;
+}
+```
+
+the overflowing portion is clipped.
+
+```text
+┌──────────────────────┐
+│ Parent               │
+│ Child                │
+└──────────────────────┘
+        ↑
+   Outside portion
+      clipped
+```
+
+### `overflow: auto`
+
+With:
+
+```css
+.parent {
+    overflow: auto;
+}
+```
+
+overflow can become scrollable when necessary.
+
+This is useful when the positioned content should remain accessible rather than being permanently clipped.
+
+### `overflow: clip`
+
+With:
+
+```css
+.parent {
+    overflow: clip;
+}
+```
+
+overflow is clipped without providing a scrolling mechanism.
+
+This can be useful when positioned elements are purely decorative.
+
+### Positioning and Transforms
+
+Transforms can also cause an element to extend beyond its container.
+
+```css
+.container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.child {
+    transform: scale(1.2);
+}
+```
+
+The transformed child becomes visually larger and may extend outside the container.
+
+The container clips the overflowing portion.
+
+### Hover Effects
+
+This technique is common for image and card hover effects.
+
+```css
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card img {
+    transition: transform 0.3s;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+```
+
+The image grows beyond its original dimensions, but the card clips the excess.
+
+### Important Consideration
+
+`overflow` controls the visibility and scrolling behavior of content extending outside an element's overflow area.
+
+It does not change the positioning values themselves.
+
+For example:
+
+```css
+.child {
+    right: -50px;
+}
+```
+
+still positions the child outside the parent.
+
+Adding:
+
+```css
+.parent {
+    overflow: hidden;
+}
+```
+
+only changes how the overflow is displayed.
+
+### Common Uses
+
+Overflow with positioning is commonly used for:
+
+```text
+Card badges
+Image overlays
+Decorative shapes
+Image zoom effects
+Hover animations
+Badges and labels
+Clipped illustrations
+Positioned backgrounds
+```
+
+### Important Points
+
+```text
+Positioned element
+        ↓
+Can extend outside parent
+        ↓
+Parent overflow controls visibility
+        │
+        ├── visible → remains visible
+        ├── hidden  → clipped
+        ├── auto    → scroll when necessary
+        └── clip    → clipped without scrolling
+```
+
+> 💡 **Remember:** Positioning can intentionally move elements outside their parent. Use the parent's `overflow` property to decide whether that outside portion should remain visible, be clipped, or be accessible through scrolling.
