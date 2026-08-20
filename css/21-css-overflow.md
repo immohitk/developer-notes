@@ -432,3 +432,253 @@ Overflow
 ```
 
 > 💡 **Remember:** Overflow simply means that content does not fit within the available space of its element. It can happen horizontally, vertically, or in both directions, and CSS provides properties to control what happens to that extra content.
+
+---
+
+## `overflow`
+
+The `overflow` property controls how content that extends beyond an element's box is handled.
+
+### Syntax
+
+```css
+overflow: value;
+```
+
+Example:
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+}
+```
+
+The main values are:
+
+```css
+visible
+hidden
+scroll
+auto
+clip
+```
+
+### `overflow` Controls Both Axes
+
+The `overflow` property controls overflow in both the horizontal and vertical directions.
+
+```css
+.box {
+    overflow: auto;
+}
+```
+
+Conceptually:
+
+```text
+          Horizontal
+       ←──────────────→
+
+      ┌────────────────┐
+      │                │
+      │    Content     │
+      │                │
+      └────────────────┘
+             │
+             │
+          Vertical
+```
+
+If the content becomes too wide or too tall, the selected overflow behavior is applied.
+
+### Default Value
+
+The default value is:
+
+```css
+overflow: visible;
+```
+
+This means overflowing content remains visible outside the element's box.
+
+### `overflow` vs `overflow-x` / `overflow-y`
+
+Use:
+
+```css
+overflow
+```
+
+when both axes should use the same overflow behavior.
+
+Example:
+
+```css
+.box {
+    overflow: hidden;
+}
+```
+
+Use:
+
+```css
+overflow-x
+overflow-y
+```
+
+when the horizontal and vertical axes need different behavior.
+
+Example:
+
+```css
+.box {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+```
+
+### One-Value Syntax
+
+A single value applies to both axes:
+
+```css
+.box {
+    overflow: hidden;
+}
+```
+
+Equivalent conceptually to:
+
+```css
+.box {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+```
+
+### Two-Value Syntax
+
+The property can also accept two values:
+
+```css
+.box {
+    overflow: hidden auto;
+}
+```
+
+The values correspond to:
+
+```text
+First value  → overflow-x
+Second value → overflow-y
+```
+
+So:
+
+```css
+overflow: hidden auto;
+```
+
+means:
+
+```text
+Horizontal → hidden
+Vertical   → auto
+```
+
+Another example:
+
+```css
+overflow: auto hidden;
+```
+
+means:
+
+```text
+Horizontal → auto
+Vertical   → hidden
+```
+
+### Common Examples
+
+Hide overflowing content:
+
+```css
+.box {
+    overflow: hidden;
+}
+```
+
+Allow scrolling when necessary:
+
+```css
+.box {
+    overflow: auto;
+}
+```
+
+Always provide scrolling:
+
+```css
+.box {
+    overflow: scroll;
+}
+```
+
+Keep overflow visible:
+
+```css
+.box {
+    overflow: visible;
+}
+```
+
+Clip overflow without a scrolling mechanism:
+
+```css
+.box {
+    overflow: clip;
+}
+```
+
+### When to Use `overflow`
+
+Use `overflow` when you need to control content that exceeds an element's available space.
+
+Common situations include:
+
+```text
+Fixed-height containers
+Scrollable panels
+Code blocks
+Large tables
+Images inside containers
+Cards with clipped content
+Grid and flex layouts
+```
+
+### Important Points
+
+```text
+overflow
+│
+├── Controls overflow on both axes
+│
+├── One value
+│   └── Applies to both axes
+│
+├── Two values
+│   ├── First → horizontal
+│   └── Second → vertical
+│
+└── Common values
+    ├── visible
+    ├── hidden
+    ├── scroll
+    ├── auto
+    └── clip
+```
+
+> 💡 **Remember:** `overflow` controls what happens when content exceeds an element's available space. With one value, the same behavior applies to both axes; with two values, the first controls horizontal overflow and the second controls vertical overflow.
