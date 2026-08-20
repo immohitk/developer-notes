@@ -6095,3 +6095,17 @@ CSS Overflow
 ```
 
 > 💡 **Remember:** Overflow is about deciding what should happen when content does not fit. Choose between keeping it visible, clipping it, or making it accessible through scrolling.
+
+---
+
+## References
+
+- [MDN Web Docs — CSS Overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow)
+- [MDN Web Docs — overflow-x](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x)
+- [MDN Web Docs — overflow-y](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y)
+- [MDN Web Docs — text-overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow)
+- [MDN Web Docs — overflow-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap)
+- [MDN Web Docs — CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout)
+- [MDN Web Docs — object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
+- [MDN Web Docs — border-radius](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)
+- [MDN Web Docs — position](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
