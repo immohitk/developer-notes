@@ -3333,3 +3333,325 @@ Two-value overflow
 ```
 
 > 💡 **Remember:** With two `overflow` values, the **first controls horizontal overflow** and the **second controls vertical overflow**. For example, `overflow: hidden auto` means horizontal overflow is hidden while vertical overflow can scroll when necessary.
+
+---
+
+## `text-overflow`
+
+The `text-overflow` property controls how text that overflows its containing element is represented.
+
+It is commonly used to show an ellipsis (`...`) when text is clipped because it does not fit within the available space.
+
+### Syntax
+
+```css
+.text {
+    text-overflow: value;
+}
+```
+
+Common values are:
+
+```css
+clip
+ellipsis
+```
+
+### `text-overflow: clip`
+
+`clip` is the default behavior.
+
+```css
+.text {
+    text-overflow: clip;
+}
+```
+
+The overflowing text is simply clipped at the content area.
+
+```text
+This is a very long tex
+```
+
+The remaining text is not represented by an ellipsis.
+
+### `text-overflow: ellipsis`
+
+```css
+.text {
+    text-overflow: ellipsis;
+}
+```
+
+When the text is clipped, the browser can represent the hidden portion with an ellipsis.
+
+```text
+This is a very long...
+```
+
+### Important: `text-overflow` Alone Is Usually Not Enough
+
+A common mistake is to write:
+
+```css
+.text {
+    text-overflow: ellipsis;
+}
+```
+
+and expect the text to automatically display an ellipsis.
+
+Typically, the element also needs:
+
+```css
+overflow: hidden;
+white-space: nowrap;
+```
+
+A common single-line pattern is:
+
+```css
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### How the Ellipsis Pattern Works
+
+The three properties have different responsibilities:
+
+```text
+white-space: nowrap
+        ↓
+Keeps the text on one line
+
+overflow: hidden
+        ↓
+Clips content that does not fit
+
+text-overflow: ellipsis
+        ↓
+Represents clipped text with "..."
+```
+
+### Complete Example
+
+HTML:
+
+```html
+<p class="title">
+    This is a very long title that does not fit in the container.
+</p>
+```
+
+CSS:
+
+```css
+.title {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+Result:
+
+```text
+This is a very long title tha...
+```
+
+### Why `white-space: nowrap` Is Used
+
+Without:
+
+```css
+white-space: nowrap;
+```
+
+the text may wrap onto multiple lines instead of overflowing horizontally.
+
+```text
+Without nowrap:
+
+This is a very long
+title that wraps
+to another line.
+```
+
+With:
+
+```css
+white-space: nowrap;
+```
+
+the text stays on one line:
+
+```text
+This is a very long title that...
+```
+
+### Why `overflow: hidden` Is Used
+
+The overflow needs to be clipped for the ellipsis behavior to become visible.
+
+```css
+overflow: hidden;
+```
+
+prevents the extra text from simply extending outside the element.
+
+### Fixed or Constrained Width
+
+The text needs a constrained available width for this common pattern to have an overflow to handle.
+
+For example:
+
+```css
+.title {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+A responsive element can also use a maximum or otherwise constrained width depending on the layout:
+
+```css
+.title {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### `text-overflow` With a Long Title
+
+This pattern is common for:
+
+```text
+Card titles
+Navigation items
+Product names
+File names
+User names
+Table cells
+```
+
+Example:
+
+```css
+.card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### `text-overflow` in a Table
+
+A table cell may contain more text than the available column width.
+
+Example:
+
+```css
+td {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+The visible text can then be shortened with an ellipsis when it overflows.
+
+### `text-overflow` and `overflow: auto`
+
+Be careful when combining the two.
+
+```css
+.text {
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+```
+
+This does not represent the standard single-line ellipsis pattern.
+
+For a typical single-line ellipsis effect, use:
+
+```css
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+### `clip` vs `ellipsis`
+
+```css
+text-overflow: clip;
+```
+
+means:
+
+```text
+Overflowing text
+        ↓
+Simply clipped
+```
+
+While:
+
+```css
+text-overflow: ellipsis;
+```
+
+means:
+
+```text
+Overflowing text
+        ↓
+Represented with an ellipsis
+```
+
+Conceptually:
+
+```text
+clip:
+This is a very long tex
+
+ellipsis:
+This is a very long...
+```
+
+### Important Points
+
+```text
+text-overflow
+│
+├── Controls the representation of overflowing text
+│
+├── clip
+│   └── Clips the text
+│
+└── ellipsis
+    └── Represents clipped text with "..."
+```
+
+Common single-line pattern:
+
+```css
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+> 💡 **Remember:** `text-overflow` controls how overflowing text is represented. For the common single-line ellipsis effect, combine `text-overflow: ellipsis` with `overflow: hidden` and `white-space: nowrap`.
