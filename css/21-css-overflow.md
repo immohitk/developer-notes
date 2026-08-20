@@ -2305,3 +2305,354 @@ overflow: scroll
 ```
 
 > 💡 **Remember:** `overflow: scroll` provides a scrolling mechanism for an element's overflow. Use `auto` when you want scrolling only when necessary, and use `scroll` when you explicitly want a scrolling mechanism.
+
+---
+
+## `overflow: auto`
+
+The `overflow: auto` value allows the browser to provide scrolling when the content overflows an element's available space.
+
+It is one of the most commonly used overflow values because it avoids unnecessary scrolling when the content already fits.
+
+### Syntax
+
+```css
+.box {
+    overflow: auto;
+}
+```
+
+### Basic Example
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+}
+```
+
+If the content fits:
+
+```text
+┌──────────────────────┐
+│ Content fits here    │
+│ No scrolling needed  │
+└──────────────────────┘
+```
+
+If the content is larger:
+
+```text
+┌──────────────────────┐
+│ Content              │
+│ Content              │
+│ Content           █  │
+│ Content           █  │
+└──────────────────────┘
+        scrolling
+```
+
+The browser can provide the appropriate scrolling mechanism when needed.
+
+### `auto` With Horizontal Overflow
+
+Use:
+
+```css
+overflow-x: auto;
+```
+
+when content may become wider than the container.
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+This is commonly used for wide tables.
+
+```text
+┌──────────────────────────┐
+│ Column 1 | Column 2 |... │
+└──────────────────────────┘
+       ←── scroll ──→
+```
+
+### `auto` With Vertical Overflow
+
+Use:
+
+```css
+overflow-y: auto;
+```
+
+when content may become taller than the container.
+
+```css
+.list {
+    height: 300px;
+    overflow-y: auto;
+}
+```
+
+This is useful for:
+
+- Lists
+- Sidebars
+- Chat panels
+- Modal content
+- Fixed-height sections
+
+### `auto` vs `scroll`
+
+The main difference is:
+
+```text
+auto
+→ Scrolling is provided when necessary
+
+scroll
+→ A scrolling mechanism is explicitly requested
+```
+
+Example:
+
+```css
+.auto {
+    overflow: auto;
+}
+
+.scroll {
+    overflow: scroll;
+}
+```
+
+With `auto`, a container whose content fits does not need scrolling.
+
+With `scroll`, scrolling mechanisms are explicitly requested, although the exact visual appearance of scrollbars depends on the browser and operating system.
+
+### `auto` vs `hidden`
+
+Compare:
+
+```css
+overflow: auto;
+```
+
+with:
+
+```css
+overflow: hidden;
+```
+
+```text
+auto
+→ Overflow can be accessed through scrolling
+
+hidden
+→ Overflow is clipped
+```
+
+Use `auto` when users should be able to access content that does not fit.
+
+Use `hidden` when the overflowing content should simply not be visible.
+
+### `auto` vs `visible`
+
+```css
+overflow: visible;
+```
+
+allows overflowing content to remain visible outside the element.
+
+```css
+overflow: auto;
+```
+
+keeps the content within a scrollable area when scrolling is needed.
+
+```text
+visible
+┌──────────────┐
+│ Content      │
+└──────────────┘────────────
+       overflow visible
+
+auto
+┌──────────────┐
+│ Content      │
+│ Content   █  │
+└──────────────┘
+       scroll when needed
+```
+
+### Scrollable Table
+
+A common real-world use is a responsive table.
+
+HTML:
+
+```html
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Location</th>
+        </tr>
+        <tr>
+            <td>Mohit</td>
+            <td>example@email.com</td>
+            <td>Computer Science</td>
+            <td>Delhi</td>
+        </tr>
+    </table>
+</div>
+```
+
+CSS:
+
+```css
+.table-container {
+    overflow-x: auto;
+}
+```
+
+If the table becomes wider than the container, the user can scroll horizontally.
+
+### Scrollable Code Block
+
+Code often contains long lines that should not wrap.
+
+```css
+.code {
+    overflow-x: auto;
+}
+```
+
+HTML:
+
+```html
+<pre class="code">
+const result = someVeryLongFunctionName(firstArgument, secondArgument);
+</pre>
+```
+
+The container can remain within the available width while allowing horizontal scrolling.
+
+### Scrollable List
+
+```css
+.list {
+    height: 250px;
+    overflow-y: auto;
+}
+```
+
+If the list becomes longer than `250px`, the user can scroll through the additional items.
+
+### Scrollable Modal Content
+
+```css
+.modal {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+```
+
+This allows a modal to remain within the viewport while still allowing long content to be accessed.
+
+### Combining Horizontal and Vertical Behavior
+
+You can control the two axes independently:
+
+```css
+.box {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+```
+
+Both directions can become scrollable when necessary.
+
+You can also mix behaviors:
+
+```css
+.box {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+```
+
+Here:
+
+```text
+Horizontal → scroll when necessary
+Vertical   → clipped
+```
+
+### `auto` With Fixed Dimensions
+
+`auto` is especially useful when the content size is unpredictable.
+
+```css
+.panel {
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+}
+```
+
+The panel remains within its specified dimensions while overflow can be accessed through scrolling.
+
+### `auto` in CSS Grid
+
+A Grid layout may contain content that needs its own scrolling area.
+
+For example:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns:
+        240px minmax(0, 1fr);
+}
+
+.main {
+    overflow: auto;
+}
+```
+
+The main content area can then become scrollable when its content exceeds the available space.
+
+### Common Uses
+
+```text
+overflow: auto
+│
+├── Responsive tables
+├── Code blocks
+├── Long lists
+├── Sidebars
+├── Chat panels
+├── Modal content
+├── Fixed-height containers
+└── Scrollable Grid sections
+```
+
+### Important Points
+
+```text
+overflow: auto
+│
+├── Allows scrolling when necessary
+├── Avoids unnecessary scrolling when content fits
+├── overflow-x: auto → horizontal scrolling
+├── overflow-y: auto → vertical scrolling
+└── Useful for unpredictable content sizes
+```
+
+> 💡 **Remember:** `overflow: auto` is useful when you want content to remain accessible without forcing a scrollbar when it is not needed. It is especially common for responsive tables, long lists, code blocks, modals, and scrollable content areas.
