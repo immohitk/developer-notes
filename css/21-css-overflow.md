@@ -5090,3 +5090,405 @@ Parent overflow controls visibility
 ```
 
 > 💡 **Remember:** Positioning can intentionally move elements outside their parent. Use the parent's `overflow` property to decide whether that outside portion should remain visible, be clipped, or be accessible through scrolling.
+
+---
+
+## Overflow in CSS Grid
+
+CSS Grid can experience overflow when the content of a grid item is larger than the space available in its grid track.
+
+This is especially important when using flexible tracks such as:
+
+```css
+1fr
+```
+
+### Basic Example
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+```
+
+The second column is flexible, but its contents can still affect its minimum size.
+
+For example:
+
+```text
+┌───────────┬──────────────────────┐
+│ Sidebar   │ Main content         │
+│           │ Very long content... │
+└───────────┴──────────────────────┘
+```
+
+If the main content contains a very long unbreakable string, the grid can become wider than expected.
+
+### Long Unbreakable Content
+
+Consider:
+
+```html
+<div class="layout">
+    <aside>Sidebar</aside>
+
+    <main>
+        AReallyLongUnbreakableStringThatMayCauseOverflow
+    </main>
+</div>
+```
+
+CSS:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+```
+
+The long string may contribute a large minimum size to the flexible track.
+
+This can cause horizontal overflow.
+
+### Using `minmax(0, 1fr)`
+
+A common solution is:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+}
+```
+
+Here:
+
+```text
+200px
+  ↓
+Fixed sidebar
+
+minmax(0, 1fr)
+  ↓
+Flexible main content
+```
+
+The `0` minimum allows the flexible track to shrink instead of being forced wider by its content's minimum contribution.
+
+### Why `minmax(0, 1fr)` Helps
+
+Compare:
+
+```css
+grid-template-columns: 200px 1fr;
+```
+
+with:
+
+```css
+grid-template-columns: 200px minmax(0, 1fr);
+```
+
+The second version explicitly allows the flexible track to have a minimum size of `0`.
+
+This is useful when content needs to be constrained within the available grid area.
+
+### Adding Overflow to the Grid Item
+
+Sometimes the content itself should become scrollable.
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+}
+
+.main {
+    overflow: auto;
+}
+```
+
+Now the main area can handle content that exceeds its available space.
+
+### Horizontal Scrolling
+
+For content that should remain wide, use:
+
+```css
+.main {
+    overflow-x: auto;
+}
+```
+
+For example, a wide table inside a Grid item can remain wide while the item provides horizontal scrolling.
+
+```text
+┌──────────────────────────────┐
+│ Wide content                →│
+└──────────────────────────────┘
+             scroll →
+```
+
+### Preventing Long Text From Breaking the Layout
+
+For normal text, allow it to wrap naturally.
+
+For long unbroken strings, consider:
+
+```css
+.main {
+    overflow-wrap: break-word;
+}
+```
+
+This can help prevent long strings from creating unwanted horizontal overflow.
+
+Depending on the content, other text-breaking properties may also be appropriate.
+
+### Grid Item `min-width`
+
+Another useful technique is setting:
+
+```css
+.main {
+    min-width: 0;
+}
+```
+
+This can allow a Grid item to shrink within its grid area when its content would otherwise impose a larger minimum size.
+
+A common pattern is:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+.main {
+    min-width: 0;
+}
+```
+
+Alternatively, the track itself can use:
+
+```css
+grid-template-columns: 200px minmax(0, 1fr);
+```
+
+### Which Approach Should You Use?
+
+Use `minmax(0, 1fr)` when you want the grid track itself to be allowed to shrink.
+
+```css
+grid-template-columns:
+    200px minmax(0, 1fr);
+```
+
+Use:
+
+```css
+min-width: 0;
+```
+
+when you need to control the minimum size of a particular Grid item.
+
+Use:
+
+```css
+overflow-x: auto;
+```
+
+when the content should remain wider and be accessed through horizontal scrolling.
+
+Use:
+
+```css
+overflow-wrap: break-word;
+```
+
+when long text or strings should be allowed to wrap.
+
+### Grid With a Scrollable Main Area
+
+A practical layout might be:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 20px;
+}
+
+.main {
+    overflow-x: auto;
+}
+```
+
+This creates:
+
+```text
+┌────────────┬────────────────────────┐
+│            │                        │
+│  Sidebar   │       Main             │
+│            │       Content          │
+│            │                        │
+└────────────┴────────────────────────┘
+```
+
+The main area can remain flexible while wide content can scroll horizontally.
+
+### Grid With Long Code
+
+A code block inside a Grid item can also cause overflow.
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.code-container {
+    overflow-x: auto;
+}
+```
+
+This keeps the Grid layout from being forced wider by long code lines.
+
+### Grid and Images
+
+Images can also contribute to overflow.
+
+A responsive image can use:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+If the image is intentionally larger and should be scrollable:
+
+```css
+.image-container {
+    overflow-x: auto;
+}
+```
+
+### Grid Overflow vs Grid Item Overflow
+
+It is useful to distinguish between:
+
+```text
+Grid overflow
+    ↓
+The overall grid becomes larger than its container
+
+Grid item overflow
+    ↓
+Content inside an item extends beyond
+the item's available area
+```
+
+The solution depends on which type of overflow is occurring.
+
+### Debugging Grid Overflow
+
+When a Grid layout unexpectedly becomes wider than the viewport, check:
+
+```text
+1. Very long unbroken text
+2. Large images
+3. Fixed-width children
+4. 1fr tracks with large minimum content
+5. Grid items with non-zero minimum sizes
+6. Positioned elements
+7. Transformed elements
+```
+
+Then inspect whether:
+
+```css
+minmax(0, 1fr)
+```
+
+or:
+
+```css
+min-width: 0;
+```
+
+or an appropriate overflow rule is needed.
+
+### Practical Example
+
+```html
+<div class="layout">
+    <aside class="sidebar">
+        Navigation
+    </aside>
+
+    <main class="main">
+        <pre class="code">
+const veryLongFunctionName = someVeryLongFunctionName(firstArgument, secondArgument);
+        </pre>
+    </main>
+</div>
+```
+
+CSS:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 20px;
+}
+
+.main {
+    min-width: 0;
+}
+
+.code {
+    overflow-x: auto;
+}
+```
+
+The result is:
+
+```text
+┌────────────┬──────────────────────────┐
+│            │ Code                     │
+│  Sidebar   │ const veryLong...      → │
+│            │                          │
+└────────────┴──────────────────────────┘
+                    scroll →
+```
+
+### Important Points
+
+```text
+CSS Grid Overflow
+│
+├── Long content can affect track sizing
+│
+├── minmax(0, 1fr)
+│   └── Allows flexible track to shrink
+│
+├── min-width: 0
+│   └── Allows Grid item to shrink
+│
+├── overflow-x: auto
+│   └── Allows wide content to scroll
+│
+├── overflow-wrap
+│   └── Helps break long strings
+│
+└── max-width: 100%
+    └── Helps keep images within their container
+```
+
+> 💡 **Remember:** Grid overflow often comes from content imposing a large minimum size on a flexible track. `minmax(0, 1fr)`, `min-width: 0`, appropriate text wrapping, and controlled overflow can help keep Grid layouts within their available space.
