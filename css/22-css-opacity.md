@@ -1408,3 +1408,286 @@ opacity: 1
 ```
 
 > 💡 **Remember:** `opacity: 1` means the element is fully opaque. It is the normal fully visible state and is particularly useful when restoring full opacity after another state has reduced it.
+
+---
+
+## Transparent Elements
+
+An element is transparent when its `opacity` value is less than `1`.
+
+The lower the opacity value, the more transparent the element becomes.
+
+### Basic Example
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+The element becomes partially transparent.
+
+```text
+opacity: 1
+██████████
+Fully opaque
+
+opacity: 0.5
+█████░░░░░
+Partially transparent
+
+opacity: 0
+░░░░░░░░░░
+Fully transparent
+```
+
+### Fully Transparent Element
+
+To make an element fully transparent:
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+The element becomes visually invisible.
+
+However, it still:
+
+- Exists in the document.
+- Occupies layout space.
+- Can still affect the layout.
+- Is not the same as `display: none`.
+
+### `opacity: 0` vs `display: none`
+
+These properties behave differently.
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+The element is:
+
+```text
+Invisible
+↓
+Still in the layout
+↓
+Still has its dimensions
+```
+
+While:
+
+```css
+.box {
+    display: none;
+}
+```
+
+means:
+
+```text
+Not rendered
+↓
+Removed from layout
+```
+
+### Different Transparency Levels
+
+You can choose different opacity values depending on the desired visual effect.
+
+```css
+.box {
+    opacity: 0.9;
+}
+```
+
+Almost fully opaque.
+
+```css
+.box {
+    opacity: 0.7;
+}
+```
+
+Slightly transparent.
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+Clearly transparent.
+
+```css
+.box {
+    opacity: 0.3;
+}
+```
+
+Mostly transparent.
+
+```css
+.box {
+    opacity: 0.1;
+}
+```
+
+Very transparent.
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+Fully transparent.
+
+### Transparent Text
+
+Opacity can be applied to text:
+
+```css
+.description {
+    opacity: 0.7;
+}
+```
+
+The entire element, including its text and other rendered content, receives the opacity effect.
+
+For text color specifically, a color with an alpha component can be more appropriate when only the text color should become translucent.
+
+For example:
+
+```css
+.description {
+    color: rgb(0 0 0 / 70%);
+}
+```
+
+This affects the text color rather than the opacity of the entire element.
+
+### Transparent Images
+
+Opacity can be applied to images:
+
+```css
+img {
+    opacity: 0.5;
+}
+```
+
+The image becomes partially transparent.
+
+This can be useful for:
+
+```text
+Watermarks
+Background images
+Decorative images
+Hover effects
+Faded thumbnails
+```
+
+### Transparent Backgrounds
+
+If only the background should be transparent, avoid applying opacity to the whole element when the text should remain fully opaque.
+
+Instead of:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+you can use a background color with an alpha component:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+Conceptually:
+
+```text
+opacity
+→ Entire element becomes transparent
+
+background alpha
+→ Only the background color becomes transparent
+```
+
+### Transparent Overlay
+
+Opacity is commonly used for overlays:
+
+```css
+.overlay {
+    background-color: black;
+    opacity: 0.5;
+}
+```
+
+This creates a semi-transparent layer through which the content underneath can be seen.
+
+### Hover Effect
+
+A common transparent hover effect is:
+
+```css
+.image {
+    opacity: 1;
+}
+
+.image:hover {
+    opacity: 0.6;
+}
+```
+
+The image becomes partially transparent when hovered.
+
+### Smooth Transparency
+
+Combine opacity with `transition`:
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.image:hover {
+    opacity: 0.6;
+}
+```
+
+The opacity changes smoothly instead of immediately.
+
+### Important Points
+
+```text
+Transparent Elements
+│
+├── opacity < 1
+│   └── Element becomes transparent
+│
+├── opacity: 0
+│   └── Fully transparent
+│
+├── opacity does not remove the element
+│
+├── opacity affects the entire element
+│
+└── For individual colors
+    └── Consider alpha colors instead
+```
+
+> 💡 **Remember:** `opacity: 0` makes an element completely transparent, but it does not remove the element from the layout. If only a particular color needs transparency, use a color with an alpha component instead of reducing the opacity of the entire element.
