@@ -5417,3 +5417,369 @@ display: none
 ```
 
 > 💡 **Remember:** `opacity` is primarily about **visual transparency**. It does not automatically control layout, visibility state, or interaction. Use the appropriate property for each separate requirement.
+
+---
+
+## Best Practices
+
+### 1. Use Opacity for Visual Effects
+
+Use `opacity` when the entire element should become more or less transparent.
+
+```css
+.image {
+    opacity: 0.7;
+}
+```
+
+Do not use opacity as a substitute for:
+
+```text
+Layout control
+Element removal
+Disabled functionality
+Pointer interaction
+```
+
+Use the appropriate property for each requirement.
+
+### 2. Prefer Alpha Colors When Only One Part Needs Transparency
+
+If only the background should be transparent, use an alpha-enabled color:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+Instead of:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+This allows the text and other content to remain fully opaque.
+
+### 3. Do Not Use Opacity to Actually Disable Controls
+
+Avoid treating:
+
+```css
+button {
+    opacity: 0.5;
+}
+```
+
+as a real disabled state.
+
+Use:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+and then style it:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+This separates functionality from appearance.
+
+### 4. Use Transitions for Intentional Fade Effects
+
+For smooth opacity changes:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+```
+
+Place the transition on the normal state so the effect works when both entering and leaving the state.
+
+### 5. Avoid Excessively Low Opacity
+
+Very low opacity can make content difficult to see.
+
+For example:
+
+```css
+.text {
+    opacity: 0.2;
+}
+```
+
+may create poor readability depending on the background.
+
+Use opacity values that preserve sufficient visual clarity.
+
+### 6. Do Not Hide Important Information With Opacity
+
+Avoid using:
+
+```css
+opacity: 0;
+```
+
+as a general way to hide important content.
+
+An invisible element may still occupy layout space and may still have interaction implications.
+
+Choose a visibility or interaction strategy based on the actual requirement.
+
+### 7. Consider Keyboard Focus
+
+Do not make important focus states difficult to see through opacity changes.
+
+Provide a clear focus indicator:
+
+```css
+.button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+```
+
+If opacity is changed during interaction, make sure the focus indicator remains visible.
+
+### 8. Do Not Rely on Hover Alone
+
+Hover effects are useful for pointer users:
+
+```css
+.card:hover {
+    opacity: 0.8;
+}
+```
+
+But hover is not a universal interaction mechanism.
+
+Important information or functionality should also be accessible without relying exclusively on hover.
+
+### 9. Separate Visual and Interaction Behavior
+
+Use the appropriate property for each purpose:
+
+```text
+opacity
+→ Transparency
+
+visibility
+→ Visibility
+
+display
+→ Layout participation
+
+pointer-events
+→ Pointer interaction
+
+disabled
+→ Form-control state
+```
+
+For example:
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+```
+
+This explicitly handles both appearance and pointer interaction.
+
+### 10. Use `pointer-events` When an Invisible Element Should Not Block Interaction
+
+If an element becomes transparent:
+
+```css
+.overlay {
+    opacity: 0;
+}
+```
+
+and should not intercept pointer input, consider:
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+```
+
+### 11. Use `visibility` When Appropriate
+
+If an element should be hidden while preserving its layout space:
+
+```css
+.element {
+    visibility: hidden;
+}
+```
+
+For a fade effect, opacity can be combined with visibility:
+
+```css
+.element {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s;
+}
+
+.element.visible {
+    opacity: 1;
+    visibility: visible;
+}
+```
+
+### 12. Keep Image Opacity Effects Subtle
+
+For image hover effects:
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+A moderate change is generally easier to understand than an extreme fade.
+
+### 13. Respect Reduced-Motion Preferences
+
+If opacity changes are animated, consider users who prefer reduced motion:
+
+```css
+.element {
+    transition: opacity 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .element {
+        transition: none;
+    }
+}
+```
+
+### 14. Keep Opacity Responsibilities Clear
+
+Avoid combining unrelated responsibilities into one declaration.
+
+For example:
+
+```css
+.image {
+    max-width: 100%;
+    opacity: 0.8;
+}
+```
+
+Here:
+
+```text
+max-width
+→ Controls sizing
+
+opacity
+→ Controls transparency
+```
+
+Each property has a clear purpose.
+
+### 15. Use Opacity Consistently
+
+If a design uses opacity for hover states, keep the behavior consistent across similar components.
+
+For example:
+
+```css
+.card {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.card:hover {
+    opacity: 0.8;
+}
+```
+
+Use a consistent pattern for similar cards instead of giving every component a completely different opacity behavior.
+
+### Best-Practice Checklist
+
+```text
+□ Use opacity for visual transparency
+□ Use alpha colors for specific transparent colors
+□ Use disabled for actual disabled controls
+□ Use transitions for smooth opacity changes
+□ Avoid extremely low opacity for important content
+□ Do not hide important information accidentally
+□ Provide clear keyboard focus indicators
+□ Do not rely only on hover
+□ Separate visual and interaction behavior
+□ Use pointer-events when pointer interaction must change
+□ Use visibility when appropriate
+□ Consider reduced-motion preferences
+□ Keep opacity values consistent across similar components
+```
+
+### Recommended Patterns
+
+#### Whole Element Fade
+
+```css
+.element {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.element:hover {
+    opacity: 0.7;
+}
+```
+
+#### Transparent Background
+
+```css
+.element {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+#### Disabled Appearance
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+#### Invisible and Non-Interactive
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+```
+
+> 💡 **Remember:** Use `opacity` for visual transparency, not as a replacement for layout, visibility, or interaction controls. For accessible and maintainable CSS, keep each property responsible for the behavior it is designed to control.
