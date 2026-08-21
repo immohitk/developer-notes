@@ -5093,3 +5093,327 @@ disabled
 ```
 
 > 💡 **Remember:** `opacity` controls the transparency of an element, not whether it exists, occupies space, or is interactive. Use it for visual effects and combine it with the appropriate CSS or HTML mechanism when you also need to control visibility, interaction, or functionality.
+
+---
+
+## References
+
+- [MDN Web Docs — opacity](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity)
+- [MDN Web Docs — CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions)
+- [MDN Web Docs — :hover](https://developer.mozilla.org/en-US/docs/Web/CSS/:hover)
+- [MDN Web Docs — visibility](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility)
+- [MDN Web Docs — pointer-events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events)
+- [MDN Web Docs — background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color)
+- [MDN Web Docs — color](https://developer.mozilla.org/en-US/docs/Web/CSS/color)
+- [MDN Web Docs — prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+- [MDN Web Docs — disabled HTML attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/disabled)
+
+---
+
+## Quick Revision
+
+### What Is Opacity?
+
+`opacity` controls how transparent an element appears.
+
+```css
+.element {
+    opacity: 0.5;
+}
+```
+
+### Opacity Values
+
+```text
+1     → Fully opaque
+0.75  → Mostly opaque
+0.5   → Partially transparent
+0.25  → Mostly transparent
+0     → Fully transparent
+```
+
+Percentage notation is also supported:
+
+```css
+opacity: 50%;
+```
+
+is equivalent to:
+
+```css
+opacity: 0.5;
+```
+
+### Main Property
+
+```css
+opacity: value;
+```
+
+The normal fully opaque state is:
+
+```css
+opacity: 1;
+```
+
+The fully transparent state is:
+
+```css
+opacity: 0;
+```
+
+### Important Behavior
+
+```css
+.element {
+    opacity: 0;
+}
+```
+
+does **not** remove the element from the layout.
+
+```text
+opacity: 0
+    ↓
+Invisible
+    ↓
+Still occupies layout space
+```
+
+This differs from:
+
+```css
+display: none;
+```
+
+which removes the element from the layout.
+
+### Parent and Child Elements
+
+When opacity is applied to a parent:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+```
+
+the parent's rendered child content is also affected.
+
+Setting:
+
+```css
+.child {
+    opacity: 1;
+}
+```
+
+does not cancel the parent's reduced opacity.
+
+### Opacity vs Transparent Colors
+
+Use:
+
+```css
+opacity: 0.5;
+```
+
+when the **entire element** should become transparent.
+
+Use an alpha-enabled color when only a specific color should be transparent:
+
+```css
+background-color: rgb(0 0 0 / 50%);
+```
+
+For example:
+
+```text
+opacity
+→ Background + text + border + children
+
+alpha color
+→ Specific color only
+```
+
+### Opacity With Images
+
+```css
+img {
+    opacity: 0.7;
+}
+```
+
+Useful for:
+
+```text
+Faded images
+Watermarks
+Hover effects
+Decorative images
+```
+
+### Opacity With Hover
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+This creates a smooth fade effect.
+
+### Opacity With Transitions
+
+Basic pattern:
+
+```css
+.element {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.element:hover {
+    opacity: 0.7;
+}
+```
+
+Put the transition on the normal state so the change works smoothly in both directions.
+
+### Opacity and Visibility
+
+```text
+opacity: 0
+→ Transparent
+→ Layout space remains
+
+visibility: hidden
+→ Invisible
+→ Layout space remains
+
+display: none
+→ Not rendered
+→ Layout space removed
+```
+
+### Opacity and Interaction
+
+Opacity is a visual property.
+
+It does not automatically disable interaction.
+
+For pointer interaction:
+
+```css
+.element {
+    pointer-events: none;
+}
+```
+
+For an actual disabled form control:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+Then opacity can provide the visual appearance:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+### Common Patterns
+
+#### Fade an Image
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+#### Transparent Background
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+#### Fade In
+
+```css
+.message {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.message.visible {
+    opacity: 1;
+}
+```
+
+#### Hide Pointer Interaction
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+```
+
+### Quick Comparison
+
+| Property / Technique | Main Purpose |
+|---|---|
+| `opacity` | Controls entire element transparency |
+| Alpha color | Controls transparency of a specific color |
+| `visibility` | Controls visibility while preserving layout space |
+| `display: none` | Removes element from layout |
+| `pointer-events` | Controls pointer interaction |
+| `disabled` | Represents disabled form-control state |
+| `transition` | Makes opacity changes gradual |
+
+### One-Line Revision
+
+```text
+opacity
+→ controls transparency
+
+opacity: 1
+→ fully opaque
+
+opacity: 0
+→ fully transparent
+
+opacity: 0.5
+→ partially transparent
+
+opacity + transition
+→ smooth fade
+
+alpha color
+→ transparency for a specific color
+
+visibility: hidden
+→ invisible but layout space remains
+
+display: none
+→ removed from layout
+```
+
+> 💡 **Remember:** `opacity` is primarily about **visual transparency**. It does not automatically control layout, visibility state, or interaction. Use the appropriate property for each separate requirement.
