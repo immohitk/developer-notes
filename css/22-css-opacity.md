@@ -4343,3 +4343,593 @@ Opacity
 ```
 
 > 💡 **Remember:** Opacity is a visual property, not a general-purpose interaction control. Use `disabled` for disabled form controls, `pointer-events` when pointer interaction needs to be controlled, and clear focus styles for keyboard users.
+
+---
+
+## Practical Examples
+
+The `opacity` property is commonly used for images, overlays, cards, buttons, and other interface elements.
+
+### Example 1: Faded Image
+
+```html
+<img class="faded-image" src="image.jpg" alt="Example image">
+```
+
+```css
+.faded-image {
+    opacity: 0.6;
+}
+```
+
+The entire image becomes partially transparent.
+
+---
+
+### Example 2: Image Hover Fade
+
+```html
+<img class="image" src="image.jpg" alt="Example image">
+```
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+The image smoothly fades when hovered.
+
+---
+
+### Example 3: Gallery Images
+
+```html
+<div class="gallery">
+    <img src="image1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+</div>
+```
+
+```css
+.gallery img {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.gallery img:hover {
+    opacity: 1;
+}
+```
+
+The images appear slightly faded until the user hovers over one.
+
+---
+
+### Example 4: Semi-Transparent Overlay
+
+```html
+<div class="hero">
+    <img src="background.jpg" alt="Background">
+
+    <div class="overlay">
+        <h2>Welcome</h2>
+    </div>
+</div>
+```
+
+Avoid:
+
+```css
+.overlay {
+    background: black;
+    opacity: 0.5;
+}
+```
+
+if the heading should remain fully opaque.
+
+Instead:
+
+```css
+.hero {
+    position: relative;
+}
+
+.hero img {
+    display: block;
+    width: 100%;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+Now the background is translucent while the heading remains fully visible.
+
+---
+
+### Example 5: Card Hover Effect
+
+```html
+<div class="card">
+    <h2>CSS Card</h2>
+    <p>Move the pointer over the card.</p>
+</div>
+```
+
+```css
+.card {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    opacity: 1;
+}
+```
+
+The card becomes fully opaque on hover.
+
+---
+
+### Example 6: Button Hover Effect
+
+```html
+<button class="button">
+    Submit
+</button>
+```
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+```
+
+The button becomes slightly transparent on hover.
+
+---
+
+### Example 7: Disabled Button Appearance
+
+Use the HTML `disabled` state for functionality:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+Then use opacity for visual styling:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+Here:
+
+```text
+disabled
+→ Controls the actual disabled state
+
+opacity
+→ Controls the visual appearance
+```
+
+---
+
+### Example 8: Fade-In Effect
+
+HTML:
+
+```html
+<div class="message">
+    Welcome to the website!
+</div>
+```
+
+CSS:
+
+```css
+.message {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.message.visible {
+    opacity: 1;
+}
+```
+
+When the `visible` class is added, the element fades in.
+
+```text
+opacity: 0
+     ↓
+   fade
+     ↓
+opacity: 1
+```
+
+---
+
+### Example 9: Fade-Out Effect
+
+```css
+.message {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.message.hidden {
+    opacity: 0;
+}
+```
+
+The element gradually becomes transparent.
+
+Remember:
+
+```css
+opacity: 0;
+```
+
+does not remove the element from layout.
+
+---
+
+### Example 10: Tooltip
+
+HTML:
+
+```html
+<div class="tooltip-container">
+    Hover me
+
+    <div class="tooltip">
+        Tooltip text
+    </div>
+</div>
+```
+
+CSS:
+
+```css
+.tooltip-container {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s;
+}
+
+.tooltip-container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+```
+
+The tooltip starts hidden and becomes visible on hover.
+
+Using both properties helps separate:
+
+```text
+opacity
+→ Fade effect
+
+visibility
+→ Visibility state
+```
+
+---
+
+### Example 11: Invisible Overlay That Does Not Block Pointer Events
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+```
+
+The overlay is invisible and does not receive pointer events until it becomes active.
+
+---
+
+### Example 12: Watermark
+
+```html
+<img
+    class="watermark"
+    src="logo.png"
+    alt="Company logo"
+>
+```
+
+```css
+.watermark {
+    opacity: 0.2;
+}
+```
+
+The image becomes faint and can be used as a watermark.
+
+---
+
+### Example 13: Transparent Card Background
+
+If only the background should be transparent:
+
+```css
+.card {
+    background-color: rgb(255 255 255 / 70%);
+    color: black;
+}
+```
+
+This is preferable to:
+
+```css
+.card {
+    opacity: 0.7;
+}
+```
+
+when the text should remain fully opaque.
+
+---
+
+### Example 14: Image With Rounded Corners and Hover Fade
+
+```html
+<div class="image-card">
+    <img src="image.jpg" alt="Example image">
+</div>
+```
+
+```css
+.image-card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image-card img {
+    display: block;
+    width: 100%;
+    transition: opacity 0.3s ease;
+}
+
+.image-card:hover img {
+    opacity: 0.7;
+}
+```
+
+The container clips the image to its rounded shape while the image fades on hover.
+
+---
+
+### Example 15: Card With Multiple Interaction States
+
+```html
+<button class="card-button">
+    Learn More
+</button>
+```
+
+```css
+.card-button {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.card-button:hover {
+    opacity: 0.8;
+}
+
+.card-button:active {
+    opacity: 0.6;
+}
+
+.card-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.card-button:disabled {
+    opacity: 0.5;
+}
+```
+
+Different states are represented separately:
+
+```text
+Normal
+→ opacity: 1
+
+Hover
+→ opacity: 0.8
+
+Active
+→ opacity: 0.6
+
+Disabled
+→ opacity: 0.5
+
+Keyboard focus
+→ visible outline
+```
+
+---
+
+### Example 16: Responsive Image With Opacity
+
+```css
+.image {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 1;
+}
+```
+
+Here each property has a separate purpose:
+
+```text
+max-width
+→ Prevents excessive width
+
+height
+→ Maintains proportional scaling
+
+opacity
+→ Controls transparency
+
+transition
+→ Smooths the opacity change
+```
+
+---
+
+### Example 17: Respect Reduced Motion Preferences
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .image {
+        transition: none;
+    }
+}
+```
+
+Users who prefer reduced motion can avoid the opacity animation.
+
+---
+
+### Example 18: Complete Image Card
+
+HTML:
+
+```html
+<article class="image-card">
+    <img src="image.jpg" alt="Mountain landscape">
+
+    <div class="image-card-content">
+        <h2>Mountain Landscape</h2>
+        <p>Explore the landscape.</p>
+    </div>
+</article>
+```
+
+CSS:
+
+```css
+.image-card {
+    max-width: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image-card img {
+    display: block;
+    width: 100%;
+    transition: opacity 0.3s ease;
+}
+
+.image-card:hover img {
+    opacity: 0.75;
+}
+
+.image-card-content {
+    padding: 16px;
+}
+```
+
+This example combines:
+
+```text
+Responsive image
++
+Rounded container
++
+Overflow clipping
++
+Opacity
++
+Hover
++
+Transition
+```
+
+### Choosing the Right Technique
+
+```text
+Entire element should fade
+        ↓
+opacity
+
+Only background should be transparent
+        ↓
+Alpha-enabled background color
+
+Image should fade on hover
+        ↓
+opacity + :hover + transition
+
+Element should fade in/out
+        ↓
+opacity + transition
+
+Element should be hidden while preserving layout
+        ↓
+visibility: hidden
+
+Invisible element should not receive pointer events
+        ↓
+pointer-events: none
+
+Actual form control should be disabled
+        ↓
+disabled attribute
+```
+
+> 💡 **Remember:** Use `opacity` for visual transparency, combine it with `transition` for smooth fades, and use other properties such as `visibility`, `pointer-events`, and `disabled` when you need to control visibility or interaction rather than appearance alone.
