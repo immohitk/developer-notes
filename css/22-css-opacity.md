@@ -551,3 +551,337 @@ Opacity
 ```
 
 > 💡 **Remember:** `opacity` controls the transparency of the entire element. It does not change the element's layout size, and `opacity: 0` makes an element invisible without removing it from the layout.
+
+---
+
+## `opacity`
+
+The `opacity` property controls the transparency of an element.
+
+### Syntax
+
+```css
+selector {
+    opacity: value;
+}
+```
+
+Example:
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+### Basic Example
+
+```html
+<div class="box">
+    This element is partially transparent.
+</div>
+```
+
+```css
+.box {
+    background-color: black;
+    color: white;
+    opacity: 0.5;
+}
+```
+
+The entire element becomes partially transparent.
+
+### Property Value
+
+The `opacity` property accepts a number representing the element's opacity.
+
+Common values are:
+
+```css
+opacity: 1;
+opacity: 0.75;
+opacity: 0.5;
+opacity: 0.25;
+opacity: 0;
+```
+
+Conceptually:
+
+```text
+1.00 → Fully opaque
+0.75 → Mostly opaque
+0.50 → 50% opaque
+0.25 → Mostly transparent
+0.00 → Fully transparent
+```
+
+### `opacity: 1`
+
+```css
+.box {
+    opacity: 1;
+}
+```
+
+The element is fully opaque.
+
+This is the normal fully visible state.
+
+### `opacity: 0.5`
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+The element is partially transparent.
+
+Content behind the element can contribute to its visual appearance.
+
+### `opacity: 0`
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+The element becomes completely transparent.
+
+However, it still exists in the document and continues to occupy its layout space.
+
+### Decimal Values
+
+Opacity is commonly written using decimal values between `0` and `1`.
+
+```css
+opacity: 0.1;
+opacity: 0.2;
+opacity: 0.3;
+opacity: 0.4;
+opacity: 0.5;
+opacity: 0.6;
+opacity: 0.7;
+opacity: 0.8;
+opacity: 0.9;
+opacity: 1;
+```
+
+For example:
+
+```css
+.image {
+    opacity: 0.7;
+}
+```
+
+makes the image mostly opaque with some transparency.
+
+### Percentage Values
+
+CSS also supports percentage notation for opacity.
+
+For example:
+
+```css
+.box {
+    opacity: 50%;
+}
+```
+
+is equivalent to:
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+Similarly:
+
+```css
+opacity: 100%;
+```
+
+represents full opacity, while:
+
+```css
+opacity: 0%;
+```
+
+represents complete transparency.
+
+### Values Outside the Typical Range
+
+Opacity is conceptually bounded between fully transparent and fully opaque.
+
+For practical CSS code, use values from:
+
+```text
+0 → 1
+```
+
+or:
+
+```text
+0% → 100%
+```
+
+For example:
+
+```css
+opacity: 0.5;
+```
+
+is preferable to relying on unusual values outside the normal range.
+
+### Applying Opacity to Different Elements
+
+Opacity can be applied to many elements.
+
+#### Text
+
+```css
+p {
+    opacity: 0.7;
+}
+```
+
+#### Image
+
+```css
+img {
+    opacity: 0.6;
+}
+```
+
+#### Button
+
+```css
+button {
+    opacity: 0.8;
+}
+```
+
+#### Card
+
+```css
+.card {
+    opacity: 0.9;
+}
+```
+
+### Opacity Applies to the Entire Element
+
+Consider:
+
+```html
+<div class="card">
+    <h2>Title</h2>
+    <p>Description</p>
+</div>
+```
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+The opacity affects the rendered card as a whole:
+
+```text
+Card
+├── Background
+├── Border
+├── Heading
+├── Paragraph
+└── Other child content
+```
+
+All of these appear through the element's opacity.
+
+### Opacity vs Background Transparency
+
+Compare:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+with:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+The first affects the entire element.
+
+The second makes only the background color transparent.
+
+For example:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+The text can remain fully opaque while the background is semi-transparent.
+
+### Common Hover Pattern
+
+```css
+.image {
+    opacity: 1;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+The image becomes partially transparent when hovered.
+
+A smoother version uses a transition:
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+### Important Points
+
+```text
+opacity
+│
+├── Controls element transparency
+│
+├── 1
+│   └── Fully opaque
+│
+├── 0.5
+│   └── Partially transparent
+│
+├── 0
+│   └── Fully transparent
+│
+└── Can be written using
+    ├── Decimal values
+    └── Percentage values
+```
+
+> 💡 **Remember:** `opacity` controls the transparency of the entire element. `opacity: 1` is fully opaque, `opacity: 0` is fully transparent, and values between them create partial transparency.
