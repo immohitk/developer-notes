@@ -2692,3 +2692,290 @@ rgb(... / alpha)
 or another appropriate alpha-enabled color when you want **specific color transparency**.
 
 > 💡 **Remember:** `opacity` affects the entire element and its rendered contents, while alpha-enabled colors let you control transparency for a specific background, text color, border, or other color independently.
+
+---
+
+## Opacity With Images
+
+The `opacity` property can be applied to images to control how transparent they appear.
+
+### Basic Example
+
+```html
+<img src="image.jpg" alt="Example image">
+```
+
+```css
+img {
+    opacity: 0.5;
+}
+```
+
+The image becomes partially transparent.
+
+```text
+opacity: 1
+→ Fully visible
+
+opacity: 0.5
+→ Partially transparent
+
+opacity: 0
+→ Fully transparent
+```
+
+### Fully Opaque Image
+
+```css
+img {
+    opacity: 1;
+}
+```
+
+The image is fully opaque.
+
+Since `1` is the normal opacity value, this declaration is usually unnecessary unless you are explicitly setting or restoring the image's opacity.
+
+### Partially Transparent Image
+
+```css
+img {
+    opacity: 0.6;
+}
+```
+
+The image becomes partially transparent, allowing the content behind it to contribute to its appearance.
+
+### Fully Transparent Image
+
+```css
+img {
+    opacity: 0;
+}
+```
+
+The image becomes completely transparent.
+
+The image element still exists and continues to occupy its layout space.
+
+### Hover Effect
+
+A common use of opacity with images is a hover effect.
+
+```css
+.image {
+    opacity: 1;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+When the pointer moves over the image, it becomes partially transparent.
+
+### Smooth Image Fade
+
+Combine `opacity` with `transition` for a smooth effect:
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+The image gradually changes from fully opaque to partially transparent.
+
+### Gallery Example
+
+```html
+<div class="gallery">
+    <img class="gallery-image" src="image1.jpg" alt="Image 1">
+    <img class="gallery-image" src="image2.jpg" alt="Image 2">
+    <img class="gallery-image" src="image3.jpg" alt="Image 3">
+</div>
+```
+
+```css
+.gallery-image {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.gallery-image:hover {
+    opacity: 1;
+}
+```
+
+The images appear slightly faded normally and become fully opaque when hovered.
+
+### Image Overlay
+
+Opacity can also be used with an image overlay.
+
+```html
+<div class="image-container">
+    <img src="image.jpg" alt="Example image">
+
+    <div class="overlay">
+        <span>View Image</span>
+    </div>
+</div>
+```
+
+```css
+.image-container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: black;
+    opacity: 0.5;
+}
+```
+
+The black overlay becomes partially transparent, allowing the image underneath to remain visible.
+
+### Overlay With Fully Visible Text
+
+If the overlay contains text, applying opacity to the overlay itself also affects that text.
+
+For example:
+
+```css
+.overlay {
+    background: black;
+    color: white;
+    opacity: 0.5;
+}
+```
+
+The text also becomes transparent.
+
+If only the background should be transparent, use an alpha color instead:
+
+```css
+.overlay {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+Now:
+
+```text
+Background → semi-transparent
+Text       → fully opaque
+```
+
+### Disabled-Looking Images
+
+Opacity can create a faded visual appearance:
+
+```css
+.disabled-image {
+    opacity: 0.4;
+}
+```
+
+This can communicate that an image or visual option is unavailable.
+
+However, opacity alone should not be relied upon to communicate the actual state or functionality.
+
+### Watermark Effect
+
+A partially transparent image can be used as a watermark:
+
+```css
+.watermark {
+    opacity: 0.2;
+}
+```
+
+The image becomes faint and allows the background behind it to remain visible.
+
+### Opacity Does Not Resize an Image
+
+Consider:
+
+```css
+.image {
+    width: 500px;
+    opacity: 0.5;
+}
+```
+
+The image is still:
+
+```text
+500px wide
+```
+
+Opacity changes transparency, not dimensions.
+
+If you need to control image size, use properties such as:
+
+```css
+width
+height
+max-width
+object-fit
+```
+
+### Responsive Images and Opacity
+
+Opacity can be combined with responsive image sizing:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.8;
+}
+```
+
+Here:
+
+```text
+max-width
+→ Controls image sizing
+
+height
+→ Maintains proportional scaling
+
+opacity
+→ Controls transparency
+```
+
+Each property has a separate responsibility.
+
+### Important Points
+
+```text
+Opacity With Images
+│
+├── opacity: 1
+│   └── Fully opaque
+│
+├── 0 < opacity < 1
+│   └── Partially transparent
+│
+├── opacity: 0
+│   └── Fully transparent
+│
+├── opacity + transition
+│   └── Smooth fade effects
+│
+└── Alpha background color
+    └── Useful when only an overlay/background
+        should be transparent
+```
+
+> 💡 **Remember:** `opacity` can fade an entire image, and it works especially well with `transition` for hover effects. If an overlay contains text that should remain fully opaque, use an alpha-enabled background color instead of applying opacity to the entire overlay.
