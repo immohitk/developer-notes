@@ -29,6 +29,7 @@ The notes are organized in a step-by-step manner and include explanations, examp
 - [CSS Variables](19-css-variables.md)
 - [CSS Grid](20-css-grid.md)
 - [CSS Overflow](21-css-overflow.md)
+- [CSS Opacity](22-css-opacity.md)
 
 More topics will be added as I continue learning CSS.
 
