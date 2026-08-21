@@ -2363,3 +2363,332 @@ Parent opacity
 ```
 
 > 💡 **Remember:** Applying `opacity` to a parent affects its rendered child content as well. If you need a transparent background while keeping text or other children fully opaque, use an alpha color or a separate background layer instead of reducing the parent's overall opacity.
+
+---
+
+## Opacity vs Transparent Colors
+
+`opacity` and transparent colors can both create transparency, but they affect different parts of an element.
+
+The main difference is:
+
+```text
+opacity
+→ Affects the entire element
+
+Transparent color
+→ Affects the specific color where transparency is defined
+```
+
+### Using `opacity`
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+The entire rendered element becomes partially transparent.
+
+This can affect:
+
+```text
+Background
+Text
+Border
+Images
+Child content
+```
+
+### Using a Transparent Background Color
+
+Instead of:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+you can make only the background transparent:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+The background is translucent, while the text and other content can remain fully opaque.
+
+### Example
+
+HTML:
+
+```html
+<div class="card">
+    <h2>Product</h2>
+    <p>This text should remain fully visible.</p>
+</div>
+```
+
+Using `opacity`:
+
+```css
+.card {
+    background-color: black;
+    color: white;
+    opacity: 0.5;
+}
+```
+
+The entire card becomes transparent.
+
+Conceptually:
+
+```text
+Background → transparent
+Text       → transparent
+Content    → transparent
+```
+
+### Using an Alpha Background
+
+Instead:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+Now:
+
+```text
+Background → transparent
+Text       → fully opaque
+Content    → fully opaque
+```
+
+This is often the better approach when only the background needs transparency.
+
+### Alpha Colors
+
+Modern CSS color functions can specify an alpha component.
+
+For example:
+
+```css
+background-color: rgb(0 0 0 / 50%);
+```
+
+The last value controls the alpha.
+
+You can also use:
+
+```css
+background-color: rgb(0 0 0 / 0.5);
+```
+
+These represent the same 50% alpha value.
+
+### Transparent Text Color
+
+If only the text should be partially transparent:
+
+```css
+.text {
+    color: rgb(0 0 0 / 60%);
+}
+```
+
+The text color becomes translucent without applying opacity to the entire element.
+
+### Transparent Border
+
+You can also make a border translucent:
+
+```css
+.box {
+    border: 2px solid rgb(0 0 0 / 30%);
+}
+```
+
+The border is partially transparent while other parts of the element can remain fully opaque.
+
+### Background, Text, and Border Separately
+
+You can control transparency independently:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+    color: rgb(255 255 255 / 90%);
+    border: 1px solid rgb(255 255 255 / 30%);
+}
+```
+
+This provides more precise control than:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+### `opacity` With Child Elements
+
+Consider:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+The card's rendered child content is affected as well.
+
+Setting:
+
+```css
+.card h2 {
+    opacity: 1;
+}
+```
+
+does not make the heading fully opaque relative to the page because the parent is still rendered with reduced opacity.
+
+### Alpha Background Avoids This Problem
+
+Instead:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+
+.card h2 {
+    opacity: 1;
+}
+```
+
+The heading can remain fully opaque because the parent's overall opacity has not been reduced.
+
+### When to Use `opacity`
+
+Use `opacity` when the **entire element** should become transparent.
+
+Common examples:
+
+```text
+Fading an image
+Hover effects
+Fading a complete card
+Disabled-looking visual states
+Fade animations
+```
+
+Example:
+
+```css
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+### When to Use Transparent Colors
+
+Use transparent colors when only a particular part of an element should be transparent.
+
+Common examples:
+
+```text
+Semi-transparent backgrounds
+Transparent text colors
+Transparent borders
+Overlays
+Layered UI components
+```
+
+Example:
+
+```css
+.overlay {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+### Comparison
+
+| Feature | `opacity` | Transparent Color |
+|---|---|---|
+| Affects entire element | Yes | No |
+| Affects child content | Yes | No, unless separately styled |
+| Transparent background | Yes | Yes |
+| Transparent text | Yes | Yes |
+| Transparent border | Yes | Yes |
+| Precise control | Lower | Higher |
+| Useful for whole-element fade | Yes | Usually not |
+
+### Practical Example
+
+Suppose you want a dark overlay with fully visible white text.
+
+Avoid:
+
+```css
+.overlay {
+    background: black;
+    color: white;
+    opacity: 0.5;
+}
+```
+
+because the text also becomes transparent.
+
+Prefer:
+
+```css
+.overlay {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+Now the result is:
+
+```text
+Dark semi-transparent background
+            +
+Fully opaque white text
+```
+
+### Important Points
+
+```text
+opacity: 0.5
+        ↓
+Entire element becomes transparent
+
+rgb(0 0 0 / 50%)
+        ↓
+Only that particular color becomes translucent
+```
+
+Use:
+
+```css
+opacity
+```
+
+when you want a **whole-element transparency effect**.
+
+Use:
+
+```css
+rgb(... / alpha)
+```
+
+or another appropriate alpha-enabled color when you want **specific color transparency**.
+
+> 💡 **Remember:** `opacity` affects the entire element and its rendered contents, while alpha-enabled colors let you control transparency for a specific background, text color, border, or other color independently.
