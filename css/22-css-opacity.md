@@ -885,3 +885,279 @@ opacity
 ```
 
 > 💡 **Remember:** `opacity` controls the transparency of the entire element. `opacity: 1` is fully opaque, `opacity: 0` is fully transparent, and values between them create partial transparency.
+
+---
+
+## Opacity Values
+
+The `opacity` property accepts values that determine how opaque or transparent an element appears.
+
+### Basic Syntax
+
+```css
+.element {
+    opacity: value;
+}
+```
+
+The commonly used range is:
+
+```text
+0 → 1
+```
+
+or equivalently:
+
+```text
+0% → 100%
+```
+
+### Value `1`
+
+```css
+opacity: 1;
+```
+
+The element is completely opaque.
+
+```text
+opacity: 1
+██████████
+Fully visible
+```
+
+### Value `0`
+
+```css
+opacity: 0;
+```
+
+The element is completely transparent.
+
+```text
+opacity: 0
+░░░░░░░░░░
+Fully transparent
+```
+
+The element still exists and occupies its layout space.
+
+### Values Between `0` and `1`
+
+Values between `0` and `1` create partial transparency.
+
+```css
+opacity: 0.8;
+```
+
+```css
+opacity: 0.6;
+```
+
+```css
+opacity: 0.4;
+```
+
+```css
+opacity: 0.2;
+```
+
+Conceptually:
+
+```text
+1.0  → Fully opaque
+0.8  → Slightly transparent
+0.6  → Partially transparent
+0.4  → More transparent
+0.2  → Highly transparent
+0.0  → Fully transparent
+```
+
+### Common Opacity Values
+
+| Value | Approximate appearance |
+|---:|---|
+| `1` | Fully opaque |
+| `0.9` | Very slightly transparent |
+| `0.8` | Slightly transparent |
+| `0.7` | Mostly opaque |
+| `0.5` | Half opaque |
+| `0.3` | Mostly transparent |
+| `0.1` | Very transparent |
+| `0` | Fully transparent |
+
+The actual visual result also depends on the colors and content behind the element.
+
+### Percentage Values
+
+Opacity can also be expressed as a percentage.
+
+```css
+opacity: 50%;
+```
+
+is equivalent to:
+
+```css
+opacity: 0.5;
+```
+
+Similarly:
+
+```css
+opacity: 100%;
+```
+
+is equivalent to:
+
+```css
+opacity: 1;
+```
+
+and:
+
+```css
+opacity: 0%;
+```
+
+is equivalent to:
+
+```css
+opacity: 0;
+```
+
+### Decimal vs Percentage
+
+Both forms can represent the same opacity:
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+and:
+
+```css
+.box {
+    opacity: 50%;
+}
+```
+
+Both represent 50% opacity.
+
+For consistency, choose the notation that best matches the style of the project.
+
+### Opacity and Visibility
+
+A value of:
+
+```css
+opacity: 0;
+```
+
+makes the element fully transparent, but it does not remove the element from the document.
+
+For example:
+
+```css
+.box {
+    width: 200px;
+    height: 100px;
+    opacity: 0;
+}
+```
+
+The element remains part of the layout.
+
+This differs from:
+
+```css
+display: none;
+```
+
+which removes the element from the layout.
+
+### Opacity Does Not Mean Layout Percentage
+
+An important distinction is that:
+
+```css
+opacity: 0.5;
+```
+
+does **not** mean:
+
+```text
+50% width
+50% height
+50% size
+```
+
+It means the element is rendered with 50% opacity.
+
+For example:
+
+```css
+.box {
+    width: 400px;
+    height: 200px;
+    opacity: 0.5;
+}
+```
+
+The element is still:
+
+```text
+400px × 200px
+```
+
+Only its transparency changes.
+
+### Opacity With Hover
+
+Different values can be used for interactive states.
+
+```css
+.button {
+    opacity: 1;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+```
+
+The button becomes slightly transparent when hovered.
+
+### Opacity With Transitions
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+```
+
+The opacity changes smoothly between the two values.
+
+### Important Points
+
+```text
+Opacity Values
+│
+├── 1 / 100%
+│   └── Fully opaque
+│
+├── Between 0 and 1
+│   └── Partially transparent
+│
+└── 0 / 0%
+    └── Fully transparent
+```
+
+> 💡 **Remember:** Opacity values control transparency, not size. `1` means fully opaque, `0` means fully transparent, and values between them create partial transparency. Percentage notation can also be used.
