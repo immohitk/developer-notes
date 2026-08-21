@@ -1161,3 +1161,250 @@ Opacity Values
 ```
 
 > 💡 **Remember:** Opacity values control transparency, not size. `1` means fully opaque, `0` means fully transparent, and values between them create partial transparency. Percentage notation can also be used.
+
+---
+
+## Fully Opaque Elements
+
+An element is fully opaque when its `opacity` value is `1`.
+
+At this value, the element is rendered without transparency.
+
+### Basic Example
+
+```css
+.box {
+    opacity: 1;
+}
+```
+
+This is equivalent to the normal fully opaque state.
+
+```text
+opacity: 1
+
+┌──────────────────────┐
+│                      │
+│      Fully visible   │
+│                      │
+└──────────────────────┘
+```
+
+### `opacity: 1` Is the Default
+
+For an element that does not have a different opacity applied, the normal opacity is fully opaque.
+
+For example:
+
+```css
+.box {
+    background-color: blue;
+}
+```
+
+and:
+
+```css
+.box {
+    background-color: blue;
+    opacity: 1;
+}
+```
+
+have the same opacity behavior.
+
+Therefore, explicitly writing:
+
+```css
+opacity: 1;
+```
+
+is usually unnecessary unless you are intentionally setting or resetting the opacity.
+
+### Resetting Opacity
+
+`opacity: 1` can be useful when changing opacity between different states.
+
+For example:
+
+```css
+.button {
+    opacity: 0.7;
+}
+
+.button:hover {
+    opacity: 1;
+}
+```
+
+The button starts partially transparent and becomes fully opaque when hovered.
+
+### Opacity With Transitions
+
+A common pattern is to transition from a partially transparent state to full opacity.
+
+```css
+.button {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 1;
+}
+```
+
+The change happens smoothly.
+
+```text
+Normal
+opacity: 0.7
+      ↓
+Partially transparent
+
+Hover
+opacity: 1
+      ↓
+Fully opaque
+```
+
+### Fully Opaque Images
+
+An image can be explicitly made fully opaque:
+
+```css
+img {
+    opacity: 1;
+}
+```
+
+This is useful when the same image has another state with reduced opacity.
+
+For example:
+
+```css
+.gallery-image {
+    opacity: 0.6;
+}
+
+.gallery-image:hover {
+    opacity: 1;
+}
+```
+
+### Fully Opaque Buttons
+
+```css
+.button {
+    opacity: 1;
+}
+```
+
+This makes the button fully opaque.
+
+A hover state can then use a different value:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+```
+
+### Opacity Does Not Affect Size
+
+An opaque element can have any dimensions.
+
+For example:
+
+```css
+.box {
+    width: 300px;
+    height: 150px;
+    opacity: 1;
+}
+```
+
+The element remains:
+
+```text
+300px × 150px
+```
+
+Opacity controls transparency, not width or height.
+
+### Opacity Does Not Remove an Element
+
+Using:
+
+```css
+opacity: 1;
+```
+
+obviously keeps the element visible.
+
+More importantly, the opacity property itself does not control whether an element participates in layout.
+
+For example:
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+makes the element transparent but does not remove it from the layout.
+
+Changing it back to:
+
+```css
+.box {
+    opacity: 1;
+}
+```
+
+makes the element fully visible again.
+
+### `opacity: 1` in Interactive States
+
+Opacity is often used for different visual states:
+
+```css
+.button {
+    opacity: 0.6;
+}
+
+.button:hover {
+    opacity: 1;
+}
+```
+
+Conceptually:
+
+```text
+Normal
+──────
+60% opacity
+
+Hover
+─────
+100% opacity
+```
+
+### Important Points
+
+```text
+opacity: 1
+│
+├── Fully opaque
+├── No transparency from the opacity property
+├── Normal default opacity
+├── Does not change element dimensions
+└── Commonly used for resetting or interactive states
+```
+
+> 💡 **Remember:** `opacity: 1` means the element is fully opaque. It is the normal fully visible state and is particularly useful when restoring full opacity after another state has reduced it.
