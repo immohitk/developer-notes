@@ -2979,3 +2979,329 @@ Opacity With Images
 ```
 
 > 💡 **Remember:** `opacity` can fade an entire image, and it works especially well with `transition` for hover effects. If an overlay contains text that should remain fully opaque, use an alpha-enabled background color instead of applying opacity to the entire overlay.
+
+---
+
+## Opacity With Hover Effects
+
+The `opacity` property is commonly used with the `:hover` pseudo-class to create visual feedback when the user moves the pointer over an element.
+
+### Basic Example
+
+```css
+.button {
+    opacity: 1;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+```
+
+The button changes from fully opaque to partially transparent when hovered.
+
+```text
+Normal
+opacity: 1
+    ↓
+Fully opaque
+
+Hover
+opacity: 0.7
+    ↓
+Partially transparent
+```
+
+### Image Hover Effect
+
+Opacity is frequently used with images:
+
+```css
+.image {
+    opacity: 1;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+When the image is hovered, it becomes slightly transparent.
+
+### Smooth Hover Effect
+
+Without a transition:
+
+```css
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+the opacity changes immediately.
+
+Add a transition:
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+Now the change happens gradually.
+
+### Different Hover Opacity Values
+
+You can choose the value based on the desired effect.
+
+```css
+.card:hover {
+    opacity: 0.9;
+}
+```
+
+Very subtle effect.
+
+```css
+.card:hover {
+    opacity: 0.7;
+}
+```
+
+Noticeable effect.
+
+```css
+.card:hover {
+    opacity: 0.5;
+}
+```
+
+Strong transparency.
+
+Avoid making interactive elements excessively transparent if it makes them difficult to see.
+
+### Link Hover Effect
+
+```css
+a {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+```
+
+This provides visual feedback when the link is hovered.
+
+### Button Hover Effect
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+```
+
+The button becomes slightly transparent on hover.
+
+### Gallery Example
+
+HTML:
+
+```html
+<div class="gallery">
+    <img src="image1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+</div>
+```
+
+CSS:
+
+```css
+.gallery img {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.gallery img:hover {
+    opacity: 1;
+}
+```
+
+The images appear slightly faded until the user hovers over one.
+
+### Card Hover Effect
+
+```css
+.card {
+    opacity: 0.85;
+    transition: opacity 0.3s;
+}
+
+.card:hover {
+    opacity: 1;
+}
+```
+
+The card becomes fully opaque when hovered.
+
+### Combining Opacity With Other Hover Effects
+
+Opacity can be combined with transforms:
+
+```css
+.card {
+    opacity: 0.8;
+    transition:
+        opacity 0.3s,
+        transform 0.3s;
+}
+
+.card:hover {
+    opacity: 1;
+    transform: translateY(-4px);
+}
+```
+
+This creates two visual changes:
+
+```text
+Hover
+│
+├── opacity → 1
+└── transform → moves upward
+```
+
+### Important: Hover Is Not Available Everywhere
+
+The `:hover` state is primarily associated with pointer interaction.
+
+Do not rely on hover alone to communicate important information or functionality, especially for touch-based devices.
+
+For important interactive states, also consider:
+
+```css
+:focus
+:focus-visible
+:active
+```
+
+### Hover and Accessibility
+
+Avoid reducing opacity so much that text or controls become difficult to see.
+
+For example, this may be too faint depending on the design:
+
+```css
+.button:hover {
+    opacity: 0.2;
+}
+```
+
+Prefer a value that maintains sufficient visual clarity.
+
+### Hover vs Disabled State
+
+Do not use opacity alone to determine whether an element is actually disabled.
+
+For example:
+
+```css
+.button {
+    opacity: 0.5;
+}
+```
+
+only changes its appearance.
+
+If a button should actually be disabled, use the appropriate HTML state:
+
+```html
+<button disabled>Submit</button>
+```
+
+Then style it:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+Here:
+
+```text
+disabled
+→ Controls functionality/state
+
+opacity
+→ Controls visual appearance
+```
+
+### Practical Example
+
+```html
+<a class="card-link" href="#">
+    <img src="image.jpg" alt="Example">
+    <h2>Learn CSS</h2>
+</a>
+```
+
+```css
+.card-link {
+    display: block;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.card-link:hover {
+    opacity: 1;
+}
+
+.card-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
+```
+
+This provides:
+
+```text
+Normal
+→ Slightly transparent
+
+Hover
+→ Fully opaque
+
+Keyboard focus
+→ Visible focus indicator
+```
+
+### Important Points
+
+```text
+Opacity + :hover
+│
+├── Creates visual feedback
+├── Can fade images
+├── Can fade buttons
+├── Can fade links
+├── Can fade cards
+│
+└── transition
+    └── Makes the change smooth
+```
+
+> 💡 **Remember:** `opacity` is useful for hover feedback, especially when combined with `transition`. However, opacity should control appearance—not functionality—and important interaction states should not depend on hover alone.
