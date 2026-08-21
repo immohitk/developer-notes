@@ -5783,3 +5783,528 @@ button:disabled {
 ```
 
 > 💡 **Remember:** Use `opacity` for visual transparency, not as a replacement for layout, visibility, or interaction controls. For accessible and maintainable CSS, keep each property responsible for the behavior it is designed to control.
+
+---
+
+## Common Mistakes
+
+### 1. Thinking `opacity: 0` Removes an Element
+
+A common mistake is assuming:
+
+```css
+.element {
+    opacity: 0;
+}
+```
+
+removes the element.
+
+It does not.
+
+The element becomes fully transparent but still occupies its layout space.
+
+```text
+opacity: 0
+    ↓
+Invisible
+    ↓
+Still exists in layout
+```
+
+If the element should be removed from the layout, use:
+
+```css
+display: none;
+```
+
+when that behavior is actually required.
+
+---
+
+### 2. Using Opacity to Disable a Button
+
+This:
+
+```css
+button {
+    opacity: 0.5;
+}
+```
+
+only changes the button's appearance.
+
+It does not make the button functionally disabled.
+
+Use:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+and then style it:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+---
+
+### 3. Applying Opacity to a Parent When Only the Background Should Be Transparent
+
+Avoid:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+if the text should remain fully opaque.
+
+The parent's rendered child content is also affected.
+
+Instead:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+---
+
+### 4. Assuming a Child Can Cancel Parent Opacity
+
+Consider:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+
+.child {
+    opacity: 1;
+}
+```
+
+The child does not become fully opaque relative to the page.
+
+The parent's opacity still affects the final rendered result.
+
+Use an alpha-enabled background color or a separate background layer when you need opaque child content over a translucent background.
+
+---
+
+### 5. Using `opacity` When Only a Color Should Be Transparent
+
+Instead of:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+use:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+when only the background should be translucent.
+
+The same idea applies to text and borders:
+
+```css
+color: rgb(0 0 0 / 70%);
+```
+
+```css
+border-color: rgb(0 0 0 / 30%);
+```
+
+---
+
+### 6. Assuming Opacity Changes Element Size
+
+This:
+
+```css
+.box {
+    width: 300px;
+    opacity: 0.5;
+}
+```
+
+does not make the width:
+
+```text
+150px
+```
+
+The element remains:
+
+```text
+300px wide
+```
+
+Opacity controls transparency, not dimensions.
+
+---
+
+### 7. Using Extremely Low Opacity for Important Content
+
+For example:
+
+```css
+.text {
+    opacity: 0.1;
+}
+```
+
+may make the content difficult to read.
+
+Do not sacrifice readability simply to create a visual effect.
+
+---
+
+### 8. Forgetting That Opacity Affects the Entire Element
+
+Consider:
+
+```css
+.card {
+    opacity: 0.6;
+}
+```
+
+This affects the rendered card as a whole, including:
+
+```text
+Background
+Text
+Border
+Images
+Child content
+```
+
+If only one part needs transparency, apply transparency to that specific part instead.
+
+---
+
+### 9. Putting the Transition Only on `:hover`
+
+Avoid:
+
+```css
+.button:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+```
+
+A better pattern is:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+```
+
+This allows the transition to work smoothly when both entering and leaving the hover state.
+
+---
+
+### 10. Using Opacity Without Considering Touch Devices
+
+A design such as:
+
+```css
+.card:hover {
+    opacity: 0.7;
+}
+```
+
+depends on pointer hover.
+
+Hover behavior should not be the only way users access important information or functionality.
+
+---
+
+### 11. Using Opacity Instead of `pointer-events`
+
+This:
+
+```css
+.overlay {
+    opacity: 0;
+}
+```
+
+makes the overlay transparent, but opacity itself is not the property for controlling pointer interaction.
+
+If the invisible element should not receive pointer events:
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+```
+
+---
+
+### 12. Using Opacity Instead of `visibility`
+
+If the requirement is specifically to hide an element while preserving its layout space, consider:
+
+```css
+visibility: hidden;
+```
+
+rather than using opacity.
+
+```text
+opacity: 0
+→ Transparency
+
+visibility: hidden
+→ Visibility state
+```
+
+They may look similar visually, but they serve different purposes.
+
+---
+
+### 13. Forgetting Keyboard Focus
+
+An opacity-based interaction should not make keyboard focus difficult to see.
+
+Provide a clear focus indicator:
+
+```css
+.button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+```
+
+Do not rely solely on opacity changes to communicate focus.
+
+---
+
+### 14. Using Opacity as the Only Disabled Indicator
+
+This:
+
+```css
+button {
+    opacity: 0.5;
+}
+```
+
+does not tell the browser that the button is disabled.
+
+Use:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+and then style the actual disabled state:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+---
+
+### 15. Forgetting `prefers-reduced-motion`
+
+If opacity is animated:
+
+```css
+.element {
+    transition: opacity 0.5s ease;
+}
+```
+
+consider users who prefer reduced motion:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    .element {
+        transition: none;
+    }
+}
+```
+
+---
+
+### 16. Using Opacity to Hide Important Content
+
+Avoid:
+
+```css
+.important-content {
+    opacity: 0;
+}
+```
+
+as a generic hiding technique.
+
+An invisible element may still exist in the layout and may still have interaction implications.
+
+Choose the appropriate visibility and interaction mechanism based on the requirement.
+
+---
+
+### 17. Applying Opacity to an Entire Overlay
+
+Consider:
+
+```css
+.overlay {
+    background: black;
+    opacity: 0.5;
+}
+```
+
+If the overlay contains:
+
+```html
+<div class="overlay">
+    <h2>Welcome</h2>
+</div>
+```
+
+the heading is also affected.
+
+If only the background should be transparent:
+
+```css
+.overlay {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+---
+
+### 18. Confusing Opacity With Alpha Colors
+
+These are not equivalent in what they affect:
+
+```css
+opacity: 0.5;
+```
+
+and:
+
+```css
+background-color: rgb(0 0 0 / 50%);
+```
+
+The first affects the entire rendered element.
+
+The second affects the specified background color.
+
+---
+
+### 19. Assuming `opacity: 0` Means No Interaction
+
+Do not assume:
+
+```css
+.element {
+    opacity: 0;
+}
+```
+
+automatically means:
+
+```css
+pointer-events: none;
+```
+
+If pointer interaction needs to be disabled:
+
+```css
+.element {
+    pointer-events: none;
+}
+```
+
+---
+
+### 20. Using Too Many Opacity Effects
+
+Applying reduced opacity to many elements can make an interface visually weak.
+
+For example:
+
+```css
+.card {
+    opacity: 0.7;
+}
+
+.card-title {
+    opacity: 0.7;
+}
+
+.card-description {
+    opacity: 0.7;
+}
+
+.card-button {
+    opacity: 0.7;
+}
+```
+
+This can unnecessarily reduce readability and contrast.
+
+Use opacity selectively.
+
+---
+
+### Common Mistakes Checklist
+
+```text
+□ Thinking opacity: 0 removes the element
+□ Using opacity as a functional disabled state
+□ Applying parent opacity when only the background should be transparent
+□ Assuming child opacity can cancel parent opacity
+□ Using opacity instead of alpha colors
+□ Assuming opacity changes dimensions
+□ Using extremely low opacity for important content
+□ Forgetting opacity affects the entire element
+□ Putting transitions only on :hover
+□ Relying exclusively on hover
+□ Using opacity instead of pointer-events
+□ Using opacity instead of visibility
+□ Forgetting keyboard focus
+□ Using opacity as the only disabled indicator
+□ Ignoring prefers-reduced-motion
+□ Hiding important content with opacity
+□ Making overlay text transparent unintentionally
+□ Confusing opacity with alpha colors
+□ Assuming opacity: 0 disables interaction
+□ Overusing opacity throughout the interface
+```
+
+> 💡 **Remember:** The biggest mistake with `opacity` is treating it as a general-purpose hiding or disabling mechanism. It is primarily a visual transparency property. Use `visibility`, `display`, `pointer-events`, HTML states, and alpha colors when those behaviors are actually required.
