@@ -3988,3 +3988,358 @@ display: none
 ```
 
 > 💡 **Remember:** `opacity: 0` makes an element fully transparent, `visibility: hidden` hides it while preserving its layout space, and `display: none` removes its layout space. Choose the property based on the behavior you actually need.
+
+---
+
+## Opacity and User Interaction
+
+Opacity changes the visual appearance of an element, but it does not automatically disable the element or change its interactive behavior.
+
+### Opacity Does Not Disable an Element
+
+Consider:
+
+```css
+.button {
+    opacity: 0.5;
+}
+```
+
+The button looks faded, but opacity alone does not mean that the button is disabled.
+
+For example:
+
+```html
+<button class="button">
+    Submit
+</button>
+```
+
+```css
+.button {
+    opacity: 0.5;
+}
+```
+
+The button can still be an interactive control.
+
+### Visual State vs Functional State
+
+It is important to distinguish between:
+
+```text
+Visual state
+    ↓
+opacity
+
+Functional state
+    ↓
+HTML / CSS interaction rules
+```
+
+For a genuinely disabled button, use the HTML `disabled` attribute:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+Then opacity can be used to communicate the disabled appearance:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+Here:
+
+```text
+disabled
+→ Controls whether the button is disabled
+
+opacity
+→ Controls how the disabled button looks
+```
+
+### Opacity and Pointer Interaction
+
+An element with:
+
+```css
+opacity: 0;
+```
+
+is fully transparent, but opacity itself does not automatically remove the element's ability to receive pointer interaction.
+
+For example:
+
+```css
+.button {
+    opacity: 0;
+}
+```
+
+The button is invisible, but it may still participate in pointer interaction.
+
+If the element should not receive pointer events, that is a separate concern.
+
+```css
+.button {
+    pointer-events: none;
+}
+```
+
+Now pointer interaction is disabled for that element.
+
+### Opacity vs `pointer-events`
+
+These properties have different purposes:
+
+```text
+opacity
+→ Controls visual transparency
+
+pointer-events
+→ Controls pointer interaction
+```
+
+For example:
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+```
+
+This creates an invisible element that does not receive pointer events.
+
+### Combining Opacity and Pointer Events
+
+A common pattern for a hidden overlay is:
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.container:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+```
+
+Conceptually:
+
+```text
+Normal
+│
+├── opacity: 0
+└── pointer-events: none
+
+Hover
+│
+├── opacity: 1
+└── pointer-events: auto
+```
+
+This separates the visual state from the interaction state.
+
+### Opacity and Keyboard Focus
+
+Opacity should not be used as the only way to communicate important interaction states.
+
+For example:
+
+```css
+.button:focus {
+    opacity: 0.5;
+}
+```
+
+may make the button less visible when it receives keyboard focus.
+
+A better approach is to provide a clear focus indicator:
+
+```css
+.button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+```
+
+If opacity is also changed, make sure the focus state remains clearly visible.
+
+### Hover Is Not the Only Interaction State
+
+Opacity effects are often used with:
+
+```css
+:hover
+```
+
+but interactive elements can also have:
+
+```css
+:focus
+:focus-visible
+:active
+:disabled
+```
+
+For example:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button:active {
+    opacity: 0.6;
+}
+
+.button:disabled {
+    opacity: 0.5;
+}
+```
+
+Each state communicates something different.
+
+### Do Not Use Opacity as the Only Disabled Indicator
+
+This:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+can be useful visually.
+
+But avoid relying only on a faded appearance to communicate state.
+
+The actual HTML state should be represented when appropriate:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+### Invisible Does Not Necessarily Mean Inactive
+
+Compare:
+
+```css
+opacity: 0;
+```
+
+with:
+
+```css
+pointer-events: none;
+```
+
+and:
+
+```css
+display: none;
+```
+
+They have different purposes:
+
+```text
+opacity: 0
+→ Invisible through transparency
+
+pointer-events: none
+→ Does not receive pointer events
+
+display: none
+→ Removed from layout
+```
+
+These properties should not be treated as interchangeable.
+
+### Practical Example
+
+HTML:
+
+```html
+<button class="button">
+    Save
+</button>
+```
+
+CSS:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button:active {
+    opacity: 0.6;
+}
+
+.button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.button:disabled {
+    opacity: 0.5;
+}
+```
+
+This creates separate visual states:
+
+```text
+Normal
+→ opacity: 1
+
+Hover
+→ opacity: 0.8
+
+Active
+→ opacity: 0.6
+
+Disabled
+→ opacity: 0.5
+
+Keyboard focus
+→ visible focus outline
+```
+
+### Important Points
+
+```text
+Opacity
+│
+├── Controls appearance
+├── Does not automatically disable interaction
+├── opacity: 0 does not mean pointer-events: none
+│
+├── pointer-events
+│   └── Controls pointer interaction
+│
+└── disabled
+    └── Represents a disabled control state
+```
+
+> 💡 **Remember:** Opacity is a visual property, not a general-purpose interaction control. Use `disabled` for disabled form controls, `pointer-events` when pointer interaction needs to be controlled, and clear focus styles for keyboard users.
