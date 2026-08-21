@@ -2028,3 +2028,338 @@ Partial Transparency
 ```
 
 > 💡 **Remember:** Partial transparency uses an opacity value between `0` and `1` (or `0%` and `100%`). Use `opacity` when the entire element should become transparent, and use alpha colors when only a particular color needs transparency.
+
+---
+
+## Opacity and Child Elements
+
+When `opacity` is applied to a parent element, the transparency affects the parent and its rendered child content as part of the parent's rendering.
+
+### Basic Example
+
+HTML:
+
+```html
+<div class="parent">
+    <h2>Title</h2>
+    <p>Some content</p>
+</div>
+```
+
+CSS:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+```
+
+The parent and its contents appear partially transparent.
+
+```text
+Parent
+┌──────────────────────┐
+│ Title                │
+│ Some content         │
+│                      │
+└──────────────────────┘
+        ↓
+   opacity: 0.5
+        ↓
+Everything appears
+partially transparent
+```
+
+### Parent Opacity Affects Child Content
+
+Consider:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+
+.child {
+    opacity: 1;
+}
+```
+
+The child does **not** become fully opaque relative to the page simply because it has:
+
+```css
+opacity: 1;
+```
+
+The parent's opacity still affects the final rendered result.
+
+Conceptually:
+
+```text
+Parent opacity
+      ↓
+Child rendered inside parent
+      ↓
+Final result is affected by
+the parent's transparency
+```
+
+### Example
+
+HTML:
+
+```html
+<div class="card">
+    <h2>Card Title</h2>
+
+    <button class="button">
+        Click Me
+    </button>
+</div>
+```
+
+CSS:
+
+```css
+.card {
+    opacity: 0.5;
+}
+
+.button {
+    opacity: 1;
+}
+```
+
+The button remains part of the semi-transparent card rendering.
+
+Setting:
+
+```css
+.button {
+    opacity: 1;
+}
+```
+
+does not cancel:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+### Why This Happens
+
+The parent's opacity is applied to the rendered result of the element and its descendants.
+
+Conceptually:
+
+```text
+Parent
+│
+├── Background
+├── Text
+├── Child
+│   └── Content
+│
+└── Entire rendered result
+        ↓
+     opacity
+```
+
+Therefore, applying opacity to a parent is different from applying transparency independently to each child.
+
+### Parent vs Child Opacity
+
+Consider:
+
+```css
+.parent {
+    opacity: 0.8;
+}
+
+.child {
+    opacity: 0.5;
+}
+```
+
+Both opacity settings contribute to the final appearance.
+
+The child is first rendered with its own opacity, and the resulting content is then affected by the parent's opacity.
+
+Conceptually:
+
+```text
+Child opacity
+      ↓
+Child rendered
+      ↓
+Parent opacity
+      ↓
+Final result
+```
+
+### Avoiding Unwanted Child Transparency
+
+Suppose you want:
+
+```text
+Semi-transparent background
++
+Fully opaque text
+```
+
+Do not use:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+because this affects the whole card rendering.
+
+Instead, make only the background color transparent.
+
+For example:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+Now the background can be translucent while the text remains fully opaque.
+
+### Overlay Example
+
+A common mistake is:
+
+```css
+.overlay {
+    background: black;
+    opacity: 0.5;
+}
+
+.overlay h2 {
+    opacity: 1;
+}
+```
+
+The heading will still be affected by the parent's opacity.
+
+A better approach is to use an alpha background:
+
+```css
+.overlay {
+    background-color: rgb(0 0 0 / 50%);
+}
+
+.overlay h2 {
+    opacity: 1;
+}
+```
+
+This allows the heading to remain fully opaque.
+
+### Opacity on an Image Container
+
+Consider:
+
+```html
+<div class="image-box">
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+If you use:
+
+```css
+.image-box {
+    opacity: 0.5;
+}
+```
+
+the image inside the container is also affected by the parent's opacity.
+
+If only the image should be transparent, apply opacity directly to the image:
+
+```css
+.image-box img {
+    opacity: 0.5;
+}
+```
+
+### Opacity on a Parent vs Individual Children
+
+Parent:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+```
+
+means the parent and its rendered contents are affected.
+
+Individual child:
+
+```css
+.child {
+    opacity: 0.5;
+}
+```
+
+means only that child receives the opacity setting.
+
+This distinction is important when designing interfaces.
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="card">
+    <div class="background"></div>
+
+    <div class="content">
+        <h2>Product</h2>
+        <p>Product description.</p>
+    </div>
+</div>
+```
+
+Instead of:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+use a transparent background layer when only the background should be translucent:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+
+.content {
+    color: white;
+}
+```
+
+### Important Points
+
+```text
+Parent opacity
+│
+├── Affects the parent's rendered result
+├── Child content is part of that result
+├── Child opacity: 1 does not cancel parent opacity
+│
+└── If only a background should be transparent
+    └── Use an alpha color or separate background layer
+```
+
+> 💡 **Remember:** Applying `opacity` to a parent affects its rendered child content as well. If you need a transparent background while keeping text or other children fully opaque, use an alpha color or a separate background layer instead of reducing the parent's overall opacity.
