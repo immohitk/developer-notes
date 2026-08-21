@@ -6954,3 +6954,730 @@ Use the appropriate CSS property or HTML state for those requirements.
 > No. `opacity: 0` makes the element transparent while `display: none` removes it from layout.
 
 > 💡 **Interview Tip:** When explaining `opacity`, always distinguish **visual transparency** from **visibility, layout, and interaction**. This demonstrates a deeper understanding than simply saying that opacity makes an element transparent.
+
+---
+
+## Practice Exercises
+
+Use the following exercises to practice CSS `opacity`.
+
+### Exercise 1: Basic Opacity
+
+Create a `<div>` and set its opacity to `0.5`.
+
+```html
+<div class="box">
+    Semi-transparent box
+</div>
+```
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+**Task:** Observe how the background behind the element affects its appearance.
+
+---
+
+### Exercise 2: Test Opacity Values
+
+Create several boxes with different opacity values:
+
+```html
+<div class="box box-1">1</div>
+<div class="box box-2">0.75</div>
+<div class="box box-3">0.5</div>
+<div class="box box-4">0.25</div>
+<div class="box box-5">0</div>
+```
+
+```css
+.box-1 {
+    opacity: 1;
+}
+
+.box-2 {
+    opacity: 0.75;
+}
+
+.box-3 {
+    opacity: 0.5;
+}
+
+.box-4 {
+    opacity: 0.25;
+}
+
+.box-5 {
+    opacity: 0;
+}
+```
+
+**Task:** Compare the visual difference between each value.
+
+---
+
+### Exercise 3: Image Opacity
+
+Create an image and make it partially transparent.
+
+```html
+<img class="image" src="image.jpg" alt="Example">
+```
+
+```css
+.image {
+    opacity: 0.6;
+}
+```
+
+**Task:** Change the value to:
+
+```text
+0.9
+0.7
+0.5
+0.3
+0.1
+```
+
+and observe the differences.
+
+---
+
+### Exercise 4: Image Hover Effect
+
+Create an image that becomes partially transparent when hovered.
+
+**Requirements:**
+
+- Normal opacity: `1`
+- Hover opacity: `0.7`
+
+```css
+.image {
+    opacity: 1;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+**Challenge:** Add a smooth transition.
+
+---
+
+### Exercise 5: Smooth Image Fade
+
+Create a smooth image hover effect.
+
+**Requirements:**
+
+```text
+Normal → opacity: 1
+Hover  → opacity: 0.7
+Duration → 0.3s
+```
+
+Expected pattern:
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+---
+
+### Exercise 6: Transparent Card Background
+
+Create a card with:
+
+```text
+Semi-transparent background
+Fully opaque heading
+Fully opaque paragraph
+```
+
+Do **not** use:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+Instead, use an alpha-enabled background color.
+
+**Goal:**
+
+```text
+Background → Transparent
+Text       → Fully opaque
+```
+
+---
+
+### Exercise 7: Parent vs Child Opacity
+
+Create:
+
+```html
+<div class="parent">
+    <h2>Parent</h2>
+    <p>Child content</p>
+</div>
+```
+
+Set:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+
+.parent p {
+    opacity: 1;
+}
+```
+
+**Task:** Observe whether the paragraph becomes fully opaque relative to the page.
+
+**Question:** Why doesn't the child's `opacity: 1` cancel the parent's opacity?
+
+---
+
+### Exercise 8: Fade-In Effect
+
+Create an element that starts transparent:
+
+```css
+.message {
+    opacity: 0;
+}
+```
+
+Then create a class:
+
+```css
+.message.visible {
+    opacity: 1;
+}
+```
+
+Add:
+
+```css
+transition: opacity 0.5s ease;
+```
+
+**Task:** Add and remove the `visible` class and observe the effect.
+
+---
+
+### Exercise 9: Fade-Out Effect
+
+Create an element with:
+
+```css
+.message {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+```
+
+Create a hidden state:
+
+```css
+.message.hidden {
+    opacity: 0;
+}
+```
+
+**Task:** Toggle the `hidden` class and observe the fade-out effect.
+
+---
+
+### Exercise 10: Opacity vs `display: none`
+
+Create two boxes.
+
+For the first:
+
+```css
+.box-one {
+    opacity: 0;
+}
+```
+
+For the second:
+
+```css
+.box-two {
+    display: none;
+}
+```
+
+**Task:** Compare their layout behavior.
+
+Answer:
+
+```text
+Which box still occupies layout space?
+Which box is removed from layout?
+```
+
+---
+
+### Exercise 11: Opacity vs Visibility
+
+Create three elements:
+
+```css
+.first {
+    opacity: 0;
+}
+
+.second {
+    visibility: hidden;
+}
+
+.third {
+    display: none;
+}
+```
+
+**Task:** Compare:
+
+```text
+Visibility
+Layout space
+Rendering behavior
+```
+
+---
+
+### Exercise 12: Tooltip
+
+Create a tooltip that:
+
+- Starts hidden.
+- Fades into view.
+- Becomes visible on hover.
+
+Use:
+
+```css
+opacity
+visibility
+transition
+:hover
+```
+
+Starter structure:
+
+```html
+<div class="container">
+    Hover me
+
+    <div class="tooltip">
+        Tooltip text
+    </div>
+</div>
+```
+
+---
+
+### Exercise 13: Disabled Button
+
+Create:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+Style the disabled state using opacity:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+**Task:** Explain the difference between:
+
+```text
+disabled
+opacity
+```
+
+---
+
+### Exercise 14: Pointer Events
+
+Create an invisible overlay:
+
+```css
+.overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+```
+
+Then make it visible and interactive:
+
+```css
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+```
+
+**Task:** Explain why both properties are used.
+
+---
+
+### Exercise 15: Watermark
+
+Create an image or logo and turn it into a subtle watermark.
+
+Try:
+
+```css
+.watermark {
+    opacity: 0.2;
+}
+```
+
+**Task:** Experiment with:
+
+```text
+0.1
+0.2
+0.3
+0.4
+```
+
+and choose an appropriate value.
+
+---
+
+### Exercise 16: Card Hover Effect
+
+Create a card that starts slightly transparent and becomes fully opaque on hover.
+
+Requirements:
+
+```text
+Normal → 0.8
+Hover  → 1
+Transition → 0.3s
+```
+
+---
+
+### Exercise 17: Multiple Interaction States
+
+Create a button with:
+
+```text
+Normal
+Hover
+Active
+Disabled
+Focus
+```
+
+Use opacity for the visual states:
+
+```css
+.button {
+    opacity: 1;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button:active {
+    opacity: 0.6;
+}
+
+.button:disabled {
+    opacity: 0.5;
+}
+```
+
+Add a visible `:focus-visible` outline.
+
+---
+
+### Exercise 18: Reduced Motion
+
+Create an opacity transition:
+
+```css
+.element {
+    transition: opacity 0.3s ease;
+}
+```
+
+Then add:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    .element {
+        transition: none;
+    }
+}
+```
+
+**Task:** Explain why this media query is useful.
+
+---
+
+### Exercise 19: Alpha Color vs Opacity
+
+Create two cards.
+
+#### Card A
+
+```css
+.card-a {
+    background: black;
+    color: white;
+    opacity: 0.5;
+}
+```
+
+#### Card B
+
+```css
+.card-b {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+**Task:** Compare the text in both cards.
+
+**Question:** Why does the text behave differently?
+
+---
+
+### Exercise 20: Build a Complete Image Card
+
+Create an image card containing:
+
+```text
+Image
+Title
+Description
+Button
+```
+
+Requirements:
+
+- Image fades on hover.
+- Card has rounded corners.
+- Background can be translucent.
+- Text remains readable.
+- Button has a hover opacity effect.
+- Transitions are smooth.
+- Keyboard focus is visible.
+
+### Challenge
+
+Build the component without applying `opacity` to the entire card.
+
+Use transparency only where it is actually needed.
+
+---
+
+## Conceptual Questions
+
+### Question 1
+
+What is the difference between:
+
+```css
+opacity: 0;
+```
+
+and:
+
+```css
+display: none;
+```
+
+---
+
+### Question 2
+
+Why can this be problematic?
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+when the card contains text that should remain fully opaque?
+
+---
+
+### Question 3
+
+What is the difference between:
+
+```css
+opacity: 0.5;
+```
+
+and:
+
+```css
+background-color: rgb(0 0 0 / 50%);
+```
+
+---
+
+### Question 4
+
+Why doesn't this make the child fully opaque?
+
+```css
+.parent {
+    opacity: 0.5;
+}
+
+.child {
+    opacity: 1;
+}
+```
+
+---
+
+### Question 5
+
+Does:
+
+```css
+opacity: 0;
+```
+
+automatically disable pointer interaction?
+
+Explain why or why not.
+
+---
+
+### Question 6
+
+When would you use:
+
+```css
+pointer-events: none;
+```
+
+with opacity?
+
+---
+
+### Question 7
+
+Why should `transition` usually be placed on the normal state instead of only on `:hover`?
+
+---
+
+### Question 8
+
+Why should important content not rely only on `:hover` and opacity?
+
+---
+
+### Question 9
+
+How would you create a disabled-looking button while also making the button actually disabled?
+
+---
+
+### Question 10
+
+Which property should you use when:
+
+```text
+The entire element should fade
+Only the background should be transparent
+The element should be hidden while preserving layout
+The element should be removed from layout
+Pointer interaction should be disabled
+A form control should be disabled
+```
+
+---
+
+## Mini Project
+
+### Build a Hoverable Image Gallery
+
+Create a gallery containing at least three images.
+
+Requirements:
+
+```text
+1. Images are responsive.
+2. Images start at opacity: 0.75.
+3. Hovered image becomes opacity: 1.
+4. Transition lasts 0.3s.
+5. Gallery cards have rounded corners.
+6. Images are clipped to the rounded container.
+7. Keyboard focus is visible where applicable.
+8. Reduced-motion preference is respected.
+```
+
+Suggested structure:
+
+```html
+<div class="gallery">
+    <a class="gallery-card" href="#">
+        <img src="image1.jpg" alt="Image 1">
+    </a>
+
+    <a class="gallery-card" href="#">
+        <img src="image2.jpg" alt="Image 2">
+    </a>
+
+    <a class="gallery-card" href="#">
+        <img src="image3.jpg" alt="Image 3">
+    </a>
+</div>
+```
+
+### Challenge Requirements
+
+Try to implement the gallery without JavaScript.
+
+Use only:
+
+```text
+HTML
+CSS
+opacity
+transition
+:hover
+:focus-visible
+@media
+```
+
+> 💡 **Practice Tip:** Do not just memorize opacity values. Practice deciding whether the requirement is about **transparency, visibility, layout, or interaction**. Choosing the correct property is more important than remembering the syntax alone.
