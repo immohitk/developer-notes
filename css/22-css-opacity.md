@@ -1691,3 +1691,340 @@ Transparent Elements
 ```
 
 > 💡 **Remember:** `opacity: 0` makes an element completely transparent, but it does not remove the element from the layout. If only a particular color needs transparency, use a color with an alpha component instead of reducing the opacity of the entire element.
+
+---
+
+## Partially Transparent Elements
+
+An element is partially transparent when its `opacity` value is greater than `0` and less than `1`.
+
+Partial transparency allows some of the background behind an element to contribute to its appearance.
+
+### Basic Example
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+The element is partially transparent.
+
+```text
+opacity: 1
+██████████
+Fully opaque
+
+opacity: 0.75
+███████░░░
+Mostly opaque
+
+opacity: 0.5
+█████░░░░░
+Partially transparent
+
+opacity: 0.25
+██░░░░░░░░
+Mostly transparent
+```
+
+### Common Values
+
+```css
+opacity: 0.9;
+opacity: 0.8;
+opacity: 0.7;
+opacity: 0.6;
+opacity: 0.5;
+opacity: 0.4;
+opacity: 0.3;
+opacity: 0.2;
+opacity: 0.1;
+```
+
+All of these create some degree of transparency.
+
+The lower the value, the more transparent the element becomes.
+
+### `opacity: 0.9`
+
+```css
+.box {
+    opacity: 0.9;
+}
+```
+
+The element is almost fully opaque.
+
+This is useful when you want a subtle transparency effect.
+
+### `opacity: 0.7`
+
+```css
+.box {
+    opacity: 0.7;
+}
+```
+
+The element is mostly opaque but has noticeable transparency.
+
+This can work well for:
+
+```text
+Secondary UI elements
+Faded images
+Hover states
+Subtle overlays
+```
+
+### `opacity: 0.5`
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+The element is significantly transparent.
+
+This is a common value for overlays and visual effects.
+
+### `opacity: 0.3`
+
+```css
+.box {
+    opacity: 0.3;
+}
+```
+
+The element is mostly transparent.
+
+This can be useful for decorative elements or subtle background effects.
+
+### Opacity With an Image
+
+```css
+.image {
+    opacity: 0.6;
+}
+```
+
+The image becomes partially transparent.
+
+For example:
+
+```text
+Normal image
+████████████
+
+opacity: 0.6
+██████░░░░░░
+```
+
+### Opacity With a Card
+
+```css
+.card {
+    opacity: 0.8;
+}
+```
+
+The entire card becomes partially transparent.
+
+This includes its rendered:
+
+```text
+Background
+Border
+Text
+Images
+Child content
+```
+
+### Opacity With a Hover Effect
+
+Partial transparency is commonly used for hover feedback.
+
+```css
+.image {
+    opacity: 1;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+Normal state:
+
+```text
+opacity: 1
+→ Fully opaque
+```
+
+Hover state:
+
+```text
+opacity: 0.7
+→ Partially transparent
+```
+
+### Smooth Partial Transparency
+
+Use a transition:
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+The opacity gradually changes from `1` to `0.7`.
+
+### Partial Transparency vs Transparent Color
+
+Consider:
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+This affects the entire card.
+
+If only the background should be transparent, use an alpha color instead:
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+The difference is:
+
+```text
+opacity: 0.5
+→ Entire element becomes transparent
+
+background-color: rgb(... / 50%)
+→ Background color becomes transparent
+→ Other content can remain fully opaque
+```
+
+### Percentage Values
+
+Partial opacity can also be written using percentages.
+
+```css
+opacity: 50%;
+```
+
+is equivalent to:
+
+```css
+opacity: 0.5;
+```
+
+Similarly:
+
+```css
+opacity: 75%;
+```
+
+represents:
+
+```css
+opacity: 0.75;
+```
+
+### Opacity Does Not Change Layout
+
+Consider:
+
+```css
+.box {
+    width: 300px;
+    height: 150px;
+    opacity: 0.5;
+}
+```
+
+The element is still:
+
+```text
+300px × 150px
+```
+
+Opacity only changes its transparency.
+
+### Practical Example
+
+HTML:
+
+```html
+<div class="overlay">
+    <h2>Overlay</h2>
+</div>
+```
+
+CSS:
+
+```css
+.overlay {
+    background: black;
+    color: white;
+    opacity: 0.5;
+}
+```
+
+The overlay becomes partially transparent, allowing content behind it to contribute visually.
+
+### Choosing an Opacity Value
+
+Use the value based on the intended visual effect:
+
+```text
+0.9
+→ Very subtle transparency
+
+0.7
+→ Mild transparency
+
+0.5
+→ Clearly transparent
+
+0.3
+→ Strong transparency
+
+0.1
+→ Very faint element
+```
+
+Do not assume that a particular value will always look the same because the final appearance also depends on the background behind the element.
+
+### Important Points
+
+```text
+Partial Transparency
+│
+├── 0 < opacity < 1
+│
+├── Lower value
+│   └── More transparent
+│
+├── Higher value
+│   └── More opaque
+│
+├── opacity affects the whole element
+│
+└── Alpha colors can be used when
+    only a specific color should be transparent
+```
+
+> 💡 **Remember:** Partial transparency uses an opacity value between `0` and `1` (or `0%` and `100%`). Use `opacity` when the entire element should become transparent, and use alpha colors when only a particular color needs transparency.
