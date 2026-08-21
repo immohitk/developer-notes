@@ -6308,3 +6308,649 @@ Use opacity selectively.
 ```
 
 > 💡 **Remember:** The biggest mistake with `opacity` is treating it as a general-purpose hiding or disabling mechanism. It is primarily a visual transparency property. Use `visibility`, `display`, `pointer-events`, HTML states, and alpha colors when those behaviors are actually required.
+
+---
+
+## Interview Questions
+
+### 1. What is the CSS `opacity` property?
+
+`opacity` controls how transparent an element appears.
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+---
+
+### 2. What is the default value of `opacity`?
+
+The default opacity is:
+
+```css
+opacity: 1;
+```
+
+This means the element is fully opaque.
+
+---
+
+### 3. What does `opacity: 0` do?
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+It makes the element completely transparent.
+
+The element still exists and normally continues to occupy its layout space.
+
+---
+
+### 4. Does `opacity: 0` remove an element from the layout?
+
+**No.**
+
+```css
+opacity: 0;
+```
+
+makes the element transparent but does not remove its layout space.
+
+Compare:
+
+```css
+opacity: 0;
+```
+
+with:
+
+```css
+display: none;
+```
+
+`display: none` removes the element from the layout.
+
+---
+
+### 5. What values can `opacity` use?
+
+Opacity is commonly expressed from:
+
+```text
+0 → 1
+```
+
+It also supports percentage notation:
+
+```text
+0% → 100%
+```
+
+Examples:
+
+```css
+opacity: 0;
+opacity: 0.5;
+opacity: 1;
+```
+
+and:
+
+```css
+opacity: 0%;
+opacity: 50%;
+opacity: 100%;
+```
+
+---
+
+### 6. What does `opacity: 0.5` mean?
+
+It makes the element partially transparent.
+
+```css
+.box {
+    opacity: 0.5;
+}
+```
+
+The exact visual appearance depends on the content and colors behind the element.
+
+---
+
+### 7. Does opacity affect child elements?
+
+Yes.
+
+When opacity is applied to a parent:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+```
+
+the parent's rendered child content is also affected.
+
+Setting:
+
+```css
+.child {
+    opacity: 1;
+}
+```
+
+does not cancel the parent's opacity.
+
+---
+
+### 8. How can you make only the background transparent while keeping text opaque?
+
+Use an alpha-enabled background color instead of applying opacity to the entire element.
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+    color: white;
+}
+```
+
+This allows the background to be translucent while the text remains fully opaque.
+
+---
+
+### 9. What is the difference between `opacity` and an alpha color?
+
+`opacity` affects the entire rendered element.
+
+```css
+.card {
+    opacity: 0.5;
+}
+```
+
+An alpha-enabled color affects the specific color where it is used.
+
+```css
+.card {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+Therefore:
+
+```text
+opacity
+→ Entire element
+
+alpha color
+→ Specific color
+```
+
+---
+
+### 10. Can opacity be used with images?
+
+Yes.
+
+```css
+img {
+    opacity: 0.7;
+}
+```
+
+This makes the image partially transparent.
+
+Opacity is commonly used for:
+
+```text
+Image fading
+Hover effects
+Watermarks
+Decorative images
+```
+
+---
+
+### 11. How can you create an image fade effect on hover?
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+The image smoothly becomes partially transparent when hovered.
+
+---
+
+### 12. Why is `transition` used with opacity?
+
+Without a transition, the opacity change happens immediately.
+
+```css
+.button:hover {
+    opacity: 0.7;
+}
+```
+
+With:
+
+```css
+.button {
+    transition: opacity 0.3s ease;
+}
+```
+
+the change happens gradually.
+
+---
+
+### 13. Where should the opacity transition usually be declared?
+
+Usually on the normal state:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+```
+
+This allows the transition to work when both entering and leaving the hover state.
+
+---
+
+### 14. Does opacity disable a button?
+
+**No.**
+
+```css
+button {
+    opacity: 0.5;
+}
+```
+
+only changes its appearance.
+
+For an actual disabled button:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+Opacity can then be used to style that state:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+---
+
+### 15. Does `opacity: 0` prevent pointer interaction?
+
+Not automatically.
+
+```css
+.element {
+    opacity: 0;
+}
+```
+
+controls visual transparency.
+
+If pointer interaction should be disabled, use:
+
+```css
+.element {
+    pointer-events: none;
+}
+```
+
+---
+
+### 16. What is the difference between `opacity: 0` and `visibility: hidden`?
+
+Both can make an element invisible while preserving its layout space, but they represent different concepts.
+
+```text
+opacity: 0
+→ Element becomes fully transparent
+
+visibility: hidden
+→ Element becomes hidden
+```
+
+Opacity is particularly useful for fade effects.
+
+---
+
+### 17. What is the difference between `opacity: 0` and `display: none`?
+
+```text
+opacity: 0
+→ Transparent
+→ Layout space remains
+
+display: none
+→ Not rendered
+→ Layout space removed
+```
+
+---
+
+### 18. Can opacity be animated?
+
+Yes.
+
+For example:
+
+```css
+.box {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.box.visible {
+    opacity: 1;
+}
+```
+
+This creates a fade-in effect.
+
+---
+
+### 19. How do you create a fade-out effect?
+
+```css
+.box {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.box.hidden {
+    opacity: 0;
+}
+```
+
+The element gradually becomes transparent.
+
+---
+
+### 20. How can opacity be used with a tooltip?
+
+A common pattern is:
+
+```css
+.tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s;
+}
+
+.container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+```
+
+Here:
+
+```text
+opacity
+→ Creates the fade
+
+visibility
+→ Controls the hidden/visible state
+```
+
+---
+
+### 21. Does opacity change the width or height of an element?
+
+**No.**
+
+For example:
+
+```css
+.box {
+    width: 300px;
+    height: 200px;
+    opacity: 0.5;
+}
+```
+
+The element remains:
+
+```text
+300px × 200px
+```
+
+Opacity only affects transparency.
+
+---
+
+### 22. Why should opacity not be used to hide important content?
+
+Because:
+
+```css
+opacity: 0;
+```
+
+only changes the visual appearance.
+
+The element still exists and can have layout and interaction implications.
+
+Use the appropriate visibility and interaction mechanism for the actual requirement.
+
+---
+
+### 23. How can you make a disabled button appear faded?
+
+Use the actual disabled state:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+Then:
+
+```css
+button:disabled {
+    opacity: 0.5;
+}
+```
+
+This separates:
+
+```text
+disabled
+→ Functionality
+
+opacity
+→ Appearance
+```
+
+---
+
+### 24. How can you respect users who prefer reduced motion when using opacity transitions?
+
+Use `prefers-reduced-motion`:
+
+```css
+.element {
+    transition: opacity 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .element {
+        transition: none;
+    }
+}
+```
+
+---
+
+### 25. When should you use `opacity` instead of a transparent color?
+
+Use `opacity` when the **whole element** should become transparent.
+
+Use a transparent color when only a specific color should become transparent.
+
+```text
+Whole element
+→ opacity
+
+Specific background/text/border color
+→ Alpha-enabled color
+```
+
+---
+
+### 26. Can a child with `opacity: 1` override a parent's `opacity: 0.5`?
+
+**No.**
+
+For example:
+
+```css
+.parent {
+    opacity: 0.5;
+}
+
+.child {
+    opacity: 1;
+}
+```
+
+The parent's opacity still affects the final rendered result.
+
+If the child needs to remain fully opaque while the background is translucent, use an alpha-enabled background or a separate background layer.
+
+---
+
+### 27. What is a practical use of `opacity` with `:hover`?
+
+A common example is fading an image:
+
+```css
+img {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+img:hover {
+    opacity: 0.7;
+}
+```
+
+---
+
+### 28. What is a practical use of opacity with overlays?
+
+Opacity can create a semi-transparent overlay:
+
+```css
+.overlay {
+    background-color: rgb(0 0 0 / 50%);
+}
+```
+
+This is preferable to:
+
+```css
+.overlay {
+    background: black;
+    opacity: 0.5;
+}
+```
+
+when the overlay contains text that should remain fully opaque.
+
+---
+
+### 29. What is the difference between `opacity` and `pointer-events`?
+
+```text
+opacity
+→ Controls visual transparency
+
+pointer-events
+→ Controls pointer interaction
+```
+
+They solve different problems.
+
+---
+
+### 30. What is the most important thing to remember about CSS opacity?
+
+`opacity` is primarily a **visual transparency property**.
+
+It does not automatically:
+
+```text
+Remove an element
+Disable a control
+Remove layout space
+Disable pointer interaction
+```
+
+Use the appropriate CSS property or HTML state for those requirements.
+
+---
+
+## Short Interview Answers
+
+### Q: What does `opacity: 0` do?
+
+> It makes an element completely transparent without normally removing its layout space.
+
+### Q: What is the difference between opacity and alpha color?
+
+> Opacity affects the entire element, while an alpha color controls transparency for a specific color.
+
+### Q: Does opacity disable interaction?
+
+> No. Opacity controls appearance; interaction must be controlled separately.
+
+### Q: How do you smoothly change opacity?
+
+> Use `transition: opacity ...`.
+
+### Q: Can opacity affect child elements?
+
+> Yes. Parent opacity affects the parent's rendered child content.
+
+### Q: How do you make only a background transparent?
+
+> Use an alpha-enabled background color such as `rgb(0 0 0 / 50%)`.
+
+### Q: Is `opacity: 0` the same as `display: none`?
+
+> No. `opacity: 0` makes the element transparent while `display: none` removes it from layout.
+
+> 💡 **Interview Tip:** When explaining `opacity`, always distinguish **visual transparency** from **visibility, layout, and interaction**. This demonstrates a deeper understanding than simply saying that opacity makes an element transparent.
