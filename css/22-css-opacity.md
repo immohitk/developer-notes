@@ -3305,3 +3305,409 @@ Opacity + :hover
 ```
 
 > 💡 **Remember:** `opacity` is useful for hover feedback, especially when combined with `transition`. However, opacity should control appearance—not functionality—and important interaction states should not depend on hover alone.
+
+---
+
+## Opacity With Transitions
+
+The `transition` property can be combined with `opacity` to create smooth fade effects.
+
+Without a transition, an opacity change happens immediately.
+
+With a transition, the browser gradually changes the opacity over the specified duration.
+
+### Basic Example
+
+```css
+.box {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.box:hover {
+    opacity: 0.5;
+}
+```
+
+The element smoothly changes from:
+
+```text
+opacity: 1
+    ↓
+opacity: 0.5
+```
+
+when it is hovered.
+
+### Without a Transition
+
+```css
+.box {
+    opacity: 1;
+}
+
+.box:hover {
+    opacity: 0.5;
+}
+```
+
+The change happens immediately:
+
+```text
+Normal
+opacity: 1
+
+        ↓ hover
+
+Hover
+opacity: 0.5
+```
+
+### With a Transition
+
+```css
+.box {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.box:hover {
+    opacity: 0.5;
+}
+```
+
+The browser gradually changes the opacity:
+
+```text
+1.0
+ ↓
+0.9
+ ↓
+0.8
+ ↓
+0.7
+ ↓
+0.6
+ ↓
+0.5
+```
+
+The actual intermediate values are handled by the browser.
+
+### Transition Duration
+
+The duration determines how long the opacity change takes.
+
+```css
+transition: opacity 0.2s;
+```
+
+Short transition.
+
+```css
+transition: opacity 0.5s;
+```
+
+Longer transition.
+
+```css
+transition: opacity 1s;
+```
+
+Slow transition.
+
+For small UI interactions, shorter durations are often appropriate.
+
+### Using `transition-property`
+
+You can explicitly specify the property:
+
+```css
+.box {
+    transition-property: opacity;
+    transition-duration: 0.3s;
+}
+```
+
+This is equivalent in intent to:
+
+```css
+.box {
+    transition: opacity 0.3s;
+}
+```
+
+### Transition Timing Function
+
+You can also control how the transition progresses over time.
+
+```css
+.box {
+    transition: opacity 0.3s ease;
+}
+```
+
+Common timing functions include:
+
+```text
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+```
+
+Example:
+
+```css
+.box {
+    transition: opacity 0.3s ease-in-out;
+}
+```
+
+### Transition Delay
+
+A delay can be added:
+
+```css
+.box {
+    transition: opacity 0.3s ease 0.1s;
+}
+```
+
+Conceptually:
+
+```text
+0.1s
+↓
+Wait
+
+0.3s
+↓
+Perform opacity transition
+```
+
+### Image Fade Effect
+
+```css
+.image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover {
+    opacity: 0.7;
+}
+```
+
+The image smoothly fades when hovered.
+
+### Button Fade Effect
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+```
+
+The button becomes slightly transparent on hover.
+
+### Card Fade Effect
+
+```css
+.card {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    opacity: 1;
+}
+```
+
+The card becomes fully opaque when hovered.
+
+### Combining Opacity With Other Transitions
+
+Opacity can be transitioned together with other properties.
+
+```css
+.card {
+    opacity: 0.8;
+    transform: translateY(0);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.card:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+}
+```
+
+Now the card:
+
+```text
+Becomes more opaque
+        +
+Moves upward
+```
+
+### Transition Should Usually Be on the Normal State
+
+Prefer:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+```
+
+rather than placing the transition only inside `:hover`:
+
+```css
+.button:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+```
+
+Putting the transition on the normal state allows the effect to work smoothly in both directions:
+
+```text
+Normal → Hover
+Hover  → Normal
+```
+
+### Fade-In Example
+
+An element can start transparent and become visible:
+
+```css
+.message {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.message.visible {
+    opacity: 1;
+}
+```
+
+When the `visible` class is added:
+
+```text
+opacity: 0
+    ↓
+fade
+    ↓
+opacity: 1
+```
+
+### Fade-Out Example
+
+The reverse can be used to fade an element out:
+
+```css
+.message {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.message.hidden {
+    opacity: 0;
+}
+```
+
+The element becomes visually transparent.
+
+Remember that:
+
+```css
+opacity: 0;
+```
+
+does not remove the element from layout.
+
+### Opacity Transition vs `display: none`
+
+Opacity can be transitioned:
+
+```css
+.element {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.element.hidden {
+    opacity: 0;
+}
+```
+
+But `display` does not behave like a normal interpolated opacity transition:
+
+```css
+display: none;
+```
+
+If you need a visual fade, animate opacity or another suitable visual property rather than expecting `display` itself to gradually change.
+
+### Accessibility and Reduced Motion
+
+Some users prefer reduced motion.
+
+You can respect that preference:
+
+```css
+.button {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}
+```
+
+This removes the transition for users who have requested reduced motion.
+
+### Important Points
+
+```text
+Opacity + Transition
+│
+├── opacity
+│   └── Controls transparency
+│
+├── transition
+│   └── Makes the change gradual
+│
+├── duration
+│   └── Controls how long it takes
+│
+├── timing-function
+│   └── Controls the transition's pace
+│
+└── delay
+    └── Delays the start
+```
+
+> 💡 **Remember:** Put the transition on the normal state so the opacity change works smoothly both when entering and leaving the interactive state. Use a duration and timing function appropriate for the UI, and consider `prefers-reduced-motion` for accessibility.
