@@ -3711,3 +3711,280 @@ Opacity + Transition
 ```
 
 > 💡 **Remember:** Put the transition on the normal state so the opacity change works smoothly both when entering and leaving the interactive state. Use a duration and timing function appropriate for the UI, and consider `prefers-reduced-motion` for accessibility.
+
+---
+
+## Opacity and Visibility
+
+`opacity` and `visibility` can both make an element visually disappear, but they behave differently.
+
+### `opacity`
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+The element becomes fully transparent, but it still:
+
+- Exists in the document.
+- Occupies layout space.
+- Remains part of the rendered page.
+- Can still participate in interaction depending on its state and other properties.
+
+### `visibility`
+
+```css
+.box {
+    visibility: hidden;
+}
+```
+
+The element becomes invisible while its layout space is preserved.
+
+### Basic Comparison
+
+```text
+opacity: 0
+        ↓
+Fully transparent
+        ↓
+Layout space remains
+
+visibility: hidden
+        ↓
+Not visible
+        ↓
+Layout space remains
+```
+
+Both are different from:
+
+```css
+display: none;
+```
+
+which removes the element from the layout.
+
+### Comparison Table
+
+| Property | Visible | Layout Space | Can Transition |
+|---|---|---|---|
+| `opacity: 1` | Yes | Yes | Yes |
+| `opacity: 0` | No | Yes | Yes |
+| `visibility: visible` | Yes | Yes | Yes |
+| `visibility: hidden` | No | Yes | Yes, with discrete behavior |
+| `display: none` | No | No | Not as a normal transition |
+
+### `opacity: 0` vs `visibility: hidden`
+
+Consider:
+
+```css
+.box {
+    opacity: 0;
+}
+```
+
+The element is transparent.
+
+Opacity is useful when you want to create effects such as:
+
+```text
+Fade in
+Fade out
+Hover transitions
+Image fading
+```
+
+For example:
+
+```css
+.box {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.box.hidden {
+    opacity: 0;
+}
+```
+
+The element can gradually fade out.
+
+With:
+
+```css
+.box {
+    visibility: hidden;
+}
+```
+
+the element is hidden without using opacity to create a gradual transparency effect.
+
+### `visibility: hidden`
+
+```css
+.box {
+    visibility: hidden;
+}
+```
+
+The element's layout space remains.
+
+For example:
+
+```text
+Before:
+
+┌───────┐ ┌───────┐
+│ Box 1 │ │ Box 2 │
+└───────┘ └───────┘
+
+
+After visibility: hidden:
+
+┌───────┐ ┌───────┐
+│       │ │ Box 2 │
+└───────┘ └───────┘
+   ↑
+Space remains
+```
+
+### `display: none`
+
+Compare:
+
+```css
+.box {
+    display: none;
+}
+```
+
+The element is removed from the layout.
+
+```text
+Before:
+
+┌───────┐ ┌───────┐
+│ Box 1 │ │ Box 2 │
+└───────┘ └───────┘
+
+
+After display: none:
+
+┌───────┐
+│ Box 2 │
+└───────┘
+
+Box 1's space is removed.
+```
+
+### Opacity and Hover
+
+Opacity is particularly useful for hover effects:
+
+```css
+.card {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.card:hover {
+    opacity: 0.6;
+}
+```
+
+This creates a smooth visual fade.
+
+### Visibility and Hover
+
+Visibility can also be used for state changes:
+
+```css
+.tooltip {
+    visibility: hidden;
+}
+
+.trigger:hover .tooltip {
+    visibility: visible;
+}
+```
+
+The tooltip can be hidden until the user interacts with its trigger.
+
+### Combining Opacity and Visibility
+
+For a fade effect where the element should eventually become hidden, the two properties can be combined:
+
+```css
+.tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s,
+        visibility 0.3s;
+}
+
+.trigger:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+```
+
+Conceptually:
+
+```text
+Hidden state
+    ↓
+opacity: 0
+visibility: hidden
+
+        ↓ hover
+
+Visible state
+    ↓
+opacity: 1
+visibility: visible
+```
+
+This pattern is commonly useful for UI elements such as tooltips and menus.
+
+### Important Difference
+
+Do not treat these properties as interchangeable.
+
+```text
+opacity
+→ Controls transparency
+
+visibility
+→ Controls whether the element is visible
+
+display
+→ Controls whether the element participates in layout
+```
+
+### Important Points
+
+```text
+opacity: 0
+│
+├── Fully transparent
+├── Layout space remains
+└── Useful for fade effects
+
+visibility: hidden
+│
+├── Element is not visible
+├── Layout space remains
+└── Useful for hiding an element while preserving layout
+
+display: none
+│
+├── Element is not rendered
+└── Layout space is removed
+```
+
+> 💡 **Remember:** `opacity: 0` makes an element fully transparent, `visibility: hidden` hides it while preserving its layout space, and `display: none` removes its layout space. Choose the property based on the behavior you actually need.
