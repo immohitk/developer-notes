@@ -4423,3 +4423,181 @@ The following resources can be used to learn more about CSS `object-fit`, `objec
 - [W3Schools — CSS object-position](https://www.w3schools.com/css/css3_object-position.asp)
 
 > 💡 **Tip:** MDN and the official CSS specifications are the preferred references for understanding the exact behavior and syntax of CSS properties.
+
+---
+
+## Quick Revision
+
+### What Is `object-fit`?
+
+`object-fit` controls how replaced content such as images and videos fits inside its content box.
+
+### Syntax
+
+```css
+img {
+    object-fit: value;
+}
+```
+
+### Main Values
+
+```text
+fill
+contain
+cover
+none
+scale-down
+```
+
+### `fill`
+
+```css
+object-fit: fill;
+```
+
+- Fills the entire content box.
+- May distort the original aspect ratio.
+- Default value.
+
+### `contain`
+
+```css
+object-fit: contain;
+```
+
+- Preserves the aspect ratio.
+- Keeps the entire content visible.
+- May leave empty space.
+
+### `cover`
+
+```css
+object-fit: cover;
+```
+
+- Preserves the aspect ratio.
+- Completely fills the content box.
+- May crop part of the content.
+
+### `none`
+
+```css
+object-fit: none;
+```
+
+- Keeps the content at its natural size.
+- Does not resize the content to fit the box.
+
+### `scale-down`
+
+```css
+object-fit: scale-down;
+```
+
+- Uses the smaller rendered result of `none` and `contain`.
+- Does not unnecessarily enlarge content.
+- Can scale large content down.
+
+### `object-position`
+
+`object-position` controls where the fitted content is positioned inside its content box.
+
+```css
+img {
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+### `object-fit` vs `object-position`
+
+```text
+object-fit
+→ How the content fits
+
+object-position
+→ Where the content is positioned
+```
+
+### `object-fit` vs `overflow`
+
+```text
+object-fit
+→ Controls how replaced content fits
+
+overflow
+→ Controls what happens when content
+  extends outside an element's box
+```
+
+### Width and Height
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+```text
+width
+→ Defines element width
+
+height
+→ Defines element height
+
+object-fit
+→ Controls content fitting
+```
+
+### Aspect Ratio
+
+When the content and content box have different aspect ratios:
+
+```text
+Different aspect ratios
+        ↓
+object-fit
+        ↓
+Determines the fitting behavior
+```
+
+### Quick Selection Guide
+
+```text
+Entire image must be visible
+→ contain
+
+Entire box must be filled
+→ cover
+
+Distortion is acceptable
+→ fill
+
+Keep natural size
+→ none
+
+Keep natural size when possible,
+scale down when necessary
+→ scale-down
+```
+
+### Common Use Cases
+
+```text
+object-fit
+│
+├── Profile images
+├── Product images
+├── Image galleries
+├── Card thumbnails
+├── Hero images
+├── Responsive images
+└── Videos
+```
+
+### One-Line Summary
+
+> `object-fit` controls how an image or video fits inside its content box, while `object-position` controls where that content is positioned.
