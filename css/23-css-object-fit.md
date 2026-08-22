@@ -1080,3 +1080,216 @@ object-fit: fill
 ```
 
 > 💡 **Remember:** `object-fit: fill` makes the replaced content fill the entire content box, but it can distort the content because the original aspect ratio is not preserved.
+
+---
+
+## `object-fit: contain`
+
+The `contain` value scales the replaced content to fit completely inside its content box while preserving its original aspect ratio.
+
+This means the entire image or video remains visible.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
+}
+```
+
+The image is scaled so that it fits completely inside the `300px × 200px` content box.
+
+### Preserving the Aspect Ratio
+
+Unlike `fill`, `contain` preserves the original aspect ratio.
+
+For example:
+
+```text
+Original image
+800 × 600
+4:3
+
+Content box
+300 × 200
+3:2
+
+object-fit: contain
+        ↓
+Image is scaled proportionally
+        ↓
+Entire image remains visible
+```
+
+Because the aspect ratios are different, some empty space can remain inside the content box.
+
+### Empty Space
+
+Consider a wide content box:
+
+```text
+┌──────────────────────────┐
+│                          │
+│      ┌────────────┐      │
+│      │   Image    │      │
+│      └────────────┘      │
+│                          │
+└──────────────────────────┘
+```
+
+The empty areas are a result of preserving the image's aspect ratio while fitting the entire image inside the content box.
+
+### `contain` vs `fill`
+
+With:
+
+```css
+img {
+    object-fit: fill;
+}
+```
+
+the content fills the entire box, but its aspect ratio may be distorted.
+
+With:
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+the entire content remains visible and the aspect ratio is preserved.
+
+```text
+fill
+→ Fill the entire box
+→ May distort
+
+contain
+→ Fit inside the box
+→ Preserve aspect ratio
+→ May leave empty space
+```
+
+### `contain` vs `cover`
+
+These two values are commonly compared.
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+```text
+Entire image visible
++
+Aspect ratio preserved
++
+Possible empty space
+```
+
+While:
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+```text
+Entire box filled
++
+Aspect ratio preserved
++
+Possible cropping
+```
+
+### Product Images
+
+`contain` is useful for product images when the entire product needs to remain visible.
+
+```css
+.product-image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+```
+
+Different products can have different shapes while remaining completely visible inside the same square area.
+
+### Logos
+
+`contain` is also useful for logos:
+
+```css
+.logo {
+    width: 200px;
+    height: 100px;
+    object-fit: contain;
+}
+```
+
+The logo remains completely visible without being stretched or cropped.
+
+### Profile Images
+
+For profile images where the entire image should remain visible:
+
+```css
+.profile-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+```
+
+However, `cover` is often preferred for profile pictures when the image needs to completely fill a square or circular area.
+
+### Videos
+
+`object-fit: contain` can also be used with videos:
+
+```css
+.video {
+    width: 600px;
+    height: 400px;
+    object-fit: contain;
+}
+```
+
+The complete video content remains visible while preserving its aspect ratio.
+
+### When to Use `contain`
+
+Use `contain` when:
+
+- The entire image must remain visible.
+- The original aspect ratio must be preserved.
+- Cropping is not acceptable.
+- Some empty space is acceptable.
+- Product images need consistent containers.
+- Logos need to remain completely visible.
+- Media should fit inside a fixed-size area without distortion.
+
+### Important Points
+
+```text
+object-fit: contain
+│
+├── Preserves aspect ratio
+│
+├── Keeps the entire content visible
+│
+├── Fits content inside the content box
+│
+├── May leave empty space
+│
+└── Does not distort the original content
+```
+
+> 💡 **Remember:** `object-fit: contain` prioritizes keeping the **entire content visible** while preserving its aspect ratio. If the content and content box have different aspect ratios, some empty space may remain.
