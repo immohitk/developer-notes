@@ -1562,3 +1562,217 @@ object-fit: cover
 ```
 
 > 💡 **Remember:** `object-fit: cover` prioritizes **filling the entire content box** while preserving the aspect ratio. If the aspect ratios differ, some parts of the image or video may be cropped.
+
+
+---
+
+## `object-fit: none`
+
+The `none` value prevents the replaced content from being resized to fit the content box.
+
+The content keeps its natural or intrinsic size instead of being scaled to match the dimensions of the element.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: none;
+}
+```
+
+Here, the image element has a `300px × 200px` content box, but the image content itself is not resized to fit that box.
+
+### Natural Size
+
+Suppose the original image is:
+
+```text
+800 × 600
+```
+
+and the content box is:
+
+```text
+300 × 200
+```
+
+With:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: none;
+}
+```
+
+the image is not scaled down to `300px × 200px`.
+
+Instead, it remains at its natural size.
+
+```text
+Original image
+800 × 600
+        ↓
+object-fit: none
+        ↓
+No resizing
+        ↓
+Content box
+300 × 200
+```
+
+### Content Larger Than the Box
+
+When the natural content is larger than the content box, parts of the content may extend beyond the visible area.
+
+For example:
+
+```text
+Content box
+┌────────────────────┐
+│                    │
+│    ┌───────────────┼────────
+│    │    Image      │
+│    │               │
+└────┴───────────────┘
+         ↑
+   Image is larger
+   than the box
+```
+
+The content is not scaled simply to make it fit.
+
+### Content Smaller Than the Box
+
+If the natural content is already smaller than the content box, `none` keeps it at its natural size.
+
+For example:
+
+```text
+Content box
+┌────────────────────────────┐
+│                            │
+│      ┌──────────────┐      │
+│      │    Image     │      │
+│      └──────────────┘      │
+│                            │
+└────────────────────────────┘
+```
+
+The image does not automatically expand to fill the content box.
+
+### `none` vs `contain`
+
+Compare:
+
+```css
+img {
+    object-fit: none;
+}
+```
+
+with:
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+`none`:
+
+```text
+Keep natural size
+→ Do not resize the content
+```
+
+`contain`:
+
+```text
+Scale content when necessary
+→ Preserve aspect ratio
+→ Keep entire content visible
+```
+
+### `none` vs `cover`
+
+With:
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+the content is scaled until it completely covers the content box.
+
+With:
+
+```css
+img {
+    object-fit: none;
+}
+```
+
+the content is not resized to fit the box.
+
+```text
+cover
+→ Scale content
+→ Fill box
+→ May crop
+
+none
+→ Do not resize content
+→ Natural size
+```
+
+### `none` and `object-position`
+
+`object-position` can be used with `object-fit: none` to control where the content is positioned inside the content box.
+
+For example:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: none;
+    object-position: center;
+}
+```
+
+The image remains at its natural size while its position inside the content box is controlled by `object-position`.
+
+### When Is `none` Useful?
+
+`none` can be useful when:
+
+- The natural size of the content should be preserved.
+- The content should not be automatically scaled.
+- You need to display media at its intrinsic size inside a defined element.
+- You want to combine natural sizing with `object-position`.
+
+It is less common than `contain` and `cover` for typical responsive image layouts.
+
+### Important Points
+
+```text
+object-fit: none
+│
+├── Does not resize the content
+│
+├── Keeps the content at its natural size
+│
+├── Does not force the content to fill the box
+│
+├── Content may be larger or smaller
+│   than the content box
+│
+└── Can be combined with object-position
+```
+
+> 💡 **Remember:** `object-fit: none` keeps the replaced content at its natural size instead of resizing it to fit the content box. If the content is larger than the box, some of it may not be visible.
