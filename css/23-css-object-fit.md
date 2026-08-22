@@ -443,3 +443,191 @@ object-fit
 ```
 
 > 💡 **Remember:** `object-fit` controls how an image or video is fitted inside its content box. The `width` and `height` define the box; `object-fit` determines how the replaced content is displayed inside it.
+
+---
+
+## `object-fit`
+
+The CSS `object-fit` property specifies how the content of a replaced element, such as an image or video, should be resized to fit inside its content box.
+
+### Syntax
+
+```css
+.element {
+    object-fit: value;
+}
+```
+
+The main values are:
+
+```text
+fill
+contain
+cover
+none
+scale-down
+```
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Here, the image element has a `300px × 200px` content box, and `object-fit: cover` controls how the image content is fitted inside that box.
+
+### `object-fit` Requires a Content Box
+
+`object-fit` controls how the replaced content fits inside the element's content box.
+
+For example:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
+}
+```
+
+The dimensions are controlled separately:
+
+```text
+width
+→ Defines the width of the element
+
+height
+→ Defines the height of the element
+
+object-fit
+→ Defines how the image content fits inside the element
+```
+
+### Applying `object-fit` to Images
+
+```html
+<img
+    class="profile-image"
+    src="profile.jpg"
+    alt="Profile"
+>
+```
+
+```css
+.profile-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+This is useful for profile images because different source images can be displayed inside the same square area.
+
+### Applying `object-fit` to Videos
+
+`object-fit` can also be used with video elements.
+
+```html
+<video
+    class="video"
+    controls
+    src="video.mp4">
+</video>
+```
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+```
+
+The video content is fitted into the specified content box according to the selected `object-fit` value.
+
+### `object-fit` Does Not Crop the Element
+
+When using:
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+the element itself is not cropped.
+
+Instead, the replaced content is fitted into the element's content box, and portions of the content may not be visible.
+
+For example:
+
+```text
+Image
+800 × 600
+    ↓
+Content box
+300 × 200
+    ↓
+object-fit: cover
+    ↓
+Content fills the box
+    ↓
+Some image content may be outside the visible area
+```
+
+### `object-fit` and Aspect Ratio
+
+The property becomes especially useful when the aspect ratio of the media differs from the aspect ratio of its content box.
+
+For example:
+
+```text
+Original image
+4:3
+
+Content box
+16:9
+```
+
+Different `object-fit` values produce different results.
+
+```text
+fill
+→ May distort the image
+
+contain
+→ Keeps the entire image visible
+
+cover
+→ Fills the box and may crop content
+
+none
+→ Keeps the natural size
+
+scale-down
+→ Uses the smaller appropriate size
+```
+
+### Important Points
+
+```text
+object-fit
+│
+├── Applies to replaced elements
+│
+├── Commonly used with
+│   ├── <img>
+│   └── <video>
+│
+├── Controls content fitting
+│
+├── Does not define width or height
+│
+└── Helps handle different aspect ratios
+```
+
+> 💡 **Remember:** `object-fit` controls how replaced content is resized and fitted inside its content box. It does not determine the element's width or height.
