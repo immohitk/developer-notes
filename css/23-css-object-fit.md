@@ -214,3 +214,232 @@ object-fit
 ```
 
 > 💡 **Remember:** `object-fit` controls how an image or video fits inside its content box. It is especially useful when you need consistent media dimensions without unnecessarily distorting the original aspect ratio.
+
+---
+
+## What Is Object Fit?
+
+`object-fit` is a CSS property that controls how the content of a replaced element fits inside its content box.
+
+It is most commonly used with:
+
+- Images
+- Videos
+
+### Replaced Elements
+
+An image or video is a replaced element because its content comes from an external resource rather than being generated directly by CSS.
+
+For example:
+
+```html
+<img src="image.jpg" alt="Example">
+```
+
+```html
+<video controls src="video.mp4"></video>
+```
+
+Both can use `object-fit`.
+
+### Why Is `object-fit` Useful?
+
+Suppose an image has these dimensions:
+
+```text
+Original image
+800 × 600
+```
+
+And you give the image element:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+}
+```
+
+The content box has a different aspect ratio from the original image.
+
+Without an appropriate `object-fit` value, the image may be distorted to fit the specified dimensions.
+
+`object-fit` lets you control how the image is fitted.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+The image is fitted into the `300px × 200px` content box while maintaining its aspect ratio.
+
+### Object Fit and Aspect Ratio
+
+Consider:
+
+```text
+Original image
+800 × 600
+4:3
+
+Content box
+300 × 200
+3:2
+```
+
+The aspect ratios are different.
+
+`object-fit` determines how the original content should be handled inside the content box.
+
+Depending on the value, the content may be:
+
+```text
+Stretched
+Contained
+Cropped
+Displayed at natural size
+Scaled down
+```
+
+### Main Values
+
+The `object-fit` property supports five main values:
+
+```css
+object-fit: fill;
+object-fit: contain;
+object-fit: cover;
+object-fit: none;
+object-fit: scale-down;
+```
+
+Each value produces different fitting behavior.
+
+### `fill`
+
+```css
+img {
+    object-fit: fill;
+}
+```
+
+The default behavior.
+
+The replaced content is resized to fill the content box, which can distort its aspect ratio.
+
+### `contain`
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+The entire content is kept visible while preserving its aspect ratio.
+
+Empty space may remain inside the content box.
+
+### `cover`
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+The content fills the entire content box while preserving its aspect ratio.
+
+Some content may be cropped.
+
+### `none`
+
+```css
+img {
+    object-fit: none;
+}
+```
+
+The replaced content is not resized to fit the content box.
+
+The content is displayed at its natural size.
+
+### `scale-down`
+
+```css
+img {
+    object-fit: scale-down;
+}
+```
+
+The browser chooses the smaller rendered size between `none` and `contain`.
+
+### `object-fit` Does Not Set Dimensions
+
+This is an important distinction.
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Here:
+
+```text
+width
+→ Defines the element's width
+
+height
+→ Defines the element's height
+
+object-fit
+→ Defines how the image content fits inside the element
+```
+
+### Common Image Card Pattern
+
+```css
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+This is useful for creating image cards where every image needs to occupy the same visual area.
+
+```text
+Different source images
+        ↓
+Same content-box dimensions
+        ↓
+object-fit: cover
+        ↓
+Consistent image cards
+```
+
+### Important Points
+
+```text
+object-fit
+│
+├── Controls how replaced content fits
+│   inside its content box
+│
+├── Commonly used with
+│   ├── Images
+│   └── Videos
+│
+├── Does not set width or height
+│
+└── Helps control different aspect ratios
+```
+
+> 💡 **Remember:** `object-fit` controls how an image or video is fitted inside its content box. The `width` and `height` define the box; `object-fit` determines how the replaced content is displayed inside it.
