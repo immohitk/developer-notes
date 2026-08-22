@@ -872,3 +872,211 @@ object-fit values
 ```
 
 > 💡 **Remember:** `contain` prioritizes showing the entire content, while `cover` prioritizes filling the entire content box. `fill` can distort the content, `none` keeps its natural size, and `scale-down` chooses the smaller result of `none` and `contain`.
+
+---
+
+## `object-fit: fill`
+
+The `fill` value causes the replaced content to fill the element's content box.
+
+It is the default value of the `object-fit` property.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: fill;
+}
+```
+
+The image is resized so that it fills the entire `300px × 200px` content box.
+
+### Aspect Ratio
+
+`fill` does not preserve the original aspect ratio of the content.
+
+For example:
+
+```text
+Original image
+800 × 600
+4:3
+
+Content box
+300 × 200
+3:2
+
+object-fit: fill
+        ↓
+Image fills the entire box
+        ↓
+Original aspect ratio may change
+```
+
+The image can therefore appear stretched or compressed.
+
+### Example With a Wide Image
+
+Suppose the original image is:
+
+```text
+800 × 400
+2:1
+```
+
+and the content box is:
+
+```text
+300 × 300
+1:1
+```
+
+With:
+
+```css
+img {
+    width: 300px;
+    height: 300px;
+    object-fit: fill;
+}
+```
+
+the image is stretched to fill the square.
+
+The result can look distorted because the original `2:1` aspect ratio is not preserved.
+
+### Example With a Tall Image
+
+Suppose the original image is:
+
+```text
+400 × 800
+1:2
+```
+
+and the content box is:
+
+```text
+300 × 200
+3:2
+```
+
+With:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: fill;
+}
+```
+
+the image is resized to exactly match the content box.
+
+Again, the aspect ratio can be distorted.
+
+### `fill` vs `contain`
+
+Compare:
+
+```css
+img {
+    object-fit: fill;
+}
+```
+
+with:
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+`fill`:
+
+```text
+Content fills the entire box
+        ↓
+Aspect ratio may change
+        ↓
+Possible distortion
+```
+
+`contain`:
+
+```text
+Content fits inside the box
+        ↓
+Aspect ratio preserved
+        ↓
+Empty space may remain
+```
+
+### `fill` vs `cover`
+
+Compare:
+
+```css
+img {
+    object-fit: fill;
+}
+```
+
+with:
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+`fill`:
+
+```text
+Fills the box
++
+May distort
+```
+
+`cover`:
+
+```text
+Fills the box
++
+Preserves aspect ratio
++
+May crop content
+```
+
+### When Is `fill` Useful?
+
+`fill` can be useful when:
+
+- Distortion is acceptable.
+- The content needs to fill the exact dimensions.
+- The original aspect ratio is not important.
+- The content is designed to stretch.
+
+For photographs and other images where proportions matter, `contain` or `cover` is often more appropriate.
+
+### Important Points
+
+```text
+object-fit: fill
+│
+├── Default object-fit value
+│
+├── Fills the entire content box
+│
+├── Does not preserve aspect ratio
+│
+├── Can stretch or compress content
+│
+└── Does not crop content just to preserve
+    the original aspect ratio
+```
+
+> 💡 **Remember:** `object-fit: fill` makes the replaced content fill the entire content box, but it can distort the content because the original aspect ratio is not preserved.
