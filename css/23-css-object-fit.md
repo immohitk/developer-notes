@@ -3118,3 +3118,292 @@ object-fit
 ```
 
 > 💡 **Remember:** `width` and `height` establish the content box. `object-fit` controls how the image or video content fits inside that box.
+
+---
+
+## Object Fit With Overflow
+
+The `object-fit` property controls how replaced content such as images and videos fits inside its content box.
+
+The `overflow` property controls what happens when content extends beyond the boundaries of an element's box.
+
+These properties can work together when the replaced content is larger than its available area.
+
+### Basic Example
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+}
+```
+
+Here:
+
+```text
+width + height
+→ Define the image element's box
+
+object-fit
+→ Controls how the image content fits
+
+overflow
+→ Controls content extending outside the box
+```
+
+### `object-fit: cover` and Cropping
+
+Consider:
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+If the source image has a different aspect ratio, `cover` scales the image while preserving its aspect ratio.
+
+Some parts of the image may not be visible because they fall outside the content box.
+
+```text
+Original image
+      ↓
+Scaled proportionally
+      ↓
+Content box
+300 × 200
+      ↓
+Excess image area
+      ↓
+Not visible
+```
+
+This is part of how `object-fit: cover` achieves its fitting behavior.
+
+### Using `overflow: hidden`
+
+`overflow: hidden` is commonly useful when an image is inside a separate container.
+
+For example:
+
+```html
+<div class="image-container">
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+```css
+.image-container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+The container defines the visible area, while the image is fitted inside it.
+
+### Rounded Image Containers
+
+`overflow: hidden` is especially useful when creating rounded image containers.
+
+```css
+.image-container {
+    width: 300px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+The image is clipped to the rounded shape of the container.
+
+```text
+┌──────────────────────┐
+│      Image           │
+│                      │
+│                      │
+└──────────────────────┘
+       rounded
+       corners
+```
+
+### `overflow: visible`
+
+The default behavior for `overflow` is generally `visible`.
+
+For example:
+
+```css
+.image-container {
+    overflow: visible;
+}
+```
+
+Content that extends outside the box may remain visible.
+
+However, with `object-fit: cover`, the replaced content is fitted to the content box, so the visible result is primarily determined by the fitting behavior and the element's rendering area.
+
+### `overflow: hidden`
+
+```css
+.image-container {
+    overflow: hidden;
+}
+```
+
+Content extending outside the container is clipped.
+
+This is useful when the image is inside a wrapper and the wrapper should define the visible boundary.
+
+### `overflow: auto`
+
+```css
+.image-container {
+    overflow: auto;
+}
+```
+
+The browser can provide scrollbars when content overflows the container.
+
+This is generally less common for decorative image cards but can be useful for other types of replaced content.
+
+### `overflow: scroll`
+
+```css
+.image-container {
+    overflow: scroll;
+}
+```
+
+The container provides scrolling mechanisms for overflowing content.
+
+This is usually not needed for normal image-card layouts.
+
+### `object-fit` vs `overflow`
+
+These properties have different responsibilities.
+
+```text
+object-fit
+→ Controls how replaced content
+  is fitted inside its content box
+
+overflow
+→ Controls what happens when content
+  extends beyond an element's box
+```
+
+They should not be treated as interchangeable.
+
+### Example With `object-fit: none`
+
+Consider:
+
+```css
+.image-container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+}
+```
+
+With `object-fit: none`, the image content is not resized to fit the content box.
+
+The container's `overflow: hidden` can clip content that extends beyond the container.
+
+### Example With `object-fit: contain`
+
+```css
+.image-container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+```
+
+The entire image is fitted inside the content box while preserving its aspect ratio.
+
+Because the image is contained within the box, there is normally no need to clip the image itself.
+
+### Common Card Pattern
+
+A common pattern is:
+
+```html
+<div class="card">
+    <div class="card-image">
+        <img src="image.jpg" alt="Example">
+    </div>
+
+    <div class="card-content">
+        <h2>Card Title</h2>
+        <p>Card description.</p>
+    </div>
+</div>
+```
+
+```css
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+This creates a consistent image area and clips the image to the container's boundaries.
+
+### Important Points
+
+```text
+object-fit + overflow
+│
+├── object-fit
+│   └── Controls how replaced content fits
+│
+├── overflow
+│   └── Controls content extending outside a box
+│
+├── overflow: hidden
+│   └── Clips overflowing content
+│
+└── Common combination
+    ├── Fixed image container
+    ├── overflow: hidden
+    └── object-fit: cover
+```
+
+> 💡 **Remember:** `object-fit` controls **how an image or video fits**, while `overflow` controls **what happens when content extends beyond a box**. They solve different problems but are often used together in image cards and media containers.
