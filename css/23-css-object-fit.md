@@ -631,3 +631,244 @@ object-fit
 ```
 
 > 💡 **Remember:** `object-fit` controls how replaced content is resized and fitted inside its content box. It does not determine the element's width or height.
+
+---
+
+## Object Fit Values
+
+The `object-fit` property accepts five main values:
+
+```text
+fill
+contain
+cover
+none
+scale-down
+```
+
+Each value determines how replaced content, such as an image or video, fits inside its content box.
+
+### `fill`
+
+```css
+img {
+    object-fit: fill;
+}
+```
+
+`fill` stretches the content to completely fill the content box.
+
+The original aspect ratio may not be preserved.
+
+For example:
+
+```text
+Original image
+800 × 600
+4:3
+
+Content box
+300 × 200
+3:2
+
+object-fit: fill
+        ↓
+Content fills the box
+        ↓
+Aspect ratio may be distorted
+```
+
+`fill` is the default value.
+
+### `contain`
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+`contain` scales the content while preserving its aspect ratio so that the entire content fits inside the content box.
+
+The complete image remains visible.
+
+Empty space may remain inside the content box.
+
+```text
+Content box
+┌────────────────────┐
+│                    │
+│     ┌────────┐     │
+│     │ Image  │     │
+│     └────────┘     │
+│                    │
+└────────────────────┘
+```
+
+### `cover`
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+`cover` scales the content while preserving its aspect ratio so that the content completely covers the content box.
+
+Because the aspect ratios may be different, some parts of the content can be cropped.
+
+```text
+Content box
+┌────────────────────┐
+│  ┌──────────────┐  │
+│  │    Image     │  │
+│  │   cropped    │  │
+│  └──────────────┘  │
+└────────────────────┘
+```
+
+`cover` is commonly used for:
+
+- Profile images
+- Product cards
+- Gallery thumbnails
+- Hero images
+- Blog thumbnails
+
+### `none`
+
+```css
+img {
+    object-fit: none;
+}
+```
+
+`none` means the replaced content is not resized.
+
+The content is displayed at its natural size.
+
+If the content is larger than the content box, parts of it may not be visible.
+
+### `scale-down`
+
+```css
+img {
+    object-fit: scale-down;
+}
+```
+
+`scale-down` determines the smaller rendered size between `none` and `contain`.
+
+It can be thought of as choosing whichever would result in the smaller concrete object size.
+
+This is useful when you want content to remain at its natural size when it already fits, but scale down when necessary.
+
+### Quick Comparison
+
+| Value | Aspect Ratio | Entire Content Visible | Can Crop |
+|---|---|---|---|
+| `fill` | May distort | Yes | No |
+| `contain` | Preserved | Yes | No |
+| `cover` | Preserved | Not always | Yes |
+| `none` | Preserved | Not always | Content may extend beyond box |
+| `scale-down` | Preserved | Depends | May not show all content |
+
+### Visual Comparison
+
+Suppose the content box has a different aspect ratio from the original image:
+
+```text
+fill
+→ Stretch to fill
+
+contain
+→ Fit completely inside
+
+cover
+→ Fill completely and crop if necessary
+
+none
+→ Keep natural size
+
+scale-down
+→ Use the smaller result of none or contain
+```
+
+### Choosing a Value
+
+Use:
+
+```text
+fill
+→ When stretching is acceptable
+
+contain
+→ When the entire image must remain visible
+
+cover
+→ When the box must be completely filled
+
+none
+→ When the content should keep its natural size
+
+scale-down
+→ When the content should not become larger than its natural size
+  but may be scaled down when necessary
+```
+
+### Example
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Changing only the value changes how the same image is displayed:
+
+```css
+object-fit: fill;
+```
+
+```css
+object-fit: contain;
+```
+
+```css
+object-fit: cover;
+```
+
+```css
+object-fit: none;
+```
+
+```css
+object-fit: scale-down;
+```
+
+The `width` and `height` remain the same; only the way the content fits inside the box changes.
+
+### Important Points
+
+```text
+object-fit values
+│
+├── fill
+│   └── Fill box, may distort
+│
+├── contain
+│   └── Show entire content, preserve ratio
+│
+├── cover
+│   └── Fill box, preserve ratio, may crop
+│
+├── none
+│   └── Keep natural size
+│
+└── scale-down
+    └── Smaller result of none or contain
+```
+
+> 💡 **Remember:** `contain` prioritizes showing the entire content, while `cover` prioritizes filling the entire content box. `fill` can distort the content, `none` keeps its natural size, and `scale-down` chooses the smaller result of `none` and `contain`.
