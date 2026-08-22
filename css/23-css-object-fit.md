@@ -3407,3 +3407,307 @@ object-fit + overflow
 ```
 
 > 💡 **Remember:** `object-fit` controls **how an image or video fits**, while `overflow` controls **what happens when content extends beyond a box**. They solve different problems but are often used together in image cards and media containers.
+
+---
+
+## Object Fit With Object Position
+
+The `object-position` property controls the position of replaced content, such as an image or video, inside its content box.
+
+It is commonly used together with `object-fit`, especially when `object-fit: cover` crops part of the content.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+```
+
+Here:
+
+```text
+width + height
+→ Define the content box
+
+object-fit
+→ Controls how the image fits
+
+object-position
+→ Controls which part of the image is positioned inside the box
+```
+
+### Default Position
+
+The default value of `object-position` is:
+
+```css
+object-position: 50% 50%;
+```
+
+This means the content is positioned at the center of the content box.
+
+You can also write:
+
+```css
+object-position: center;
+```
+
+### Why Use `object-position`?
+
+Consider:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+If the image is cropped, the important part of the image may not remain visible.
+
+For example, if a person's face is near the top of the image, centered cropping may cut off part of the face.
+
+You can adjust the position:
+
+```css
+img {
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This keeps the upper part of the image positioned toward the visible area.
+
+### Position Keywords
+
+Common keyword values include:
+
+```css
+object-position: center;
+object-position: top;
+object-position: bottom;
+object-position: left;
+object-position: right;
+```
+
+You can also combine keywords:
+
+```css
+object-position: center top;
+object-position: center bottom;
+object-position: left center;
+object-position: right center;
+```
+
+### Using Percentages
+
+`object-position` can use percentages.
+
+```css
+img {
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+```
+
+Here:
+
+```text
+50% horizontal
+50% vertical
+```
+
+means the content is centered.
+
+Another example:
+
+```css
+img {
+    object-fit: cover;
+    object-position: 50% 0%;
+}
+```
+
+This positions the content toward the top.
+
+### Using Length Values
+
+Length values can also be used.
+
+```css
+img {
+    object-fit: cover;
+    object-position: 20px 10px;
+}
+```
+
+The first value controls the horizontal position.
+
+The second value controls the vertical position.
+
+### Horizontal and Vertical Position
+
+The two-value syntax follows this pattern:
+
+```css
+object-position: horizontal vertical;
+```
+
+For example:
+
+```css
+object-position: left top;
+```
+
+means:
+
+```text
+Horizontal → left
+Vertical   → top
+```
+
+Another example:
+
+```css
+object-position: right bottom;
+```
+
+means:
+
+```text
+Horizontal → right
+Vertical   → bottom
+```
+
+### `object-fit: cover` With `object-position`
+
+This is one of the most common combinations:
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+`object-fit: cover` determines how the image is scaled.
+
+`object-position` determines which part of the scaled image is positioned inside the content box.
+
+```text
+object-fit
+    ↓
+Scale and fit content
+
+object-position
+    ↓
+Position the fitted content
+```
+
+### Profile Image Example
+
+Suppose the subject's face is near the top of the image.
+
+```css
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This can keep the upper portion of the image visible while the image fills the circular area.
+
+### Product Image Example
+
+For a product positioned toward the center:
+
+```css
+.product-image {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+```
+
+The image is centered within the content box.
+
+### Focal Point Example
+
+If the important part of an image is toward the right:
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: right center;
+}
+```
+
+This changes the visible portion of the image when cropping occurs.
+
+### With Videos
+
+`object-position` also works with videos.
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This can control which part of the video content remains positioned in the visible area.
+
+### Common Values
+
+| Value | Meaning |
+|---|---|
+| `center` | Center the content |
+| `top` | Position toward the top |
+| `bottom` | Position toward the bottom |
+| `left` | Position toward the left |
+| `right` | Position toward the right |
+| `center top` | Center horizontally, top vertically |
+| `center bottom` | Center horizontally, bottom vertically |
+| `left center` | Left horizontally, center vertically |
+| `right center` | Right horizontally, center vertically |
+
+### Important Points
+
+```text
+object-position
+│
+├── Controls the position of replaced content
+│
+├── Commonly used with object-fit
+│
+├── Especially useful with object-fit: cover
+│
+├── Helps control which part remains visible
+│   when content is cropped
+│
+├── Supports keywords
+│   ├── center
+│   ├── top
+│   ├── bottom
+│   ├── left
+│   └── right
+│
+└── Supports percentages and length values
+```
+
+> 💡 **Remember:** `object-fit` controls **how the content fits**, while `object-position` controls **where the fitted content is positioned** inside the content box.
