@@ -4398,3 +4398,28 @@ is positioned
 ```
 
 > 💡 **Remember:** `object-fit` is mainly about **how content fits**, while `object-position` is about **where that content is positioned** inside the box.
+
+---
+
+## References
+
+The following resources can be used to learn more about CSS `object-fit`, `object-position`, and related image and video behavior.
+
+### MDN Web Docs
+
+- [MDN — object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
+- [MDN — object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position)
+- [MDN — `<img>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img)
+- [MDN — `<video>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video)
+
+### CSS Specifications
+
+- [CSS Images Module Level 4 — Object Sizing](https://drafts.csswg.org/css-images-4/#the-object-fit)
+- [CSS Images Module Level 4 — Object Position](https://drafts.csswg.org/css-images-4/#the-object-position)
+
+### W3Schools
+
+- [W3Schools — CSS object-fit](https://www.w3schools.com/css/css3_object-fit.asp)
+- [W3Schools — CSS object-position](https://www.w3schools.com/css/css3_object-position.asp)
+
+> 💡 **Tip:** MDN and the official CSS specifications are the preferred references for understanding the exact behavior and syntax of CSS properties.
