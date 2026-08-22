@@ -2029,3 +2029,281 @@ object-fit: scale-down
 ```
 
 > 💡 **Remember:** `scale-down` is useful when you want content to remain at its natural size when it already fits, but scale down when the content is too large for its content box.
+
+---
+
+## Object Fit With Images
+
+The `object-fit` property is most commonly used with images to control how an image fits inside a defined content box.
+
+This is especially useful when images have different dimensions but need to appear in a consistent layout.
+
+### Basic Example
+
+```html
+<img
+    class="image"
+    src="image.jpg"
+    alt="Example image"
+>
+```
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+The image fills the `300px × 200px` content box while preserving its aspect ratio.
+
+### Why Use `object-fit` With Images?
+
+Different images can have different dimensions.
+
+For example:
+
+```text
+Image 1
+800 × 600
+
+Image 2
+1200 × 800
+
+Image 3
+600 × 900
+```
+
+If all three images are placed inside the same fixed-size card:
+
+```text
+300px × 200px
+```
+
+they may not naturally fit the same way.
+
+Using `object-fit` provides consistent control over how each image is displayed.
+
+### Image Cards
+
+A common pattern is:
+
+```css
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+This allows images with different aspect ratios to occupy the same visual area.
+
+```text
+Different source images
+        ↓
+Same image dimensions
+        ↓
+object-fit: cover
+        ↓
+Consistent cards
+```
+
+### Profile Images
+
+`object-fit` can be used to create consistent profile pictures.
+
+```css
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+```
+
+The image fills the square area and is clipped into a circle by `border-radius`.
+
+If the source image is not square, some parts may be cropped.
+
+### Product Images
+
+For product images, `contain` is often useful when the complete product should remain visible.
+
+```css
+.product-image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+```
+
+This preserves the image's aspect ratio and keeps the entire image visible.
+
+Some empty space may remain around the product.
+
+### Gallery Images
+
+For a gallery with consistent thumbnail sizes:
+
+```css
+.gallery img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+}
+```
+
+Every image gets the same content-box dimensions.
+
+Images with different aspect ratios can still be displayed consistently.
+
+### Responsive Images
+
+`object-fit` can also be combined with responsive dimensions.
+
+```css
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+```
+
+The width adapts to the card while the height remains controlled.
+
+### Using `aspect-ratio`
+
+`object-fit` can be combined with the `aspect-ratio` property.
+
+```css
+.card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+This creates a consistent media area while allowing the image to fill it without distortion.
+
+### `object-fit: contain` With Images
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
+}
+```
+
+Use this when:
+
+```text
+Entire image
+    ↓
+Must remain visible
+    ↓
+Aspect ratio preserved
+    ↓
+Empty space is acceptable
+```
+
+### `object-fit: cover` With Images
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Use this when:
+
+```text
+Entire content box
+    ↓
+Must be filled
+    ↓
+Aspect ratio preserved
+    ↓
+Cropping is acceptable
+```
+
+### Images With Different Aspect Ratios
+
+Consider three images:
+
+```text
+Landscape
+800 × 500
+
+Square
+600 × 600
+
+Portrait
+500 × 800
+```
+
+Using:
+
+```css
+.gallery img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+allows all three images to occupy the same visual area.
+
+The images maintain their proportions, while portions that do not fit may be cropped.
+
+### Image and `object-position`
+
+`object-fit` can be combined with `object-position` to control which part of the image remains visible.
+
+For example:
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This is useful when the important part of an image is not centered.
+
+For example, a portrait image may need:
+
+```css
+object-position: center top;
+```
+
+so that the upper part of the image remains visible.
+
+### Important Points
+
+```text
+object-fit + images
+│
+├── Creates consistent image areas
+│
+├── Handles different aspect ratios
+│
+├── Prevents unwanted distortion
+│
+├── Commonly used with
+│   ├── Cards
+│   ├── Galleries
+│   ├── Profiles
+│   └── Product images
+│
+└── Can be combined with
+    ├── aspect-ratio
+    └── object-position
+```
+
+> 💡 **Remember:** `object-fit` is especially useful for images when different source dimensions need to fit into consistent layouts. Use `contain` when the entire image must remain visible and `cover` when the image should completely fill the available area.
