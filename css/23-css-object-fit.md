@@ -2307,3 +2307,269 @@ object-fit + images
 ```
 
 > 💡 **Remember:** `object-fit` is especially useful for images when different source dimensions need to fit into consistent layouts. Use `contain` when the entire image must remain visible and `cover` when the image should completely fill the available area.
+
+---
+
+## Object Fit With Videos
+
+The `object-fit` property can also be used with `<video>` elements to control how video content fits inside its content box.
+
+This is useful when the video's aspect ratio is different from the dimensions of the video element.
+
+### Basic Example
+
+```html
+<video
+    class="video"
+    controls
+    src="video.mp4">
+</video>
+```
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+```
+
+The video fills the `600px × 350px` content box while preserving its aspect ratio.
+
+### Why Use `object-fit` With Videos?
+
+Videos can have different aspect ratios.
+
+For example:
+
+```text
+Original video
+1920 × 1080
+16:9
+
+Video element
+600 × 350
+```
+
+The aspect ratios are different.
+
+`object-fit` controls how the video content is fitted inside the available area.
+
+### `object-fit: fill`
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: fill;
+}
+```
+
+The video content fills the entire content box.
+
+The original aspect ratio may not be preserved, so the video can appear stretched or compressed.
+
+### `object-fit: contain`
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: contain;
+}
+```
+
+The entire video remains visible while preserving its aspect ratio.
+
+Empty space may appear when the video's aspect ratio does not match the content box.
+
+```text
+Video content
+      ↓
+Entire video remains visible
+      ↓
+Aspect ratio preserved
+      ↓
+Possible empty space
+```
+
+### `object-fit: cover`
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+```
+
+The video fills the entire content box while preserving its aspect ratio.
+
+If the aspect ratios differ, some parts of the video may be cropped.
+
+This is useful when the video must completely fill a defined visual area.
+
+### `object-fit: none`
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: none;
+}
+```
+
+The video content is not resized to fit the content box.
+
+The content remains at its natural size.
+
+If it is larger than the content box, some parts may not be visible.
+
+### `object-fit: scale-down`
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: scale-down;
+}
+```
+
+The browser uses the smaller rendered result between `none` and `contain`.
+
+The video is not unnecessarily enlarged, but it can be scaled down when required.
+
+### Video Aspect Ratio
+
+Consider a video:
+
+```text
+Original video
+16:9
+```
+
+and a video element:
+
+```text
+600 × 350
+```
+
+Different `object-fit` values produce different results:
+
+```text
+fill
+→ Fill the box
+→ May distort
+
+contain
+→ Show the entire video
+→ May leave empty space
+
+cover
+→ Fill the entire box
+→ May crop
+
+none
+→ Keep natural size
+
+scale-down
+→ Keep natural size when possible
+→ Scale down when necessary
+```
+
+### Responsive Video
+
+`object-fit` can be combined with responsive dimensions.
+
+```css
+.video {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+```
+
+The video can adapt to the width of its container while the height remains controlled.
+
+### Video Background-Style Layout
+
+A video can be used as a visual background for a section:
+
+```html
+<section class="hero">
+    <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-content">
+        <h1>Welcome</h1>
+    </div>
+</section>
+```
+
+```css
+.hero {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+Here, `object-fit: cover` makes the video fill the entire hero area while preserving its aspect ratio.
+
+### Video With `object-position`
+
+`object-position` can be combined with `object-fit`.
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+}
+```
+
+You can also position the video content differently:
+
+```css
+.video {
+    object-position: center top;
+}
+```
+
+This can be useful when an important part of the video should remain visible.
+
+### Important Points
+
+```text
+object-fit + video
+│
+├── Controls how video content fits
+│   inside the video element
+│
+├── Handles different aspect ratios
+│
+├── Commonly used with
+│   ├── Responsive videos
+│   ├── Hero sections
+│   └── Video cards
+│
+├── cover can crop video content
+│
+└── contain keeps the entire video visible
+```
+
+> 💡 **Remember:** `object-fit` works with videos in much the same way it works with images. Use `contain` when the entire video must remain visible and `cover` when the video must completely fill its container.
