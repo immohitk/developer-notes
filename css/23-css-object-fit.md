@@ -2857,3 +2857,264 @@ Aspect ratio
 ```
 
 > 💡 **Remember:** When the content and its content box have different aspect ratios, `object-fit` determines whether the content is stretched, contained, covered, kept at its natural size, or scaled down.
+
+---
+
+## Object Fit With Width and Height
+
+The `object-fit` property controls how replaced content such as images and videos fits inside the dimensions defined by properties such as `width` and `height`.
+
+`width` and `height` define the size of the element's content box, while `object-fit` controls how the replaced content is displayed inside that box.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Here:
+
+```text
+width: 300px
+→ Defines the element width
+
+height: 200px
+→ Defines the element height
+
+object-fit: cover
+→ Controls how the image fits inside the box
+```
+
+### Width and Height With `fill`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: fill;
+}
+```
+
+The image is resized to exactly match the specified width and height.
+
+The original aspect ratio may be distorted.
+
+```text
+Element
+300 × 200
+      ↓
+Image stretched to
+300 × 200
+```
+
+### Width and Height With `contain`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
+}
+```
+
+The image remains inside the `300px × 200px` box while preserving its aspect ratio.
+
+If the aspect ratios differ, empty space may remain.
+
+```text
+┌──────────────────────┐
+│                      │
+│      ┌────────┐      │
+│      │ Image  │      │
+│      └────────┘      │
+│                      │
+└──────────────────────┘
+```
+
+### Width and Height With `cover`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+The image fills the entire `300px × 200px` box while preserving its aspect ratio.
+
+Some parts of the image may be cropped.
+
+### Width and Height With `none`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: none;
+}
+```
+
+The image is not resized to fit the specified dimensions.
+
+The content remains at its natural size.
+
+### Width and Height With `scale-down`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: scale-down;
+}
+```
+
+The browser uses the smaller rendered result between `none` and `contain`.
+
+This means small content is not unnecessarily enlarged, while large content can be scaled down.
+
+### Percentage Width
+
+`object-fit` can be combined with a percentage width.
+
+```css
+img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+The image element takes the available width of its parent while maintaining a fixed height.
+
+```text
+Parent width
+      ↓
+width: 100%
+      ↓
+Image element expands
+      ↓
+height: 200px
+      ↓
+object-fit controls the content
+```
+
+### Responsive Width and Fixed Height
+
+A common responsive pattern is:
+
+```css
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+```
+
+This allows the image width to adapt to the card while maintaining a consistent image height.
+
+### Using `max-width`
+
+You can also combine `object-fit` with `max-width`.
+
+```css
+img {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    object-fit: contain;
+}
+```
+
+The image element can grow up to `500px` wide while the content is fitted inside the defined dimensions.
+
+### Width and Height Are Independent From `object-fit`
+
+It is important not to confuse these properties.
+
+```css
+img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+}
+```
+
+The browser first establishes the element's dimensions.
+
+Then `object-fit` determines how the replaced content fits inside those dimensions.
+
+```text
+width + height
+        ↓
+Content box
+        ↓
+object-fit
+        ↓
+Content fitting behavior
+```
+
+### Using `aspect-ratio`
+
+Instead of explicitly defining both width and height, `aspect-ratio` can be used.
+
+```css
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+Here:
+
+```text
+width
+→ Responsive width
+
+aspect-ratio
+→ Determines the height
+
+object-fit
+→ Controls how the image fits
+```
+
+### Example: Responsive Image Card
+
+```css
+.card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+```
+
+The card can adapt to different screen sizes while the image remains inside a consistent visual area.
+
+### Important Points
+
+```text
+width
+│
+└── Controls element width
+
+height
+│
+└── Controls element height
+
+object-fit
+│
+└── Controls how replaced content
+    fits inside those dimensions
+```
+
+> 💡 **Remember:** `width` and `height` establish the content box. `object-fit` controls how the image or video content fits inside that box.
