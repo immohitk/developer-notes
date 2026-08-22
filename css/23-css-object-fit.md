@@ -3711,3 +3711,516 @@ object-position
 ```
 
 > 💡 **Remember:** `object-fit` controls **how the content fits**, while `object-position` controls **where the fitted content is positioned** inside the content box.
+
+---
+
+## Practical Examples
+
+The `object-fit` property is especially useful when images and videos need to fit into fixed or responsive layouts without unwanted distortion.
+
+### Example 1: Basic Image Card
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Example image">
+    <h2>Card Title</h2>
+</div>
+```
+
+```css
+.card {
+    width: 300px;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+The image fills the `200px`-high area while preserving its aspect ratio.
+
+---
+
+### Example 2: Product Image
+
+When the entire product image should remain visible:
+
+```html
+<div class="product">
+    <img src="product.jpg" alt="Product">
+</div>
+```
+
+```css
+.product {
+    width: 300px;
+    height: 300px;
+}
+
+.product img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+```
+
+`contain` keeps the complete product visible.
+
+Some empty space may remain around the image.
+
+---
+
+### Example 3: Profile Picture
+
+```html
+<img
+    class="profile"
+    src="profile.jpg"
+    alt="Profile"
+>
+```
+
+```css
+.profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+```
+
+`cover` allows the image to completely fill the circular area while preserving its aspect ratio.
+
+---
+
+### Example 4: Profile Picture With Focal Position
+
+If the important part of the image is near the top:
+
+```css
+.profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+`object-position` changes which part of the image is positioned inside the visible area.
+
+---
+
+### Example 5: Image Gallery
+
+```html
+<div class="gallery">
+    <img src="image1.jpg" alt="Gallery image 1">
+    <img src="image2.jpg" alt="Gallery image 2">
+    <img src="image3.jpg" alt="Gallery image 3">
+</div>
+```
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Different source images can appear in consistent-sized gallery areas.
+
+---
+
+### Example 6: Responsive Image
+
+```css
+.responsive-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+```
+
+The image adapts to the available width while maintaining a controlled height.
+
+---
+
+### Example 7: Fixed Aspect Ratio Image
+
+The `aspect-ratio` property can be combined with `object-fit`.
+
+```css
+.image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+This creates a consistent `16:9` image area.
+
+---
+
+### Example 8: Rounded Image Card
+
+```html
+<div class="image-card">
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+```css
+.image-card {
+    width: 300px;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+`overflow: hidden` clips the image to the rounded container.
+
+---
+
+### Example 9: Hero Image
+
+```html
+<section class="hero">
+    <img src="hero.jpg" alt="Hero image">
+</section>
+```
+
+```css
+.hero {
+    width: 100%;
+    height: 500px;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+The image fills the entire hero area while maintaining its aspect ratio.
+
+---
+
+### Example 10: Hero Image With Positioning
+
+If the important content is near the top:
+
+```css
+.hero img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This can keep the upper part of the image visible when cropping occurs.
+
+---
+
+### Example 11: Video Container
+
+```html
+<video
+    class="video"
+    controls
+    src="video.mp4">
+</video>
+```
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: contain;
+}
+```
+
+The complete video remains visible while preserving its aspect ratio.
+
+---
+
+### Example 12: Full-Cover Video
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+```
+
+The video fills the entire content box.
+
+Some parts may be cropped when the aspect ratios differ.
+
+---
+
+### Example 13: Background-Style Video
+
+```html
+<section class="hero">
+    <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-content">
+        <h1>Welcome</h1>
+    </div>
+</section>
+```
+
+```css
+.hero {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+```
+
+Here, `object-fit: cover` allows the video to fill the entire hero section.
+
+---
+
+### Example 14: Choosing Between `contain` and `cover`
+
+Suppose an image is used inside a product card.
+
+Use:
+
+```css
+.product img {
+    object-fit: contain;
+}
+```
+
+when:
+
+```text
+The complete product
+must remain visible.
+```
+
+Use:
+
+```css
+.product img {
+    object-fit: cover;
+}
+```
+
+when:
+
+```text
+The image area must be completely filled
+and some cropping is acceptable.
+```
+
+---
+
+### Example 15: Different Image Sizes, Same Layout
+
+Suppose three source images have different dimensions:
+
+```text
+Image 1 → 800 × 600
+Image 2 → 1200 × 800
+Image 3 → 600 × 900
+```
+
+A consistent card layout can use:
+
+```css
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+```
+
+The images will occupy the same visual area while maintaining their aspect ratios.
+
+---
+
+### Example 16: Image With a Custom Focal Point
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 70% 30%;
+}
+```
+
+Here:
+
+```text
+70%
+→ Horizontal position
+
+30%
+→ Vertical position
+```
+
+This is useful when the important subject of an image is not centered.
+
+---
+
+### Example 17: Complete Media Card
+
+```html
+<article class="media-card">
+    <div class="media-card-image">
+        <img src="image.jpg" alt="Example">
+    </div>
+
+    <div class="media-card-content">
+        <h2>Media Card</h2>
+        <p>A simple card using object-fit.</p>
+    </div>
+</article>
+```
+
+```css
+.media-card {
+    width: 320px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.media-card-image {
+    width: 100%;
+    height: 200px;
+}
+
+.media-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-card-content {
+    padding: 16px;
+}
+```
+
+This pattern combines:
+
+```text
+width
+height
+object-fit
+overflow
+border-radius
+```
+
+to create a consistent media card.
+
+---
+
+### Example 18: Comparing All Main Values
+
+```css
+.fill {
+    object-fit: fill;
+}
+
+.contain {
+    object-fit: contain;
+}
+
+.cover {
+    object-fit: cover;
+}
+
+.none {
+    object-fit: none;
+}
+
+.scale-down {
+    object-fit: scale-down;
+}
+```
+
+The same content can be displayed differently depending on the selected value.
+
+```text
+fill
+→ Fill the box, possibly distort
+
+contain
+→ Show everything, preserve ratio
+
+cover
+→ Fill the box, preserve ratio, may crop
+
+none
+→ Keep natural size
+
+scale-down
+→ Use the smaller result of none or contain
+```
+
+### Practical Selection Guide
+
+```text
+Need the entire image visible?
+→ contain
+
+Need the entire box filled?
+→ cover
+
+Don't care about preserving aspect ratio?
+→ fill
+
+Need natural content size?
+→ none
+
+Need natural size when possible,
+but scale down when necessary?
+→ scale-down
+```
+
+> 💡 **Remember:** In real-world layouts, `object-fit: cover` is commonly used for consistent image areas, while `object-fit: contain` is useful when the complete image must remain visible. Combine `object-position` with `cover` when you need control over the visible focal area.
