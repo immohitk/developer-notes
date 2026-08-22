@@ -1776,3 +1776,256 @@ object-fit: none
 ```
 
 > 💡 **Remember:** `object-fit: none` keeps the replaced content at its natural size instead of resizing it to fit the content box. If the content is larger than the box, some of it may not be visible.
+
+---
+
+## `object-fit: scale-down`
+
+The `scale-down` value displays the replaced content using the smaller rendered size between `none` and `contain`.
+
+In other words, the browser compares how the content would appear with:
+
+```css
+object-fit: none;
+```
+
+and:
+
+```css
+object-fit: contain;
+```
+
+and uses the smaller result.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: scale-down;
+}
+```
+
+The image will not be enlarged beyond its natural size.
+
+If the image is too large for the content box, it can be scaled down to fit.
+
+### How `scale-down` Works
+
+Conceptually:
+
+```text
+scale-down
+    ↓
+Compare none and contain
+    ↓
+Choose the smaller rendered result
+```
+
+It behaves like:
+
+```text
+smaller of:
+    none
+    contain
+```
+
+### Large Image
+
+Suppose the original image is:
+
+```text
+800 × 600
+```
+
+and the content box is:
+
+```text
+300 × 200
+```
+
+With:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: scale-down;
+}
+```
+
+The image is too large to fit naturally.
+
+Therefore, the `contain` result is smaller than the `none` result.
+
+The image is scaled down while preserving its aspect ratio.
+
+```text
+Original
+800 × 600
+        ↓
+Too large for box
+        ↓
+scale-down
+        ↓
+Use contain-like scaled size
+```
+
+### Small Image
+
+Suppose the original image is:
+
+```text
+100 × 80
+```
+
+and the content box is:
+
+```text
+300 × 200
+```
+
+The image already fits inside the content box.
+
+With:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: scale-down;
+}
+```
+
+the image remains at its natural size instead of being enlarged to fill the box.
+
+```text
+Original
+100 × 80
+        ↓
+Already fits
+        ↓
+scale-down
+        ↓
+Keep natural size
+```
+
+### `scale-down` vs `contain`
+
+Consider a small image:
+
+```text
+Image
+100 × 80
+
+Content box
+300 × 200
+```
+
+With:
+
+```css
+object-fit: contain;
+```
+
+the image can be scaled up to fit the available content box while preserving its aspect ratio.
+
+With:
+
+```css
+object-fit: scale-down;
+```
+
+the image remains at its natural size because enlarging it would produce a larger result.
+
+```text
+contain
+→ May enlarge
+
+scale-down
+→ Does not enlarge beyond natural size
+```
+
+### `scale-down` vs `none`
+
+`none` always keeps the replaced content at its natural size.
+
+```css
+img {
+    object-fit: none;
+}
+```
+
+`scale-down` keeps the natural size when it fits, but can scale the content down when necessary.
+
+```text
+none
+→ Never scale
+
+scale-down
+→ Keep natural size when possible
+→ Scale down when necessary
+```
+
+### Preserving Aspect Ratio
+
+When `scale-down` uses the `contain` behavior, the content is scaled proportionally.
+
+The original aspect ratio is preserved.
+
+```text
+Original aspect ratio
+        ↓
+Preserved
+        ↓
+Content is scaled only when necessary
+```
+
+### Common Use Cases
+
+`scale-down` can be useful when:
+
+- Images should not be enlarged unnecessarily.
+- Small images should remain at their natural size.
+- Large images should fit inside a fixed content box.
+- The original aspect ratio should be preserved.
+- Media should adapt to a container without unnecessary upscaling.
+
+### Example With a Product Image
+
+```css
+.product-image {
+    width: 300px;
+    height: 250px;
+    object-fit: scale-down;
+}
+```
+
+A large product image can be reduced to fit the box, while a smaller product image can remain at its natural size.
+
+### Comparison
+
+| Value | Enlarges Small Content | Scales Down Large Content | Preserves Aspect Ratio |
+|---|---|---|---|
+| `none` | No | No | Yes |
+| `contain` | Yes | Yes | Yes |
+| `scale-down` | No | Yes | Yes |
+
+### Important Points
+
+```text
+object-fit: scale-down
+│
+├── Compares none and contain
+│
+├── Uses the smaller rendered result
+│
+├── Does not unnecessarily enlarge content
+│
+├── Can scale large content down
+│
+└── Preserves the aspect ratio
+```
+
+> 💡 **Remember:** `scale-down` is useful when you want content to remain at its natural size when it already fits, but scale down when the content is too large for its content box.
