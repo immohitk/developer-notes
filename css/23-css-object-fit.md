@@ -4224,3 +4224,177 @@ but scale down when necessary?
 ```
 
 > 💡 **Remember:** In real-world layouts, `object-fit: cover` is commonly used for consistent image areas, while `object-fit: contain` is useful when the complete image must remain visible. Combine `object-position` with `cover` when you need control over the visible focal area.
+
+---
+
+## Key Takeaways
+
+The CSS `object-fit` property controls how replaced content such as images and videos fits inside its content box.
+
+### Main Concepts
+
+- `object-fit` controls how replaced content is resized and fitted inside its content box.
+- It is commonly used with `<img>` and `<video>` elements.
+- The `width` and `height` define the element's content box.
+- `object-fit` controls how the content fits inside that box.
+- The original aspect ratio is important when choosing an `object-fit` value.
+
+### `object-fit` Values
+
+| Value | Main Behavior |
+|---|---|
+| `fill` | Fills the box and may distort the content |
+| `contain` | Keeps the entire content visible and preserves its aspect ratio |
+| `cover` | Fills the entire box and preserves the aspect ratio, but may crop |
+| `none` | Keeps the content at its natural size |
+| `scale-down` | Uses the smaller result of `none` and `contain` |
+
+### `fill`
+
+```css
+img {
+    object-fit: fill;
+}
+```
+
+- Fills the entire content box.
+- Does not preserve the original aspect ratio.
+- Can stretch or compress the content.
+- Is the default value.
+
+### `contain`
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+- Preserves the aspect ratio.
+- Keeps the entire content visible.
+- May leave empty space inside the content box.
+- Useful for product images and logos.
+
+### `cover`
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+- Preserves the aspect ratio.
+- Completely fills the content box.
+- May crop parts of the content.
+- Commonly used for cards, galleries, profile images, and hero sections.
+
+### `none`
+
+```css
+img {
+    object-fit: none;
+}
+```
+
+- Does not resize the content.
+- Keeps the content at its natural size.
+- Content may be larger or smaller than the content box.
+
+### `scale-down`
+
+```css
+img {
+    object-fit: scale-down;
+}
+```
+
+- Compares the results of `none` and `contain`.
+- Uses the smaller rendered result.
+- Does not unnecessarily enlarge small content.
+- Can scale large content down when required.
+
+### `object-position`
+
+`object-position` controls where the fitted content is positioned inside its content box.
+
+For example:
+
+```css
+img {
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This is especially useful when `cover` crops an image and you want to control which part remains visible.
+
+### `object-fit` and `overflow`
+
+These properties have different purposes:
+
+```text
+object-fit
+→ Controls how replaced content fits
+
+overflow
+→ Controls what happens when content extends
+  outside an element's box
+```
+
+They can be used together for media containers.
+
+### `object-fit` and Aspect Ratio
+
+When the content and content box have different aspect ratios:
+
+```text
+Different aspect ratios
+        ↓
+object-fit
+        ↓
+Determines how content is fitted
+```
+
+The result depends on the selected value.
+
+### Practical Selection Guide
+
+```text
+Need the entire image visible?
+→ object-fit: contain;
+
+Need the entire box filled?
+→ object-fit: cover;
+
+Stretching is acceptable?
+→ object-fit: fill;
+
+Need natural content size?
+→ object-fit: none;
+
+Need natural size when possible,
+but scale down when necessary?
+→ object-fit: scale-down;
+```
+
+### Most Important Rule
+
+Remember this distinction:
+
+```text
+width + height
+        ↓
+Define the content box
+
+object-fit
+        ↓
+Controls how the replaced content
+fits inside the box
+
+object-position
+        ↓
+Controls where the fitted content
+is positioned
+```
+
+> 💡 **Remember:** `object-fit` is mainly about **how content fits**, while `object-position` is about **where that content is positioned** inside the box.
