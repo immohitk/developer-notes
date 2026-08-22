@@ -5715,3 +5715,494 @@ width / height
 ```
 
 > 💡 **Interview Tip:** The most important comparison to remember is `contain` vs `cover`: **`contain` shows the entire content, while `cover` fills the entire box.**
+
+---
+
+## Practice Exercises
+
+The following exercises are designed to help you practice CSS `object-fit`, `object-position`, and related image and video layouts.
+
+### Exercise 1: Basic `object-fit`
+
+Create an image with:
+
+- Width: `300px`
+- Height: `200px`
+- `object-fit: cover`
+
+```html
+<img src="image.jpg" alt="Example image">
+```
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+**Task:** Observe how the image fills the content box and how parts of the image may be cropped.
+
+---
+
+### Exercise 2: Compare `fill` and `contain`
+
+Create two images with the same dimensions.
+
+Use:
+
+```css
+.first {
+    object-fit: fill;
+}
+
+.second {
+    object-fit: contain;
+}
+```
+
+**Task:** Compare the two results.
+
+Answer:
+
+- Which one can distort the image?
+- Which one keeps the entire image visible?
+- Which one can leave empty space?
+
+---
+
+### Exercise 3: Compare `contain` and `cover`
+
+Create two image containers:
+
+```css
+.image {
+    width: 300px;
+    height: 200px;
+}
+
+.contain {
+    object-fit: contain;
+}
+
+.cover {
+    object-fit: cover;
+}
+```
+
+**Task:** Use the same image for both.
+
+Observe:
+
+- Which image shows the complete content?
+- Which image fills the entire box?
+- Which image may be cropped?
+
+---
+
+### Exercise 4: Profile Picture
+
+Create a circular profile image.
+
+Requirements:
+
+- Width: `150px`
+- Height: `150px`
+- `border-radius: 50%`
+- `object-fit: cover`
+
+```css
+.profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+```
+
+**Task:** Test the profile image with both landscape and portrait images.
+
+---
+
+### Exercise 5: Product Image
+
+Create a product image container.
+
+Requirements:
+
+- Width: `300px`
+- Height: `300px`
+- Use `object-fit: contain`
+
+```css
+.product-image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+```
+
+**Task:** Make sure the complete product remains visible.
+
+---
+
+### Exercise 6: Image Gallery
+
+Create a gallery containing at least six images.
+
+Use:
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+**Task:** Use images with different aspect ratios and make all gallery items visually consistent.
+
+---
+
+### Exercise 7: `object-position`
+
+Create an image using:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+Then test:
+
+```css
+object-position: center;
+```
+
+```css
+object-position: left center;
+```
+
+```css
+object-position: right center;
+```
+
+```css
+object-position: center bottom;
+```
+
+**Task:** Observe how the visible part of the image changes.
+
+---
+
+### Exercise 8: Custom Focal Point
+
+Create an image using:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 70% 30%;
+}
+```
+
+**Task:** Experiment with different percentage values and find a position that keeps the important part of the image visible.
+
+---
+
+### Exercise 9: Responsive Image
+
+Create a responsive image using:
+
+```css
+img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+```
+
+**Task:** Resize the browser window and observe how the image responds.
+
+---
+
+### Exercise 10: Use `aspect-ratio`
+
+Create an image with a `16:9` aspect ratio.
+
+```css
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+**Task:** Place the image inside a responsive container and test it at different screen sizes.
+
+---
+
+### Exercise 11: Rounded Image Container
+
+Create a rounded image container.
+
+```css
+.image-container {
+    width: 300px;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+**Task:** Make sure the image follows the rounded corners of the container.
+
+---
+
+### Exercise 12: Video With `object-fit`
+
+Create a video element:
+
+```html
+<video controls src="video.mp4"></video>
+```
+
+Apply:
+
+```css
+video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+```
+
+**Task:** Compare the result with:
+
+```css
+object-fit: contain;
+```
+
+---
+
+### Exercise 13: Compare All `object-fit` Values
+
+Create five identical image elements and apply:
+
+```css
+.fill {
+    object-fit: fill;
+}
+
+.contain {
+    object-fit: contain;
+}
+
+.cover {
+    object-fit: cover;
+}
+
+.none {
+    object-fit: none;
+}
+
+.scale-down {
+    object-fit: scale-down;
+}
+```
+
+**Task:** Compare all five results.
+
+Create a table documenting:
+
+| Value | Distortion | Cropping | Empty Space | Natural Size |
+|---|---|---|---|---|
+| `fill` | ? | ? | ? | ? |
+| `contain` | ? | ? | ? | ? |
+| `cover` | ? | ? | ? | ? |
+| `none` | ? | ? | ? | ? |
+| `scale-down` | ? | ? | ? | ? |
+
+---
+
+### Exercise 14: Image Card
+
+Create a complete image card containing:
+
+- Image
+- Heading
+- Description
+- Button
+
+Use:
+
+```css
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+**Task:** Make several cards with images having different aspect ratios.
+
+---
+
+### Exercise 15: Hero Section
+
+Create a hero section containing an image.
+
+Requirements:
+
+- Full container width
+- Fixed height
+- `object-fit: cover`
+- Text displayed over the image
+
+Example:
+
+```css
+.hero {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+**Task:** Add a heading and paragraph over the image.
+
+---
+
+### Exercise 16: Fix a Distorted Image
+
+Start with:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: fill;
+}
+```
+
+The image appears distorted.
+
+**Task:** Fix the problem without changing the width or height.
+
+Try:
+
+```css
+object-fit: contain;
+```
+
+and:
+
+```css
+object-fit: cover;
+```
+
+Compare the results and decide which is more appropriate.
+
+---
+
+### Exercise 17: Fix an Incorrect Crop
+
+Create:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+If the important part of the image is being cropped, use `object-position`.
+
+Try:
+
+```css
+object-position: center top;
+```
+
+Then experiment with other positions.
+
+---
+
+### Exercise 18: Mini Project
+
+Create a responsive media gallery containing:
+
+- Six images
+- Consistent image areas
+- Responsive layout
+- Rounded corners
+- `object-fit: cover`
+- `object-position`
+- Different image aspect ratios
+
+Suggested structure:
+
+```text
+Media Gallery
+│
+├── Image 1
+├── Image 2
+├── Image 3
+├── Image 4
+├── Image 5
+└── Image 6
+```
+
+**Goal:** Create a consistent gallery without distorting the source images.
+
+---
+
+### Challenge Questions
+
+Before checking your implementation, answer these questions:
+
+1. What is the difference between `contain` and `cover`?
+2. Which `object-fit` value can distort an image?
+3. Which value keeps the content at its natural size?
+4. Which value can scale content down but avoids unnecessary enlargement?
+5. What does `object-position` control?
+6. Why can `cover` crop an image?
+7. Why can `contain` leave empty space?
+8. What is the difference between `object-fit` and `background-size`?
+9. How can `aspect-ratio` work together with `object-fit`?
+10. When would you choose `contain` instead of `cover`?
+
+> 💡 **Practice Tip:** Do not just memorize the five `object-fit` values. Try the same image with each value and observe how the result changes. Understanding the visual behavior makes the property much easier to remember.
