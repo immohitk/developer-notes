@@ -4908,3 +4908,387 @@ object-fit best practices
 ```
 
 > 💡 **Remember:** Good `object-fit` usage starts with deciding what matters most: keeping the entire content visible, completely filling the available area, or preserving the content's natural size.
+
+---
+
+## Common Mistakes
+
+When using CSS `object-fit`, several common mistakes can lead to distorted images, unexpected cropping, or inconsistent layouts.
+
+### 1. Using `fill` Without Considering Aspect Ratio
+
+A common mistake is using:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: fill;
+}
+```
+
+`fill` can change the original aspect ratio of the image.
+
+This may make the image look stretched or compressed.
+
+If preserving the original proportions is important, consider:
+
+```css
+object-fit: contain;
+```
+
+or:
+
+```css
+object-fit: cover;
+```
+
+### 2. Expecting `object-fit` to Set Width and Height
+
+`object-fit` does not define the size of the element.
+
+For example:
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+This does not automatically create a specific image size.
+
+You generally need dimensions from properties such as:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Here:
+
+```text
+width + height
+→ Define the content box
+
+object-fit
+→ Controls how the content fits
+```
+
+### 3. Using `cover` When the Entire Image Must Be Visible
+
+A common mistake is using:
+
+```css
+object-fit: cover;
+```
+
+for images where every part of the image is important.
+
+`cover` can crop content when the aspect ratios differ.
+
+For example, product images may be better suited to:
+
+```css
+object-fit: contain;
+```
+
+when the complete product needs to remain visible.
+
+### 4. Using `contain` When the Box Must Be Completely Filled
+
+Another common mistake is using:
+
+```css
+object-fit: contain;
+```
+
+when the image area must be completely filled.
+
+`contain` preserves the entire image, so empty space can remain.
+
+For image cards or hero areas where the box should be completely filled, `cover` may be more appropriate.
+
+### 5. Forgetting About Cropping With `cover`
+
+Consider:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+If the image has a different aspect ratio, some parts can be cropped.
+
+This is expected behavior, not necessarily an error.
+
+If an important part of the image is being cropped, consider:
+
+```css
+object-position: center top;
+```
+
+or another appropriate position.
+
+### 6. Ignoring `object-position`
+
+Using:
+
+```css
+object-fit: cover;
+```
+
+without considering the focal point can result in important content being cropped.
+
+For example:
+
+```css
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+`object-position` lets you control which part of the image is positioned inside the content box.
+
+### 7. Confusing `object-fit` With `background-size`
+
+`object-fit` and `background-size` can produce similar visual results, but they are used in different situations.
+
+For an image element:
+
+```html
+<img src="image.jpg" alt="Example">
+```
+
+use:
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+For a CSS background image:
+
+```css
+.hero {
+    background-image: url("hero.jpg");
+    background-size: cover;
+}
+```
+
+Do not use `object-fit` to control a CSS background image.
+
+### 8. Forgetting That `object-fit` Applies to Replaced Content
+
+`object-fit` is intended for replaced elements such as:
+
+```html
+<img>
+```
+
+and:
+
+```html
+<video>
+```
+
+It does not work as a general-purpose property for ordinary elements such as:
+
+```html
+<div>
+```
+
+For a normal `div` containing an image, apply `object-fit` to the image itself:
+
+```css
+.container img {
+    object-fit: cover;
+}
+```
+
+### 9. Using `object-fit: none` Without Understanding Natural Size
+
+With:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: none;
+}
+```
+
+the image is not resized to fit the content box.
+
+If the natural image is much larger than the box, some content may not be visible.
+
+Use `none` only when keeping the natural size is actually required.
+
+### 10. Using `scale-down` Without Understanding Its Behavior
+
+`scale-down` does not simply mean "make the image smaller."
+
+It chooses the smaller rendered result between:
+
+```text
+none
+```
+
+and:
+
+```text
+contain
+```
+
+For example:
+
+```css
+img {
+    object-fit: scale-down;
+}
+```
+
+This means a small image can remain at its natural size instead of being enlarged.
+
+### 11. Forgetting Responsive Behavior
+
+A fixed size such as:
+
+```css
+img {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+```
+
+may not work well on smaller screens.
+
+A responsive approach may use:
+
+```css
+img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+```
+
+or:
+
+```css
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+### 12. Not Testing Different Aspect Ratios
+
+Testing only one image can hide layout problems.
+
+Test with:
+
+```text
+Landscape image
+Square image
+Portrait image
+Wide image
+Tall image
+```
+
+This helps reveal unexpected cropping, empty space, or distortion.
+
+### 13. Ignoring Accessibility
+
+`object-fit` does not provide alternative text for images.
+
+A meaningful image should still have appropriate `alt` text:
+
+```html
+<img
+    src="product.jpg"
+    alt="Black running shoes">
+```
+
+The visual styling of an image should not replace accessibility information.
+
+### 14. Using `overflow: hidden` Without Understanding the Container
+
+A common pattern is:
+
+```css
+.container {
+    overflow: hidden;
+}
+```
+
+This clips content that extends outside the container.
+
+Before using it, make sure clipping is actually intended.
+
+For image cards, it can be useful:
+
+```css
+.card-image {
+    overflow: hidden;
+    border-radius: 12px;
+}
+```
+
+But it should not be added automatically to every layout.
+
+### 15. Choosing the Wrong Value for the Design
+
+The most important mistake is choosing an `object-fit` value without considering the purpose of the content.
+
+Use:
+
+```text
+contain
+→ Complete content is important
+
+cover
+→ Complete container coverage is important
+
+fill
+→ Distortion is acceptable
+
+none
+→ Natural content size is required
+
+scale-down
+→ Natural size is preferred, but large content
+  should be scaled down
+```
+
+### Common Mistakes Summary
+
+```text
+Common mistakes
+│
+├── Using fill when aspect ratio matters
+├── Expecting object-fit to set dimensions
+├── Using cover when cropping is unacceptable
+├── Using contain when the box must be filled
+├── Forgetting about object-position
+├── Confusing object-fit with background-size
+├── Applying object-fit to normal elements
+├── Misunderstanding none
+├── Misunderstanding scale-down
+├── Ignoring responsive layouts
+├── Not testing different aspect ratios
+└── Ignoring accessibility
+```
+
+> 💡 **Remember:** Most `object-fit` problems come from choosing the wrong fitting behavior for the design. First decide whether the priority is **showing everything**, **filling the box**, or **preserving natural size**, and then choose the appropriate value.
