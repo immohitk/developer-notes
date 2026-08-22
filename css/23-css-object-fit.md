@@ -1293,3 +1293,272 @@ object-fit: contain
 ```
 
 > 💡 **Remember:** `object-fit: contain` prioritizes keeping the **entire content visible** while preserving its aspect ratio. If the content and content box have different aspect ratios, some empty space may remain.
+
+---
+
+## `object-fit: cover`
+
+The `cover` value scales the replaced content while preserving its original aspect ratio so that it completely fills the element's content box.
+
+Because the aspect ratios of the content and content box may be different, some parts of the content can be cropped.
+
+### Basic Example
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+The image fills the entire `300px × 200px` content box while maintaining its original proportions.
+
+### Preserving the Aspect Ratio
+
+Unlike `fill`, `cover` preserves the original aspect ratio.
+
+For example:
+
+```text
+Original image
+800 × 600
+4:3
+
+Content box
+300 × 200
+3:2
+
+object-fit: cover
+        ↓
+Image is scaled proportionally
+        ↓
+Content fills the entire box
+        ↓
+Some parts may be cropped
+```
+
+### Why Does Cropping Happen?
+
+To completely fill the content box while preserving the aspect ratio, the image may need to become larger than one dimension of the box.
+
+The excess content is then outside the visible area of the content box.
+
+For example:
+
+```text
+Content box
+┌──────────────────────┐
+│  ┌────────────────┐  │
+│  │      Image     │  │
+│  │   ──────────   │  │
+│  └────────────────┘  │
+└──────────────────────┘
+       ↑
+   Some content
+   may be cropped
+```
+
+### `cover` vs `contain`
+
+These values have opposite priorities.
+
+#### `contain`
+
+```css
+img {
+    object-fit: contain;
+}
+```
+
+```text
+Entire content
+      ↓
+Must remain visible
+      ↓
+Aspect ratio preserved
+      ↓
+Empty space may remain
+```
+
+#### `cover`
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+```text
+Entire content box
+      ↓
+Must be filled
+      ↓
+Aspect ratio preserved
+      ↓
+Content may be cropped
+```
+
+### Image Cards
+
+`cover` is commonly used for cards with fixed image areas.
+
+```css
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Different source images can then appear in the same-sized visual area.
+
+### Profile Pictures
+
+For a square profile image:
+
+```css
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+```
+
+The image fills the square while preserving its aspect ratio.
+
+If the source image is not square, some content is cropped.
+
+### Circular Profile Pictures
+
+`cover` works well with circular images:
+
+```css
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+```
+
+The image fills the circular area without being stretched.
+
+### Product Cards
+
+```css
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+```
+
+This creates a consistent image area across different products.
+
+However, if the entire product must remain visible, `contain` may be more appropriate.
+
+### Hero Images
+
+`cover` can be useful for large visual areas:
+
+```css
+.hero img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+```
+
+The image fills the hero area while maintaining its aspect ratio.
+
+Some parts of the image may be cropped.
+
+### Videos
+
+`object-fit: cover` can also be applied to videos:
+
+```css
+.video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+```
+
+The video fills the specified area while maintaining its aspect ratio.
+
+Some video content may be cropped.
+
+### `cover` Does Not Distort the Content
+
+With:
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+the image's aspect ratio is preserved.
+
+The image is not stretched disproportionately just to match the content box.
+
+Instead:
+
+```text
+Aspect ratio
+→ Preserved
+
+Content box
+→ Completely filled
+
+Excess content
+→ May be cropped
+```
+
+### When to Use `cover`
+
+Use `cover` when:
+
+- The content box must be completely filled.
+- The original aspect ratio should be preserved.
+- Some cropping is acceptable.
+- Images need consistent dimensions.
+- Profile images should fill a fixed shape.
+- Gallery thumbnails should have uniform sizes.
+- Hero images should cover a defined area.
+
+### When Not to Use `cover`
+
+Avoid `cover` when the entire image must remain visible.
+
+For example, product images or logos may need:
+
+```css
+object-fit: contain;
+```
+
+instead.
+
+### Important Points
+
+```text
+object-fit: cover
+│
+├── Preserves aspect ratio
+│
+├── Completely fills the content box
+│
+├── May crop parts of the content
+│
+├── Does not distort the content
+│
+└── Commonly used for
+    ├── Profile images
+    ├── Image cards
+    ├── Gallery thumbnails
+    └── Hero images
+```
+
+> 💡 **Remember:** `object-fit: cover` prioritizes **filling the entire content box** while preserving the aspect ratio. If the aspect ratios differ, some parts of the image or video may be cropped.
