@@ -5292,3 +5292,426 @@ Common mistakes
 ```
 
 > 💡 **Remember:** Most `object-fit` problems come from choosing the wrong fitting behavior for the design. First decide whether the priority is **showing everything**, **filling the box**, or **preserving natural size**, and then choose the appropriate value.
+
+---
+
+## Interview Questions
+
+### 1. What is the CSS `object-fit` property?
+
+`object-fit` controls how the content of a replaced element, such as an image or video, is resized to fit inside its content box.
+
+---
+
+### 2. Which elements commonly use `object-fit`?
+
+`object-fit` is commonly used with replaced elements such as:
+
+```html
+<img>
+```
+
+and:
+
+```html
+<video>
+```
+
+---
+
+### 3. What is the default value of `object-fit`?
+
+The default value is:
+
+```css
+object-fit: fill;
+```
+
+It makes the content fill the content box and may distort its aspect ratio.
+
+---
+
+### 4. What does `object-fit: contain` do?
+
+`contain` scales the content while preserving its aspect ratio so that the entire content fits inside the content box.
+
+Empty space may remain when the aspect ratios are different.
+
+---
+
+### 5. What does `object-fit: cover` do?
+
+`cover` scales the content while preserving its aspect ratio so that it completely fills the content box.
+
+Because the aspect ratios may differ, some parts of the content may be cropped.
+
+---
+
+### 6. What is the difference between `contain` and `cover`?
+
+```text
+contain
+→ Entire content remains visible
+→ Aspect ratio preserved
+→ Empty space may remain
+
+cover
+→ Entire box is filled
+→ Aspect ratio preserved
+→ Content may be cropped
+```
+
+---
+
+### 7. What does `object-fit: fill` do?
+
+`fill` resizes the content to completely fill the content box.
+
+It does not preserve the original aspect ratio, so the content can become stretched or compressed.
+
+---
+
+### 8. What does `object-fit: none` do?
+
+`none` prevents the replaced content from being resized to fit the content box.
+
+The content remains at its natural or intrinsic size.
+
+---
+
+### 9. What does `object-fit: scale-down` do?
+
+`scale-down` uses the smaller rendered result between `none` and `contain`.
+
+It can scale large content down but does not unnecessarily enlarge content that already fits.
+
+---
+
+### 10. Does `object-fit` set the width and height of an element?
+
+No.
+
+`width` and `height` define the dimensions of the element's content box.
+
+`object-fit` controls how the replaced content fits inside that box.
+
+For example:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+---
+
+### 11. Does `object-fit: cover` distort an image?
+
+No.
+
+`cover` preserves the original aspect ratio.
+
+However, some parts of the image may be cropped to ensure that the entire content box is covered.
+
+---
+
+### 12. Why might an image have empty space when using `object-fit: contain`?
+
+`contain` preserves the image's aspect ratio and keeps the entire image visible.
+
+If the image and content box have different aspect ratios, the image cannot fill both dimensions without distortion.
+
+Therefore, empty space may remain.
+
+---
+
+### 13. What is `object-position`?
+
+`object-position` controls the position of replaced content inside its content box.
+
+For example:
+
+```css
+img {
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This is particularly useful when `object-fit: cover` crops important parts of an image.
+
+---
+
+### 14. What is the default value of `object-position`?
+
+The default position is:
+
+```css
+object-position: 50% 50%;
+```
+
+which corresponds to the center of the content box.
+
+---
+
+### 15. Can `object-fit` be used with videos?
+
+Yes.
+
+For example:
+
+```css
+video {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+```
+
+The video content is fitted according to the selected `object-fit` value.
+
+---
+
+### 16. What is the difference between `object-fit` and `background-size`?
+
+`object-fit` is used to control replaced content such as images and videos.
+
+```css
+img {
+    object-fit: cover;
+}
+```
+
+`background-size` is used for CSS background images.
+
+```css
+.hero {
+    background-size: cover;
+}
+```
+
+They can produce similar visual results but apply to different types of content.
+
+---
+
+### 17. Can `object-fit` be used on a `<div>`?
+
+`object-fit` is intended for replaced elements such as images and videos.
+
+It is not a general-purpose sizing property for ordinary elements such as `<div>`.
+
+For example:
+
+```html
+<div>
+    <img src="image.jpg" alt="Example">
+</div>
+```
+
+The `object-fit` property should be applied to the image:
+
+```css
+div img {
+    object-fit: cover;
+}
+```
+
+---
+
+### 18. When should you use `object-fit: contain`?
+
+Use `contain` when:
+
+- The entire content must remain visible.
+- Cropping is not acceptable.
+- The original aspect ratio should be preserved.
+- Empty space is acceptable.
+
+Common examples include:
+
+```text
+Product images
+Logos
+Technical diagrams
+```
+
+---
+
+### 19. When should you use `object-fit: cover`?
+
+Use `cover` when:
+
+- The entire content box should be filled.
+- Preserving the aspect ratio is important.
+- Some cropping is acceptable.
+
+Common examples include:
+
+```text
+Profile pictures
+Card thumbnails
+Gallery images
+Hero images
+```
+
+---
+
+### 20. What happens when the content and content box have different aspect ratios?
+
+The result depends on the `object-fit` value.
+
+```text
+fill
+→ May distort
+
+contain
+→ Entire content visible
+
+cover
+→ Entire box filled, may crop
+
+none
+→ Natural size
+
+scale-down
+→ Smaller result of none and contain
+```
+
+---
+
+### 21. Can `object-fit` be combined with `object-position`?
+
+Yes.
+
+This is a common combination:
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+`object-fit` controls the fitting behavior, while `object-position` controls the position of the fitted content.
+
+---
+
+### 22. Can `object-fit` be combined with `aspect-ratio`?
+
+Yes.
+
+For example:
+
+```css
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+Here:
+
+```text
+width
+→ Controls responsive width
+
+aspect-ratio
+→ Defines the shape of the content box
+
+object-fit
+→ Controls how the image fits inside the box
+```
+
+---
+
+### 23. What is a common CSS pattern for consistent card images?
+
+A common pattern is:
+
+```css
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+This allows images with different source dimensions to appear inside a consistent visual area.
+
+---
+
+### 24. How can you prevent a profile image from being distorted?
+
+Use a fixed or consistent content box with `object-fit: cover`.
+
+For example:
+
+```css
+.profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+```
+
+The aspect ratio is preserved and the image fills the available area.
+
+---
+
+### 25. Which `object-fit` value should you choose?
+
+The choice depends on the design requirement:
+
+```text
+Entire content must be visible
+→ contain
+
+Entire box must be filled
+→ cover
+
+Distortion is acceptable
+→ fill
+
+Natural size must be preserved
+→ none
+
+Natural size preferred,
+but large content should scale down
+→ scale-down
+```
+
+### Quick Interview Summary
+
+```text
+object-fit
+→ Controls how replaced content fits
+
+fill
+→ Fill box, may distort
+
+contain
+→ Show everything, preserve ratio
+
+cover
+→ Fill box, preserve ratio, may crop
+
+none
+→ Keep natural size
+
+scale-down
+→ Smaller result of none and contain
+
+object-position
+→ Controls content position
+
+width / height
+→ Define the content box
+```
+
+> 💡 **Interview Tip:** The most important comparison to remember is `contain` vs `cover`: **`contain` shows the entire content, while `cover` fills the entire box.**
