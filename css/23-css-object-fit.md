@@ -2573,3 +2573,287 @@ object-fit + video
 ```
 
 > 💡 **Remember:** `object-fit` works with videos in much the same way it works with images. Use `contain` when the entire video must remain visible and `cover` when the video must completely fill its container.
+
+---
+
+## Object Fit and Aspect Ratio
+
+The `object-fit` property is closely related to the aspect ratio of replaced content such as images and videos.
+
+When the aspect ratio of the content is different from the aspect ratio of its content box, `object-fit` determines how the content should be fitted.
+
+### What Is Aspect Ratio?
+
+Aspect ratio describes the relationship between the width and height of an element or piece of content.
+
+For example:
+
+```text
+800 × 600
+```
+
+has an aspect ratio of:
+
+```text
+4:3
+```
+
+Similarly:
+
+```text
+1920 × 1080
+```
+
+has an aspect ratio of:
+
+```text
+16:9
+```
+
+### Different Aspect Ratios
+
+Suppose an image has:
+
+```text
+Original image
+800 × 600
+4:3
+```
+
+and its content box has:
+
+```text
+Content box
+300 × 200
+3:2
+```
+
+The aspect ratios are different.
+
+This creates a fitting problem:
+
+```text
+Original content
+      ↓
+Different aspect ratio
+      ↓
+Content box
+      ↓
+object-fit determines the result
+```
+
+### `object-fit: fill`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: fill;
+}
+```
+
+The image fills the entire content box.
+
+However, the original aspect ratio is not preserved.
+
+```text
+Aspect ratio
+→ May change
+
+Result
+→ Possible distortion
+```
+
+### `object-fit: contain`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
+}
+```
+
+The image keeps its original aspect ratio and is scaled so that the entire image fits inside the content box.
+
+```text
+Aspect ratio
+→ Preserved
+
+Entire image
+→ Visible
+
+Empty space
+→ May remain
+```
+
+### `object-fit: cover`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+The image keeps its original aspect ratio and is scaled until the entire content box is covered.
+
+```text
+Aspect ratio
+→ Preserved
+
+Content box
+→ Completely filled
+
+Extra content
+→ May be cropped
+```
+
+### `object-fit: none`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: none;
+}
+```
+
+The image is not resized to fit the content box.
+
+Its natural dimensions are preserved.
+
+```text
+Natural size
+→ Preserved
+
+Scaling
+→ None
+```
+
+If the image is larger than the content box, some of the image may not be visible.
+
+### `object-fit: scale-down`
+
+```css
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: scale-down;
+}
+```
+
+The browser chooses the smaller rendered result between `none` and `contain`.
+
+This means:
+
+```text
+Small content
+→ Keep natural size
+
+Large content
+→ Scale down when necessary
+```
+
+### Visual Comparison
+
+Suppose:
+
+```text
+Original image
+4:3
+
+Content box
+16:9
+```
+
+The different values behave approximately like this:
+
+```text
+fill
+→ Stretch to match the box
+
+contain
+→ Keep entire image visible
+
+cover
+→ Fill the box and crop excess
+
+none
+→ Keep natural dimensions
+
+scale-down
+→ Keep natural dimensions when possible
+→ Otherwise scale down
+```
+
+### Using `aspect-ratio`
+
+The CSS `aspect-ratio` property can be used to define the preferred aspect ratio of an element.
+
+For example:
+
+```css
+.image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+Here:
+
+```text
+width
+→ Makes the element responsive
+
+aspect-ratio
+→ Defines a 16:9 shape
+
+object-fit
+→ Controls how the image fits inside that shape
+```
+
+### Example: Responsive Card Image
+
+```css
+.card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+This creates a consistent 16:9 image area.
+
+Different source images can still be used while maintaining a consistent card layout.
+
+### Why Aspect Ratio Matters
+
+Without considering aspect ratio, images may:
+
+- Become distorted.
+- Leave unwanted empty space.
+- Be cropped unexpectedly.
+- Have inconsistent dimensions.
+
+Using `object-fit` helps control these results.
+
+### Important Points
+
+```text
+Aspect ratio
+│
+├── Describes width-to-height relationship
+│
+├── Different content and box ratios
+│   can require fitting
+│
+├── object-fit controls the fitting behavior
+│
+└── aspect-ratio can help define
+    a consistent content-box shape
+```
+
+> 💡 **Remember:** When the content and its content box have different aspect ratios, `object-fit` determines whether the content is stretched, contained, covered, kept at its natural size, or scaled down.
