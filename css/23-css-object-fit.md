@@ -4601,3 +4601,310 @@ object-fit
 ### One-Line Summary
 
 > `object-fit` controls how an image or video fits inside its content box, while `object-position` controls where that content is positioned.
+
+---
+
+## Best Practices
+
+Following good practices when using `object-fit` makes image and video layouts more consistent, responsive, and easier to maintain.
+
+### 1. Choose the Value Based on the Requirement
+
+Do not use the same `object-fit` value for every situation.
+
+Use:
+
+```css
+object-fit: contain;
+```
+
+when the entire content must remain visible.
+
+Use:
+
+```css
+object-fit: cover;
+```
+
+when the content box must be completely filled.
+
+Use:
+
+```css
+object-fit: fill;
+```
+
+only when changing the original aspect ratio is acceptable.
+
+### 2. Avoid Unnecessary Distortion
+
+For most photographs and videos, preserving the original aspect ratio is important.
+
+Avoid:
+
+```css
+object-fit: fill;
+```
+
+when distortion would make the content look incorrect.
+
+Prefer:
+
+```css
+object-fit: contain;
+```
+
+or:
+
+```css
+object-fit: cover;
+```
+
+depending on the design requirement.
+
+### 3. Define the Content Box Clearly
+
+`object-fit` works inside the element's content box.
+
+For example:
+
+```css
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Clearly defined dimensions make the fitting behavior predictable.
+
+### 4. Use `cover` for Consistent Image Areas
+
+When multiple images need the same visual dimensions:
+
+```css
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+This is useful for:
+
+- Card images
+- Gallery thumbnails
+- Blog images
+- Profile images
+- Hero images
+
+### 5. Use `contain` When Content Must Stay Visible
+
+For logos, product images, and other content where cropping is undesirable:
+
+```css
+.product img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+```
+
+This keeps the entire image visible.
+
+### 6. Use `object-position` When Cropping Matters
+
+If `cover` crops an important part of an image, adjust its position.
+
+```css
+.profile img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center top;
+}
+```
+
+This is useful when the subject is not centered.
+
+### 7. Use `aspect-ratio` for Consistent Media Shapes
+
+Instead of manually setting both dimensions, you can use `aspect-ratio`.
+
+```css
+.card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+This helps create consistent responsive media areas.
+
+### 8. Use `overflow: hidden` When a Container Defines the Visible Area
+
+For a dedicated image container:
+
+```css
+.image-container {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+This is particularly useful when the image needs to follow the shape of its container.
+
+### 9. Keep Image Layouts Responsive
+
+Avoid unnecessarily hard-coded widths when a responsive layout is required.
+
+For example:
+
+```css
+.image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+```
+
+The image can adapt to the width of its parent while maintaining a controlled height.
+
+### 10. Consider the Purpose of the Image
+
+Different images have different requirements.
+
+```text
+Product image
+→ contain
+
+Profile image
+→ cover
+
+Gallery thumbnail
+→ cover
+
+Logo
+→ contain
+
+Hero image
+→ cover
+
+Decorative image
+→ Depends on the design
+```
+
+### 11. Do Not Confuse `object-fit` With `background-size`
+
+`object-fit` is used with replaced elements such as:
+
+```html
+<img>
+<video>
+```
+
+For CSS background images, a different property is used:
+
+```css
+background-size: cover;
+```
+
+These properties solve similar visual problems but are used in different contexts.
+
+### 12. Test Different Aspect Ratios
+
+Do not test an image layout with only one image.
+
+Try:
+
+```text
+Landscape image
+Square image
+Portrait image
+Very wide image
+Very tall image
+```
+
+This helps identify unexpected cropping or empty space.
+
+### 13. Test Different Screen Sizes
+
+Responsive layouts should be tested at different viewport sizes.
+
+Check:
+
+```text
+Desktop
+Tablet
+Mobile
+```
+
+Make sure the media remains visually appropriate at each size.
+
+### 14. Use Meaningful `alt` Text for Images
+
+`object-fit` does not replace accessibility practices.
+
+For meaningful images, provide useful alternative text:
+
+```html
+<img
+    src="product.jpg"
+    alt="Black running shoes">
+```
+
+For purely decorative images, an empty `alt` attribute may be appropriate:
+
+```html
+<img
+    src="decoration.jpg"
+    alt="">
+```
+
+### 15. Keep the CSS Simple
+
+Avoid unnecessary combinations of properties.
+
+For example, a simple card image may only need:
+
+```css
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+Add `object-position`, `overflow`, or other properties only when the design requires them.
+
+### Best Practice Summary
+
+```text
+object-fit best practices
+│
+├── Choose the value based on the design
+│
+├── Preserve aspect ratio when appropriate
+│
+├── Use cover for consistent filled areas
+│
+├── Use contain when the entire content matters
+│
+├── Use object-position for important focal areas
+│
+├── Use aspect-ratio for consistent responsive shapes
+│
+├── Test different image dimensions
+│
+├── Test different screen sizes
+│
+└── Keep accessibility in mind
+```
+
+> 💡 **Remember:** Good `object-fit` usage starts with deciding what matters most: keeping the entire content visible, completely filling the available area, or preserving the content's natural size.
