@@ -949,3 +949,232 @@ cursor: default
 ```
 
 > 💡 **Remember:** `cursor: default` explicitly displays the normal default cursor, while `cursor: auto` allows the browser to automatically choose the appropriate cursor based on the context.
+
+---
+
+## Pointer Cursor
+
+The `pointer` cursor value displays a pointer cursor when the user moves over an element.
+
+It is commonly used to indicate that an element can be clicked or interacted with.
+
+### Syntax
+
+```css
+.element {
+    cursor: pointer;
+}
+```
+
+### Basic Example
+
+```html
+<button class="button">
+    Click Me
+</button>
+```
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+When the user moves the mouse over the button, the cursor changes to a pointer.
+
+### Pointer Cursor Meaning
+
+The pointer cursor communicates:
+
+```text
+Pointer cursor
+      ↓
+Element is interactive
+      ↓
+User can click or activate it
+```
+
+### Common Use Cases
+
+The `pointer` cursor is commonly used for:
+
+- Buttons
+- Links
+- Clickable cards
+- Clickable icons
+- Custom controls
+- Interactive elements
+
+### Example: Clickable Card
+
+```html
+<div class="card">
+    Clickable Card
+</div>
+```
+
+```css
+.card {
+    cursor: pointer;
+}
+```
+
+The cursor provides visual feedback that the card can be interacted with.
+
+### Example: Clickable Icon
+
+```css
+.icon {
+    cursor: pointer;
+}
+```
+
+This is useful when an icon performs an action.
+
+For example:
+
+```text
+Delete icon
+→ pointer
+
+Edit icon
+→ pointer
+
+Menu icon
+→ pointer
+```
+
+### Pointer Cursor Does Not Add Functionality
+
+Using:
+
+```css
+.element {
+    cursor: pointer;
+}
+```
+
+does not automatically make the element clickable.
+
+The property only changes the cursor appearance.
+
+```text
+cursor: pointer
+        ↓
+Visual feedback
+
+Actual click behavior
+        ↓
+HTML functionality
+or JavaScript
+```
+
+For example:
+
+```html
+<div class="card" onclick="openCard()">
+    Clickable Card
+</div>
+```
+
+```css
+.card {
+    cursor: pointer;
+}
+```
+
+The JavaScript provides the functionality, while the cursor provides visual feedback.
+
+### Pointer Cursor and Links
+
+Links usually display an appropriate cursor automatically.
+
+For example:
+
+```html
+<a href="https://example.com">
+    Visit Website
+</a>
+```
+
+In many cases, you do not need to manually add:
+
+```css
+cursor: pointer;
+```
+
+because the browser already provides visual feedback for links.
+
+### Pointer Cursor and Buttons
+
+Native buttons are also interactive elements.
+
+```html
+<button>Submit</button>
+```
+
+Depending on browser and operating system behavior, the cursor appearance may already provide interaction feedback.
+
+You can explicitly set:
+
+```css
+button {
+    cursor: pointer;
+}
+```
+
+when you want consistent cursor behavior.
+
+### Use Pointer Only for Interactive Elements
+
+Avoid using:
+
+```css
+cursor: pointer;
+```
+
+for elements that do not perform an action.
+
+For example:
+
+```css
+.static-text {
+    cursor: pointer;
+}
+```
+
+This can confuse users because the cursor suggests that the element is clickable.
+
+A better approach is to match the cursor with the actual behavior of the element.
+
+```text
+Clickable element
+→ pointer
+
+Text selection
+→ text
+
+Draggable element
+→ move or grab
+
+Normal element
+→ default or auto
+```
+
+### Important Points
+
+```text
+cursor: pointer
+│
+├── Indicates interaction
+│
+├── Commonly used for clickable elements
+│
+├── Provides visual feedback
+│
+├── Does not add click functionality
+│
+└── Should match actual element behavior
+```
+
+> 💡 **Remember:** Use `cursor: pointer` when an element is genuinely interactive. The pointer cursor communicates that the user can click or activate the element.
