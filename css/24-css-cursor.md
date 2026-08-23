@@ -4804,3 +4804,213 @@ Useful resources
 ```
 
 > 💡 **Remember:** References are useful for checking syntax, supported cursor values, browser behavior, and advanced CSS features. Regular experimentation is one of the best ways to understand how cursor values behave in real interfaces.
+
+---
+
+## Quick Revision
+
+Use this section to quickly review the most important concepts about the CSS `cursor` property.
+
+### What Is the `cursor` Property?
+
+The `cursor` property controls the appearance of the mouse pointer when it is placed over an element.
+
+```css
+.element {
+    cursor: pointer;
+}
+```
+
+### Basic Syntax
+
+```css
+selector {
+    cursor: value;
+}
+```
+
+Example:
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+### Common Cursor Values
+
+| Cursor Value | Purpose |
+|---|---|
+| `auto` | Browser automatically selects the cursor |
+| `default` | Default cursor |
+| `pointer` | Clickable element |
+| `text` | Text interaction |
+| `move` | Movable element |
+| `wait` | System is busy |
+| `help` | Additional information is available |
+| `not-allowed` | Action is unavailable |
+| `crosshair` | Precise selection |
+
+### Drag Cursors
+
+```css
+.item {
+    cursor: grab;
+}
+
+.item:active {
+    cursor: grabbing;
+}
+```
+
+```text
+grab
+→ Element can be grabbed
+
+grabbing
+→ Element is currently being grabbed
+```
+
+### Resize Cursors
+
+```css
+.horizontal {
+    cursor: ew-resize;
+}
+
+.vertical {
+    cursor: ns-resize;
+}
+```
+
+Common values include:
+
+```text
+ew-resize
+→ Horizontal resizing
+
+ns-resize
+→ Vertical resizing
+
+nwse-resize
+→ Diagonal resizing
+
+nesw-resize
+→ Diagonal resizing
+
+col-resize
+→ Column resizing
+
+row-resize
+→ Row resizing
+```
+
+### Zoom Cursors
+
+```css
+.image {
+    cursor: zoom-in;
+}
+
+.image.zoomed {
+    cursor: zoom-out;
+}
+```
+
+```text
+zoom-in
+→ Increase zoom level
+
+zoom-out
+→ Decrease zoom level
+```
+
+### Custom Cursor
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The browser uses the custom image when possible.
+
+If the image cannot be used, the fallback cursor is displayed.
+
+### Custom Cursor With Hotspot
+
+```css
+.element {
+    cursor: url("cursor.png") 10 10, pointer;
+}
+```
+
+```text
+10
+→ Horizontal hotspot
+
+10
+→ Vertical hotspot
+```
+
+### Important Rule
+
+The cursor should always match the actual interaction.
+
+```text
+Clickable element
+→ pointer
+
+Text input
+→ text
+
+Draggable element
+→ grab
+
+Disabled action
+→ not-allowed
+
+Drawing area
+→ crosshair
+
+Resize handle
+→ Resize cursor
+```
+
+### Most Important Concept
+
+```text
+cursor property
+       ↓
+Changes appearance
+       ↓
+Provides visual feedback
+       ↓
+Does not create functionality
+```
+
+For example:
+
+```css
+.item {
+    cursor: grab;
+}
+```
+
+does not automatically make the element draggable.
+
+### Quick Summary
+
+```text
+CSS Cursor
+│
+├── Controls pointer appearance
+├── Provides visual feedback
+├── Supports predefined cursor values
+├── Supports resize and zoom cursors
+├── Supports custom cursor images
+├── Supports fallback values
+└── Does not create functionality
+```
+
+> 💡 **Quick Tip:** Choose a cursor that accurately represents what the user can actually do. A correct cursor improves usability and helps users understand an interface quickly.
