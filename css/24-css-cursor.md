@@ -2616,3 +2616,266 @@ grab and grabbing
 ```
 
 > 💡 **Remember:** Use `grab` to indicate that an element can be picked up and `grabbing` to indicate that the user is actively dragging it.
+
+---
+
+## Resize Cursors
+
+CSS provides several cursor values that indicate an element can be resized.
+
+These cursors are commonly used for resizable panels, windows, columns, images, and other interface elements.
+
+### Basic Syntax
+
+```css
+.element {
+    cursor: resize-value;
+}
+```
+
+For example:
+
+```css
+.resizable {
+    cursor: ew-resize;
+}
+```
+
+This indicates that the element can be resized horizontally.
+
+## Common Resize Cursor Values
+
+CSS provides directional resize cursors.
+
+| Cursor Value | Direction |
+|---|---|
+| `col-resize` | Column can be resized |
+| `row-resize` | Row can be resized |
+| `n-resize` | Resize upward |
+| `s-resize` | Resize downward |
+| `e-resize` | Resize right |
+| `w-resize` | Resize left |
+| `ne-resize` | Resize toward north-east |
+| `nw-resize` | Resize toward north-west |
+| `se-resize` | Resize toward south-east |
+| `sw-resize` | Resize toward south-west |
+| `ew-resize` | Horizontal resize |
+| `ns-resize` | Vertical resize |
+| `nesw-resize` | Diagonal resize |
+| `nwse-resize` | Diagonal resize |
+
+### Horizontal Resize
+
+The `ew-resize` value indicates horizontal resizing.
+
+```css
+.horizontal-resize {
+    cursor: ew-resize;
+}
+```
+
+```text
+← → 
+Horizontal resizing
+```
+
+### Vertical Resize
+
+The `ns-resize` value indicates vertical resizing.
+
+```css
+.vertical-resize {
+    cursor: ns-resize;
+}
+```
+
+```text
+↕
+Vertical resizing
+```
+
+### Diagonal Resize
+
+The `nwse-resize` value indicates diagonal resizing.
+
+```css
+.corner {
+    cursor: nwse-resize;
+}
+```
+
+This is commonly used for resize handles positioned on corners.
+
+Another example:
+
+```css
+.corner {
+    cursor: nesw-resize;
+}
+```
+
+The direction should match the intended resize behavior.
+
+### Directional Resize Cursors
+
+Individual directions can also be specified.
+
+```css
+.top {
+    cursor: n-resize;
+}
+
+.bottom {
+    cursor: s-resize;
+}
+
+.left {
+    cursor: w-resize;
+}
+
+.right {
+    cursor: e-resize;
+}
+```
+
+Diagonal directions can also be used.
+
+```css
+.top-right {
+    cursor: ne-resize;
+}
+
+.top-left {
+    cursor: nw-resize;
+}
+
+.bottom-right {
+    cursor: se-resize;
+}
+
+.bottom-left {
+    cursor: sw-resize;
+}
+```
+
+### Column Resize
+
+The `col-resize` cursor is commonly used for resizable columns.
+
+```css
+.column-handle {
+    cursor: col-resize;
+}
+```
+
+Common use cases include:
+
+- Tables
+- Data grids
+- Resizable sidebars
+- Column layouts
+
+### Row Resize
+
+The `row-resize` cursor is commonly used for resizable rows.
+
+```css
+.row-handle {
+    cursor: row-resize;
+}
+```
+
+Common use cases include:
+
+- Tables
+- Layout editors
+- Resizable sections
+
+### Example: Resize Handle
+
+```html
+<div class="resize-handle"></div>
+```
+
+```css
+.resize-handle {
+    cursor: ew-resize;
+}
+```
+
+The cursor provides visual feedback that the handle can be used for horizontal resizing.
+
+### Resize Cursors Do Not Add Resize Functionality
+
+Using:
+
+```css
+.resize-handle {
+    cursor: ew-resize;
+}
+```
+
+does not automatically make an element resizable.
+
+```text
+Resize cursor
+        ↓
+Visual feedback
+
+Actual resizing
+        ↓
+Requires CSS resize property
+or JavaScript functionality
+```
+
+For example, CSS provides the `resize` property:
+
+```css
+textarea {
+    resize: both;
+}
+```
+
+JavaScript can also be used to create custom resizing behavior.
+
+### Example: Custom Resize Interface
+
+```css
+.left-handle {
+    cursor: ew-resize;
+}
+
+.top-handle {
+    cursor: ns-resize;
+}
+
+.corner-handle {
+    cursor: nwse-resize;
+}
+```
+
+Each cursor helps communicate the direction in which the element can be resized.
+
+### Important Points
+
+```text
+Resize cursors
+│
+├── Horizontal
+│   → ew-resize
+│
+├── Vertical
+│   → ns-resize
+│
+├── Diagonal
+│   → nwse-resize
+│   → nesw-resize
+│
+├── Column
+│   → col-resize
+│
+└── Row
+    → row-resize
+```
+
+> 💡 **Remember:** Resize cursors provide visual feedback about the direction in which an element can be resized. They change only the cursor appearance and do not create resize functionality by themselves.
