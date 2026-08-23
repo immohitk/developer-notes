@@ -1178,3 +1178,213 @@ cursor: pointer
 ```
 
 > 💡 **Remember:** Use `cursor: pointer` when an element is genuinely interactive. The pointer cursor communicates that the user can click or activate the element.
+
+---
+
+## Text Cursor
+
+The `text` cursor value displays a cursor that indicates text can be selected or edited.
+
+It is commonly shown when the user moves the pointer over selectable text or a text input area.
+
+### Syntax
+
+```css
+.element {
+    cursor: text;
+}
+```
+
+### Basic Example
+
+```html
+<p class="text-content">
+    Select this text.
+</p>
+```
+
+```css
+.text-content {
+    cursor: text;
+}
+```
+
+When the user moves the pointer over the text, the cursor changes to indicate that text can be selected.
+
+### Text Cursor Meaning
+
+The text cursor communicates:
+
+```text
+Text cursor
+      ↓
+Text interaction is possible
+      ↓
+User can select or edit text
+```
+
+### Common Use Cases
+
+The `text` cursor is commonly associated with:
+
+- Text content
+- Text inputs
+- Textareas
+- Editable content
+- Selectable text
+
+### Example: Text Input
+
+```html
+<input type="text" placeholder="Enter your name">
+```
+
+Text input elements normally display an appropriate text cursor automatically.
+
+You can also explicitly define it:
+
+```css
+input {
+    cursor: text;
+}
+```
+
+### Example: Textarea
+
+```html
+<textarea placeholder="Write something"></textarea>
+```
+
+```css
+textarea {
+    cursor: text;
+}
+```
+
+This provides visual feedback that the user can enter or edit text.
+
+### Example: Editable Content
+
+```html
+<div class="editable" contenteditable="true">
+    Edit this text.
+</div>
+```
+
+```css
+.editable {
+    cursor: text;
+}
+```
+
+The cursor indicates that the content can be edited.
+
+### `text` Cursor vs `pointer`
+
+These cursor values communicate different interactions.
+
+```text
+cursor: text
+→ Select or edit text
+
+cursor: pointer
+→ Click or activate an element
+```
+
+For example:
+
+```css
+.article {
+    cursor: text;
+}
+
+.button {
+    cursor: pointer;
+}
+```
+
+The cursor should match the expected behavior of the element.
+
+### `text` Cursor Does Not Make Text Editable
+
+Using:
+
+```css
+.element {
+    cursor: text;
+}
+```
+
+does not automatically make the content editable.
+
+It only changes the cursor appearance.
+
+For example:
+
+```html
+<p class="example">
+    This is normal text.
+</p>
+```
+
+```css
+.example {
+    cursor: text;
+}
+```
+
+The text may still not be editable.
+
+To make content editable, appropriate HTML or JavaScript functionality is required.
+
+For example:
+
+```html
+<div contenteditable="true">
+    Edit this content.
+</div>
+```
+
+### When to Use `text`
+
+Use:
+
+```css
+cursor: text;
+```
+
+when the user should understand that text can be selected or edited.
+
+Avoid using it for elements that perform actions unrelated to text interaction.
+
+```text
+Selectable text
+→ text
+
+Editable content
+→ text
+
+Text input
+→ text
+
+Clickable button
+→ pointer
+```
+
+### Important Points
+
+```text
+cursor: text
+│
+├── Indicates text interaction
+│
+├── Commonly used for selectable text
+│
+├── Commonly used for editable content
+│
+├── Provides visual feedback
+│
+└── Does not make content editable
+```
+
+> 💡 **Remember:** `cursor: text` indicates that the user can interact with text, such as selecting or editing it. It only changes the cursor appearance and does not add editing functionality by itself.
