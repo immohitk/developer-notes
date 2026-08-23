@@ -3328,3 +3328,232 @@ Other cursor values
 ```
 
 > 💡 **Remember:** CSS provides many cursor values beyond common options such as `pointer`, `text`, and `move`. Choose a cursor value that accurately represents the interaction available to the user.
+
+---
+
+## Custom Cursor
+
+CSS allows you to use a custom image as the cursor.
+
+This can be useful when building games, creative interfaces, drawing tools, or branded user interfaces.
+
+Custom cursors are created using the `url()` function with the `cursor` property.
+
+### Basic Syntax
+
+```css
+.element {
+    cursor: url("cursor.png"), auto;
+}
+```
+
+The browser attempts to use the custom cursor image.
+
+If the image cannot be used, the fallback cursor is displayed.
+
+```text
+Custom cursor image
+        ↓
+If supported
+        ↓
+Use custom image
+
+Otherwise
+        ↓
+Use fallback cursor
+```
+
+### Basic Example
+
+```html
+<div class="custom-area">
+    Hover over me
+</div>
+```
+
+```css
+.custom-area {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The custom image is used as the cursor when the user moves over the element.
+
+If the image cannot be loaded or supported, the browser uses `pointer`.
+
+### Why Use a Fallback?
+
+A fallback cursor should always be included.
+
+For example:
+
+```css
+.element {
+    cursor: url("custom-cursor.png"), pointer;
+}
+```
+
+The fallback is important because:
+
+- The image may fail to load
+- The image format may not be supported
+- The browser may reject the cursor image
+- The image may be unavailable
+
+A predefined cursor value provides a reliable alternative.
+
+### Example With `auto`
+
+```css
+.element {
+    cursor: url("cursor.png"), auto;
+}
+```
+
+If the custom image cannot be used, the browser automatically determines the appropriate cursor.
+
+### Custom Cursor Formats
+
+Cursor images can use supported image formats.
+
+For example:
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+Another example:
+
+```css
+.element {
+    cursor: url("cursor.svg"), pointer;
+}
+```
+
+Browser support and behavior can vary depending on the image format and browser.
+
+### Multiple Custom Cursor Images
+
+More than one cursor image can be provided.
+
+```css
+.element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+The browser attempts to use the images in order.
+
+```text
+cursor.svg
+     ↓
+If unavailable
+
+cursor.png
+     ↓
+If unavailable
+
+pointer
+```
+
+### Custom Cursor With a Hotspot
+
+A custom cursor can specify hotspot coordinates.
+
+```css
+.element {
+    cursor: url("cursor.png") 10 10, pointer;
+}
+```
+
+The hotspot defines the active point of the cursor.
+
+```text
+Cursor image
+     ↓
+Hotspot coordinates
+     ↓
+Active click position
+```
+
+The first value represents the horizontal position.
+
+The second value represents the vertical position.
+
+### Example
+
+```css
+.element {
+    cursor: url("cursor.png") 5 5, auto;
+}
+```
+
+The browser uses the specified point in the image as the active position.
+
+### Custom Cursor Does Not Add Functionality
+
+A custom cursor only changes the appearance of the pointer.
+
+For example:
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+This does not automatically make the element:
+
+- Clickable
+- Draggable
+- Interactive
+
+```text
+Custom cursor
+        ↓
+Visual appearance
+
+Actual interaction
+        ↓
+Requires HTML,
+CSS behavior,
+or JavaScript
+```
+
+### When to Use Custom Cursors
+
+Custom cursors can be useful for:
+
+- Games
+- Drawing applications
+- Creative websites
+- Interactive tools
+- Custom interfaces
+- Specialized user experiences
+
+They should be used carefully because unusual cursor designs can confuse users.
+
+### Important Points
+
+```text
+Custom cursor
+│
+├── Uses url()
+│
+├── Can use an image
+│
+├── Should include a fallback
+│
+├── Can specify hotspot coordinates
+│
+├── Can provide multiple image options
+│
+└── Changes appearance only
+```
+
+> 💡 **Remember:** A custom CSS cursor uses an image with `url()`. Always provide a fallback cursor value so the interface remains usable if the custom image cannot be displayed.
