@@ -781,3 +781,171 @@ input {
 ```
 
 > 💡 **Remember:** The simplest `cursor` syntax uses a predefined keyword such as `pointer`, `text`, or `move`. Custom cursor images can also be used, but they should include a fallback cursor value.
+
+---
+
+## Default Cursor
+
+The `default` cursor value displays the default cursor determined by the browser or operating system.
+
+### Syntax
+
+```css
+.element {
+    cursor: default;
+}
+```
+
+The exact appearance of the default cursor can vary depending on the operating system and browser.
+
+### Example
+
+```html
+<div class="box">
+    Hover over me
+</div>
+```
+
+```css
+.box {
+    cursor: default;
+}
+```
+
+When the user moves the pointer over the element, the default cursor is displayed.
+
+### `default` Cursor Meaning
+
+The `default` cursor generally represents a normal element with no special interaction indicated.
+
+```text
+Normal element
+      ↓
+cursor: default
+      ↓
+Default system cursor
+```
+
+### Example With Different Elements
+
+```css
+.normal {
+    cursor: default;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.text-content {
+    cursor: text;
+}
+```
+
+Each element can display a cursor that better represents its intended interaction.
+
+### `default` vs `auto`
+
+The `default` and `auto` values are different.
+
+```css
+cursor: default;
+```
+
+The browser displays the default cursor.
+
+```css
+cursor: auto;
+```
+
+The browser automatically determines the cursor based on the context.
+
+For example:
+
+```text
+default
+→ Use the normal default cursor
+
+auto
+→ Browser decides the appropriate cursor
+```
+
+### Example
+
+```html
+<a href="#">Link</a>
+```
+
+With:
+
+```css
+a {
+    cursor: auto;
+}
+```
+
+the browser can choose an appropriate cursor based on the element.
+
+With:
+
+```css
+a {
+    cursor: default;
+}
+```
+
+the element displays the default cursor instead of using the browser's automatic behavior.
+
+### When to Use `default`
+
+Use:
+
+```css
+cursor: default;
+```
+
+when you want to explicitly show the normal default cursor.
+
+For example:
+
+```css
+.static-element {
+    cursor: default;
+}
+```
+
+However, it is usually unnecessary to set `default` unless you need to override another cursor value.
+
+### Example: Overriding an Inherited Cursor
+
+Because the `cursor` property can be inherited, a parent may set a cursor value:
+
+```css
+.container {
+    cursor: pointer;
+}
+```
+
+You can reset a child element to the default cursor:
+
+```css
+.container .static-content {
+    cursor: default;
+}
+```
+
+### Important Points
+
+```text
+cursor: default
+│
+├── Displays the default system cursor
+│
+├── Indicates no special interaction
+│
+├── Can override an inherited cursor
+│
+└── May look different across operating systems
+```
+
+> 💡 **Remember:** `cursor: default` explicitly displays the normal default cursor, while `cursor: auto` allows the browser to automatically choose the appropriate cursor based on the context.
