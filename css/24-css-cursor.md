@@ -5304,3 +5304,308 @@ Best practices
 ```
 
 > 💡 **Remember:** The best cursor is one that clearly and accurately represents the action available to the user. Use cursor values consistently and avoid relying on them as the only form of interaction feedback.
+
+---
+
+## Common Mistakes
+
+When using the CSS `cursor` property, some common mistakes can make an interface confusing or misleading.
+
+Understanding these mistakes helps you choose cursor values more effectively.
+
+### Using the Wrong Cursor
+
+One common mistake is using a cursor that does not match the available interaction.
+
+For example:
+
+```css
+.element {
+    cursor: pointer;
+}
+```
+
+The `pointer` cursor suggests that the element can be clicked.
+
+If the element is not clickable, this can confuse users.
+
+```text
+Incorrect cursor
+       ↓
+Incorrect expectation
+       ↓
+User confusion
+```
+
+Always choose a cursor that matches the actual behavior.
+
+### Using `pointer` for Everything
+
+The `pointer` cursor should not be used for every element.
+
+For example:
+
+```css
+.page-content {
+    cursor: pointer;
+}
+```
+
+This can make users think that all content is clickable.
+
+Instead, use `pointer` only for elements that perform an action when clicked.
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+### Using `not-allowed` Without Disabling the Element
+
+Another common mistake is using:
+
+```css
+.element {
+    cursor: not-allowed;
+}
+```
+
+while the element is still fully clickable.
+
+The cursor communicates:
+
+```text
+Action unavailable
+```
+
+but the actual behavior communicates:
+
+```text
+Action available
+```
+
+This creates inconsistent feedback.
+
+A better approach is:
+
+```css
+.button:disabled {
+    cursor: not-allowed;
+}
+```
+
+The cursor should match the actual state.
+
+### Expecting `cursor` to Create Functionality
+
+The `cursor` property only changes the appearance of the pointer.
+
+For example:
+
+```css
+.draggable {
+    cursor: grab;
+}
+```
+
+does not automatically make the element draggable.
+
+Similarly:
+
+```css
+.resize-handle {
+    cursor: ew-resize;
+}
+```
+
+does not automatically create resizing functionality.
+
+```text
+cursor property
+       ↓
+Visual feedback
+
+Actual interaction
+       ↓
+Requires additional functionality
+```
+
+### Forgetting a Fallback for Custom Cursors
+
+A custom cursor should include a fallback value.
+
+Incorrect:
+
+```css
+.element {
+    cursor: url("cursor.png");
+}
+```
+
+Better:
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The fallback ensures that the interface remains usable if the custom image cannot be used.
+
+### Choosing the Wrong Fallback
+
+The fallback cursor should match the interaction.
+
+For example:
+
+```css
+.button {
+    cursor: url("button-cursor.png"), text;
+}
+```
+
+The `text` fallback does not match a clickable button.
+
+A better option is:
+
+```css
+.button {
+    cursor: url("button-cursor.png"), pointer;
+}
+```
+
+### Using a Custom Cursor Only for Decoration
+
+A custom cursor should provide useful visual feedback.
+
+Using unusual cursor images only for decoration can make the interface difficult to use.
+
+```text
+Useful custom cursor
+→ Supports the interaction
+
+Decorative custom cursor
+→ May confuse the user
+```
+
+Use custom cursors when they improve the user experience.
+
+### Hiding the Cursor Unnecessarily
+
+The `none` value hides the cursor.
+
+```css
+.element {
+    cursor: none;
+}
+```
+
+This can make it difficult for users to understand where the pointer is.
+
+Use `none` only when the interface provides a clear reason for hiding the cursor.
+
+Possible use cases include:
+
+- Games
+- Custom cursor systems
+- Specialized full-screen interfaces
+
+### Using Inconsistent Cursor Values
+
+Using different cursors for the same type of interaction can confuse users.
+
+For example:
+
+```text
+Button A
+→ pointer
+
+Button B
+→ default
+
+Button C
+→ help
+```
+
+If all three elements perform the same action, the cursor behavior should be consistent.
+
+A better approach is:
+
+```text
+All clickable buttons
+→ pointer
+```
+
+### Using Resize Cursors Incorrectly
+
+Resize cursors should match the direction of resizing.
+
+Incorrect:
+
+```css
+.horizontal-handle {
+    cursor: ns-resize;
+}
+```
+
+The `ns-resize` cursor suggests vertical resizing.
+
+Better:
+
+```css
+.horizontal-handle {
+    cursor: ew-resize;
+}
+```
+
+The cursor direction should match the actual resize direction.
+
+### Relying Only on Cursor Feedback
+
+Not all users interact with an interface using a mouse.
+
+Some users may use:
+
+- Touchscreens
+- Keyboards
+- Assistive technologies
+
+A cursor should not be the only indication that an element is:
+
+- Clickable
+- Disabled
+- Draggable
+- Interactive
+
+Use additional visual and functional feedback.
+
+### Summary of Common Mistakes
+
+```text
+Common mistakes
+│
+├── Using the wrong cursor
+│
+├── Using pointer for non-clickable elements
+│
+├── Using not-allowed for active elements
+│
+├── Expecting cursor to create functionality
+│
+├── Forgetting custom cursor fallbacks
+│
+├── Choosing incorrect fallback values
+│
+├── Using unnecessary custom cursors
+│
+├── Hiding the cursor without a reason
+│
+├── Using inconsistent cursor behavior
+│
+├── Using incorrect resize directions
+│
+└── Relying only on cursor feedback
+```
+
+> 💡 **Remember:** The most important rule is to make the cursor match the actual interaction. A misleading cursor can create incorrect expectations and reduce the usability of an interface.
