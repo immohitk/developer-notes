@@ -28,3 +28,146 @@
 26. [Interview Questions](#interview-questions)
 27. [Practice Exercises](#practice-exercises)
 28. [Related Topics](#related-topics)
+
+---
+
+## Introduction
+
+The CSS `cursor` property controls the appearance of the mouse cursor when it is positioned over an element.
+
+For example, when you move the mouse over a button, link, text field, or draggable element, the cursor can change to indicate how the element can be interacted with.
+
+```text
+Mouse moves over an element
+            ↓
+CSS cursor property
+            ↓
+Cursor appearance changes
+            ↓
+User receives visual feedback
+```
+
+The `cursor` property helps users understand what actions are available.
+
+For example:
+
+```text
+Pointer cursor
+→ Element can be clicked
+
+Text cursor
+→ Text can be selected or edited
+
+Move cursor
+→ Element can be moved
+
+Not-allowed cursor
+→ Action is unavailable
+
+Wait cursor
+→ Browser or application is busy
+```
+
+### Basic Example
+
+```css
+button {
+    cursor: pointer;
+}
+```
+
+When the user moves the mouse over the button, the cursor changes to a pointer.
+
+### Why Is the `cursor` Property Important?
+
+The cursor provides visual feedback about an element's behavior.
+
+For example:
+
+```css
+button {
+    cursor: pointer;
+}
+
+input {
+    cursor: text;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+```
+
+Each cursor communicates something different to the user.
+
+### Common Use Cases
+
+The `cursor` property is commonly used for:
+
+- Buttons
+- Links
+- Text inputs
+- Draggable elements
+- Resizable elements
+- Disabled elements
+- Help icons
+- Loading states
+- Custom interfaces
+
+### Visual Feedback
+
+Consider a clickable element:
+
+```html
+<div class="button">
+    Click Me
+</div>
+```
+
+Without a cursor change, the user may not immediately know that the element is interactive.
+
+You can provide visual feedback:
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+Now the cursor helps communicate that the element can be clicked.
+
+### Cursor Values
+
+CSS provides many predefined cursor values.
+
+Examples include:
+
+```css
+cursor: default;
+cursor: pointer;
+cursor: text;
+cursor: move;
+cursor: wait;
+cursor: help;
+cursor: not-allowed;
+```
+
+Different cursor values should be selected based on the purpose and behavior of the element.
+
+### User Experience
+
+The `cursor` property is a small but important part of user experience.
+
+A correctly chosen cursor can make an interface feel more intuitive.
+
+```text
+Element behavior
+        ↓
+Appropriate cursor
+        ↓
+Visual feedback
+        ↓
+Better user experience
+```
+
+> 💡 **Remember:** The CSS `cursor` property controls the appearance of the mouse cursor and provides visual feedback about how an element can be interacted with.
