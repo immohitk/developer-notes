@@ -2879,3 +2879,233 @@ Resize cursors
 ```
 
 > 💡 **Remember:** Resize cursors provide visual feedback about the direction in which an element can be resized. They change only the cursor appearance and do not create resize functionality by themselves.
+
+---
+
+## Zoom Cursors
+
+CSS provides cursor values that indicate zooming actions.
+
+The two main zoom cursor values are:
+
+- `zoom-in`
+- `zoom-out`
+
+These cursors are commonly used in image viewers, maps, galleries, and other interfaces where users can change the zoom level.
+
+### `zoom-in` Cursor
+
+The `zoom-in` cursor indicates that the user can increase the zoom level.
+
+### Syntax
+
+```css
+.element {
+    cursor: zoom-in;
+}
+```
+
+### Basic Example
+
+```html
+<img class="image" src="image.jpg" alt="Example image">
+```
+
+```css
+.image {
+    cursor: zoom-in;
+}
+```
+
+The cursor indicates that clicking or interacting with the image may increase its zoom level.
+
+### `zoom-in` Cursor Meaning
+
+```text
+zoom-in
+   ↓
+Increase zoom level
+   ↓
+View content more closely
+```
+
+### `zoom-out` Cursor
+
+The `zoom-out` cursor indicates that the user can decrease the zoom level.
+
+### Syntax
+
+```css
+.element {
+    cursor: zoom-out;
+}
+```
+
+### Basic Example
+
+```css
+.zoomed-image {
+    cursor: zoom-out;
+}
+```
+
+This indicates that the user may be able to return to a smaller zoom level.
+
+### `zoom-out` Cursor Meaning
+
+```text
+zoom-out
+    ↓
+Decrease zoom level
+    ↓
+View more content
+```
+
+### Using Zoom Cursors Together
+
+A common pattern is to change the cursor depending on the zoom state.
+
+```css
+.image {
+    cursor: zoom-in;
+}
+
+.image.zoomed {
+    cursor: zoom-out;
+}
+```
+
+The cursor changes depending on the current state.
+
+```text
+Normal image
+     ↓
+zoom-in
+
+Zoomed image
+     ↓
+zoom-out
+```
+
+### Common Use Cases
+
+Zoom cursors can be used for:
+
+- Image galleries
+- Image viewers
+- Maps
+- Product images
+- Photo editors
+- Document viewers
+- Interactive diagrams
+
+### Example: Clickable Image
+
+```html
+<img class="photo" src="photo.jpg" alt="Example photo">
+```
+
+```css
+.photo {
+    cursor: zoom-in;
+}
+```
+
+The cursor provides visual feedback that the image can be enlarged.
+
+### Example: Zoom State
+
+```css
+.photo {
+    cursor: zoom-in;
+}
+
+.photo.zoomed {
+    cursor: zoom-out;
+}
+```
+
+The `.zoomed` class can be added when the image is enlarged.
+
+### Zoom Cursors Do Not Add Zoom Functionality
+
+Using:
+
+```css
+.element {
+    cursor: zoom-in;
+}
+```
+
+does not automatically zoom an element.
+
+Similarly:
+
+```css
+.element {
+    cursor: zoom-out;
+}
+```
+
+does not automatically reduce the zoom level.
+
+```text
+Zoom cursor
+       ↓
+Visual feedback
+
+Actual zooming
+       ↓
+Requires CSS transforms,
+browser functionality,
+or JavaScript
+```
+
+### Example With CSS
+
+A zoom effect can be created using `transform`.
+
+```css
+.image {
+    cursor: zoom-in;
+}
+
+.image.zoomed {
+    transform: scale(1.5);
+    cursor: zoom-out;
+}
+```
+
+The cursor communicates the possible interaction, while the `transform` property creates the visual zoom effect.
+
+### `zoom-in` vs `zoom-out`
+
+```text
+zoom-in
+→ Increase magnification
+
+zoom-out
+→ Decrease magnification
+```
+
+The cursor should match the action that will occur when the user interacts with the element.
+
+### Important Points
+
+```text
+Zoom cursors
+│
+├── zoom-in
+│   → Increase zoom level
+│
+├── zoom-out
+│   → Decrease zoom level
+│
+├── Useful for zoomable interfaces
+│
+├── Provide visual feedback
+│
+└── Do not create zoom functionality
+```
+
+> 💡 **Remember:** Use `zoom-in` to indicate that an element can be enlarged and `zoom-out` to indicate that the zoom level can be reduced. These cursor values provide visual feedback but do not create zoom functionality by themselves.
