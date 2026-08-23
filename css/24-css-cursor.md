@@ -1957,3 +1957,216 @@ cursor: help
 ```
 
 > 💡 **Remember:** `cursor: help` indicates that additional information or guidance is available. It changes only the cursor appearance; the actual help content must be provided separately.
+
+---
+
+## Not Allowed Cursor
+
+The `not-allowed` cursor value indicates that an action is not permitted.
+
+It is commonly used for disabled elements or actions that are currently unavailable.
+
+### Syntax
+
+```css
+.element {
+    cursor: not-allowed;
+}
+```
+
+### Basic Example
+
+```html
+<button class="disabled-button" disabled>
+    Submit
+</button>
+```
+
+```css
+.disabled-button {
+    cursor: not-allowed;
+}
+```
+
+When the user moves the pointer over the element, the cursor indicates that the action is unavailable.
+
+### Not Allowed Cursor Meaning
+
+The `not-allowed` cursor communicates:
+
+```text
+Not-allowed cursor
+        ↓
+Action is unavailable
+        ↓
+User should not perform the action
+```
+
+### Common Use Cases
+
+The `not-allowed` cursor can be used for:
+
+- Disabled buttons
+- Unavailable actions
+- Restricted features
+- Invalid operations
+- Elements that cannot currently be interacted with
+
+### Example: Disabled Button
+
+```html
+<button class="button" disabled>
+    Save
+</button>
+```
+
+```css
+.button:disabled {
+    cursor: not-allowed;
+}
+```
+
+This provides visual feedback that the button cannot currently be used.
+
+### Not Allowed Cursor Does Not Disable an Element
+
+Using:
+
+```css
+.element {
+    cursor: not-allowed;
+}
+```
+
+does not automatically disable the element.
+
+It only changes the cursor appearance.
+
+```text
+cursor: not-allowed
+        ↓
+Visual feedback
+
+Actual disabled behavior
+        ↓
+Requires HTML attributes,
+CSS interaction control,
+or JavaScript
+```
+
+For example:
+
+```html
+<button disabled>
+    Submit
+</button>
+```
+
+The `disabled` attribute provides the actual disabled behavior.
+
+### Example: Unavailable Action
+
+```html
+<div class="restricted">
+    Premium Feature
+</div>
+```
+
+```css
+.restricted {
+    cursor: not-allowed;
+}
+```
+
+The cursor communicates that the action is unavailable.
+
+However, if the element should not respond to pointer interactions, additional behavior may be needed.
+
+For example:
+
+```css
+.restricted {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+```
+
+### Not Allowed vs Pointer
+
+These values communicate different meanings.
+
+```text
+cursor: pointer
+→ Action is available
+
+cursor: not-allowed
+→ Action is unavailable
+```
+
+For example:
+
+```css
+.button {
+    cursor: pointer;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+}
+```
+
+This helps users understand the current state of the element.
+
+### Disabled States
+
+A common pattern is to combine the cursor with other visual changes.
+
+```css
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+```
+
+The cursor indicates that the action is unavailable, while the reduced opacity provides an additional visual indication.
+
+### When to Use `not-allowed`
+
+Use:
+
+```css
+cursor: not-allowed;
+```
+
+when an action cannot currently be performed.
+
+```text
+Enabled action
+→ pointer
+
+Disabled action
+→ not-allowed
+
+Normal element
+→ default or auto
+```
+
+The cursor should always match the actual state and behavior of the element.
+
+### Important Points
+
+```text
+cursor: not-allowed
+│
+├── Indicates an unavailable action
+│
+├── Useful for disabled states
+│
+├── Provides visual feedback
+│
+├── Does not disable functionality by itself
+│
+└── Should match the actual element state
+```
+
+> 💡 **Remember:** `cursor: not-allowed` communicates that an action is unavailable. It provides visual feedback only and does not automatically disable the element.
