@@ -1575,3 +1575,192 @@ cursor: move
 ```
 
 > 💡 **Remember:** `cursor: move` visually indicates that an element can be moved or repositioned. It provides feedback only; actual dragging or movement requires additional functionality.
+
+---
+
+## Wait Cursor
+
+The `wait` cursor value indicates that the browser, application, or system is busy and the user may need to wait.
+
+It is commonly used when an operation is in progress.
+
+### Syntax
+
+```css
+.element {
+    cursor: wait;
+}
+```
+
+### Basic Example
+
+```html
+<div class="loading">
+    Loading...
+</div>
+```
+
+```css
+.loading {
+    cursor: wait;
+}
+```
+
+When the user moves the pointer over the element, the cursor indicates that the system is busy.
+
+### Wait Cursor Meaning
+
+The `wait` cursor communicates:
+
+```text
+Wait cursor
+      ↓
+Operation in progress
+      ↓
+System is busy
+      ↓
+User may need to wait
+```
+
+### Common Use Cases
+
+The `wait` cursor can be useful during:
+
+- Data loading
+- File processing
+- Page updates
+- Background operations
+- Long-running tasks
+- Application processing
+
+### Example: Loading State
+
+```html
+<div class="content loading">
+    Loading data...
+</div>
+```
+
+```css
+.loading {
+    cursor: wait;
+}
+```
+
+The cursor provides visual feedback that the operation is still in progress.
+
+### Wait Cursor Does Not Block Interaction
+
+Using:
+
+```css
+.element {
+    cursor: wait;
+}
+```
+
+only changes the cursor appearance.
+
+It does not automatically:
+
+- Disable buttons
+- Prevent clicks
+- Stop keyboard input
+- Block interaction
+
+For example:
+
+```css
+.loading {
+    cursor: wait;
+}
+```
+
+The element may still be interactive unless additional functionality is implemented.
+
+### Wait Cursor and Disabled Elements
+
+If an element should not be used while loading, additional styling or functionality may be required.
+
+For example:
+
+```css
+.loading {
+    cursor: wait;
+    pointer-events: none;
+}
+```
+
+In this example:
+
+```text
+cursor: wait
+→ Shows that processing is happening
+
+pointer-events: none
+→ Prevents pointer interaction
+```
+
+### Wait Cursor vs Progress Cursor
+
+CSS provides both:
+
+```css
+cursor: wait;
+```
+
+and:
+
+```css
+cursor: progress;
+```
+
+They communicate slightly different states.
+
+```text
+wait
+→ System is busy
+→ User may need to wait
+
+progress
+→ An operation is in progress
+→ The user may still be able to interact
+```
+
+The exact appearance can vary depending on the browser and operating system.
+
+### Example: Application Processing
+
+```css
+.processing {
+    cursor: wait;
+}
+```
+
+This can be applied while an application performs an operation.
+
+Once the operation is complete, the cursor can return to normal:
+
+```css
+.processing {
+    cursor: auto;
+}
+```
+
+### Important Points
+
+```text
+cursor: wait
+│
+├── Indicates that processing is happening
+│
+├── Suggests that the user should wait
+│
+├── Provides visual feedback
+│
+├── Does not automatically disable interaction
+│
+└── Can be used with loading states
+```
+
+> 💡 **Remember:** `cursor: wait` indicates that the system is busy or processing something. It provides visual feedback but does not automatically prevent the user from interacting with the element.
