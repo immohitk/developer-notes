@@ -5609,3 +5609,314 @@ Common mistakes
 ```
 
 > 💡 **Remember:** The most important rule is to make the cursor match the actual interaction. A misleading cursor can create incorrect expectations and reduce the usability of an interface.
+
+---
+
+## Interview Questions
+
+The following questions can help you prepare for interviews and revise the CSS `cursor` property.
+
+### 1. What is the CSS `cursor` property?
+
+The `cursor` property controls the appearance of the mouse pointer when it is placed over an element.
+
+Example:
+
+```css
+.element {
+    cursor: pointer;
+}
+```
+
+### 2. What does `cursor: pointer` do?
+
+The `pointer` value indicates that an element can be clicked or activated.
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+It is commonly used for clickable elements such as custom buttons.
+
+### 3. What is the difference between `auto` and `default`?
+
+```text
+auto
+→ Browser automatically determines the appropriate cursor
+
+default
+→ Displays the default cursor
+```
+
+### 4. What does `cursor: text` indicate?
+
+The `text` cursor indicates that the user can select, enter, or edit text.
+
+```css
+.input {
+    cursor: text;
+}
+```
+
+### 5. What does `cursor: move` indicate?
+
+The `move` cursor indicates that an element can be moved or repositioned.
+
+```css
+.element {
+    cursor: move;
+}
+```
+
+It provides visual feedback only and does not automatically make the element movable.
+
+### 6. What is the difference between `grab` and `grabbing`?
+
+```text
+grab
+→ Element can be grabbed
+
+grabbing
+→ Element is currently being grabbed or dragged
+```
+
+Example:
+
+```css
+.item {
+    cursor: grab;
+}
+
+.item:active {
+    cursor: grabbing;
+}
+```
+
+### 7. What does `cursor: not-allowed` do?
+
+The `not-allowed` cursor indicates that an action is unavailable.
+
+```css
+.button:disabled {
+    cursor: not-allowed;
+}
+```
+
+It should be used when the actual functionality is unavailable.
+
+### 8. What does `cursor: wait` indicate?
+
+The `wait` cursor indicates that the system or application is busy and the user may need to wait.
+
+```css
+.loading {
+    cursor: wait;
+}
+```
+
+### 9. What is the difference between `wait` and `progress`?
+
+```text
+wait
+→ System is busy and the user may need to wait
+
+progress
+→ An operation is in progress while interaction may still be possible
+```
+
+### 10. What does `cursor: crosshair` indicate?
+
+The `crosshair` cursor indicates precise position selection.
+
+```css
+.drawing-area {
+    cursor: crosshair;
+}
+```
+
+It is commonly used in drawing applications and image editors.
+
+### 11. What are resize cursors?
+
+Resize cursors indicate the direction in which an element can be resized.
+
+Examples include:
+
+```css
+.horizontal {
+    cursor: ew-resize;
+}
+
+.vertical {
+    cursor: ns-resize;
+}
+
+.corner {
+    cursor: nwse-resize;
+}
+```
+
+### 12. What is the difference between `ew-resize` and `ns-resize`?
+
+```text
+ew-resize
+→ Horizontal resizing
+
+ns-resize
+→ Vertical resizing
+```
+
+### 13. What are `zoom-in` and `zoom-out` cursors?
+
+They indicate zoom actions.
+
+```text
+zoom-in
+→ Increase zoom level
+
+zoom-out
+→ Decrease zoom level
+```
+
+Example:
+
+```css
+.image {
+    cursor: zoom-in;
+}
+
+.image.zoomed {
+    cursor: zoom-out;
+}
+```
+
+### 14. How can you create a custom cursor in CSS?
+
+A custom cursor can be created using the `url()` function.
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The image is used as the cursor, while `pointer` acts as a fallback.
+
+### 15. Why should a custom cursor have a fallback?
+
+A fallback ensures that an appropriate cursor is displayed if the custom image cannot be loaded or used.
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+### 16. Can a custom cursor have a hotspot?
+
+Yes. Hotspot coordinates can define the active point of the cursor.
+
+```css
+.element {
+    cursor: url("cursor.png") 10 10, pointer;
+}
+```
+
+```text
+10 10
+↓
+Hotspot coordinates
+```
+
+### 17. Can multiple cursor images be provided?
+
+Yes.
+
+```css
+.element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+The browser attempts to use the values in order.
+
+### 18. Does the `cursor` property create functionality?
+
+No.
+
+The `cursor` property only changes the appearance of the pointer.
+
+For example:
+
+```css
+.draggable {
+    cursor: grab;
+}
+```
+
+This does not automatically make the element draggable.
+
+### 19. What happens when `cursor: none` is used?
+
+The cursor is hidden when it is placed over the element.
+
+```css
+.element {
+    cursor: none;
+}
+```
+
+This should be used carefully because hiding the cursor can make an interface harder to use.
+
+### 20. What are some common mistakes when using cursors?
+
+Common mistakes include:
+
+- Using a cursor that does not match the interaction
+- Using `pointer` for non-clickable elements
+- Expecting the cursor to create functionality
+- Forgetting fallback values for custom cursors
+- Using incorrect resize cursors
+- Using inconsistent cursor behavior
+- Relying only on cursor feedback
+
+### Quick Interview Summary
+
+```text
+Most important interview concepts
+
+CSS cursor
+│
+├── Controls pointer appearance
+├── Provides visual feedback
+├── Does not create functionality
+│
+├── Common values
+│   ├── pointer
+│   ├── text
+│   ├── move
+│   ├── wait
+│   ├── help
+│   └── not-allowed
+│
+├── Dragging
+│   ├── grab
+│   └── grabbing
+│
+├── Resizing
+│   ├── ew-resize
+│   ├── ns-resize
+│   └── diagonal resize values
+│
+└── Custom cursors
+    ├── url()
+    ├── hotspot coordinates
+    └── fallback values
+```
+
+> 💡 **Interview Tip:** Remember that the CSS `cursor` property provides visual feedback only. A cursor value should always match the actual interaction available to the user.
