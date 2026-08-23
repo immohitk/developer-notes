@@ -3557,3 +3557,245 @@ Custom cursor
 ```
 
 > 💡 **Remember:** A custom CSS cursor uses an image with `url()`. Always provide a fallback cursor value so the interface remains usable if the custom image cannot be displayed.
+
+---
+
+## Cursor With Images
+
+CSS allows images to be used as custom cursors with the `url()` function.
+
+This allows you to replace a standard browser cursor with an image.
+
+### Basic Syntax
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The browser attempts to use the image as the cursor.
+
+If the image cannot be used, the fallback cursor is displayed.
+
+```text
+Cursor image
+     ↓
+Browser attempts to load image
+     ↓
+Custom cursor displayed
+
+If unsuccessful
+     ↓
+Fallback cursor displayed
+```
+
+### Basic Example
+
+```html
+<div class="image-area">
+    Hover over me
+</div>
+```
+
+```css
+.image-area {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+When the user moves the pointer over the element, the custom image is used as the cursor.
+
+### Image Path
+
+The image path can be relative to the CSS file.
+
+```css
+.element {
+    cursor: url("images/cursor.png"), auto;
+}
+```
+
+An absolute path can also be used.
+
+```css
+.element {
+    cursor: url("/images/cursor.png"), auto;
+}
+```
+
+The correct path must be provided so the browser can locate the image.
+
+### Using Different Image Formats
+
+Custom cursor images can use supported image formats.
+
+For example:
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+Another example:
+
+```css
+.element {
+    cursor: url("cursor.svg"), pointer;
+}
+```
+
+Support and behavior can vary depending on the browser and image format.
+
+### Cursor Image With Hotspot Coordinates
+
+By default, the active point is determined by the cursor image.
+
+You can specify a hotspot using coordinates.
+
+```css
+.element {
+    cursor: url("cursor.png") 10 10, pointer;
+}
+```
+
+The syntax is:
+
+```css
+cursor: url("image-path") x y, fallback;
+```
+
+Where:
+
+```text
+x
+→ Horizontal hotspot position
+
+y
+→ Vertical hotspot position
+```
+
+The hotspot represents the active point used for interactions.
+
+### Example
+
+```css
+.drawing-tool {
+    cursor: url("brush.png") 5 20, crosshair;
+}
+```
+
+The custom image is used when available.
+
+If it cannot be used, the `crosshair` cursor is displayed.
+
+### Multiple Cursor Images
+
+More than one cursor image can be provided.
+
+```css
+.element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+The browser attempts to use each image in order.
+
+```text
+cursor.svg
+     ↓
+If unavailable
+
+cursor.png
+     ↓
+If unavailable
+
+pointer
+```
+
+### Using Images for Different Interactions
+
+Different cursor images can represent different actions.
+
+```css
+.select-tool {
+    cursor: url("select.png"), default;
+}
+
+.brush-tool {
+    cursor: url("brush.png"), crosshair;
+}
+
+.move-tool {
+    cursor: url("move.png"), move;
+}
+```
+
+This can be useful in drawing applications and specialized interfaces.
+
+### Example: Custom Tool Interface
+
+```html
+<div class="canvas brush-tool">
+    Draw here
+</div>
+```
+
+```css
+.brush-tool {
+    cursor: url("brush.png") 5 20, crosshair;
+}
+```
+
+The custom cursor image provides visual feedback about the active tool.
+
+### Cursor Images and Functionality
+
+Using an image as a cursor only changes the appearance of the pointer.
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+It does not automatically add:
+
+- Click functionality
+- Drag functionality
+- Drawing functionality
+- Custom interaction behavior
+
+```text
+Cursor image
+      ↓
+Visual feedback only
+
+Actual interaction
+      ↓
+Requires additional functionality
+```
+
+### Important Points
+
+```text
+Cursor images
+│
+├── Use url()
+│
+├── Can use image files
+│
+├── Can specify hotspot coordinates
+│
+├── Can provide multiple images
+│
+├── Should include a fallback
+│
+└── Change appearance only
+```
+
+> 💡 **Remember:** Images can be used as CSS cursors with `url()`. Always include an appropriate fallback cursor so the interface remains usable if the image cannot be loaded or used.
