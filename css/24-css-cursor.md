@@ -4010,3 +4010,416 @@ Cursor fallback values
 ```
 
 > 💡 **Remember:** When using a custom cursor image, always provide a fallback cursor keyword. The fallback should accurately represent the interaction so the interface remains usable even if the custom cursor cannot be displayed.
+
+---
+
+## Practical Examples
+
+The following examples demonstrate common ways to use the CSS `cursor` property in real interfaces.
+
+### Example 1: Clickable Button
+
+Use `pointer` for an element that can be clicked.
+
+```html
+<button class="button">
+    Click Me
+</button>
+```
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+The cursor provides visual feedback that the button is interactive.
+
+### Example 2: Text Input
+
+Use `text` when the user can enter or edit text.
+
+```html
+<input
+    type="text"
+    class="name-input"
+    placeholder="Enter your name"
+>
+```
+
+```css
+.name-input {
+    cursor: text;
+}
+```
+
+The cursor indicates that text interaction is possible.
+
+### Example 3: Draggable Element
+
+Use `grab` and `grabbing` for drag interactions.
+
+```html
+<div class="draggable">
+    Drag Me
+</div>
+```
+
+```css
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+```
+
+The cursor changes during interaction.
+
+```text
+Normal state
+    ↓
+grab
+
+Active state
+    ↓
+grabbing
+```
+
+### Example 4: Disabled Button
+
+Use `not-allowed` to indicate that an action is unavailable.
+
+```html
+<button class="button" disabled>
+    Submit
+</button>
+```
+
+```css
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+```
+
+The cursor and reduced opacity provide visual feedback about the disabled state.
+
+### Example 5: Loading State
+
+Use `wait` while an operation is being processed.
+
+```html
+<div class="loading">
+    Loading...
+</div>
+```
+
+```css
+.loading {
+    cursor: wait;
+}
+```
+
+The cursor indicates that processing is happening.
+
+### Example 6: Drawing Area
+
+Use `crosshair` when the user needs to select a precise position.
+
+```html
+<div class="drawing-area">
+    Draw Here
+</div>
+```
+
+```css
+.drawing-area {
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+    cursor: crosshair;
+}
+```
+
+The crosshair provides visual feedback for precise interaction.
+
+### Example 7: Resizable Column
+
+Use `col-resize` for a horizontal column resize handle.
+
+```html
+<div class="column-resize"></div>
+```
+
+```css
+.column-resize {
+    cursor: col-resize;
+}
+```
+
+This indicates that a column can be resized.
+
+### Example 8: Horizontal Resize
+
+Use `ew-resize` for left and right resizing.
+
+```css
+.resize-handle {
+    cursor: ew-resize;
+}
+```
+
+The cursor communicates horizontal resizing.
+
+### Example 9: Vertical Resize
+
+Use `ns-resize` for upward and downward resizing.
+
+```css
+.resize-handle {
+    cursor: ns-resize;
+}
+```
+
+The cursor communicates vertical resizing.
+
+### Example 10: Zoomable Image
+
+Use `zoom-in` for an image that can be enlarged.
+
+```html
+<img
+    class="image"
+    src="photo.jpg"
+    alt="Example photo"
+>
+```
+
+```css
+.image {
+    cursor: zoom-in;
+}
+```
+
+When the image is zoomed, the cursor can change.
+
+```css
+.image.zoomed {
+    cursor: zoom-out;
+}
+```
+
+```text
+Normal image
+    ↓
+zoom-in
+
+Zoomed image
+    ↓
+zoom-out
+```
+
+### Example 11: Custom Cursor
+
+Use an image as a custom cursor.
+
+```css
+.custom-area {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The browser uses the custom image when possible.
+
+If the image cannot be used, `pointer` is displayed.
+
+### Example 12: Custom Cursor With Hotspot
+
+You can specify the active point of the cursor.
+
+```css
+.drawing-tool {
+    cursor: url("brush.png") 5 20, crosshair;
+}
+```
+
+The coordinates define the hotspot position.
+
+```text
+5
+→ Horizontal position
+
+20
+→ Vertical position
+```
+
+### Example 13: Multiple Cursor Images
+
+Provide multiple image options with a fallback.
+
+```css
+.custom-element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+The browser attempts to use each option.
+
+```text
+cursor.svg
+    ↓
+If unavailable
+
+cursor.png
+    ↓
+If unavailable
+
+pointer
+```
+
+### Example 14: Context Menu
+
+Use `context-menu` when an element provides additional options.
+
+```css
+.menu-area {
+    cursor: context-menu;
+}
+```
+
+This indicates that additional actions or options may be available.
+
+### Example 15: Copy Interaction
+
+Use `copy` when an item may be copied.
+
+```css
+.copy-item {
+    cursor: copy;
+}
+```
+
+This can be useful in drag-and-drop interfaces.
+
+### Example 16: Spreadsheet Cell
+
+Use `cell` for spreadsheet-like interfaces.
+
+```css
+.spreadsheet-cell {
+    cursor: cell;
+}
+```
+
+This provides visual feedback for cell-based interaction.
+
+### Example 17: Complete Example
+
+```html
+<div class="demo">
+    <button class="click-button">
+        Click Me
+    </button>
+
+    <input
+        class="text-input"
+        type="text"
+        placeholder="Enter text"
+    >
+
+    <div class="drag-item">
+        Drag Me
+    </div>
+
+    <div class="drawing-area">
+        Draw Here
+    </div>
+
+    <button class="disabled-button" disabled>
+        Disabled
+    </button>
+</div>
+```
+
+```css
+.click-button {
+    cursor: pointer;
+}
+
+.text-input {
+    cursor: text;
+}
+
+.drag-item {
+    cursor: grab;
+}
+
+.drag-item:active {
+    cursor: grabbing;
+}
+
+.drawing-area {
+    width: 300px;
+    height: 150px;
+    border: 1px solid black;
+    cursor: crosshair;
+}
+
+.disabled-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+```
+
+This example demonstrates how different cursor values can communicate different interactions.
+
+```text
+Clickable button
+→ pointer
+
+Text input
+→ text
+
+Draggable item
+→ grab / grabbing
+
+Drawing area
+→ crosshair
+
+Disabled button
+→ not-allowed
+```
+
+### Important Points
+
+```text
+Practical cursor usage
+│
+├── Clickable element
+│   → pointer
+│
+├── Text interaction
+│   → text
+│
+├── Drag interaction
+│   → grab / grabbing
+│
+├── Precise selection
+│   → crosshair
+│
+├── Resizing
+│   → resize cursors
+│
+├── Zooming
+│   → zoom-in / zoom-out
+│
+└── Unavailable action
+    → not-allowed
+```
+
+> 💡 **Remember:** The best cursor value is the one that clearly matches the actual interaction available to the user. Cursors should provide helpful visual feedback without misleading users.
