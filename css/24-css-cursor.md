@@ -171,3 +171,156 @@ Better user experience
 ```
 
 > 💡 **Remember:** The CSS `cursor` property controls the appearance of the mouse cursor and provides visual feedback about how an element can be interacted with.
+
+---
+
+## What Is CSS Cursor?
+
+CSS cursor refers to the visual pointer displayed when a user moves a mouse or pointing device over an element.
+
+The cursor can communicate how the user can interact with that element.
+
+For example:
+
+```text
+Normal element
+→ Default cursor
+
+Clickable element
+→ Pointer cursor
+
+Text content
+→ Text cursor
+
+Draggable element
+→ Move cursor
+
+Unavailable action
+→ Not-allowed cursor
+```
+
+CSS uses the `cursor` property to control this behavior.
+
+### Basic Example
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+When the user places the mouse over the element, the cursor changes to indicate that the element can be clicked.
+
+### CSS Cursor Provides Visual Feedback
+
+The cursor gives users information before they interact with an element.
+
+For example:
+
+```css
+.editable-text {
+    cursor: text;
+}
+```
+
+The text cursor indicates that text can be selected or edited.
+
+Another example:
+
+```css
+.disabled {
+    cursor: not-allowed;
+}
+```
+
+The `not-allowed` cursor indicates that an action is unavailable.
+
+### Cursor and Element Interaction
+
+Different elements can have different interaction purposes.
+
+```text
+Element
+   ↓
+Interaction purpose
+   ↓
+Appropriate cursor
+   ↓
+Visual feedback
+```
+
+For example:
+
+```css
+button {
+    cursor: pointer;
+}
+
+input {
+    cursor: text;
+}
+
+.draggable {
+    cursor: move;
+}
+```
+
+### Common Cursor Meanings
+
+| Cursor | Meaning |
+|---|---|
+| `default` | Normal default cursor |
+| `pointer` | Element can be clicked |
+| `text` | Text can be selected or edited |
+| `move` | Element can be moved |
+| `wait` | Browser or application is busy |
+| `help` | Help information is available |
+| `not-allowed` | Action is unavailable |
+
+### Cursor Does Not Add Functionality
+
+An important point is that the `cursor` property only changes the appearance of the cursor.
+
+For example:
+
+```css
+.box {
+    cursor: pointer;
+}
+```
+
+This does not automatically make the element clickable.
+
+The element still needs appropriate functionality, such as:
+
+```html
+<button>Click Me</button>
+```
+
+or JavaScript for interactive behavior.
+
+```text
+cursor: pointer
+        ↓
+Visual indication only
+
+Click behavior
+        ↓
+Requires HTML functionality
+or JavaScript
+```
+
+### Why CSS Cursor Is Useful
+
+CSS cursor values help make an interface easier to understand.
+
+A properly selected cursor can communicate:
+
+- Whether an element is clickable
+- Whether text can be selected
+- Whether an element can be moved
+- Whether an element can be resized
+- Whether an action is unavailable
+- Whether the browser is busy
+
+> 💡 **Remember:** CSS cursor controls the appearance of the pointer over an element. It provides visual feedback about possible interactions but does not add functionality by itself.
