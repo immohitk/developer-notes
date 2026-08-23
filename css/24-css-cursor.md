@@ -5014,3 +5014,293 @@ CSS Cursor
 ```
 
 > 💡 **Quick Tip:** Choose a cursor that accurately represents what the user can actually do. A correct cursor improves usability and helps users understand an interface quickly.
+
+---
+
+## Best Practices
+
+Using the CSS `cursor` property correctly helps create a clear and user-friendly interface.
+
+The cursor should provide visual feedback that matches the actual interaction available to the user.
+
+### Use the Correct Cursor
+
+Choose a cursor value that accurately represents the expected action.
+
+```css
+.button {
+    cursor: pointer;
+}
+
+.input {
+    cursor: text;
+}
+
+.draggable {
+    cursor: grab;
+}
+```
+
+```text
+Correct cursor
+      ↓
+Clear interaction
+      ↓
+Better user experience
+```
+
+Avoid using a cursor that suggests an action that is not available.
+
+### Match the Actual Functionality
+
+The cursor should match what the element actually does.
+
+For example:
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+Use `pointer` when the element performs a clickable action.
+
+Do not use:
+
+```css
+.button {
+    cursor: not-allowed;
+}
+```
+
+if the button is actually available and clickable.
+
+### Use `pointer` for Clickable Elements
+
+Use:
+
+```css
+cursor: pointer;
+```
+
+when an element is clearly intended to be clicked or activated.
+
+```css
+.custom-button {
+    cursor: pointer;
+}
+```
+
+This is especially useful for custom elements that behave like buttons or links.
+
+### Use `text` for Text Interaction
+
+Use:
+
+```css
+cursor: text;
+```
+
+when the user can select, enter, or edit text.
+
+```css
+.editable-content {
+    cursor: text;
+}
+```
+
+This helps users understand that text interaction is available.
+
+### Use Drag Cursors for Drag Interactions
+
+For draggable elements, use:
+
+```css
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+```
+
+This provides clear feedback about the interaction state.
+
+```text
+Before dragging
+→ grab
+
+During dragging
+→ grabbing
+```
+
+### Use Resize Cursors for Resize Handles
+
+Resize handles should use a cursor that matches the resize direction.
+
+```css
+.horizontal-handle {
+    cursor: ew-resize;
+}
+
+.vertical-handle {
+    cursor: ns-resize;
+}
+```
+
+For example:
+
+```text
+Horizontal resize
+→ ew-resize
+
+Vertical resize
+→ ns-resize
+
+Diagonal resize
+→ nwse-resize or nesw-resize
+```
+
+The cursor direction should match the direction in which the element can actually be resized.
+
+### Use `not-allowed` for Unavailable Actions
+
+Use:
+
+```css
+cursor: not-allowed;
+```
+
+when an action cannot currently be performed.
+
+```css
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+```
+
+Combining the cursor with other visual indicators can make the disabled state clearer.
+
+### Always Provide a Fallback for Custom Cursors
+
+When using a custom cursor image, include a fallback.
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The fallback ensures that the interface remains usable if the custom image cannot be displayed.
+
+### Choose an Appropriate Fallback
+
+The fallback should match the intended interaction.
+
+```text
+Clickable element
+→ pointer
+
+Text interaction
+→ text
+
+Draggable element
+→ move or grab
+
+Drawing area
+→ crosshair
+```
+
+Example:
+
+```css
+.drawing-tool {
+    cursor: url("brush.png"), crosshair;
+}
+```
+
+### Avoid Unnecessary Custom Cursors
+
+Custom cursors should improve the interface rather than distract users.
+
+Avoid using unusual cursor images simply for decoration.
+
+```text
+Good custom cursor
+→ Improves understanding
+
+Poor custom cursor
+→ Confuses users
+```
+
+Use custom cursors mainly when they provide meaningful feedback.
+
+### Keep Cursor Behavior Consistent
+
+Use the same cursor for the same type of interaction throughout the interface.
+
+For example:
+
+```text
+All clickable custom buttons
+→ pointer
+
+All draggable cards
+→ grab
+
+All disabled controls
+→ not-allowed
+```
+
+Consistent behavior makes an interface easier to understand.
+
+### Do Not Rely Only on the Cursor
+
+A cursor provides useful feedback, but it should not be the only indication of an element's state.
+
+For example:
+
+```css
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+```
+
+The cursor and visual styling work together.
+
+### Consider Different Devices
+
+Not all users interact with websites using a mouse or trackpad.
+
+Some users may use:
+
+- Touchscreens
+- Keyboards
+- Assistive technologies
+
+The interface should still be understandable and usable without relying entirely on cursor changes.
+
+### Important Principles
+
+```text
+Best practices
+│
+├── Match the cursor to the interaction
+│
+├── Use consistent cursor behavior
+│
+├── Provide fallbacks for custom cursors
+│
+├── Use resize cursors correctly
+│
+├── Avoid misleading cursor values
+│
+├── Avoid unnecessary custom cursors
+│
+└── Do not rely only on cursor feedback
+```
+
+> 💡 **Remember:** The best cursor is one that clearly and accurately represents the action available to the user. Use cursor values consistently and avoid relying on them as the only form of interaction feedback.
