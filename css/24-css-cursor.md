@@ -530,3 +530,254 @@ cursor property
 ```
 
 > 💡 **Remember:** The `cursor` property changes the appearance of the cursor to communicate how an element can be interacted with. It provides visual feedback but does not create functionality.
+
+---
+
+## Cursor Syntax
+
+The CSS `cursor` property is used by assigning a cursor value to an element.
+
+### Basic Syntax
+
+```css
+selector {
+    cursor: value;
+}
+```
+
+For example:
+
+```css
+button {
+    cursor: pointer;
+}
+```
+
+The general syntax is:
+
+```css
+cursor: <cursor-value>;
+```
+
+### Using a Keyword Value
+
+Most commonly, `cursor` uses a predefined keyword.
+
+```css
+.element {
+    cursor: pointer;
+}
+```
+
+Other examples include:
+
+```css
+.element {
+    cursor: default;
+}
+```
+
+```css
+.element {
+    cursor: text;
+}
+```
+
+```css
+.element {
+    cursor: move;
+}
+```
+
+### Common Syntax Pattern
+
+```text
+Selector
+    ↓
+cursor
+    ↓
+Cursor value
+```
+
+For example:
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+```text
+.button
+    ↓
+Selected element
+
+cursor
+    ↓
+CSS property
+
+pointer
+    ↓
+Cursor value
+```
+
+### Using Multiple Cursor Values
+
+The `cursor` property can include multiple values when using a custom cursor image with fallback options.
+
+For example:
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+Here:
+
+```text
+Custom cursor image
+        ↓
+If supported and available
+        ↓
+Use cursor.png
+
+Otherwise
+        ↓
+Use pointer
+```
+
+The fallback cursor value is important because a custom cursor image may not always be available or supported.
+
+### Custom Cursor With Coordinates
+
+A custom cursor can also specify hotspot coordinates.
+
+```css
+.element {
+    cursor: url("cursor.png") 10 10, pointer;
+}
+```
+
+The coordinates define the active point of the cursor image.
+
+```text
+cursor image
+      ↓
+10 10
+      ↓
+Hotspot position
+```
+
+The first value represents the horizontal coordinate.
+
+The second value represents the vertical coordinate.
+
+### Syntax With a Fallback
+
+A recommended pattern for custom cursors is:
+
+```css
+.element {
+    cursor: url("custom-cursor.png"), auto;
+}
+```
+
+If the custom cursor cannot be used, the browser uses:
+
+```css
+auto
+```
+
+### Multiple Custom Cursor Images
+
+More than one custom cursor image can be provided.
+
+```css
+.element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+The browser attempts to use the cursor images in order.
+
+```text
+cursor.svg
+    ↓
+If unavailable
+
+cursor.png
+    ↓
+If unavailable
+
+pointer
+```
+
+### Global Values
+
+Like other CSS properties, `cursor` can also use global values.
+
+```css
+cursor: inherit;
+cursor: initial;
+cursor: revert;
+cursor: revert-layer;
+cursor: unset;
+```
+
+### Example With `inherit`
+
+```css
+.child {
+    cursor: inherit;
+}
+```
+
+The element uses the cursor value inherited from its parent.
+
+### Important Syntax Rules
+
+```text
+cursor
+│
+├── Can use predefined keyword values
+│
+├── Can use custom cursor images
+│
+├── Can include hotspot coordinates
+│
+├── Can include multiple cursor images
+│
+└── Should include a fallback cursor keyword
+```
+
+### Simple Examples
+
+```css
+button {
+    cursor: pointer;
+}
+```
+
+```css
+input {
+    cursor: text;
+}
+```
+
+```css
+.drag-item {
+    cursor: move;
+}
+```
+
+```css
+.disabled {
+    cursor: not-allowed;
+}
+```
+
+> 💡 **Remember:** The simplest `cursor` syntax uses a predefined keyword such as `pointer`, `text`, or `move`. Custom cursor images can also be used, but they should include a fallback cursor value.
