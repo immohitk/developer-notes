@@ -2355,3 +2355,264 @@ cursor: crosshair
 ```
 
 > 💡 **Remember:** `cursor: crosshair` is useful when an interface requires precise position selection, such as drawing tools, image editors, or interactive areas.
+
+---
+
+## Grab and Grabbing Cursors
+
+The `grab` and `grabbing` cursor values are commonly used for drag-and-drop interactions.
+
+They provide visual feedback about whether an element can be grabbed or is currently being dragged.
+
+### `grab` Cursor
+
+The `grab` cursor indicates that an element can be grabbed and moved.
+
+### Syntax
+
+```css
+.element {
+    cursor: grab;
+}
+```
+
+### Basic Example
+
+```html
+<div class="draggable">
+    Drag Me
+</div>
+```
+
+```css
+.draggable {
+    cursor: grab;
+}
+```
+
+The cursor indicates that the element is available to be grabbed.
+
+### `grab` Cursor Meaning
+
+```text
+grab
+  ↓
+Element can be grabbed
+  ↓
+User can begin dragging
+```
+
+### `grabbing` Cursor
+
+The `grabbing` cursor indicates that the user is currently grabbing or dragging an element.
+
+### Syntax
+
+```css
+.element {
+    cursor: grabbing;
+}
+```
+
+### Basic Example
+
+```css
+.draggable:active {
+    cursor: grabbing;
+}
+```
+
+This can provide feedback while the user is pressing and dragging the element.
+
+### `grab` and `grabbing` Together
+
+A common pattern is:
+
+```css
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+```
+
+The cursor changes based on the interaction state.
+
+```text
+Before interaction
+        ↓
+cursor: grab
+
+User starts dragging
+        ↓
+cursor: grabbing
+```
+
+### Example
+
+```html
+<div class="card">
+    Drag Me
+</div>
+```
+
+```css
+.card {
+    cursor: grab;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+```
+
+This creates visual feedback during the interaction.
+
+### Common Use Cases
+
+The `grab` and `grabbing` cursors can be used for:
+
+- Drag-and-drop interfaces
+- Image galleries
+- Interactive maps
+- Sliders
+- Kanban boards
+- Layout builders
+- Design tools
+- Scrollable interfaces
+
+### Example: Draggable Item
+
+```css
+.draggable-item {
+    cursor: grab;
+}
+
+.draggable-item:active {
+    cursor: grabbing;
+}
+```
+
+This indicates:
+
+```text
+Normal state
+→ Element can be grabbed
+
+Active state
+→ Element is being grabbed
+```
+
+### `grab` vs `move`
+
+These cursor values communicate slightly different interactions.
+
+```text
+grab
+→ Element can be picked up or grabbed
+
+grabbing
+→ Element is currently being grabbed
+
+move
+→ Element can be moved or repositioned
+```
+
+The `grab` and `grabbing` values are often more intuitive for direct drag interactions.
+
+### `grab` and `grabbing` Do Not Add Drag Functionality
+
+Using:
+
+```css
+.draggable {
+    cursor: grab;
+}
+```
+
+does not automatically make the element draggable.
+
+Similarly:
+
+```css
+.draggable:active {
+    cursor: grabbing;
+}
+```
+
+does not implement drag behavior.
+
+```text
+Cursor property
+        ↓
+Visual feedback
+
+Actual dragging
+        ↓
+Requires HTML drag behavior
+or JavaScript
+```
+
+### Example With HTML Dragging
+
+An element can use the `draggable` attribute:
+
+```html
+<div draggable="true" class="item">
+    Drag Me
+</div>
+```
+
+```css
+.item {
+    cursor: grab;
+}
+
+.item:active {
+    cursor: grabbing;
+}
+```
+
+The HTML attribute provides draggable behavior, while the cursor provides visual feedback.
+
+### When to Use `grab`
+
+Use:
+
+```css
+cursor: grab;
+```
+
+when the user can begin a drag interaction.
+
+### When to Use `grabbing`
+
+Use:
+
+```css
+cursor: grabbing;
+```
+
+when the user is actively dragging or holding an element.
+
+### Important Points
+
+```text
+grab and grabbing
+│
+├── grab
+│   → Element can be grabbed
+│
+├── grabbing
+│   → Element is currently being grabbed
+│
+├── Useful for drag interactions
+│
+├── Provide visual feedback
+│
+└── Do not create drag functionality
+```
+
+> 💡 **Remember:** Use `grab` to indicate that an element can be picked up and `grabbing` to indicate that the user is actively dragging it.
