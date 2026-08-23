@@ -5920,3 +5920,518 @@ CSS cursor
 ```
 
 > 💡 **Interview Tip:** Remember that the CSS `cursor` property provides visual feedback only. A cursor value should always match the actual interaction available to the user.
+
+---
+
+## Practice Exercises
+
+Use the following exercises to practice the CSS `cursor` property and understand how different cursor values communicate user interactions.
+
+Try to complete the exercises yourself before checking the suggested solutions.
+
+### Exercise 1: Pointer Cursor
+
+Create a clickable element and apply the `pointer` cursor.
+
+```html
+<button class="button">
+    Click Me
+</button>
+```
+
+Your task:
+
+```text
+Apply a cursor that indicates
+the button can be clicked.
+```
+
+Expected cursor:
+
+```css
+pointer
+```
+
+---
+
+### Exercise 2: Text Cursor
+
+Create a text input and apply the correct cursor.
+
+```html
+<input
+    type="text"
+    class="input"
+    placeholder="Enter your name"
+>
+```
+
+Your task:
+
+```text
+Apply a cursor that indicates
+text interaction.
+```
+
+Expected cursor:
+
+```css
+text
+```
+
+---
+
+### Exercise 3: Move Cursor
+
+Create an element that represents a movable item.
+
+```html
+<div class="item">
+    Move Me
+</div>
+```
+
+Your task:
+
+```text
+Apply a cursor that indicates
+the element can be moved.
+```
+
+Expected cursor:
+
+```css
+move
+```
+
+---
+
+### Exercise 4: Help Cursor
+
+Create a help icon.
+
+```html
+<span class="help-icon">
+    ?
+</span>
+```
+
+Your task:
+
+```text
+Apply a cursor that indicates
+additional information is available.
+```
+
+Expected cursor:
+
+```css
+help
+```
+
+---
+
+### Exercise 5: Disabled Button
+
+Create a disabled button.
+
+```html
+<button class="button" disabled>
+    Submit
+</button>
+```
+
+Your task:
+
+```text
+Apply a cursor that indicates
+the action is unavailable.
+```
+
+Expected cursor:
+
+```css
+not-allowed
+```
+
+---
+
+### Exercise 6: Drag Interaction
+
+Create a draggable item.
+
+```html
+<div class="draggable">
+    Drag Me
+</div>
+```
+
+Your task:
+
+```text
+Use one cursor before dragging
+and another cursor while dragging.
+```
+
+Expected result:
+
+```css
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+```
+
+---
+
+### Exercise 7: Horizontal Resize
+
+Create a resize handle.
+
+```html
+<div class="resize-handle"></div>
+```
+
+Your task:
+
+```text
+Apply a cursor that indicates
+horizontal resizing.
+```
+
+Expected cursor:
+
+```css
+ew-resize
+```
+
+---
+
+### Exercise 8: Vertical Resize
+
+Create a resize handle.
+
+Your task:
+
+```text
+Apply a cursor that indicates
+vertical resizing.
+```
+
+Expected cursor:
+
+```css
+ns-resize
+```
+
+---
+
+### Exercise 9: Drawing Area
+
+Create an area where users can select a precise position.
+
+```html
+<div class="drawing-area">
+    Draw Here
+</div>
+```
+
+Your task:
+
+```text
+Apply a cursor suitable for
+precise position selection.
+```
+
+Expected cursor:
+
+```css
+crosshair
+```
+
+---
+
+### Exercise 10: Zoomable Image
+
+Create an image that can be enlarged.
+
+```html
+<img
+    class="image"
+    src="photo.jpg"
+    alt="Example photo"
+>
+```
+
+Your task:
+
+```text
+Apply the appropriate cursor
+before the image is zoomed.
+```
+
+Expected cursor:
+
+```css
+zoom-in
+```
+
+Then create a zoomed state.
+
+Expected cursor:
+
+```css
+zoom-out
+```
+
+---
+
+### Exercise 11: Loading State
+
+Create a loading element.
+
+```html
+<div class="loading">
+    Loading...
+</div>
+```
+
+Your task:
+
+```text
+Apply a cursor that indicates
+the system is busy.
+```
+
+Expected cursor:
+
+```css
+wait
+```
+
+---
+
+### Exercise 12: Custom Cursor
+
+Create a custom cursor using an image.
+
+Your task:
+
+```text
+Use a cursor image and provide
+an appropriate fallback value.
+```
+
+Example:
+
+```css
+.custom-area {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+---
+
+### Exercise 13: Custom Cursor Hotspot
+
+Create a custom cursor with hotspot coordinates.
+
+Your task:
+
+```text
+Set a custom image
+and define its active point.
+```
+
+Example:
+
+```css
+.element {
+    cursor: url("cursor.png") 10 10, pointer;
+}
+```
+
+---
+
+### Exercise 14: Multiple Cursor Images
+
+Provide multiple cursor image options.
+
+Your task:
+
+```text
+Use two cursor images
+and one fallback cursor.
+```
+
+Example:
+
+```css
+.element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+---
+
+### Exercise 15: Choose the Correct Cursor
+
+Choose the correct cursor for each situation.
+
+```text
+Clickable custom button
+→ ?
+
+Text input
+→ ?
+
+Draggable card
+→ ?
+
+Disabled action
+→ ?
+
+Drawing tool
+→ ?
+
+Horizontal resize handle
+→ ?
+
+Zoomable image
+→ ?
+```
+
+Suggested answers:
+
+```text
+Clickable custom button
+→ pointer
+
+Text input
+→ text
+
+Draggable card
+→ grab
+
+Disabled action
+→ not-allowed
+
+Drawing tool
+→ crosshair
+
+Horizontal resize handle
+→ ew-resize
+
+Zoomable image
+→ zoom-in
+```
+
+---
+
+### Challenge Exercise
+
+Create a small interface containing:
+
+- A clickable button
+- A text input
+- A draggable item
+- A drawing area
+- A disabled button
+- A resize handle
+
+Apply the correct cursor to every element.
+
+Example structure:
+
+```html
+<div class="cursor-demo">
+    <button class="click-button">
+        Click Me
+    </button>
+
+    <input
+        class="text-input"
+        type="text"
+        placeholder="Enter text"
+    >
+
+    <div class="draggable">
+        Drag Me
+    </div>
+
+    <div class="drawing-area">
+        Draw Here
+    </div>
+
+    <button class="disabled-button" disabled>
+        Disabled
+    </button>
+
+    <div class="resize-handle">
+        Resize
+    </div>
+</div>
+```
+
+Try writing the CSS yourself.
+
+Expected cursor values:
+
+```text
+Click button
+→ pointer
+
+Text input
+→ text
+
+Draggable item
+→ grab
+
+Active draggable item
+→ grabbing
+
+Drawing area
+→ crosshair
+
+Disabled button
+→ not-allowed
+
+Resize handle
+→ ew-resize
+```
+
+### Practice Summary
+
+```text
+Practice Exercises
+│
+├── Basic cursor values
+│   ├── pointer
+│   ├── text
+│   ├── move
+│   ├── help
+│   └── not-allowed
+│
+├── Interactive cursors
+│   ├── grab
+│   ├── grabbing
+│   ├── crosshair
+│   └── zoom-in
+│
+├── Resize cursors
+│   ├── ew-resize
+│   └── ns-resize
+│
+└── Custom cursors
+    ├── url()
+    ├── hotspot coordinates
+    └── fallback values
+```
+
+> 💡 **Practice Tip:** When choosing a cursor, first ask what action the user can perform. Then select the cursor value that most clearly represents that action.
