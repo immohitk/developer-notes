@@ -3799,3 +3799,214 @@ Cursor images
 ```
 
 > 💡 **Remember:** Images can be used as CSS cursors with `url()`. Always include an appropriate fallback cursor so the interface remains usable if the image cannot be loaded or used.
+
+---
+
+## Cursor Fallback Values
+
+When using custom cursor images, it is important to provide a fallback cursor value.
+
+A fallback is used when the browser cannot load or use the custom cursor image.
+
+### Basic Syntax
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+In this example:
+
+```text
+Custom cursor image
+        ↓
+If available and supported
+        ↓
+Use cursor.png
+
+Otherwise
+        ↓
+Use pointer
+```
+
+The fallback value ensures that the user still receives appropriate visual feedback.
+
+### Why Fallback Values Are Important
+
+A custom cursor image may not be used for several reasons.
+
+For example:
+
+- The image file cannot be found
+- The image fails to load
+- The image format is unsupported
+- The browser rejects the image
+- The cursor image is too large
+- The browser has limitations for custom cursors
+
+A fallback helps keep the interface usable.
+
+### Example With `pointer`
+
+```css
+.button {
+    cursor: url("custom-pointer.png"), pointer;
+}
+```
+
+If the custom image cannot be displayed, the user sees the standard pointer cursor.
+
+### Example With `text`
+
+```css
+.editable {
+    cursor: url("text-cursor.png"), text;
+}
+```
+
+If the custom cursor image is unavailable, the `text` cursor is used.
+
+### Example With `move`
+
+```css
+.draggable {
+    cursor: url("move-cursor.png"), move;
+}
+```
+
+The fallback cursor still communicates that the element can be moved.
+
+### Example With `crosshair`
+
+```css
+.drawing-area {
+    cursor: url("brush.png"), crosshair;
+}
+```
+
+If the brush image cannot be used, the crosshair provides a suitable alternative.
+
+### Choosing the Correct Fallback
+
+The fallback should match the intended interaction.
+
+```text
+Clickable element
+→ pointer
+
+Text interaction
+→ text
+
+Draggable element
+→ move or grab
+
+Drawing area
+→ crosshair
+
+Normal element
+→ default or auto
+```
+
+For example:
+
+```css
+.button {
+    cursor: url("custom-button.png"), pointer;
+}
+```
+
+Using:
+
+```css
+.button {
+    cursor: url("custom-button.png"), text;
+}
+```
+
+would provide incorrect visual feedback because `text` does not represent a clickable button.
+
+### Multiple Cursor Images With a Fallback
+
+You can provide multiple custom cursor images before the fallback.
+
+```css
+.element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+The browser attempts to use the values from left to right.
+
+```text
+cursor.svg
+     ↓
+If unavailable
+
+cursor.png
+     ↓
+If unavailable
+
+pointer
+```
+
+The final keyword acts as the fallback.
+
+### Fallback With `auto`
+
+You can also use `auto` as a fallback.
+
+```css
+.element {
+    cursor: url("cursor.png"), auto;
+}
+```
+
+If the custom cursor cannot be used, the browser automatically selects an appropriate cursor.
+
+### Fallback With `default`
+
+```css
+.element {
+    cursor: url("cursor.png"), default;
+}
+```
+
+If the image cannot be used, the default system cursor is displayed.
+
+### Cursor Fallback Rules
+
+A reliable pattern is:
+
+```css
+cursor: url("custom-cursor.png"), fallback-value;
+```
+
+For example:
+
+```css
+cursor: url("custom-cursor.png"), pointer;
+```
+
+The final keyword should always communicate the correct interaction.
+
+### Important Points
+
+```text
+Cursor fallback values
+│
+├── Used when a custom cursor fails
+│
+├── Improve reliability
+│
+├── Should match the interaction
+│
+├── Can follow multiple cursor images
+│
+└── Provide a usable alternative
+```
+
+> 💡 **Remember:** When using a custom cursor image, always provide a fallback cursor keyword. The fallback should accurately represent the interaction so the interface remains usable even if the custom cursor cannot be displayed.
