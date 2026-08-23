@@ -2170,3 +2170,188 @@ cursor: not-allowed
 ```
 
 > 💡 **Remember:** `cursor: not-allowed` communicates that an action is unavailable. It provides visual feedback only and does not automatically disable the element.
+
+---
+
+## Crosshair Cursor
+
+The `crosshair` cursor value displays a crosshair-style cursor.
+
+It is commonly used when the user needs to select a precise location or position.
+
+### Syntax
+
+```css
+.element {
+    cursor: crosshair;
+}
+```
+
+### Basic Example
+
+```html
+<div class="drawing-area">
+    Select a position
+</div>
+```
+
+```css
+.drawing-area {
+    cursor: crosshair;
+}
+```
+
+When the user moves the pointer over the element, the cursor changes to a crosshair.
+
+### Crosshair Cursor Meaning
+
+The crosshair cursor communicates:
+
+```text
+Crosshair cursor
+        ↓
+Precise positioning
+        ↓
+User can select a location
+```
+
+### Common Use Cases
+
+The `crosshair` cursor can be useful for:
+
+- Drawing applications
+- Image editors
+- Design tools
+- Canvas applications
+- Selection tools
+- Precise positioning
+- Interactive maps
+- Games
+
+### Example: Drawing Area
+
+```html
+<div class="canvas">
+    Draw Here
+</div>
+```
+
+```css
+.canvas {
+    cursor: crosshair;
+}
+```
+
+The cursor provides visual feedback that the user can interact with a specific location.
+
+### Example: Image Selection
+
+```css
+.image-selector {
+    cursor: crosshair;
+}
+```
+
+This can indicate that the user can select a specific point or area on an image.
+
+### Crosshair Cursor Does Not Add Selection Functionality
+
+Using:
+
+```css
+.element {
+    cursor: crosshair;
+}
+```
+
+only changes the appearance of the cursor.
+
+It does not automatically provide:
+
+- Drawing functionality
+- Position selection
+- Image editing
+- Area selection
+
+```text
+cursor: crosshair
+        ↓
+Visual indication
+
+Actual functionality
+        ↓
+Requires HTML, Canvas,
+or JavaScript
+```
+
+### Crosshair vs Pointer
+
+These cursor values communicate different interactions.
+
+```text
+cursor: pointer
+→ Click or activate
+
+cursor: crosshair
+→ Select a precise location
+```
+
+Use `crosshair` when precision or location selection is the main interaction.
+
+### Example: Interactive Area
+
+```html
+<div class="interactive-area">
+    Click a point
+</div>
+```
+
+```css
+.interactive-area {
+    cursor: crosshair;
+}
+```
+
+The crosshair suggests that the user is selecting a specific position.
+
+### When to Use `crosshair`
+
+Use:
+
+```css
+cursor: crosshair;
+```
+
+when the user needs to interact with a precise location.
+
+```text
+Button
+→ pointer
+
+Text
+→ text
+
+Draggable element
+→ move or grab
+
+Precise location
+→ crosshair
+```
+
+### Important Points
+
+```text
+cursor: crosshair
+│
+├── Indicates precise positioning
+│
+├── Useful for drawing and editing tools
+│
+├── Useful for selecting locations
+│
+├── Provides visual feedback
+│
+└── Does not create functionality by itself
+```
+
+> 💡 **Remember:** `cursor: crosshair` is useful when an interface requires precise position selection, such as drawing tools, image editors, or interactive areas.
