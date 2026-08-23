@@ -3109,3 +3109,222 @@ Zoom cursors
 ```
 
 > 💡 **Remember:** Use `zoom-in` to indicate that an element can be enlarged and `zoom-out` to indicate that the zoom level can be reduced. These cursor values provide visual feedback but do not create zoom functionality by themselves.
+
+---
+
+## Other Common Cursor Values
+
+CSS provides several additional cursor values for specific interactions and interface states.
+
+These values can help provide clearer visual feedback to users.
+
+### `auto`
+
+The `auto` value allows the browser to automatically determine the appropriate cursor.
+
+```css
+.element {
+    cursor: auto;
+}
+```
+
+This is the default behavior.
+
+```text
+cursor: auto
+      ↓
+Browser determines
+the appropriate cursor
+```
+
+### `none`
+
+The `none` value hides the cursor when it is over an element.
+
+```css
+.element {
+    cursor: none;
+}
+```
+
+This can be useful for:
+
+- Games
+- Custom cursor interfaces
+- Full-screen applications
+- Drawing applications
+
+Example:
+
+```css
+.game-area {
+    cursor: none;
+}
+```
+
+Use `none` carefully because hiding the cursor can make an interface difficult to use.
+
+### `context-menu`
+
+The `context-menu` value indicates that a context menu is available.
+
+```css
+.element {
+    cursor: context-menu;
+}
+```
+
+This may be useful for elements that provide additional options.
+
+```text
+context-menu
+      ↓
+Additional options
+may be available
+```
+
+### `progress`
+
+The `progress` cursor indicates that an operation is currently in progress.
+
+```css
+.element {
+    cursor: progress;
+}
+```
+
+Unlike `wait`, the `progress` cursor can indicate that processing is happening while the user may still be able to interact with the interface.
+
+```text
+wait
+→ User may need to wait
+
+progress
+→ Processing is happening,
+  but interaction may still be possible
+```
+
+### `cell`
+
+The `cell` cursor is commonly used for interfaces that work with cells or tables.
+
+```css
+.cell {
+    cursor: cell;
+}
+```
+
+Possible use cases include:
+
+- Spreadsheet applications
+- Data tables
+- Grid interfaces
+- Cell selection tools
+
+### `copy`
+
+The `copy` cursor indicates that an item may be copied.
+
+```css
+.item {
+    cursor: copy;
+}
+```
+
+This can be useful during drag-and-drop interactions.
+
+```text
+copy
+  ↓
+Element or content
+may be copied
+```
+
+### `alias`
+
+The `alias` cursor indicates that an alias, shortcut, or linked reference may be created.
+
+```css
+.item {
+    cursor: alias;
+}
+```
+
+This value is less commonly used but can be useful in specialized interfaces.
+
+### `vertical-text`
+
+The `vertical-text` cursor indicates that vertical text interaction is possible.
+
+```css
+.vertical-text {
+    cursor: vertical-text;
+}
+```
+
+It may be useful for vertical writing or specialized text interfaces.
+
+### Common Cursor Values Summary
+
+| Cursor Value | Purpose |
+|---|---|
+| `auto` | Browser automatically selects the cursor |
+| `none` | Hides the cursor |
+| `context-menu` | Indicates a context menu |
+| `progress` | Indicates processing is in progress |
+| `cell` | Indicates cell selection |
+| `copy` | Indicates content can be copied |
+| `alias` | Indicates an alias or shortcut |
+| `vertical-text` | Indicates vertical text interaction |
+
+### Choosing the Correct Cursor
+
+The cursor should match the expected interaction.
+
+```text
+Normal interaction
+→ auto
+
+No cursor required
+→ none
+
+Processing
+→ progress
+
+Copy operation
+→ copy
+
+Cell interaction
+→ cell
+
+Additional options
+→ context-menu
+```
+
+Using the correct cursor helps users understand what actions may be available.
+
+### Important Points
+
+```text
+Other cursor values
+│
+├── auto
+│   → Browser chooses cursor
+│
+├── none
+│   → Hides cursor
+│
+├── progress
+│   → Operation in progress
+│
+├── copy
+│   → Copy operation
+│
+├── cell
+│   → Cell interaction
+│
+└── context-menu
+    → Additional options
+```
+
+> 💡 **Remember:** CSS provides many cursor values beyond common options such as `pointer`, `text`, and `move`. Choose a cursor value that accurately represents the interaction available to the user.
