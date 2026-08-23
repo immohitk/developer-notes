@@ -1764,3 +1764,196 @@ cursor: wait
 ```
 
 > 💡 **Remember:** `cursor: wait` indicates that the system is busy or processing something. It provides visual feedback but does not automatically prevent the user from interacting with the element.
+
+---
+
+## Help Cursor
+
+The `help` cursor value indicates that help or additional information is available for an element.
+
+It is commonly used for help icons, information icons, tooltips, and elements that provide extra guidance.
+
+### Syntax
+
+```css
+.element {
+    cursor: help;
+}
+```
+
+### Basic Example
+
+```html
+<span class="help-icon">
+    ?
+</span>
+```
+
+```css
+.help-icon {
+    cursor: help;
+}
+```
+
+When the user moves the pointer over the element, the cursor indicates that additional information may be available.
+
+### Help Cursor Meaning
+
+The `help` cursor communicates:
+
+```text
+Help cursor
+      ↓
+Additional information is available
+      ↓
+User can learn more
+```
+
+### Common Use Cases
+
+The `help` cursor can be used for:
+
+- Help icons
+- Information icons
+- Tooltips
+- Form field guidance
+- Instructions
+- Additional explanations
+
+### Example: Help Icon
+
+```html
+<span class="help">
+    ?
+</span>
+```
+
+```css
+.help {
+    cursor: help;
+}
+```
+
+The cursor provides visual feedback that the element may provide useful information.
+
+### Example: Information Icon
+
+```html
+<span class="info">
+    ℹ
+</span>
+```
+
+```css
+.info {
+    cursor: help;
+}
+```
+
+The icon can be used to indicate that additional information is available.
+
+### Help Cursor Does Not Display Help Automatically
+
+Using:
+
+```css
+.element {
+    cursor: help;
+}
+```
+
+does not automatically create:
+
+- A tooltip
+- A help message
+- A popup
+- Additional information
+
+It only changes the appearance of the cursor.
+
+```text
+cursor: help
+        ↓
+Visual indication
+
+Actual help content
+        ↓
+Requires HTML, CSS,
+or JavaScript
+```
+
+### Example: Help With a Tooltip
+
+```html
+<span class="help" title="Enter your full name">
+    ?
+</span>
+```
+
+```css
+.help {
+    cursor: help;
+}
+```
+
+The cursor indicates that help is available, while the `title` attribute provides additional information.
+
+### Help Cursor vs Pointer Cursor
+
+These cursor values communicate different purposes.
+
+```text
+cursor: pointer
+→ Click or activate
+
+cursor: help
+→ Additional information or guidance
+```
+
+Use `help` when the main purpose of the element is to provide assistance or explanation.
+
+### When to Use `help`
+
+Use:
+
+```css
+cursor: help;
+```
+
+when an element provides additional guidance.
+
+For example:
+
+```text
+Question mark icon
+→ help
+
+Information icon
+→ help
+
+Tooltip trigger
+→ help
+
+Clickable button
+→ pointer
+```
+
+The cursor should match the actual behavior of the element.
+
+### Important Points
+
+```text
+cursor: help
+│
+├── Indicates additional information
+│
+├── Useful for help and information elements
+│
+├── Provides visual feedback
+│
+├── Does not automatically display help
+│
+└── Should match the element's purpose
+```
+
+> 💡 **Remember:** `cursor: help` indicates that additional information or guidance is available. It changes only the cursor appearance; the actual help content must be provided separately.
