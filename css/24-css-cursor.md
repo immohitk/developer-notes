@@ -1388,3 +1388,190 @@ cursor: text
 ```
 
 > 💡 **Remember:** `cursor: text` indicates that the user can interact with text, such as selecting or editing it. It only changes the cursor appearance and does not add editing functionality by itself.
+
+---
+
+## Move Cursor
+
+The `move` cursor value indicates that an element can be moved.
+
+It is commonly used for draggable elements and interfaces where users can reposition content.
+
+### Syntax
+
+```css
+.element {
+    cursor: move;
+}
+```
+
+### Basic Example
+
+```html
+<div class="draggable">
+    Drag Me
+</div>
+```
+
+```css
+.draggable {
+    cursor: move;
+}
+```
+
+When the user moves the pointer over the element, the cursor indicates that the element can be moved.
+
+### Move Cursor Meaning
+
+The `move` cursor communicates:
+
+```text
+Move cursor
+      ↓
+Element may be repositioned
+      ↓
+User can drag or move it
+```
+
+### Common Use Cases
+
+The `move` cursor can be used for:
+
+- Draggable elements
+- Movable panels
+- Drag-and-drop interfaces
+- Interactive editors
+- Layout builders
+- Canvas elements
+
+### Example: Draggable Box
+
+```html
+<div class="box">
+    Move Me
+</div>
+```
+
+```css
+.box {
+    cursor: move;
+}
+```
+
+The cursor provides visual feedback that the element is intended to be moved.
+
+### `cursor: move` Does Not Add Drag Functionality
+
+An important point is that:
+
+```css
+.element {
+    cursor: move;
+}
+```
+
+only changes the appearance of the cursor.
+
+It does not automatically make the element draggable.
+
+```text
+cursor: move
+        ↓
+Visual indication only
+
+Actual dragging
+        ↓
+Requires HTML functionality
+or JavaScript
+```
+
+For example, JavaScript may be required to implement actual dragging behavior.
+
+### Move Cursor vs Pointer Cursor
+
+These values communicate different interactions.
+
+```text
+cursor: pointer
+→ Click or activate
+
+cursor: move
+→ Move or reposition
+```
+
+Use the cursor that best represents the actual interaction.
+
+### Example
+
+```css
+.button {
+    cursor: pointer;
+}
+
+.draggable-item {
+    cursor: move;
+}
+```
+
+The button indicates clicking, while the draggable item indicates movement.
+
+### Move Cursor vs Grab Cursor
+
+The `move` cursor generally indicates that an element can be moved.
+
+The `grab` and `grabbing` cursors are often used for drag interactions.
+
+```text
+move
+→ Indicates movement or repositioning
+
+grab
+→ Element can be grabbed
+
+grabbing
+→ Element is currently being dragged
+```
+
+For example:
+
+```css
+.item {
+    cursor: grab;
+}
+
+.item:active {
+    cursor: grabbing;
+}
+```
+
+The choice depends on the type of interaction and visual feedback required.
+
+### Example: Movable Interface Element
+
+```css
+.panel {
+    cursor: move;
+}
+```
+
+This can indicate that the panel can be repositioned.
+
+However, the actual movement functionality must be implemented separately.
+
+### Important Points
+
+```text
+cursor: move
+│
+├── Indicates that an element can be moved
+│
+├── Useful for draggable interfaces
+│
+├── Provides visual feedback
+│
+├── Does not create drag functionality
+│
+└── Should match the actual behavior
+```
+
+> 💡 **Remember:** `cursor: move` visually indicates that an element can be moved or repositioned. It provides feedback only; actual dragging or movement requires additional functionality.
