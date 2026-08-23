@@ -324,3 +324,209 @@ A properly selected cursor can communicate:
 - Whether the browser is busy
 
 > 💡 **Remember:** CSS cursor controls the appearance of the pointer over an element. It provides visual feedback about possible interactions but does not add functionality by itself.
+
+---
+
+## The `cursor` Property
+
+The CSS `cursor` property controls the type of cursor displayed when the user moves a pointing device over an element.
+
+The cursor can provide visual feedback about how the element can be interacted with.
+
+### Basic Syntax
+
+```css
+selector {
+    cursor: value;
+}
+```
+
+For example:
+
+```css
+button {
+    cursor: pointer;
+}
+```
+
+When the user moves the mouse over the button, the cursor changes to a pointer.
+
+### Example With Different Elements
+
+```css
+button {
+    cursor: pointer;
+}
+
+input {
+    cursor: text;
+}
+
+.draggable {
+    cursor: move;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+```
+
+Each value communicates a different possible interaction.
+
+```text
+pointer
+→ Clickable
+
+text
+→ Text can be selected or edited
+
+move
+→ Element can be moved
+
+not-allowed
+→ Action is unavailable
+```
+
+### The Cursor Property Changes Appearance Only
+
+The `cursor` property only controls the visual appearance of the cursor.
+
+For example:
+
+```css
+.box {
+    cursor: pointer;
+}
+```
+
+This does not automatically make `.box` clickable.
+
+The element still needs actual functionality.
+
+```text
+cursor property
+        ↓
+Changes cursor appearance
+
+HTML or JavaScript
+        ↓
+Provides actual interaction
+```
+
+### Applying `cursor` to an Element
+
+The property can be applied to many elements.
+
+```css
+.card {
+    cursor: pointer;
+}
+```
+
+```css
+.text-area {
+    cursor: text;
+}
+```
+
+```css
+.drag-item {
+    cursor: move;
+}
+```
+
+The appropriate value should match the expected behavior of the element.
+
+### Inherited Behavior
+
+The `cursor` property is inherited.
+
+For example:
+
+```css
+.container {
+    cursor: pointer;
+}
+```
+
+Child elements can inherit the cursor behavior unless another cursor value is specified.
+
+```css
+.container {
+    cursor: pointer;
+}
+
+.container .text {
+    cursor: text;
+}
+```
+
+In this example, `.text` uses the `text` cursor instead of inheriting `pointer`.
+
+### Common Cursor Values
+
+Some commonly used values are:
+
+```css
+cursor: auto;
+cursor: default;
+cursor: pointer;
+cursor: text;
+cursor: move;
+cursor: wait;
+cursor: help;
+cursor: not-allowed;
+```
+
+CSS also provides many additional cursor values for resizing, grabbing, zooming, and custom cursor images.
+
+### `auto` Value
+
+```css
+cursor: auto;
+```
+
+The browser automatically determines the cursor to display based on the current context.
+
+This is the default behavior.
+
+### Example
+
+```html
+<button class="button">
+    Click Me
+</button>
+```
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+The cursor provides visual feedback that the button is interactive.
+
+### Important Points
+
+```text
+cursor property
+│
+├── Controls cursor appearance
+│
+├── Provides visual feedback
+│
+├── Does not add functionality
+│
+├── Can be inherited
+│
+└── Supports many cursor values
+    ├── pointer
+    ├── text
+    ├── move
+    ├── wait
+    ├── help
+    ├── not-allowed
+    └── many others
+```
+
+> 💡 **Remember:** The `cursor` property changes the appearance of the cursor to communicate how an element can be interacted with. It provides visual feedback but does not create functionality.
