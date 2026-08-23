@@ -4423,3 +4423,270 @@ Practical cursor usage
 ```
 
 > 💡 **Remember:** The best cursor value is the one that clearly matches the actual interaction available to the user. Cursors should provide helpful visual feedback without misleading users.
+
+---
+
+## Key Takeaways
+
+The CSS `cursor` property controls the appearance of the mouse pointer when it is placed over an element.
+
+It helps provide visual feedback about the type of interaction available.
+
+### Main Purpose
+
+```text
+CSS cursor
+    ↓
+Changes pointer appearance
+    ↓
+Provides visual feedback
+    ↓
+Helps users understand interactions
+```
+
+### Basic Syntax
+
+```css
+.element {
+    cursor: value;
+}
+```
+
+Example:
+
+```css
+.button {
+    cursor: pointer;
+}
+```
+
+### Common Cursor Values
+
+Some commonly used cursor values are:
+
+```text
+default
+→ Default cursor
+
+pointer
+→ Clickable element
+
+text
+→ Text interaction
+
+move
+→ Movable element
+
+wait
+→ System is busy
+
+help
+→ Additional information
+
+not-allowed
+→ Action unavailable
+
+crosshair
+→ Precise selection
+```
+
+### Drag Cursors
+
+The `grab` and `grabbing` values are useful for drag interactions.
+
+```css
+.item {
+    cursor: grab;
+}
+
+.item:active {
+    cursor: grabbing;
+}
+```
+
+```text
+grab
+→ Element can be grabbed
+
+grabbing
+→ Element is currently being dragged
+```
+
+### Resize Cursors
+
+CSS provides several cursors for resize interactions.
+
+```text
+ew-resize
+→ Horizontal resizing
+
+ns-resize
+→ Vertical resizing
+
+nwse-resize
+→ Diagonal resizing
+
+nesw-resize
+→ Diagonal resizing
+
+col-resize
+→ Column resizing
+
+row-resize
+→ Row resizing
+```
+
+These cursors provide visual feedback about the direction of resizing.
+
+### Zoom Cursors
+
+CSS provides:
+
+```text
+zoom-in
+→ Increase zoom level
+
+zoom-out
+→ Decrease zoom level
+```
+
+These values are commonly used for images, maps, and zoomable content.
+
+### Custom Cursors
+
+Custom images can be used as cursors.
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+A fallback cursor should always be included.
+
+```text
+Custom cursor
+      ↓
+If available
+      ↓
+Display custom image
+
+Otherwise
+      ↓
+Display fallback cursor
+```
+
+### Hotspot Coordinates
+
+Custom cursors can specify an active point.
+
+```css
+.element {
+    cursor: url("cursor.png") 10 10, pointer;
+}
+```
+
+The coordinates define the hotspot position within the cursor image.
+
+### Cursor Images
+
+Multiple cursor images can be provided.
+
+```css
+.element {
+    cursor:
+        url("cursor.svg"),
+        url("cursor.png"),
+        pointer;
+}
+```
+
+The browser attempts to use the cursor values in order.
+
+### Important Principle
+
+The cursor should match the actual interaction.
+
+```text
+Clickable element
+→ pointer
+
+Text input
+→ text
+
+Draggable element
+→ grab or move
+
+Drawing area
+→ crosshair
+
+Disabled action
+→ not-allowed
+
+Resize handle
+→ Appropriate resize cursor
+```
+
+### Cursors Provide Visual Feedback Only
+
+The `cursor` property changes only the appearance of the pointer.
+
+It does not automatically create functionality.
+
+```text
+cursor property
+      ↓
+Visual feedback only
+
+Actual interaction
+      ↓
+Requires HTML,
+CSS functionality,
+or JavaScript
+```
+
+For example:
+
+```css
+.draggable {
+    cursor: grab;
+}
+```
+
+does not automatically make an element draggable.
+
+### Best Usage
+
+Use cursor values carefully and consistently.
+
+```text
+Correct cursor
+      ↓
+Clear user expectation
+      ↓
+Better user experience
+```
+
+An incorrect cursor can confuse users by suggesting an interaction that is not actually available.
+
+### Summary
+
+```text
+CSS Cursor
+│
+├── Controls pointer appearance
+│
+├── Provides visual feedback
+│
+├── Helps communicate interactions
+│
+├── Supports predefined cursor values
+│
+├── Supports custom cursor images
+│
+├── Supports fallback values
+│
+└── Does not create functionality by itself
+```
+
+> 💡 **Remember:** The CSS `cursor` property should accurately represent the interaction available to the user. It improves usability by providing clear visual feedback, but it only changes the cursor appearance and does not create functionality.
