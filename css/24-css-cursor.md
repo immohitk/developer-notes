@@ -4690,3 +4690,117 @@ CSS Cursor
 ```
 
 > 💡 **Remember:** The CSS `cursor` property should accurately represent the interaction available to the user. It improves usability by providing clear visual feedback, but it only changes the cursor appearance and does not create functionality.
+
+---
+
+## References
+
+The following resources can be used to learn more about the CSS `cursor` property and available cursor values.
+
+### MDN Web Docs
+
+MDN Web Docs provides detailed documentation about the CSS `cursor` property.
+
+Topics include:
+
+- Cursor syntax
+- Predefined cursor values
+- Custom cursor images
+- Hotspot coordinates
+- Fallback values
+- Browser behavior
+
+### CSS Specifications
+
+The CSS specifications define how the `cursor` property and its values should behave.
+
+They provide technical details about:
+
+- Property syntax
+- Cursor keywords
+- Image cursors
+- Hotspot coordinates
+- Fallback behavior
+
+### Browser Developer Tools
+
+Browser developer tools can be used to experiment with cursor values.
+
+For example:
+
+```css
+.element {
+    cursor: pointer;
+}
+```
+
+You can change the value and immediately observe the cursor behavior.
+
+### Useful Practice
+
+Create a small HTML page and experiment with different cursor values.
+
+```html
+<div class="pointer">Pointer</div>
+<div class="text">Text</div>
+<div class="move">Move</div>
+<div class="help">Help</div>
+<div class="disabled">Disabled</div>
+```
+
+```css
+.pointer {
+    cursor: pointer;
+}
+
+.text {
+    cursor: text;
+}
+
+.move {
+    cursor: move;
+}
+
+.help {
+    cursor: help;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+```
+
+This is a simple way to understand how each cursor communicates a different type of interaction.
+
+### Recommended Topics for Further Learning
+
+After understanding CSS cursors, you can explore:
+
+- CSS pseudo-classes
+- CSS pseudo-elements
+- CSS transitions
+- CSS animations
+- CSS transforms
+- CSS user interface properties
+- CSS accessibility
+- Interactive web design
+
+### Reference Summary
+
+```text
+Useful resources
+│
+├── MDN Web Docs
+│   → CSS documentation
+│
+├── CSS Specifications
+│   → Official standards
+│
+├── Browser Developer Tools
+│   → Test and experiment
+│
+└── Practice Projects
+    → Apply cursor values
+```
+
+> 💡 **Remember:** References are useful for checking syntax, supported cursor values, browser behavior, and advanced CSS features. Regular experimentation is one of the best ways to understand how cursor values behave in real interfaces.
