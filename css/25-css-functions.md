@@ -2033,3 +2033,339 @@ clamp()
 ```
 
 > 💡 **Remember:** The `clamp()` function creates flexible values with clear limits. It is especially useful when you want a value to respond to screen size without becoming too small or too large.
+
+---
+
+## The `var()` Function
+
+The CSS `var()` function is used to access the value of a CSS custom property.
+
+CSS custom properties are reusable values that are defined using names starting with two hyphens.
+
+### Basic Syntax
+
+```css
+var(--property-name)
+```
+
+A custom property can be defined like this:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+The `var()` function can then use its value:
+
+```css
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+```text
+--primary-color
+       ↓
+    blue
+       ↓
+var(--primary-color)
+       ↓
+Used as CSS value
+```
+
+### Defining a Custom Property
+
+Custom properties begin with:
+
+```text
+--
+```
+
+Example:
+
+```css
+:root {
+    --primary-color: blue;
+    --secondary-color: gray;
+}
+```
+
+These values can then be reused using `var()`.
+
+```css
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+### Why Use `var()`?
+
+The `var()` function helps make CSS more reusable and easier to maintain.
+
+Without custom properties:
+
+```css
+.button {
+    background-color: blue;
+}
+
+.card {
+    border-color: blue;
+}
+
+.heading {
+    color: blue;
+}
+```
+
+With a custom property:
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+
+.card {
+    border-color: var(--primary-color);
+}
+
+.heading {
+    color: var(--primary-color);
+}
+```
+
+```text
+One value
+    ↓
+Reusable in multiple places
+```
+
+### Changing a Reusable Value
+
+Suppose the primary color needs to change.
+
+```css
+:root {
+    --primary-color: green;
+}
+```
+
+Every place using:
+
+```css
+var(--primary-color)
+```
+
+can automatically use the new value.
+
+```text
+Change custom property
+        ↓
+All var() references update
+```
+
+### Fallback Values
+
+The `var()` function can include a fallback value.
+
+Basic syntax:
+
+```css
+var(--property-name, fallback-value)
+```
+
+Example:
+
+```css
+.button {
+    background-color: var(--primary-color, blue);
+}
+```
+
+If `--primary-color` is not available, CSS uses:
+
+```text
+blue
+```
+
+as the fallback value.
+
+### Example With a Missing Property
+
+```css
+.box {
+    color: var(--text-color, black);
+}
+```
+
+If:
+
+```css
+--text-color
+```
+
+is not defined, the browser uses:
+
+```css
+black
+```
+
+### Custom Properties Can Store Different Values
+
+Custom properties are not limited to colors.
+
+They can store values such as:
+
+```text
+Colors
+Sizes
+Spacing
+Font families
+Border values
+Shadows
+```
+
+Example:
+
+```css
+:root {
+    --primary-color: blue;
+    --spacing: 20px;
+    --border-radius: 8px;
+}
+```
+
+Usage:
+
+```css
+.card {
+    background-color: var(--primary-color);
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+}
+```
+
+### Scope of Custom Properties
+
+Custom properties follow the CSS cascade and can be defined in different scopes.
+
+For global values:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+For values limited to a specific element:
+
+```css
+.card {
+    --card-color: white;
+}
+```
+
+The custom property can be used within the appropriate scope.
+
+### Overriding a Custom Property
+
+A custom property can be overridden.
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.dark-theme {
+    --primary-color: white;
+}
+```
+
+Elements inside `.dark-theme` can use the updated value.
+
+```css
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+```text
+Default value
+→ blue
+
+Inside .dark-theme
+→ white
+```
+
+### Using `var()` With Other Functions
+
+The `var()` function can be used inside other CSS functions.
+
+Example:
+
+```css
+:root {
+    --spacing: 20px;
+}
+
+.container {
+    width: calc(100% - var(--spacing));
+}
+```
+
+```text
+calc()
+  │
+  ├── 100%
+  │
+  └── var(--spacing)
+         ↓
+       20px
+```
+
+The custom property value becomes part of the calculation.
+
+### Practical Example
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --spacing: 1rem;
+    --radius: 8px;
+}
+
+.button {
+    background-color: var(--primary-color);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+}
+```
+
+This makes common values easier to reuse and update.
+
+### Important Points
+
+```text
+var()
+│
+├── Accesses CSS custom properties
+│
+├── Uses properties starting with --
+│
+├── Makes values reusable
+│
+├── Supports fallback values
+│
+├── Follows CSS scope and cascade
+│
+├── Allows values to be overridden
+│
+└── Can be used with other CSS functions
+```
+
+> 💡 **Remember:** The `var()` function allows you to reuse values stored in CSS custom properties. This makes styles easier to maintain, update, and organize.
