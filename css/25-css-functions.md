@@ -1771,3 +1771,265 @@ Use the larger value
 ```
 
 > 💡 **Remember:** The `max()` function compares the provided values and uses the largest result. It is useful when creating responsive values that should not become smaller than a practical limit.
+
+---
+
+## The `clamp()` Function
+
+The CSS `clamp()` function limits a value between a minimum value and a maximum value.
+
+It is especially useful for creating responsive values that can grow or shrink within a controlled range.
+
+### Basic Syntax
+
+```css
+property: clamp(minimum, preferred, maximum);
+```
+
+The `clamp()` function accepts three values:
+
+```text
+Minimum value
+      ↓
+Preferred value
+      ↓
+Maximum value
+```
+
+For example:
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+### How `clamp()` Works
+
+The browser calculates the preferred value and keeps it within the minimum and maximum limits.
+
+```text
+Preferred value
+      │
+      ▼
+Is it smaller than minimum?
+      │
+      ├── Yes → Use minimum
+      │
+      └── No
+           │
+           ▼
+Is it larger than maximum?
+      │
+      ├── Yes → Use maximum
+      │
+      └── No → Use preferred value
+```
+
+### Minimum Value
+
+The first value is the minimum allowed value.
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+```text
+1rem
+ ↓
+Minimum value
+```
+
+The final value will not become smaller than `1rem`.
+
+### Preferred Value
+
+The second value is the preferred value.
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+```text
+5vw
+ ↓
+Preferred value
+```
+
+This value can change based on conditions such as viewport size.
+
+### Maximum Value
+
+The third value is the maximum allowed value.
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+```text
+3rem
+ ↓
+Maximum value
+```
+
+The final value will not become larger than `3rem`.
+
+### Responsive Font Size Example
+
+```css
+.heading {
+    font-size: clamp(1.5rem, 5vw, 4rem);
+}
+```
+
+```text
+Small screen
+→ Use minimum value when needed
+
+Medium screen
+→ Preferred value can adjust
+
+Large screen
+→ Maximum value prevents excessive growth
+```
+
+This makes `clamp()` useful for responsive typography.
+
+### Responsive Width Example
+
+```css
+.container {
+    width: clamp(300px, 80%, 900px);
+}
+```
+
+The width:
+
+```text
+Cannot be smaller than
+→ 300px
+
+Prefers
+→ 80%
+
+Cannot be larger than
+→ 900px
+```
+
+### Using `clamp()` With Different Units
+
+The values can use different compatible units.
+
+For example:
+
+```css
+font-size: clamp(1rem, 4vw, 3rem);
+```
+
+This combines:
+
+```text
+1rem
+→ Minimum size
+
+4vw
+→ Responsive size
+
+3rem
+→ Maximum size
+```
+
+### Using `clamp()` With `calc()`
+
+The preferred value can include calculations.
+
+```css
+.heading {
+    font-size: clamp(
+        1rem,
+        calc(1rem + 2vw),
+        3rem
+    );
+}
+```
+
+The browser calculates the preferred value and then applies the minimum and maximum limits.
+
+```text
+Minimum
+   ↓
+1rem
+
+Preferred
+   ↓
+calc(1rem + 2vw)
+
+Maximum
+   ↓
+3rem
+```
+
+### `clamp()` Compared With `min()` and `max()`
+
+```text
+min()
+→ Selects the smallest value
+
+max()
+→ Selects the largest value
+
+clamp()
+→ Keeps a value between minimum and maximum limits
+```
+
+Conceptually:
+
+```text
+max(minimum, min(preferred, maximum))
+```
+
+The preferred value cannot go below the minimum or above the maximum.
+
+### Common Uses
+
+The `clamp()` function is commonly used for:
+
+- Responsive font sizes
+- Responsive spacing
+- Responsive widths
+- Responsive heights
+- Flexible layouts
+- Limiting element sizes
+- Creating fluid designs
+
+### Example: Responsive Padding
+
+```css
+.section {
+    padding: clamp(1rem, 5vw, 5rem);
+}
+```
+
+The padding can grow based on the viewport while staying within the defined limits.
+
+### Important Points
+
+```text
+clamp()
+│
+├── Accepts three values
+│
+├── Defines a minimum value
+│
+├── Defines a preferred value
+│
+├── Defines a maximum value
+│
+├── Helps create responsive values
+│
+├── Prevents values from becoming too small
+│
+├── Prevents values from becoming too large
+│
+└── Can be combined with calc()
+```
+
+> 💡 **Remember:** The `clamp()` function creates flexible values with clear limits. It is especially useful when you want a value to respond to screen size without becoming too small or too large.
