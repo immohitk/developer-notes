@@ -2893,3 +2893,312 @@ Color Functions
 ```
 
 > 💡 **Remember:** CSS color functions provide flexible ways to create colors. `rgb()` is based on red, green, and blue values, while `hsl()` is based on hue, saturation, and lightness.
+
+---
+
+## Transform Functions
+
+CSS transform functions are used with the `transform` property to change the position, size, rotation, or shape of an element.
+
+They allow visual changes without changing the normal document layout.
+
+### Basic Syntax
+
+```css
+.element {
+    transform: function-name(value);
+}
+```
+
+For example:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+The element is visually rotated by `45deg`.
+
+### Common Transform Functions
+
+```text
+Transform Functions
+│
+├── translate()
+├── translateX()
+├── translateY()
+├── rotate()
+├── scale()
+├── scaleX()
+├── scaleY()
+├── skew()
+├── skewX()
+└── skewY()
+```
+
+### The `translate()` Function
+
+The `translate()` function moves an element horizontally and vertically.
+
+```css
+.box {
+    transform: translate(50px, 20px);
+}
+```
+
+```text
+50px
+→ Horizontal movement
+
+20px
+→ Vertical movement
+```
+
+The element moves visually without changing its original layout position.
+
+### The `translateX()` Function
+
+The `translateX()` function moves an element along the horizontal axis.
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+```text
+Positive value
+→ Move right
+
+Negative value
+→ Move left
+```
+
+Example:
+
+```css
+.box {
+    transform: translateX(-50px);
+}
+```
+
+### The `translateY()` Function
+
+The `translateY()` function moves an element along the vertical axis.
+
+```css
+.box {
+    transform: translateY(50px);
+}
+```
+
+```text
+Positive value
+→ Move down
+
+Negative value
+→ Move up
+```
+
+Example:
+
+```css
+.box {
+    transform: translateY(-50px);
+}
+```
+
+### The `rotate()` Function
+
+The `rotate()` function rotates an element.
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+```text
+45deg
+→ Rotate clockwise
+
+-45deg
+→ Rotate counterclockwise
+```
+
+Example:
+
+```css
+.box {
+    transform: rotate(-45deg);
+}
+```
+
+### The `scale()` Function
+
+The `scale()` function changes the size of an element.
+
+```css
+.box {
+    transform: scale(1.5);
+}
+```
+
+```text
+1
+→ Original size
+
+Greater than 1
+→ Larger
+
+Less than 1
+→ Smaller
+```
+
+Example:
+
+```css
+.box {
+    transform: scale(0.5);
+}
+```
+
+This makes the element visually smaller.
+
+### The `scaleX()` Function
+
+The `scaleX()` function changes the width of an element.
+
+```css
+.box {
+    transform: scaleX(1.5);
+}
+```
+
+The element becomes wider.
+
+### The `scaleY()` Function
+
+The `scaleY()` function changes the height of an element.
+
+```css
+.box {
+    transform: scaleY(1.5);
+}
+```
+
+The element becomes taller.
+
+### The `skew()` Function
+
+The `skew()` function tilts an element along the horizontal and vertical axes.
+
+```css
+.box {
+    transform: skew(20deg, 10deg);
+}
+```
+
+```text
+20deg
+→ Horizontal skew
+
+10deg
+→ Vertical skew
+```
+
+### The `skewX()` Function
+
+The `skewX()` function tilts an element horizontally.
+
+```css
+.box {
+    transform: skewX(20deg);
+}
+```
+
+### The `skewY()` Function
+
+The `skewY()` function tilts an element vertically.
+
+```css
+.box {
+    transform: skewY(20deg);
+}
+```
+
+### Combining Transform Functions
+
+Multiple transform functions can be used together.
+
+```css
+.box {
+    transform:
+        translateX(50px)
+        rotate(45deg)
+        scale(1.2);
+}
+```
+
+The functions are applied as part of the same `transform` value.
+
+```text
+translateX()
+      ↓
+rotate()
+      ↓
+scale()
+```
+
+The order of transform functions can affect the final result.
+
+### Practical Example: Hover Effect
+
+```css
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+```
+
+When the user hovers over the card, it moves upward.
+
+### Practical Example: Scale on Hover
+
+```css
+.button {
+    transition: transform 0.3s;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+```
+
+The button becomes slightly larger on hover.
+
+### Important Points
+
+```text
+Transform Functions
+│
+├── Change visual appearance
+│
+├── Do not change normal document layout
+│
+├── Can move elements
+│
+├── Can rotate elements
+│
+├── Can scale elements
+│
+├── Can skew elements
+│
+└── Can be combined together
+```
+
+> 💡 **Remember:** CSS transform functions allow you to visually move, rotate, scale, and skew elements. They are commonly used with transitions and animations to create interactive effects.
