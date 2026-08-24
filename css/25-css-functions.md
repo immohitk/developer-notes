@@ -4592,3 +4592,87 @@ More responsive
 ```
 
 > 💡 **Remember:** CSS functions are powerful tools for creating flexible and responsive styles. Learning functions such as `calc()`, `min()`, `max()`, `clamp()`, and `var()` is especially important for modern CSS development.
+
+---
+
+## References
+
+The following resources provide official documentation and additional information about CSS functions.
+
+### MDN Web Docs
+
+MDN Web Docs provides detailed documentation for CSS functions and related CSS features.
+
+Useful topics include:
+
+- CSS functions
+- `calc()`
+- `min()`
+- `max()`
+- `clamp()`
+- CSS custom properties
+- Colors
+- Transforms
+- Gradients
+
+### CSS Specifications
+
+CSS features and functions are defined through specifications maintained by the CSS Working Group.
+
+Specifications provide technical details about how CSS features are designed and implemented.
+
+Topics related to this chapter include:
+
+- CSS Values and Units
+- CSS Custom Properties
+- CSS Transforms
+- CSS Images
+- CSS Color
+
+### Useful Documentation
+
+For additional learning, explore documentation related to:
+
+```text
+CSS Functions
+│
+├── Mathematical Functions
+│
+├── Custom Properties
+│
+├── Color Functions
+│
+├── Transform Functions
+│
+├── Gradient Functions
+│
+└── URL Functions
+```
+
+### Recommended Resources
+
+- MDN Web Docs — CSS Functions
+- MDN Web Docs — CSS Values and Units
+- MDN Web Docs — CSS Mathematical Functions
+- MDN Web Docs — CSS Custom Properties
+- MDN Web Docs — CSS Transforms
+- MDN Web Docs — CSS Gradients
+- W3C CSS Specifications
+
+### Important Note
+
+CSS continues to evolve, and browser support for newer CSS functions may vary.
+
+When using recently introduced CSS features:
+
+```text
+Check documentation
+        ↓
+Check browser support
+        ↓
+Test the feature
+        ↓
+Use fallbacks when necessary
+```
+
+> 💡 **Remember:** Official documentation and CSS specifications are the best resources for learning how CSS functions work and checking browser support for modern CSS features.
