@@ -5264,3 +5264,367 @@ CSS Functions Best Practices
 ```
 
 > 💡 **Remember:** The best use of CSS functions is not to make CSS more complicated. Use them when they make your styles more flexible, responsive, reusable, and easier to maintain.
+
+---
+
+## Common Mistakes
+
+CSS functions are powerful, but small syntax errors or incorrect assumptions can cause CSS declarations to fail or produce unexpected results.
+
+The following are common mistakes when working with CSS functions.
+
+### Forgetting Parentheses
+
+CSS functions require parentheses.
+
+Incorrect:
+
+```css
+width: calc 100% - 40px;
+```
+
+Correct:
+
+```css
+width: calc(100% - 40px);
+```
+
+```text
+Function name
+      +
+Parentheses
+      +
+Arguments
+      ↓
+Valid CSS function
+```
+
+---
+
+### Incorrect `calc()` Spacing
+
+The `+` and `-` operators in `calc()` should be written with spaces.
+
+Incorrect:
+
+```css
+width: calc(100%-40px);
+```
+
+Correct:
+
+```css
+width: calc(100% - 40px);
+```
+
+Use spaces to make the calculation valid and readable.
+
+---
+
+### Using `min()` Instead of `max()`
+
+These functions perform opposite operations.
+
+```text
+min()
+→ Uses the smallest value
+
+max()
+→ Uses the largest value
+```
+
+Incorrect assumption:
+
+```css
+width: min(300px, 80%);
+```
+
+If the goal is to ensure the value does not become smaller than `300px`, `min()` is not the correct choice.
+
+Use:
+
+```css
+width: max(300px, 80%);
+```
+
+Choose the function based on whether you need the smallest or largest result.
+
+---
+
+### Using `max()` When a Maximum Limit Is Needed
+
+A common misunderstanding is thinking that `max()` creates a maximum limit.
+
+```text
+max()
+→ Selects the largest value
+
+min()
+→ Selects the smallest value
+```
+
+For example:
+
+```css
+width: min(900px, 100%);
+```
+
+helps prevent the width from becoming larger than the smaller calculated value.
+
+---
+
+### Incorrect `clamp()` Argument Order
+
+The correct order is:
+
+```css
+clamp(minimum, preferred, maximum)
+```
+
+Incorrect:
+
+```css
+font-size: clamp(5vw, 1rem, 3rem);
+```
+
+Correct:
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+Remember:
+
+```text
+Minimum
+   ↓
+Preferred
+   ↓
+Maximum
+```
+
+---
+
+### Forgetting the `--` in Custom Properties
+
+CSS custom properties must begin with two hyphens.
+
+Incorrect:
+
+```css
+:root {
+    primary-color: blue;
+}
+```
+
+Correct:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+Then use:
+
+```css
+color: var(--primary-color);
+```
+
+---
+
+### Using an Undefined Custom Property
+
+This may cause a declaration to become invalid if no fallback is available.
+
+Example:
+
+```css
+.button {
+    color: var(--text-color);
+}
+```
+
+If `--text-color` is not defined, a fallback can be provided.
+
+```css
+.button {
+    color: var(--text-color, black);
+}
+```
+
+```text
+Custom property available?
+        │
+        ├── Yes
+        │   ↓
+        │ Use property value
+        │
+        └── No
+            ↓
+        Use fallback
+```
+
+---
+
+### Using Invalid Values With Functions
+
+Function arguments must be valid for the property being used.
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+makes sense because both values can be used to calculate a length.
+
+Always ensure that the resulting value is valid for the CSS property.
+
+---
+
+### Overcomplicating Calculations
+
+Complex calculations can become difficult to understand.
+
+Less readable:
+
+```css
+width: calc((100% - 20px + 10px) - 10px);
+```
+
+Simpler:
+
+```css
+width: calc(100% - 20px);
+```
+
+Avoid unnecessary calculations when a simpler value produces the same result.
+
+---
+
+### Using Too Many Nested Functions
+
+Functions can be nested, but excessive nesting can reduce readability.
+
+Example:
+
+```css
+width: min(
+    1000px,
+    max(
+        300px,
+        calc(100% - 40px)
+    )
+);
+```
+
+This may be useful in some situations, but complex expressions should only be used when necessary.
+
+```text
+Simple expression
+      ↓
+Easier to read
+      ↓
+Easier to maintain
+```
+
+---
+
+### Forgetting That Transform Order Matters
+
+Multiple transform functions can produce different results depending on their order.
+
+Example:
+
+```css
+transform:
+    translateX(50px)
+    rotate(45deg);
+```
+
+The result may differ from:
+
+```css
+transform:
+    rotate(45deg)
+    translateX(50px);
+```
+
+```text
+Transform order
+      ↓
+Can affect
+      ↓
+Final visual result
+```
+
+Always test combined transforms.
+
+---
+
+### Forgetting Fallback Values for `var()`
+
+Fallback values are useful when a custom property may not be defined.
+
+Without fallback:
+
+```css
+color: var(--text-color);
+```
+
+With fallback:
+
+```css
+color: var(--text-color, black);
+```
+
+Use fallbacks when missing values could cause problems.
+
+---
+
+### Assuming All CSS Functions Work Everywhere
+
+Some newer CSS functions may have limited support in older browsers.
+
+Before using advanced features:
+
+```text
+Check browser support
+        ↓
+Test the feature
+        ↓
+Provide alternatives if necessary
+```
+
+---
+
+### Common Mistake Summary
+
+```text
+CSS Function Mistakes
+│
+├── Forgetting parentheses
+│
+├── Incorrect calc() spacing
+│
+├── Confusing min() and max()
+│
+├── Using clamp() arguments incorrectly
+│
+├── Forgetting -- in custom properties
+│
+├── Using undefined custom properties
+│
+├── Using invalid values
+│
+├── Overcomplicating calculations
+│
+├── Excessive nesting
+│
+├── Ignoring transform order
+│
+└── Ignoring browser support
+```
+
+> 💡 **Remember:** Most CSS function mistakes come from incorrect syntax, confusing similar functions, or creating unnecessarily complex expressions. Keep your CSS simple, readable, and test responsive behavior carefully.
