@@ -6056,3 +6056,439 @@ CSS Functions
 ```
 
 > 💡 **Interview Tip:** Be prepared to explain not only what CSS functions do, but also where they are useful in real projects, especially `calc()`, `min()`, `max()`, `clamp()`, and `var()`.
+
+---
+
+## Practice Exercises
+
+The following exercises can help you practice using CSS functions.
+
+Try solving each exercise before checking the suggested solution.
+
+### Exercise 1: Use `calc()`
+
+Create a container that takes the full available width minus `40px`.
+
+**Requirement:**
+
+```text
+Available width
+      -
+40px
+      ↓
+Final width
+```
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.container {
+    width: calc(100% - 40px);
+}
+```
+
+</details>
+
+---
+
+### Exercise 2: Use `min()`
+
+Create a container that should never become wider than `900px` but should adapt to smaller screens.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.container {
+    width: min(900px, 100%);
+}
+```
+
+</details>
+
+---
+
+### Exercise 3: Use `max()`
+
+Create text with a responsive size that should never become smaller than `1.5rem`.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.heading {
+    font-size: max(1.5rem, 4vw);
+}
+```
+
+</details>
+
+---
+
+### Exercise 4: Use `clamp()`
+
+Create responsive text with:
+
+```text
+Minimum
+→ 1rem
+
+Preferred
+→ 5vw
+
+Maximum
+→ 3rem
+```
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.heading {
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+```
+
+</details>
+
+---
+
+### Exercise 5: Create a Custom Property
+
+Create a reusable custom property named:
+
+```text
+--primary-color
+```
+
+with the value:
+
+```text
+#2563eb
+```
+
+Then use it as a button background.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+</details>
+
+---
+
+### Exercise 6: Add a Fallback Value
+
+Use `var()` to access:
+
+```text
+--text-color
+```
+
+and use `black` as a fallback.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.text {
+    color: var(--text-color, black);
+}
+```
+
+</details>
+
+---
+
+### Exercise 7: Create a Gradient
+
+Create a linear gradient that transitions from blue to purple.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.box {
+    background: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+}
+```
+
+</details>
+
+---
+
+### Exercise 8: Create a Radial Gradient
+
+Create a circular radial gradient that transitions from white to black.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.box {
+    background: radial-gradient(
+        circle,
+        white,
+        black
+    );
+}
+```
+
+</details>
+
+---
+
+### Exercise 9: Move an Element
+
+Move an element `50px` to the right using a transform function.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+</details>
+
+---
+
+### Exercise 10: Rotate an Element
+
+Rotate an element by `45deg`.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+</details>
+
+---
+
+### Exercise 11: Scale an Element
+
+Increase the size of an element by `20%`.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.box {
+    transform: scale(1.2);
+}
+```
+
+</details>
+
+---
+
+### Exercise 12: Combine Transforms
+
+Create a hover effect that:
+
+```text
+Moves upward by 10px
+        +
+Increases size by 5%
+```
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.05);
+}
+```
+
+</details>
+
+---
+
+### Exercise 13: Responsive Container
+
+Create a container that:
+
+```text
+Uses available width
+        ↓
+Subtracts 40px
+        ↓
+Never becomes wider than 1000px
+```
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.container {
+    width: min(
+        1000px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+}
+```
+
+</details>
+
+---
+
+### Exercise 14: Responsive Spacing
+
+Create section padding that:
+
+```text
+Minimum
+→ 1rem
+
+Responsive
+→ 5vw
+
+Maximum
+→ 5rem
+```
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+.section {
+    padding: clamp(1rem, 5vw, 5rem);
+}
+```
+
+</details>
+
+---
+
+### Exercise 15: Combine Multiple Functions
+
+Create a responsive container using:
+
+- `var()`
+- `min()`
+- `calc()`
+
+The container should use a reusable maximum width.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+:root {
+    --container-width: 1100px;
+}
+
+.container {
+    width: min(
+        var(--container-width),
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+}
+```
+
+</details>
+
+---
+
+### Challenge Exercise
+
+Create a responsive card component with:
+
+- A reusable primary color
+- Responsive padding using `clamp()`
+- A maximum width using `min()`
+- A gradient background
+- A hover effect using `translateY()` and `scale()`
+
+Try creating the component yourself before looking at an example.
+
+<details>
+<summary>Suggested Solution</summary>
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+
+.card {
+    width: min(400px, 100%);
+    padding: clamp(1rem, 5vw, 3rem);
+
+    background: linear-gradient(
+        to right,
+        var(--primary-color),
+        #7c3aed
+    );
+
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.03);
+}
+```
+
+</details>
+
+### Practice Summary
+
+```text
+Practice CSS Functions
+│
+├── calc()
+│   → Calculations
+│
+├── min()
+│   → Maximum limits
+│
+├── max()
+│   → Minimum limits
+│
+├── clamp()
+│   → Responsive ranges
+│
+├── var()
+│   → Reusable values
+│
+├── Gradients
+│   → Visual effects
+│
+└── Transforms
+    → Interactive effects
+```
+
+> 💡 **Practice Tip:** Try changing the values in each exercise and observe how the result changes. Experimenting with different viewport sizes is one of the best ways to understand CSS functions.
