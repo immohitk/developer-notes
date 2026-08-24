@@ -1292,3 +1292,223 @@ calc()
 ```
 
 > 💡 **Remember:** The `calc()` function allows CSS values to be calculated dynamically. It is especially useful when combining relative values such as percentages with fixed values such as pixels.
+
+---
+
+## The `min()` Function
+
+The CSS `min()` function returns the smallest value from a list of values.
+
+It is useful for creating flexible and responsive CSS values.
+
+### Basic Syntax
+
+```css
+property: min(value1, value2);
+```
+
+The browser compares the provided values and uses the smallest valid value.
+
+For example:
+
+```css
+width: min(500px, 100%);
+```
+
+```text
+500px
+   vs
+100%
+   ↓
+Use the smaller value
+```
+
+### Why Use `min()`?
+
+The `min()` function is useful when an element should have a maximum practical size while still adapting to smaller screens.
+
+For example:
+
+```css
+.container {
+    width: min(800px, 100%);
+}
+```
+
+On a large screen, the element can use `800px`.
+
+On a smaller screen, it can use `100%` of the available width.
+
+### Responsive Example
+
+```css
+.box {
+    width: min(500px, 90%);
+}
+```
+
+The browser compares:
+
+```text
+500px
+   vs
+90% of available space
+```
+
+The smaller value is used.
+
+```text
+Large screen
+→ 500px may be smaller
+
+Small screen
+→ 90% may be smaller
+```
+
+This can help create responsive layouts.
+
+### Using More Than Two Values
+
+The `min()` function can compare multiple values.
+
+```css
+.element {
+    width: min(800px, 90%, 100%);
+}
+```
+
+The browser selects the smallest valid calculated value.
+
+```text
+Value 1
+   │
+Value 2
+   │
+Value 3
+   ↓
+Compare values
+   ↓
+Use smallest value
+```
+
+### Example With Font Size
+
+The `min()` function can also be used with other properties.
+
+```css
+.heading {
+    font-size: min(5vw, 3rem);
+}
+```
+
+The browser uses the smaller value.
+
+This can help prevent a responsive font size from becoming too large.
+
+### Example With Height
+
+```css
+.section {
+    height: min(600px, 80vh);
+}
+```
+
+The smaller value between `600px` and `80vh` is used.
+
+### Using `min()` With `calc()`
+
+The `min()` function can be combined with `calc()`.
+
+```css
+.container {
+    width: min(800px, calc(100% - 40px));
+}
+```
+
+The browser:
+
+```text
+1. Calculates:
+   100% - 40px
+
+        ↓
+
+2. Compares the result
+   with 800px
+
+        ↓
+
+3. Uses the smaller value
+```
+
+### Practical Example: Responsive Container
+
+```html
+<div class="container">
+    Content
+</div>
+```
+
+```css
+.container {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+}
+```
+
+This creates a responsive container.
+
+```text
+Large screen
+      ↓
+Maximum width is limited
+
+Small screen
+      ↓
+Width adapts to available space
+```
+
+### `min()` and `max-width`
+
+In some situations, `min()` can provide an alternative way to express responsive sizing.
+
+For example:
+
+```css
+.box {
+    width: min(500px, 100%);
+}
+```
+
+This expresses that the width should not exceed the smaller of the two calculated values.
+
+### Common Uses
+
+The `min()` function is commonly used for:
+
+- Responsive widths
+- Responsive heights
+- Limiting font sizes
+- Preventing elements from becoming too large
+- Flexible layouts
+- Combining fixed and relative values
+
+### Important Points
+
+```text
+min()
+│
+├── Compares multiple values
+│
+├── Returns the smallest value
+│
+├── Supports responsive values
+│
+├── Can work with different compatible units
+│
+├── Can be combined with calc()
+│
+└── Helps limit maximum sizes
+```
+
+> 💡 **Remember:** The `min()` function compares the provided values and uses the smallest result. It is especially useful for creating responsive elements that should not grow beyond a certain size.
