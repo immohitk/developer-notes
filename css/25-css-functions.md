@@ -183,3 +183,262 @@ CSS Functions
 ```
 
 > 💡 **Remember:** CSS functions allow you to perform operations and generate values directly in CSS. They are useful for creating flexible, responsive, and reusable styles.
+
+---
+
+## What Are CSS Functions?
+
+CSS functions are special value expressions that perform an operation or generate a value for a CSS property.
+
+A CSS function is usually written with:
+
+```text
+function-name(arguments)
+```
+
+The function receives one or more values, processes them, and produces a result that CSS can use.
+
+### Basic Example
+
+```css
+.box {
+    width: calc(100% - 20px);
+}
+```
+
+In this example:
+
+```text
+calc()
+   ↓
+Receives values
+   ↓
+Performs calculation
+   ↓
+Produces final value
+```
+
+The result is then used as the value of the `width` property.
+
+### Functions Generate CSS Values
+
+CSS functions can generate values for different properties.
+
+For example:
+
+```css
+.box {
+    width: min(500px, 100%);
+}
+```
+
+The `min()` function compares the provided values and returns the smaller value.
+
+Another example:
+
+```css
+.heading {
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+```
+
+The `clamp()` function creates a value that stays between a minimum and maximum limit.
+
+### Functions Can Accept Arguments
+
+Values inside the parentheses are called arguments.
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+The values inside:
+
+```text
+100% - 20px
+```
+
+are used by the `calc()` function.
+
+Another example:
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+The `clamp()` function receives three values:
+
+```text
+1rem
+  ↓
+Minimum value
+
+5vw
+  ↓
+Preferred value
+
+3rem
+  ↓
+Maximum value
+```
+
+### Functions Help Create Dynamic Values
+
+CSS functions can make values more flexible.
+
+For example:
+
+```css
+.container {
+    width: 500px;
+}
+```
+
+This uses a fixed width.
+
+However:
+
+```css
+.container {
+    width: min(500px, 100%);
+}
+```
+
+allows the width to adapt based on the available space.
+
+```text
+Available space
+       ↓
+Compare with 500px
+       ↓
+Use smaller value
+```
+
+### Functions Can Be Used in Different Areas of CSS
+
+CSS functions are used for many purposes.
+
+```text
+CSS Functions
+│
+├── Calculations
+│   → calc()
+│
+├── Minimum values
+│   → min()
+│
+├── Maximum values
+│   → max()
+│
+├── Value ranges
+│   → clamp()
+│
+├── Custom properties
+│   → var()
+│
+├── External resources
+│   → url()
+│
+├── Colors
+│   → rgb(), hsl()
+│
+├── Transformations
+│   → translate(), rotate(), scale()
+│
+└── Gradients
+    → linear-gradient()
+```
+
+### CSS Functions Are Not JavaScript Functions
+
+CSS functions perform operations within CSS.
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+This calculation is handled as part of CSS value processing.
+
+CSS functions do not work in the same way as JavaScript functions.
+
+```text
+CSS Function
+→ Produces a CSS value
+
+JavaScript Function
+→ Executes JavaScript instructions
+```
+
+Both use parentheses, but they serve different purposes.
+
+### Simple Examples
+
+#### Using `calc()`
+
+```css
+.container {
+    width: calc(100% - 40px);
+}
+```
+
+#### Using `min()`
+
+```css
+.box {
+    width: min(600px, 100%);
+}
+```
+
+#### Using `max()`
+
+```css
+.box {
+    width: max(300px, 50%);
+}
+```
+
+#### Using `clamp()`
+
+```css
+.heading {
+    font-size: clamp(1.5rem, 5vw, 4rem);
+}
+```
+
+#### Using `var()`
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+### Important Points
+
+```text
+CSS Functions
+│
+├── Use a function name
+│
+├── Use parentheses
+│
+├── Can accept arguments
+│
+├── Perform operations or generate values
+│
+├── Can make CSS more flexible
+│
+├── Help create responsive designs
+│
+└── Are different from JavaScript functions
+```
+
+> 💡 **Remember:** CSS functions are special expressions that generate or calculate CSS values. They help make styles more flexible, reusable, and responsive.
