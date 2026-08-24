@@ -4676,3 +4676,279 @@ Use fallbacks when necessary
 ```
 
 > 💡 **Remember:** Official documentation and CSS specifications are the best resources for learning how CSS functions work and checking browser support for modern CSS features.
+
+---
+
+## Quick Revision
+
+### What Are CSS Functions?
+
+CSS functions are special expressions that generate or calculate CSS values.
+
+Basic syntax:
+
+```css
+function-name(arguments)
+```
+
+Example:
+
+```css
+width: calc(100% - 40px);
+```
+
+---
+
+### Common CSS Functions
+
+```text
+calc()
+min()
+max()
+clamp()
+var()
+url()
+rgb()
+hsl()
+translate()
+rotate()
+scale()
+linear-gradient()
+```
+
+---
+
+### `calc()`
+
+Performs mathematical calculations.
+
+```css
+width: calc(100% - 40px);
+```
+
+Common use:
+
+```text
+Relative value
++
+or -
+Fixed value
+```
+
+---
+
+### `min()`
+
+Returns the smallest value.
+
+```css
+width: min(900px, 100%);
+```
+
+Useful for:
+
+```text
+Preventing values
+from becoming too large
+```
+
+---
+
+### `max()`
+
+Returns the largest value.
+
+```css
+font-size: max(1rem, 4vw);
+```
+
+Useful for:
+
+```text
+Preventing values
+from becoming too small
+```
+
+---
+
+### `clamp()`
+
+Keeps a value between a minimum and maximum.
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+Structure:
+
+```text
+clamp(
+    minimum,
+    preferred,
+    maximum
+)
+```
+
+---
+
+### `var()`
+
+Accesses a CSS custom property.
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.button {
+    color: var(--primary-color);
+}
+```
+
+Fallback:
+
+```css
+color: var(--text-color, black);
+```
+
+---
+
+### `url()`
+
+References an external resource.
+
+```css
+background-image: url("image.jpg");
+```
+
+Common uses:
+
+```text
+Images
+Fonts
+Cursors
+List markers
+```
+
+---
+
+### Color Functions
+
+Common examples:
+
+```css
+rgb(255, 0, 0);
+
+rgba(255, 0, 0, 0.5);
+
+hsl(200, 80%, 50%);
+
+hsla(200, 80%, 50%, 0.5);
+```
+
+---
+
+### Transform Functions
+
+Common examples:
+
+```css
+transform: translateX(50px);
+
+transform: rotate(45deg);
+
+transform: scale(1.2);
+
+transform: skewX(20deg);
+```
+
+They can be combined:
+
+```css
+transform:
+    translateY(-10px)
+    scale(1.05);
+```
+
+---
+
+### Gradient Functions
+
+Common examples:
+
+```css
+linear-gradient(red, blue);
+
+radial-gradient(red, blue);
+
+conic-gradient(red, yellow, blue);
+```
+
+Repeating gradients:
+
+```css
+repeating-linear-gradient();
+
+repeating-radial-gradient();
+
+repeating-conic-gradient();
+```
+
+---
+
+### Quick Comparison
+
+| Function | Purpose |
+|---|---|
+| `calc()` | Performs calculations |
+| `min()` | Uses the smallest value |
+| `max()` | Uses the largest value |
+| `clamp()` | Limits a value within a range |
+| `var()` | Uses a custom property |
+| `url()` | References a resource |
+| `rgb()` | Creates RGB colors |
+| `hsl()` | Creates HSL colors |
+| `translate()` | Moves an element |
+| `rotate()` | Rotates an element |
+| `scale()` | Changes element size |
+| `linear-gradient()` | Creates a linear gradient |
+
+---
+
+### Final Revision
+
+```text
+CSS Functions
+│
+├── Perform calculations
+│   → calc()
+│
+├── Compare values
+│   → min()
+│   → max()
+│
+├── Control ranges
+│   → clamp()
+│
+├── Reuse values
+│   → var()
+│
+├── Load resources
+│   → url()
+│
+├── Create colors
+│   → rgb()
+│   → hsl()
+│
+├── Transform elements
+│   → translate()
+│   → rotate()
+│   → scale()
+│
+└── Create gradients
+    → linear-gradient()
+    → radial-gradient()
+    → conic-gradient()
+```
+
+> 💡 **Remember:** The most important CSS functions for modern responsive development are `calc()`, `min()`, `max()`, `clamp()`, and `var()`.
