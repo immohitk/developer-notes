@@ -3202,3 +3202,337 @@ Transform Functions
 ```
 
 > 💡 **Remember:** CSS transform functions allow you to visually move, rotate, scale, and skew elements. They are commonly used with transitions and animations to create interactive effects.
+
+---
+
+## Gradient Functions
+
+CSS gradient functions create smooth transitions between two or more colors.
+
+Gradients are commonly used as background images.
+
+Unlike normal images, CSS gradients are generated directly by the browser.
+
+### Basic Gradient Syntax
+
+A gradient is usually used with a property such as:
+
+```css
+background: function-name(colors);
+```
+
+For example:
+
+```css
+.box {
+    background: linear-gradient(red, blue);
+}
+```
+
+```text
+Red
+ ↓
+Smooth transition
+ ↓
+Blue
+```
+
+### Common Gradient Functions
+
+```text
+Gradient Functions
+│
+├── linear-gradient()
+├── radial-gradient()
+├── conic-gradient()
+│
+├── repeating-linear-gradient()
+├── repeating-radial-gradient()
+└── repeating-conic-gradient()
+```
+
+### The `linear-gradient()` Function
+
+The `linear-gradient()` function creates a gradient along a straight line.
+
+```css
+.box {
+    background: linear-gradient(red, blue);
+}
+```
+
+The colors transition from the first color to the second color.
+
+### Gradient Direction
+
+A direction can be specified.
+
+```css
+.box {
+    background: linear-gradient(to right, red, blue);
+}
+```
+
+```text
+Red
+→
+Blue
+```
+
+Common directions include:
+
+```text
+to top
+to bottom
+to left
+to right
+```
+
+Example:
+
+```css
+.box {
+    background: linear-gradient(to bottom, red, yellow, blue);
+}
+```
+
+### Using Angles
+
+A linear gradient can also use an angle.
+
+```css
+.box {
+    background: linear-gradient(45deg, red, blue);
+}
+```
+
+The gradient direction is determined by the specified angle.
+
+### Multiple Colors
+
+Gradients can contain multiple colors.
+
+```css
+.box {
+    background: linear-gradient(
+        to right,
+        red,
+        yellow,
+        green,
+        blue
+    );
+}
+```
+
+```text
+Red
+ ↓
+Yellow
+ ↓
+Green
+ ↓
+Blue
+```
+
+### Color Stops
+
+Color stops control where colors appear in a gradient.
+
+```css
+.box {
+    background: linear-gradient(
+        to right,
+        red 0%,
+        yellow 50%,
+        blue 100%
+    );
+}
+```
+
+```text
+0%
+↓
+Red
+
+50%
+↓
+Yellow
+
+100%
+↓
+Blue
+```
+
+### The `radial-gradient()` Function
+
+The `radial-gradient()` function creates a gradient that spreads outward from a central point.
+
+```css
+.box {
+    background: radial-gradient(red, blue);
+}
+```
+
+```text
+Center
+  ↓
+Red
+  ↓
+Expands outward
+  ↓
+Blue
+```
+
+### Radial Gradient Shape
+
+Radial gradients can use different shapes.
+
+```css
+.box {
+    background: radial-gradient(circle, red, blue);
+}
+```
+
+Common shapes include:
+
+```text
+circle
+ellipse
+```
+
+### Radial Gradient Position
+
+The starting position can be changed.
+
+```css
+.box {
+    background: radial-gradient(
+        circle at top left,
+        red,
+        blue
+    );
+}
+```
+
+The gradient starts near the top-left position.
+
+### The `conic-gradient()` Function
+
+The `conic-gradient()` function creates a gradient that rotates around a center point.
+
+```css
+.box {
+    background: conic-gradient(
+        red,
+        yellow,
+        green,
+        blue,
+        red
+    );
+}
+```
+
+```text
+Center
+  ↓
+Colors rotate
+around the center
+```
+
+This type of gradient can be useful for:
+
+- Color wheels
+- Pie charts
+- Circular effects
+
+### Repeating Gradients
+
+CSS also provides repeating gradient functions.
+
+### `repeating-linear-gradient()`
+
+```css
+.box {
+    background: repeating-linear-gradient(
+        45deg,
+        red 0px,
+        red 20px,
+        blue 20px,
+        blue 40px
+    );
+}
+```
+
+The gradient pattern repeats.
+
+### `repeating-radial-gradient()`
+
+```css
+.box {
+    background: repeating-radial-gradient(
+        red,
+        red 10px,
+        blue 10px,
+        blue 20px
+    );
+}
+```
+
+The radial pattern repeats outward.
+
+### `repeating-conic-gradient()`
+
+```css
+.box {
+    background: repeating-conic-gradient(
+        red 0deg,
+        red 45deg,
+        blue 45deg,
+        blue 90deg
+    );
+}
+```
+
+The conic pattern repeats around the center.
+
+### Practical Example
+
+```css
+.hero {
+    background: linear-gradient(
+        to right,
+        #2563eb,
+        #7c3aed
+    );
+}
+```
+
+This creates a smooth color transition that can be used for a hero section.
+
+### Important Points
+
+```text
+Gradient Functions
+│
+├── Generate color transitions
+│
+├── Can use multiple colors
+│
+├── Support color stops
+│
+├── Can have different directions
+│
+├── linear-gradient()
+│   → Straight line
+│
+├── radial-gradient()
+│   → Expands from a center
+│
+├── conic-gradient()
+│   → Rotates around a center
+│
+└── Repeating gradients
+    → Repeat gradient patterns
+```
+
+> 💡 **Remember:** CSS gradient functions create smooth color transitions directly in CSS. They are commonly used for backgrounds, decorative effects, and visual designs without requiring image files.
