@@ -3902,3 +3902,426 @@ CSS Mathematical Functions
 ```
 
 > 💡 **Remember:** CSS mathematical functions allow values to be calculated and controlled dynamically. They are useful for responsive layouts, flexible sizing, and advanced CSS effects.
+
+---
+
+## Practical Examples
+
+CSS functions are commonly used to create responsive layouts, reusable values, visual effects, and dynamic calculations.
+
+The following examples show how different CSS functions can be used in practical situations.
+
+### Example 1: Responsive Container With `min()`
+
+```css
+.container {
+    width: min(900px, 90%);
+    margin: 0 auto;
+}
+```
+
+The browser compares:
+
+```text
+900px
+   vs
+90% of available space
+```
+
+and uses the smaller value.
+
+```text
+Large screen
+→ Container can reach 900px
+
+Small screen
+→ Container adapts to 90%
+```
+
+### Example 2: Width Calculation With `calc()`
+
+```css
+.container {
+    width: calc(100% - 40px);
+    margin: 20px;
+}
+```
+
+The calculation is:
+
+```text
+100%
+  -
+40px
+  ↓
+Final width
+```
+
+This is useful when an element needs to fill the available space while accounting for fixed spacing.
+
+### Example 3: Responsive Typography With `clamp()`
+
+```css
+.heading {
+    font-size: clamp(1.5rem, 5vw, 4rem);
+}
+```
+
+The font size has:
+
+```text
+Minimum
+→ 1.5rem
+
+Preferred
+→ 5vw
+
+Maximum
+→ 4rem
+```
+
+This creates text that can respond to viewport size without becoming too small or too large.
+
+### Example 4: Minimum Font Size With `max()`
+
+```css
+.heading {
+    font-size: max(1.5rem, 4vw);
+}
+```
+
+The browser compares:
+
+```text
+1.5rem
+   vs
+4vw
+```
+
+and uses the larger value.
+
+This helps prevent responsive text from becoming too small.
+
+### Example 5: Reusable Theme Colors With `var()`
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #7c3aed;
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+
+.heading {
+    color: var(--secondary-color);
+}
+```
+
+```text
+Custom property
+      ↓
+var()
+      ↓
+Reusable CSS value
+```
+
+Changing the custom property updates every place where the value is used.
+
+### Example 6: Fallback Value With `var()`
+
+```css
+.button {
+    background-color: var(--primary-color, blue);
+}
+```
+
+If `--primary-color` is not available:
+
+```text
+Fallback
+   ↓
+blue
+```
+
+is used.
+
+### Example 7: Responsive Card Width
+
+```css
+.card {
+    width: min(400px, 100%);
+}
+```
+
+```text
+Large space
+→ Maximum practical width
+
+Small space
+→ Adapts to available width
+```
+
+This can help prevent a card from becoming wider than intended.
+
+### Example 8: Responsive Layout With Multiple Functions
+
+```css
+.container {
+    width: min(
+        1000px,
+        calc(100% - 40px)
+    );
+}
+```
+
+The process is:
+
+```text
+calc()
+   ↓
+Calculate available width
+
+min()
+   ↓
+Limit maximum width
+```
+
+This is a common pattern for responsive page containers.
+
+### Example 9: Gradient Background
+
+```css
+.hero {
+    background: linear-gradient(
+        to right,
+        #2563eb,
+        #7c3aed
+    );
+}
+```
+
+```text
+Color 1
+   ↓
+Smooth transition
+   ↓
+Color 2
+```
+
+This creates a gradient directly in CSS without requiring an image.
+
+### Example 10: Transparent Overlay
+
+```css
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+```
+
+```text
+Black
+  +
+50% transparency
+  ↓
+Semi-transparent overlay
+```
+
+This is commonly used over images and hero sections.
+
+### Example 11: Hover Movement With `translateY()`
+
+```css
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+```
+
+When the user hovers over the card:
+
+```text
+Original position
+      ↓
+Hover
+      ↓
+Move upward
+```
+
+### Example 12: Hover Scaling
+
+```css
+.button {
+    transition: transform 0.3s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+```
+
+The button becomes slightly larger when hovered.
+
+### Example 13: Combining Transform Functions
+
+```css
+.card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.05);
+}
+```
+
+```text
+Hover
+  ↓
+Move upward
+  ↓
+Increase size
+```
+
+Multiple transform functions can create more interactive effects.
+
+### Example 14: Background Image With `url()`
+
+```css
+.hero {
+    background-image: url("images/background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+```
+
+The `url()` function provides the location of the image.
+
+```text
+url()
+  ↓
+Load image
+  ↓
+Use as background
+```
+
+### Example 15: Responsive Section Spacing
+
+```css
+.section {
+    padding: clamp(1rem, 5vw, 5rem);
+}
+```
+
+The spacing can grow and shrink with the viewport.
+
+```text
+Small viewport
+→ Minimum padding
+
+Medium viewport
+→ Responsive padding
+
+Large viewport
+→ Maximum padding
+```
+
+### Combining Functions in Real Projects
+
+A real project may use multiple CSS functions together.
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --container-width: 1100px;
+}
+
+.container {
+    width: min(
+        var(--container-width),
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+}
+
+.hero {
+    padding: clamp(2rem, 8vw, 6rem);
+    background: linear-gradient(
+        to right,
+        var(--primary-color),
+        #7c3aed
+    );
+}
+
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform:
+        translateY(-8px)
+        scale(1.02);
+}
+```
+
+This example uses:
+
+```text
+var()
+→ Reusable values
+
+min()
+→ Maximum container width
+
+calc()
+→ Responsive available width
+
+clamp()
+→ Responsive spacing
+
+linear-gradient()
+→ Background effect
+
+translateY()
+→ Movement
+
+scale()
+→ Size change
+```
+
+### Important Points
+
+```text
+CSS Functions in Practice
+│
+├── calc()
+│   → Dynamic calculations
+│
+├── min()
+│   → Maximum limits
+│
+├── max()
+│   → Minimum limits
+│
+├── clamp()
+│   → Responsive ranges
+│
+├── var()
+│   → Reusable values
+│
+├── url()
+│   → External resources
+│
+├── Color functions
+│   → Colors and transparency
+│
+├── Transform functions
+│   → Interactive effects
+│
+└── Gradient functions
+    → Visual backgrounds
+```
+
+> 💡 **Remember:** CSS functions become especially powerful when combined. Using functions such as `calc()`, `min()`, `clamp()`, and `var()` together can help create flexible, responsive, and maintainable CSS.
