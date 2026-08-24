@@ -4325,3 +4325,270 @@ CSS Functions in Practice
 ```
 
 > 💡 **Remember:** CSS functions become especially powerful when combined. Using functions such as `calc()`, `min()`, `clamp()`, and `var()` together can help create flexible, responsive, and maintainable CSS.
+
+---
+
+## Key Takeaways
+
+CSS functions allow you to create values dynamically instead of using only fixed values.
+
+They can perform calculations, compare values, reuse custom properties, create colors, load resources, transform elements, and generate gradients.
+
+### CSS Function Structure
+
+Most CSS functions follow this pattern:
+
+```css
+function-name(arguments)
+```
+
+Example:
+
+```css
+width: calc(100% - 40px);
+```
+
+```text
+Function name
+      ↓
+calc()
+      ↓
+Arguments
+      ↓
+100% - 40px
+```
+
+The function processes the provided values and produces a CSS value.
+
+### Important Mathematical Functions
+
+```text
+calc()
+→ Performs calculations
+
+min()
+→ Returns the smallest value
+
+max()
+→ Returns the largest value
+
+clamp()
+→ Keeps a value within a range
+```
+
+These functions are especially useful for responsive layouts.
+
+### `calc()`
+
+```css
+width: calc(100% - 40px);
+```
+
+Use `calc()` when a CSS value needs to be calculated.
+
+```text
+Relative value
+      +
+or
+      -
+Fixed value
+      ↓
+Calculated result
+```
+
+### `min()`
+
+```css
+width: min(900px, 100%);
+```
+
+Use `min()` when the smaller value should be selected.
+
+It is useful for preventing elements from becoming too large.
+
+### `max()`
+
+```css
+font-size: max(1rem, 4vw);
+```
+
+Use `max()` when the larger value should be selected.
+
+It is useful for preventing values from becoming too small.
+
+### `clamp()`
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+Use `clamp()` when a value needs:
+
+```text
+Minimum
+   +
+Preferred value
+   +
+Maximum
+```
+
+This is useful for responsive typography and spacing.
+
+### `var()`
+
+```css
+color: var(--primary-color);
+```
+
+Use `var()` to access reusable CSS custom properties.
+
+```text
+Custom property
+      ↓
+var()
+      ↓
+Reusable value
+```
+
+Fallback values can also be used.
+
+```css
+color: var(--text-color, black);
+```
+
+### `url()`
+
+```css
+background-image: url("image.jpg");
+```
+
+Use `url()` to reference external resources.
+
+Common examples include:
+
+- Images
+- Fonts
+- Cursors
+- List marker images
+
+### Color Functions
+
+Common color functions include:
+
+```text
+rgb()
+rgba()
+hsl()
+hsla()
+```
+
+They allow colors and transparency to be defined using different color models.
+
+### Transform Functions
+
+Transform functions change an element visually.
+
+Common examples include:
+
+```text
+translate()
+rotate()
+scale()
+skew()
+```
+
+They are commonly used with:
+
+```text
+Transitions
+Animations
+Hover effects
+Interactive elements
+```
+
+### Gradient Functions
+
+Common gradient functions include:
+
+```text
+linear-gradient()
+radial-gradient()
+conic-gradient()
+```
+
+They create visual color transitions directly in CSS.
+
+### CSS Functions Can Be Combined
+
+Multiple functions can work together.
+
+```css
+.container {
+    width: min(
+        1000px,
+        calc(100% - 40px)
+    );
+}
+```
+
+Another example:
+
+```css
+font-size: clamp(
+    1rem,
+    calc(1rem + 2vw),
+    3rem
+);
+```
+
+```text
+CSS Functions
+      ↓
+Can work together
+      ↓
+Create flexible values
+```
+
+### Final Summary
+
+```text
+CSS Functions
+│
+├── Use function-name(arguments)
+│
+├── Generate CSS values
+│
+├── Perform calculations
+│
+├── Compare values
+│
+├── Control responsive ranges
+│
+├── Reuse custom properties
+│
+├── Reference external resources
+│
+├── Create colors
+│
+├── Transform elements
+│
+└── Create gradients
+```
+
+### Main Concept
+
+```text
+Fixed CSS
+    ↓
+Less flexible
+
+CSS Functions
+    ↓
+Dynamic values
+    ↓
+More flexible
+    ↓
+More responsive
+```
+
+> 💡 **Remember:** CSS functions are powerful tools for creating flexible and responsive styles. Learning functions such as `calc()`, `min()`, `max()`, `clamp()`, and `var()` is especially important for modern CSS development.
