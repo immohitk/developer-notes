@@ -728,3 +728,292 @@ CSS Function Syntax
 ```
 
 > 💡 **Remember:** CSS functions are written using a function name followed by parentheses. The values inside the parentheses are arguments that the function uses to generate or calculate a CSS value.
+
+---
+
+## Common CSS Functions
+
+CSS provides many built-in functions for calculating values, controlling sizes, working with colors, applying transformations, and creating visual effects.
+
+Different functions are used for different purposes.
+
+### Common Function Categories
+
+```text
+CSS Functions
+│
+├── Mathematical Functions
+│   ├── calc()
+│   ├── min()
+│   ├── max()
+│   └── clamp()
+│
+├── Variable Functions
+│   └── var()
+│
+├── URL Functions
+│   └── url()
+│
+├── Color Functions
+│   ├── rgb()
+│   ├── rgba()
+│   ├── hsl()
+│   └── hsla()
+│
+├── Transform Functions
+│   ├── translate()
+│   ├── rotate()
+│   └── scale()
+│
+└── Gradient Functions
+    ├── linear-gradient()
+    └── radial-gradient()
+```
+
+### `calc()`
+
+The `calc()` function performs mathematical calculations.
+
+```css
+.container {
+    width: calc(100% - 40px);
+}
+```
+
+This allows CSS to calculate a value using different units.
+
+```text
+100%
+  -
+40px
+  ↓
+Calculated result
+```
+
+### `min()`
+
+The `min()` function selects the smallest value from the provided values.
+
+```css
+.box {
+    width: min(500px, 100%);
+}
+```
+
+```text
+500px
+   vs
+100%
+   ↓
+Use smaller value
+```
+
+### `max()`
+
+The `max()` function selects the largest value.
+
+```css
+.box {
+    width: max(300px, 50%);
+}
+```
+
+```text
+300px
+   vs
+50%
+   ↓
+Use larger value
+```
+
+### `clamp()`
+
+The `clamp()` function keeps a value between a minimum and maximum limit.
+
+```css
+.heading {
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+```
+
+```text
+Minimum
+  ↓
+1rem
+
+Preferred
+  ↓
+5vw
+
+Maximum
+  ↓
+3rem
+```
+
+This is commonly used for responsive typography.
+
+### `var()`
+
+The `var()` function uses the value of a CSS custom property.
+
+```css
+:root {
+    --primary-color: blue;
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+```text
+Custom property
+      ↓
+--primary-color
+      ↓
+var(--primary-color)
+      ↓
+Used value
+```
+
+### `url()`
+
+The `url()` function references an external resource.
+
+```css
+.hero {
+    background-image: url("image.jpg");
+}
+```
+
+It is commonly used for:
+
+- Background images
+- Fonts
+- Other external resources
+
+### Color Functions
+
+CSS functions can create and define colors.
+
+For example:
+
+```css
+.box {
+    background-color: rgb(255, 0, 0);
+}
+```
+
+Other common color functions include:
+
+```text
+rgb()
+rgba()
+hsl()
+hsla()
+```
+
+Example:
+
+```css
+.box {
+    background-color: hsl(200, 80%, 50%);
+}
+```
+
+### Transform Functions
+
+Transform functions change the position, size, or rotation of an element.
+
+Example:
+
+```css
+.box {
+    transform: translateX(50px);
+}
+```
+
+Other common transform functions include:
+
+```text
+translate()
+rotate()
+scale()
+skew()
+```
+
+Example:
+
+```css
+.box {
+    transform: rotate(45deg);
+}
+```
+
+### Gradient Functions
+
+Gradient functions create smooth transitions between colors.
+
+Example:
+
+```css
+.box {
+    background: linear-gradient(red, blue);
+}
+```
+
+Another example:
+
+```css
+.box {
+    background: radial-gradient(red, yellow, blue);
+}
+```
+
+Common gradient functions include:
+
+```text
+linear-gradient()
+radial-gradient()
+conic-gradient()
+```
+
+### Function Summary
+
+| Function | Purpose |
+|---|---|
+| `calc()` | Performs calculations |
+| `min()` | Selects the smallest value |
+| `max()` | Selects the largest value |
+| `clamp()` | Keeps a value within a range |
+| `var()` | Uses a custom property value |
+| `url()` | References an external resource |
+| `rgb()` | Creates colors using RGB values |
+| `hsl()` | Creates colors using HSL values |
+| `translate()` | Moves an element |
+| `rotate()` | Rotates an element |
+| `scale()` | Changes the size of an element |
+| `linear-gradient()` | Creates a linear gradient |
+| `radial-gradient()` | Creates a radial gradient |
+
+### Important Points
+
+```text
+Common CSS Functions
+│
+├── Perform calculations
+│
+├── Control responsive values
+│
+├── Reuse custom properties
+│
+├── Work with external resources
+│
+├── Create colors
+│
+├── Transform elements
+│
+└── Create gradients
+```
+
+> 💡 **Remember:** CSS provides many built-in functions for different purposes. Learning the most common functions helps you create flexible, responsive, and dynamic styles.
