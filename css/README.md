@@ -32,6 +32,7 @@ The notes are organized in a step-by-step manner and include explanations, examp
 - [CSS Opacity](22-css-opacity.md)
 - [CSS Object Fit](23-css-object-fit.md)
 - [CSS Cursor](24-css-cursor.md)
+- [CSS Functions](25-css-functions.md)
 
 More topics will be added as I continue learning CSS.
 
