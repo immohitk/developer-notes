@@ -3536,3 +3536,369 @@ Gradient Functions
 ```
 
 > 💡 **Remember:** CSS gradient functions create smooth color transitions directly in CSS. They are commonly used for backgrounds, decorative effects, and visual designs without requiring image files.
+
+---
+
+## Mathematical Functions
+
+CSS mathematical functions are used to calculate, compare, limit, and manipulate numerical values.
+
+They are useful for creating flexible and responsive CSS values.
+
+### Common Mathematical Functions
+
+```text
+CSS Mathematical Functions
+│
+├── calc()
+├── min()
+├── max()
+├── clamp()
+├── round()
+├── mod()
+├── rem()
+├── abs()
+├── sign()
+└── Trigonometric functions
+    ├── sin()
+    ├── cos()
+    └── tan()
+```
+
+### `calc()`
+
+The `calc()` function performs mathematical calculations.
+
+```css
+.box {
+    width: calc(100% - 40px);
+}
+```
+
+Example:
+
+```text
+100%
+  -
+40px
+  ↓
+Calculated value
+```
+
+It can be useful when combining different compatible units.
+
+### `min()`
+
+The `min()` function returns the smallest value.
+
+```css
+.box {
+    width: min(800px, 90%);
+}
+```
+
+```text
+800px
+   vs
+90%
+   ↓
+Use smaller value
+```
+
+### `max()`
+
+The `max()` function returns the largest value.
+
+```css
+.box {
+    width: max(300px, 50%);
+}
+```
+
+```text
+300px
+   vs
+50%
+   ↓
+Use larger value
+```
+
+### `clamp()`
+
+The `clamp()` function keeps a value between a minimum and maximum limit.
+
+```css
+.heading {
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+```
+
+```text
+Minimum
+   ↓
+Preferred
+   ↓
+Maximum
+```
+
+The final value cannot go below the minimum or above the maximum.
+
+### `abs()`
+
+The `abs()` function returns the absolute value of a number.
+
+Example concept:
+
+```text
+abs(-20px)
+   ↓
+20px
+```
+
+Example:
+
+```css
+.box {
+    width: abs(-200px);
+}
+```
+
+The negative value becomes positive.
+
+### `sign()`
+
+The `sign()` function returns information about whether a value is:
+
+```text
+Negative
+Zero
+Positive
+```
+
+Conceptually:
+
+```text
+Negative value
+→ -1
+
+Zero
+→ 0
+
+Positive value
+→ 1
+```
+
+Example:
+
+```css
+value: sign(-10);
+```
+
+### `round()`
+
+The `round()` function rounds a value according to a specified strategy.
+
+Example concept:
+
+```text
+15.7px
+  ↓
+Rounded value
+```
+
+It can be useful when calculated values need controlled rounding.
+
+### `mod()`
+
+The `mod()` function calculates the modulo of two values.
+
+Conceptually:
+
+```text
+10 mod 3
+   ↓
+1
+```
+
+It returns the remainder-like result based on modulo calculation rules.
+
+### `rem()`
+
+The `rem()` function calculates a remainder.
+
+Conceptually:
+
+```text
+10 rem 3
+   ↓
+1
+```
+
+This can be useful for advanced mathematical calculations.
+
+### Trigonometric Functions
+
+CSS also provides trigonometric functions.
+
+Common examples include:
+
+```text
+sin()
+cos()
+tan()
+```
+
+These functions work with angles and are useful for advanced positioning and visual effects.
+
+### `sin()`
+
+The `sin()` function calculates the sine of an angle.
+
+Example:
+
+```css
+.element {
+    width: calc(100px + sin(45deg) * 50px);
+}
+```
+
+### `cos()`
+
+The `cos()` function calculates the cosine of an angle.
+
+Example:
+
+```css
+.element {
+    width: calc(100px + cos(45deg) * 50px);
+}
+```
+
+### `tan()`
+
+The `tan()` function calculates the tangent of an angle.
+
+Example:
+
+```css
+.element {
+    transform: translateX(calc(tan(45deg) * 50px));
+}
+```
+
+### Combining Mathematical Functions
+
+Mathematical functions can be combined.
+
+Example:
+
+```css
+.box {
+    width: min(
+        800px,
+        max(
+            300px,
+            calc(100% - 40px)
+        )
+    );
+}
+```
+
+The calculation process is conceptually:
+
+```text
+calc()
+   ↓
+Calculate available width
+
+max()
+   ↓
+Apply minimum limit
+
+min()
+   ↓
+Apply maximum limit
+```
+
+### Practical Example: Responsive Width
+
+```css
+.container {
+    width: clamp(
+        300px,
+        calc(100% - 40px),
+        900px
+    );
+}
+```
+
+```text
+Minimum width
+      ↓
+300px
+
+Responsive width
+      ↓
+100% - 40px
+
+Maximum width
+      ↓
+900px
+```
+
+This creates a responsive value with controlled limits.
+
+### Why Mathematical Functions Are Useful
+
+Mathematical functions help create CSS values that can adapt automatically.
+
+```text
+Mathematical Functions
+│
+├── Calculate values
+│
+├── Compare values
+│
+├── Apply minimum limits
+│
+├── Apply maximum limits
+│
+├── Create responsive values
+│
+└── Build advanced visual effects
+```
+
+### Important Points
+
+```text
+CSS Mathematical Functions
+│
+├── calc()
+│   → Performs calculations
+│
+├── min()
+│   → Selects the smallest value
+│
+├── max()
+│   → Selects the largest value
+│
+├── clamp()
+│   → Limits a value between two bounds
+│
+├── abs()
+│   → Returns an absolute value
+│
+├── round()
+│   → Rounds values
+│
+├── mod()
+│   → Performs modulo calculations
+│
+├── rem()
+│   → Calculates remainders
+│
+└── Trigonometric functions
+    → Work with mathematical angles
+```
+
+> 💡 **Remember:** CSS mathematical functions allow values to be calculated and controlled dynamically. They are useful for responsive layouts, flexible sizing, and advanced CSS effects.
