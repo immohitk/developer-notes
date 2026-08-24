@@ -1017,3 +1017,278 @@ Common CSS Functions
 ```
 
 > 💡 **Remember:** CSS provides many built-in functions for different purposes. Learning the most common functions helps you create flexible, responsive, and dynamic styles.
+
+---
+
+## The `calc()` Function
+
+The CSS `calc()` function allows you to perform mathematical calculations directly in CSS.
+
+It is useful when a CSS value needs to be calculated from other values.
+
+### Basic Syntax
+
+```css
+property: calc(expression);
+```
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+The browser calculates the expression and uses the result as the property value.
+
+```text
+100%
+  -
+20px
+  ↓
+Calculated value
+```
+
+### Why Use `calc()`?
+
+The `calc()` function is useful when combining different values and units.
+
+For example:
+
+```css
+.container {
+    width: calc(100% - 40px);
+}
+```
+
+The element uses the full available width minus `40px`.
+
+Without `calc()`, combining these values directly would not be possible in the same way.
+
+### Addition
+
+The `+` operator can be used to add values.
+
+```css
+.box {
+    width: calc(50% + 20px);
+}
+```
+
+The final width is calculated by adding `20px` to `50%` of the available space.
+
+### Subtraction
+
+The `-` operator can be used to subtract values.
+
+```css
+.container {
+    width: calc(100% - 40px);
+}
+```
+
+This is one of the most common uses of `calc()`.
+
+### Multiplication
+
+The `*` operator can be used in supported calculations.
+
+For example:
+
+```css
+.element {
+    width: calc(100px * 2);
+}
+```
+
+The calculation produces:
+
+```text
+100px × 2
+   ↓
+200px
+```
+
+### Division
+
+The `/` operator can be used to divide values.
+
+For example:
+
+```css
+.element {
+    width: calc(200px / 2);
+}
+```
+
+The calculation produces:
+
+```text
+200px ÷ 2
+   ↓
+100px
+```
+
+### Combining Different Units
+
+One major advantage of `calc()` is the ability to combine compatible CSS units.
+
+For example:
+
+```css
+.container {
+    width: calc(100% - 50px);
+}
+```
+
+This combines:
+
+```text
+100%
+  ↓
+Relative to available space
+
+50px
+  ↓
+Fixed size
+```
+
+The browser calculates the final result based on the available space.
+
+### Example: Full Width With Spacing
+
+```html
+<div class="container">
+    Content
+</div>
+```
+
+```css
+.container {
+    width: calc(100% - 40px);
+    margin: 20px;
+}
+```
+
+The width accounts for the horizontal spacing.
+
+### Example: Two Columns
+
+```css
+.column {
+    width: calc(50% - 20px);
+}
+```
+
+This can be useful when two columns need a gap between them.
+
+```text
+50% of available space
+        -
+      20px
+        ↓
+Final column width
+```
+
+### Example: Responsive Layout
+
+```css
+.container {
+    width: calc(100vw - 40px);
+}
+```
+
+The width is based on the viewport width minus `40px`.
+
+This creates a responsive value.
+
+### Using Parentheses
+
+Complex calculations can use parentheses.
+
+```css
+.element {
+    width: calc((100% - 40px) / 2);
+}
+```
+
+The calculation follows the grouping defined by the parentheses.
+
+```text
+100% - 40px
+     ↓
+Calculate first
+     ↓
+Divide result by 2
+```
+
+### Using `calc()` With Other Functions
+
+The `calc()` function can be used with other CSS functions.
+
+For example:
+
+```css
+.element {
+    width: min(600px, calc(100% - 40px));
+}
+```
+
+The `calc()` function calculates the available width, and `min()` selects the smaller value.
+
+```text
+min()
+ │
+ ├── 600px
+ │
+ └── calc(100% - 40px)
+```
+
+### Common Uses
+
+The `calc()` function is commonly used for:
+
+- Responsive widths
+- Responsive heights
+- Layout spacing
+- Column calculations
+- Combining fixed and relative units
+- Dynamic positioning
+- Complex size calculations
+
+### Important Syntax Rule
+
+Spaces should be used around the `+` and `-` operators.
+
+Correct:
+
+```css
+width: calc(100% - 20px);
+```
+
+Incorrect:
+
+```css
+width: calc(100%-20px);
+```
+
+Using proper spacing helps ensure that the expression is parsed correctly.
+
+### Important Points
+
+```text
+calc()
+│
+├── Performs calculations
+│
+├── Uses mathematical operators
+│
+├── Can combine compatible units
+│
+├── Useful for responsive layouts
+│
+├── Can be nested with other functions
+│
+└── Produces a CSS value
+```
+
+> 💡 **Remember:** The `calc()` function allows CSS values to be calculated dynamically. It is especially useful when combining relative values such as percentages with fixed values such as pixels.
