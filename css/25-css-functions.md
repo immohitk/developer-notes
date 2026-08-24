@@ -5628,3 +5628,431 @@ CSS Function Mistakes
 ```
 
 > 💡 **Remember:** Most CSS function mistakes come from incorrect syntax, confusing similar functions, or creating unnecessarily complex expressions. Keep your CSS simple, readable, and test responsive behavior carefully.
+
+---
+
+## Interview Questions
+
+The following questions can help you revise CSS functions and prepare for technical interviews.
+
+### 1. What are CSS functions?
+
+**Answer:**
+
+CSS functions are special expressions that perform operations or generate CSS values.
+
+They generally follow this syntax:
+
+```css
+function-name(arguments)
+```
+
+Example:
+
+```css
+width: calc(100% - 40px);
+```
+
+---
+
+### 2. What is the `calc()` function used for?
+
+**Answer:**
+
+The `calc()` function is used to perform mathematical calculations in CSS.
+
+Example:
+
+```css
+width: calc(100% - 40px);
+```
+
+It is useful when combining values dynamically.
+
+---
+
+### 3. What is the difference between `min()` and `max()`?
+
+**Answer:**
+
+```text
+min()
+→ Returns the smallest value
+
+max()
+→ Returns the largest value
+```
+
+Example:
+
+```css
+width: min(900px, 100%);
+```
+
+The smaller calculated value is used.
+
+---
+
+### 4. What is the purpose of `clamp()`?
+
+**Answer:**
+
+The `clamp()` function keeps a value between a minimum and maximum limit.
+
+Syntax:
+
+```css
+clamp(minimum, preferred, maximum)
+```
+
+Example:
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+It is commonly used for responsive typography and spacing.
+
+---
+
+### 5. What are CSS custom properties?
+
+**Answer:**
+
+CSS custom properties are reusable values defined with names starting with two hyphens.
+
+Example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+They can be accessed using:
+
+```css
+var(--primary-color);
+```
+
+---
+
+### 6. What is the purpose of the `var()` function?
+
+**Answer:**
+
+The `var()` function accesses the value of a CSS custom property.
+
+Example:
+
+```css
+color: var(--primary-color);
+```
+
+A fallback value can also be provided:
+
+```css
+color: var(--primary-color, blue);
+```
+
+---
+
+### 7. What happens if a custom property is not defined?
+
+**Answer:**
+
+If no fallback is provided, the declaration using the missing custom property may become invalid.
+
+A fallback can be used:
+
+```css
+color: var(--text-color, black);
+```
+
+---
+
+### 8. What is the `url()` function used for?
+
+**Answer:**
+
+The `url()` function references an external resource.
+
+Example:
+
+```css
+background-image: url("image.jpg");
+```
+
+It can be used for:
+
+- Images
+- Fonts
+- Cursors
+- List marker images
+
+---
+
+### 9. What are CSS color functions?
+
+**Answer:**
+
+CSS color functions define colors using different color models.
+
+Common examples include:
+
+```css
+rgb()
+rgba()
+hsl()
+hsla()
+```
+
+They can also control transparency using alpha values.
+
+---
+
+### 10. What is the difference between RGB and HSL?
+
+**Answer:**
+
+RGB defines colors using:
+
+```text
+Red
+Green
+Blue
+```
+
+HSL defines colors using:
+
+```text
+Hue
+Saturation
+Lightness
+```
+
+Both can also support alpha transparency.
+
+---
+
+### 11. What are transform functions?
+
+**Answer:**
+
+Transform functions change the visual appearance of an element.
+
+Common examples include:
+
+```css
+translate()
+rotate()
+scale()
+skew()
+```
+
+They are commonly used with transitions and animations.
+
+---
+
+### 12. Does `transform` change the normal document layout?
+
+**Answer:**
+
+Transform functions change an element visually without changing its normal position in the document layout.
+
+---
+
+### 13. Why does the order of transform functions matter?
+
+**Answer:**
+
+Multiple transform functions are applied in sequence.
+
+Example:
+
+```css
+transform:
+    translateX(50px)
+    rotate(45deg);
+```
+
+This can produce a different result from:
+
+```css
+transform:
+    rotate(45deg)
+    translateX(50px);
+```
+
+The order can affect the final visual result.
+
+---
+
+### 14. What are CSS gradient functions?
+
+**Answer:**
+
+CSS gradient functions create smooth transitions between colors.
+
+Common examples include:
+
+```css
+linear-gradient()
+radial-gradient()
+conic-gradient()
+```
+
+Gradients are commonly used as backgrounds.
+
+---
+
+### 15. What is the difference between a linear and radial gradient?
+
+**Answer:**
+
+```text
+linear-gradient()
+→ Colors transition along a straight line
+
+radial-gradient()
+→ Colors expand outward from a center
+```
+
+---
+
+### 16. What is a color stop in a gradient?
+
+**Answer:**
+
+A color stop controls where a color appears in a gradient.
+
+Example:
+
+```css
+background: linear-gradient(
+    to right,
+    red 0%,
+    yellow 50%,
+    blue 100%
+);
+```
+
+---
+
+### 17. What are repeating gradients?
+
+**Answer:**
+
+Repeating gradients repeat a gradient pattern.
+
+Examples:
+
+```css
+repeating-linear-gradient()
+repeating-radial-gradient()
+repeating-conic-gradient()
+```
+
+---
+
+### 18. Can CSS functions be combined?
+
+**Answer:**
+
+Yes. Multiple CSS functions can be combined.
+
+Example:
+
+```css
+width: min(
+    1000px,
+    calc(100% - 40px)
+);
+```
+
+Another example:
+
+```css
+font-size: clamp(
+    1rem,
+    calc(1rem + 2vw),
+    3rem
+);
+```
+
+---
+
+### 19. What are mathematical functions in CSS?
+
+**Answer:**
+
+CSS mathematical functions perform calculations or manipulate numerical values.
+
+Examples include:
+
+```css
+calc()
+min()
+max()
+clamp()
+abs()
+round()
+mod()
+rem()
+```
+
+---
+
+### 20. What is one common use of CSS functions in responsive design?
+
+**Answer:**
+
+CSS functions can create flexible values that adapt to available space.
+
+Example:
+
+```css
+.container {
+    width: min(
+        1000px,
+        calc(100% - 40px)
+    );
+}
+```
+
+This allows the container to adapt to smaller screens while limiting its maximum size.
+
+### Interview Revision Summary
+
+```text
+CSS Functions
+│
+├── calc()
+│   → Calculations
+│
+├── min()
+│   → Smallest value
+│
+├── max()
+│   → Largest value
+│
+├── clamp()
+│   → Minimum and maximum limits
+│
+├── var()
+│   → Custom properties
+│
+├── url()
+│   → External resources
+│
+├── Color functions
+│   → Colors
+│
+├── Transform functions
+│   → Visual transformations
+│
+└── Gradient functions
+    → Color transitions
+```
+
+> 💡 **Interview Tip:** Be prepared to explain not only what CSS functions do, but also where they are useful in real projects, especially `calc()`, `min()`, `max()`, `clamp()`, and `var()`.
