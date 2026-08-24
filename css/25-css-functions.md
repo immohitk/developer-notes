@@ -442,3 +442,289 @@ CSS Functions
 ```
 
 > 💡 **Remember:** CSS functions are special expressions that generate or calculate CSS values. They help make styles more flexible, reusable, and responsive.
+
+---
+
+## CSS Function Syntax
+
+A CSS function is written using a function name followed by parentheses.
+
+The general syntax is:
+
+```css
+function-name(arguments)
+```
+
+The values inside the parentheses are called arguments.
+
+### Basic Structure
+
+```text
+function-name
+     ↓
+   ( arguments )
+```
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+In this example:
+
+```text
+calc
+ ↓
+Function name
+
+(100% - 20px)
+      ↓
+Arguments
+```
+
+The function processes the values inside the parentheses and produces a CSS value.
+
+### Functions Are Used as Property Values
+
+CSS functions are commonly used as values for CSS properties.
+
+```css
+.element {
+    property: function-name(arguments);
+}
+```
+
+For example:
+
+```css
+.container {
+    width: calc(100% - 40px);
+}
+```
+
+The `calc()` function generates the final value for the `width` property.
+
+```text
+width
+  ↓
+calc(100% - 40px)
+  ↓
+Calculated value
+```
+
+### Functions With Multiple Arguments
+
+Some CSS functions accept multiple arguments.
+
+For example:
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+The `clamp()` function receives three values.
+
+```text
+clamp(
+    minimum,
+    preferred,
+    maximum
+)
+```
+
+In this example:
+
+```text
+1rem
+→ Minimum value
+
+5vw
+→ Preferred value
+
+3rem
+→ Maximum value
+```
+
+### Arguments Are Often Separated by Commas
+
+Many CSS functions use commas to separate arguments.
+
+For example:
+
+```css
+color: rgb(255, 0, 0);
+```
+
+The function receives three values.
+
+```text
+rgb(
+    255,
+    0,
+    0
+)
+```
+
+However, CSS function syntax depends on the specific function.
+
+Some functions use mathematical operators instead.
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+### Functions Can Be Nested
+
+A CSS function can sometimes be used inside another function.
+
+For example:
+
+```css
+width: min(500px, calc(100% - 40px));
+```
+
+The calculation is processed as part of the `min()` function.
+
+```text
+min()
+ │
+ ├── 500px
+ │
+ └── calc()
+      │
+      └── 100% - 40px
+```
+
+The nested function produces a value that can be used by the outer function.
+
+### Functions Can Use Different Units
+
+CSS functions can work with different types of values.
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+This uses:
+
+```text
+100%
+→ Percentage value
+
+20px
+→ Pixel value
+```
+
+Another example:
+
+```css
+font-size: clamp(1rem, 5vw, 3rem);
+```
+
+This uses different units for flexible responsive behavior.
+
+```text
+1rem
+→ Minimum
+
+5vw
+→ Responsive value
+
+3rem
+→ Maximum
+```
+
+### Function Syntax Must Be Valid
+
+The function name, parentheses, and arguments must be written correctly.
+
+Correct:
+
+```css
+width: calc(100% - 20px);
+```
+
+Incorrect:
+
+```css
+width: calc 100% - 20px;
+```
+
+The parentheses are required.
+
+Another incorrect example:
+
+```css
+width: calc(100% - 20px;
+```
+
+The closing parenthesis is missing.
+
+### Whitespace Can Matter
+
+Some CSS functions require correct spacing.
+
+For example:
+
+```css
+width: calc(100% - 20px);
+```
+
+The mathematical operator is separated by spaces.
+
+Incorrect:
+
+```css
+width: calc(100%-20px);
+```
+
+Correct spacing makes the expression valid and easier to read.
+
+### General Pattern
+
+```text
+CSS Property
+     ↓
+property: function-name(arguments);
+```
+
+Examples:
+
+```css
+width: calc(100% - 20px);
+
+width: min(500px, 100%);
+
+width: max(300px, 50%);
+
+font-size: clamp(1rem, 5vw, 3rem);
+
+color: var(--primary-color);
+```
+
+### Important Points
+
+```text
+CSS Function Syntax
+│
+├── Function name
+│
+├── Parentheses
+│
+├── Arguments
+│
+├── Can accept multiple values
+│
+├── Can use different units
+│
+├── Can sometimes be nested
+│
+└── Must follow valid syntax
+```
+
+> 💡 **Remember:** CSS functions are written using a function name followed by parentheses. The values inside the parentheses are arguments that the function uses to generate or calculate a CSS value.
