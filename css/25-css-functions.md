@@ -2369,3 +2369,235 @@ var()
 ```
 
 > 💡 **Remember:** The `var()` function allows you to reuse values stored in CSS custom properties. This makes styles easier to maintain, update, and organize.
+
+---
+
+## URL Functions
+
+The CSS `url()` function is used to reference an external resource.
+
+It provides the location of a resource that CSS needs to load and use.
+
+### Basic Syntax
+
+```css
+url("path-to-resource")
+```
+
+For example:
+
+```css
+background-image: url("image.jpg");
+```
+
+```text
+url()
+  ↓
+Resource location
+  ↓
+Browser loads resource
+  ↓
+Resource is used in CSS
+```
+
+### Using `url()` With Background Images
+
+One of the most common uses of `url()` is loading background images.
+
+```css
+.hero {
+    background-image: url("background.jpg");
+}
+```
+
+The browser loads the image and uses it as the background.
+
+### Relative URLs
+
+A relative URL references a resource based on the location of the CSS file.
+
+Example:
+
+```css
+background-image: url("images/photo.jpg");
+```
+
+The browser looks for the resource relative to the CSS file's location.
+
+### Absolute URLs
+
+An absolute URL provides the complete resource location.
+
+Example:
+
+```css
+background-image: url("https://example.com/image.jpg");
+```
+
+This references a resource using its full address.
+
+### Quoted and Unquoted URLs
+
+URLs can be written with quotes.
+
+```css
+background-image: url("image.jpg");
+```
+
+They can also be written without quotes in many cases.
+
+```css
+background-image: url(image.jpg);
+```
+
+Using quotes is often clearer, especially when the path contains special characters.
+
+### Using `url()` With Fonts
+
+The `url()` function can also be used to load font files.
+
+Example:
+
+```css
+@font-face {
+    font-family: "CustomFont";
+    src: url("fonts/custom-font.woff2");
+}
+```
+
+The browser loads the font file from the specified location.
+
+### Using `url()` With Other CSS Features
+
+The `url()` function can be used with different CSS properties and rules.
+
+Examples include:
+
+- `background-image`
+- `@font-face`
+- `cursor`
+- `list-style-image`
+
+### Example: Custom Cursor
+
+```css
+.element {
+    cursor: url("cursor.png"), pointer;
+}
+```
+
+The browser attempts to use the custom cursor image.
+
+If it cannot be used, the fallback cursor is:
+
+```css
+pointer
+```
+
+### Example: List Image
+
+```css
+ul {
+    list-style-image: url("bullet.png");
+}
+```
+
+The image can be used as the list marker.
+
+### URL Paths
+
+A URL can point to resources in different locations.
+
+Example:
+
+```text
+image.jpg
+```
+
+Resource in the same directory.
+
+```text
+images/image.jpg
+```
+
+Resource inside an `images` directory.
+
+```text
+../image.jpg
+```
+
+Resource in the parent directory.
+
+### Example Project Structure
+
+```text
+project/
+│
+├── index.html
+│
+├── css/
+│   └── style.css
+│
+└── images/
+    └── background.jpg
+```
+
+Inside `style.css`:
+
+```css
+.hero {
+    background-image: url("../images/background.jpg");
+}
+```
+
+The path moves:
+
+```text
+css/
+ ↓
+..
+ ↓
+project/
+ ↓
+images/
+ ↓
+background.jpg
+```
+
+### Common Uses
+
+The `url()` function is commonly used for:
+
+```text
+External Resources
+│
+├── Background images
+│
+├── Font files
+│
+├── Custom cursor images
+│
+└── List marker images
+```
+
+### Important Points
+
+```text
+url()
+│
+├── References external resources
+│
+├── Can use relative paths
+│
+├── Can use absolute URLs
+│
+├── Commonly loads images
+│
+├── Can load font files
+│
+├── Can be used for custom cursors
+│
+└── Uses the resource location as its argument
+```
+
+> 💡 **Remember:** The `url()` function tells CSS where to find an external resource. It is commonly used for images, fonts, cursors, and other files used by CSS.
