@@ -4952,3 +4952,315 @@ CSS Functions
 ```
 
 > 💡 **Remember:** The most important CSS functions for modern responsive development are `calc()`, `min()`, `max()`, `clamp()`, and `var()`.
+
+---
+
+## Best Practices
+
+Using CSS functions correctly can help make styles more readable, flexible, responsive, and easier to maintain.
+
+The following practices can help when working with CSS functions.
+
+### Use Functions When They Improve Flexibility
+
+CSS functions are useful when a value needs to adapt or be calculated.
+
+For example:
+
+```css
+.container {
+    width: min(1000px, calc(100% - 40px));
+}
+```
+
+This is more flexible than using only a fixed width.
+
+```text
+Fixed value
+    ↓
+Less flexible
+
+CSS functions
+    ↓
+Dynamic values
+    ↓
+More flexible
+```
+
+### Use `var()` for Reusable Values
+
+Use CSS custom properties for values that are repeated throughout a project.
+
+```css
+:root {
+    --primary-color: #2563eb;
+    --spacing: 1rem;
+    --border-radius: 8px;
+}
+```
+
+Use them with `var()`:
+
+```css
+.button {
+    background-color: var(--primary-color);
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+}
+```
+
+This makes values easier to update.
+
+```text
+One custom property
+        ↓
+Used in multiple places
+        ↓
+Easy to maintain
+```
+
+### Use `clamp()` for Responsive Ranges
+
+Use `clamp()` when a value should remain within a minimum and maximum limit.
+
+```css
+.heading {
+    font-size: clamp(1.5rem, 5vw, 4rem);
+}
+```
+
+This is especially useful for:
+
+- Font sizes
+- Spacing
+- Element widths
+- Responsive layouts
+
+```text
+Minimum
+   ↓
+Responsive value
+   ↓
+Maximum
+```
+
+### Combine `min()` With `calc()` for Containers
+
+A common responsive container pattern is:
+
+```css
+.container {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+}
+```
+
+This allows the container to:
+
+```text
+Small screens
+→ Adapt to available space
+
+Large screens
+→ Stop growing at a maximum width
+```
+
+### Keep Calculations Readable
+
+Simple calculations can be written on one line.
+
+```css
+width: calc(100% - 40px);
+```
+
+More complex calculations should be formatted clearly.
+
+```css
+width: min(
+    1000px,
+    calc(100% - 40px)
+);
+```
+
+Readable formatting makes complex CSS easier to understand and maintain.
+
+### Use Meaningful Custom Property Names
+
+Choose names that clearly describe the purpose of the value.
+
+Less clear:
+
+```css
+:root {
+    --blue: #2563eb;
+}
+```
+
+More meaningful:
+
+```css
+:root {
+    --primary-color: #2563eb;
+}
+```
+
+Purpose-based names can make future changes easier.
+
+### Provide Fallback Values When Needed
+
+A fallback can be used with `var()`.
+
+```css
+color: var(--text-color, black);
+```
+
+If the custom property is unavailable:
+
+```text
+--text-color
+     ↓
+Not available
+     ↓
+Use fallback
+     ↓
+black
+```
+
+### Avoid Unnecessarily Complex Calculations
+
+Do not make CSS calculations more complicated than necessary.
+
+Less readable:
+
+```css
+width: calc((100% - 20px + 10px) - 10px);
+```
+
+Simpler:
+
+```css
+width: calc(100% - 20px);
+```
+
+Simpler calculations are easier to understand and debug.
+
+### Use Compatible Values
+
+When performing calculations or comparisons, ensure the values make sense for the property.
+
+For example:
+
+```css
+width: min(500px, 100%);
+```
+
+Both values can be resolved as lengths for the `width` property.
+
+Understanding CSS value types helps prevent invalid declarations.
+
+### Keep Transform Functions Organized
+
+When combining multiple transform functions, format them clearly.
+
+```css
+.card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.05);
+}
+```
+
+Remember that the order of transform functions can affect the final result.
+
+### Use Gradients for Simple Visual Effects
+
+CSS gradients can create visual effects without requiring image files.
+
+```css
+.hero {
+    background: linear-gradient(
+        to right,
+        #2563eb,
+        #7c3aed
+    );
+}
+```
+
+Use gradients when they provide a simple and maintainable solution.
+
+### Test Responsive Values
+
+Functions such as:
+
+```text
+min()
+max()
+clamp()
+calc()
+```
+
+can produce different results depending on screen size and available space.
+
+Test layouts at different viewport sizes.
+
+```text
+Small screen
+     ↓
+Test
+
+Medium screen
+     ↓
+Test
+
+Large screen
+     ↓
+Test
+```
+
+### Check Browser Support for Newer Functions
+
+Some newer CSS functions may not be supported in older browsers.
+
+Before using advanced functions:
+
+```text
+Check documentation
+        ↓
+Check browser support
+        ↓
+Test the feature
+        ↓
+Provide alternatives if needed
+```
+
+### Best Practice Summary
+
+```text
+CSS Functions Best Practices
+│
+├── Use functions when flexibility is needed
+│
+├── Use var() for reusable values
+│
+├── Use clamp() for responsive ranges
+│
+├── Combine min() and calc() for responsive containers
+│
+├── Keep calculations readable
+│
+├── Use meaningful custom property names
+│
+├── Provide fallbacks when needed
+│
+├── Avoid unnecessary complexity
+│
+├── Use compatible values
+│
+├── Keep transforms organized
+│
+├── Test responsive behavior
+│
+└── Check browser support
+```
+
+> 💡 **Remember:** The best use of CSS functions is not to make CSS more complicated. Use them when they make your styles more flexible, responsive, reusable, and easier to maintain.
