@@ -1512,3 +1512,262 @@ min()
 ```
 
 > 💡 **Remember:** The `min()` function compares the provided values and uses the smallest result. It is especially useful for creating responsive elements that should not grow beyond a certain size.
+
+---
+
+## The `max()` Function
+
+The CSS `max()` function returns the largest value from a list of values.
+
+It is useful when an element should maintain a minimum practical size while still allowing the value to adapt.
+
+### Basic Syntax
+
+```css
+property: max(value1, value2);
+```
+
+The browser compares the provided values and uses the largest valid value.
+
+For example:
+
+```css
+width: max(300px, 50%);
+```
+
+```text
+300px
+   vs
+50%
+   ↓
+Use the larger value
+```
+
+### Why Use `max()`?
+
+The `max()` function is useful when a value should not become too small.
+
+For example:
+
+```css
+.container {
+    width: max(300px, 50%);
+}
+```
+
+The browser calculates both values and uses the larger one.
+
+```text
+If 50% < 300px
+→ Use 300px
+
+If 50% > 300px
+→ Use 50%
+```
+
+### Responsive Example
+
+```css
+.box {
+    width: max(300px, 60%);
+}
+```
+
+On a smaller available space:
+
+```text
+300px may be larger
+```
+
+On a larger available space:
+
+```text
+60% may be larger
+```
+
+The larger calculated value is used.
+
+### Using More Than Two Values
+
+The `max()` function can compare multiple values.
+
+```css
+.element {
+    width: max(300px, 50%, 20rem);
+}
+```
+
+The browser compares all the calculated values and selects the largest one.
+
+```text
+Value 1
+   │
+Value 2
+   │
+Value 3
+   ↓
+Compare values
+   ↓
+Use largest value
+```
+
+### Example With Font Size
+
+The `max()` function can help prevent responsive text from becoming too small.
+
+```css
+.heading {
+    font-size: max(1.5rem, 4vw);
+}
+```
+
+The browser uses the larger value.
+
+```text
+1.5rem
+   vs
+4vw
+   ↓
+Use larger value
+```
+
+This allows the text to respond to the viewport while maintaining a minimum size.
+
+### Example With Height
+
+```css
+.section {
+    height: max(400px, 70vh);
+}
+```
+
+The browser uses whichever calculated value is larger.
+
+### Using `max()` With `calc()`
+
+The `max()` function can be combined with `calc()`.
+
+```css
+.container {
+    width: max(300px, calc(100% - 40px));
+}
+```
+
+The browser:
+
+```text
+1. Calculates:
+   100% - 40px
+
+        ↓
+
+2. Compares the result
+   with 300px
+
+        ↓
+
+3. Uses the larger value
+```
+
+### Practical Example
+
+```html
+<div class="container">
+    Content
+</div>
+```
+
+```css
+.container {
+    width: max(300px, 80%);
+}
+```
+
+This ensures that the container attempts to maintain at least the larger of the calculated values.
+
+### `max()` and Minimum Values
+
+The `max()` function is useful when creating responsive values with a minimum limit.
+
+For example:
+
+```css
+font-size: max(1rem, 3vw);
+```
+
+```text
+Responsive value
+      ↓
+3vw
+
+Minimum practical value
+      ↓
+1rem
+
+Browser
+      ↓
+Uses larger value
+```
+
+### Common Uses
+
+The `max()` function is commonly used for:
+
+- Preventing values from becoming too small
+- Responsive font sizes
+- Minimum dimensions
+- Flexible layouts
+- Responsive heights
+- Combining fixed and relative values
+
+### Important Points
+
+```text
+max()
+│
+├── Compares multiple values
+│
+├── Returns the largest value
+│
+├── Helps maintain minimum values
+│
+├── Supports responsive values
+│
+├── Can work with compatible units
+│
+├── Can be combined with calc()
+│
+└── Produces a CSS value
+```
+
+### `min()` vs `max()`
+
+```text
+min()
+→ Returns the smallest value
+
+max()
+→ Returns the largest value
+```
+
+Example:
+
+```css
+width: min(500px, 100%);
+```
+
+```text
+Use the smaller value
+```
+
+Example:
+
+```css
+width: max(300px, 50%);
+```
+
+```text
+Use the larger value
+```
+
+> 💡 **Remember:** The `max()` function compares the provided values and uses the largest result. It is useful when creating responsive values that should not become smaller than a practical limit.
