@@ -2601,3 +2601,295 @@ url()
 ```
 
 > 💡 **Remember:** The `url()` function tells CSS where to find an external resource. It is commonly used for images, fonts, cursors, and other files used by CSS.
+
+---
+
+## Color Functions
+
+CSS color functions are used to create and control colors using different color models.
+
+They allow you to define colors using values such as:
+
+- Red, green, and blue
+- Hue, saturation, and lightness
+- Alpha transparency
+
+### Common Color Functions
+
+Some common CSS color functions include:
+
+```text
+rgb()
+rgba()
+hsl()
+hsla()
+```
+
+Modern CSS also supports additional color functions and color spaces.
+
+### The `rgb()` Function
+
+The `rgb()` function creates a color using red, green, and blue values.
+
+Basic syntax:
+
+```css
+rgb(red, green, blue)
+```
+
+Each color component controls the amount of:
+
+```text
+Red
+Green
+Blue
+```
+
+Example:
+
+```css
+.box {
+    background-color: rgb(255, 0, 0);
+}
+```
+
+This produces:
+
+```text
+Red:   255
+Green:   0
+Blue:    0
+
+Result
+↓
+Red
+```
+
+### RGB Value Range
+
+Traditional RGB values use numbers from:
+
+```text
+0
+to
+255
+```
+
+```text
+0
+→ No amount of the color
+
+255
+→ Maximum amount of the color
+```
+
+For example:
+
+```css
+color: rgb(0, 0, 0);
+```
+
+Produces black.
+
+```css
+color: rgb(255, 255, 255);
+```
+
+Produces white.
+
+### The `rgba()` Function
+
+The `rgba()` function includes an alpha value for transparency.
+
+Example:
+
+```css
+color: rgba(255, 0, 0, 0.5);
+```
+
+The final value controls transparency.
+
+```text
+1
+→ Fully visible
+
+0.5
+→ Partially transparent
+
+0
+→ Fully transparent
+```
+
+Modern CSS also allows alpha values to be written using the `rgb()` function.
+
+Example:
+
+```css
+color: rgb(255 0 0 / 50%);
+```
+
+### The `hsl()` Function
+
+The `hsl()` function creates a color using:
+
+```text
+Hue
+Saturation
+Lightness
+```
+
+Basic syntax:
+
+```css
+hsl(hue, saturation, lightness)
+```
+
+Example:
+
+```css
+.box {
+    background-color: hsl(200, 80%, 50%);
+}
+```
+
+### Hue
+
+Hue represents the basic color.
+
+It is usually measured in degrees.
+
+```text
+0deg
+→ Red
+
+120deg
+→ Green
+
+240deg
+→ Blue
+```
+
+The color circle returns to red at:
+
+```text
+360deg
+```
+
+### Saturation
+
+Saturation controls the intensity of the color.
+
+```text
+0%
+→ No color saturation
+
+100%
+→ Full color saturation
+```
+
+### Lightness
+
+Lightness controls how light or dark the color appears.
+
+```text
+0%
+→ Black
+
+50%
+→ Normal color range
+
+100%
+→ White
+```
+
+### The `hsla()` Function
+
+The `hsla()` function includes an alpha value.
+
+Example:
+
+```css
+color: hsla(200, 80%, 50%, 0.5);
+```
+
+The alpha value controls transparency.
+
+Modern CSS also allows alpha values with `hsl()`.
+
+```css
+color: hsl(200 80% 50% / 50%);
+```
+
+### Color Function Comparison
+
+| Function | Color Model | Transparency |
+|---|---|---|
+| `rgb()` | Red, Green, Blue | Supported with modern alpha syntax |
+| `rgba()` | Red, Green, Blue | Yes |
+| `hsl()` | Hue, Saturation, Lightness | Supported with modern alpha syntax |
+| `hsla()` | Hue, Saturation, Lightness | Yes |
+
+### Practical Example
+
+```css
+:root {
+    --primary-color: rgb(37, 99, 235);
+    --secondary-color: hsl(220, 15%, 45%);
+    --transparent-color: rgba(0, 0, 0, 0.5);
+}
+```
+
+These values can be reused using CSS custom properties.
+
+```css
+.button {
+    background-color: var(--primary-color);
+}
+
+.overlay {
+    background-color: var(--transparent-color);
+}
+```
+
+### Common Uses
+
+Color functions are commonly used for:
+
+```text
+Color Functions
+│
+├── Text colors
+│
+├── Background colors
+│
+├── Borders
+│
+├── Shadows
+│
+├── Transparent overlays
+│
+└── Interactive states
+```
+
+### Important Points
+
+```text
+Color Functions
+│
+├── rgb()
+│   → Red, Green, Blue
+│
+├── rgba()
+│   → RGB with alpha
+│
+├── hsl()
+│   → Hue, Saturation, Lightness
+│
+├── hsla()
+│   → HSL with alpha
+│
+└── Alpha values
+    → Control transparency
+```
+
+> 💡 **Remember:** CSS color functions provide flexible ways to create colors. `rgb()` is based on red, green, and blue values, while `hsl()` is based on hue, saturation, and lightness.
