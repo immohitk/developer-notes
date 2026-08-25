@@ -800,3 +800,355 @@ Winning declaration
 ```
 
 > 💡 **Remember:** CSS specificity is only one part of the CSS cascade. To understand why a CSS rule wins or loses, you should consider origin, importance, specificity, and source order.
+
+---
+
+## Specificity Calculation
+
+CSS specificity is calculated by comparing the types of selectors used in a CSS rule.
+
+A common way to represent specificity is:
+
+```text
+A-B-C
+```
+
+Where:
+
+```text
+A
+→ Number of ID selectors
+
+B
+→ Number of class selectors, attribute selectors,
+  and pseudo-classes
+
+C
+→ Number of type selectors and pseudo-elements
+```
+
+### Specificity Components
+
+Consider the selector:
+
+```css
+#header .menu li
+```
+
+Its specificity can be calculated as:
+
+```text
+#header
+→ 1 ID selector
+
+.menu
+→ 1 class selector
+
+li
+→ 1 type selector
+```
+
+Therefore:
+
+```text
+1-1-1
+```
+
+### ID Selectors
+
+Each ID selector increases the first value.
+
+Example:
+
+```css
+#title {
+    color: red;
+}
+```
+
+Specificity:
+
+```text
+1-0-0
+```
+
+Another example:
+
+```css
+#header #logo {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+2-0-0
+```
+
+### Class Selectors
+
+Each class selector increases the second value.
+
+Example:
+
+```css
+.button {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+0-1-0
+```
+
+Multiple classes:
+
+```css
+.button.primary {
+    color: green;
+}
+```
+
+Specificity:
+
+```text
+0-2-0
+```
+
+### Attribute Selectors and Pseudo-Classes
+
+Attribute selectors and pseudo-classes are also counted in the second value.
+
+Example:
+
+```css
+input[type="text"] {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+0-1-1
+```
+
+The attribute selector contributes:
+
+```text
+[type="text"]
+→ 0-1-0
+```
+
+The type selector contributes:
+
+```text
+input
+→ 0-0-1
+```
+
+Combined:
+
+```text
+0-1-1
+```
+
+Example using a pseudo-class:
+
+```css
+.button:hover {
+    color: red;
+}
+```
+
+Specificity:
+
+```text
+0-2-0
+```
+
+```text
+.button
+→ 0-1-0
+
+:hover
+→ 0-1-0
+```
+
+### Type Selectors
+
+Each type selector increases the third value.
+
+Example:
+
+```css
+p {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+0-0-1
+```
+
+Another example:
+
+```css
+main article p {
+    color: green;
+}
+```
+
+Specificity:
+
+```text
+0-0-3
+```
+
+### A Complete Example
+
+Consider:
+
+```css
+#content .article p {
+    color: blue;
+}
+```
+
+Calculate each selector:
+
+```text
+#content
+→ 1 ID selector
+
+.article
+→ 1 class selector
+
+p
+→ 1 type selector
+```
+
+Specificity:
+
+```text
+1-1-1
+```
+
+### Comparing Specificity
+
+Specificity values are compared from left to right.
+
+Consider:
+
+```text
+1-0-0
+
+0-10-10
+```
+
+The first selector has higher specificity because the first value is larger.
+
+```text
+1-0-0
+↑
+Higher ID count
+```
+
+An ID selector is compared before class and type selector counts.
+
+Another example:
+
+```text
+0-2-1
+
+0-1-5
+```
+
+Compare from left to right:
+
+```text
+ID count
+0 = 0
+
+Class count
+2 > 1
+```
+
+Therefore:
+
+```text
+0-2-1
+```
+
+has higher specificity.
+
+### Specificity Calculation Process
+
+A simple way to calculate specificity is:
+
+```text
+Look at selector
+        ↓
+Count ID selectors
+        ↓
+Count classes,
+attributes,
+and pseudo-classes
+        ↓
+Count type selectors
+and pseudo-elements
+        ↓
+Write specificity
+as A-B-C
+```
+
+### Important Note
+
+Specificity is not usually calculated by simply adding all values together.
+
+For example:
+
+```text
+0-10-0
+```
+
+does not automatically have higher specificity than:
+
+```text
+1-0-0
+```
+
+The values are compared by category from left to right.
+
+```text
+ID
+↓
+Class
+↓
+Type
+```
+
+### Main Concept
+
+```text
+Specificity
+│
+├── A
+│   → ID selectors
+│
+├── B
+│   → Classes
+│   → Attributes
+│   → Pseudo-classes
+│
+└── C
+    → Type selectors
+    → Pseudo-elements
+```
+
+> 💡 **Remember:** CSS specificity is compared from left to right. ID selectors are compared first, followed by class-related selectors, and finally type selectors.
