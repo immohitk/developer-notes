@@ -6564,3 +6564,227 @@ Practice CSS Specificity
 ```
 
 > 💡 **Remember:** The best way to learn CSS specificity is to practice comparing selectors and predicting which declaration will win before testing the result.
+
+---
+
+## Key Takeaways
+
+CSS specificity is an important part of the CSS cascade.
+
+It helps determine which declaration wins when multiple CSS rules target the same element and property.
+
+### Specificity Basics
+
+Specificity can be represented as:
+
+```text
+A-B-C
+```
+
+Where:
+
+```text
+A
+→ ID selectors
+
+B
+→ Class selectors
+→ Attribute selectors
+→ Pseudo-classes
+
+C
+→ Type selectors
+→ Pseudo-elements
+```
+
+Selectors with a higher value in the first different category have higher specificity.
+
+### Specificity Order
+
+A simplified order is:
+
+```text
+Inline styles
+        ↓
+ID selectors
+        ↓
+Class selectors
+        ↓
+Type selectors
+        ↓
+Universal selector
+```
+
+Examples:
+
+```text
+#title
+→ 1-0-0
+
+.title
+→ 0-1-0
+
+p
+→ 0-0-1
+
+*
+→ 0-0-0
+```
+
+### Specificity Is Not Simple Addition
+
+Specificity values are compared from left to right.
+
+Example:
+
+```text
+1-0-0
+
+0-100-0
+```
+
+The first selector has higher specificity because the ID column is compared first.
+
+```text
+1 > 0
+```
+
+### Source Order Matters When Specificity Is Equal
+
+Consider:
+
+```css
+.text {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Both selectors have the same specificity.
+
+Therefore, the later declaration can win.
+
+```text
+Final color
+→ green
+```
+
+### `!important` Is Part of the Cascade
+
+`!important` does not increase a selector's specificity score.
+
+Instead, it changes the importance of a declaration.
+
+Example:
+
+```css
+p {
+    color: red !important;
+}
+```
+
+When applicable, importance is considered as part of the cascade before normal specificity comparison.
+
+### Modern Pseudo-Class Specificity
+
+Some pseudo-classes have special specificity behavior.
+
+```text
+:is()
+→ Uses the specificity of the most
+  specific selector in its list
+
+:where()
+→ Always has zero specificity
+
+:not()
+→ Uses the specificity of the most
+  specific selector in its selector list
+
+:has()
+→ Uses the specificity of the most
+  specific selector in its argument
+```
+
+Be careful when placing highly specific selectors, such as ID selectors, inside these functions.
+
+### Inheritance Is Different From Specificity
+
+Inheritance and specificity solve different problems.
+
+```text
+Inheritance
+→ Allows some property values to pass
+  from parent to child
+
+Specificity
+→ Determines which competing declaration
+  wins for the same element
+```
+
+A parent's high specificity does not automatically override a declaration directly applied to a child.
+
+### Good Specificity Practices
+
+```text
+Prefer simple selectors
+        ↓
+Prefer reusable classes
+        ↓
+Avoid excessive ID selectors
+        ↓
+Avoid deep nesting
+        ↓
+Avoid unnecessary !important
+        ↓
+Keep specificity predictable
+```
+
+### When Debugging CSS
+
+When a declaration does not apply as expected:
+
+```text
+Find competing declarations
+        ↓
+Check the CSS cascade
+        ↓
+Check importance
+        ↓
+Compare specificity
+        ↓
+Check source order
+```
+
+Avoid immediately increasing specificity or adding `!important`.
+
+### Final Summary
+
+```text
+CSS Specificity
+│
+├── Helps determine which
+│   competing declaration wins
+│
+├── Is part of the CSS cascade
+│
+├── Is compared category by category
+│
+├── Does not work like normal addition
+│
+├── Uses source order when relevant
+│   specificity is equal
+│
+├── Is affected by modern pseudo-classes
+│   such as :is(), :not(), and :has()
+│
+├── Treats :where() as zero specificity
+│
+└── Should be kept predictable
+    and easy to manage
+```
+
+> 💡 **Remember:** The goal is not to create the most specific selector. The goal is to write CSS that is predictable, maintainable, and easy to override when necessary.
