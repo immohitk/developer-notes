@@ -4128,3 +4128,349 @@ Because of this, it is important to understand the selectors used inside `:has()
 ```
 
 > 💡 **Remember:** `:has()` allows CSS selectors to match an element based on related elements. Its specificity is affected by the most specific selector inside its argument.
+
+---
+
+## Inheritance vs Specificity
+
+Inheritance and specificity are both important concepts in CSS, but they solve different problems.
+
+```text
+Inheritance
+→ Determines whether a property value can pass
+  from a parent element to its descendants
+
+Specificity
+→ Helps determine which competing CSS declaration wins
+```
+
+Understanding the difference helps explain why a CSS property may appear on an element even when no rule directly targets that element.
+
+### What Is Inheritance?
+
+Some CSS properties can be inherited from a parent element.
+
+Example:
+
+```html
+<div class="container">
+    <p>Hello World</p>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    color: blue;
+}
+```
+
+The `color` property is inherited by default.
+
+Therefore, the paragraph can display blue text.
+
+```text
+.container
+→ color: blue
+        ↓
+Inheritance
+        ↓
+p
+→ blue text
+```
+
+### What Is Specificity?
+
+Specificity is used when multiple CSS declarations directly compete to apply a property to the same element.
+
+Example:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+Both rules directly target the paragraph.
+
+Specificity:
+
+```text
+p
+→ 0-0-1
+
+.text
+→ 0-1-0
+```
+
+The class selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Inheritance Does Not Compete Like a Direct Declaration
+
+Consider:
+
+```html
+<div class="container">
+    <p class="text">
+        Hello World
+    </p>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+The paragraph can inherit `color: blue` from its parent.
+
+However, the `.text` rule directly applies:
+
+```css
+color: green;
+```
+
+to the paragraph.
+
+The direct declaration is used instead of the inherited value.
+
+```text
+Parent
+→ color: blue
+        ↓
+Inherited value available
+
+Paragraph
+→ color: green
+        ↓
+Direct declaration
+        ↓
+Final color
+→ green
+```
+
+### Inheritance and Specificity Together
+
+Consider:
+
+```html
+<div id="container">
+    <p class="text">
+        Hello World
+    </p>
+</div>
+```
+
+CSS:
+
+```css
+#container {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+The parent selector has high specificity:
+
+```text
+#container
+→ 1-0-0
+```
+
+The paragraph selector has:
+
+```text
+.text
+→ 0-1-0
+```
+
+However, these selectors do not directly compete for the same element.
+
+```text
+#container
+→ Targets the div
+
+.text
+→ Targets the paragraph
+```
+
+The paragraph inherits a value from the parent only when an appropriate property is inheritable and no applicable value overrides it.
+
+Therefore, the parent's high specificity does not automatically override a declaration directly targeting the child.
+
+### Example With an Inherited Property
+
+Consider:
+
+```html
+<div class="container">
+    <p>Hello World</p>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    color: blue;
+}
+```
+
+No rule directly sets the paragraph's `color`.
+
+Therefore:
+
+```text
+p
+↓
+Inherits color
+↓
+blue
+```
+
+Now add:
+
+```css
+p {
+    color: red;
+}
+```
+
+The paragraph has a directly specified value.
+
+```text
+Parent
+→ color: blue
+
+Paragraph
+→ color: red
+        ↓
+Final color
+→ red
+```
+
+### Not Every Property Is Inherited
+
+Some properties are inherited by default, while others are not.
+
+For example:
+
+```text
+Commonly inherited
+→ color
+→ font-family
+→ font-size
+
+Not inherited by default
+→ margin
+→ padding
+→ border
+→ width
+```
+
+A child element does not automatically receive every CSS property from its parent.
+
+### A Common Misunderstanding
+
+Consider:
+
+```css
+#parent {
+    color: blue;
+}
+
+.child {
+    color: red;
+}
+```
+
+HTML:
+
+```html
+<div id="parent">
+    <p class="child">
+        Hello World
+    </p>
+</div>
+```
+
+The parent selector has higher specificity:
+
+```text
+#parent
+→ 1-0-0
+```
+
+The child selector has:
+
+```text
+.child
+→ 0-1-0
+```
+
+But specificity is not compared between these two selectors because they target different elements.
+
+The final paragraph color is:
+
+```text
+red
+```
+
+### Inheritance vs Specificity Summary
+
+```text
+Inheritance
+│
+├── Passes some property values
+│   from parent to child
+│
+├── Depends on whether the
+│   property is inheritable
+│
+└── Does not directly compete
+    with child selector specificity
+
+
+Specificity
+│
+├── Compares competing selectors
+│   targeting the same element
+│
+├── Helps determine which
+│   declaration wins
+│
+└── Works as part of the
+    CSS cascade
+```
+
+> 💡 **Remember:** Inheritance determines whether a property value can pass from a parent to a child, while specificity helps determine which competing declaration wins on the same element. A parent's high specificity does not automatically override a directly applied style on a child.
