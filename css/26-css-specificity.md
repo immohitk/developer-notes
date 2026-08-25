@@ -1591,3 +1591,278 @@ ID Selectors
 ```
 
 > 💡 **Remember:** ID selectors have high specificity. They are useful for targeting uniquely identified elements, but excessive use of IDs for styling can make CSS harder to override and maintain.
+
+---
+
+## Class Selectors
+
+A class selector targets HTML elements using the value of their `class` attribute.
+
+A class selector uses a period (`.`) before the class name.
+
+Example:
+
+```css
+.button {
+    color: blue;
+}
+```
+
+HTML:
+
+```html
+<button class="button">
+    Submit
+</button>
+```
+
+The selector:
+
+```css
+.button
+```
+
+targets elements with:
+
+```text
+class="button"
+```
+
+### Class Selector Specificity
+
+Each class selector increases the second specificity value.
+
+Example:
+
+```css
+.button {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+0-1-0
+```
+
+```text
+0
+↓
+ID selectors
+
+1
+↓
+Class-related selectors
+
+0
+↓
+Type selectors
+```
+
+### Multiple Class Selectors
+
+Multiple class selectors increase the class-related specificity value.
+
+Example:
+
+```css
+.button.primary {
+    color: white;
+}
+```
+
+Specificity:
+
+```text
+0-2-0
+```
+
+```text
+.button
+→ 0-1-0
+
+.primary
+→ 0-1-0
+
+Total
+→ 0-2-0
+```
+
+The selector targets an element that has both classes.
+
+Example:
+
+```html
+<button class="button primary">
+    Submit
+</button>
+```
+
+### Class Selectors Compared With ID Selectors
+
+Consider:
+
+```css
+.button {
+    color: blue;
+}
+
+#submit {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<button
+    id="submit"
+    class="button"
+>
+    Submit
+</button>
+```
+
+Specificity:
+
+```text
+.button
+→ 0-1-0
+
+#submit
+→ 1-0-0
+```
+
+The ID selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Class Selectors Compared With Type Selectors
+
+Consider:
+
+```css
+button {
+    color: blue;
+}
+
+.button {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<button class="button">
+    Submit
+</button>
+```
+
+Specificity:
+
+```text
+button
+→ 0-0-1
+
+.button
+→ 0-1-0
+```
+
+The class selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Classes Are Reusable
+
+One of the main advantages of classes is that they can be reused.
+
+Example:
+
+```html
+<button class="button">
+    Submit
+</button>
+
+<button class="button">
+    Cancel
+</button>
+
+<button class="button">
+    Save
+</button>
+```
+
+The same CSS rule can style all of these elements.
+
+```css
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+```
+
+### Multiple Classes Can Be Used
+
+An HTML element can have multiple classes.
+
+Example:
+
+```html
+<button class="button primary large">
+    Submit
+</button>
+```
+
+Each class can provide different styles.
+
+```css
+.button {
+    padding: 10px;
+}
+
+.primary {
+    background-color: blue;
+    color: white;
+}
+
+.large {
+    font-size: 1.2rem;
+}
+```
+
+This makes classes useful for reusable and flexible styling.
+
+### Class Selector Summary
+
+```text
+Class Selectors
+│
+├── Use the . symbol
+│
+├── Target elements by class
+│
+├── Specificity
+│   → 0-1-0
+│
+├── Can be combined
+│
+├── Can be reused
+│
+└── Are useful for
+    reusable component styles
+```
+
+> 💡 **Remember:** Class selectors have higher specificity than type selectors but lower specificity than ID selectors. Classes are reusable, flexible, and commonly used for styling components.
