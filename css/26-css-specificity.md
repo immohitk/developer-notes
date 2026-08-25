@@ -3372,3 +3372,214 @@ Final color
 ```
 
 > 💡 **Remember:** The specificity of `:is()` is based on the most specific selector in its selector list. Be careful when placing highly specific selectors, such as IDs, inside `:is()`.
+
+---
+
+## The `:where()` Function
+
+The `:where()` pseudo-class allows multiple selectors to be grouped together.
+
+Its syntax is similar to `:is()`.
+
+Example:
+
+```css
+:where(h1, h2, h3) {
+    color: blue;
+}
+```
+
+This selector targets:
+
+```text
+h1
+h2
+h3
+```
+
+### The Main Difference Between `:is()` and `:where()`
+
+Although `:is()` and `:where()` can group selectors in a similar way, they handle specificity differently.
+
+```text
+:is()
+→ Uses the specificity of the most specific selector
+
+:where()
+→ Always has zero specificity
+```
+
+This makes `:where()` especially useful when you want to group selectors without increasing selector specificity.
+
+### Specificity of `:where()`
+
+The `:where()` pseudo-class always contributes zero specificity.
+
+Consider:
+
+```css
+:where(p, .text, #title) {
+    color: blue;
+}
+```
+
+The selector list contains:
+
+```text
+p
+→ Type selector
+
+.text
+→ Class selector
+
+#title
+→ ID selector
+```
+
+However, the entire `:where()` selector still has:
+
+```text
+0-0-0
+```
+
+specificity.
+
+The selectors inside `:where()` do not increase its specificity.
+
+### Example
+
+Consider:
+
+```css
+:where(.button, #submit) {
+    color: blue;
+}
+
+.button {
+    color: green;
+}
+```
+
+An element with:
+
+```html
+<button class="button">
+    Submit
+</button>
+```
+
+matches both rules.
+
+Specificity:
+
+```text
+:where(.button, #submit)
+→ 0-0-0
+
+.button
+→ 0-1-0
+```
+
+The class selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+Even though `#submit` appears inside `:where()`, it does not increase the selector's specificity.
+
+### `:where()` With Other Selectors
+
+Selectors outside `:where()` still contribute to specificity.
+
+Example:
+
+```css
+article :where(h1, .title, #heading) {
+    color: blue;
+}
+```
+
+The `:where()` part contributes:
+
+```text
+0-0-0
+```
+
+The `article` type selector contributes:
+
+```text
+0-0-1
+```
+
+Therefore, the complete selector has:
+
+```text
+0-0-1
+```
+
+specificity.
+
+### Why Use `:where()`?
+
+The `:where()` function can help create selectors that are easy to override.
+
+Example:
+
+```css
+:where(.button, .link, .input) {
+    font: inherit;
+}
+```
+
+Because the selector has zero specificity, other component selectors can easily override the declaration.
+
+```css
+.button {
+    font-size: 1.2rem;
+}
+```
+
+The `.button` selector has higher specificity.
+
+### `:is()` vs `:where()`
+
+```text
+:is()
+│
+├── Groups selectors
+│
+└── Uses specificity of
+    the most specific selector
+
+
+:where()
+│
+├── Groups selectors
+│
+└── Always has
+    zero specificity
+```
+
+### `:where()` Summary
+
+```text
+:where()
+│
+├── Groups multiple selectors
+│
+├── Reduces repeated selector code
+│
+├── Always has zero specificity
+│
+├── Selectors inside it do not
+│   increase specificity
+│
+└── Useful for styles that should
+    be easy to override
+```
+
+> 💡 **Remember:** `:where()` always has zero specificity. This is the main difference between `:where()` and `:is()`, making `:where()` useful for creating flexible and easily overridable CSS rules.
