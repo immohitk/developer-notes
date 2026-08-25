@@ -153,3 +153,199 @@ Winning style is applied
 ```
 
 > 💡 **Remember:** CSS specificity helps determine which CSS rule takes priority when multiple selectors target the same element. However, specificity works as part of the larger CSS cascade.
+
+---
+
+## What Is CSS Specificity?
+
+CSS specificity is a way of determining which selector has higher priority when multiple CSS rules target the same element.
+
+Consider the following CSS:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+#title {
+    color: red;
+}
+```
+
+And the following HTML:
+
+```html
+<p id="title" class="text">
+    Hello World
+</p>
+```
+
+All three selectors target the same paragraph:
+
+```text
+p
+↓
+Matches the element
+
+.text
+↓
+Matches the element
+
+#title
+↓
+Matches the element
+```
+
+Because multiple declarations apply, the browser compares their specificity.
+
+```text
+Multiple matching selectors
+        ↓
+Compare specificity
+        ↓
+Higher specificity
+        ↓
+Declaration can win
+```
+
+### Specificity Represents Selector Weight
+
+Different types of selectors have different levels of specificity.
+
+For example:
+
+```text
+Type selector
+→ Lower specificity
+
+Class selector
+→ Higher specificity
+
+ID selector
+→ Even higher specificity
+```
+
+Consider:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+#title {
+    color: red;
+}
+```
+
+The selectors have different levels of priority.
+
+```text
+p
+↓
+Type selector
+
+.text
+↓
+Class selector
+
+#title
+↓
+ID selector
+```
+
+When all three rules apply to the same element under the same cascade conditions, the selector with the higher specificity wins.
+
+### Specificity Does Not Mean Everything
+
+Specificity is important, but it is only one part of the CSS cascade.
+
+The browser also considers other factors.
+
+```text
+CSS declarations
+        ↓
+Cascade rules
+        ↓
+Origin and importance
+        ↓
+Specificity
+        ↓
+Source order
+```
+
+Because of this, a selector with higher specificity does not automatically win in every possible situation.
+
+### A Simple Comparison
+
+Consider:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+Both selectors match the paragraph.
+
+```text
+p
+↓
+Matches
+
+.text
+↓
+Matches
+```
+
+The class selector has higher specificity than the type selector.
+
+Therefore:
+
+```text
+p
+→ blue
+
+.text
+→ green
+
+Winning color
+→ green
+```
+
+### Main Concept
+
+CSS specificity can be understood as a selector's priority when competing with other selectors.
+
+```text
+Multiple selectors
+        ↓
+Target same element
+        ↓
+Compare specificity
+        ↓
+Higher priority selector
+        ↓
+Winning declaration
+```
+
+> 💡 **Remember:** CSS specificity determines how selectors are compared when multiple CSS rules target the same element. However, specificity is only one part of the overall CSS cascade.
