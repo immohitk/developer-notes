@@ -589,3 +589,214 @@ Maintain styles more easily
 ```
 
 > 💡 **Remember:** CSS specificity matters because multiple selectors can target the same element. Understanding how selector priority works helps you avoid conflicts and write CSS that is easier to predict and maintain.
+
+---
+
+## The CSS Cascade
+
+The CSS cascade is the process the browser uses to determine which CSS declaration should be applied when multiple declarations affect the same element.
+
+The word **cascade** refers to the system of rules used to resolve conflicts between CSS declarations.
+
+```text
+Multiple CSS declarations
+        ↓
+Target the same element
+        ↓
+CSS Cascade
+        ↓
+Determine the winning declaration
+```
+
+### Example
+
+Consider the following HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+And the following CSS:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Both declarations target the same paragraph.
+
+```text
+p
+↓
+Matches the paragraph
+
+.text
+↓
+Matches the paragraph
+```
+
+The CSS cascade determines which declaration wins.
+
+### Important Parts of the Cascade
+
+When declarations conflict, CSS considers several factors.
+
+A simplified view is:
+
+```text
+CSS Declarations
+        ↓
+Origin and Importance
+        ↓
+Specificity
+        ↓
+Source Order
+```
+
+Each factor can help determine which declaration wins.
+
+### Origin and Importance
+
+CSS declarations can come from different origins.
+
+Common sources include:
+
+```text
+Browser styles
+        ↓
+Author styles
+        ↓
+User styles
+```
+
+The importance of a declaration can also affect the cascade.
+
+For example:
+
+```css
+color: red !important;
+```
+
+The `!important` rule changes how the declaration participates in the cascade.
+
+### Specificity
+
+If competing declarations have the same relevant origin and importance, specificity can determine which declaration wins.
+
+Example:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+The class selector has higher specificity than the type selector.
+
+```text
+p
+→ Type selector
+
+.text
+→ Class selector
+     ↓
+Higher specificity
+```
+
+Therefore, the class declaration can win.
+
+### Source Order
+
+If competing declarations have the same origin, importance, and specificity, the declaration that appears later can win.
+
+Example:
+
+```css
+.text {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Both selectors have the same specificity.
+
+The second declaration appears later.
+
+Therefore:
+
+```text
+First declaration
+→ blue
+
+Second declaration
+→ green
+
+Winning declaration
+→ green
+```
+
+### The Cascade Works Step by Step
+
+A simplified process looks like this:
+
+```text
+Multiple declarations
+        ↓
+Check origin and importance
+        ↓
+Check specificity
+        ↓
+Check source order
+        ↓
+Apply winning declaration
+```
+
+This process explains why a CSS declaration may override another declaration.
+
+### Cascade and Specificity
+
+Specificity is an important part of CSS, but it does not work alone.
+
+```text
+CSS Cascade
+│
+├── Origin and importance
+│
+├── Specificity
+│
+└── Source order
+```
+
+Understanding the cascade helps explain when specificity matters and when another rule has higher priority.
+
+### Main Concept
+
+```text
+Multiple CSS rules
+        ↓
+CSS Cascade compares them
+        ↓
+Origin and importance
+        ↓
+Specificity
+        ↓
+Source order
+        ↓
+Winning declaration
+```
+
+> 💡 **Remember:** CSS specificity is only one part of the CSS cascade. To understand why a CSS rule wins or loses, you should consider origin, importance, specificity, and source order.
