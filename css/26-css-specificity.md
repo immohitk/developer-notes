@@ -5166,3 +5166,253 @@ Avoid Specificity Problems
 ```
 
 > 💡 **Remember:** The best way to avoid specificity problems is to keep selectors simple, predictable, and easy to override. Avoid increasing specificity unless it is genuinely necessary.
+
+---
+
+## Best Practices
+
+Following good CSS specificity practices helps keep stylesheets predictable, reusable, and easier to maintain.
+
+The goal is not to always use the lowest possible specificity.
+
+Instead, the goal is to use specificity intentionally.
+
+### Prefer Simple Selectors
+
+Simple selectors are generally easier to understand and override.
+
+Example:
+
+```css
+.button {
+    color: white;
+}
+```
+
+Instead of:
+
+```css
+main .content .section .button {
+    color: white;
+}
+```
+
+The simpler selector has fewer dependencies on the HTML structure.
+
+### Prefer Classes for Components
+
+Classes are useful for reusable component styles.
+
+Example:
+
+```css
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-content {
+    line-height: 1.6;
+}
+```
+
+This creates predictable and reusable selectors.
+
+### Keep Specificity Low and Predictable
+
+Avoid unnecessarily increasing specificity.
+
+Example:
+
+```css
+.button.primary {
+    background-color: blue;
+}
+```
+
+Use additional selector complexity only when it is needed.
+
+Avoid patterns such as:
+
+```css
+#app .container .content .button.primary {
+    background-color: blue;
+}
+```
+
+unless the additional specificity is genuinely required.
+
+### Avoid Styling With IDs When Possible
+
+ID selectors have high specificity.
+
+Example:
+
+```css
+#submit-button {
+    background-color: blue;
+}
+```
+
+For reusable styles, a class is often easier to override:
+
+```css
+.submit-button {
+    background-color: blue;
+}
+```
+
+### Avoid Deep Selector Nesting
+
+Deeply nested selectors can create tightly coupled CSS.
+
+Example:
+
+```css
+.page .content .article .section .title {
+    color: blue;
+}
+```
+
+A component-based selector may be simpler:
+
+```css
+.article-title {
+    color: blue;
+}
+```
+
+This reduces dependence on a specific HTML structure.
+
+### Avoid Unnecessary `!important`
+
+`!important` should not be the default solution for CSS conflicts.
+
+Instead of immediately writing:
+
+```css
+.button {
+    color: blue !important;
+}
+```
+
+first investigate:
+
+```text
+What rule is overriding this?
+        ↓
+Check importance
+        ↓
+Check specificity
+        ↓
+Check source order
+```
+
+Use `!important` only when there is a clear reason.
+
+### Make Styles Easy to Override
+
+Reusable CSS should often allow customization.
+
+For example:
+
+```css
+:where(.card) {
+    padding: 20px;
+}
+```
+
+A regular class selector can easily override it:
+
+```css
+.card {
+    padding: 30px;
+}
+```
+
+This can be useful for base or framework styles.
+
+### Use a Consistent Naming Strategy
+
+Consistent class naming helps reduce the need for complex selectors.
+
+Example:
+
+```css
+.card {}
+.card-title {}
+.card-description {}
+```
+
+A predictable naming structure makes it easier to understand which styles belong together.
+
+### Separate Base and Component Styles
+
+A clear stylesheet structure can reduce conflicts.
+
+Example:
+
+```text
+Base styles
+        ↓
+Layout styles
+        ↓
+Component styles
+        ↓
+Utility styles
+```
+
+Each layer should have a clear purpose.
+
+This makes CSS easier to debug and maintain.
+
+### Debug Before Increasing Specificity
+
+When a CSS declaration does not apply, avoid immediately making the selector more specific.
+
+Instead:
+
+```text
+Inspect the element
+        ↓
+Find competing declarations
+        ↓
+Check the CSS cascade
+        ↓
+Check importance
+        ↓
+Compare specificity
+        ↓
+Check source order
+```
+
+Understanding the cause of the conflict usually produces a better solution.
+
+### Best Practices Summary
+
+```text
+Good Specificity Practices
+│
+├── Prefer simple selectors
+│
+├── Prefer reusable classes
+│
+├── Keep specificity predictable
+│
+├── Avoid excessive IDs
+│
+├── Avoid deep nesting
+│
+├── Use !important carefully
+│
+├── Make styles easy to override
+│
+├── Use consistent naming
+│
+└── Debug before increasing specificity
+```
+
+> 💡 **Remember:** Good CSS specificity is predictable CSS specificity. Keep selectors simple and intentional so that styles remain easy to understand, override, and maintain.
