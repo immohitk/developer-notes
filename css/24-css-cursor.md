@@ -6440,7 +6440,6 @@ Practice Exercises
 
 ## Related Topics
 
-The CSS `cursor` property is closely related to several other CSS topics that help control user interaction, visual feedback, and interface behavior.
 
 ### Previous Topics
 
