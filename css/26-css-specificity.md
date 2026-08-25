@@ -2873,3 +2873,245 @@ This can make the CSS easier to understand and maintain.
 ```
 
 > 💡 **Remember:** `!important` affects the importance of a declaration, not its specificity score. Use it carefully because excessive use can make CSS conflicts more difficult to manage.
+
+---
+
+## Specificity and Source Order
+
+Source order is used to determine which CSS declaration wins when competing declarations have the same origin, importance, and specificity.
+
+In simple terms:
+
+```text
+Same importance
+        ↓
+Same specificity
+        ↓
+Later declaration wins
+```
+
+### A Simple Example
+
+Consider the following CSS:
+
+```css
+.text {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Both selectors are identical.
+
+Their specificity is:
+
+```text
+0-1-0
+```
+
+Because the specificity is equal, source order is considered.
+
+The second declaration appears later in the stylesheet.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Source Order Does Not Override Higher Specificity
+
+Source order is considered only after the competing declarations have the same relevant cascade conditions and specificity.
+
+Consider:
+
+```css
+.text {
+    color: blue;
+}
+
+p {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+The selectors have different specificity:
+
+```text
+.text
+→ 0-1-0
+
+p
+→ 0-0-1
+```
+
+The class selector has higher specificity.
+
+Even though the `p` rule appears later, the class selector wins.
+
+Therefore:
+
+```text
+Final color
+→ blue
+```
+
+### Equal Specificity Example
+
+Consider:
+
+```css
+p.text {
+    color: blue;
+}
+
+.text p {
+    color: green;
+}
+```
+
+The selectors do not necessarily target the same element in the same HTML structure, but when two competing selectors have equal specificity and match the same property on the same element, source order can determine the winner.
+
+A clearer example is:
+
+```css
+.button.primary {
+    color: blue;
+}
+
+.button.secondary {
+    color: green;
+}
+```
+
+Both selectors have:
+
+```text
+0-2-0
+```
+
+If an element has both matching class combinations, the rule that appears later can win.
+
+Example:
+
+```html
+<button class="button primary secondary">
+    Submit
+</button>
+```
+
+The second rule appears later.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Source Order in the Same Stylesheet
+
+Consider:
+
+```css
+.title {
+    color: red;
+}
+
+/* Other CSS rules */
+
+.title {
+    color: blue;
+}
+```
+
+Both declarations have the same:
+
+```text
+Origin
+Importance
+Specificity
+```
+
+Therefore, the later declaration wins.
+
+```text
+First rule
+→ red
+
+Later rule
+→ blue
+
+Final color
+→ blue
+```
+
+### Source Order and Linked Stylesheets
+
+Source order can also matter when multiple stylesheets are loaded.
+
+For example:
+
+```html
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="theme.css">
+```
+
+When competing declarations have the same relevant cascade conditions and specificity, rules from the later stylesheet can take precedence over earlier competing rules.
+
+```text
+base.css
+    ↓
+
+theme.css
+    ↓
+Later source
+```
+
+### Source Order in CSS
+
+A simplified process is:
+
+```text
+Multiple matching declarations
+        ↓
+Compare origin and importance
+        ↓
+Compare specificity
+        ↓
+If equal
+        ↓
+Compare source order
+        ↓
+Later declaration wins
+```
+
+### Source Order Summary
+
+```text
+Source Order
+│
+├── Considered after
+│   → Origin
+│   → Importance
+│   → Specificity
+│
+├── Applies when competing rules are equal
+│   in the relevant earlier comparisons
+│
+└── Later declaration can win
+```
+
+> 💡 **Remember:** Source order is usually the deciding factor when competing CSS declarations have the same relevant origin, importance, and specificity. In that situation, the declaration that appears later can win.
