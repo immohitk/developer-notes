@@ -2279,3 +2279,304 @@ Universal Selector
 ```
 
 > 💡 **Remember:** The universal selector matches all elements but contributes zero specificity. When competing rules have the same origin and importance, a selector with any positive specificity can override it.
+
+---
+
+## Specificity Comparison
+
+When multiple CSS selectors target the same element, their specificity can be compared to determine which selector has higher priority.
+
+Specificity values are compared from left to right.
+
+```text
+A-B-C
+
+A → ID selectors
+B → Class-related selectors
+C → Type selectors
+```
+
+### Comparing ID Selectors
+
+Consider:
+
+```css
+#title {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Specificity:
+
+```text
+#title
+→ 1-0-0
+
+.text
+→ 0-1-0
+```
+
+Compare the first value:
+
+```text
+1 > 0
+```
+
+Therefore:
+
+```text
+#title
+```
+
+has higher specificity.
+
+### Comparing Class Selectors
+
+Consider:
+
+```css
+.button.primary {
+    color: blue;
+}
+
+.button {
+    color: green;
+}
+```
+
+Specificity:
+
+```text
+.button.primary
+→ 0-2-0
+
+.button
+→ 0-1-0
+```
+
+Compare the values from left to right:
+
+```text
+ID selectors
+0 = 0
+
+Class selectors
+2 > 1
+```
+
+Therefore:
+
+```text
+.button.primary
+```
+
+has higher specificity.
+
+### Comparing Type Selectors
+
+Consider:
+
+```css
+main article p {
+    color: blue;
+}
+
+p {
+    color: green;
+}
+```
+
+Specificity:
+
+```text
+main article p
+→ 0-0-3
+
+p
+→ 0-0-1
+```
+
+Compare the values:
+
+```text
+ID selectors
+0 = 0
+
+Class-related selectors
+0 = 0
+
+Type selectors
+3 > 1
+```
+
+Therefore:
+
+```text
+main article p
+```
+
+has higher specificity.
+
+### More Classes Do Not Beat an ID
+
+Consider:
+
+```text
+1-0-0
+
+0-10-0
+```
+
+The first selector has higher specificity.
+
+Why?
+
+Specificity is compared by category from left to right.
+
+```text
+ID selectors
+1 > 0
+```
+
+The comparison stops at the first different value.
+
+Therefore:
+
+```text
+1-0-0
+```
+
+has higher specificity than:
+
+```text
+0-10-0
+```
+
+### Another Comparison
+
+Consider:
+
+```text
+0-2-1
+
+0-1-10
+```
+
+Compare from left to right.
+
+```text
+ID selectors
+0 = 0
+
+Class-related selectors
+2 > 1
+```
+
+Therefore:
+
+```text
+0-2-1
+```
+
+has higher specificity.
+
+The number of type selectors does not matter because the class-related values already determined the result.
+
+### Equal Specificity
+
+Consider:
+
+```css
+.text {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Both selectors have the same specificity:
+
+```text
+0-1-0
+```
+
+When specificity is equal, source order can determine which declaration wins.
+
+Because the second rule appears later:
+
+```text
+Final color
+→ green
+```
+
+### Specificity Comparison Process
+
+A simple process is:
+
+```text
+Compare ID selectors
+        ↓
+If equal
+        ↓
+Compare class-related selectors
+        ↓
+If equal
+        ↓
+Compare type selectors
+        ↓
+If equal
+        ↓
+Check source order
+```
+
+### Comparison Examples
+
+```text
+Selector                  Specificity
+
+p                         0-0-1
+
+.text                     0-1-0
+
+.button.primary           0-2-0
+
+#header                   1-0-0
+
+#header .menu a           1-1-1
+```
+
+From lower to higher specificity:
+
+```text
+p
+        ↓
+.text
+        ↓
+.button.primary
+        ↓
+#header
+        ↓
+#header .menu a
+```
+
+### Main Concept
+
+```text
+Specificity values
+        ↓
+Compare from left to right
+        ↓
+First larger value wins
+        ↓
+If values are equal
+        ↓
+Check source order
+```
+
+> 💡 **Remember:** Do not add specificity values together like normal numbers. Compare IDs first, then class-related selectors, and finally type selectors.
