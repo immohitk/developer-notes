@@ -4474,3 +4474,449 @@ Specificity
 ```
 
 > 💡 **Remember:** Inheritance determines whether a property value can pass from a parent to a child, while specificity helps determine which competing declaration wins on the same element. A parent's high specificity does not automatically override a directly applied style on a child.
+
+---
+
+## Practical Examples
+
+The best way to understand CSS specificity is to compare selectors that target the same element.
+
+The following examples demonstrate how the CSS cascade, specificity, and source order work together.
+
+### Example 1: Type Selector vs Class Selector
+
+HTML:
+
+```html
+<p class="message">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+p {
+    color: blue;
+}
+
+.message {
+    color: green;
+}
+```
+
+Both selectors target the paragraph.
+
+Specificity:
+
+```text
+p
+→ 0-0-1
+
+.message
+→ 0-1-0
+```
+
+The class selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Example 2: Class Selector vs ID Selector
+
+HTML:
+
+```html
+<p id="message" class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: green;
+}
+
+#message {
+    color: red;
+}
+```
+
+Specificity:
+
+```text
+.text
+→ 0-1-0
+
+#message
+→ 1-0-0
+```
+
+The ID selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ red
+```
+
+### Example 3: Multiple Classes
+
+HTML:
+
+```html
+<button class="button primary">
+    Submit
+</button>
+```
+
+CSS:
+
+```css
+.button {
+    background-color: gray;
+}
+
+.button.primary {
+    background-color: blue;
+}
+```
+
+Specificity:
+
+```text
+.button
+→ 0-1-0
+
+.button.primary
+→ 0-2-0
+```
+
+The selector containing both classes has higher specificity.
+
+Therefore:
+
+```text
+Final background color
+→ blue
+```
+
+### Example 4: Equal Specificity
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Both selectors have:
+
+```text
+0-1-0
+```
+
+The specificity is equal.
+
+Therefore, source order determines the winner.
+
+The later declaration wins.
+
+```text
+Final color
+→ green
+```
+
+### Example 5: More Type Selectors
+
+HTML:
+
+```html
+<main>
+    <article>
+        <p>Hello World</p>
+    </article>
+</main>
+```
+
+CSS:
+
+```css
+p {
+    color: green;
+}
+
+main article p {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+p
+→ 0-0-1
+
+main article p
+→ 0-0-3
+```
+
+The second selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ blue
+```
+
+### Example 6: `!important`
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: blue;
+}
+
+p {
+    color: red !important;
+}
+```
+
+The `.text` selector has higher normal specificity.
+
+However, the `p` declaration is marked with `!important`.
+
+Therefore:
+
+```text
+Final color
+→ red
+```
+
+This demonstrates that importance and specificity are different parts of the CSS cascade.
+
+### Example 7: Inline Style
+
+HTML:
+
+```html
+<p class="text" style="color: red;">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: blue;
+}
+```
+
+The inline declaration directly applies:
+
+```text
+color: red
+```
+
+Under normal author styles, the inline declaration has higher priority than the normal class declaration.
+
+Therefore:
+
+```text
+Final color
+→ red
+```
+
+### Example 8: `:is()` Specificity
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: green;
+}
+
+:is(.text, #message) {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+.text
+→ 0-1-0
+
+:is(.text, #message)
+→ 1-0-0
+```
+
+The `:is()` selector uses the specificity of the most specific selector in its list.
+
+Because the list contains `#message`, the `:is()` selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ blue
+```
+
+### Example 9: `:where()` Specificity
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+:where(.text, #message) {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Specificity:
+
+```text
+:where(.text, #message)
+→ 0-0-0
+
+.text
+→ 0-1-0
+```
+
+The `.text` selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Example 10: Inheritance and Direct Styles
+
+HTML:
+
+```html
+<div id="container">
+    <p class="text">
+        Hello World
+    </p>
+</div>
+```
+
+CSS:
+
+```css
+#container {
+    color: blue;
+}
+
+.text {
+    color: red;
+}
+```
+
+The paragraph can inherit the `color` property from its parent.
+
+However, `.text` directly applies:
+
+```text
+color: red
+```
+
+to the paragraph.
+
+Therefore:
+
+```text
+Final color
+→ red
+```
+
+The parent's higher specificity does not override a declaration targeting the child.
+
+### Practical Example Summary
+
+```text
+Type selector
+        ↓
+0-0-1
+
+Class selector
+        ↓
+0-1-0
+
+Multiple classes
+        ↓
+0-2-0
+
+ID selector
+        ↓
+1-0-0
+```
+
+When declarations compete:
+
+```text
+Check the cascade
+        ↓
+Check importance
+        ↓
+Compare specificity
+        ↓
+If equal
+        ↓
+Check source order
+```
+
+> 💡 **Remember:** The easiest way to understand specificity is to compare selectors that target the same element and property. Always consider the full CSS cascade before assuming that a selector wins because it appears more specific.
