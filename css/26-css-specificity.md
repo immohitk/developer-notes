@@ -2099,3 +2099,183 @@ Type Selectors
 ```
 
 > 💡 **Remember:** Type selectors target HTML elements by their element name. They have relatively low specificity and are useful for applying general styles across a page.
+
+---
+
+## Universal Selector
+
+The universal selector matches every element.
+
+It is written using an asterisk:
+
+```css
+*
+```
+
+Example:
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+}
+```
+
+This rule targets all elements on the page.
+
+### Universal Selector Specificity
+
+The universal selector has zero specificity.
+
+```text
+*
+→ 0-0-0
+```
+
+Because it adds no specificity, almost any other selector that matches the same element can override it when the declarations have the same origin and importance.
+
+For example:
+
+```css
+* {
+    color: blue;
+}
+
+p {
+    color: green;
+}
+```
+
+The paragraph selector has higher specificity.
+
+```text
+*
+→ 0-0-0
+
+p
+→ 0-0-1
+```
+
+Therefore, the paragraph text is:
+
+```text
+green
+```
+
+### Using the Universal Selector
+
+The universal selector is often used for global styles.
+
+Example:
+
+```css
+* {
+    box-sizing: border-box;
+}
+```
+
+This applies:
+
+```text
+box-sizing: border-box;
+```
+
+to every element.
+
+Another common pattern is:
+
+```css
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+```
+
+This applies the rule to:
+
+```text
+All elements
+        +
+Before pseudo-elements
+        +
+After pseudo-elements
+```
+
+### Universal Selector With Other Selectors
+
+The universal selector can be combined with other selectors.
+
+Example:
+
+```css
+.container * {
+    color: blue;
+}
+```
+
+This selector matches all descendant elements inside `.container`.
+
+The universal selector itself adds zero specificity.
+
+Specificity:
+
+```text
+.container *
+→ 0-1-0
+```
+
+Only the `.container` class contributes to specificity.
+
+Another example:
+
+```css
+#content * {
+    margin-bottom: 10px;
+}
+```
+
+Specificity:
+
+```text
+#content *
+→ 1-0-0
+```
+
+Only the ID selector contributes to specificity.
+
+### Universal Selector and Maintainability
+
+The universal selector can be useful, but broad rules may affect more elements than expected.
+
+For example:
+
+```css
+* {
+    color: red;
+}
+```
+
+This applies the color to every element that uses the declaration directly or inherits it where applicable.
+
+Using more targeted selectors is often clearer when styling specific components.
+
+### Universal Selector Summary
+
+```text
+Universal Selector
+│
+├── Uses the *
+│
+├── Matches all elements
+│
+├── Specificity
+│   → 0-0-0
+│
+├── Adds no specificity
+│
+└── Often used for
+    global styles
+```
+
+> 💡 **Remember:** The universal selector matches all elements but contributes zero specificity. When competing rules have the same origin and importance, a selector with any positive specificity can override it.
