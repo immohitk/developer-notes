@@ -3583,3 +3583,278 @@ The `.button` selector has higher specificity.
 ```
 
 > 💡 **Remember:** `:where()` always has zero specificity. This is the main difference between `:where()` and `:is()`, making `:where()` useful for creating flexible and easily overridable CSS rules.
+
+---
+
+## The `:not()` Function
+
+The `:not()` pseudo-class selects elements that do not match a specified selector.
+
+It is useful for excluding certain elements from a CSS rule.
+
+Example:
+
+```css
+p:not(.special) {
+    color: blue;
+}
+```
+
+This selector targets paragraph elements that do not have the `special` class.
+
+Example HTML:
+
+```html
+<p>First paragraph</p>
+
+<p class="special">
+    Special paragraph
+</p>
+```
+
+The result is:
+
+```text
+First paragraph
+→ Matches
+
+Special paragraph
+→ Does not match
+```
+
+### Basic Syntax
+
+The basic syntax is:
+
+```css
+:not(selector)
+```
+
+Example:
+
+```css
+button:not(.primary) {
+    background-color: gray;
+}
+```
+
+This targets buttons that do not have the `primary` class.
+
+### Specificity of `:not()`
+
+The `:not()` pseudo-class itself does not add a fixed specificity value.
+
+Instead, its specificity is determined by the most specific selector inside its selector list.
+
+For example:
+
+```css
+:not(.hidden)
+```
+
+Specificity:
+
+```text
+.hidden
+→ 0-1-0
+
+:not(.hidden)
+→ 0-1-0
+```
+
+### Example With an ID Selector
+
+Consider:
+
+```css
+:not(p, .text, #title) {
+    color: blue;
+}
+```
+
+The selectors inside `:not()` have:
+
+```text
+p
+→ 0-0-1
+
+.text
+→ 0-1-0
+
+#title
+→ 1-0-0
+```
+
+The most specific selector is:
+
+```text
+#title
+→ 1-0-0
+```
+
+Therefore, the `:not()` selector has:
+
+```text
+1-0-0
+```
+
+specificity.
+
+### `:not()` With Other Selectors
+
+Selectors outside `:not()` also contribute to the total specificity.
+
+Example:
+
+```css
+button:not(.primary) {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+button
+→ 0-0-1
+
+.primary
+→ 0-1-0
+```
+
+Total:
+
+```text
+0-1-1
+```
+
+### Multiple Selectors Inside `:not()`
+
+Modern CSS allows multiple selectors inside `:not()`.
+
+Example:
+
+```css
+button:not(.primary, .secondary) {
+    background-color: gray;
+}
+```
+
+This targets buttons that are neither:
+
+```text
+.primary
+```
+
+nor:
+
+```text
+.secondary
+```
+
+Example HTML:
+
+```html
+<button>Default</button>
+
+<button class="primary">
+    Primary
+</button>
+
+<button class="secondary">
+    Secondary
+</button>
+```
+
+The result:
+
+```text
+Default
+→ Matches
+
+Primary
+→ Does not match
+
+Secondary
+→ Does not match
+```
+
+### A Practical Example
+
+Consider a list:
+
+```html
+<ul>
+    <li>Home</li>
+    <li class="active">About</li>
+    <li>Contact</li>
+</ul>
+```
+
+CSS:
+
+```css
+li:not(.active) {
+    color: gray;
+}
+```
+
+The result:
+
+```text
+Home
+→ Gray
+
+About
+→ Not affected
+
+Contact
+→ Gray
+```
+
+### `:not()` and Specificity
+
+A highly specific selector inside `:not()` can increase the specificity of the complete selector.
+
+Example:
+
+```css
+.button:not(#submit) {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+.button
+→ 0-1-0
+
+#submit
+→ 1-0-0
+
+Total
+→ 1-1-0
+```
+
+For this reason, it is important to be careful when placing ID selectors inside `:not()`.
+
+### `:not()` Summary
+
+```text
+:not()
+│
+├── Excludes matching elements
+│
+├── Useful for targeting exceptions
+│
+├── Supports selector lists
+│
+├── Uses the specificity of the
+│   most specific selector in its list
+│
+└── Can increase selector specificity
+    when highly specific selectors are used
+```
+
+> 💡 **Remember:** `:not()` selects elements that do not match the selector inside it. Its specificity is based on the most specific selector in its argument.
