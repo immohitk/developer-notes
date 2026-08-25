@@ -1152,3 +1152,222 @@ Specificity
 ```
 
 > 💡 **Remember:** CSS specificity is compared from left to right. ID selectors are compared first, followed by class-related selectors, and finally type selectors.
+
+---
+
+## Inline Styles
+
+Inline styles are CSS declarations written directly inside an HTML element using the `style` attribute.
+
+Example:
+
+```html
+<p style="color: red;">
+    Hello World
+</p>
+```
+
+The CSS declaration is applied directly to the element.
+
+```text
+HTML element
+     ↓
+style attribute
+     ↓
+CSS declaration
+     ↓
+Style applied
+```
+
+### Inline Styles and Specificity
+
+Inline styles have higher priority than normal author styles that are not marked with `!important`.
+
+Consider the following HTML:
+
+```html
+<p class="text" style="color: red;">
+    Hello World
+</p>
+```
+
+And the CSS:
+
+```css
+.text {
+    color: blue;
+}
+```
+
+Both declarations target the paragraph.
+
+However, the inline style has higher priority in the normal author cascade.
+
+Therefore, the final color is:
+
+```text
+red
+```
+
+### Representing Inline Styles
+
+A common way to represent inline styles in specificity discussions is:
+
+```text
+1-0-0-0
+```
+
+Where the first value represents the inline style.
+
+For normal selector specificity, we previously used:
+
+```text
+A-B-C
+```
+
+```text
+A
+→ ID selectors
+
+B
+→ Classes, attributes, and pseudo-classes
+
+C
+→ Type selectors and pseudo-elements
+```
+
+Inline styles are often shown separately because they are applied directly through the HTML `style` attribute.
+
+### Example Comparison
+
+Consider:
+
+```html
+<p
+    id="message"
+    class="text"
+    style="color: red;"
+>
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+#message {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+p {
+    color: purple;
+}
+```
+
+The element matches all selectors.
+
+```text
+Inline style
+→ color: red
+
+#message
+→ color: blue
+
+.text
+→ color: green
+
+p
+→ color: purple
+```
+
+Under normal author styles, the inline declaration wins.
+
+```text
+Inline style
+        ↓
+Higher priority
+        ↓
+Final color
+        ↓
+red
+```
+
+### Can Inline Styles Be Overridden?
+
+An inline style can be overridden by an `!important` declaration in the appropriate cascade context.
+
+Example:
+
+```html
+<p style="color: red;">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+p {
+    color: blue !important;
+}
+```
+
+The `!important` declaration participates in a different importance level of the cascade.
+
+Therefore, `!important` should be understood separately from normal specificity comparisons.
+
+### Why Avoid Excessive Inline Styles?
+
+Inline styles can make HTML and CSS harder to maintain.
+
+Example:
+
+```html
+<button
+    style="
+        background-color: blue;
+        color: white;
+        padding: 10px;
+    "
+>
+    Submit
+</button>
+```
+
+A reusable CSS class is often easier to maintain:
+
+```html
+<button class="button">
+    Submit
+</button>
+```
+
+```css
+.button {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+}
+```
+
+### Inline Style Summary
+
+```text
+Inline Styles
+│
+├── Written in the style attribute
+│
+├── Applied directly to an element
+│
+├── Have high priority in normal author styles
+│
+├── Can be affected by !important
+│
+└── Can reduce maintainability when overused
+```
+
+> 💡 **Remember:** Inline styles are written directly inside HTML elements and generally have higher priority than normal CSS selectors. However, `!important` and other cascade rules can affect the final result.
