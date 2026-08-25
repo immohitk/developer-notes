@@ -2580,3 +2580,296 @@ Check source order
 ```
 
 > 💡 **Remember:** Do not add specificity values together like normal numbers. Compare IDs first, then class-related selectors, and finally type selectors.
+
+---
+
+## The `!important` Rule
+
+The `!important` rule changes the importance of a CSS declaration in the cascade.
+
+It is added after a property value.
+
+Example:
+
+```css
+p {
+    color: red !important;
+}
+```
+
+The declaration:
+
+```css
+color: red !important;
+```
+
+is treated as an important declaration.
+
+### Normal Declarations
+
+A normal CSS declaration does not use `!important`.
+
+Example:
+
+```css
+p {
+    color: blue;
+}
+```
+
+This is a normal declaration.
+
+```text
+color: blue;
+```
+
+### Important Declarations
+
+Adding `!important` makes the declaration important.
+
+Example:
+
+```css
+p {
+    color: red !important;
+}
+```
+
+```text
+color: red !important;
+```
+
+When declarations conflict, importance is considered as part of the CSS cascade.
+
+### Example
+
+Consider:
+
+```css
+.text {
+    color: blue;
+}
+
+p {
+    color: red !important;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+Both rules match the paragraph.
+
+The class selector has higher normal specificity:
+
+```text
+.text
+→ 0-1-0
+
+p
+→ 0-0-1
+```
+
+However, the `!important` declaration changes the importance level in the cascade.
+
+Therefore, the important declaration can override the normal declaration.
+
+```text
+.text
+→ color: blue
+
+p
+→ color: red !important
+
+Final color
+→ red
+```
+
+### `!important` and Specificity
+
+Specificity is compared between declarations that are competing at the same relevant level of the cascade.
+
+A declaration marked with `!important` should not simply be treated as having a larger specificity number.
+
+Instead:
+
+```text
+Cascade
+    ↓
+Importance considered
+    ↓
+Specificity comparison
+    ↓
+Source order if needed
+```
+
+This means `!important` and specificity are different concepts.
+
+### Important Declarations Can Also Compete
+
+Consider:
+
+```css
+p {
+    color: blue !important;
+}
+
+.text {
+    color: green !important;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+Both declarations are important.
+
+Their specificity is compared:
+
+```text
+p
+→ 0-0-1
+
+.text
+→ 0-1-0
+```
+
+The class selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### When Specificity Is Equal
+
+Consider:
+
+```css
+.text {
+    color: blue !important;
+}
+
+.text {
+    color: green !important;
+}
+```
+
+Both declarations:
+
+- Have the same importance
+- Have the same specificity
+
+Source order can determine the result.
+
+Because the second rule appears later:
+
+```text
+Final color
+→ green
+```
+
+### Why `!important` Should Be Used Carefully
+
+Using `!important` can make CSS harder to maintain.
+
+For example:
+
+```css
+.button {
+    color: blue !important;
+}
+```
+
+Later, another developer may need to override the style:
+
+```css
+.button {
+    color: red !important;
+}
+```
+
+This can lead to repeated use of `!important`.
+
+```text
+Rule overridden
+      ↓
+Add !important
+      ↓
+Another rule overridden
+      ↓
+Add !important again
+      ↓
+CSS becomes harder to manage
+```
+
+### Prefer Understanding the Conflict
+
+Before using `!important`, it is often better to check:
+
+```text
+Why is the rule being overridden?
+        ↓
+Check the cascade
+        ↓
+Check importance
+        ↓
+Check specificity
+        ↓
+Check source order
+```
+
+The problem may be solved by restructuring the CSS rather than increasing importance.
+
+### Example of a Better Approach
+
+Instead of:
+
+```css
+.button {
+    background-color: blue !important;
+}
+```
+
+Consider using a more appropriate selector or organizing component styles clearly:
+
+```css
+.primary-button {
+    background-color: blue;
+}
+```
+
+This can make the CSS easier to understand and maintain.
+
+### The `!important` Rule Summary
+
+```text
+!important
+│
+├── Changes declaration importance
+│
+├── Is part of the CSS cascade
+│
+├── Is not a specificity value
+│
+├── Can override normal declarations
+│
+├── Still allows specificity comparison
+│   between competing important declarations
+│
+└── Should be used carefully
+```
+
+> 💡 **Remember:** `!important` affects the importance of a declaration, not its specificity score. Use it carefully because excessive use can make CSS conflicts more difficult to manage.
