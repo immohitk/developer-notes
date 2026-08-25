@@ -33,6 +33,7 @@ The notes are organized in a step-by-step manner and include explanations, examp
 - [CSS Object Fit](23-css-object-fit.md)
 - [CSS Cursor](24-css-cursor.md)
 - [CSS Functions](25-css-functions.md)
+- [CSS Specificity](26-css-specificity.md)
 
 More topics will be added as I continue learning CSS.
 
