@@ -6788,3 +6788,124 @@ CSS Specificity
 ```
 
 > 💡 **Remember:** The goal is not to create the most specific selector. The goal is to write CSS that is predictable, maintainable, and easy to override when necessary.
+
+---
+
+## References
+
+The following resources can be used to learn more about CSS specificity and the CSS cascade.
+
+### MDN Web Docs
+
+MDN Web Docs provides detailed documentation about CSS specificity, selectors, and the cascade.
+
+Useful topics include:
+
+```text
+CSS Specificity
+CSS Cascade
+CSS Selectors
+Pseudo-classes
+!important
+Inheritance
+```
+
+### CSS Specifications
+
+The official CSS specifications provide detailed information about how selectors and the cascade work.
+
+Relevant areas include:
+
+```text
+CSS Cascading and Inheritance
+Selectors
+Specificity
+Pseudo-classes
+```
+
+### Browser Developer Tools
+
+Browser developer tools are useful for understanding CSS specificity in practice.
+
+Most modern browsers allow developers to:
+
+```text
+Inspect elements
+        ↓
+View matching CSS rules
+        ↓
+See overridden declarations
+        ↓
+Compare specificity
+        ↓
+Understand the cascade
+```
+
+Practicing with browser developer tools is one of the best ways to understand why a CSS declaration wins or loses.
+
+### Recommended Topics for Further Study
+
+After learning CSS specificity, useful related topics include:
+
+```text
+CSS Cascade
+CSS Inheritance
+CSS Selectors
+CSS Pseudo-classes
+CSS Pseudo-elements
+CSS Custom Properties
+CSS Layers
+!important
+```
+
+### Official Documentation
+
+For detailed and up-to-date documentation, refer to:
+
+```text
+MDN Web Docs
+→ CSS Specificity
+
+MDN Web Docs
+→ CSS Cascade
+
+MDN Web Docs
+→ CSS Selectors
+
+W3C and CSS Working Group
+→ CSS Specifications
+```
+
+### Learning Strategy
+
+A useful way to improve your understanding is:
+
+```text
+Learn selector types
+        ↓
+Calculate specificity
+        ↓
+Compare competing rules
+        ↓
+Understand the CSS cascade
+        ↓
+Practice with browser developer tools
+        ↓
+Experiment with real examples
+```
+
+### References Summary
+
+```text
+Learn From
+│
+├── MDN Web Docs
+│
+├── Official CSS specifications
+│
+├── Browser developer tools
+│
+└── Practical experimentation
+```
+
+> 💡 **Remember:** CSS specificity is easier to understand through practice. Use browser developer tools to inspect real CSS rules and experiment with selectors, specificity, importance, and source order.
