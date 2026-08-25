@@ -4920,3 +4920,249 @@ Check source order
 ```
 
 > 💡 **Remember:** The easiest way to understand specificity is to compare selectors that target the same element and property. Always consider the full CSS cascade before assuming that a selector wins because it appears more specific.
+
+---
+
+## How to Avoid Specificity Problems
+
+CSS specificity problems often occur when selectors become unnecessarily complex and difficult to override.
+
+A good approach is to keep selectors simple and maintain a consistent styling strategy.
+
+### Avoid Unnecessarily Specific Selectors
+
+Consider:
+
+```css
+#header .navigation ul li a {
+    color: blue;
+}
+```
+
+This selector has high specificity and may be difficult to override.
+
+A simpler selector may be easier to maintain:
+
+```css
+.navigation-link {
+    color: blue;
+}
+```
+
+Simple selectors make future changes easier.
+
+### Prefer Classes for Styling
+
+Classes are reusable and usually provide a manageable level of specificity.
+
+Example:
+
+```css
+.button {
+    padding: 10px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+
+.button-large {
+    font-size: 1.2rem;
+}
+```
+
+HTML:
+
+```html
+<button class="button button-primary button-large">
+    Submit
+</button>
+```
+
+This approach avoids relying on highly specific selectors.
+
+### Avoid Excessive ID Selectors
+
+ID selectors have high specificity.
+
+Example:
+
+```css
+#header {
+    background-color: blue;
+}
+```
+
+When used repeatedly for styling, ID selectors can make future overrides more difficult.
+
+For reusable components, classes are often a better choice:
+
+```css
+.header {
+    background-color: blue;
+}
+```
+
+### Avoid Deeply Nested Selectors
+
+Consider:
+
+```css
+.main .content .article .section .title {
+    color: blue;
+}
+```
+
+This selector can be difficult to override.
+
+A simpler alternative:
+
+```css
+.article-title {
+    color: blue;
+}
+```
+
+Deep selector chains can create unnecessary specificity.
+
+### Do Not Use `!important` as a Default Solution
+
+When a style does not work as expected, adding `!important` may appear to solve the problem:
+
+```css
+.button {
+    color: blue !important;
+}
+```
+
+However, repeated use can create more conflicts later.
+
+Instead, check:
+
+```text
+Which selectors match?
+        ↓
+Which declaration has higher importance?
+        ↓
+Which selector has higher specificity?
+        ↓
+Does source order matter?
+```
+
+Understanding the reason for the conflict is usually better than repeatedly adding `!important`.
+
+### Keep Specificity Consistent
+
+A consistent specificity level makes CSS easier to maintain.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+These selectors have a predictable structure.
+
+Avoid mixing simple component selectors with unnecessarily complex selectors.
+
+```text
+Simple selectors
+        +
+Consistent naming
+        +
+Predictable specificity
+        ↓
+Easier CSS maintenance
+```
+
+### Use `:where()` for Easily Overridable Styles
+
+The `:where()` function has zero specificity.
+
+Example:
+
+```css
+:where(h1, h2, h3) {
+    margin-top: 0;
+}
+```
+
+A more specific selector can easily override this rule:
+
+```css
+.article-title {
+    margin-top: 20px;
+}
+```
+
+This can be useful when creating base styles that should remain easy to customize.
+
+### Organize CSS Clearly
+
+Organizing styles can reduce accidental conflicts.
+
+For example:
+
+```text
+Base styles
+        ↓
+Layout styles
+        ↓
+Component styles
+        ↓
+Utility styles
+```
+
+A clear structure makes it easier to understand where styles are defined and why a declaration is being overridden.
+
+### A Simple Strategy
+
+When writing CSS:
+
+```text
+Start with simple selectors
+        ↓
+Prefer reusable classes
+        ↓
+Avoid unnecessary nesting
+        ↓
+Avoid excessive IDs
+        ↓
+Use !important carefully
+        ↓
+Keep specificity predictable
+```
+
+### How to Avoid Specificity Problems Summary
+
+```text
+Avoid Specificity Problems
+│
+├── Prefer simple selectors
+│
+├── Use classes for reusable styles
+│
+├── Avoid excessive ID selectors
+│
+├── Avoid deeply nested selectors
+│
+├── Do not rely on !important
+│
+├── Keep specificity consistent
+│
+├── Use :where() when appropriate
+│
+└── Organize CSS clearly
+```
+
+> 💡 **Remember:** The best way to avoid specificity problems is to keep selectors simple, predictable, and easy to override. Avoid increasing specificity unless it is genuinely necessary.
