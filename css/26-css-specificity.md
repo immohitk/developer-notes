@@ -1371,3 +1371,223 @@ Inline Styles
 ```
 
 > 💡 **Remember:** Inline styles are written directly inside HTML elements and generally have higher priority than normal CSS selectors. However, `!important` and other cascade rules can affect the final result.
+
+---
+
+## ID Selectors
+
+An ID selector targets an HTML element using the value of its `id` attribute.
+
+The `id` selector uses the `#` symbol.
+
+Example:
+
+```css
+#title {
+    color: red;
+}
+```
+
+HTML:
+
+```html
+<h1 id="title">
+    Hello World
+</h1>
+```
+
+The selector:
+
+```css
+#title
+```
+
+targets the element with:
+
+```text
+id="title"
+```
+
+### ID Selector Specificity
+
+Each ID selector increases the first specificity value.
+
+Example:
+
+```css
+#title {
+    color: red;
+}
+```
+
+Specificity:
+
+```text
+1-0-0
+```
+
+```text
+1
+↓
+ID selector
+
+0
+↓
+Class-related selectors
+
+0
+↓
+Type selectors
+```
+
+### ID Selectors Have High Specificity
+
+ID selectors have higher specificity than class selectors and type selectors.
+
+Consider:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+#message {
+    color: red;
+}
+```
+
+HTML:
+
+```html
+<p id="message" class="text">
+    Hello World
+</p>
+```
+
+All three selectors match the same paragraph.
+
+Their specificity is:
+
+```text
+p
+→ 0-0-1
+
+.text
+→ 0-1-0
+
+#message
+→ 1-0-0
+```
+
+The ID selector has the highest specificity.
+
+Therefore:
+
+```text
+Final color
+→ red
+```
+
+### Multiple ID Selectors
+
+Each ID selector increases the ID part of specificity.
+
+Example:
+
+```css
+#header #logo {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+2-0-0
+```
+
+However, using multiple ID selectors is usually unnecessary and can make CSS difficult to override.
+
+### ID Selectors and Maintainability
+
+ID selectors can create high-specificity CSS rules.
+
+Example:
+
+```css
+#header .navigation .menu-link {
+    color: blue;
+}
+```
+
+This can be more difficult to override later.
+
+A class-based selector may be easier to maintain:
+
+```css
+.menu-link {
+    color: blue;
+}
+```
+
+Class selectors usually provide more flexibility for reusable components.
+
+### Reusing IDs
+
+In HTML, an `id` should uniquely identify an element within a document.
+
+Example:
+
+```html
+<h1 id="title">
+    Page Title
+</h1>
+```
+
+For styles that need to be reused across multiple elements, classes are generally more appropriate.
+
+Example:
+
+```html
+<p class="highlight">
+    First paragraph
+</p>
+
+<p class="highlight">
+    Second paragraph
+</p>
+```
+
+CSS:
+
+```css
+.highlight {
+    color: blue;
+}
+```
+
+### ID Selector Summary
+
+```text
+ID Selectors
+│
+├── Use the # symbol
+│
+├── Target an element by its id
+│
+├── Specificity
+│   → 1-0-0
+│
+├── Have higher specificity than
+│   → Class selectors
+│   → Type selectors
+│
+└── Can make styles harder to override
+    when overused
+```
+
+> 💡 **Remember:** ID selectors have high specificity. They are useful for targeting uniquely identified elements, but excessive use of IDs for styling can make CSS harder to override and maintain.
