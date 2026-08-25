@@ -1866,3 +1866,236 @@ Class Selectors
 ```
 
 > 💡 **Remember:** Class selectors have higher specificity than type selectors but lower specificity than ID selectors. Classes are reusable, flexible, and commonly used for styling components.
+
+---
+
+## Type Selectors
+
+A type selector targets HTML elements based on their element name.
+
+Type selectors are also commonly called element selectors.
+
+Example:
+
+```css
+p {
+    color: blue;
+}
+```
+
+The selector:
+
+```css
+p
+```
+
+targets all `<p>` elements.
+
+Example HTML:
+
+```html
+<p>First paragraph</p>
+
+<p>Second paragraph</p>
+
+<p>Third paragraph</p>
+```
+
+All matching paragraph elements receive the style.
+
+### Type Selector Specificity
+
+Each type selector increases the third specificity value.
+
+Example:
+
+```css
+p {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+0-0-1
+```
+
+```text
+0
+↓
+ID selectors
+
+0
+↓
+Class-related selectors
+
+1
+↓
+Type selector
+```
+
+### Multiple Type Selectors
+
+Multiple type selectors increase the type selector value.
+
+Example:
+
+```css
+main article p {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+0-0-3
+```
+
+```text
+main
+→ 0-0-1
+
+article
+→ 0-0-1
+
+p
+→ 0-0-1
+
+Total
+→ 0-0-3
+```
+
+The selector targets paragraph elements inside an `article` inside a `main` element.
+
+### Type Selectors Compared With Class Selectors
+
+Consider:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+Both selectors match the paragraph.
+
+Specificity:
+
+```text
+p
+→ 0-0-1
+
+.text
+→ 0-1-0
+```
+
+The class selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### Type Selectors Compared With ID Selectors
+
+Consider:
+
+```css
+p {
+    color: blue;
+}
+
+#message {
+    color: red;
+}
+```
+
+HTML:
+
+```html
+<p id="message">
+    Hello World
+</p>
+```
+
+Specificity:
+
+```text
+p
+→ 0-0-1
+
+#message
+→ 1-0-0
+```
+
+The ID selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ red
+```
+
+### Type Selectors Are Useful for General Styles
+
+Type selectors are useful when applying styles to a group of similar HTML elements.
+
+Example:
+
+```css
+h1 {
+    font-size: 2rem;
+}
+
+p {
+    line-height: 1.6;
+}
+
+button {
+    cursor: pointer;
+}
+```
+
+These rules apply to all matching elements.
+
+### Type Selector Summary
+
+```text
+Type Selectors
+│
+├── Target elements by name
+│
+├── Examples
+│   → p
+│   → h1
+│   → button
+│
+├── Specificity
+│   → 0-0-1
+│
+├── Have lower specificity than
+│   → Class selectors
+│   → ID selectors
+│
+└── Useful for
+    general element styles
+```
+
+> 💡 **Remember:** Type selectors target HTML elements by their element name. They have relatively low specificity and are useful for applying general styles across a page.
