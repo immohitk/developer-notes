@@ -3858,3 +3858,273 @@ For this reason, it is important to be careful when placing ID selectors inside 
 ```
 
 > 💡 **Remember:** `:not()` selects elements that do not match the selector inside it. Its specificity is based on the most specific selector in its argument.
+
+---
+
+## The `:has()` Function
+
+The `:has()` pseudo-class allows a selector to target an element based on the elements or conditions related to it.
+
+It is often described as a relational pseudo-class because it can select an element when it contains or is related to another matching element.
+
+Example:
+
+```css
+.card:has(img) {
+    border: 2px solid blue;
+}
+```
+
+This selector targets `.card` elements that contain an `img` element.
+
+### Basic Syntax
+
+The basic syntax is:
+
+```css
+:has(selector)
+```
+
+Example:
+
+```css
+article:has(h1) {
+    padding: 20px;
+}
+```
+
+This targets `article` elements that contain an `h1`.
+
+### Example
+
+Consider the following HTML:
+
+```html
+<div class="card">
+    <img src="image.jpg" alt="Example">
+    <p>Card content</p>
+</div>
+
+<div class="card">
+    <p>Another card</p>
+</div>
+```
+
+CSS:
+
+```css
+.card:has(img) {
+    border: 2px solid blue;
+}
+```
+
+The result:
+
+```text
+First card
+→ Contains an img
+→ Matches
+
+Second card
+→ Does not contain an img
+→ Does not match
+```
+
+### Selecting a Parent Based on a Child
+
+One useful feature of `:has()` is that it can style an element based on one of its descendants.
+
+Example:
+
+```css
+form:has(input:invalid) {
+    border: 2px solid red;
+}
+```
+
+This targets a `form` containing an invalid input.
+
+```text
+form
+  ↓
+Contains invalid input?
+  ↓
+Yes
+  ↓
+Apply style
+```
+
+### Selecting Based on a Following Sibling
+
+The `:has()` pseudo-class can also work with relative selectors.
+
+Example:
+
+```css
+h2:has(+ p) {
+    margin-bottom: 0;
+}
+```
+
+This targets an `h2` that is immediately followed by a paragraph.
+
+The `+` selector represents the adjacent sibling relationship.
+
+```text
+h2
+↓
+Immediately followed by
+↓
+p
+```
+
+### Specificity of `:has()`
+
+The `:has()` pseudo-class itself does not add a fixed specificity value.
+
+Its specificity is replaced by the specificity of the most specific selector in its argument.
+
+Consider:
+
+```css
+.card:has(img)
+```
+
+Specificity:
+
+```text
+.card
+→ 0-1-0
+
+img
+→ 0-0-1
+
+Total
+→ 0-1-1
+```
+
+### Example With Multiple Selectors
+
+Consider:
+
+```css
+.card:has(img, .featured, #special) {
+    border-color: blue;
+}
+```
+
+The selectors inside `:has()` include:
+
+```text
+img
+→ 0-0-1
+
+.featured
+→ 0-1-0
+
+#special
+→ 1-0-0
+```
+
+The most specific selector is:
+
+```text
+#special
+→ 1-0-0
+```
+
+Including `.card`:
+
+```text
+.card
+→ 0-1-0
+```
+
+The total specificity becomes:
+
+```text
+1-1-0
+```
+
+### Practical Example
+
+Consider product cards:
+
+```html
+<div class="product">
+    <h2>Product One</h2>
+    <span class="sale">Sale</span>
+</div>
+
+<div class="product">
+    <h2>Product Two</h2>
+</div>
+```
+
+CSS:
+
+```css
+.product:has(.sale) {
+    border: 2px solid green;
+}
+```
+
+Only the product containing `.sale` matches.
+
+```text
+Product One
+→ Contains .sale
+→ Matches
+
+Product Two
+→ Does not contain .sale
+→ Does not match
+```
+
+### Be Careful With Specificity
+
+A highly specific selector inside `:has()` can increase the specificity of the complete selector.
+
+Example:
+
+```css
+.card:has(#special) {
+    border-color: red;
+}
+```
+
+Specificity:
+
+```text
+.card
+→ 0-1-0
+
+#special
+→ 1-0-0
+
+Total
+→ 1-1-0
+```
+
+Because of this, it is important to understand the selectors used inside `:has()`.
+
+### `:has()` Summary
+
+```text
+:has()
+│
+├── Selects elements based on
+│   related matching elements
+│
+├── Can select a parent based on
+│   its descendants
+│
+├── Can work with relative selectors
+│
+├── Uses the specificity of the
+│   most specific selector in its argument
+│
+└── Can increase selector specificity
+```
+
+> 💡 **Remember:** `:has()` allows CSS selectors to match an element based on related elements. Its specificity is affected by the most specific selector inside its argument.
