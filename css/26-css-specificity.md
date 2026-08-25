@@ -349,3 +349,243 @@ Winning declaration
 ```
 
 > 💡 **Remember:** CSS specificity determines how selectors are compared when multiple CSS rules target the same element. However, specificity is only one part of the overall CSS cascade.
+
+---
+
+## Why CSS Specificity Matters
+
+CSS specificity matters because multiple CSS rules can target the same element.
+
+When this happens, the browser needs to determine which declaration should be applied.
+
+Understanding specificity helps you predict the final appearance of an element.
+
+### Multiple Rules Can Target One Element
+
+Consider the following HTML:
+
+```html
+<button id="submit" class="button">
+    Submit
+</button>
+```
+
+Several CSS rules can target the same button:
+
+```css
+button {
+    background-color: gray;
+}
+
+.button {
+    background-color: blue;
+}
+
+#submit {
+    background-color: green;
+}
+```
+
+All three selectors match the same element.
+
+```text
+button
+   ↓
+Matches button
+
+.button
+   ↓
+Matches button
+
+#submit
+   ↓
+Matches button
+```
+
+Specificity helps determine which declaration has higher priority.
+
+### It Helps Predict CSS Results
+
+Without understanding specificity, CSS may sometimes appear to behave unexpectedly.
+
+For example:
+
+```css
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+Both rules match the paragraph.
+
+The class selector has higher specificity than the type selector.
+
+Therefore:
+
+```text
+p
+→ blue
+
+.text
+→ green
+
+Final color
+→ green
+```
+
+Understanding specificity allows you to predict this result.
+
+### It Helps Avoid CSS Conflicts
+
+Large projects can contain many CSS rules.
+
+Different selectors may target the same elements.
+
+```text
+Component styles
+       +
+Layout styles
+       +
+Utility styles
+       +
+Custom styles
+       ↓
+Possible conflicts
+```
+
+Understanding specificity helps identify why one rule overrides another.
+
+### It Reduces the Need for `!important`
+
+When developers do not understand why a CSS rule is being overridden, they may use:
+
+```css
+!important
+```
+
+Example:
+
+```css
+color: red !important;
+```
+
+Although `!important` can be useful in some situations, using it repeatedly can make CSS difficult to maintain.
+
+A better approach is to understand why the competing rule has higher priority.
+
+```text
+CSS rule not working
+        ↓
+Check cascade
+        ↓
+Check specificity
+        ↓
+Find conflicting rule
+        ↓
+Fix the selector structure
+```
+
+### It Makes CSS Easier to Maintain
+
+CSS with unnecessarily high specificity can become difficult to override.
+
+For example:
+
+```css
+#header .navigation .menu li a {
+    color: blue;
+}
+```
+
+Overly complex selectors can make future styling changes more difficult.
+
+A simpler selector may be easier to maintain:
+
+```css
+.menu-link {
+    color: blue;
+}
+```
+
+Lower and more predictable specificity can make CSS easier to manage.
+
+### It Helps Debug CSS
+
+When a style is not applied as expected, specificity is one possible reason.
+
+A useful debugging process is:
+
+```text
+CSS declaration not applied
+        ↓
+Check whether another rule matches
+        ↓
+Compare importance
+        ↓
+Compare specificity
+        ↓
+Check source order
+```
+
+Browser developer tools can also help identify which declarations are active and which ones are overridden.
+
+### It Is Important in Large Projects
+
+Specificity problems become more noticeable as projects grow.
+
+```text
+Small project
+    ↓
+Fewer selectors
+    ↓
+Fewer conflicts
+
+Large project
+    ↓
+More selectors
+    ↓
+More possible conflicts
+    ↓
+Specificity becomes more important
+```
+
+Understanding specificity helps developers create CSS systems that are easier to maintain as a project becomes larger.
+
+### Main Benefits
+
+Understanding CSS specificity helps you:
+
+- Predict which styles will be applied
+- Understand CSS conflicts
+- Debug overridden declarations
+- Avoid unnecessary `!important`
+- Write more maintainable selectors
+- Keep selector priority predictable
+
+### Main Concept
+
+```text
+Understand specificity
+        ↓
+Understand CSS conflicts
+        ↓
+Predict winning declarations
+        ↓
+Write cleaner CSS
+        ↓
+Maintain styles more easily
+```
+
+> 💡 **Remember:** CSS specificity matters because multiple selectors can target the same element. Understanding how selector priority works helps you avoid conflicts and write CSS that is easier to predict and maintain.
