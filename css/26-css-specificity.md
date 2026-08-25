@@ -5416,3 +5416,334 @@ Good Specificity Practices
 ```
 
 > 💡 **Remember:** Good CSS specificity is predictable CSS specificity. Keep selectors simple and intentional so that styles remain easy to understand, override, and maintain.
+
+---
+
+## Common Mistakes
+
+CSS specificity can be confusing because several parts of the CSS cascade work together.
+
+The following are common mistakes developers make when working with CSS specificity.
+
+### Assuming the Last Rule Always Wins
+
+A common mistake is believing that the CSS rule written later always wins.
+
+Consider:
+
+```css
+.text {
+    color: blue;
+}
+
+p {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+The `p` rule appears later.
+
+However:
+
+```text
+.text
+→ 0-1-0
+
+p
+→ 0-0-1
+```
+
+The class selector has higher specificity.
+
+Therefore:
+
+```text
+Final color
+→ blue
+```
+
+Source order matters only when the competing declarations have the same relevant cascade conditions and specificity.
+
+### Adding Specificity Values Together
+
+Another mistake is treating specificity values like normal numbers.
+
+Consider:
+
+```text
+1-0-0
+
+0-10-0
+```
+
+It may appear that:
+
+```text
+0-10-0
+```
+
+should be larger because it contains more selectors.
+
+However, specificity is compared from left to right.
+
+```text
+ID selectors
+1 > 0
+```
+
+Therefore:
+
+```text
+1-0-0
+```
+
+has higher specificity.
+
+### Using `!important` for Every Conflict
+
+When a style does not apply, developers may immediately write:
+
+```css
+.button {
+    color: blue !important;
+}
+```
+
+This may solve the immediate problem but can create more problems later.
+
+Repeated use can lead to:
+
+```text
+Style conflict
+        ↓
+Add !important
+        ↓
+Another conflict
+        ↓
+Add another !important
+        ↓
+CSS becomes difficult to manage
+```
+
+It is usually better to first inspect the CSS cascade and identify why the declaration is being overridden.
+
+### Overusing ID Selectors
+
+ID selectors have high specificity.
+
+Example:
+
+```css
+#header .menu .item {
+    color: blue;
+}
+```
+
+Rules with high specificity can become difficult to override.
+
+For reusable components, class selectors are often easier to manage:
+
+```css
+.menu-item {
+    color: blue;
+}
+```
+
+### Creating Deeply Nested Selectors
+
+Consider:
+
+```css
+.page .main .content .article .section .title {
+    color: blue;
+}
+```
+
+This selector depends heavily on the HTML structure.
+
+If the structure changes, the selector may no longer match.
+
+It also creates higher specificity.
+
+A simpler component-based selector may be easier to maintain:
+
+```css
+.article-title {
+    color: blue;
+}
+```
+
+### Increasing Specificity to Fix Every Problem
+
+Consider:
+
+```css
+.button {
+    color: blue;
+}
+```
+
+Later, another rule overrides it.
+
+A common reaction is to increase specificity:
+
+```css
+.container .button {
+    color: blue;
+}
+```
+
+Then:
+
+```css
+.page .container .button {
+    color: blue;
+}
+```
+
+This can create a specificity escalation.
+
+```text
+Rule overridden
+        ↓
+Increase specificity
+        ↓
+Rule overridden again
+        ↓
+Increase specificity again
+        ↓
+Hard-to-maintain CSS
+```
+
+Instead, investigate the original conflict.
+
+### Forgetting About Inheritance
+
+A parent selector may have high specificity:
+
+```css
+#container {
+    color: blue;
+}
+```
+
+A child may have:
+
+```css
+.text {
+    color: red;
+}
+```
+
+HTML:
+
+```html
+<div id="container">
+    <p class="text">
+        Hello World
+    </p>
+</div>
+```
+
+The parent's selector specificity does not directly compete with the child's selector because they target different elements.
+
+The paragraph has a direct `color` declaration.
+
+Therefore:
+
+```text
+Final color
+→ red
+```
+
+### Forgetting That `:is()` Can Increase Specificity
+
+Consider:
+
+```css
+:is(.button, #submit) {
+    color: blue;
+}
+```
+
+The presence of `#submit` affects the specificity of the entire `:is()` selector.
+
+Specificity:
+
+```text
+1-0-0
+```
+
+Even an element matching `.button` can be affected by the higher specificity.
+
+This can create unexpected conflicts.
+
+### Confusing `:where()` With `:is()`
+
+Both functions can group selectors.
+
+However:
+
+```text
+:is()
+→ Uses the specificity of the most specific selector
+
+:where()
+→ Always has zero specificity
+```
+
+Choosing the wrong function can lead to unexpected cascade behavior.
+
+### Ignoring the Full CSS Cascade
+
+Specificity is only one part of the CSS cascade.
+
+A common mistake is checking specificity without considering:
+
+```text
+Origin
+        ↓
+Importance
+        ↓
+Specificity
+        ↓
+Source order
+```
+
+For example, a normal declaration with higher specificity may still lose to an applicable important declaration.
+
+### Common Mistakes Summary
+
+```text
+Common Specificity Mistakes
+│
+├── Assuming the last rule always wins
+│
+├── Adding specificity values together
+│
+├── Overusing !important
+│
+├── Overusing ID selectors
+│
+├── Creating deeply nested selectors
+│
+├── Escalating specificity repeatedly
+│
+├── Confusing inheritance with specificity
+│
+├── Forgetting :is() specificity
+│
+├── Confusing :where() with :is()
+│
+└── Ignoring the full CSS cascade
+```
+
+> 💡 **Remember:** When a CSS rule does not behave as expected, do not immediately increase specificity. First identify which declarations are competing and then check the full cascade.
