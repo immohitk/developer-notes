@@ -5747,3 +5747,324 @@ Common Specificity Mistakes
 ```
 
 > 💡 **Remember:** When a CSS rule does not behave as expected, do not immediately increase specificity. First identify which declarations are competing and then check the full cascade.
+
+---
+
+## Interview Questions
+
+The following questions can help you prepare for CSS interviews and test your understanding of CSS specificity and the cascade.
+
+### 1. What is CSS specificity?
+
+CSS specificity is a system used to determine which CSS selector has higher priority when multiple declarations target the same element.
+
+Specificity is one part of the CSS cascade.
+
+### 2. How is CSS specificity calculated?
+
+Specificity is commonly represented as:
+
+```text
+A-B-C
+```
+
+Where:
+
+```text
+A
+→ ID selectors
+
+B
+→ Class selectors
+→ Attribute selectors
+→ Pseudo-classes
+
+C
+→ Type selectors
+→ Pseudo-elements
+```
+
+Example:
+
+```css
+#header .menu a
+```
+
+Specificity:
+
+```text
+1-1-1
+```
+
+### 3. Which has higher specificity: a class selector or a type selector?
+
+A class selector has higher specificity.
+
+```text
+.text
+→ 0-1-0
+
+p
+→ 0-0-1
+```
+
+Therefore:
+
+```text
+.text
+```
+
+has higher specificity.
+
+### 4. Which has higher specificity: an ID selector or multiple class selectors?
+
+An ID selector has higher specificity than any number of class selectors.
+
+Example:
+
+```text
+#title
+→ 1-0-0
+
+.class-one.class-two.class-three
+→ 0-3-0
+```
+
+The ID selector has higher specificity because specificity is compared from left to right.
+
+### 5. Does the CSS rule written last always win?
+
+No.
+
+The later rule wins only when competing declarations have the same relevant cascade conditions and specificity.
+
+Example:
+
+```css
+.text {
+    color: blue;
+}
+
+p {
+    color: green;
+}
+```
+
+The `.text` selector can still win because it has higher specificity.
+
+### 6. What happens when two selectors have the same specificity?
+
+Source order can determine the winner.
+
+Example:
+
+```css
+.text {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+The second declaration appears later.
+
+Therefore:
+
+```text
+Final color
+→ green
+```
+
+### 7. What specificity does the universal selector have?
+
+The universal selector has:
+
+```text
+0-0-0
+```
+
+Example:
+
+```css
+*
+```
+
+It matches all elements but adds no specificity.
+
+### 8. What is the specificity of an inline style?
+
+Inline styles are commonly represented separately from normal selectors.
+
+A common representation is:
+
+```text
+1-0-0-0
+```
+
+Inline styles generally have higher priority than normal author declarations.
+
+### 9. What does `!important` do?
+
+`!important` changes the importance of a CSS declaration.
+
+Example:
+
+```css
+p {
+    color: red !important;
+}
+```
+
+It is part of the CSS cascade and is not a specificity score.
+
+### 10. Does `!important` increase specificity?
+
+No.
+
+`!important` changes declaration importance.
+
+Specificity is still compared between competing declarations at the same relevant importance level.
+
+### 11. What is the difference between `:is()` and `:where()`?
+
+```text
+:is()
+→ Uses the specificity of the most specific selector
+  in its selector list
+
+:where()
+→ Always has zero specificity
+```
+
+Both can be used to group selectors.
+
+### 12. How does `:not()` affect specificity?
+
+The specificity of `:not()` is based on the most specific selector in its selector list.
+
+Example:
+
+```css
+:not(.hidden)
+```
+
+Specificity:
+
+```text
+0-1-0
+```
+
+### 13. How does `:has()` affect specificity?
+
+The specificity of `:has()` is based on the most specific selector in its argument.
+
+Example:
+
+```css
+.card:has(img)
+```
+
+Specificity:
+
+```text
+.card
+→ 0-1-0
+
+img
+→ 0-0-1
+
+Total
+→ 0-1-1
+```
+
+### 14. What is the difference between inheritance and specificity?
+
+Inheritance determines whether a property value can pass from a parent element to a child.
+
+Specificity determines which competing declaration wins when multiple declarations target the same element.
+
+A parent's high specificity does not automatically override a declaration directly targeting a child.
+
+### 15. Why can high specificity be a problem?
+
+Highly specific selectors can be difficult to override.
+
+Example:
+
+```css
+#app .container .content .button {
+    color: blue;
+}
+```
+
+Developers may need increasingly specific selectors to override such rules.
+
+This can create a specificity escalation problem.
+
+### 16. Why should ID selectors be used carefully for styling?
+
+ID selectors have high specificity.
+
+Repeated use of IDs for styling can make CSS rules harder to override.
+
+Classes are often more flexible for reusable components.
+
+### 17. What is source order in CSS?
+
+Source order refers to the order in which CSS declarations appear.
+
+When competing declarations have equal relevant cascade conditions and specificity, the later declaration can win.
+
+### 18. How can you avoid CSS specificity problems?
+
+Some good practices include:
+
+```text
+Use simple selectors
+        ↓
+Prefer reusable classes
+        ↓
+Avoid excessive IDs
+        ↓
+Avoid deeply nested selectors
+        ↓
+Use !important carefully
+        ↓
+Keep specificity predictable
+```
+
+### 19. What should you check when a CSS rule is being overridden?
+
+A useful process is:
+
+```text
+Check competing declarations
+        ↓
+Check origin and importance
+        ↓
+Compare specificity
+        ↓
+Check source order
+```
+
+### 20. What is the most important thing to remember about specificity?
+
+Specificity is only one part of the CSS cascade.
+
+When a CSS rule behaves unexpectedly, consider:
+
+```text
+CSS Cascade
+│
+├── Origin
+│
+├── Importance
+│
+├── Specificity
+│
+└── Source order
+```
+
+Understanding the complete cascade is more useful than focusing only on specificity.
