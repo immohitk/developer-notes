@@ -6068,3 +6068,499 @@ CSS Cascade
 ```
 
 Understanding the complete cascade is more useful than focusing only on specificity.
+
+---
+
+## Practice Exercises
+
+The following exercises will help you practice calculating CSS specificity and understanding how the CSS cascade determines which declaration wins.
+
+Try to answer each question before checking the solution.
+
+### Exercise 1: Type Selector vs Class Selector
+
+HTML:
+
+```html
+<p class="message">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+p {
+    color: blue;
+}
+
+.message {
+    color: green;
+}
+```
+
+Questions:
+
+```text
+1. What is the specificity of p?
+2. What is the specificity of .message?
+3. Which color will be applied?
+```
+
+Solution:
+
+```text
+p
+→ 0-0-1
+
+.message
+→ 0-1-0
+
+Final color
+→ green
+```
+
+The class selector has higher specificity.
+
+### Exercise 2: Class Selector vs ID Selector
+
+HTML:
+
+```html
+<p id="title" class="heading">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.heading {
+    color: blue;
+}
+
+#title {
+    color: red;
+}
+```
+
+Questions:
+
+```text
+1. What is the specificity of .heading?
+2. What is the specificity of #title?
+3. Which color will be applied?
+```
+
+Solution:
+
+```text
+.heading
+→ 0-1-0
+
+#title
+→ 1-0-0
+
+Final color
+→ red
+```
+
+The ID selector has higher specificity.
+
+### Exercise 3: Multiple Classes
+
+HTML:
+
+```html
+<button class="button primary">
+    Submit
+</button>
+```
+
+CSS:
+
+```css
+.button {
+    background-color: gray;
+}
+
+.button.primary {
+    background-color: blue;
+}
+```
+
+Questions:
+
+```text
+1. What is the specificity of .button?
+2. What is the specificity of .button.primary?
+3. Which background color will be applied?
+```
+
+Solution:
+
+```text
+.button
+→ 0-1-0
+
+.button.primary
+→ 0-2-0
+
+Final background color
+→ blue
+```
+
+### Exercise 4: Source Order
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Questions:
+
+```text
+1. Do both selectors have the same specificity?
+2. Which declaration appears later?
+3. Which color will be applied?
+```
+
+Solution:
+
+```text
+Both selectors
+→ 0-1-0
+
+Later declaration
+→ color: green
+
+Final color
+→ green
+```
+
+### Exercise 5: More Type Selectors
+
+HTML:
+
+```html
+<main>
+    <article>
+        <p>Hello World</p>
+    </article>
+</main>
+```
+
+CSS:
+
+```css
+p {
+    color: green;
+}
+
+main article p {
+    color: blue;
+}
+```
+
+Questions:
+
+```text
+1. What is the specificity of p?
+2. What is the specificity of main article p?
+3. Which color will be applied?
+```
+
+Solution:
+
+```text
+p
+→ 0-0-1
+
+main article p
+→ 0-0-3
+
+Final color
+→ blue
+```
+
+### Exercise 6: `!important`
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: blue;
+}
+
+p {
+    color: red !important;
+}
+```
+
+Questions:
+
+```text
+1. Which selector has higher normal specificity?
+2. Which declaration is important?
+3. Which color will be applied?
+```
+
+Solution:
+
+```text
+.text
+→ Higher normal specificity
+
+p
+→ Contains !important
+
+Final color
+→ red
+```
+
+### Exercise 7: `:is()`
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+.text {
+    color: green;
+}
+
+:is(.text, #title) {
+    color: blue;
+}
+```
+
+Questions:
+
+```text
+1. What is the specificity of .text?
+2. What is the specificity of :is(.text, #title)?
+3. Which color will be applied?
+```
+
+Solution:
+
+```text
+.text
+→ 0-1-0
+
+:is(.text, #title)
+→ 1-0-0
+
+Final color
+→ blue
+```
+
+### Exercise 8: `:where()`
+
+HTML:
+
+```html
+<p class="text">
+    Hello World
+</p>
+```
+
+CSS:
+
+```css
+:where(.text, #title) {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+```
+
+Questions:
+
+```text
+1. What is the specificity of :where(.text, #title)?
+2. What is the specificity of .text?
+3. Which color will be applied?
+```
+
+Solution:
+
+```text
+:where(.text, #title)
+→ 0-0-0
+
+.text
+→ 0-1-0
+
+Final color
+→ green
+```
+
+### Exercise 9: Calculate Specificity
+
+Calculate the specificity of:
+
+```css
+#app .container article p.title
+```
+
+Break the selector into parts:
+
+```text
+#app
+→ ID selector
+
+.container
+→ Class selector
+
+article
+→ Type selector
+
+p
+→ Type selector
+
+.title
+→ Class selector
+```
+
+Solution:
+
+```text
+IDs
+→ 1
+
+Classes
+→ 2
+
+Type selectors
+→ 2
+
+Specificity
+→ 1-2-2
+```
+
+### Exercise 10: Find the Winning Rule
+
+HTML:
+
+```html
+<div id="app">
+    <p class="message">
+        Hello World
+    </p>
+</div>
+```
+
+CSS:
+
+```css
+p {
+    color: blue;
+}
+
+.message {
+    color: green;
+}
+
+#app p {
+    color: red;
+}
+```
+
+Questions:
+
+```text
+1. What is the specificity of each selector?
+2. Which rules match the paragraph?
+3. Which declaration wins?
+```
+
+Solution:
+
+```text
+p
+→ 0-0-1
+
+.message
+→ 0-1-0
+
+#app p
+→ 1-0-1
+
+Final color
+→ red
+```
+
+### Practice Challenge
+
+Create your own HTML element and write three CSS rules that target it.
+
+For example:
+
+```html
+<p id="example" class="text">
+    Hello World
+</p>
+```
+
+Write three selectors with different specificity values.
+
+Then:
+
+```text
+1. Calculate the specificity of each selector.
+2. Determine which declarations compete.
+3. Predict which declaration wins.
+4. Test the result in a browser.
+```
+
+### Practice Exercises Summary
+
+```text
+Practice CSS Specificity
+│
+├── Calculate specificity
+│
+├── Compare selectors
+│
+├── Identify competing rules
+│
+├── Check importance
+│
+├── Check source order
+│
+└── Predict the final result
+```
+
+> 💡 **Remember:** The best way to learn CSS specificity is to practice comparing selectors and predicting which declaration will win before testing the result.
