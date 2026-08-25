@@ -3115,3 +3115,260 @@ Source Order
 ```
 
 > 💡 **Remember:** Source order is usually the deciding factor when competing CSS declarations have the same relevant origin, importance, and specificity. In that situation, the declaration that appears later can win.
+
+---
+
+## The `:is()` Function
+
+The `:is()` pseudo-class allows multiple selectors to be grouped together.
+
+It can make CSS selectors shorter and easier to read.
+
+Example:
+
+```css
+:is(h1, h2, h3) {
+    color: blue;
+}
+```
+
+This selector targets:
+
+```text
+h1
+h2
+h3
+```
+
+### Without `:is()`
+
+Without `:is()`, the same selectors can be written separately:
+
+```css
+h1,
+h2,
+h3 {
+    color: blue;
+}
+```
+
+The `:is()` function can be especially useful when a longer part of a selector is repeated.
+
+### Example With Repeated Selectors
+
+Consider:
+
+```css
+article h1,
+article h2,
+article h3 {
+    color: blue;
+}
+```
+
+Using `:is()`:
+
+```css
+article :is(h1, h2, h3) {
+    color: blue;
+}
+```
+
+This reduces repeated selector code.
+
+### Specificity of `:is()`
+
+The `:is()` pseudo-class itself does not simply add a fixed specificity value.
+
+Instead, its specificity is replaced by the specificity of the most specific selector in its selector list.
+
+Consider:
+
+```css
+:is(p, .text) {
+    color: blue;
+}
+```
+
+The selectors inside `:is()` have:
+
+```text
+p
+→ 0-0-1
+
+.text
+→ 0-1-0
+```
+
+The most specific selector is:
+
+```text
+.text
+→ 0-1-0
+```
+
+Therefore, the `:is()` selector has:
+
+```text
+0-1-0
+```
+
+specificity.
+
+### Example With an ID Selector
+
+Consider:
+
+```css
+:is(p, .text, #title) {
+    color: blue;
+}
+```
+
+The selectors have:
+
+```text
+p
+→ 0-0-1
+
+.text
+→ 0-1-0
+
+#title
+→ 1-0-0
+```
+
+The most specific selector is:
+
+```text
+#title
+→ 1-0-0
+```
+
+Therefore, the selector:
+
+```css
+:is(p, .text, #title)
+```
+
+has specificity:
+
+```text
+1-0-0
+```
+
+This applies even when the matched element matches a less specific selector inside the `:is()` list.
+
+### `:is()` With Other Selectors
+
+The specificity of selectors outside `:is()` is also included.
+
+Example:
+
+```css
+article :is(h1, .title) {
+    color: blue;
+}
+```
+
+Specificity:
+
+```text
+article
+→ 0-0-1
+
+.title
+→ 0-1-0
+```
+
+The most specific selector inside `:is()` is `.title`.
+
+Therefore:
+
+```text
+article :is(h1, .title)
+→ 0-1-1
+```
+
+### Why Specificity Matters With `:is()`
+
+The presence of a highly specific selector inside `:is()` can increase the specificity of the entire selector.
+
+Example:
+
+```css
+:is(.button, #submit) {
+    color: blue;
+}
+```
+
+Because `#submit` is an ID selector, the selector has:
+
+```text
+1-0-0
+```
+
+specificity.
+
+This can be surprising when the rule is intended to style elements matching `.button`.
+
+### A Simpler Example
+
+Consider:
+
+```css
+.button {
+    color: green;
+}
+
+:is(.button, #submit) {
+    color: blue;
+}
+```
+
+An element with:
+
+```html
+<button class="button">
+    Submit
+</button>
+```
+
+matches both rules.
+
+Specificity:
+
+```text
+.button
+→ 0-1-0
+
+:is(.button, #submit)
+→ 1-0-0
+```
+
+The `:is()` rule has higher specificity because the selector list contains an ID selector.
+
+Therefore:
+
+```text
+Final color
+→ blue
+```
+
+### `:is()` Summary
+
+```text
+:is()
+│
+├── Groups multiple selectors
+│
+├── Reduces repeated selector code
+│
+├── Uses the specificity of the
+│   most specific selector in its list
+│
+└── Can unexpectedly increase
+    selector specificity
+```
+
+> 💡 **Remember:** The specificity of `:is()` is based on the most specific selector in its selector list. Be careful when placing highly specific selectors, such as IDs, inside `:is()`.
