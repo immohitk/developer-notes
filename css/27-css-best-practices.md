@@ -1000,3 +1000,198 @@ Classes for Styling
 ```
 
 > 💡 **Remember:** Use classes as the primary tool for reusable CSS styling. IDs are better suited for uniquely identifying elements when necessary.
+
+---
+
+## Avoid Excessive ID Selectors
+
+ID selectors can be useful, but using them excessively for styling can make CSS harder to maintain and override.
+
+An ID should be unique within an HTML document.
+
+For example:
+
+```html
+<header id="main-header">
+    ...
+</header>
+```
+
+CSS can target the element:
+
+```css
+#main-header {
+    padding: 20px;
+}
+```
+
+However, ID selectors have high specificity compared with class selectors.
+
+### ID Selectors Have High Specificity
+
+Consider:
+
+```css
+.button {
+    background-color: blue;
+}
+
+#submit-button {
+    background-color: green;
+}
+```
+
+Specificity:
+
+```text
+.button
+→ 0-1-0
+
+#submit-button
+→ 1-0-0
+```
+
+The ID selector has higher specificity.
+
+This can make the style more difficult to override later.
+
+### Avoid Using IDs for Reusable Styles
+
+An ID can only be used once in a valid HTML document.
+
+For example:
+
+```html
+<button id="button">
+    Save
+</button>
+```
+
+This approach is not suitable for multiple reusable buttons.
+
+Instead:
+
+```html
+<button class="button">
+    Save
+</button>
+
+<button class="button">
+    Submit
+</button>
+```
+
+The class can be reused across multiple elements.
+
+### Excessive IDs Can Create Specificity Problems
+
+Consider:
+
+```css
+#app #header #navigation a {
+    color: blue;
+}
+```
+
+This selector has very high specificity.
+
+Overriding it may require increasingly complex selectors.
+
+For example:
+
+```css
+#app #header #navigation .navigation-link {
+    color: green;
+}
+```
+
+This can lead to unnecessary specificity escalation.
+
+A simpler class-based approach is often easier to maintain:
+
+```css
+.navigation-link {
+    color: blue;
+}
+```
+
+### Prefer Classes for Component Styling
+
+Classes provide a more flexible approach for styling components.
+
+Example:
+
+```css
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+```
+
+These styles can be reused and overridden more easily than highly specific ID selectors.
+
+### IDs Still Have Useful Purposes
+
+Avoiding excessive ID selectors does not mean IDs should never be used.
+
+IDs are useful when an element needs a unique identifier.
+
+Examples include:
+
+```html
+<form id="login-form">
+```
+
+```html
+<section id="contact">
+```
+
+They can also be useful for:
+
+```text
+Unique element identification
+Page fragment links
+JavaScript references
+Form label relationships
+Accessibility relationships
+```
+
+The important distinction is that IDs do not usually need to be the primary solution for reusable styling.
+
+### A Simple Approach
+
+When styling an element, consider:
+
+```text
+Is this style reusable?
+        ↓
+Yes
+        ↓
+Use a class
+```
+
+If an element requires a unique identifier:
+
+```text
+Needs unique identification
+        ↓
+Use an ID when appropriate
+```
+
+### Avoid Excessive ID Selectors Summary
+
+```text
+ID Selectors
+│
+├── Have high specificity
+├── Should remain unique
+├── Can be difficult to override
+├── Are not ideal for reusable styles
+├── Can contribute to specificity problems
+└── Should be used when uniqueness is needed
+```
+
+> 💡 **Remember:** IDs are useful for uniquely identifying elements, but classes are usually a better choice for reusable and maintainable CSS styling.
