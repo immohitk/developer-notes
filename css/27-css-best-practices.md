@@ -1366,3 +1366,177 @@ Simple Selectors
 ```
 
 > 💡 **Remember:** Use the simplest selector that clearly targets the element you need. Avoid adding selector complexity unless it provides a real benefit.
+
+---
+
+## Avoid Deeply Nested Selectors
+
+Deeply nested selectors depend on a long chain of elements or classes.
+
+For example:
+
+```css
+.page .main .content .article .section .button {
+    padding: 10px 16px;
+}
+```
+
+Although this selector can work, it is often difficult to maintain because it depends heavily on a specific HTML structure.
+
+A simpler selector is usually easier to manage:
+
+```css
+.button {
+    padding: 10px 16px;
+}
+```
+
+### Why Deeply Nested Selectors Cause Problems
+
+A deeply nested selector can create several problems:
+
+```text
+Higher specificity
+        ↓
+Difficult overrides
+        ↓
+Strong dependency on HTML structure
+        ↓
+Harder maintenance
+```
+
+The more parts a selector contains, the more tightly the CSS can become connected to the structure of the HTML.
+
+### Avoid Unnecessary HTML Dependencies
+
+Consider:
+
+```css
+.sidebar .menu ul li a {
+    color: gray;
+}
+```
+
+This selector expects a particular structure:
+
+```text
+.sidebar
+    ↓
+.menu
+    ↓
+ul
+    ↓
+li
+    ↓
+a
+```
+
+If the HTML structure changes, the selector may no longer work.
+
+A simpler approach is:
+
+```css
+.menu-link {
+    color: gray;
+}
+```
+
+The style now targets the element directly.
+
+### Deep Nesting Can Increase Specificity
+
+Consider:
+
+```css
+.container .content .article .title {
+    color: blue;
+}
+```
+
+This selector contains multiple class selectors and therefore has higher specificity.
+
+Overriding it may require additional selectors:
+
+```css
+.container .content .article .title {
+    color: red;
+}
+```
+
+This can lead to a cycle of increasingly specific selectors.
+
+A simpler selector is easier to override:
+
+```css
+.article-title {
+    color: blue;
+}
+```
+
+### Prefer Component-Based Selectors
+
+Component-based class names can reduce the need for deep nesting.
+
+For example:
+
+```css
+.product-card {
+    padding: 20px;
+}
+
+.product-card-title {
+    font-size: 1.5rem;
+}
+
+.product-card-price {
+    font-weight: bold;
+}
+```
+
+Each selector clearly targets a specific part of the component.
+
+The CSS does not need to depend on a long HTML hierarchy.
+
+### Some Nesting Can Be Appropriate
+
+Avoiding deeply nested selectors does not mean that descendant selectors should never be used.
+
+For example:
+
+```css
+.article p {
+    line-height: 1.6;
+}
+```
+
+This selector is short and clearly describes its purpose.
+
+The goal is to avoid unnecessary complexity.
+
+### A Simple Decision Process
+
+When writing a selector, consider:
+
+```text
+Does the selector need every part of this hierarchy?
+        ↓
+No
+        ↓
+Remove unnecessary parts
+        ↓
+Use a simpler selector
+```
+
+### Avoid Deeply Nested Selectors Summary
+
+```text
+Deeply Nested Selectors
+│
+├── Depend heavily on HTML structure
+├── Can increase specificity
+├── Can be difficult to override
+├── Can make maintenance harder
+└── Should be simplified when possible
+```
+
+> 💡 **Remember:** A small amount of selector nesting can be useful, but long selector chains should usually be avoided. Prefer simple selectors that directly target the component or element you want to style.
