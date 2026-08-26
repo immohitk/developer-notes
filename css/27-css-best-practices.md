@@ -615,3 +615,196 @@ Organized CSS
 ```
 
 > 💡 **Remember:** A good CSS organization system should make it easy to find, understand, and update styles. Consistency is usually more important than choosing a complicated structure.
+
+---
+
+## Use Meaningful Class Names
+
+Class names should clearly describe the purpose of the element or component they represent.
+
+Meaningful names make CSS easier to read, understand, and maintain.
+
+For example:
+
+```css
+.primary-button {
+    padding: 10px 16px;
+}
+```
+
+This name provides useful information about the purpose of the element.
+
+Compare it with:
+
+```css
+.box1 {
+    padding: 10px 16px;
+}
+```
+
+The name `.box1` does not clearly explain what the element represents.
+
+### Describe Purpose Instead of Appearance
+
+Class names should usually describe the purpose of an element rather than its current visual appearance.
+
+For example:
+
+```css
+.error-message {
+    color: red;
+}
+```
+
+This describes the purpose of the element.
+
+Avoid names such as:
+
+```css
+.red-text {
+    color: red;
+}
+```
+
+The appearance may change in the future.
+
+For example:
+
+```css
+.error-message {
+    color: orange;
+}
+```
+
+The class name still makes sense because the element is an error message.
+
+### Avoid Generic Names
+
+Generic names can make CSS difficult to understand.
+
+For example:
+
+```css
+.box {}
+.item {}
+.element {}
+.container2 {}
+```
+
+These names provide very little information.
+
+More descriptive names are easier to understand:
+
+```css
+.product-card {}
+.navigation-item {}
+.profile-avatar {}
+.checkout-form {}
+```
+
+### Use Consistent Naming
+
+Class names should follow a consistent naming approach.
+
+For example:
+
+```css
+.product-card {}
+.product-card-title {}
+.product-card-description {}
+.product-card-price {}
+```
+
+A consistent pattern makes it easier to identify related styles.
+
+### Keep Names Clear and Simple
+
+Class names should be descriptive without becoming unnecessarily long.
+
+For example:
+
+```css
+.login-button {}
+```
+
+is usually easier to understand than:
+
+```css
+.button-used-for-submitting-the-login-form {}
+```
+
+Choose names that clearly communicate purpose while remaining practical.
+
+### Meaningful Names Improve Maintainability
+
+Consider:
+
+```css
+.header-button {
+    padding: 10px;
+}
+
+.footer-button {
+    padding: 10px;
+}
+```
+
+If both buttons share common styles, meaningful naming can help identify reusable patterns.
+
+For example:
+
+```css
+.button {
+    padding: 10px;
+}
+
+.header-button {}
+.footer-button {}
+```
+
+Clear names make it easier to understand which styles are shared and which are specific.
+
+### A Simple Naming Strategy
+
+A useful approach is:
+
+```text
+What does this element represent?
+        ↓
+What is its purpose?
+        ↓
+Is it part of a component?
+        ↓
+Choose a clear and consistent name
+```
+
+For example:
+
+```text
+Product card
+        ↓
+.product-card
+
+Product card title
+        ↓
+.product-card-title
+
+Product card price
+        ↓
+.product-card-price
+```
+
+### Use Meaningful Class Names Summary
+
+```text
+Meaningful Class Names
+│
+├── Describe purpose
+├── Avoid generic names
+├── Avoid naming only by appearance
+├── Use consistent patterns
+├── Keep names clear
+└── Make components easier to understand
+```
+
+> 💡 **Remember:** A good class name should help another developer understand what an element represents without needing to inspect the entire HTML or CSS file.
