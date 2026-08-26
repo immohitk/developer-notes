@@ -36,7 +36,7 @@ The notes are organized in a step-by-step manner and include explanations, examp
 - [CSS Specificity](26-css-specificity.md)
 - [CSS Best Practices](27-css-best-practices.md)
 
-More topics will be added as I continue learning CSS.
+This section currently covers 27 CSS topics, from the fundamentals to CSS best practices.
 
 ## 🎯 Purpose
 

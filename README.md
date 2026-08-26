@@ -26,12 +26,15 @@ developer-notes/
 │
 ├── README.md
 ├── LICENSE
+├── .gitignore
 │
 ├── html/
-├── css/
-├── javascript/
-├── git/
-└── resources/
+│   ├── README.md
+│   └── HTML learning topics
+│
+└── css/
+    ├── README.md
+    └── CSS learning topics
 ```
 
 ---
@@ -42,7 +45,7 @@ developer-notes/
 |------------|--------|
 | HTML | ✅ Completed |
 | CSS | ✅ Completed |
-| JavaScript | 🚧 In Progress  |
+| JavaScript | ⏳ Planned  |
 | Git & GitHub | ⏳ Planned |
 
 ---
