@@ -4054,3 +4054,203 @@ Responsive Testing
 ```
 
 > 💡 **Remember:** A responsive design should be tested at multiple screen sizes, not just one mobile and one desktop view. Testing different widths helps identify layout and usability problems before users encounter them.
+
+---
+
+## Use Modern CSS Features Carefully
+
+Modern CSS provides many powerful features that can make layouts and styles easier to create.
+
+Examples include:
+
+```text
+Flexbox
+Grid
+Custom properties
+clamp()
+min()
+max()
+aspect-ratio
+container queries
+```
+
+These features can improve CSS, but they should be used with a clear understanding of what problem they solve.
+
+### Choose Features That Solve a Real Problem
+
+Avoid using a modern CSS feature simply because it is new.
+
+For example, Flexbox is useful for arranging items in one direction:
+
+```css
+.navigation {
+    display: flex;
+    gap: 16px;
+}
+```
+
+Grid is useful when working with two-dimensional layouts:
+
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 24px;
+}
+```
+
+Choose the feature that best matches the layout requirement.
+
+### Avoid Unnecessary Complexity
+
+Modern CSS can sometimes provide multiple ways to solve the same problem.
+
+For example, a simple layout does not always require a complex Grid configuration.
+
+If a simple solution works:
+
+```css
+.container {
+    display: flex;
+    gap: 16px;
+}
+```
+
+there may be no reason to introduce unnecessary complexity.
+
+The goal is not to use the most advanced feature.
+
+The goal is to create clear and maintainable CSS.
+
+### Use Modern Functions When They Improve Flexibility
+
+CSS functions can help create flexible styles.
+
+For example:
+
+```css
+.container {
+    width: min(90%, 1200px);
+}
+```
+
+This keeps the container responsive without requiring multiple width rules.
+
+Another example is `clamp()`:
+
+```css
+.heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+This allows the font size to adapt within a defined minimum and maximum range.
+
+Use these features when they make the CSS clearer or more flexible.
+
+### Understand Browser Support
+
+Before using a CSS feature, consider whether it is supported by the browsers required for the project.
+
+A useful decision process is:
+
+```text
+Need a CSS feature
+        ↓
+Check project browser requirements
+        ↓
+Check browser support
+        ↓
+Use the feature when appropriate
+        ↓
+Provide a fallback if necessary
+```
+
+Browser requirements can vary between projects.
+
+### Avoid Unnecessary Fallbacks
+
+Not every modern CSS feature requires a complicated fallback.
+
+If the project supports modern browsers, a fallback may not be necessary.
+
+However, when supporting older browsers or specific environments, fallback strategies may be important.
+
+For example:
+
+```css
+.container {
+    width: 90%;
+    width: min(90%, 1200px);
+}
+```
+
+The first declaration can provide a simpler fallback, while supported browsers can use the more flexible value.
+
+### Prefer Progressive Enhancement
+
+A useful approach is to create a basic version that works first and then improve the experience with additional CSS features.
+
+For example:
+
+```css
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+```
+
+Additional features can be introduced when they provide clear improvements.
+
+This helps avoid depending unnecessarily on complex features.
+
+### Keep Modern CSS Understandable
+
+Modern features should still produce CSS that another developer can understand.
+
+For example:
+
+```css
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+```
+
+This is a powerful and useful pattern, but developers using it should understand what it does.
+
+Avoid copying complex CSS patterns without understanding how they behave.
+
+### A Simple Decision Process
+
+Before using a modern CSS feature, ask:
+
+```text
+What problem does this solve?
+        ↓
+Does it make the CSS simpler or more flexible?
+        ↓
+Is it appropriate for the project requirements?
+        ↓
+Do browser requirements support it?
+        ↓
+Use it when it provides a clear benefit
+```
+
+### Use Modern CSS Features Carefully Summary
+
+```text
+Modern CSS Features
+│
+├── Solve specific problems
+├── Can improve flexibility
+├── Can reduce unnecessary code
+├── Should not add unnecessary complexity
+├── Should consider browser requirements
+├── May require fallbacks
+└── Should remain understandable
+```
+
+> 💡 **Remember:** Modern CSS features are useful tools, not requirements to use everywhere. Choose features that make your CSS clearer, more flexible, and easier to maintain.
