@@ -1907,3 +1907,201 @@ Use !important only when justified
 ```
 
 > 💡 **Remember:** `!important` is a powerful tool, but it should not be used to hide problems with CSS organization, specificity, or the cascade. Understand why a style is losing before forcing it to win.
+
+---
+
+## Reuse Styles When Appropriate
+
+Reusable CSS helps reduce unnecessary duplication and makes styles easier to maintain.
+
+When multiple elements share the same styling, it is often better to create a reusable class instead of repeating the same declarations.
+
+For example, consider repeating the same styles:
+
+```css
+.save-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+.submit-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+The shared styles can be reused:
+
+```css
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+```html
+<button class="button">Save</button>
+<button class="button">Submit</button>
+```
+
+This reduces duplication.
+
+### Separate Shared Styles and Variations
+
+Reusable styles can provide the common structure of a component, while additional classes provide variations.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+
+.button-secondary {
+    background-color: gray;
+}
+```
+
+HTML:
+
+```html
+<button class="button button-primary">
+    Save
+</button>
+
+<button class="button button-secondary">
+    Cancel
+</button>
+```
+
+The `.button` class contains shared styles, while the additional classes define variations.
+
+### Reuse Common Component Styles
+
+Reusable styles are especially useful for components that appear in multiple places.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+The same component styles can be reused throughout the application.
+
+### Avoid Unnecessary Duplication
+
+Duplicated CSS can create maintenance problems.
+
+For example:
+
+```css
+.header-button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.footer-button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.sidebar-button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+If the padding needs to change, every duplicated rule may need to be updated.
+
+A reusable style makes the change easier:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+### Do Not Reuse Unrelated Styles
+
+Reusability should not create confusing CSS.
+
+For example, using a class named `.blue-box` for completely unrelated components can make the stylesheet difficult to understand.
+
+Reusable styles should represent genuinely shared:
+
+```text
+Components
+Patterns
+Utilities
+Behaviors
+```
+
+The goal is to reduce duplication without creating overly generic or confusing styles.
+
+### Reusable Styles Improve Consistency
+
+When multiple elements use the same shared class, they remain visually consistent.
+
+For example:
+
+```css
+.input {
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+```
+
+All elements using the `.input` class follow the same basic styling.
+
+This makes design changes easier to apply consistently.
+
+### A Simple Reusability Strategy
+
+Before creating a new CSS rule, ask:
+
+```text
+Does a similar style already exist?
+        ↓
+Yes
+        ↓
+Can the existing style be reused?
+        ↓
+Or can shared styles be extracted?
+```
+
+### Reuse Styles When Appropriate Summary
+
+```text
+Reusable CSS
+│
+├── Reduces duplication
+├── Improves consistency
+├── Simplifies maintenance
+├── Supports component variations
+├── Makes updates easier
+└── Should represent genuinely shared styles
+```
+
+> 💡 **Remember:** Reuse styles when elements share a genuine pattern, but avoid forcing unrelated components to share the same CSS just to reduce the number of rules.
