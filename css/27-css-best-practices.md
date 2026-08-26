@@ -4669,3 +4669,197 @@ Remove Unused CSS
 ```
 
 > 💡 **Remember:** Remove CSS that is genuinely no longer used, but verify that a rule is not referenced dynamically or elsewhere in the project before deleting it.
+
+---
+
+## Comment Complex Code
+
+Comments can help explain CSS that is difficult to understand.
+
+Not every CSS rule needs a comment. Simple and clearly written CSS should usually explain itself through meaningful selectors and readable code.
+
+Comments are most useful when the reason behind a CSS rule is not obvious.
+
+### Comment the Why, Not the Obvious
+
+Avoid comments that simply repeat what the CSS already says.
+
+For example:
+
+```css
+/* Set the color to blue */
+.button {
+    color: blue;
+}
+```
+
+The comment does not provide additional information.
+
+A more useful comment explains the reason for a decision:
+
+```css
+/* Maintains contrast against the dark header background */
+.header-link {
+    color: white;
+}
+```
+
+The comment explains **why** the style exists.
+
+### Explain Complex Workarounds
+
+Comments are useful when CSS contains a workaround or unusual solution.
+
+For example:
+
+```css
+/* Prevents the image from overflowing when the content area becomes narrow */
+.image {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This can help future developers understand why the rule was added.
+
+### Document Non-Obvious Behavior
+
+Some CSS rules may produce behavior that is not immediately clear.
+
+For example:
+
+```css
+/* Creates a new stacking context so the modal appears above page content */
+.modal {
+    position: relative;
+    z-index: 10;
+}
+```
+
+A comment can make the intention easier to understand.
+
+### Keep Comments Close to the Related Code
+
+Comments should be placed near the code they describe.
+
+For example:
+
+```css
+/* Navigation */
+
+.navigation {
+    display: flex;
+    gap: 16px;
+}
+
+.navigation-link {
+    text-decoration: none;
+}
+```
+
+This makes the relationship between the comment and the CSS clear.
+
+### Use Comments to Separate Major Sections
+
+Comments can also help organize large stylesheets.
+
+For example:
+
+```css
+/* ====================
+   Navigation
+   ==================== */
+
+.navigation {
+    display: flex;
+}
+
+
+/* ====================
+   Cards
+   ==================== */
+
+.card {
+    padding: 20px;
+}
+```
+
+Section comments can make long stylesheets easier to scan.
+
+### Avoid Too Many Comments
+
+Too many comments can make a stylesheet harder to read.
+
+For example:
+
+```css
+/* Button */
+.button {
+    /* Add padding */
+    padding: 10px;
+
+    /* Remove border */
+    border: none;
+
+    /* Round corners */
+    border-radius: 4px;
+}
+```
+
+These comments repeat information that is already clear from the code.
+
+Readable CSS reduces the need for unnecessary comments:
+
+```css
+.button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+### Update Comments When CSS Changes
+
+Outdated comments can be worse than no comments.
+
+For example:
+
+```css
+/* Displays three columns */
+.grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+```
+
+The comment no longer matches the CSS.
+
+When updating complex code, review the related comments as well.
+
+### A Simple Decision Process
+
+Before adding a comment, ask:
+
+```text
+Is the code difficult to understand?
+        ↓
+Is the reason behind the code unclear?
+        ↓
+Will the comment provide useful information?
+        ↓
+If yes, add a concise comment
+```
+
+### Comment Complex Code Summary
+
+```text
+Useful CSS Comments
+│
+├── Explain why a rule exists
+├── Document complex workarounds
+├── Clarify non-obvious behavior
+├── Help organize large stylesheets
+├── Stay close to related code
+└── Must remain accurate
+```
+
+> 💡 **Remember:** Comments should add information that the CSS itself does not clearly communicate. Prefer clear code first, and use comments to explain complex decisions, unusual behavior, or important reasons.
