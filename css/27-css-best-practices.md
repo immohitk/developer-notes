@@ -89,3 +89,148 @@ Throughout this guide, you will learn practical approaches for organizing CSS, w
 The goal is not to follow rules blindly.
 
 Instead, the goal is to understand which practices help create CSS that is clear, predictable, and maintainable.
+
+---
+
+## What Are CSS Best Practices?
+
+CSS best practices are recommended approaches for writing CSS that is readable, maintainable, reusable, and predictable.
+
+They help developers create stylesheets that are easier to understand and modify as a project grows.
+
+Good CSS is not only about making a webpage look correct.
+
+It should also be:
+
+```text
+Readable
+Maintainable
+Reusable
+Consistent
+Scalable
+Performant
+Accessible
+```
+
+### Writing CSS for Maintainability
+
+CSS should be written so that future changes are easy to make.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+A simple and focused class selector is usually easier to maintain than a deeply nested selector:
+
+```css
+.page .content .section .actions .button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+Simple selectors reduce unnecessary dependencies on a particular HTML structure.
+
+### Writing CSS for Readability
+
+Readable CSS makes it easier to understand what each rule is responsible for.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+Clear selector names and consistent formatting make the stylesheet easier to read.
+
+### Writing CSS for Reusability
+
+Reusable styles reduce unnecessary duplication.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+
+.button-secondary {
+    background-color: gray;
+}
+```
+
+Common styles can be shared while variations are handled with additional classes.
+
+### Writing CSS for Predictability
+
+CSS should behave in a predictable way.
+
+This includes:
+
+```text
+Consistent naming
+        ↓
+Simple selectors
+        ↓
+Predictable specificity
+        ↓
+Clear organization
+```
+
+When developers can predict how styles interact, CSS becomes easier to debug.
+
+### Writing CSS for Scalability
+
+A small stylesheet can become difficult to manage when an application grows.
+
+CSS best practices help prevent problems such as:
+
+```text
+Duplicated styles
+Deep selector nesting
+Specificity conflicts
+Unused CSS
+Inconsistent naming
+Overuse of !important
+```
+
+A scalable CSS approach makes it easier to add new components without creating unnecessary conflicts.
+
+### CSS Best Practices Summary
+
+```text
+CSS Best Practices
+│
+├── Improve readability
+├── Improve maintainability
+├── Encourage reusability
+├── Keep styles predictable
+├── Support scalability
+├── Reduce unnecessary duplication
+└── Help prevent CSS conflicts
+```
+
+> 💡 **Remember:** CSS best practices are not strict rules for every situation. They are guidelines that help you write CSS that remains understandable and maintainable as your project becomes larger.
