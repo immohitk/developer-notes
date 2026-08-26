@@ -6129,3 +6129,310 @@ CSS Debugging
 ```
 
 > 💡 **Remember:** Do not debug CSS by randomly changing properties. Inspect the affected element, understand which rules are applied, and test one possible solution at a time.
+
+---
+
+## Common Mistakes
+
+Even when the basic CSS concepts are understood, certain mistakes can make stylesheets difficult to maintain and cause unexpected behavior.
+
+Recognizing common mistakes can help developers write cleaner and more reliable CSS.
+
+### Using Overly Specific Selectors
+
+Overly specific selectors can make future changes difficult.
+
+For example:
+
+```css
+.page .content .products .product-card .header h2 {
+    color: blue;
+}
+```
+
+This selector depends heavily on the HTML structure.
+
+A simpler approach is:
+
+```css
+.product-card-title {
+    color: blue;
+}
+```
+
+Simple and meaningful selectors are easier to reuse and override.
+
+### Using `!important` Too Often
+
+`!important` can force a declaration to override other rules.
+
+For example:
+
+```css
+.button {
+    color: blue !important;
+}
+```
+
+Using it repeatedly can make the stylesheet difficult to manage.
+
+Instead of adding more `!important` declarations, check:
+
+```text
+Selector specificity
+CSS order
+Existing styles
+Component structure
+```
+
+### Repeating the Same Styles
+
+Repeated declarations can create unnecessary maintenance work.
+
+For example:
+
+```css
+.save-button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.cancel-button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+Shared styles can be reused:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+This makes future updates easier.
+
+### Using Too Many Fixed Dimensions
+
+Fixed dimensions can cause problems on different screen sizes.
+
+For example:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+This may not work well on smaller screens.
+
+A more flexible approach is:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+```
+
+### Ignoring Responsive Design
+
+A layout may look correct on a desktop but fail on smaller screens.
+
+Common problems include:
+
+```text
+Horizontal scrolling
+Overlapping elements
+Large images
+Unreadable text
+Broken navigation
+```
+
+Responsive testing should be part of the development process.
+
+### Removing Focus Styles
+
+Removing focus indicators can make keyboard navigation difficult.
+
+For example:
+
+```css
+.button:focus {
+    outline: none;
+}
+```
+
+If a browser focus style is removed, provide a clear alternative:
+
+```css
+.button:focus-visible {
+    outline: 3px solid blue;
+    outline-offset: 2px;
+}
+```
+
+### Using Color as the Only Indicator
+
+Color alone should not communicate important information.
+
+For example:
+
+```text
+Incorrect:
+Red text only indicates an error
+
+Better:
+Red text + clear error message
+```
+
+Users should be able to understand important information even when color differences are difficult to distinguish.
+
+### Writing Deeply Nested CSS
+
+Deeply nested selectors can create unnecessary dependencies.
+
+For example:
+
+```css
+.sidebar .navigation .list .item .link {
+    color: blue;
+}
+```
+
+A simpler selector is often easier to maintain:
+
+```css
+.navigation-link {
+    color: blue;
+}
+```
+
+### Creating Too Many Overrides
+
+Repeated overrides make it difficult to understand the final style.
+
+For example:
+
+```css
+.card {
+    padding: 10px;
+}
+
+.card {
+    padding: 15px;
+}
+
+.card {
+    padding: 20px;
+}
+```
+
+A clearer approach is:
+
+```css
+.card {
+    padding: 20px;
+}
+```
+
+When variations are required, use meaningful classes instead.
+
+### Leaving Unused CSS
+
+Old styles can remain after components or features are removed.
+
+For example:
+
+```css
+.old-banner {
+    background-color: yellow;
+}
+```
+
+If the related component no longer exists, the rule should be reviewed and removed.
+
+Always check that styles are not used dynamically before deleting them.
+
+### Using `transition: all`
+
+For example:
+
+```css
+.button {
+    transition: all 0.3s;
+}
+```
+
+This can animate more properties than intended.
+
+A clearer approach is:
+
+```css
+.button {
+    transition: transform 0.3s;
+}
+```
+
+Specify the properties that should actually change.
+
+### Making CSS More Complex Than Necessary
+
+Complex CSS is not always better CSS.
+
+Before adding more selectors, overrides, or calculations, ask:
+
+```text
+Is there a simpler solution?
+        ↓
+Can an existing style be reused?
+        ↓
+Can Flexbox or Grid solve the problem?
+        ↓
+Will this remain understandable later?
+```
+
+Prefer the simplest solution that clearly solves the problem.
+
+### Ignoring the Cascade
+
+Unexpected CSS behavior often happens because multiple rules affect the same element.
+
+For example:
+
+```css
+.button {
+    color: blue;
+}
+
+.primary-button {
+    color: green;
+}
+```
+
+Understanding the cascade, specificity, and source order is important when debugging.
+
+### Common Mistakes Summary
+
+```text
+Common CSS Mistakes
+│
+├── Using overly specific selectors
+├── Overusing !important
+├── Repeating styles unnecessarily
+├── Using too many fixed dimensions
+├── Ignoring responsive design
+├── Removing focus styles
+├── Using color as the only indicator
+├── Writing deeply nested selectors
+├── Creating unnecessary overrides
+├── Leaving unused CSS
+├── Using transition: all unnecessarily
+├── Making CSS overly complex
+└── Ignoring the CSS cascade
+```
+
+> 💡 **Remember:** Many CSS problems come from unnecessary complexity. Keep selectors simple, avoid excessive overrides, consider responsive design and accessibility, and understand how the CSS cascade affects the final result.
