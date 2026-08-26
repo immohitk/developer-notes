@@ -1540,3 +1540,190 @@ Deeply Nested Selectors
 ```
 
 > 💡 **Remember:** A small amount of selector nesting can be useful, but long selector chains should usually be avoided. Prefer simple selectors that directly target the component or element you want to style.
+
+---
+
+## Keep Specificity Low and Predictable
+
+CSS specificity determines which selector takes priority when multiple rules target the same element.
+
+Keeping specificity low and predictable makes CSS easier to maintain and override.
+
+For example:
+
+```css
+.button {
+    background-color: blue;
+}
+```
+
+A simple class selector has predictable specificity and can usually be overridden easily when necessary.
+
+### Avoid Unnecessary Specificity
+
+Consider:
+
+```css
+#app .container .content .button {
+    background-color: blue;
+}
+```
+
+This selector has much higher specificity than necessary.
+
+A simpler approach is:
+
+```css
+.button {
+    background-color: blue;
+}
+```
+
+The simpler selector is easier to understand and override.
+
+### Specificity Can Escalate
+
+When a highly specific selector is difficult to override, developers may add another highly specific selector.
+
+For example:
+
+```css
+#app .container .button {
+    color: blue;
+}
+```
+
+Later:
+
+```css
+#app .container .actions .button {
+    color: green;
+}
+```
+
+Over time, this can lead to:
+
+```text
+High specificity
+        ↓
+Difficult overrides
+        ↓
+More specific selectors
+        ↓
+More CSS conflicts
+```
+
+Keeping specificity low helps prevent this cycle.
+
+### Prefer Classes for Component Styles
+
+Classes provide a predictable level of specificity.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+```
+
+The selectors are easy to understand and combine:
+
+```html
+<button class="button button-primary">
+    Save
+</button>
+```
+
+This approach avoids relying on highly specific selectors.
+
+### Avoid Combining Selectors Unnecessarily
+
+Consider:
+
+```css
+.page .content .article .article-title {
+    font-size: 2rem;
+}
+```
+
+If the `.article-title` class already identifies the intended element, the additional selectors may be unnecessary.
+
+A simpler rule is:
+
+```css
+.article-title {
+    font-size: 2rem;
+}
+```
+
+Use additional selector context only when it provides a clear benefit.
+
+### Keep Specificity Consistent
+
+Using a consistent selector strategy makes CSS behavior easier to predict.
+
+For example:
+
+```text
+Component styles
+        ↓
+Class selectors
+        ↓
+Simple variations
+        ↓
+Minimal overrides
+```
+
+When most styles follow a similar specificity level, developers can make changes without needing increasingly complex selectors.
+
+### Use Specificity Intentionally
+
+Low specificity does not mean that every selector must contain only one class.
+
+Sometimes additional specificity is necessary to target an element correctly.
+
+For example:
+
+```css
+.article p {
+    line-height: 1.6;
+}
+```
+
+The goal is not to avoid specificity completely.
+
+The goal is to avoid unnecessary specificity.
+
+### A Simple Specificity Strategy
+
+When writing a selector, ask:
+
+```text
+Does this selector need this level of specificity?
+        ↓
+Can it be simplified?
+        ↓
+Can a meaningful class target the element directly?
+        ↓
+Use the simplest appropriate selector
+```
+
+### Keep Specificity Low and Predictable Summary
+
+```text
+Low and Predictable Specificity
+│
+├── Makes CSS easier to override
+├── Reduces CSS conflicts
+├── Prevents specificity escalation
+├── Improves maintainability
+├── Makes styles more predictable
+└── Encourages simple selectors
+```
+
+> 💡 **Remember:** Specificity should be used intentionally. Keeping selectors simple and specificity predictable makes CSS easier to maintain as a project grows.
