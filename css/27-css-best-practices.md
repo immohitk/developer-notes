@@ -2940,3 +2940,193 @@ Consistent Naming
 ```
 
 > 💡 **Remember:** Choose a clear naming convention and apply it consistently. The goal is not to find the perfect naming system, but to make CSS predictable and easy to understand.
+
+---
+
+## Write Readable CSS
+
+Readable CSS is easier to understand, maintain, debug, and update.
+
+CSS is often read more frequently than it is written. Clear formatting and consistent structure help developers quickly understand what each rule does.
+
+### Use Consistent Formatting
+
+Choose a formatting style and use it consistently.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+Consistent indentation and spacing make the rule easy to read.
+
+Avoid inconsistent formatting such as:
+
+```css
+.button{
+padding:10px 16px;
+ border:none;
+    border-radius:4px;}
+```
+
+Although the CSS may still work, it is more difficult to read and maintain.
+
+### Put Each Declaration on Its Own Line
+
+For most stylesheets, placing each declaration on a separate line improves readability.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+}
+```
+
+This makes individual properties easier to identify and edit.
+
+Compare it with:
+
+```css
+.card { padding: 20px; margin-bottom: 16px; border-radius: 8px; }
+```
+
+The second version can become difficult to read when rules contain many declarations.
+
+### Use Consistent Indentation
+
+Indentation helps show the structure of CSS rules.
+
+For example:
+
+```css
+.navigation {
+    display: flex;
+    gap: 16px;
+}
+
+.navigation-link {
+    text-decoration: none;
+}
+```
+
+A consistent indentation style makes the stylesheet easier to scan.
+
+### Keep Related Declarations Together
+
+Declarations that control related aspects of an element can be grouped logically.
+
+For example:
+
+```css
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 20px;
+    border-radius: 8px;
+}
+```
+
+The layout-related declarations appear together, followed by spacing and appearance-related declarations.
+
+The exact property order can vary, but using a consistent approach improves readability.
+
+### Use Clear Whitespace
+
+Whitespace can separate logical sections of a stylesheet.
+
+For example:
+
+```css
+/* Navigation */
+
+.navigation {
+    display: flex;
+    gap: 16px;
+}
+
+
+/* Cards */
+
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+```
+
+Spacing between sections makes the structure easier to scan.
+
+### Avoid Overly Long Lines
+
+Long selectors and declarations can make CSS difficult to read.
+
+For example:
+
+```css
+.page .main-content .product-section .product-card .product-card-title {
+    font-size: 2rem;
+}
+```
+
+A meaningful class may provide a clearer alternative:
+
+```css
+.product-card-title {
+    font-size: 2rem;
+}
+```
+
+Keeping selectors simple also improves readability.
+
+### Format Complex Rules Clearly
+
+Complex CSS should be formatted so its structure remains understandable.
+
+For example:
+
+```css
+@media (max-width: 768px) {
+    .content-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+}
+```
+
+Consistent formatting makes nested rules easier to follow.
+
+### Use a Formatter When Appropriate
+
+CSS formatters can automatically apply consistent spacing and indentation.
+
+This can help teams maintain a consistent code style without manually formatting every rule.
+
+However, understanding readable CSS structure is still important when writing and reviewing code.
+
+### Write Readable CSS Summary
+
+```text
+Readable CSS
+│
+├── Uses consistent formatting
+├── Uses consistent indentation
+├── Places declarations clearly
+├── Groups related properties
+├── Uses whitespace effectively
+├── Avoids unnecessarily long selectors
+└── Makes complex rules easy to follow
+```
+
+> 💡 **Remember:** CSS should be written for both the browser and the developer. Clear formatting and consistent structure make styles easier to read, debug, and maintain.
