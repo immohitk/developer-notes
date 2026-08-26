@@ -5123,3 +5123,248 @@ Large Stylesheet Organization
 ```
 
 > 💡 **Remember:** Large stylesheets should have a clear and predictable structure. Organize CSS by purpose, keep related styles together, and avoid creating unnecessary complexity for smaller projects.
+
+---
+
+## Avoid Overly Complex CSS
+
+CSS should solve the required problem as clearly and simply as possible.
+
+Overly complex CSS can be difficult to understand, debug, modify, and maintain. Complexity often increases when styles rely on deeply nested selectors, unnecessary overrides, excessive calculations, or complicated rules that could be replaced with simpler solutions.
+
+### Prefer Simple Selectors
+
+Complex selectors can make CSS difficult to understand.
+
+For example:
+
+```css
+.page .content .products .product-list .product-card .card-header h2 {
+    font-size: 1.5rem;
+}
+```
+
+This selector depends heavily on the HTML structure.
+
+A simpler approach can use a meaningful class:
+
+```css
+.product-card-title {
+    font-size: 1.5rem;
+}
+```
+
+Simple selectors are generally easier to reuse and maintain.
+
+### Avoid Deeply Nested Selectors
+
+Deep selector chains can create unnecessary dependencies.
+
+For example:
+
+```css
+.sidebar .navigation .navigation-list .navigation-item .navigation-link {
+    color: blue;
+}
+```
+
+If the HTML structure changes, the selector may need to change as well.
+
+A simpler approach is:
+
+```css
+.navigation-link {
+    color: blue;
+}
+```
+
+The style is easier to understand and less dependent on surrounding elements.
+
+### Avoid Unnecessary Overrides
+
+Repeated overrides can make it difficult to determine which style is currently applied.
+
+For example:
+
+```css
+.button {
+    padding: 8px;
+}
+
+.button {
+    padding: 10px;
+}
+
+.button {
+    padding: 12px;
+}
+```
+
+A developer must inspect multiple declarations to find the final value.
+
+A clearer approach is:
+
+```css
+.button {
+    padding: 12px;
+}
+```
+
+When variations are required, use meaningful classes:
+
+```css
+.button {
+    padding: 10px;
+}
+
+.button-large {
+    padding: 16px;
+}
+```
+
+### Do Not Use `!important` as a Shortcut
+
+Using `!important` can make CSS overrides difficult to manage.
+
+For example:
+
+```css
+.button {
+    color: blue !important;
+}
+```
+
+Another rule may now require another `!important` declaration to override it.
+
+This can create a cycle of increasingly difficult overrides.
+
+Instead, review:
+
+```text
+Selector specificity
+CSS order
+Component structure
+Existing styles
+```
+
+and solve the underlying issue when possible.
+
+### Avoid Solving Every Problem With More CSS
+
+Sometimes complex CSS is created to compensate for a structural problem.
+
+For example, many selectors and positioning rules may be used to force an element into a particular location.
+
+Before adding more CSS, consider:
+
+```text
+Is the HTML structure appropriate?
+        ↓
+Is there a simpler layout method?
+        ↓
+Would Flexbox solve the problem?
+        ↓
+Would Grid solve the problem?
+```
+
+Choosing the correct layout method can reduce unnecessary CSS complexity.
+
+### Keep Calculations Understandable
+
+CSS functions can be useful, but overly complicated calculations can reduce readability.
+
+For example:
+
+```css
+width: calc(100% - 20px - 2rem - 5vw);
+```
+
+If a calculation becomes difficult to understand, consider whether the layout can be simplified.
+
+A clearer approach might use:
+
+```css
+.container {
+    width: min(90%, 1200px);
+}
+```
+
+The goal is not to avoid CSS functions, but to keep the final CSS understandable.
+
+### Avoid Over-Engineering Small Components
+
+A simple component does not always require a large number of classes and variations.
+
+For example, a basic button may only need:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+Creating many unnecessary classes can make the component harder to manage:
+
+```text
+.button
+.button-base
+.button-wrapper
+.button-container
+.button-content
+.button-text
+.button-state
+```
+
+Use additional structure only when it provides a clear benefit.
+
+### Complexity Makes Debugging Harder
+
+Complex CSS can make it difficult to answer simple questions:
+
+```text
+Which rule applies?
+        ↓
+Why is this property overridden?
+        ↓
+Where does this style come from?
+        ↓
+Which selector has higher specificity?
+```
+
+Simpler CSS reduces the number of places that need to be checked.
+
+### A Simple Decision Process
+
+Before adding complex CSS, ask:
+
+```text
+Is there a simpler solution?
+        ↓
+Can the selector be simplified?
+        ↓
+Can an existing style be reused?
+        ↓
+Can a modern layout tool solve the problem?
+        ↓
+Will another developer understand this later?
+```
+
+If the simpler solution works, prefer it.
+
+### Avoid Overly Complex CSS Summary
+
+```text
+Simple CSS
+│
+├── Uses clear selectors
+├── Avoids unnecessary nesting
+├── Reduces unnecessary overrides
+├── Uses !important carefully
+├── Avoids unnecessary calculations
+├── Chooses appropriate layout tools
+├── Avoids over-engineering
+└── Is easier to debug and maintain
+```
+
+> 💡 **Remember:** Complex CSS is not always better CSS. Prefer the simplest solution that clearly solves the problem and remains easy to understand and maintain.
