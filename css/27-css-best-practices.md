@@ -2105,3 +2105,235 @@ Reusable CSS
 ```
 
 > 💡 **Remember:** Reuse styles when elements share a genuine pattern, but avoid forcing unrelated components to share the same CSS just to reduce the number of rules.
+
+---
+
+## Use CSS Custom Properties
+
+CSS custom properties, also known as CSS variables, allow values to be defined once and reused throughout a stylesheet.
+
+They can help reduce repetition and make CSS easier to maintain.
+
+A custom property is commonly defined using the `--` prefix:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+The value can then be used with the `var()` function:
+
+```css
+.button {
+    background-color: var(--primary-color);
+}
+```
+
+### Reduce Repeated Values
+
+Consider repeating the same color throughout a stylesheet:
+
+```css
+.header {
+    background-color: blue;
+}
+
+.button {
+    background-color: blue;
+}
+
+.link {
+    color: blue;
+}
+```
+
+A custom property can define the value once:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+Then reuse it:
+
+```css
+.header {
+    background-color: var(--primary-color);
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+
+.link {
+    color: var(--primary-color);
+}
+```
+
+This makes future changes easier.
+
+### Create Reusable Design Values
+
+Custom properties can be useful for shared design values.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+    --secondary-color: gray;
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --border-radius: 4px;
+}
+```
+
+These values can then be reused:
+
+```css
+.card {
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius);
+}
+```
+
+### Make Changes Easier
+
+Without custom properties, changing a repeated value may require updating many declarations.
+
+For example:
+
+```css
+.button {
+    border-radius: 4px;
+}
+
+.card {
+    border-radius: 4px;
+}
+
+.input {
+    border-radius: 4px;
+}
+```
+
+Using a custom property:
+
+```css
+:root {
+    --border-radius: 4px;
+}
+```
+
+```css
+.button {
+    border-radius: var(--border-radius);
+}
+
+.card {
+    border-radius: var(--border-radius);
+}
+
+.input {
+    border-radius: var(--border-radius);
+}
+```
+
+Now the shared value can be updated in one location.
+
+### Use Meaningful Variable Names
+
+Custom property names should describe their purpose.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+    --content-spacing: 20px;
+    --card-radius: 8px;
+}
+```
+
+Avoid unclear names such as:
+
+```css
+:root {
+    --value1: blue;
+    --x: 20px;
+}
+```
+
+Meaningful names make CSS easier to understand.
+
+### Custom Properties Can Be Scoped
+
+Custom properties do not always need to be defined globally.
+
+They can also be defined for a specific component:
+
+```css
+.card {
+    --card-padding: 20px;
+
+    padding: var(--card-padding);
+}
+```
+
+This can help keep component-specific values close to the component that uses them.
+
+### Avoid Creating Variables for Everything
+
+Custom properties are useful for values that are reused or represent meaningful design values.
+
+However, creating a variable for every single CSS value can make a stylesheet unnecessarily complicated.
+
+For example:
+
+```css
+:root {
+    --one-pixel: 1px;
+}
+```
+
+This variable may not provide a meaningful benefit.
+
+Use custom properties when they improve:
+
+```text
+Reusability
+Consistency
+Maintainability
+Readability
+```
+
+### A Simple Strategy
+
+Before creating a custom property, ask:
+
+```text
+Is this value reused?
+        ↓
+Does this value represent a design decision?
+        ↓
+Would changing it in one place be useful?
+        ↓
+If yes, consider using a custom property
+```
+
+### Use CSS Custom Properties Summary
+
+```text
+CSS Custom Properties
+│
+├── Reduce repeated values
+├── Improve consistency
+├── Make global changes easier
+├── Support reusable design values
+├── Can be globally or locally scoped
+└── Should be used when they provide a clear benefit
+```
+
+> 💡 **Remember:** CSS custom properties are most useful when they represent reusable values or important design decisions. Use meaningful names and avoid creating unnecessary variables.
