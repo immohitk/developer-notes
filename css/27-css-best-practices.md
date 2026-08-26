@@ -7127,3 +7127,456 @@ Interview Preparation
 ```
 
 > 💡 **Remember:** Interview questions about CSS best practices often test your understanding of why a technique is useful, not only whether you can remember its definition.
+
+---
+
+## Practice Exercises
+
+The following exercises can help you practice applying CSS best practices.
+
+Try to solve each exercise before checking your own solution.
+
+### Exercise 1: Simplify a Selector
+
+Consider the following CSS:
+
+```css
+.page .content .products .product-card .card-header h2 {
+    color: blue;
+}
+```
+
+Rewrite the selector using a clear and meaningful class name.
+
+**Task:**
+
+```text
+Create a simpler selector that is easier to maintain.
+```
+
+---
+
+### Exercise 2: Remove Repeated Styles
+
+Consider:
+
+```css
+.save-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: blue;
+}
+
+.cancel-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: gray;
+}
+```
+
+**Task:**
+
+```text
+Create a shared button class.
+
+Create separate classes only for the differences.
+```
+
+---
+
+### Exercise 3: Improve a Fixed-Width Layout
+
+Consider:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+**Task:**
+
+```text
+Rewrite the CSS so the container can adapt
+to smaller screen sizes while remaining
+limited on larger screens.
+```
+
+---
+
+### Exercise 4: Improve Focus Styles
+
+Consider:
+
+```css
+.button:focus {
+    outline: none;
+}
+```
+
+**Task:**
+
+```text
+Create a visible keyboard focus style
+using :focus-visible.
+```
+
+---
+
+### Exercise 5: Avoid `transition: all`
+
+Consider:
+
+```css
+.card {
+    transition: all 0.3s;
+}
+```
+
+**Task:**
+
+```text
+Assume only transform changes.
+
+Rewrite the transition to target
+the required property.
+```
+
+---
+
+### Exercise 6: Identify Unused CSS
+
+Consider the following stylesheet:
+
+```css
+.header {
+    height: 60px;
+}
+
+.old-banner {
+    background-color: yellow;
+}
+
+.card {
+    padding: 20px;
+}
+
+.test-border {
+    border: 1px solid red;
+}
+```
+
+Assume:
+
+```text
+.header is currently used
+.card is currently used
+.old-banner belongs to a removed component
+.test-border was only used for debugging
+```
+
+**Task:**
+
+```text
+Identify which CSS rules can potentially
+be removed.
+
+Explain why they should be checked before
+deleting them from a real project.
+```
+
+---
+
+### Exercise 7: Reduce Selector Complexity
+
+Consider:
+
+```css
+.sidebar .navigation .navigation-list .navigation-item .navigation-link {
+    color: blue;
+}
+```
+
+**Task:**
+
+```text
+Rewrite the CSS using a simpler and
+more reusable class selector.
+```
+
+---
+
+### Exercise 8: Create Reusable Values
+
+Consider:
+
+```css
+.header {
+    background-color: #003366;
+}
+
+.button {
+    background-color: #003366;
+}
+
+.link {
+    color: #003366;
+}
+```
+
+**Task:**
+
+```text
+Create a CSS custom property for the
+shared color.
+
+Use the custom property in the styles.
+```
+
+---
+
+### Exercise 9: Create a Responsive Layout
+
+Create a card layout with the following requirements:
+
+```text
+Cards should appear in multiple columns
+when enough space is available.
+
+Cards should move to fewer columns
+automatically on smaller screens.
+
+The layout should include consistent spacing.
+```
+
+**Task:**
+
+```text
+Use CSS Grid to create the layout.
+```
+
+---
+
+### Exercise 10: Add Reduced Motion Support
+
+Consider:
+
+```css
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+```
+
+**Task:**
+
+```text
+Add a prefers-reduced-motion media query
+that reduces or removes the animation.
+```
+
+---
+
+### Exercise 11: Debug a CSS Override
+
+Consider:
+
+```css
+.button {
+    color: blue;
+}
+
+.container .button {
+    color: red;
+}
+```
+
+HTML:
+
+```html
+<div class="container">
+    <button class="button">
+        Submit
+    </button>
+</div>
+```
+
+**Task:**
+
+```text
+Which color will the button use?
+
+Explain why.
+
+Then modify the CSS so the button
+uses blue without using !important.
+```
+
+---
+
+### Exercise 12: Improve CSS Organization
+
+Imagine a stylesheet containing:
+
+```text
+Navigation styles
+Button styles
+Responsive navigation styles
+Card styles
+Base typography styles
+Responsive button styles
+Header styles
+Card variations
+```
+
+**Task:**
+
+```text
+Reorganize these styles into a logical order.
+
+Explain why your order makes the
+stylesheet easier to maintain.
+```
+
+---
+
+### Exercise 13: Find Accessibility Problems
+
+Consider:
+
+```css
+.button {
+    color: #cccccc;
+    background-color: white;
+    outline: none;
+}
+```
+
+**Task:**
+
+```text
+Identify the accessibility problems.
+
+Rewrite the CSS to improve readability
+and keyboard focus visibility.
+```
+
+---
+
+### Exercise 14: Simplify an Override Problem
+
+Consider:
+
+```css
+.card {
+    padding: 10px;
+}
+
+.card {
+    padding: 15px;
+}
+
+.card {
+    padding: 20px;
+}
+```
+
+**Task:**
+
+```text
+Simplify the CSS.
+
+Explain why the original version
+could make maintenance difficult.
+```
+
+---
+
+### Exercise 15: Review a CSS Component
+
+Consider:
+
+```css
+.page .content .product .product-card .title {
+    font-size: 24px;
+}
+
+.product-card {
+    padding: 20px;
+}
+
+.product-card {
+    padding: 24px;
+}
+
+.product-card {
+    transition: all 0.3s;
+}
+
+.product-card:focus {
+    outline: none;
+}
+```
+
+**Task:**
+
+Review the component and identify:
+
+```text
+Selector problems
+Unnecessary overrides
+Transition problems
+Accessibility problems
+```
+
+Then rewrite the component using better CSS practices.
+
+### Practice Challenge
+
+Create a small component containing:
+
+```text
+A heading
+A paragraph
+A button
+A responsive layout
+A reusable color
+A visible focus state
+A simple transition
+Reduced motion support
+```
+
+Try to apply the following best practices:
+
+```text
+Clear class names
+Simple selectors
+Reusable values
+Responsive design
+Accessibility
+Maintainability
+```
+
+### Practice Exercises Summary
+
+```text
+Practice Areas
+│
+├── Simplifying selectors
+├── Reusing styles
+├── Creating responsive layouts
+├── Using custom properties
+├── Improving accessibility
+├── Avoiding unnecessary overrides
+├── Debugging specificity
+├── Organizing CSS
+├── Improving transitions
+└── Supporting reduced motion
+```
+
+> 💡 **Remember:** The best way to learn CSS best practices is to apply them. Practice identifying unnecessary complexity, simplifying selectors, reusing styles appropriately, and testing how CSS behaves across different situations.
