@@ -3775,3 +3775,282 @@ Responsive Design
 ```
 
 > 💡 **Remember:** Responsive design is not just about making a desktop layout smaller. Good responsive CSS allows layouts, content, images, and spacing to adapt to the available screen space.
+
+---
+
+## Test Across Different Screen Sizes
+
+Responsive CSS should be tested across different screen sizes.
+
+A layout may look correct on one screen but have problems on another.
+
+Testing helps identify issues before users experience them.
+
+### Why Testing Different Screen Sizes Matters
+
+A website can be viewed on many different devices.
+
+For example:
+
+```text
+Mobile phone
+        ↓
+Small tablet
+        ↓
+Large tablet
+        ↓
+Laptop
+        ↓
+Desktop
+        ↓
+Large screen
+```
+
+Each screen provides a different amount of available space.
+
+A layout should remain usable and readable across these situations.
+
+### Test More Than One Width
+
+Do not test a responsive layout at only one mobile and one desktop width.
+
+For example:
+
+```text
+Small
+↓
+Medium
+↓
+Large
+```
+
+Testing several widths can reveal problems that appear between common device sizes.
+
+For example, a layout may work at:
+
+```text
+375px
+```
+
+and:
+
+```text
+1200px
+```
+
+but have problems at:
+
+```text
+768px
+```
+
+Testing intermediate sizes helps identify these issues.
+
+### Look for Horizontal Scrolling
+
+Unintended horizontal scrolling is a common responsive problem.
+
+It can be caused by:
+
+```text
+Fixed-width elements
+Large images
+Wide tables
+Excessive margins
+Elements extending outside containers
+```
+
+For example:
+
+```css
+.image {
+    width: 800px;
+}
+```
+
+A more flexible approach is:
+
+```css
+.image {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+Testing on smaller screens can reveal whether content extends beyond the viewport.
+
+### Check Text Readability
+
+Text should remain readable across different screen sizes.
+
+Check for problems such as:
+
+```text
+Text that is too small
+Text that is too large
+Long lines
+Crowded content
+Overlapping text
+```
+
+For example, a heading that works on a desktop may take too much space on a small screen.
+
+Flexible sizing can help:
+
+```css
+.heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+### Check Layout Changes
+
+Responsive layouts often change structure at different screen sizes.
+
+For example:
+
+```text
+Large Screen
+
+┌──────────┬──────────────────┐
+│ Sidebar  │ Main Content     │
+└──────────┴──────────────────┘
+
+
+Small Screen
+
+┌──────────────────┐
+│ Main Content     │
+├──────────────────┤
+│ Sidebar          │
+└──────────────────┘
+```
+
+When testing, check whether these layout changes happen correctly.
+
+### Test Images and Media
+
+Images and other media should adapt to available space.
+
+For example:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+Check whether:
+
+```text
+Images overflow containers
+Videos extend beyond the screen
+Media becomes too small
+Content becomes distorted
+```
+
+### Test Interactive Elements
+
+Responsive testing should also include interactive elements.
+
+Check:
+
+```text
+Navigation menus
+Buttons
+Forms
+Dropdowns
+Modals
+Links
+```
+
+An interface may look correct visually while still being difficult to use on a smaller screen.
+
+### Resize the Browser Gradually
+
+One useful testing method is to gradually resize the browser window.
+
+For example:
+
+```text
+Large width
+    ↓
+Reduce width slowly
+    ↓
+Watch for layout problems
+    ↓
+Identify the breakpoint
+    ↓
+Adjust the CSS
+```
+
+This can reveal problems that may not appear when testing only predefined screen sizes.
+
+### Use Browser Developer Tools
+
+Browser developer tools can help simulate different screen sizes.
+
+This allows developers to inspect layouts without needing every physical device.
+
+Testing can include:
+
+```text
+Different viewport widths
+Different viewport heights
+Device orientation
+Zoom levels
+```
+
+Browser simulation is useful, but testing on real devices can also reveal usability issues.
+
+### Test the Content, Not Only the Layout
+
+A responsive layout should also be tested with realistic content.
+
+For example:
+
+```text
+Long headings
+Large images
+Multiple cards
+Form validation messages
+Long button labels
+```
+
+A layout that works with short placeholder content may break with real content.
+
+### A Simple Responsive Testing Process
+
+```text
+Build the layout
+        ↓
+Test small screens
+        ↓
+Test medium screens
+        ↓
+Test large screens
+        ↓
+Resize gradually
+        ↓
+Check content and interactions
+        ↓
+Fix layout problems
+```
+
+### Test Across Different Screen Sizes Summary
+
+```text
+Responsive Testing
+│
+├── Tests multiple screen widths
+├── Checks for horizontal scrolling
+├── Checks text readability
+├── Tests layout changes
+├── Tests images and media
+├── Tests interactive elements
+├── Uses realistic content
+└── Identifies responsive problems early
+```
+
+> 💡 **Remember:** A responsive design should be tested at multiple screen sizes, not just one mobile and one desktop view. Testing different widths helps identify layout and usability problems before users encounter them.
