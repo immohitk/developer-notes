@@ -2337,3 +2337,194 @@ CSS Custom Properties
 ```
 
 > 💡 **Remember:** CSS custom properties are most useful when they represent reusable values or important design decisions. Use meaningful names and avoid creating unnecessary variables.
+
+---
+
+## Keep Related Styles Together
+
+CSS rules that belong to the same component, feature, or section should generally be kept close together.
+
+This makes styles easier to find and understand.
+
+For example, the styles for a card component can be grouped together:
+
+```css
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+
+.card-price {
+    font-weight: bold;
+}
+```
+
+Keeping these related rules together makes the component easier to work with.
+
+### Avoid Separating Related Styles
+
+Consider this stylesheet:
+
+```css
+.card {
+    padding: 20px;
+}
+
+.header {
+    height: 60px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.footer {
+    padding: 20px;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+The card styles are separated by unrelated rules.
+
+This can make it harder to understand the component.
+
+A clearer approach is:
+
+```css
+.header {
+    height: 60px;
+}
+
+.footer {
+    padding: 20px;
+}
+
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+### Group Component Variations Together
+
+Related variations should also be easy to find.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+
+.button-secondary {
+    background-color: gray;
+}
+```
+
+The base component and its variations are grouped together.
+
+This makes it easier to understand how the component works.
+
+### Keep Related Responsive Rules Easy to Find
+
+Responsive styles should also remain connected to the components they affect when the project structure allows it.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 12px;
+    }
+}
+```
+
+Keeping related responsive rules organized makes future updates easier.
+
+### Organize by Component or Feature
+
+A useful approach is to organize CSS around logical parts of the interface.
+
+For example:
+
+```text
+Navigation
+        ↓
+Hero section
+        ↓
+Cards
+        ↓
+Forms
+        ↓
+Footer
+```
+
+This makes it easier to locate the styles for a particular feature.
+
+### Keep the Relationship Clear
+
+When styles are grouped together, developers can quickly identify:
+
+```text
+Base component styles
+        ↓
+Component elements
+        ↓
+Component variations
+        ↓
+Component states
+        ↓
+Responsive changes
+```
+
+This creates a clearer relationship between CSS rules.
+
+### Do Not Create Excessive Separation
+
+Keeping related styles together does not mean that every component must always exist in a completely isolated section.
+
+The best organization depends on the project.
+
+The important goal is to avoid making developers search through unrelated CSS to find styles that belong to the same component.
+
+### Keep Related Styles Together Summary
+
+```text
+Related CSS Styles
+│
+├── Are easier to find
+├── Make components easier to understand
+├── Keep variations connected
+├── Improve stylesheet navigation
+├── Make updates easier
+└── Reduce unnecessary searching
+```
+
+> 💡 **Remember:** Keep styles that belong to the same component or feature close together. A clear relationship between CSS rules makes stylesheets easier to understand and maintain.
