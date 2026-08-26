@@ -1727,3 +1727,183 @@ Low and Predictable Specificity
 ```
 
 > 💡 **Remember:** Specificity should be used intentionally. Keeping selectors simple and specificity predictable makes CSS easier to maintain as a project grows.
+
+---
+
+## Avoid Excessive `!important`
+
+The `!important` flag increases the importance of a CSS declaration.
+
+Example:
+
+```css
+.button {
+    background-color: blue !important;
+}
+```
+
+Although `!important` can be useful in specific situations, using it excessively can make CSS difficult to maintain.
+
+### Why Excessive `!important` Causes Problems
+
+When multiple declarations use `!important`, normal CSS cascade behavior becomes harder to manage.
+
+For example:
+
+```css
+.button {
+    color: blue !important;
+}
+```
+
+Later, another style may need to override it:
+
+```css
+.button {
+    color: green !important;
+}
+```
+
+This can lead to a pattern where more declarations require `!important`.
+
+```text
+CSS conflict
+        ↓
+Add !important
+        ↓
+Another conflict
+        ↓
+Add another !important
+        ↓
+CSS becomes difficult to maintain
+```
+
+### Fix the Cause Instead of Forcing the Result
+
+If a style is not being applied, first determine why.
+
+Common causes include:
+
+```text
+Higher specificity
+Incorrect selector
+Source order
+Another stylesheet
+Inline styles
+Cascade layers
+```
+
+For example:
+
+```css
+.button {
+    color: blue;
+}
+
+.container .button {
+    color: green;
+}
+```
+
+Instead of immediately writing:
+
+```css
+.button {
+    color: red !important;
+}
+```
+
+consider whether the selector structure should be simplified.
+
+### Use Specificity Intentionally
+
+A better approach is often to use an appropriate selector.
+
+For example:
+
+```css
+.button {
+    color: blue;
+}
+
+.button-primary {
+    color: green;
+}
+```
+
+HTML:
+
+```html
+<button class="button button-primary">
+    Save
+</button>
+```
+
+This keeps the styling system more predictable.
+
+### `!important` Can Make Debugging Harder
+
+When inspecting CSS, declarations with `!important` can override rules that would normally win through the cascade.
+
+For example:
+
+```css
+.button {
+    color: blue !important;
+}
+
+.button-primary {
+    color: green;
+}
+```
+
+The second rule may appear more specific to the intended variation, but the `!important` declaration changes the result.
+
+Excessive use can make it harder to understand why a style is being applied.
+
+### When `!important` May Be Appropriate
+
+`!important` is not always wrong.
+
+There can be situations where it is useful, such as:
+
+```text
+Overriding third-party styles
+Utility classes with intentional priority
+Specific exceptional cases
+```
+
+However, it should be used intentionally rather than as the default solution to CSS conflicts.
+
+### A Better Decision Process
+
+Before using `!important`, ask:
+
+```text
+Why is the current style not applying?
+        ↓
+Check the cascade
+        ↓
+Check specificity
+        ↓
+Check source order
+        ↓
+Simplify the CSS if necessary
+        ↓
+Use !important only when justified
+```
+
+### Avoid Excessive `!important` Summary
+
+```text
+!important
+│
+├── Changes declaration importance
+├── Can make overrides difficult
+├── Can encourage more !important usage
+├── Can make debugging harder
+├── Should not be the default solution
+└── Should be used intentionally
+```
+
+> 💡 **Remember:** `!important` is a powerful tool, but it should not be used to hide problems with CSS organization, specificity, or the cascade. Understand why a style is losing before forcing it to win.
