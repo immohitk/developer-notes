@@ -5844,3 +5844,288 @@ CSS Performance
 ```
 
 > 💡 **Remember:** Good CSS performance does not mean making every stylesheet as small or complex as possible. Focus on avoiding unnecessary work, measuring real problems, and keeping the final CSS clear and maintainable.
+
+---
+
+## Debug CSS Systematically
+
+CSS problems can sometimes be difficult to identify because multiple rules may affect the same element.
+
+Instead of changing CSS randomly, use a systematic debugging process.
+
+A clear process makes it easier to identify the actual cause of a problem.
+
+### Identify the Problem Clearly
+
+Start by understanding what is wrong.
+
+For example:
+
+```text
+The element is not visible
+The color is incorrect
+The layout is broken
+The element is in the wrong position
+The responsive layout is not working
+A style is being overridden
+```
+
+Avoid changing multiple properties before understanding the problem.
+
+### Inspect the Element
+
+Browser developer tools can help inspect the affected element.
+
+Check:
+
+```text
+Applied CSS rules
+Computed styles
+Inherited properties
+Box model values
+Element dimensions
+```
+
+This can help determine which CSS rules are affecting the element.
+
+### Check Which Rule Is Applied
+
+Multiple rules may target the same element.
+
+For example:
+
+```css
+.button {
+    color: blue;
+}
+
+.primary-button {
+    color: green;
+}
+```
+
+If an element uses both classes:
+
+```html
+<button class="button primary-button">
+```
+
+the final color depends on the CSS cascade.
+
+Inspecting the element can show which rule is currently applied.
+
+### Check Specificity
+
+Specificity can cause a rule to override another rule.
+
+For example:
+
+```css
+.button {
+    color: blue;
+}
+
+.container .button {
+    color: red;
+}
+```
+
+The more specific selector may override the simpler selector.
+
+When a style is not being applied, check:
+
+```text
+Selector specificity
+CSS order
+!important declarations
+Inline styles
+```
+
+### Check the CSS Cascade
+
+CSS rules are affected by the cascade.
+
+For example:
+
+```css
+.button {
+    padding: 10px;
+}
+
+.button {
+    padding: 20px;
+}
+```
+
+When the selectors have the same specificity, the later declaration is applied.
+
+Understanding the cascade helps explain unexpected styles.
+
+### Check Inherited Properties
+
+Some CSS properties can be inherited by child elements.
+
+For example:
+
+```css
+.parent {
+    color: blue;
+}
+```
+
+A child element may inherit the text color.
+
+When debugging, check whether a property is:
+
+```text
+Applied directly
+Inherited from a parent
+Overridden by another rule
+```
+
+### Check the Box Model
+
+Layout problems may be related to the box model.
+
+Inspect:
+
+```text
+Width
+Height
+Padding
+Border
+Margin
+```
+
+For example:
+
+```css
+.card {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid black;
+}
+```
+
+The total rendered size can be affected by padding and borders.
+
+Checking the box model can help explain unexpected dimensions or spacing.
+
+### Check Layout Properties
+
+When an element is in the wrong position, inspect its layout context.
+
+Check:
+
+```text
+display
+position
+flex properties
+grid properties
+width
+height
+overflow
+```
+
+For example, a child element may behave differently because its parent uses:
+
+```css
+.container {
+    display: flex;
+}
+```
+
+Understanding the parent layout is often necessary to debug the child.
+
+### Test One Change at a Time
+
+Avoid making many changes simultaneously.
+
+A useful process is:
+
+```text
+Identify the problem
+        ↓
+Form a possible explanation
+        ↓
+Change one property
+        ↓
+Observe the result
+        ↓
+Keep or remove the change
+```
+
+This makes it easier to identify what actually fixed the problem.
+
+### Simplify the Problem
+
+If a CSS problem is difficult to understand, temporarily reduce the amount of code involved.
+
+For example:
+
+```text
+Remove unrelated styles
+        ↓
+Create a smaller example
+        ↓
+Test the behavior
+        ↓
+Identify the cause
+        ↓
+Apply the solution
+```
+
+A smaller example can make complex interactions easier to understand.
+
+### Check Responsive Behavior
+
+If a problem appears only on certain screen sizes, inspect:
+
+```text
+Media queries
+Viewport width
+Flexible dimensions
+Grid behavior
+Flexbox behavior
+Overflow
+```
+
+Test the layout gradually across different screen widths.
+
+### Use a Systematic Debugging Process
+
+A useful debugging process is:
+
+```text
+Identify the problem
+        ↓
+Inspect the affected element
+        ↓
+Check applied and computed styles
+        ↓
+Check the cascade and specificity
+        ↓
+Inspect the layout context
+        ↓
+Test one change at a time
+        ↓
+Confirm the solution
+```
+
+### Debug CSS Systematically Summary
+
+```text
+CSS Debugging
+│
+├── Identify the problem clearly
+├── Inspect the affected element
+├── Check applied styles
+├── Check specificity and the cascade
+├── Check inherited properties
+├── Inspect the box model
+├── Understand the layout context
+├── Test one change at a time
+└── Confirm the final solution
+```
+
+> 💡 **Remember:** Do not debug CSS by randomly changing properties. Inspect the affected element, understand which rules are applied, and test one possible solution at a time.
