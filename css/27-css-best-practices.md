@@ -808,3 +808,195 @@ Meaningful Class Names
 ```
 
 > 💡 **Remember:** A good class name should help another developer understand what an element represents without needing to inspect the entire HTML or CSS file.
+
+---
+
+## Prefer Classes for Styling
+
+Classes are generally the preferred way to apply reusable styles in CSS.
+
+A class can be applied to multiple elements, making it useful for components, shared styles, and variations.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+The same class can be used on multiple elements:
+
+```html
+<button class="button">Save</button>
+<button class="button">Submit</button>
+<a class="button" href="#">Learn More</a>
+```
+
+This makes the style reusable.
+
+### Classes Are Reusable
+
+A major advantage of classes is that multiple elements can use the same style.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+```
+
+HTML:
+
+```html
+<div class="card">Card One</div>
+<div class="card">Card Two</div>
+<div class="card">Card Three</div>
+```
+
+One CSS rule can style many elements.
+
+### Combine Classes for Variations
+
+Classes can also be combined to create variations.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+
+.button-secondary {
+    background-color: gray;
+}
+```
+
+HTML:
+
+```html
+<button class="button button-primary">
+    Save
+</button>
+
+<button class="button button-secondary">
+    Cancel
+</button>
+```
+
+The `.button` class provides shared styles, while the additional classes provide variations.
+
+### Avoid Styling Reusable Components With IDs
+
+An ID should be unique within a document.
+
+For example:
+
+```html
+<button id="submit-button">
+    Submit
+</button>
+```
+
+CSS:
+
+```css
+#submit-button {
+    padding: 10px 16px;
+}
+```
+
+This style is tied to one specific element.
+
+For reusable styling, a class is usually more flexible:
+
+```css
+.button {
+    padding: 10px 16px;
+}
+```
+
+### Classes Help Keep Specificity Manageable
+
+Class selectors have a moderate and predictable level of specificity.
+
+Example:
+
+```css
+.button {
+    color: white;
+}
+```
+
+This is generally easier to override than a highly specific selector:
+
+```css
+#app .container .actions .button {
+    color: white;
+}
+```
+
+Using classes consistently can help prevent unnecessary specificity problems.
+
+### Use Classes for Component Styles
+
+Classes are well suited for component-based styling.
+
+For example:
+
+```css
+.product-card {
+    padding: 20px;
+}
+
+.product-card-title {
+    font-size: 1.5rem;
+}
+
+.product-card-price {
+    font-weight: bold;
+}
+```
+
+This makes the relationship between component styles easier to understand.
+
+### Use IDs for Unique Purposes
+
+IDs can still be useful when an element needs a unique identifier.
+
+For example:
+
+```html
+<form id="login-form">
+```
+
+However, reusable styling is usually better handled with classes.
+
+```html
+<form id="login-form" class="form">
+```
+
+The ID can provide uniqueness, while the class handles reusable styling.
+
+### Prefer Classes for Styling Summary
+
+```text
+Classes for Styling
+│
+├── Can be reused
+├── Can be combined
+├── Support component-based CSS
+├── Help keep specificity manageable
+├── Make shared styles easier
+└── Allow flexible variations
+```
+
+> 💡 **Remember:** Use classes as the primary tool for reusable CSS styling. IDs are better suited for uniquely identifying elements when necessary.
