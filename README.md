@@ -41,28 +41,15 @@ developer-notes/
 | Technology | Status |
 |------------|--------|
 | HTML | ✅ Completed |
-| CSS | 🚧 In Progress |
-| JavaScript | ⏳ Planned |
+| CSS | ✅ Completed |
+| JavaScript | 🚧 In Progress  |
 | Git & GitHub | ⏳ Planned |
 
 ---
 
 ## ✨ What You'll Find
 
-Every topic is organized using the same structure:
-
-- Table of Contents
-- Introduction
-- Core Concepts
-- Practical Examples
-- Key Takeaways
-- References
-- Quick Revision
-- Best Practices
-- Common Mistakes
-- Interview Questions
-- Practice Exercises
-- Related Topics
+Topics follow a structured learning format that may include explanations, examples, best practices, common mistakes, interview questions, practice exercises, references, and related topics.
 
 ---
 
