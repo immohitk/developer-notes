@@ -8,14 +8,14 @@ Whether you're just getting started with HTML or looking to refresh your knowled
 
 ## 📚 Topics
 
-- ✅ HTML Basics
-- ✅ HTML Page Structure
-- ✅ HTML Comments
-- ✅ HTML Tags
-- ✅ HTML Elements
-- ✅ HTML Attributes
-- ✅ HTML ID and Classes
-- ✅ HTML Inline and Block Elements
+- [HTML Basics](01-html-basics.md)
+- [HTML Page Structure](02-page-structure.md)
+- [HTML Comments](03-comments.md)
+- [HTML Tags](04-tags.md)
+- [HTML Elements](05-elements.md)
+- [HTML Attributes](06-attributes.md)
+- [HTML ID and Classes](07-id-classes.md)
+- [Inline and Block Elements](08-inline-block-elements.md)
 
 More topics will be added as I continue learning and expanding this repository.
 
@@ -27,20 +27,7 @@ If these notes help someone else learn HTML more effectively, that's an added bo
 
 ## 📖 What You'll Find
 
-Each topic follows a consistent structure to make learning and revision easier.
-
-- Introduction
-- Core Concepts
-- Practical Examples
-- Key Takeaways
-- References
-- Quick Revision
-- Best Practices
-- Common Mistakes
-- Interview Questions
-- Practice Exercises
-- Related Topics
-- Table of Contents
+Topics follow a structured learning format that may include explanations, examples, best practices, common mistakes, interview questions, practice exercises, references, and related topics.
 
 ## 🚀 Continue Learning
 
