@@ -4254,3 +4254,241 @@ Modern CSS Features
 ```
 
 > 💡 **Remember:** Modern CSS features are useful tools, not requirements to use everywhere. Choose features that make your CSS clearer, more flexible, and easier to maintain.
+
+---
+
+## Keep CSS Maintainable
+
+Maintainable CSS is easy to understand, update, and extend over time.
+
+A stylesheet may begin as a small file, but as a project grows, more components, pages, and features can introduce additional styles.
+
+Writing maintainable CSS helps prevent the stylesheet from becoming difficult to manage.
+
+### Keep CSS Simple
+
+Simple CSS is usually easier to maintain.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+This is easier to understand than unnecessarily complex selectors and rules.
+
+Avoid adding complexity when a simpler solution provides the same result.
+
+### Use Clear Structure
+
+A clear structure makes styles easier to locate.
+
+For example:
+
+```text
+Base styles
+        ↓
+Layout styles
+        ↓
+Component styles
+        ↓
+Utility styles
+```
+
+A developer should be able to quickly identify where a particular style belongs.
+
+### Write CSS for Future Changes
+
+CSS should not only solve the current requirement.
+
+Consider how the stylesheet may need to change in the future.
+
+For example, instead of creating separate styles for similar buttons:
+
+```css
+.save-button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.delete-button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+shared styles can be reused:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+Then variations can define the differences:
+
+```css
+.button-save {
+    background-color: green;
+}
+
+.button-delete {
+    background-color: red;
+}
+```
+
+This makes future updates easier.
+
+### Keep Selectors Predictable
+
+Selectors should clearly describe the elements they target.
+
+For example:
+
+```css
+.product-card-title {
+    font-size: 1.5rem;
+}
+```
+
+This is generally easier to maintain than a deeply nested selector:
+
+```css
+.page .content .products .product-card .header h2 {
+    font-size: 1.5rem;
+}
+```
+
+Predictable selectors reduce dependency on the HTML structure.
+
+### Avoid Unnecessary Overrides
+
+Repeated overrides can make CSS difficult to understand.
+
+For example:
+
+```css
+.button {
+    color: blue;
+}
+
+.button {
+    color: green;
+}
+
+.button {
+    color: red;
+}
+```
+
+A developer must inspect multiple rules to determine the final result.
+
+Instead, keep the intended style clear:
+
+```css
+.button {
+    color: red;
+}
+```
+
+When variations are necessary, use meaningful selectors.
+
+### Use Reusable Patterns
+
+Repeated design patterns should be organized consistently.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+Reusable patterns make it easier to create new components without duplicating large amounts of CSS.
+
+### Make Changes in One Place When Possible
+
+When a value represents a shared design decision, define it in a reusable location.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+Then:
+
+```css
+.button {
+    background-color: var(--primary-color);
+}
+
+.link {
+    color: var(--primary-color);
+}
+```
+
+Updating the shared value becomes easier.
+
+### Remove Unnecessary Complexity
+
+Over time, stylesheets can accumulate:
+
+```text
+Unused rules
+Repeated declarations
+Unnecessary overrides
+Overly specific selectors
+Temporary fixes
+```
+
+Reviewing and simplifying CSS regularly can prevent these problems from growing.
+
+### A Maintainability Checklist
+
+Before adding or changing CSS, consider:
+
+```text
+Is the selector clear?
+        ↓
+Is the style easy to find?
+        ↓
+Can existing styles be reused?
+        ↓
+Does this create unnecessary duplication?
+        ↓
+Will another developer understand it later?
+```
+
+### Keep CSS Maintainable Summary
+
+```text
+Maintainable CSS
+│
+├── Uses simple solutions
+├── Has a clear structure
+├── Uses predictable selectors
+├── Supports future changes
+├── Reuses common patterns
+├── Avoids unnecessary overrides
+├── Reduces duplication
+└── Remains easy to understand
+```
+
+> 💡 **Remember:** Good CSS is not only CSS that works today. Maintainable CSS makes future changes easier and helps prevent small stylesheets from becoming difficult to manage.
