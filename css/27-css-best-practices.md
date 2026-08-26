@@ -3344,3 +3344,221 @@ Shorthand Properties
 ```
 
 > 💡 **Remember:** Shorthand properties are useful when you intentionally want to define multiple related values. Use longhand properties when changing one specific value is clearer or safer.
+
+---
+
+## Avoid Repeating Values Unnecessarily
+
+Repeating the same CSS values in multiple places can make a stylesheet harder to maintain.
+
+When a repeated value needs to change, every occurrence may need to be updated.
+
+For example:
+
+```css
+.header {
+    background-color: blue;
+}
+
+.button {
+    background-color: blue;
+}
+
+.link {
+    color: blue;
+}
+```
+
+If the same value represents a shared design decision, repeating it may create unnecessary maintenance work.
+
+### Reuse Shared Values
+
+CSS custom properties can help avoid repeating important values.
+
+For example:
+
+```css
+:root {
+    --primary-color: blue;
+}
+```
+
+The value can then be reused:
+
+```css
+.header {
+    background-color: var(--primary-color);
+}
+
+.button {
+    background-color: var(--primary-color);
+}
+
+.link {
+    color: var(--primary-color);
+}
+```
+
+Now the shared value can be changed in one location.
+
+### Repeated Spacing Values
+
+Spacing values are often repeated throughout a stylesheet.
+
+For example:
+
+```css
+.card {
+    padding: 16px;
+}
+
+.button {
+    padding: 16px;
+}
+
+.section {
+    margin-bottom: 16px;
+}
+```
+
+If `16px` represents a common spacing value, a custom property can make the relationship clearer:
+
+```css
+:root {
+    --spacing-medium: 16px;
+}
+```
+
+Then:
+
+```css
+.card {
+    padding: var(--spacing-medium);
+}
+
+.button {
+    padding: var(--spacing-medium);
+}
+
+.section {
+    margin-bottom: var(--spacing-medium);
+}
+```
+
+### Reuse Component Styles
+
+Repeated groups of declarations can often be extracted into reusable classes.
+
+Consider:
+
+```css
+.save-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+.cancel-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+The shared styles can be extracted:
+
+```css
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+```
+
+Additional classes can provide differences:
+
+```css
+.button-primary {
+    background-color: blue;
+}
+
+.button-secondary {
+    background-color: gray;
+}
+```
+
+### Do Not Remove Repetition Without a Reason
+
+Not every repeated value needs to become a custom property.
+
+For example:
+
+```css
+.card {
+    border: 1px solid gray;
+}
+
+.input {
+    border: 1px solid gray;
+}
+```
+
+These values may look similar but could represent separate design decisions.
+
+The value should be shared only when there is a meaningful relationship.
+
+### Avoid Over-Abstraction
+
+Creating too many variables can make CSS harder to understand.
+
+For example:
+
+```css
+:root {
+    --value-one: 8px;
+    --value-two: 12px;
+    --value-three: 16px;
+    --value-four: 20px;
+}
+```
+
+These names do not clearly explain their purpose.
+
+A better approach is to use variables for meaningful shared values:
+
+```css
+:root {
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+}
+```
+
+### A Simple Decision Process
+
+Before repeating a value, ask:
+
+```text
+Is this value used in multiple places?
+        ↓
+Does it represent a shared design decision?
+        ↓
+Would changing it in one place be useful?
+        ↓
+If yes, consider reusing the value
+```
+
+### Avoid Repeating Values Unnecessarily Summary
+
+```text
+Avoid Unnecessary Repetition
+│
+├── Reduces maintenance work
+├── Makes updates easier
+├── Improves consistency
+├── Encourages reusable values
+├── Supports shared design decisions
+└── Avoids unnecessary abstraction
+```
+
+> 💡 **Remember:** Reuse values when they represent a genuine shared pattern or design decision. Avoid repetition that creates unnecessary maintenance work, but do not create variables simply because two values happen to be the same.
