@@ -3562,3 +3562,216 @@ Avoid Unnecessary Repetition
 ```
 
 > 💡 **Remember:** Reuse values when they represent a genuine shared pattern or design decision. Avoid repetition that creates unnecessary maintenance work, but do not create variables simply because two values happen to be the same.
+
+---
+
+## Consider Responsive Design
+
+Responsive design helps a website adapt to different screen sizes and devices.
+
+Users may access a website using:
+
+```text
+Mobile phones
+Tablets
+Laptops
+Desktop computers
+Large screens
+```
+
+A layout that works well on one screen size may not work well on another.
+
+For this reason, CSS should be written with different screen sizes in mind.
+
+### Avoid Designing for Only One Screen Size
+
+Consider a fixed layout:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+This may work on a large desktop screen but can cause problems on smaller devices.
+
+A more flexible approach is:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+```
+
+The container can adapt to smaller screens while remaining limited on larger screens.
+
+### Use Flexible Layouts
+
+Modern CSS layout tools can help create responsive designs.
+
+For example, Flexbox:
+
+```css
+.cards {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+```
+
+Or Grid:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+```
+
+These layouts can adapt more naturally to available space.
+
+### Use Media Queries When Necessary
+
+Media queries allow styles to change based on screen conditions.
+
+For example:
+
+```css
+.content-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 768px) {
+    .content-layout {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+The layout changes from two columns to one column on smaller screens.
+
+### Consider Mobile Screens
+
+Mobile devices often have limited screen space.
+
+For example:
+
+```text
+Desktop
+┌──────────────────────────────┐
+│ Sidebar │ Main Content       │
+│         │                    │
+└──────────────────────────────┘
+
+
+Mobile
+┌──────────────────┐
+│ Main Content     │
+│                  │
+│ Sidebar Content  │
+└──────────────────┘
+```
+
+Responsive design should consider how content can remain readable and usable when space becomes limited.
+
+### Avoid Unnecessary Fixed Dimensions
+
+Fixed widths and heights can create responsive problems.
+
+For example:
+
+```css
+.image {
+    width: 800px;
+}
+```
+
+On a small screen, this image may overflow its container.
+
+A more responsive approach is:
+
+```css
+.image {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This allows the image to scale with its container.
+
+### Consider Text and Spacing
+
+Responsive design is not only about changing layouts.
+
+Text and spacing should also remain usable on different screen sizes.
+
+For example:
+
+```css
+.heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+The `clamp()` function allows the font size to adapt within defined limits.
+
+### Test Different Screen Sizes
+
+A responsive design should be checked at different widths.
+
+For example:
+
+```text
+Small screen
+        ↓
+Medium screen
+        ↓
+Large screen
+```
+
+Testing helps identify problems such as:
+
+```text
+Horizontal scrolling
+Overlapping elements
+Unreadable text
+Oversized images
+Broken layouts
+```
+
+### Responsive Design Is Part of Good CSS
+
+Responsive design should be considered while building the interface rather than only after the desktop version is complete.
+
+A useful approach is:
+
+```text
+Build flexible layouts
+        ↓
+Use relative sizing where appropriate
+        ↓
+Add responsive adjustments when necessary
+        ↓
+Test different screen sizes
+```
+
+### Consider Responsive Design Summary
+
+```text
+Responsive Design
+│
+├── Supports different screen sizes
+├── Uses flexible layouts
+├── Avoids unnecessary fixed dimensions
+├── Uses media queries when needed
+├── Keeps content readable
+├── Prevents layout problems
+└── Requires testing across devices
+```
+
+> 💡 **Remember:** Responsive design is not just about making a desktop layout smaller. Good responsive CSS allows layouts, content, images, and spacing to adapt to the available screen space.
