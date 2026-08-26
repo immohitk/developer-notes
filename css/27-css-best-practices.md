@@ -2528,3 +2528,230 @@ Related CSS Styles
 ```
 
 > 💡 **Remember:** Keep styles that belong to the same component or feature close together. A clear relationship between CSS rules makes stylesheets easier to understand and maintain.
+
+---
+
+## Separate Layout and Component Styles
+
+Layout styles and component styles have different responsibilities.
+
+Layout styles control how major sections of a page are arranged.
+
+Component styles control the appearance and behavior of individual interface elements.
+
+Keeping these responsibilities separate can make CSS easier to understand and maintain.
+
+### Layout Styles
+
+Layout styles focus on the overall structure of a page.
+
+Examples include:
+
+```text
+Page containers
+Headers
+Sidebars
+Content areas
+Grids
+Sections
+```
+
+For example:
+
+```css
+.page {
+    min-height: 100vh;
+}
+
+.container {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+}
+
+.content-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 24px;
+}
+```
+
+These rules describe how parts of the page are arranged.
+
+### Component Styles
+
+Component styles focus on individual reusable elements.
+
+Examples include:
+
+```text
+Buttons
+Cards
+Forms
+Navigation items
+Alerts
+Modals
+```
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.input {
+    padding: 10px;
+    border: 1px solid gray;
+}
+```
+
+These styles describe the individual components rather than the overall page structure.
+
+### Avoid Mixing Responsibilities Unnecessarily
+
+Consider a class that controls both page layout and button appearance:
+
+```css
+.sidebar-button {
+    display: flex;
+    width: 250px;
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+This mixes layout decisions with component styling.
+
+A clearer approach can separate them:
+
+```css
+.sidebar {
+    width: 250px;
+}
+```
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+HTML:
+
+```html
+<aside class="sidebar">
+    <button class="button">
+        Save
+    </button>
+</aside>
+```
+
+The layout and component can now be managed independently.
+
+### Improve Component Reusability
+
+Separating layout styles from component styles makes components easier to reuse.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+```
+
+The card can be placed in different layouts:
+
+```text
+Grid layout
+Flexbox layout
+Sidebar
+Main content area
+Modal
+```
+
+The component does not need to contain rules for every possible location.
+
+### A Simple Organization Strategy
+
+A project can separate CSS conceptually into:
+
+```text
+Base styles
+        ↓
+Layout styles
+        ↓
+Component styles
+        ↓
+Utility styles
+```
+
+For example:
+
+```text
+css/
+├── base.css
+├── layout.css
+├── components.css
+└── utilities.css
+```
+
+The exact structure can vary depending on the project.
+
+### When Layout and Component Styles Can Overlap
+
+Complete separation is not always necessary.
+
+Some components naturally contain internal layout rules.
+
+For example:
+
+```css
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+```
+
+This is still component styling because the layout describes the internal structure of the card.
+
+The important distinction is between:
+
+```text
+Page layout
+        ↓
+How major sections are arranged
+
+Component layout
+        ↓
+How parts inside a component are arranged
+```
+
+### Separate Layout and Component Styles Summary
+
+```text
+CSS Organization
+│
+├── Layout styles
+│   └── Control page structure
+│
+├── Component styles
+│   └── Control reusable interface elements
+│
+└── Clear separation
+    ├── Improves maintainability
+    ├── Improves reusability
+    └── Makes CSS easier to understand
+```
+
+> 💡 **Remember:** Separate page-level layout decisions from reusable component styling when possible. Components should remain flexible enough to work in different parts of the interface.
