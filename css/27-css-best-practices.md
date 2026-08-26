@@ -4863,3 +4863,263 @@ Useful CSS Comments
 ```
 
 > 💡 **Remember:** Comments should add information that the CSS itself does not clearly communicate. Prefer clear code first, and use comments to explain complex decisions, unusual behavior, or important reasons.
+
+---
+
+## Organize Large Stylesheets
+
+As a project grows, a stylesheet can become difficult to manage.
+
+New pages, components, responsive rules, and features can add hundreds or thousands of lines of CSS.
+
+A clear organization strategy helps developers find styles quickly and makes large stylesheets easier to maintain.
+
+### Divide CSS Into Logical Sections
+
+Large stylesheets should be divided into clear sections.
+
+For example:
+
+```text
+Base styles
+        ↓
+Layout styles
+        ↓
+Component styles
+        ↓
+Page-specific styles
+        ↓
+Utility styles
+```
+
+This creates a predictable structure.
+
+### Group Styles by Purpose
+
+Related styles should appear together.
+
+For example:
+
+```css
+/* ====================
+   Navigation
+   ==================== */
+
+.navigation {
+    display: flex;
+    gap: 16px;
+}
+
+.navigation-link {
+    text-decoration: none;
+}
+
+
+/* ====================
+   Cards
+   ==================== */
+
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+```
+
+Grouping styles by purpose makes them easier to locate.
+
+### Split Large Stylesheets When Appropriate
+
+A very large stylesheet can sometimes be divided into multiple files.
+
+For example:
+
+```text
+css/
+├── base.css
+├── layout.css
+├── components.css
+├── utilities.css
+└── responsive.css
+```
+
+A larger project may also organize styles by components:
+
+```text
+css/
+├── base/
+│   ├── reset.css
+│   └── typography.css
+│
+├── layout/
+│   ├── header.css
+│   ├── navigation.css
+│   └── footer.css
+│
+└── components/
+    ├── button.css
+    ├── card.css
+    └── form.css
+```
+
+The best structure depends on the size and requirements of the project.
+
+### Keep File Names Clear
+
+CSS file names should describe their purpose.
+
+For example:
+
+```text
+button.css
+card.css
+navigation.css
+layout.css
+utilities.css
+```
+
+Avoid unclear names such as:
+
+```text
+style2.css
+new.css
+final.css
+updated-style.css
+```
+
+Clear names make project navigation easier.
+
+### Use a Consistent Order
+
+Large stylesheets should follow a predictable order.
+
+For example:
+
+```text
+1. Base styles
+2. Typography
+3. Layout
+4. Components
+5. Page-specific styles
+6. Utility styles
+7. Responsive rules
+```
+
+The exact order can vary, but consistency is important.
+
+### Avoid Scattering Component Styles
+
+Avoid placing styles for the same component in many unrelated locations.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+}
+
+/* Many unrelated styles */
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+/* More unrelated styles */
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+A clearer structure keeps related styles together:
+
+```css
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+### Keep Responsive Styles Organized
+
+Responsive rules should also follow a clear strategy.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 12px;
+    }
+}
+```
+
+Another approach is to group related responsive rules together.
+
+The important part is choosing an approach that makes responsive styles easy to find.
+
+### Consider Project Scale
+
+A small project may only need:
+
+```text
+style.css
+```
+
+A larger project may benefit from:
+
+```text
+base/
+layout/
+components/
+pages/
+utilities/
+```
+
+Do not create a complicated folder structure for a small stylesheet.
+
+The organization should match the size and complexity of the project.
+
+### A Simple Organization Process
+
+```text
+Add new styles
+        ↓
+Identify their purpose
+        ↓
+Place them in the appropriate section or file
+        ↓
+Keep related styles together
+        ↓
+Use consistent naming and ordering
+```
+
+### Organize Large Stylesheets Summary
+
+```text
+Large Stylesheet Organization
+│
+├── Uses logical sections
+├── Groups related styles
+├── Uses clear file names
+├── Keeps component styles together
+├── Uses a consistent order
+├── Organizes responsive rules
+└── Matches the structure to project size
+```
+
+> 💡 **Remember:** Large stylesheets should have a clear and predictable structure. Organize CSS by purpose, keep related styles together, and avoid creating unnecessary complexity for smaller projects.
