@@ -1195,3 +1195,174 @@ ID Selectors
 ```
 
 > 💡 **Remember:** IDs are useful for uniquely identifying elements, but classes are usually a better choice for reusable and maintainable CSS styling.
+
+---
+
+## Keep Selectors Simple
+
+Simple CSS selectors are easier to read, understand, maintain, and override.
+
+A selector should usually target an element without adding unnecessary complexity.
+
+For example:
+
+```css
+.button {
+    padding: 10px 16px;
+}
+```
+
+This selector is simple and easy to understand.
+
+Compare it with:
+
+```css
+.page .main .content .section .actions .button {
+    padding: 10px 16px;
+}
+```
+
+The second selector depends on a specific HTML structure and has higher specificity.
+
+### Avoid Unnecessary Selector Chains
+
+Consider:
+
+```css
+header nav ul li a {
+    color: blue;
+}
+```
+
+This selector may work, but it tightly depends on the HTML structure.
+
+A simpler class-based selector can often be easier to maintain:
+
+```css
+.navigation-link {
+    color: blue;
+}
+```
+
+If the HTML structure changes, the class-based selector can continue to work.
+
+### Simple Selectors Are Easier to Override
+
+Highly specific selectors can make future changes more difficult.
+
+For example:
+
+```css
+#app .container .content .button {
+    background-color: blue;
+}
+```
+
+Overriding this rule may require another highly specific selector.
+
+A simpler selector is easier to customize:
+
+```css
+.button {
+    background-color: blue;
+}
+```
+
+Another class can provide a variation:
+
+```css
+.button-primary {
+    background-color: green;
+}
+```
+
+### Avoid Depending Too Much on HTML Structure
+
+Consider:
+
+```css
+.sidebar .menu ul li a {
+    color: gray;
+}
+```
+
+This selector assumes a particular structure.
+
+If the HTML changes:
+
+```text
+.sidebar
+    ↓
+.menu
+    ↓
+ul
+    ↓
+li
+    ↓
+a
+```
+
+the selector may no longer match as expected.
+
+A component-based class can reduce this dependency:
+
+```css
+.menu-link {
+    color: gray;
+}
+```
+
+### Simple Does Not Mean Too Generic
+
+Keeping selectors simple does not mean every selector should be extremely broad.
+
+For example:
+
+```css
+p {
+    color: gray;
+}
+```
+
+may be appropriate for general paragraph styling.
+
+However, a component-specific style may need a class:
+
+```css
+.article-description {
+    color: gray;
+}
+```
+
+The goal is to use the simplest selector that clearly targets the intended element.
+
+### A Simple Selector Strategy
+
+When writing a selector, ask:
+
+```text
+Can this selector be simpler?
+        ↓
+Does it depend unnecessarily on HTML structure?
+        ↓
+Does it add unnecessary specificity?
+        ↓
+Can a meaningful class target the component directly?
+```
+
+This approach can help prevent unnecessarily complex CSS.
+
+### Keep Selectors Simple Summary
+
+```text
+Simple Selectors
+│
+├── Are easier to read
+├── Are easier to maintain
+├── Are easier to override
+├── Reduce unnecessary specificity
+├── Depend less on HTML structure
+└── Make CSS more predictable
+```
+
+> 💡 **Remember:** Use the simplest selector that clearly targets the element you need. Avoid adding selector complexity unless it provides a real benefit.
