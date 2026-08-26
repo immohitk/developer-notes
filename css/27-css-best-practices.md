@@ -6436,3 +6436,332 @@ Common CSS Mistakes
 ```
 
 > 💡 **Remember:** Many CSS problems come from unnecessary complexity. Keep selectors simple, avoid excessive overrides, consider responsive design and accessibility, and understand how the CSS cascade affects the final result.
+
+---
+
+## Practical Examples
+
+The following examples combine several CSS best practices.
+
+They demonstrate how clear selectors, reusable styles, responsive layouts, accessibility considerations, and maintainable structure can work together.
+
+### Example 1: A Reusable Button
+
+Instead of repeating the same styles for multiple buttons:
+
+```css
+.save-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: blue;
+}
+
+.delete-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: red;
+}
+```
+
+Create a shared button style:
+
+```css
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.button-primary {
+    background-color: blue;
+}
+
+.button-danger {
+    background-color: red;
+}
+```
+
+HTML:
+
+```html
+<button class="button button-primary">
+    Save
+</button>
+
+<button class="button button-danger">
+    Delete
+</button>
+```
+
+This approach:
+
+```text
+Reduces repeated CSS
+Keeps shared styles together
+Makes variations clear
+Makes future updates easier
+```
+
+### Example 2: A Maintainable Card Component
+
+A card can use clear and predictable class names.
+
+```css
+.card {
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+}
+
+.card-title {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+HTML:
+
+```html
+<article class="card">
+    <h2 class="card-title">
+        Product Title
+    </h2>
+
+    <p class="card-description">
+        Product description goes here.
+    </p>
+</article>
+```
+
+The styles are easier to understand because the selectors clearly describe the component.
+
+### Example 3: A Responsive Container
+
+Avoid using only a fixed width:
+
+```css
+.container {
+    width: 1200px;
+}
+```
+
+Use a flexible approach:
+
+```css
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+```
+
+This allows the container to adapt to smaller screens while preventing it from becoming unnecessarily wide on larger screens.
+
+### Example 4: A Responsive Card Layout
+
+CSS Grid can create a flexible layout.
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+```
+
+HTML:
+
+```html
+<div class="cards">
+    <article class="card">
+        Card One
+    </article>
+
+    <article class="card">
+        Card Two
+    </article>
+
+    <article class="card">
+        Card Three
+    </article>
+</div>
+```
+
+The layout can automatically adjust based on available space.
+
+### Example 5: Using Custom Properties
+
+Shared values can be stored as custom properties.
+
+```css
+:root {
+    --primary-color: #003366;
+    --spacing-medium: 16px;
+    --border-radius: 8px;
+}
+```
+
+These values can be reused:
+
+```css
+.button {
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: white;
+}
+```
+
+This makes shared design decisions easier to update.
+
+### Example 6: Accessible Focus Styles
+
+Interactive elements should provide visible keyboard focus.
+
+```css
+.button:focus-visible {
+    outline: 3px solid blue;
+    outline-offset: 2px;
+}
+```
+
+Avoid removing focus indicators without providing a clear replacement.
+
+This helps users identify the currently focused element.
+
+### Example 7: Respecting Reduced Motion
+
+Animations should consider user preferences.
+
+```css
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+}
+```
+
+Users who request reduced motion receive a less animated experience.
+
+### Example 8: Avoiding `transition: all`
+
+Instead of:
+
+```css
+.button {
+    transition: all 0.3s;
+}
+```
+
+Specify the property that should change:
+
+```css
+.button {
+    transition: background-color 0.3s;
+}
+```
+
+This makes the animation more predictable and easier to understand.
+
+### Example 9: Clear Responsive Styles
+
+Keep responsive behavior easy to find.
+
+```css
+.navigation {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        flex-direction: column;
+    }
+}
+```
+
+The responsive rule is clearly connected to the original component style.
+
+### Example 10: A Simple Maintainable Component
+
+The following example combines several best practices:
+
+```css
+:root {
+    --primary-color: #003366;
+    --spacing-medium: 16px;
+    --border-radius: 8px;
+}
+
+.product-card {
+    padding: var(--spacing-medium);
+    border: 1px solid #cccccc;
+    border-radius: var(--border-radius);
+}
+
+.product-card-title {
+    margin-bottom: var(--spacing-medium);
+    font-size: 1.5rem;
+}
+
+.product-card-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+.product-card-button:focus-visible {
+    outline: 3px solid blue;
+    outline-offset: 2px;
+}
+```
+
+This example demonstrates:
+
+```text
+Clear class names
+Reusable values
+Predictable selectors
+Visible focus styles
+Related styles grouped together
+Maintainable structure
+```
+
+### Practical Examples Summary
+
+```text
+Good CSS Examples
+│
+├── Reuse shared styles
+├── Use clear class names
+├── Keep selectors simple
+├── Use responsive layouts
+├── Reuse shared values
+├── Keep focus states visible
+├── Consider reduced motion
+├── Avoid unnecessary transitions
+└── Keep components maintainable
+```
+
+> 💡 **Remember:** CSS best practices work together. Clear naming, simple selectors, reusable styles, responsive design, accessibility, and maintainability all contribute to better CSS.
