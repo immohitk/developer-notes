@@ -412,3 +412,206 @@ CSS Best Practices
 ```
 
 > 💡 **Remember:** CSS best practices become increasingly important as a project grows. Writing clear and maintainable CSS early can prevent many difficult problems later.
+
+---
+
+## Keep CSS Organized
+
+Organized CSS is easier to read, maintain, and update.
+
+As a stylesheet grows, randomly adding new rules can make it difficult to find existing styles and understand how different parts of the stylesheet are related.
+
+A clear structure helps developers quickly locate and manage CSS rules.
+
+### Group Related Styles Together
+
+Styles that belong to the same component or feature should generally be kept together.
+
+For example:
+
+```css
+.card {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-description {
+    line-height: 1.6;
+}
+```
+
+Keeping related styles together makes the component easier to understand.
+
+### Use a Consistent Stylesheet Structure
+
+A stylesheet can be organized into logical sections.
+
+For example:
+
+```text
+Base styles
+        ↓
+Layout styles
+        ↓
+Component styles
+        ↓
+Utility styles
+```
+
+This provides a predictable structure.
+
+An example:
+
+```css
+/* Base styles */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Layout styles */
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+/* Component styles */
+
+.button {
+    padding: 10px 16px;
+}
+
+
+/* Utility styles */
+
+.text-center {
+    text-align: center;
+}
+```
+
+The exact structure may vary between projects, but consistency is important.
+
+### Avoid Random Rule Placement
+
+Avoid placing unrelated styles in random locations.
+
+For example, this can make a stylesheet difficult to follow:
+
+```css
+.button {
+    padding: 10px;
+}
+
+.header {
+    height: 60px;
+}
+
+.card {
+    padding: 20px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+```
+
+The `.button` and `.button-primary` styles are related but separated.
+
+A clearer structure is:
+
+```css
+.header {
+    height: 60px;
+}
+
+.card {
+    padding: 20px;
+}
+
+.button {
+    padding: 10px;
+}
+
+.button-primary {
+    background-color: blue;
+}
+```
+
+### Organize Styles Consistently
+
+When CSS follows a predictable structure, developers can more easily answer:
+
+```text
+Where is this component styled?
+        ↓
+Where should a new style be added?
+        ↓
+Which rules belong together?
+```
+
+This becomes especially important in large projects.
+
+### Split Large Stylesheets When Necessary
+
+A very large stylesheet can become difficult to manage.
+
+Depending on the project, CSS can be separated into multiple files based on:
+
+```text
+Base styles
+Layout styles
+Components
+Pages
+Utilities
+```
+
+For example:
+
+```text
+css/
+├── base.css
+├── layout.css
+├── components.css
+├── utilities.css
+└── pages.css
+```
+
+The best file structure depends on the size and requirements of the project.
+
+### Keep Organization Simple
+
+Over-organizing CSS can also create unnecessary complexity.
+
+For example, creating many small files for a very small project may make navigation more difficult.
+
+The goal is to create an organization system that is:
+
+```text
+Clear
+Consistent
+Easy to navigate
+Appropriate for the project size
+```
+
+### Keep CSS Organized Summary
+
+```text
+Organized CSS
+│
+├── Groups related styles together
+├── Uses a consistent structure
+├── Avoids random rule placement
+├── Makes styles easier to find
+├── Splits large stylesheets when needed
+└── Avoids unnecessary complexity
+```
+
+> 💡 **Remember:** A good CSS organization system should make it easy to find, understand, and update styles. Consistency is usually more important than choosing a complicated structure.
