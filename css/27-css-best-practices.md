@@ -38,3 +38,54 @@
 - [Key Takeaways](#key-takeaways)
 - [References](#references)
 - [Related Topics](#related-topics)
+
+---
+
+## Introduction
+
+CSS is used to control the presentation and layout of web pages.
+
+As a project grows, CSS can become difficult to manage without a clear and consistent approach. Styles may become duplicated, selectors may become overly complex, and changes to one component may unexpectedly affect another.
+
+CSS best practices help prevent these problems.
+
+They provide useful guidelines for writing CSS that is easier to understand, maintain, and extend.
+
+Good CSS should not only produce the correct visual result.
+
+It should also be:
+
+```text
+Readable
+Maintainable
+Reusable
+Consistent
+Scalable
+Predictable
+```
+
+For example, a simple and clearly named CSS rule is easy to understand:
+
+```css
+.button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+However, CSS can become harder to maintain when selectors and styles become unnecessarily complex:
+
+```css
+.page .main .content .section .actions .button {
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+```
+
+CSS best practices encourage developers to avoid unnecessary complexity and create styles that remain manageable as a project grows.
+
+Throughout this guide, you will learn practical approaches for organizing CSS, writing maintainable selectors, avoiding common problems, improving readability, and creating styles that are easier to work with.
+
+The goal is not to follow rules blindly.
+
+Instead, the goal is to understand which practices help create CSS that is clear, predictable, and maintainable.
