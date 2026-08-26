@@ -2755,3 +2755,188 @@ CSS Organization
 ```
 
 > 💡 **Remember:** Separate page-level layout decisions from reusable component styling when possible. Components should remain flexible enough to work in different parts of the interface.
+
+---
+
+## Use Consistent Naming Conventions
+
+A consistent naming convention makes CSS easier to read, understand, and maintain.
+
+When class names follow different patterns, it becomes difficult to understand how components and related elements are structured.
+
+For example, inconsistent naming:
+
+```css
+.productCard {}
+.product_title {}
+product-price {}
+```
+
+These class names use different naming styles.
+
+A consistent approach is easier to understand:
+
+```css
+.product-card {}
+.product-card-title {}
+.product-card-price {}
+```
+
+### Choose a Naming Style
+
+CSS class names can follow different conventions.
+
+A common approach is **kebab-case**:
+
+```css
+.product-card {}
+.product-card-title {}
+.product-card-price {}
+```
+
+Words are separated using hyphens.
+
+The important part is choosing a style and using it consistently throughout the project.
+
+### Keep Related Names Consistent
+
+Related component elements should follow a predictable pattern.
+
+For example:
+
+```css
+.navigation {}
+.navigation-item {}
+.navigation-link {}
+```
+
+Another component:
+
+```css
+.profile-card {}
+.profile-card-image {}
+.profile-card-name {}
+```
+
+This makes the relationship between classes easier to identify.
+
+### Avoid Mixing Naming Styles
+
+Avoid switching between styles without a reason.
+
+For example:
+
+```css
+.productCard {}
+.product_title {}
+.product-price {}
+```
+
+This creates inconsistency.
+
+Instead, choose one convention:
+
+```css
+.product-card {}
+.product-title {}
+.product-price {}
+```
+
+### Use a Predictable Pattern for Variations
+
+Component variations should also follow a consistent naming pattern.
+
+For example:
+
+```css
+.button {}
+.button-primary {}
+.button-secondary {}
+.button-large {}
+```
+
+These names clearly show that the classes are related to the `.button` component.
+
+HTML can combine them:
+
+```html
+<button class="button button-primary button-large">
+    Save
+</button>
+```
+
+The base class and variation classes remain easy to understand.
+
+### Naming Conventions Improve Collaboration
+
+Consistent naming helps developers predict how classes are likely to be named.
+
+For example:
+
+```text
+Component
+        ↓
+.component
+
+Component element
+        ↓
+.component-element
+
+Component variation
+        ↓
+.component-variation
+```
+
+A predictable pattern reduces the need to search through the entire stylesheet.
+
+### Choose Conventions Appropriate for the Project
+
+Different projects may use different naming systems.
+
+For example, some projects use:
+
+```text
+Simple kebab-case naming
+Component-based naming
+BEM-style naming
+Utility class naming
+```
+
+The best choice depends on the size and structure of the project.
+
+However, once a naming convention is chosen, it should be applied consistently.
+
+### Do Not Make Naming Too Complicated
+
+A naming convention should improve clarity.
+
+For example:
+
+```css
+.product-card-title {}
+```
+
+is easy to understand.
+
+An unnecessarily complex name can reduce readability:
+
+```css
+.page-main-content-product-section-card-component-title-element {}
+```
+
+Choose names that are descriptive but practical.
+
+### Use Consistent Naming Conventions Summary
+
+```text
+Consistent Naming
+│
+├── Improves readability
+├── Makes related classes easier to identify
+├── Creates predictable CSS
+├── Improves collaboration
+├── Reduces confusion
+└── Supports maintainability
+```
+
+> 💡 **Remember:** Choose a clear naming convention and apply it consistently. The goal is not to find the perfect naming system, but to make CSS predictable and easy to understand.
