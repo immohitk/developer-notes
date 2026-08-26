@@ -7812,3 +7812,118 @@ CSS Best Practices
 ```
 
 > 💡 **Remember:** Good CSS is not about writing the shortest or most advanced code. Good CSS is clear, predictable, easy to maintain, and appropriate for the problem being solved.
+
+---
+
+## References
+
+The following resources can help you learn more about CSS and improve your understanding of CSS best practices.
+
+### MDN Web Docs
+
+MDN Web Docs provides detailed documentation and learning resources for CSS.
+
+Useful topics include:
+
+```text
+CSS selectors
+CSS cascade
+Specificity
+Box model
+Flexbox
+Grid
+Media queries
+CSS custom properties
+Animations
+Accessibility
+```
+
+### W3C
+
+The World Wide Web Consortium (W3C) develops web standards and publishes specifications related to CSS and web accessibility.
+
+Useful areas to explore include:
+
+```text
+CSS specifications
+Web standards
+Accessibility guidelines
+```
+
+### web.dev
+
+web.dev provides articles and learning resources related to modern web development.
+
+Useful topics include:
+
+```text
+Performance
+Responsive design
+Accessibility
+Modern CSS
+Web development best practices
+```
+
+### Browser Developer Tools Documentation
+
+Browser developer tools are useful for understanding and debugging CSS.
+
+Useful features include:
+
+```text
+Inspecting elements
+Viewing applied styles
+Viewing computed styles
+Inspecting the box model
+Testing responsive layouts
+Debugging layout problems
+```
+
+### CSS Specifications
+
+For advanced learning, CSS specifications can provide detailed information about how CSS features are defined.
+
+Topics include:
+
+```text
+Selectors
+Cascade
+Color
+Layout
+Flexbox
+Grid
+Animations
+Transforms
+```
+
+### Recommended Learning Approach
+
+A useful learning process is:
+
+```text
+Learn a CSS concept
+        ↓
+Read the documentation
+        ↓
+Create a small example
+        ↓
+Experiment with the feature
+        ↓
+Inspect the result using developer tools
+        ↓
+Apply the concept in a project
+```
+
+### References Summary
+
+```text
+Useful Resources
+│
+├── MDN Web Docs
+├── W3C
+├── web.dev
+├── Browser developer tools documentation
+└── CSS specifications
+```
+
+> 💡 **Remember:** Documentation and experimentation work well together. Use reliable references to understand CSS concepts, then practice applying them in real projects.
