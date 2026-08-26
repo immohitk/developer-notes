@@ -6935,3 +6935,195 @@ Good CSS
 ```
 
 > 💡 **Remember:** A checklist is not a replacement for understanding CSS. Use these practices as guidelines to help create CSS that is clear, reliable, responsive, accessible, and maintainable.
+
+---
+
+## Interview Questions
+
+The following questions can help you review CSS best practices and prepare for interviews.
+
+### Basic Questions
+
+1. What are CSS best practices?
+
+2. Why is it important to write maintainable CSS?
+
+3. Why should CSS selectors be kept simple?
+
+4. What problems can deeply nested selectors cause?
+
+5. Why are meaningful class names important?
+
+6. When should classes be preferred over ID selectors?
+
+7. Why should excessive use of `!important` be avoided?
+
+8. What is CSS specificity?
+
+9. How does the CSS cascade affect which styles are applied?
+
+10. What is the difference between reusable CSS and duplicated CSS?
+
+### Organization Questions
+
+11. How should a large stylesheet be organized?
+
+12. Why should related styles be kept together?
+
+13. When should a stylesheet be divided into multiple CSS files?
+
+14. Why are clear CSS file names important?
+
+15. How can consistent naming conventions improve maintainability?
+
+16. Why should component styles be organized predictably?
+
+17. What problems can occur when styles are scattered throughout a stylesheet?
+
+### Reusability Questions
+
+18. What are CSS custom properties?
+
+19. When should CSS custom properties be used?
+
+20. Why should repeated values be reviewed?
+
+21. What is the difference between useful reuse and unnecessary abstraction?
+
+22. How can reusable component styles reduce duplicated CSS?
+
+23. Why should similar components share common styles when appropriate?
+
+### Responsive Design Questions
+
+24. What is responsive design?
+
+25. Why should CSS be tested across different screen sizes?
+
+26. What problems can fixed widths cause?
+
+27. How can Flexbox help create responsive layouts?
+
+28. How can CSS Grid help create responsive layouts?
+
+29. What are media queries?
+
+30. Why should layouts be tested at intermediate screen sizes?
+
+31. What can cause unwanted horizontal scrolling?
+
+32. Why should images adapt to their containers?
+
+### Accessibility Questions
+
+33. Why is color contrast important?
+
+34. Why should color not be the only way to communicate information?
+
+35. Why are visible focus states important?
+
+36. What is the purpose of `:focus-visible`?
+
+37. Why should keyboard navigation be tested?
+
+38. How can CSS respect reduced motion preferences?
+
+39. What is `prefers-reduced-motion`?
+
+40. Why should interactive elements have adequate spacing?
+
+### Performance Questions
+
+41. How can unused CSS affect a project?
+
+42. Why should `transition: all` be avoided when unnecessary?
+
+43. Which CSS properties are often useful for simple visual animations?
+
+44. Why should unnecessary visual effects be avoided?
+
+45. Why should performance problems be measured before optimization?
+
+46. How can overly complex CSS affect maintainability?
+
+### Debugging Questions
+
+47. How should you begin debugging a CSS problem?
+
+48. What information can browser developer tools provide?
+
+49. What is the difference between applied styles and computed styles?
+
+50. How can specificity cause unexpected CSS behavior?
+
+51. Why should the parent layout context be checked?
+
+52. Why is the box model important when debugging layout problems?
+
+53. Why should one change be tested at a time?
+
+54. How can simplifying a problem help with CSS debugging?
+
+### Practical Questions
+
+55. How would you organize CSS for a large project?
+
+56. How would you reduce repeated styles in a stylesheet?
+
+57. How would you debug a CSS rule that is being overridden?
+
+58. How would you make a layout responsive?
+
+59. How would you ensure keyboard users can see the focused element?
+
+60. How would you identify and remove unused CSS safely?
+
+61. How would you improve an overly complex CSS selector?
+
+62. How would you organize responsive styles in a large project?
+
+63. How would you decide whether to use a CSS custom property?
+
+64. How would you investigate a CSS performance problem?
+
+### Interview Tip
+
+When answering CSS best practice questions, explain both the concept and the reason behind it.
+
+For example:
+
+```text
+Avoid using !important unnecessarily because it makes
+CSS overrides harder to manage and can lead to increasing
+specificity conflicts.
+```
+
+A strong answer usually explains:
+
+```text
+What the practice is
+        ↓
+Why it is useful
+        ↓
+What problem it prevents
+        ↓
+When it should be applied
+```
+
+### Interview Questions Summary
+
+```text
+Interview Preparation
+│
+├── CSS organization
+├── Selector simplicity
+├── Specificity and cascade
+├── Reusability
+├── Responsive design
+├── Accessibility
+├── Performance
+├── Debugging
+└── Practical problem solving
+```
+
+> 💡 **Remember:** Interview questions about CSS best practices often test your understanding of why a technique is useful, not only whether you can remember its definition.
