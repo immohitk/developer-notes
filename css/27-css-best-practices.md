@@ -5368,3 +5368,256 @@ Simple CSS
 ```
 
 > 💡 **Remember:** Complex CSS is not always better CSS. Prefer the simplest solution that clearly solves the problem and remains easy to understand and maintain.
+
+---
+
+## Consider Accessibility
+
+Good CSS should help make websites usable by as many people as possible.
+
+Accessibility involves designing and styling interfaces so that users with different abilities and needs can access and use the content effectively.
+
+CSS decisions can affect:
+
+```text
+Text readability
+Color contrast
+Keyboard navigation
+Focus visibility
+Content visibility
+Motion and animation
+Responsive usability
+```
+
+Considering accessibility while writing CSS helps create a better experience for all users.
+
+### Maintain Readable Text
+
+Text should be easy to read.
+
+Avoid styles that make text unnecessarily difficult to understand.
+
+For example:
+
+```css
+.content {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+```
+
+Appropriate font sizes and line spacing can improve readability.
+
+Text should also remain readable when users zoom the page or use different screen sizes.
+
+### Use Sufficient Color Contrast
+
+Text should have enough contrast against its background.
+
+For example:
+
+```css
+.button {
+    background-color: #003366;
+    color: white;
+}
+```
+
+Low-contrast combinations can make content difficult to read.
+
+For example:
+
+```css
+.text {
+    color: #cccccc;
+    background-color: white;
+}
+```
+
+When choosing colors, consider whether users can clearly distinguish the text from its background.
+
+### Do Not Use Color as the Only Indicator
+
+Color should not be the only way to communicate important information.
+
+For example:
+
+```text
+Incorrect: Red text only
+
+Better:
+Red text + error message + visual indicator
+```
+
+CSS can support additional visual indicators.
+
+For example:
+
+```css
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+```
+
+The content should also clearly communicate the error through text.
+
+### Keep Focus States Visible
+
+Keyboard users need to see which element is currently focused.
+
+Avoid removing focus indicators without providing an alternative.
+
+For example:
+
+```css
+.button:focus {
+    outline: none;
+}
+```
+
+Removing the outline can make keyboard navigation difficult.
+
+A clearer approach is:
+
+```css
+.button:focus-visible {
+    outline: 3px solid blue;
+    outline-offset: 2px;
+}
+```
+
+This provides a visible indication when the element receives keyboard focus.
+
+### Avoid Removing Browser Focus Styles Unnecessarily
+
+Browser focus styles provide useful accessibility feedback.
+
+If custom focus styling is needed, ensure that the replacement is clearly visible.
+
+For example:
+
+```css
+input:focus-visible {
+    outline: 3px solid blue;
+}
+```
+
+The goal is to improve the appearance while preserving visible focus.
+
+### Consider Motion and Animation
+
+Some users may find excessive motion distracting or uncomfortable.
+
+CSS can respect user motion preferences.
+
+For example:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+    }
+}
+```
+
+This reduces unnecessary motion for users who have requested reduced motion.
+
+### Do Not Hide Important Content Carelessly
+
+CSS properties can visually hide or remove content.
+
+For example:
+
+```css
+display: none;
+```
+
+Before hiding content, consider whether users still need access to it.
+
+Responsive designs should also avoid accidentally hiding important information on smaller screens.
+
+### Make Interactive Elements Easy to Use
+
+Buttons, links, and form controls should remain easy to interact with.
+
+Consider:
+
+```text
+Clear visual appearance
+Sufficient size
+Visible focus states
+Readable labels
+Adequate spacing
+```
+
+For example:
+
+```css
+.button {
+    padding: 12px 20px;
+}
+```
+
+Adequate spacing can make interactive elements easier to select.
+
+### Test With Keyboard Navigation
+
+CSS should support interfaces that can be used without a mouse.
+
+Test interactive elements using:
+
+```text
+Tab
+Shift + Tab
+Enter
+Space
+```
+
+Check whether users can:
+
+```text
+Reach interactive elements
+See the focused element
+Understand the current state
+Navigate through the interface
+```
+
+### Accessibility Should Be Considered Early
+
+Accessibility is easier to support when considered during development.
+
+A useful process is:
+
+```text
+Build the interface
+        ↓
+Use readable text and colors
+        ↓
+Keep focus states visible
+        ↓
+Avoid unnecessary motion
+        ↓
+Test keyboard navigation
+        ↓
+Review responsive usability
+```
+
+### Consider Accessibility Summary
+
+```text
+Accessible CSS
+│
+├── Supports readable text
+├── Uses sufficient color contrast
+├── Does not rely only on color
+├── Keeps focus states visible
+├── Considers reduced motion
+├── Keeps important content accessible
+├── Supports keyboard navigation
+└── Improves usability for more users
+```
+
+> 💡 **Remember:** Accessibility should not be added only at the end of a project. CSS choices involving text, color, focus, motion, and responsive layouts can significantly affect how easily people use a website.
