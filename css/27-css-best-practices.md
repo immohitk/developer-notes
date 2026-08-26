@@ -5621,3 +5621,226 @@ Accessible CSS
 ```
 
 > 💡 **Remember:** Accessibility should not be added only at the end of a project. CSS choices involving text, color, focus, motion, and responsive layouts can significantly affect how easily people use a website.
+
+---
+
+## Consider Performance
+
+CSS can affect how quickly and smoothly a website renders and responds.
+
+Most websites do not need extreme CSS optimization, but unnecessarily complex styles, large visual effects, and inefficient patterns can contribute to performance problems.
+
+Good CSS performance practices focus on avoiding unnecessary work while keeping the code clear and maintainable.
+
+### Avoid Unnecessarily Large Stylesheets
+
+Large stylesheets can contain rules that are no longer needed.
+
+For example:
+
+```text
+Old component styles
+Unused utility classes
+Temporary styles
+Duplicate rules
+Styles for removed features
+```
+
+Removing genuinely unused CSS can reduce unnecessary code.
+
+However, styles should be checked carefully before removal because some classes may be added dynamically.
+
+### Avoid Unnecessary Visual Effects
+
+Some visual effects can require additional rendering work.
+
+Examples include:
+
+```text
+Large shadows
+Complex filters
+Multiple overlapping elements
+Heavy animations
+Large blurred backgrounds
+```
+
+For example:
+
+```css
+.card {
+    box-shadow: 0 20px 60px 30px rgba(0, 0, 0, 0.3);
+}
+```
+
+A simpler effect may provide a similar visual result:
+
+```css
+.card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+```
+
+Use visual effects when they improve the interface, but avoid adding heavy effects without a clear purpose.
+
+### Keep Animations Efficient
+
+Animations should be used carefully.
+
+Avoid animating many properties unnecessarily.
+
+For example:
+
+```css
+.box {
+    transition: all 0.5s;
+}
+```
+
+Using `transition: all` can cause more properties to be animated than intended.
+
+A clearer approach is:
+
+```css
+.box {
+    transition: transform 0.5s;
+}
+```
+
+This makes the intended behavior more predictable.
+
+### Avoid Unnecessary Layout Changes
+
+Frequent layout changes can make animations and interactions feel less smooth.
+
+For example, instead of changing layout-related properties repeatedly, consider whether the visual effect can use properties such as:
+
+```text
+transform
+opacity
+```
+
+For example:
+
+```css
+.button {
+    transition: transform 0.2s;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+```
+
+The important goal is to choose animation techniques appropriate for the effect.
+
+### Optimize Images Alongside CSS
+
+CSS performance is also connected to how media is displayed.
+
+For example:
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+This helps images adapt to their containers.
+
+However, CSS alone cannot reduce the size of a very large image file.
+
+Good performance also requires using appropriately sized and optimized media files.
+
+### Avoid Excessive Selector Complexity
+
+Very complex selectors can make styles harder to understand and maintain.
+
+For example:
+
+```css
+.page .content .section .cards .card .header h2 {
+    font-size: 1.5rem;
+}
+```
+
+A simpler selector is easier to read:
+
+```css
+.card-title {
+    font-size: 1.5rem;
+}
+```
+
+Simple selectors improve maintainability and reduce unnecessary complexity.
+
+### Use CSS Features Intentionally
+
+Modern CSS can often reduce the amount of code required for a layout.
+
+For example:
+
+```css
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+```
+
+A clear CSS feature can sometimes replace a larger amount of manual positioning code.
+
+The goal is not to use every modern feature, but to choose features that simplify the solution.
+
+### Measure Before Optimizing
+
+Performance problems should be investigated rather than guessed.
+
+A useful process is:
+
+```text
+Identify the performance problem
+        ↓
+Measure or inspect the page
+        ↓
+Find the likely cause
+        ↓
+Make a focused improvement
+        ↓
+Test the result
+```
+
+Avoid making complex changes without confirming that they solve a real problem.
+
+### Balance Performance and Maintainability
+
+Highly optimized CSS is not useful if it becomes extremely difficult to understand.
+
+For example:
+
+```text
+Performance
+        +
+Maintainability
+        +
+Readability
+```
+
+A good solution balances all three.
+
+### Consider Performance Summary
+
+```text
+CSS Performance
+│
+├── Avoids unnecessary code
+├── Removes genuinely unused styles
+├── Uses visual effects carefully
+├── Keeps animations intentional
+├── Avoids unnecessary complexity
+├── Uses appropriate media
+├── Measures performance problems
+└── Balances performance with maintainability
+```
+
+> 💡 **Remember:** Good CSS performance does not mean making every stylesheet as small or complex as possible. Focus on avoiding unnecessary work, measuring real problems, and keeping the final CSS clear and maintainable.
