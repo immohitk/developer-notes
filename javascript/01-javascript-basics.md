@@ -1,0 +1,23 @@
+# JavaScript Basics
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What Is JavaScript?](#what-is-javascript)
+- [Why Learn JavaScript?](#why-learn-javascript)
+- [What Can JavaScript Do?](#what-can-javascript-do)
+- [How JavaScript Works in a Web Page](#how-javascript-works-in-a-web-page)
+- [Your First JavaScript Code](#your-first-javascript-code)
+- [JavaScript Syntax Basics](#javascript-syntax-basics)
+- [Statements](#statements)
+- [Comments](#comments)
+- [Case Sensitivity](#case-sensitivity)
+- [Common Mistakes](#common-mistakes)
+- [Best Practices](#best-practices)
+- [Practical Examples](#practical-examples)
+- [Quick Revision](#quick-revision)
+- [Interview Questions](#interview-questions)
+- [Practice Exercises](#practice-exercises)
+- [Key Takeaways](#key-takeaways)
+- [References](#references)
+- [Related Topics](#related-topics)
